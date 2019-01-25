@@ -18,6 +18,33 @@ require('spark-bootstrap');
 
 require('./components/bootstrap');
 
-var app = new Vue({
-    mixins: [require('spark')]
+Vue.component(
+    'passport-clients',
+    require('./components/passport/Clients.vue').default
+);
+
+Vue.component(
+    'passport-authorized-clients',
+    require('./components/passport/AuthorizedClients.vue').default
+);
+
+Vue.component(
+    'passport-personal-access-tokens',
+    require('./components/passport/PersonalAccessTokens.vue').default
+);
+
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import Router from './router'
+
+Vue.use(VueRouter)
+
+
+const router = new VueRouter({
+    mode:'history',
+    routes: Router
 });
+
+const app = new Vue({
+    router
+}).$mount('#app');

@@ -43,6 +43,7 @@ return [
 
         'api' => [
             'driver' => 'spark',
+            'provider' => 'users',
         ],
     ],
 

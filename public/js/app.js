@@ -36,12 +36,32 @@
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
 /******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
 /******/ 	};
 /******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
@@ -59,6 +79,7 @@
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "/";
 /******/
+/******/
 /******/ 	// Load entry module and return exports
 /******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
@@ -66,13 +87,17 @@
 /******/ ({
 
 /***/ "./node_modules/asap/browser-asap.js":
+/*!*******************************************!*\
+  !*** ./node_modules/asap/browser-asap.js ***!
+  \*******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 // rawAsap provides everything we need except exception management.
-var rawAsap = __webpack_require__("./node_modules/asap/browser-raw.js");
+var rawAsap = __webpack_require__(/*! ./raw */ "./node_modules/asap/browser-raw.js");
 // RawTasks are recycled to reduce GC churn.
 var freeTasks = [];
 // We queue errors to ensure they are thrown in right order (FIFO).
@@ -140,6 +165,10 @@ RawTask.prototype.call = function () {
 /***/ }),
 
 /***/ "./node_modules/asap/browser-raw.js":
+/*!******************************************!*\
+  !*** ./node_modules/asap/browser-raw.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -367,30 +396,38 @@ rawAsap.makeRequestCallFromTimer = makeRequestCallFromTimer;
 // back into ASAP proper.
 // https://github.com/tildeio/rsvp.js/blob/cddf7232546a9cf858524b75cde6f9edf72620a7/lib/rsvp/asap.js
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/webpack/buildin/global.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
 /***/ "./node_modules/axios/index.js":
+/*!*************************************!*\
+  !*** ./node_modules/axios/index.js ***!
+  \*************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__("./node_modules/axios/lib/axios.js");
+module.exports = __webpack_require__(/*! ./lib/axios */ "./node_modules/axios/lib/axios.js");
 
 /***/ }),
 
 /***/ "./node_modules/axios/lib/adapters/xhr.js":
+/*!************************************************!*\
+  !*** ./node_modules/axios/lib/adapters/xhr.js ***!
+  \************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__("./node_modules/axios/lib/utils.js");
-var settle = __webpack_require__("./node_modules/axios/lib/core/settle.js");
-var buildURL = __webpack_require__("./node_modules/axios/lib/helpers/buildURL.js");
-var parseHeaders = __webpack_require__("./node_modules/axios/lib/helpers/parseHeaders.js");
-var isURLSameOrigin = __webpack_require__("./node_modules/axios/lib/helpers/isURLSameOrigin.js");
-var createError = __webpack_require__("./node_modules/axios/lib/core/createError.js");
-var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__("./node_modules/axios/lib/helpers/btoa.js");
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
+var settle = __webpack_require__(/*! ./../core/settle */ "./node_modules/axios/lib/core/settle.js");
+var buildURL = __webpack_require__(/*! ./../helpers/buildURL */ "./node_modules/axios/lib/helpers/buildURL.js");
+var parseHeaders = __webpack_require__(/*! ./../helpers/parseHeaders */ "./node_modules/axios/lib/helpers/parseHeaders.js");
+var isURLSameOrigin = __webpack_require__(/*! ./../helpers/isURLSameOrigin */ "./node_modules/axios/lib/helpers/isURLSameOrigin.js");
+var createError = __webpack_require__(/*! ../core/createError */ "./node_modules/axios/lib/core/createError.js");
+var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(/*! ./../helpers/btoa */ "./node_modules/axios/lib/helpers/btoa.js");
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -408,7 +445,7 @@ module.exports = function xhrAdapter(config) {
     // For IE 8/9 CORS support
     // Only supports POST and GET calls and doesn't returns the response headers.
     // DON'T do this for testing b/c XMLHttpRequest is mocked, not XDomainRequest.
-    if ("development" !== 'test' &&
+    if ( true &&
         typeof window !== 'undefined' &&
         window.XDomainRequest && !('withCredentials' in request) &&
         !isURLSameOrigin(config.url)) {
@@ -487,7 +524,7 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__("./node_modules/axios/lib/helpers/cookies.js");
+      var cookies = __webpack_require__(/*! ./../helpers/cookies */ "./node_modules/axios/lib/helpers/cookies.js");
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
@@ -567,15 +604,19 @@ module.exports = function xhrAdapter(config) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/axios.js":
+/*!*****************************************!*\
+  !*** ./node_modules/axios/lib/axios.js ***!
+  \*****************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__("./node_modules/axios/lib/utils.js");
-var bind = __webpack_require__("./node_modules/axios/lib/helpers/bind.js");
-var Axios = __webpack_require__("./node_modules/axios/lib/core/Axios.js");
-var defaults = __webpack_require__("./node_modules/axios/lib/defaults.js");
+var utils = __webpack_require__(/*! ./utils */ "./node_modules/axios/lib/utils.js");
+var bind = __webpack_require__(/*! ./helpers/bind */ "./node_modules/axios/lib/helpers/bind.js");
+var Axios = __webpack_require__(/*! ./core/Axios */ "./node_modules/axios/lib/core/Axios.js");
+var defaults = __webpack_require__(/*! ./defaults */ "./node_modules/axios/lib/defaults.js");
 
 /**
  * Create an instance of Axios
@@ -608,15 +649,15 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__("./node_modules/axios/lib/cancel/Cancel.js");
-axios.CancelToken = __webpack_require__("./node_modules/axios/lib/cancel/CancelToken.js");
-axios.isCancel = __webpack_require__("./node_modules/axios/lib/cancel/isCancel.js");
+axios.Cancel = __webpack_require__(/*! ./cancel/Cancel */ "./node_modules/axios/lib/cancel/Cancel.js");
+axios.CancelToken = __webpack_require__(/*! ./cancel/CancelToken */ "./node_modules/axios/lib/cancel/CancelToken.js");
+axios.isCancel = __webpack_require__(/*! ./cancel/isCancel */ "./node_modules/axios/lib/cancel/isCancel.js");
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__("./node_modules/axios/lib/helpers/spread.js");
+axios.spread = __webpack_require__(/*! ./helpers/spread */ "./node_modules/axios/lib/helpers/spread.js");
 
 module.exports = axios;
 
@@ -627,6 +668,10 @@ module.exports.default = axios;
 /***/ }),
 
 /***/ "./node_modules/axios/lib/cancel/Cancel.js":
+/*!*************************************************!*\
+  !*** ./node_modules/axios/lib/cancel/Cancel.js ***!
+  \*************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -654,12 +699,16 @@ module.exports = Cancel;
 /***/ }),
 
 /***/ "./node_modules/axios/lib/cancel/CancelToken.js":
+/*!******************************************************!*\
+  !*** ./node_modules/axios/lib/cancel/CancelToken.js ***!
+  \******************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var Cancel = __webpack_require__("./node_modules/axios/lib/cancel/Cancel.js");
+var Cancel = __webpack_require__(/*! ./Cancel */ "./node_modules/axios/lib/cancel/Cancel.js");
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -719,6 +768,10 @@ module.exports = CancelToken;
 /***/ }),
 
 /***/ "./node_modules/axios/lib/cancel/isCancel.js":
+/*!***************************************************!*\
+  !*** ./node_modules/axios/lib/cancel/isCancel.js ***!
+  \***************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -732,15 +785,19 @@ module.exports = function isCancel(value) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/core/Axios.js":
+/*!**********************************************!*\
+  !*** ./node_modules/axios/lib/core/Axios.js ***!
+  \**********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var defaults = __webpack_require__("./node_modules/axios/lib/defaults.js");
-var utils = __webpack_require__("./node_modules/axios/lib/utils.js");
-var InterceptorManager = __webpack_require__("./node_modules/axios/lib/core/InterceptorManager.js");
-var dispatchRequest = __webpack_require__("./node_modules/axios/lib/core/dispatchRequest.js");
+var defaults = __webpack_require__(/*! ./../defaults */ "./node_modules/axios/lib/defaults.js");
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
+var InterceptorManager = __webpack_require__(/*! ./InterceptorManager */ "./node_modules/axios/lib/core/InterceptorManager.js");
+var dispatchRequest = __webpack_require__(/*! ./dispatchRequest */ "./node_modules/axios/lib/core/dispatchRequest.js");
 
 /**
  * Create a new instance of Axios
@@ -819,12 +876,16 @@ module.exports = Axios;
 /***/ }),
 
 /***/ "./node_modules/axios/lib/core/InterceptorManager.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/axios/lib/core/InterceptorManager.js ***!
+  \***********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__("./node_modules/axios/lib/utils.js");
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
 
 function InterceptorManager() {
   this.handlers = [];
@@ -879,12 +940,16 @@ module.exports = InterceptorManager;
 /***/ }),
 
 /***/ "./node_modules/axios/lib/core/createError.js":
+/*!****************************************************!*\
+  !*** ./node_modules/axios/lib/core/createError.js ***!
+  \****************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var enhanceError = __webpack_require__("./node_modules/axios/lib/core/enhanceError.js");
+var enhanceError = __webpack_require__(/*! ./enhanceError */ "./node_modules/axios/lib/core/enhanceError.js");
 
 /**
  * Create an Error with the specified message, config, error code, request and response.
@@ -905,17 +970,21 @@ module.exports = function createError(message, config, code, request, response) 
 /***/ }),
 
 /***/ "./node_modules/axios/lib/core/dispatchRequest.js":
+/*!********************************************************!*\
+  !*** ./node_modules/axios/lib/core/dispatchRequest.js ***!
+  \********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__("./node_modules/axios/lib/utils.js");
-var transformData = __webpack_require__("./node_modules/axios/lib/core/transformData.js");
-var isCancel = __webpack_require__("./node_modules/axios/lib/cancel/isCancel.js");
-var defaults = __webpack_require__("./node_modules/axios/lib/defaults.js");
-var isAbsoluteURL = __webpack_require__("./node_modules/axios/lib/helpers/isAbsoluteURL.js");
-var combineURLs = __webpack_require__("./node_modules/axios/lib/helpers/combineURLs.js");
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
+var transformData = __webpack_require__(/*! ./transformData */ "./node_modules/axios/lib/core/transformData.js");
+var isCancel = __webpack_require__(/*! ../cancel/isCancel */ "./node_modules/axios/lib/cancel/isCancel.js");
+var defaults = __webpack_require__(/*! ../defaults */ "./node_modules/axios/lib/defaults.js");
+var isAbsoluteURL = __webpack_require__(/*! ./../helpers/isAbsoluteURL */ "./node_modules/axios/lib/helpers/isAbsoluteURL.js");
+var combineURLs = __webpack_require__(/*! ./../helpers/combineURLs */ "./node_modules/axios/lib/helpers/combineURLs.js");
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -999,6 +1068,10 @@ module.exports = function dispatchRequest(config) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/core/enhanceError.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/axios/lib/core/enhanceError.js ***!
+  \*****************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1028,12 +1101,16 @@ module.exports = function enhanceError(error, config, code, request, response) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/core/settle.js":
+/*!***********************************************!*\
+  !*** ./node_modules/axios/lib/core/settle.js ***!
+  \***********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var createError = __webpack_require__("./node_modules/axios/lib/core/createError.js");
+var createError = __webpack_require__(/*! ./createError */ "./node_modules/axios/lib/core/createError.js");
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -1062,12 +1139,16 @@ module.exports = function settle(resolve, reject, response) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/core/transformData.js":
+/*!******************************************************!*\
+  !*** ./node_modules/axios/lib/core/transformData.js ***!
+  \******************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__("./node_modules/axios/lib/utils.js");
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
 
 /**
  * Transform the data for a request or a response
@@ -1090,13 +1171,17 @@ module.exports = function transformData(data, headers, fns) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/defaults.js":
+/*!********************************************!*\
+  !*** ./node_modules/axios/lib/defaults.js ***!
+  \********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
-var utils = __webpack_require__("./node_modules/axios/lib/utils.js");
-var normalizeHeaderName = __webpack_require__("./node_modules/axios/lib/helpers/normalizeHeaderName.js");
+var utils = __webpack_require__(/*! ./utils */ "./node_modules/axios/lib/utils.js");
+var normalizeHeaderName = __webpack_require__(/*! ./helpers/normalizeHeaderName */ "./node_modules/axios/lib/helpers/normalizeHeaderName.js");
 
 var DEFAULT_CONTENT_TYPE = {
   'Content-Type': 'application/x-www-form-urlencoded'
@@ -1112,10 +1197,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__("./node_modules/axios/lib/adapters/xhr.js");
+    adapter = __webpack_require__(/*! ./adapters/xhr */ "./node_modules/axios/lib/adapters/xhr.js");
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__("./node_modules/axios/lib/adapters/xhr.js");
+    adapter = __webpack_require__(/*! ./adapters/http */ "./node_modules/axios/lib/adapters/xhr.js");
   }
   return adapter;
 }
@@ -1190,11 +1275,15 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/process/browser.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
 /***/ "./node_modules/axios/lib/helpers/bind.js":
+/*!************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/bind.js ***!
+  \************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1214,6 +1303,10 @@ module.exports = function bind(fn, thisArg) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/helpers/btoa.js":
+/*!************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/btoa.js ***!
+  \************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1258,12 +1351,16 @@ module.exports = btoa;
 /***/ }),
 
 /***/ "./node_modules/axios/lib/helpers/buildURL.js":
+/*!****************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/buildURL.js ***!
+  \****************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__("./node_modules/axios/lib/utils.js");
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
 
 function encode(val) {
   return encodeURIComponent(val).
@@ -1332,6 +1429,10 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/helpers/combineURLs.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/combineURLs.js ***!
+  \*******************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1354,12 +1455,16 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/helpers/cookies.js":
+/*!***************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/cookies.js ***!
+  \***************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__("./node_modules/axios/lib/utils.js");
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
 
 module.exports = (
   utils.isStandardBrowserEnv() ?
@@ -1415,6 +1520,10 @@ module.exports = (
 /***/ }),
 
 /***/ "./node_modules/axios/lib/helpers/isAbsoluteURL.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/isAbsoluteURL.js ***!
+  \*********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1437,12 +1546,16 @@ module.exports = function isAbsoluteURL(url) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/helpers/isURLSameOrigin.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/isURLSameOrigin.js ***!
+  \***********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__("./node_modules/axios/lib/utils.js");
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
 
 module.exports = (
   utils.isStandardBrowserEnv() ?
@@ -1513,12 +1626,16 @@ module.exports = (
 /***/ }),
 
 /***/ "./node_modules/axios/lib/helpers/normalizeHeaderName.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/normalizeHeaderName.js ***!
+  \***************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__("./node_modules/axios/lib/utils.js");
+var utils = __webpack_require__(/*! ../utils */ "./node_modules/axios/lib/utils.js");
 
 module.exports = function normalizeHeaderName(headers, normalizedName) {
   utils.forEach(headers, function processHeader(value, name) {
@@ -1533,12 +1650,16 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/helpers/parseHeaders.js":
+/*!********************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/parseHeaders.js ***!
+  \********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var utils = __webpack_require__("./node_modules/axios/lib/utils.js");
+var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/utils.js");
 
 // Headers whose duplicates are ignored by node
 // c.f. https://nodejs.org/api/http.html#http_message_headers
@@ -1594,6 +1715,10 @@ module.exports = function parseHeaders(headers) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/helpers/spread.js":
+/*!**************************************************!*\
+  !*** ./node_modules/axios/lib/helpers/spread.js ***!
+  \**************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1629,13 +1754,17 @@ module.exports = function spread(callback) {
 /***/ }),
 
 /***/ "./node_modules/axios/lib/utils.js":
+/*!*****************************************!*\
+  !*** ./node_modules/axios/lib/utils.js ***!
+  \*****************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var bind = __webpack_require__("./node_modules/axios/lib/helpers/bind.js");
-var isBuffer = __webpack_require__("./node_modules/is-buffer/index.js");
+var bind = __webpack_require__(/*! ./helpers/bind */ "./node_modules/axios/lib/helpers/bind.js");
+var isBuffer = __webpack_require__(/*! is-buffer */ "./node_modules/is-buffer/index.js");
 
 /*global toString:true*/
 
@@ -1939,7 +2068,786 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/passport/AuthorizedClients.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/passport/AuthorizedClients.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  /*
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      tokens: []
+    };
+  },
+
+  /**
+   * Prepare the component (Vue 1.x).
+   */
+  ready: function ready() {
+    this.prepareComponent();
+  },
+
+  /**
+   * Prepare the component (Vue 2.x).
+   */
+  mounted: function mounted() {
+    this.prepareComponent();
+  },
+  methods: {
+    /**
+     * Prepare the component (Vue 2.x).
+     */
+    prepareComponent: function prepareComponent() {
+      this.getTokens();
+    },
+
+    /**
+     * Get all of the authorized tokens for the user.
+     */
+    getTokens: function getTokens() {
+      var _this = this;
+
+      axios.get('/oauth/tokens').then(function (response) {
+        _this.tokens = response.data;
+      });
+    },
+
+    /**
+     * Revoke the given token.
+     */
+    revoke: function revoke(token) {
+      var _this2 = this;
+
+      axios.delete('/oauth/tokens/' + token.id).then(function (response) {
+        _this2.getTokens();
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/passport/Clients.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/passport/Clients.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  /*
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      clients: [],
+      createForm: {
+        errors: [],
+        name: '',
+        redirect: ''
+      },
+      editForm: {
+        errors: [],
+        name: '',
+        redirect: ''
+      }
+    };
+  },
+
+  /**
+   * Prepare the component (Vue 1.x).
+   */
+  ready: function ready() {
+    this.prepareComponent();
+  },
+
+  /**
+   * Prepare the component (Vue 2.x).
+   */
+  mounted: function mounted() {
+    this.prepareComponent();
+  },
+  methods: {
+    /**
+     * Prepare the component.
+     */
+    prepareComponent: function prepareComponent() {
+      this.getClients();
+      $('#modal-create-client').on('shown.bs.modal', function () {
+        $('#create-client-name').focus();
+      });
+      $('#modal-edit-client').on('shown.bs.modal', function () {
+        $('#edit-client-name').focus();
+      });
+    },
+
+    /**
+     * Get all of the OAuth clients for the user.
+     */
+    getClients: function getClients() {
+      var _this = this;
+
+      axios.get('/oauth/clients').then(function (response) {
+        _this.clients = response.data;
+      });
+    },
+
+    /**
+     * Show the form for creating new clients.
+     */
+    showCreateClientForm: function showCreateClientForm() {
+      $('#modal-create-client').modal('show');
+    },
+
+    /**
+     * Create a new OAuth client for the user.
+     */
+    store: function store() {
+      this.persistClient('post', '/oauth/clients', this.createForm, '#modal-create-client');
+    },
+
+    /**
+     * Edit the given client.
+     */
+    edit: function edit(client) {
+      this.editForm.id = client.id;
+      this.editForm.name = client.name;
+      this.editForm.redirect = client.redirect;
+      $('#modal-edit-client').modal('show');
+    },
+
+    /**
+     * Update the client being edited.
+     */
+    update: function update() {
+      this.persistClient('put', '/oauth/clients/' + this.editForm.id, this.editForm, '#modal-edit-client');
+    },
+
+    /**
+     * Persist the client to storage using the given form.
+     */
+    persistClient: function persistClient(method, uri, form, modal) {
+      var _this2 = this;
+
+      form.errors = [];
+      axios[method](uri, form).then(function (response) {
+        _this2.getClients();
+
+        form.name = '';
+        form.redirect = '';
+        form.errors = [];
+        $(modal).modal('hide');
+      }).catch(function (error) {
+        if (_typeof(error.response.data) === 'object') {
+          form.errors = _.flatten(_.toArray(error.response.data.errors));
+        } else {
+          form.errors = ['Something went wrong. Please try again.'];
+        }
+      });
+    },
+
+    /**
+     * Destroy the given client.
+     */
+    destroy: function destroy(client) {
+      var _this3 = this;
+
+      axios.delete('/oauth/clients/' + client.id).then(function (response) {
+        _this3.getClients();
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/passport/PersonalAccessTokens.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/passport/PersonalAccessTokens.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  /*
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      accessToken: null,
+      tokens: [],
+      scopes: [],
+      form: {
+        name: '',
+        scopes: [],
+        errors: []
+      }
+    };
+  },
+
+  /**
+   * Prepare the component (Vue 1.x).
+   */
+  ready: function ready() {
+    this.prepareComponent();
+  },
+
+  /**
+   * Prepare the component (Vue 2.x).
+   */
+  mounted: function mounted() {
+    this.prepareComponent();
+  },
+  methods: {
+    /**
+     * Prepare the component.
+     */
+    prepareComponent: function prepareComponent() {
+      this.getTokens();
+      this.getScopes();
+      $('#modal-create-token').on('shown.bs.modal', function () {
+        $('#create-token-name').focus();
+      });
+    },
+
+    /**
+     * Get all of the personal access tokens for the user.
+     */
+    getTokens: function getTokens() {
+      var _this = this;
+
+      axios.get('/oauth/personal-access-tokens').then(function (response) {
+        _this.tokens = response.data;
+      });
+    },
+
+    /**
+     * Get all of the available scopes.
+     */
+    getScopes: function getScopes() {
+      var _this2 = this;
+
+      axios.get('/oauth/scopes').then(function (response) {
+        _this2.scopes = response.data;
+      });
+    },
+
+    /**
+     * Show the form for creating new tokens.
+     */
+    showCreateTokenForm: function showCreateTokenForm() {
+      $('#modal-create-token').modal('show');
+    },
+
+    /**
+     * Create a new personal access token.
+     */
+    store: function store() {
+      var _this3 = this;
+
+      this.accessToken = null;
+      this.form.errors = [];
+      axios.post('/oauth/personal-access-tokens', this.form).then(function (response) {
+        _this3.form.name = '';
+        _this3.form.scopes = [];
+        _this3.form.errors = [];
+
+        _this3.tokens.push(response.data.token);
+
+        _this3.showAccessToken(response.data.accessToken);
+      }).catch(function (error) {
+        if (_typeof(error.response.data) === 'object') {
+          _this3.form.errors = _.flatten(_.toArray(error.response.data.errors));
+        } else {
+          _this3.form.errors = ['Something went wrong. Please try again.'];
+        }
+      });
+    },
+
+    /**
+     * Toggle the given scope in the list of assigned scopes.
+     */
+    toggleScope: function toggleScope(scope) {
+      if (this.scopeIsAssigned(scope)) {
+        this.form.scopes = _.reject(this.form.scopes, function (s) {
+          return s == scope;
+        });
+      } else {
+        this.form.scopes.push(scope);
+      }
+    },
+
+    /**
+     * Determine if the given scope has been assigned to the token.
+     */
+    scopeIsAssigned: function scopeIsAssigned(scope) {
+      return _.indexOf(this.form.scopes, scope) >= 0;
+    },
+
+    /**
+     * Show the given access token to the user.
+     */
+    showAccessToken: function showAccessToken(accessToken) {
+      $('#modal-create-token').modal('hide');
+      this.accessToken = accessToken;
+      $('#modal-access-token').modal('show');
+    },
+
+    /**
+     * Revoke the given token.
+     */
+    revoke: function revoke(token) {
+      var _this4 = this;
+
+      axios.delete('/oauth/personal-access-tokens/' + token.id).then(function (response) {
+        _this4.getTokens();
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/bootstrap/dist/js/bootstrap.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/bootstrap/dist/js/bootstrap.js ***!
+  \*****************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -1948,9 +2856,8 @@ module.exports = {
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
   */
 (function (global, factory) {
-   true ? factory(exports, __webpack_require__("./node_modules/popper.js/dist/esm/popper.js"), __webpack_require__("./node_modules/jquery/dist/jquery.js")) :
-  typeof define === 'function' && define.amd ? define(['exports', 'popper.js', 'jquery'], factory) :
-  (factory((global.bootstrap = {}),global.Popper,global.jQuery));
+   true ? factory(exports, __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js"), __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")) :
+  undefined;
 }(this, (function (exports,Popper,$) { 'use strict';
 
   Popper = Popper && Popper.hasOwnProperty('default') ? Popper['default'] : Popper;
@@ -6195,7 +7102,155 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/passport/AuthorizedClients.vue?vue&type=style&index=0&id=397d14ca&scoped=true&lang=css&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--7-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/passport/AuthorizedClients.vue?vue&type=style&index=0&id=397d14ca&scoped=true&lang=css& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.action-link[data-v-397d14ca] {\n    cursor: pointer;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/passport/Clients.vue?vue&type=style&index=0&id=1552a5b6&scoped=true&lang=css&":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--7-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/passport/Clients.vue?vue&type=style&index=0&id=1552a5b6&scoped=true&lang=css& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.action-link[data-v-1552a5b6] {\n    cursor: pointer;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/passport/PersonalAccessTokens.vue?vue&type=style&index=0&id=49962cc0&scoped=true&lang=css&":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--7-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/passport/PersonalAccessTokens.vue?vue&type=style&index=0&id=49962cc0&scoped=true&lang=css& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.action-link[data-v-49962cc0] {\n    cursor: pointer;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/lib/css-base.js":
+/*!*************************************************!*\
+  !*** ./node_modules/css-loader/lib/css-base.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/is-buffer/index.js":
+/*!*****************************************!*\
+  !*** ./node_modules/is-buffer/index.js ***!
+  \*****************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 /*!
@@ -6224,6 +7279,10 @@ function isSlowBuffer (obj) {
 /***/ }),
 
 /***/ "./node_modules/jquery/dist/jquery.js":
+/*!********************************************!*\
+  !*** ./node_modules/jquery/dist/jquery.js ***!
+  \********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -6243,7 +7302,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 	"use strict";
 
-	if ( typeof module === "object" && typeof module.exports === "object" ) {
+	if (  true && typeof module.exports === "object" ) {
 
 		// For CommonJS and CommonJS-like environments where a proper `window`
 		// is present, execute the factory and get jQuery.
@@ -16596,6 +17655,10 @@ return jQuery;
 /***/ }),
 
 /***/ "./node_modules/lodash/lodash.js":
+/*!***************************************!*\
+  !*** ./node_modules/lodash/lodash.js ***!
+  \***************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -17022,7 +18085,7 @@ return jQuery;
   var root = freeGlobal || freeSelf || Function('return this')();
 
   /** Detect free variable `exports`. */
-  var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
+  var freeExports =  true && exports && !exports.nodeType && exports;
 
   /** Detect free variable `module`. */
   var freeModule = freeExports && typeof module == 'object' && module && !module.nodeType && module;
@@ -33695,23 +34758,18 @@ return jQuery;
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
   }
   // Check for `exports` after `define` in case a build optimizer adds it.
-  else if (freeModule) {
-    // Export for Node.js.
-    (freeModule.exports = _)._ = _;
-    // Export for CommonJS support.
-    freeExports._ = _;
-  }
-  else {
-    // Export to the global object.
-    root._ = _;
-  }
+  else {}
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/webpack/buildin/global.js"), __webpack_require__("./node_modules/webpack/buildin/module.js")(module)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../webpack/buildin/module.js */ "./node_modules/webpack/buildin/module.js")(module)))
 
 /***/ }),
 
-/***/ "./node_modules/moment/locale recursive ^\\.\\/.*$":
+/***/ "./node_modules/moment/locale sync recursive ^\\.\\/.*$":
+/*!**************************************************!*\
+  !*** ./node_modules/moment/locale sync ^\.\/.*$ ***!
+  \**************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -33970,33 +35028,42 @@ var map = {
 	"./zh-tw": "./node_modules/moment/locale/zh-tw.js",
 	"./zh-tw.js": "./node_modules/moment/locale/zh-tw.js"
 };
+
+
 function webpackContext(req) {
-	return __webpack_require__(webpackContextResolve(req));
-};
+	var id = webpackContextResolve(req);
+	return __webpack_require__(id);
+}
 function webpackContextResolve(req) {
 	var id = map[req];
-	if(!(id + 1)) // check for number or string
-		throw new Error("Cannot find module '" + req + "'.");
+	if(!(id + 1)) { // check for number or string
+		var e = new Error("Cannot find module '" + req + "'");
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	}
 	return id;
-};
+}
 webpackContext.keys = function webpackContextKeys() {
 	return Object.keys(map);
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
+webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
 
 /***/ }),
 
 /***/ "./node_modules/moment/locale/af.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/af.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -34067,14 +35134,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/ar-dz.js":
+/*!*********************************************!*\
+  !*** ./node_modules/moment/locale/ar-dz.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -34131,14 +35201,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/ar-kw.js":
+/*!*********************************************!*\
+  !*** ./node_modules/moment/locale/ar-kw.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -34195,14 +35268,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/ar-ly.js":
+/*!*********************************************!*\
+  !*** ./node_modules/moment/locale/ar-ly.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -34322,14 +35398,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/ar-ma.js":
+/*!*********************************************!*\
+  !*** ./node_modules/moment/locale/ar-ma.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -34386,14 +35465,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/ar-sa.js":
+/*!*********************************************!*\
+  !*** ./node_modules/moment/locale/ar-sa.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -34495,14 +35577,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/ar-tn.js":
+/*!*********************************************!*\
+  !*** ./node_modules/moment/locale/ar-tn.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -34559,14 +35644,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/ar.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/ar.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -34699,14 +35787,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/az.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/az.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -34809,14 +35900,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/be.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/be.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -34946,14 +36040,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/bg.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/bg.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -35041,14 +36138,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/bm.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/bm.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -35104,14 +36204,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/bn.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/bn.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -35228,14 +36331,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/bo.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/bo.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -35352,14 +36458,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/br.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/br.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -35465,14 +36574,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/bs.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/bs.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -35621,14 +36733,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/ca.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/ca.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -35714,14 +36829,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/cs.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/cs.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -35891,14 +37009,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/cv.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/cv.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -35959,14 +37080,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/cy.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/cy.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -36044,14 +37168,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/da.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/da.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -36109,14 +37236,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/de-at.js":
+/*!*********************************************!*\
+  !*** ./node_modules/moment/locale/de-at.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -36190,14 +37320,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/de-ch.js":
+/*!*********************************************!*\
+  !*** ./node_modules/moment/locale/de-ch.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -36271,14 +37404,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/de.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/de.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -36352,14 +37488,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/dv.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/dv.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -36456,14 +37595,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/el.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/el.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
     function isFunction(input) {
@@ -36561,14 +37703,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/en-SG.js":
+/*!*********************************************!*\
+  !*** ./node_modules/moment/locale/en-SG.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -36633,14 +37778,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/en-au.js":
+/*!*********************************************!*\
+  !*** ./node_modules/moment/locale/en-au.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -36705,14 +37853,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/en-ca.js":
+/*!*********************************************!*\
+  !*** ./node_modules/moment/locale/en-ca.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -36773,14 +37924,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/en-gb.js":
+/*!*********************************************!*\
+  !*** ./node_modules/moment/locale/en-gb.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -36845,14 +37999,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/en-ie.js":
+/*!*********************************************!*\
+  !*** ./node_modules/moment/locale/en-ie.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -36917,14 +38074,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/en-il.js":
+/*!*********************************************!*\
+  !*** ./node_modules/moment/locale/en-il.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -36984,14 +38144,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/en-nz.js":
+/*!*********************************************!*\
+  !*** ./node_modules/moment/locale/en-nz.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -37056,14 +38219,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/eo.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/eo.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -37132,14 +38298,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/es-do.js":
+/*!*********************************************!*\
+  !*** ./node_modules/moment/locale/es-do.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -37229,14 +38398,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/es-us.js":
+/*!*********************************************!*\
+  !*** ./node_modules/moment/locale/es-us.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -37326,14 +38498,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/es.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/es.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -37423,14 +38598,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/et.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/et.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -37508,14 +38686,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/eu.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/eu.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -37579,14 +38760,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/fa.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/fa.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -37690,14 +38874,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/fi.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/fi.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -37804,14 +38991,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/fo.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/fo.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -37869,14 +39059,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/fr-ca.js":
+/*!*********************************************!*\
+  !*** ./node_modules/moment/locale/fr-ca.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -37948,14 +39141,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/fr-ch.js":
+/*!*********************************************!*\
+  !*** ./node_modules/moment/locale/fr-ch.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -38031,14 +39227,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/fr.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/fr.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -38119,14 +39318,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/fy.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/fy.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -38199,14 +39401,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/ga.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/ga.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -38281,14 +39486,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/gd.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/gd.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -38362,14 +39570,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/gl.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/gl.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -38444,14 +39655,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/gom-latn.js":
+/*!************************************************!*\
+  !*** ./node_modules/moment/locale/gom-latn.js ***!
+  \************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -38572,14 +39786,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/gu.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/gu.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -38701,14 +39918,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/he.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/he.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -38803,14 +40023,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/hi.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/hi.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -38932,14 +40155,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/hr.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/hr.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -39091,14 +40317,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/hu.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/hu.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -39206,14 +40435,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/hy-am.js":
+/*!*********************************************!*\
+  !*** ./node_modules/moment/locale/hy-am.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -39306,14 +40538,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/id.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/id.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -39393,14 +40628,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/is.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/is.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -39530,14 +40768,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/it-ch.js":
+/*!*********************************************!*\
+  !*** ./node_modules/moment/locale/it-ch.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -39604,14 +40845,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/it.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/it.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -39678,14 +40922,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/ja.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/ja.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -39775,14 +41022,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/jv.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/jv.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -39862,14 +41112,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/ka.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/ka.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -39956,14 +41209,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/kk.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/kk.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -40048,14 +41304,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/km.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/km.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -40163,14 +41422,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/kn.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/kn.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -40294,14 +41556,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/ko.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/ko.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -40380,14 +41645,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/ku.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/ku.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -40504,14 +41772,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/ky.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/ky.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -40596,14 +41867,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/lb.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/lb.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -40737,14 +42011,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/lo.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/lo.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -40812,14 +42089,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/lt.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/lt.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -40935,14 +42215,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/lv.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/lv.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -41037,14 +42320,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/me.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/me.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -41154,14 +42440,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/mi.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/mi.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -41223,14 +42512,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/mk.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/mk.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -41318,14 +42610,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/ml.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/ml.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -41404,14 +42699,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/mn.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/mn.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -41513,14 +42811,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/mr.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/mr.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -41678,14 +42979,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/ms-my.js":
+/*!*********************************************!*\
+  !*** ./node_modules/moment/locale/ms-my.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -41765,14 +43069,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/ms.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/ms.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -41852,14 +43159,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/mt.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/mt.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -41917,14 +43227,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/my.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/my.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -42015,14 +43328,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/nb.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/nb.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -42082,14 +43398,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/ne.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/ne.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -42210,14 +43529,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/nl-be.js":
+/*!*********************************************!*\
+  !*** ./node_modules/moment/locale/nl-be.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -42302,14 +43624,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/nl.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/nl.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -42394,14 +43719,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/nn.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/nn.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -42459,14 +43787,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/pa-in.js":
+/*!*********************************************!*\
+  !*** ./node_modules/moment/locale/pa-in.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -42588,14 +43919,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/pl.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/pl.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -42719,14 +44053,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/pt-br.js":
+/*!*********************************************!*\
+  !*** ./node_modules/moment/locale/pt-br.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -42785,14 +44122,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/pt.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/pt.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -42855,14 +44195,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/ro.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/ro.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -42935,14 +44278,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/ru.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/ru.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -43122,14 +44468,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/sd.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/sd.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -43225,14 +44574,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/se.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/se.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -43290,14 +44642,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/si.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/si.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -43366,14 +44721,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/sk.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/sk.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -43527,14 +44885,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/sl.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/sl.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -43705,14 +45066,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/sq.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/sq.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -43778,14 +45142,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/sr-cyrl.js":
+/*!***********************************************!*\
+  !*** ./node_modules/moment/locale/sr-cyrl.js ***!
+  \***********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -43894,14 +45261,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/sr.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/sr.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -44010,14 +45380,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/ss.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/ss.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -44103,14 +45476,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/sv.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/sv.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -44177,14 +45553,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/sw.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/sw.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -44241,14 +45620,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/ta.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/ta.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -44375,14 +45757,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/te.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/te.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -44469,14 +45854,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/tet.js":
+/*!*******************************************!*\
+  !*** ./node_modules/moment/locale/tet.js ***!
+  \*******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -44541,14 +45929,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/tg.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/tg.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -44662,14 +46053,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/th.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/th.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -44734,14 +46128,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/tl-ph.js":
+/*!*********************************************!*\
+  !*** ./node_modules/moment/locale/tl-ph.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -44801,14 +46198,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/tlh.js":
+/*!*******************************************!*\
+  !*** ./node_modules/moment/locale/tlh.js ***!
+  \*******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -44928,13 +46328,16 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/tr.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/tr.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
     var suffixes = {
@@ -45027,14 +46430,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/tzl.js":
+/*!*******************************************!*\
+  !*** ./node_modules/moment/locale/tzl.js ***!
+  \*******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -45123,14 +46529,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/tzm-latn.js":
+/*!************************************************!*\
+  !*** ./node_modules/moment/locale/tzm-latn.js ***!
+  \************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -45186,14 +46595,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/tzm.js":
+/*!*******************************************!*\
+  !*** ./node_modules/moment/locale/tzm.js ***!
+  \*******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -45249,14 +46661,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/ug-cn.js":
+/*!*********************************************!*\
+  !*** ./node_modules/moment/locale/ug-cn.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js language configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -45373,14 +46788,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/uk.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/uk.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -45532,14 +46950,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/ur.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/ur.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -45635,14 +47056,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/uz-latn.js":
+/*!***********************************************!*\
+  !*** ./node_modules/moment/locale/uz-latn.js ***!
+  \***********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -45698,14 +47122,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/uz.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/uz.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -45761,14 +47188,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/vi.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/vi.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -45845,14 +47275,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/x-pseudo.js":
+/*!************************************************!*\
+  !*** ./node_modules/moment/locale/x-pseudo.js ***!
+  \************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -45918,14 +47351,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/yo.js":
+/*!******************************************!*\
+  !*** ./node_modules/moment/locale/yo.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -45983,14 +47419,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/zh-cn.js":
+/*!*********************************************!*\
+  !*** ./node_modules/moment/locale/zh-cn.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -46098,14 +47537,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/zh-hk.js":
+/*!*********************************************!*\
+  !*** ./node_modules/moment/locale/zh-hk.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -46206,14 +47648,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/locale/zh-tw.js":
+/*!*********************************************!*\
+  !*** ./node_modules/moment/locale/zh-tw.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
 
 ;(function (global, factory) {
-    true ? factory(__webpack_require__("./node_modules/moment/moment.js")) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
 }(this, (function (moment) { 'use strict';
 
 
@@ -46314,14 +47759,17 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 /***/ }),
 
 /***/ "./node_modules/moment/moment.js":
+/*!***************************************!*\
+  !*** ./node_modules/moment/moment.js ***!
+  \***************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {var require;//! moment.js
 
 ;(function (global, factory) {
      true ? module.exports = factory() :
-    typeof define === 'function' && define.amd ? define(factory) :
-    global.moment = factory()
+    undefined
 }(this, (function () { 'use strict';
 
     var hookCallback;
@@ -48168,7 +49616,7 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
             try {
                 oldLocale = globalLocale._abbr;
                 var aliasedRequire = require;
-                __webpack_require__("./node_modules/moment/locale recursive ^\\.\\/.*$")("./" + name);
+                __webpack_require__("./node_modules/moment/locale sync recursive ^\\.\\/.*$")("./" + name);
                 getSetGlobalLocale(oldLocale);
             } catch (e) {}
         }
@@ -50919,15 +52367,19 @@ webpackContext.id = "./node_modules/moment/locale recursive ^\\.\\/.*$";
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/webpack/buildin/module.js")(module)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/module.js */ "./node_modules/webpack/buildin/module.js")(module)))
 
 /***/ }),
 
 /***/ "./node_modules/popper.js/dist/esm/popper.js":
+/*!***************************************************!*\
+  !*** ./node_modules/popper.js/dist/esm/popper.js ***!
+  \***************************************************/
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+__webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function(global) {/**!
  * @fileOverview Kickass library to create and place poppers near their reference elements.
  * @version 1.14.6
@@ -53501,11 +54953,15 @@ Popper.Defaults = Defaults;
 /* harmony default export */ __webpack_exports__["default"] = (Popper);
 //# sourceMappingURL=popper.js.map
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__("./node_modules/webpack/buildin/global.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
 /***/ "./node_modules/process/browser.js":
+/*!*****************************************!*\
+  !*** ./node_modules/process/browser.js ***!
+  \*****************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -53697,23 +55153,31 @@ process.umask = function() { return 0; };
 /***/ }),
 
 /***/ "./node_modules/promise/index.js":
+/*!***************************************!*\
+  !*** ./node_modules/promise/index.js ***!
+  \***************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-module.exports = __webpack_require__("./node_modules/promise/lib/index.js")
+module.exports = __webpack_require__(/*! ./lib */ "./node_modules/promise/lib/index.js")
 
 
 /***/ }),
 
 /***/ "./node_modules/promise/lib/core.js":
+/*!******************************************!*\
+  !*** ./node_modules/promise/lib/core.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var asap = __webpack_require__("./node_modules/asap/browser-raw.js");
+var asap = __webpack_require__(/*! asap/raw */ "./node_modules/asap/browser-raw.js");
 
 function noop() {}
 
@@ -53929,12 +55393,16 @@ function doResolve(fn, promise) {
 /***/ }),
 
 /***/ "./node_modules/promise/lib/done.js":
+/*!******************************************!*\
+  !*** ./node_modules/promise/lib/done.js ***!
+  \******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var Promise = __webpack_require__("./node_modules/promise/lib/core.js");
+var Promise = __webpack_require__(/*! ./core.js */ "./node_modules/promise/lib/core.js");
 
 module.exports = Promise;
 Promise.prototype.done = function (onFulfilled, onRejected) {
@@ -53950,6 +55418,10 @@ Promise.prototype.done = function (onFulfilled, onRejected) {
 /***/ }),
 
 /***/ "./node_modules/promise/lib/es6-extensions.js":
+/*!****************************************************!*\
+  !*** ./node_modules/promise/lib/es6-extensions.js ***!
+  \****************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53957,7 +55429,7 @@ Promise.prototype.done = function (onFulfilled, onRejected) {
 
 //This file contains the ES6 extensions to the core Promises/A+ API
 
-var Promise = __webpack_require__("./node_modules/promise/lib/core.js");
+var Promise = __webpack_require__(/*! ./core.js */ "./node_modules/promise/lib/core.js");
 
 module.exports = Promise;
 
@@ -54065,12 +55537,16 @@ Promise.prototype['catch'] = function (onRejected) {
 /***/ }),
 
 /***/ "./node_modules/promise/lib/finally.js":
+/*!*********************************************!*\
+  !*** ./node_modules/promise/lib/finally.js ***!
+  \*********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var Promise = __webpack_require__("./node_modules/promise/lib/core.js");
+var Promise = __webpack_require__(/*! ./core.js */ "./node_modules/promise/lib/core.js");
 
 module.exports = Promise;
 Promise.prototype['finally'] = function (f) {
@@ -54089,22 +55565,30 @@ Promise.prototype['finally'] = function (f) {
 /***/ }),
 
 /***/ "./node_modules/promise/lib/index.js":
+/*!*******************************************!*\
+  !*** ./node_modules/promise/lib/index.js ***!
+  \*******************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-module.exports = __webpack_require__("./node_modules/promise/lib/core.js");
-__webpack_require__("./node_modules/promise/lib/done.js");
-__webpack_require__("./node_modules/promise/lib/finally.js");
-__webpack_require__("./node_modules/promise/lib/es6-extensions.js");
-__webpack_require__("./node_modules/promise/lib/node-extensions.js");
-__webpack_require__("./node_modules/promise/lib/synchronous.js");
+module.exports = __webpack_require__(/*! ./core.js */ "./node_modules/promise/lib/core.js");
+__webpack_require__(/*! ./done.js */ "./node_modules/promise/lib/done.js");
+__webpack_require__(/*! ./finally.js */ "./node_modules/promise/lib/finally.js");
+__webpack_require__(/*! ./es6-extensions.js */ "./node_modules/promise/lib/es6-extensions.js");
+__webpack_require__(/*! ./node-extensions.js */ "./node_modules/promise/lib/node-extensions.js");
+__webpack_require__(/*! ./synchronous.js */ "./node_modules/promise/lib/synchronous.js");
 
 
 /***/ }),
 
 /***/ "./node_modules/promise/lib/node-extensions.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/promise/lib/node-extensions.js ***!
+  \*****************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -54113,8 +55597,8 @@ __webpack_require__("./node_modules/promise/lib/synchronous.js");
 // This file contains then/promise specific extensions that are only useful
 // for node.js interop
 
-var Promise = __webpack_require__("./node_modules/promise/lib/core.js");
-var asap = __webpack_require__("./node_modules/asap/browser-asap.js");
+var Promise = __webpack_require__(/*! ./core.js */ "./node_modules/promise/lib/core.js");
+var asap = __webpack_require__(/*! asap */ "./node_modules/asap/browser-asap.js");
 
 module.exports = Promise;
 
@@ -54243,12 +55727,16 @@ Promise.prototype.nodeify = function (callback, ctx) {
 /***/ }),
 
 /***/ "./node_modules/promise/lib/synchronous.js":
+/*!*************************************************!*\
+  !*** ./node_modules/promise/lib/synchronous.js ***!
+  \*************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var Promise = __webpack_require__("./node_modules/promise/lib/core.js");
+var Promise = __webpack_require__(/*! ./core.js */ "./node_modules/promise/lib/core.js");
 
 module.exports = Promise;
 Promise.enableSynchronous = function () {
@@ -54313,6 +55801,10 @@ Promise.disableSynchronous = function() {
 /***/ }),
 
 /***/ "./node_modules/setimmediate/setImmediate.js":
+/*!***************************************************!*\
+  !*** ./node_modules/setimmediate/setImmediate.js ***!
+  \***************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -54502,11 +55994,614 @@ Promise.disableSynchronous = function() {
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/webpack/buildin/global.js"), __webpack_require__("./node_modules/process/browser.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../process/browser.js */ "./node_modules/process/browser.js")))
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/passport/AuthorizedClients.vue?vue&type=style&index=0&id=397d14ca&scoped=true&lang=css&":
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--7-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/passport/AuthorizedClients.vue?vue&type=style&index=0&id=397d14ca&scoped=true&lang=css& ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--7-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--7-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./AuthorizedClients.vue?vue&type=style&index=0&id=397d14ca&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/passport/AuthorizedClients.vue?vue&type=style&index=0&id=397d14ca&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/passport/Clients.vue?vue&type=style&index=0&id=1552a5b6&scoped=true&lang=css&":
+/*!**************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--7-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/passport/Clients.vue?vue&type=style&index=0&id=1552a5b6&scoped=true&lang=css& ***!
+  \**************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--7-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--7-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./Clients.vue?vue&type=style&index=0&id=1552a5b6&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/passport/Clients.vue?vue&type=style&index=0&id=1552a5b6&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/passport/PersonalAccessTokens.vue?vue&type=style&index=0&id=49962cc0&scoped=true&lang=css&":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--7-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/passport/PersonalAccessTokens.vue?vue&type=style&index=0&id=49962cc0&scoped=true&lang=css& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--7-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--7-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./PersonalAccessTokens.vue?vue&type=style&index=0&id=49962cc0&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/passport/PersonalAccessTokens.vue?vue&type=style&index=0&id=49962cc0&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/lib/addStyles.js":
+/*!****************************************************!*\
+  !*** ./node_modules/style-loader/lib/addStyles.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+
+var stylesInDom = {};
+
+var	memoize = function (fn) {
+	var memo;
+
+	return function () {
+		if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+		return memo;
+	};
+};
+
+var isOldIE = memoize(function () {
+	// Test for IE <= 9 as proposed by Browserhacks
+	// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
+	// Tests for existence of standard globals is to allow style-loader
+	// to operate correctly into non-standard environments
+	// @see https://github.com/webpack-contrib/style-loader/issues/177
+	return window && document && document.all && !window.atob;
+});
+
+var getTarget = function (target, parent) {
+  if (parent){
+    return parent.querySelector(target);
+  }
+  return document.querySelector(target);
+};
+
+var getElement = (function (fn) {
+	var memo = {};
+
+	return function(target, parent) {
+                // If passing function in options, then use it for resolve "head" element.
+                // Useful for Shadow Root style i.e
+                // {
+                //   insertInto: function () { return document.querySelector("#foo").shadowRoot }
+                // }
+                if (typeof target === 'function') {
+                        return target();
+                }
+                if (typeof memo[target] === "undefined") {
+			var styleTarget = getTarget.call(this, target, parent);
+			// Special case to return head of iframe instead of iframe itself
+			if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
+				try {
+					// This will throw an exception if access to iframe is blocked
+					// due to cross-origin restrictions
+					styleTarget = styleTarget.contentDocument.head;
+				} catch(e) {
+					styleTarget = null;
+				}
+			}
+			memo[target] = styleTarget;
+		}
+		return memo[target]
+	};
+})();
+
+var singleton = null;
+var	singletonCounter = 0;
+var	stylesInsertedAtTop = [];
+
+var	fixUrls = __webpack_require__(/*! ./urls */ "./node_modules/style-loader/lib/urls.js");
+
+module.exports = function(list, options) {
+	if (typeof DEBUG !== "undefined" && DEBUG) {
+		if (typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+	}
+
+	options = options || {};
+
+	options.attrs = typeof options.attrs === "object" ? options.attrs : {};
+
+	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+	// tags it will allow on a page
+	if (!options.singleton && typeof options.singleton !== "boolean") options.singleton = isOldIE();
+
+	// By default, add <style> tags to the <head> element
+        if (!options.insertInto) options.insertInto = "head";
+
+	// By default, add <style> tags to the bottom of the target
+	if (!options.insertAt) options.insertAt = "bottom";
+
+	var styles = listToStyles(list, options);
+
+	addStylesToDom(styles, options);
+
+	return function update (newList) {
+		var mayRemove = [];
+
+		for (var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+
+			domStyle.refs--;
+			mayRemove.push(domStyle);
+		}
+
+		if(newList) {
+			var newStyles = listToStyles(newList, options);
+			addStylesToDom(newStyles, options);
+		}
+
+		for (var i = 0; i < mayRemove.length; i++) {
+			var domStyle = mayRemove[i];
+
+			if(domStyle.refs === 0) {
+				for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();
+
+				delete stylesInDom[domStyle.id];
+			}
+		}
+	};
+};
+
+function addStylesToDom (styles, options) {
+	for (var i = 0; i < styles.length; i++) {
+		var item = styles[i];
+		var domStyle = stylesInDom[item.id];
+
+		if(domStyle) {
+			domStyle.refs++;
+
+			for(var j = 0; j < domStyle.parts.length; j++) {
+				domStyle.parts[j](item.parts[j]);
+			}
+
+			for(; j < item.parts.length; j++) {
+				domStyle.parts.push(addStyle(item.parts[j], options));
+			}
+		} else {
+			var parts = [];
+
+			for(var j = 0; j < item.parts.length; j++) {
+				parts.push(addStyle(item.parts[j], options));
+			}
+
+			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+		}
+	}
+}
+
+function listToStyles (list, options) {
+	var styles = [];
+	var newStyles = {};
+
+	for (var i = 0; i < list.length; i++) {
+		var item = list[i];
+		var id = options.base ? item[0] + options.base : item[0];
+		var css = item[1];
+		var media = item[2];
+		var sourceMap = item[3];
+		var part = {css: css, media: media, sourceMap: sourceMap};
+
+		if(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});
+		else newStyles[id].parts.push(part);
+	}
+
+	return styles;
+}
+
+function insertStyleElement (options, style) {
+	var target = getElement(options.insertInto)
+
+	if (!target) {
+		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
+	}
+
+	var lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];
+
+	if (options.insertAt === "top") {
+		if (!lastStyleElementInsertedAtTop) {
+			target.insertBefore(style, target.firstChild);
+		} else if (lastStyleElementInsertedAtTop.nextSibling) {
+			target.insertBefore(style, lastStyleElementInsertedAtTop.nextSibling);
+		} else {
+			target.appendChild(style);
+		}
+		stylesInsertedAtTop.push(style);
+	} else if (options.insertAt === "bottom") {
+		target.appendChild(style);
+	} else if (typeof options.insertAt === "object" && options.insertAt.before) {
+		var nextSibling = getElement(options.insertAt.before, target);
+		target.insertBefore(style, nextSibling);
+	} else {
+		throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");
+	}
+}
+
+function removeStyleElement (style) {
+	if (style.parentNode === null) return false;
+	style.parentNode.removeChild(style);
+
+	var idx = stylesInsertedAtTop.indexOf(style);
+	if(idx >= 0) {
+		stylesInsertedAtTop.splice(idx, 1);
+	}
+}
+
+function createStyleElement (options) {
+	var style = document.createElement("style");
+
+	if(options.attrs.type === undefined) {
+		options.attrs.type = "text/css";
+	}
+
+	if(options.attrs.nonce === undefined) {
+		var nonce = getNonce();
+		if (nonce) {
+			options.attrs.nonce = nonce;
+		}
+	}
+
+	addAttrs(style, options.attrs);
+	insertStyleElement(options, style);
+
+	return style;
+}
+
+function createLinkElement (options) {
+	var link = document.createElement("link");
+
+	if(options.attrs.type === undefined) {
+		options.attrs.type = "text/css";
+	}
+	options.attrs.rel = "stylesheet";
+
+	addAttrs(link, options.attrs);
+	insertStyleElement(options, link);
+
+	return link;
+}
+
+function addAttrs (el, attrs) {
+	Object.keys(attrs).forEach(function (key) {
+		el.setAttribute(key, attrs[key]);
+	});
+}
+
+function getNonce() {
+	if (false) {}
+
+	return __webpack_require__.nc;
+}
+
+function addStyle (obj, options) {
+	var style, update, remove, result;
+
+	// If a transform function was defined, run it on the css
+	if (options.transform && obj.css) {
+	    result = typeof options.transform === 'function'
+		 ? options.transform(obj.css) 
+		 : options.transform.default(obj.css);
+
+	    if (result) {
+	    	// If transform returns a value, use that instead of the original css.
+	    	// This allows running runtime transformations on the css.
+	    	obj.css = result;
+	    } else {
+	    	// If the transform function returns a falsy value, don't add this css.
+	    	// This allows conditional loading of css
+	    	return function() {
+	    		// noop
+	    	};
+	    }
+	}
+
+	if (options.singleton) {
+		var styleIndex = singletonCounter++;
+
+		style = singleton || (singleton = createStyleElement(options));
+
+		update = applyToSingletonTag.bind(null, style, styleIndex, false);
+		remove = applyToSingletonTag.bind(null, style, styleIndex, true);
+
+	} else if (
+		obj.sourceMap &&
+		typeof URL === "function" &&
+		typeof URL.createObjectURL === "function" &&
+		typeof URL.revokeObjectURL === "function" &&
+		typeof Blob === "function" &&
+		typeof btoa === "function"
+	) {
+		style = createLinkElement(options);
+		update = updateLink.bind(null, style, options);
+		remove = function () {
+			removeStyleElement(style);
+
+			if(style.href) URL.revokeObjectURL(style.href);
+		};
+	} else {
+		style = createStyleElement(options);
+		update = applyToTag.bind(null, style);
+		remove = function () {
+			removeStyleElement(style);
+		};
+	}
+
+	update(obj);
+
+	return function updateStyle (newObj) {
+		if (newObj) {
+			if (
+				newObj.css === obj.css &&
+				newObj.media === obj.media &&
+				newObj.sourceMap === obj.sourceMap
+			) {
+				return;
+			}
+
+			update(obj = newObj);
+		} else {
+			remove();
+		}
+	};
+}
+
+var replaceText = (function () {
+	var textStore = [];
+
+	return function (index, replacement) {
+		textStore[index] = replacement;
+
+		return textStore.filter(Boolean).join('\n');
+	};
+})();
+
+function applyToSingletonTag (style, index, remove, obj) {
+	var css = remove ? "" : obj.css;
+
+	if (style.styleSheet) {
+		style.styleSheet.cssText = replaceText(index, css);
+	} else {
+		var cssNode = document.createTextNode(css);
+		var childNodes = style.childNodes;
+
+		if (childNodes[index]) style.removeChild(childNodes[index]);
+
+		if (childNodes.length) {
+			style.insertBefore(cssNode, childNodes[index]);
+		} else {
+			style.appendChild(cssNode);
+		}
+	}
+}
+
+function applyToTag (style, obj) {
+	var css = obj.css;
+	var media = obj.media;
+
+	if(media) {
+		style.setAttribute("media", media)
+	}
+
+	if(style.styleSheet) {
+		style.styleSheet.cssText = css;
+	} else {
+		while(style.firstChild) {
+			style.removeChild(style.firstChild);
+		}
+
+		style.appendChild(document.createTextNode(css));
+	}
+}
+
+function updateLink (link, options, obj) {
+	var css = obj.css;
+	var sourceMap = obj.sourceMap;
+
+	/*
+		If convertToAbsoluteUrls isn't defined, but sourcemaps are enabled
+		and there is no publicPath defined then lets turn convertToAbsoluteUrls
+		on by default.  Otherwise default to the convertToAbsoluteUrls option
+		directly
+	*/
+	var autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;
+
+	if (options.convertToAbsoluteUrls || autoFixUrls) {
+		css = fixUrls(css);
+	}
+
+	if (sourceMap) {
+		// http://stackoverflow.com/a/26603875
+		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+	}
+
+	var blob = new Blob([css], { type: "text/css" });
+
+	var oldSrc = link.href;
+
+	link.href = URL.createObjectURL(blob);
+
+	if(oldSrc) URL.revokeObjectURL(oldSrc);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/lib/urls.js":
+/*!***********************************************!*\
+  !*** ./node_modules/style-loader/lib/urls.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+/**
+ * When source maps are enabled, `style-loader` uses a link element with a data-uri to
+ * embed the css on the page. This breaks all relative urls because now they are relative to a
+ * bundle instead of the current page.
+ *
+ * One solution is to only use full urls, but that may be impossible.
+ *
+ * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
+ *
+ * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
+ *
+ */
+
+module.exports = function (css) {
+  // get current location
+  var location = typeof window !== "undefined" && window.location;
+
+  if (!location) {
+    throw new Error("fixUrls requires window.location");
+  }
+
+	// blank or null?
+	if (!css || typeof css !== "string") {
+	  return css;
+  }
+
+  var baseUrl = location.protocol + "//" + location.host;
+  var currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
+
+	// convert each url(...)
+	/*
+	This regular expression is just a way to recursively match brackets within
+	a string.
+
+	 /url\s*\(  = Match on the word "url" with any whitespace after it and then a parens
+	   (  = Start a capturing group
+	     (?:  = Start a non-capturing group
+	         [^)(]  = Match anything that isn't a parentheses
+	         |  = OR
+	         \(  = Match a start parentheses
+	             (?:  = Start another non-capturing groups
+	                 [^)(]+  = Match anything that isn't a parentheses
+	                 |  = OR
+	                 \(  = Match a start parentheses
+	                     [^)(]*  = Match anything that isn't a parentheses
+	                 \)  = Match a end parentheses
+	             )  = End Group
+              *\) = Match anything and then a close parens
+          )  = Close non-capturing group
+          *  = Match anything
+       )  = Close capturing group
+	 \)  = Match a close parens
+
+	 /gi  = Get all matches, not the first.  Be case insensitive.
+	 */
+	var fixedCss = css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(fullMatch, origUrl) {
+		// strip quotes (if they exist)
+		var unquotedOrigUrl = origUrl
+			.trim()
+			.replace(/^"(.*)"$/, function(o, $1){ return $1; })
+			.replace(/^'(.*)'$/, function(o, $1){ return $1; });
+
+		// already a full url? no change
+		if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(unquotedOrigUrl)) {
+		  return fullMatch;
+		}
+
+		// convert the url to a full url
+		var newUrl;
+
+		if (unquotedOrigUrl.indexOf("//") === 0) {
+		  	//TODO: should we add protocol?
+			newUrl = unquotedOrigUrl;
+		} else if (unquotedOrigUrl.indexOf("/") === 0) {
+			// path should be relative to the base url
+			newUrl = baseUrl + unquotedOrigUrl; // already starts with '/'
+		} else {
+			// path should be relative to current directory
+			newUrl = currentDir + unquotedOrigUrl.replace(/^\.\//, ""); // Strip leading './'
+		}
+
+		// send back the fixed url(...)
+		return "url(" + JSON.stringify(newUrl) + ")";
+	});
+
+	// send back the fixed css
+	return fixedCss;
+};
+
 
 /***/ }),
 
 /***/ "./node_modules/timers-browserify/main.js":
+/*!************************************************!*\
+  !*** ./node_modules/timers-browserify/main.js ***!
+  \************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
@@ -54562,7 +56657,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__("./node_modules/setimmediate/setImmediate.js");
+__webpack_require__(/*! setimmediate */ "./node_modules/setimmediate/setImmediate.js");
 // On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -54573,11 +56668,15 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (typeof global !== "undefined" && global.clearImmediate) ||
                          (this && this.clearImmediate);
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/webpack/buildin/global.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
 /***/ "./node_modules/urijs/src/IPv6.js":
+/*!****************************************!*\
+  !*** ./node_modules/urijs/src/IPv6.js ***!
+  \****************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -54597,7 +56696,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 (function (root, factory) {
   'use strict';
   // https://github.com/umdjs/umd/blob/master/returnExports.js
-  if (typeof module === 'object' && module.exports) {
+  if ( true && module.exports) {
     // Node
     module.exports = factory();
   } else if (true) {
@@ -54607,10 +56706,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
 				__WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-  } else {
-    // Browser globals (root is window)
-    root.IPv6 = factory(root);
-  }
+  } else {}
 }(this, function (root) {
   'use strict';
 
@@ -54774,6 +56870,10 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 /***/ }),
 
 /***/ "./node_modules/urijs/src/SecondLevelDomains.js":
+/*!******************************************************!*\
+  !*** ./node_modules/urijs/src/SecondLevelDomains.js ***!
+  \******************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -54793,7 +56893,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 (function (root, factory) {
   'use strict';
   // https://github.com/umdjs/umd/blob/master/returnExports.js
-  if (typeof module === 'object' && module.exports) {
+  if ( true && module.exports) {
     // Node
     module.exports = factory();
   } else if (true) {
@@ -54803,10 +56903,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
 				__WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-  } else {
-    // Browser globals (root is window)
-    root.SecondLevelDomains = factory(root);
-  }
+  } else {}
 }(this, function (root) {
   'use strict';
 
@@ -55030,6 +57127,10 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 /***/ }),
 
 /***/ "./node_modules/urijs/src/URI.js":
+/*!***************************************!*\
+  !*** ./node_modules/urijs/src/URI.js ***!
+  \***************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -55047,19 +57148,16 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 (function (root, factory) {
   'use strict';
   // https://github.com/umdjs/umd/blob/master/returnExports.js
-  if (typeof module === 'object' && module.exports) {
+  if ( true && module.exports) {
     // Node
-    module.exports = factory(__webpack_require__("./node_modules/urijs/src/punycode.js"), __webpack_require__("./node_modules/urijs/src/IPv6.js"), __webpack_require__("./node_modules/urijs/src/SecondLevelDomains.js"));
+    module.exports = factory(__webpack_require__(/*! ./punycode */ "./node_modules/urijs/src/punycode.js"), __webpack_require__(/*! ./IPv6 */ "./node_modules/urijs/src/IPv6.js"), __webpack_require__(/*! ./SecondLevelDomains */ "./node_modules/urijs/src/SecondLevelDomains.js"));
   } else if (true) {
     // AMD. Register as an anonymous module.
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__("./node_modules/urijs/src/punycode.js"), __webpack_require__("./node_modules/urijs/src/IPv6.js"), __webpack_require__("./node_modules/urijs/src/SecondLevelDomains.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! ./punycode */ "./node_modules/urijs/src/punycode.js"), __webpack_require__(/*! ./IPv6 */ "./node_modules/urijs/src/IPv6.js"), __webpack_require__(/*! ./SecondLevelDomains */ "./node_modules/urijs/src/SecondLevelDomains.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-  } else {
-    // Browser globals (root is window)
-    root.URI = factory(root.punycode, root.IPv6, root.SecondLevelDomains, root);
-  }
+  } else {}
 }(this, function (punycode, IPv6, SLD, root) {
   'use strict';
   /*global location, escape, unescape */
@@ -57378,15 +59476,19 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 /***/ }),
 
 /***/ "./node_modules/urijs/src/punycode.js":
+/*!********************************************!*\
+  !*** ./node_modules/urijs/src/punycode.js ***!
+  \********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module, global) {var __WEBPACK_AMD_DEFINE_RESULT__;/*! https://mths.be/punycode v1.4.0 by @mathias */
 ;(function(root) {
 
 	/** Detect free variables */
-	var freeExports = typeof exports == 'object' && exports &&
+	var freeExports =  true && exports &&
 		!exports.nodeType && exports;
-	var freeModule = typeof module == 'object' && module &&
+	var freeModule =  true && module &&
 		!module.nodeType && module;
 	var freeGlobal = typeof global == 'object' && global;
 	if (
@@ -57896,28 +59998,3855 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 			return punycode;
 		}).call(exports, __webpack_require__, exports, module),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else if (freeExports && freeModule) {
-		if (module.exports == freeExports) {
-			// in Node.js, io.js, or RingoJS v0.8.0+
-			freeModule.exports = punycode;
-		} else {
-			// in Narwhal or RingoJS v0.7.0-
-			for (key in punycode) {
-				punycode.hasOwnProperty(key) && (freeExports[key] = punycode[key]);
-			}
-		}
-	} else {
-		// in Rhino or a web browser
-		root.punycode = punycode;
-	}
+	} else {}
 
 }(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/webpack/buildin/module.js")(module), __webpack_require__("./node_modules/webpack/buildin/global.js")))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/module.js */ "./node_modules/webpack/buildin/module.js")(module), __webpack_require__(/*! ./../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/passport/AuthorizedClients.vue?vue&type=template&id=397d14ca&scoped=true&":
+/*!*****************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/passport/AuthorizedClients.vue?vue&type=template&id=397d14ca&scoped=true& ***!
+  \*****************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm.tokens.length > 0
+      ? _c("div", [
+          _c("div", { staticClass: "card card-default" }, [
+            _c("div", { staticClass: "card-header" }, [
+              _vm._v("Authorized Applications")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-body" }, [
+              _c("table", { staticClass: "table table-borderless mb-0" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.tokens, function(token) {
+                    return _c("tr", [
+                      _c(
+                        "td",
+                        { staticStyle: { "vertical-align": "middle" } },
+                        [
+                          _vm._v(
+                            "\n                                " +
+                              _vm._s(token.client.name) +
+                              "\n                            "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        { staticStyle: { "vertical-align": "middle" } },
+                        [
+                          token.scopes.length > 0
+                            ? _c("span", [
+                                _vm._v(
+                                  "\n                                    " +
+                                    _vm._s(token.scopes.join(", ")) +
+                                    "\n                                "
+                                )
+                              ])
+                            : _vm._e()
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        { staticStyle: { "vertical-align": "middle" } },
+                        [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "action-link text-danger",
+                              on: {
+                                click: function($event) {
+                                  _vm.revoke(token)
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                    Revoke\n                                "
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    ])
+                  }),
+                  0
+                )
+              ])
+            ])
+          ])
+        ])
+      : _vm._e()
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Scopes")]),
+        _vm._v(" "),
+        _c("th")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/passport/Clients.vue?vue&type=template&id=1552a5b6&scoped=true&":
+/*!*******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/passport/Clients.vue?vue&type=template&id=1552a5b6&scoped=true& ***!
+  \*******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "card card-default" }, [
+      _c("div", { staticClass: "card-header" }, [
+        _c(
+          "div",
+          {
+            staticStyle: {
+              display: "flex",
+              "justify-content": "space-between",
+              "align-items": "center"
+            }
+          },
+          [
+            _c("span", [
+              _vm._v("\n                    OAuth Clients\n                ")
+            ]),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "action-link",
+                attrs: { tabindex: "-1" },
+                on: { click: _vm.showCreateClientForm }
+              },
+              [
+                _vm._v(
+                  "\n                    Create New Client\n                "
+                )
+              ]
+            )
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-body" }, [
+        _vm.clients.length === 0
+          ? _c("p", { staticClass: "mb-0" }, [
+              _vm._v(
+                "\n                You have not created any OAuth clients.\n            "
+              )
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.clients.length > 0
+          ? _c("table", { staticClass: "table table-borderless mb-0" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.clients, function(client) {
+                  return _c("tr", [
+                    _c("td", { staticStyle: { "vertical-align": "middle" } }, [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(client.id) +
+                          "\n                        "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticStyle: { "vertical-align": "middle" } }, [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(client.name) +
+                          "\n                        "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticStyle: { "vertical-align": "middle" } }, [
+                      _c("code", [_vm._v(_vm._s(client.secret))])
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticStyle: { "vertical-align": "middle" } }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "action-link",
+                          attrs: { tabindex: "-1" },
+                          on: {
+                            click: function($event) {
+                              _vm.edit(client)
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                                Edit\n                            "
+                          )
+                        ]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("td", { staticStyle: { "vertical-align": "middle" } }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "action-link text-danger",
+                          on: {
+                            click: function($event) {
+                              _vm.destroy(client)
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                                Delete\n                            "
+                          )
+                        ]
+                      )
+                    ])
+                  ])
+                }),
+                0
+              )
+            ])
+          : _vm._e()
+      ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: { id: "modal-create-client", tabindex: "-1", role: "dialog" }
+      },
+      [
+        _c("div", { staticClass: "modal-dialog" }, [
+          _c("div", { staticClass: "modal-content" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body" }, [
+              _vm.createForm.errors.length > 0
+                ? _c("div", { staticClass: "alert alert-danger" }, [
+                    _vm._m(2),
+                    _vm._v(" "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c(
+                      "ul",
+                      _vm._l(_vm.createForm.errors, function(error) {
+                        return _c("li", [
+                          _vm._v(
+                            "\n                                " +
+                              _vm._s(error) +
+                              "\n                            "
+                          )
+                        ])
+                      }),
+                      0
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _c("form", { attrs: { role: "form" } }, [
+                _c("div", { staticClass: "form-group row" }, [
+                  _c("label", { staticClass: "col-md-3 col-form-label" }, [
+                    _vm._v("Name")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-9" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.createForm.name,
+                          expression: "createForm.name"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { id: "create-client-name", type: "text" },
+                      domProps: { value: _vm.createForm.name },
+                      on: {
+                        keyup: function($event) {
+                          if (
+                            !("button" in $event) &&
+                            _vm._k(
+                              $event.keyCode,
+                              "enter",
+                              13,
+                              $event.key,
+                              "Enter"
+                            )
+                          ) {
+                            return null
+                          }
+                          return _vm.store($event)
+                        },
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.createForm, "name", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "form-text text-muted" }, [
+                      _vm._v(
+                        "\n                                    Something your users will recognize and trust.\n                                "
+                      )
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group row" }, [
+                  _c("label", { staticClass: "col-md-3 col-form-label" }, [
+                    _vm._v("Redirect URL")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-9" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.createForm.redirect,
+                          expression: "createForm.redirect"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", name: "redirect" },
+                      domProps: { value: _vm.createForm.redirect },
+                      on: {
+                        keyup: function($event) {
+                          if (
+                            !("button" in $event) &&
+                            _vm._k(
+                              $event.keyCode,
+                              "enter",
+                              13,
+                              $event.key,
+                              "Enter"
+                            )
+                          ) {
+                            return null
+                          }
+                          return _vm.store($event)
+                        },
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.createForm,
+                            "redirect",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "form-text text-muted" }, [
+                      _vm._v(
+                        "\n                                    Your application's authorization callback URL.\n                                "
+                      )
+                    ])
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-footer" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-secondary",
+                  attrs: { type: "button", "data-dismiss": "modal" }
+                },
+                [_vm._v("Close")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: { type: "button" },
+                  on: { click: _vm.store }
+                },
+                [
+                  _vm._v(
+                    "\n                        Create\n                    "
+                  )
+                ]
+              )
+            ])
+          ])
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: { id: "modal-edit-client", tabindex: "-1", role: "dialog" }
+      },
+      [
+        _c("div", { staticClass: "modal-dialog" }, [
+          _c("div", { staticClass: "modal-content" }, [
+            _vm._m(3),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body" }, [
+              _vm.editForm.errors.length > 0
+                ? _c("div", { staticClass: "alert alert-danger" }, [
+                    _vm._m(4),
+                    _vm._v(" "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c(
+                      "ul",
+                      _vm._l(_vm.editForm.errors, function(error) {
+                        return _c("li", [
+                          _vm._v(
+                            "\n                                " +
+                              _vm._s(error) +
+                              "\n                            "
+                          )
+                        ])
+                      }),
+                      0
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _c("form", { attrs: { role: "form" } }, [
+                _c("div", { staticClass: "form-group row" }, [
+                  _c("label", { staticClass: "col-md-3 col-form-label" }, [
+                    _vm._v("Name")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-9" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.editForm.name,
+                          expression: "editForm.name"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { id: "edit-client-name", type: "text" },
+                      domProps: { value: _vm.editForm.name },
+                      on: {
+                        keyup: function($event) {
+                          if (
+                            !("button" in $event) &&
+                            _vm._k(
+                              $event.keyCode,
+                              "enter",
+                              13,
+                              $event.key,
+                              "Enter"
+                            )
+                          ) {
+                            return null
+                          }
+                          return _vm.update($event)
+                        },
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.editForm, "name", $event.target.value)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "form-text text-muted" }, [
+                      _vm._v(
+                        "\n                                    Something your users will recognize and trust.\n                                "
+                      )
+                    ])
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-group row" }, [
+                  _c("label", { staticClass: "col-md-3 col-form-label" }, [
+                    _vm._v("Redirect URL")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-9" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.editForm.redirect,
+                          expression: "editForm.redirect"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", name: "redirect" },
+                      domProps: { value: _vm.editForm.redirect },
+                      on: {
+                        keyup: function($event) {
+                          if (
+                            !("button" in $event) &&
+                            _vm._k(
+                              $event.keyCode,
+                              "enter",
+                              13,
+                              $event.key,
+                              "Enter"
+                            )
+                          ) {
+                            return null
+                          }
+                          return _vm.update($event)
+                        },
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.editForm,
+                            "redirect",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "form-text text-muted" }, [
+                      _vm._v(
+                        "\n                                    Your application's authorization callback URL.\n                                "
+                      )
+                    ])
+                  ])
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-footer" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-secondary",
+                  attrs: { type: "button", "data-dismiss": "modal" }
+                },
+                [_vm._v("Close")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: { type: "button" },
+                  on: { click: _vm.update }
+                },
+                [
+                  _vm._v(
+                    "\n                        Save Changes\n                    "
+                  )
+                ]
+              )
+            ])
+          ])
+        ])
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Client ID")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Secret")]),
+        _vm._v(" "),
+        _c("th"),
+        _vm._v(" "),
+        _c("th")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h4", { staticClass: "modal-title" }, [
+        _vm._v("\n                        Create Client\n                    ")
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-hidden": "true"
+          }
+        },
+        [_vm._v("×")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "mb-0" }, [
+      _c("strong", [_vm._v("Whoops!")]),
+      _vm._v(" Something went wrong!")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h4", { staticClass: "modal-title" }, [
+        _vm._v("\n                        Edit Client\n                    ")
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-hidden": "true"
+          }
+        },
+        [_vm._v("×")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "mb-0" }, [
+      _c("strong", [_vm._v("Whoops!")]),
+      _vm._v(" Something went wrong!")
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/passport/PersonalAccessTokens.vue?vue&type=template&id=49962cc0&scoped=true&":
+/*!********************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/passport/PersonalAccessTokens.vue?vue&type=template&id=49962cc0&scoped=true& ***!
+  \********************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", [
+      _c("div", { staticClass: "card card-default" }, [
+        _c("div", { staticClass: "card-header" }, [
+          _c(
+            "div",
+            {
+              staticStyle: {
+                display: "flex",
+                "justify-content": "space-between",
+                "align-items": "center"
+              }
+            },
+            [
+              _c("span", [
+                _vm._v(
+                  "\n                        Personal Access Tokens\n                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "action-link",
+                  attrs: { tabindex: "-1" },
+                  on: { click: _vm.showCreateTokenForm }
+                },
+                [
+                  _vm._v(
+                    "\n                        Create New Token\n                    "
+                  )
+                ]
+              )
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _vm.tokens.length === 0
+            ? _c("p", { staticClass: "mb-0" }, [
+                _vm._v(
+                  "\n                    You have not created any personal access tokens.\n                "
+                )
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.tokens.length > 0
+            ? _c("table", { staticClass: "table table-borderless mb-0" }, [
+                _vm._m(0),
+                _vm._v(" "),
+                _c(
+                  "tbody",
+                  _vm._l(_vm.tokens, function(token) {
+                    return _c("tr", [
+                      _c(
+                        "td",
+                        { staticStyle: { "vertical-align": "middle" } },
+                        [
+                          _vm._v(
+                            "\n                                " +
+                              _vm._s(token.name) +
+                              "\n                            "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "td",
+                        { staticStyle: { "vertical-align": "middle" } },
+                        [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "action-link text-danger",
+                              on: {
+                                click: function($event) {
+                                  _vm.revoke(token)
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                                    Delete\n                                "
+                              )
+                            ]
+                          )
+                        ]
+                      )
+                    ])
+                  }),
+                  0
+                )
+              ])
+            : _vm._e()
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: { id: "modal-create-token", tabindex: "-1", role: "dialog" }
+      },
+      [
+        _c("div", { staticClass: "modal-dialog" }, [
+          _c("div", { staticClass: "modal-content" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body" }, [
+              _vm.form.errors.length > 0
+                ? _c("div", { staticClass: "alert alert-danger" }, [
+                    _vm._m(2),
+                    _vm._v(" "),
+                    _c("br"),
+                    _vm._v(" "),
+                    _c(
+                      "ul",
+                      _vm._l(_vm.form.errors, function(error) {
+                        return _c("li", [
+                          _vm._v(
+                            "\n                                " +
+                              _vm._s(error) +
+                              "\n                            "
+                          )
+                        ])
+                      }),
+                      0
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "form",
+                {
+                  attrs: { role: "form" },
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.store($event)
+                    }
+                  }
+                },
+                [
+                  _c("div", { staticClass: "form-group row" }, [
+                    _c("label", { staticClass: "col-md-4 col-form-label" }, [
+                      _vm._v("Name")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-md-6" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.name,
+                            expression: "form.name"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          id: "create-token-name",
+                          type: "text",
+                          name: "name"
+                        },
+                        domProps: { value: _vm.form.name },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "name", $event.target.value)
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm.scopes.length > 0
+                    ? _c("div", { staticClass: "form-group row" }, [
+                        _c(
+                          "label",
+                          { staticClass: "col-md-4 col-form-label" },
+                          [_vm._v("Scopes")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "col-md-6" },
+                          _vm._l(_vm.scopes, function(scope) {
+                            return _c("div", [
+                              _c("div", { staticClass: "checkbox" }, [
+                                _c("label", [
+                                  _c("input", {
+                                    attrs: { type: "checkbox" },
+                                    domProps: {
+                                      checked: _vm.scopeIsAssigned(scope.id)
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        _vm.toggleScope(scope.id)
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(
+                                    "\n\n                                                " +
+                                      _vm._s(scope.id) +
+                                      "\n                                        "
+                                  )
+                                ])
+                              ])
+                            ])
+                          }),
+                          0
+                        )
+                      ])
+                    : _vm._e()
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-footer" }, [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-secondary",
+                  attrs: { type: "button", "data-dismiss": "modal" }
+                },
+                [_vm._v("Close")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary",
+                  attrs: { type: "button" },
+                  on: { click: _vm.store }
+                },
+                [
+                  _vm._v(
+                    "\n                        Create\n                    "
+                  )
+                ]
+              )
+            ])
+          ])
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: { id: "modal-access-token", tabindex: "-1", role: "dialog" }
+      },
+      [
+        _c("div", { staticClass: "modal-dialog" }, [
+          _c("div", { staticClass: "modal-content" }, [
+            _vm._m(3),
+            _vm._v(" "),
+            _c("div", { staticClass: "modal-body" }, [
+              _c("p", [
+                _vm._v(
+                  "\n                        Here is your new personal access token. This is the only time it will be shown so don't lose it!\n                        You may now use this token to make API requests.\n                    "
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "textarea",
+                { staticClass: "form-control", attrs: { rows: "10" } },
+                [_vm._v(_vm._s(_vm.accessToken))]
+              )
+            ]),
+            _vm._v(" "),
+            _vm._m(4)
+          ])
+        ])
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [_c("th", [_vm._v("Name")]), _vm._v(" "), _c("th")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h4", { staticClass: "modal-title" }, [
+        _vm._v("\n                        Create Token\n                    ")
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-hidden": "true"
+          }
+        },
+        [_vm._v("×")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "mb-0" }, [
+      _c("strong", [_vm._v("Whoops!")]),
+      _vm._v(" Something went wrong!")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h4", { staticClass: "modal-title" }, [
+        _vm._v(
+          "\n                        Personal Access Token\n                    "
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-hidden": "true"
+          }
+        },
+        [_vm._v("×")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-secondary",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Close")]
+      )
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/404.vue?vue&type=template&id=d215c3ee&":
+/*!*************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/views/404.vue?vue&type=template&id=d215c3ee& ***!
+  \*************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [_c("img", { attrs: { src: "/svg/404.svg", alt: "" } })])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/runtime/componentNormalizer.js ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return normalizeComponent; });
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+function normalizeComponent (
+  scriptExports,
+  render,
+  staticRenderFns,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier, /* server only */
+  shadowMode /* vue-cli only */
+) {
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (render) {
+    options.render = render
+    options.staticRenderFns = staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = 'data-v-' + scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = shadowMode
+      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
+      : injectStyles
+  }
+
+  if (hook) {
+    if (options.functional) {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      var originalRender = options.render
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return originalRender(h, context)
+      }
+    } else {
+      // inject component registration as beforeCreate hook
+      var existing = options.beforeCreate
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    }
+  }
+
+  return {
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-router/dist/vue-router.esm.js":
+/*!********************************************************!*\
+  !*** ./node_modules/vue-router/dist/vue-router.esm.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/*!
+  * vue-router v3.0.2
+  * (c) 2018 Evan You
+  * @license MIT
+  */
+/*  */
+
+function assert (condition, message) {
+  if (!condition) {
+    throw new Error(("[vue-router] " + message))
+  }
+}
+
+function warn (condition, message) {
+  if ( true && !condition) {
+    typeof console !== 'undefined' && console.warn(("[vue-router] " + message));
+  }
+}
+
+function isError (err) {
+  return Object.prototype.toString.call(err).indexOf('Error') > -1
+}
+
+function extend (a, b) {
+  for (var key in b) {
+    a[key] = b[key];
+  }
+  return a
+}
+
+var View = {
+  name: 'RouterView',
+  functional: true,
+  props: {
+    name: {
+      type: String,
+      default: 'default'
+    }
+  },
+  render: function render (_, ref) {
+    var props = ref.props;
+    var children = ref.children;
+    var parent = ref.parent;
+    var data = ref.data;
+
+    // used by devtools to display a router-view badge
+    data.routerView = true;
+
+    // directly use parent context's createElement() function
+    // so that components rendered by router-view can resolve named slots
+    var h = parent.$createElement;
+    var name = props.name;
+    var route = parent.$route;
+    var cache = parent._routerViewCache || (parent._routerViewCache = {});
+
+    // determine current view depth, also check to see if the tree
+    // has been toggled inactive but kept-alive.
+    var depth = 0;
+    var inactive = false;
+    while (parent && parent._routerRoot !== parent) {
+      if (parent.$vnode && parent.$vnode.data.routerView) {
+        depth++;
+      }
+      if (parent._inactive) {
+        inactive = true;
+      }
+      parent = parent.$parent;
+    }
+    data.routerViewDepth = depth;
+
+    // render previous view if the tree is inactive and kept-alive
+    if (inactive) {
+      return h(cache[name], data, children)
+    }
+
+    var matched = route.matched[depth];
+    // render empty node if no matched route
+    if (!matched) {
+      cache[name] = null;
+      return h()
+    }
+
+    var component = cache[name] = matched.components[name];
+
+    // attach instance registration hook
+    // this will be called in the instance's injected lifecycle hooks
+    data.registerRouteInstance = function (vm, val) {
+      // val could be undefined for unregistration
+      var current = matched.instances[name];
+      if (
+        (val && current !== vm) ||
+        (!val && current === vm)
+      ) {
+        matched.instances[name] = val;
+      }
+    }
+
+    // also register instance in prepatch hook
+    // in case the same component instance is reused across different routes
+    ;(data.hook || (data.hook = {})).prepatch = function (_, vnode) {
+      matched.instances[name] = vnode.componentInstance;
+    };
+
+    // resolve props
+    var propsToPass = data.props = resolveProps(route, matched.props && matched.props[name]);
+    if (propsToPass) {
+      // clone to prevent mutation
+      propsToPass = data.props = extend({}, propsToPass);
+      // pass non-declared props as attrs
+      var attrs = data.attrs = data.attrs || {};
+      for (var key in propsToPass) {
+        if (!component.props || !(key in component.props)) {
+          attrs[key] = propsToPass[key];
+          delete propsToPass[key];
+        }
+      }
+    }
+
+    return h(component, data, children)
+  }
+}
+
+function resolveProps (route, config) {
+  switch (typeof config) {
+    case 'undefined':
+      return
+    case 'object':
+      return config
+    case 'function':
+      return config(route)
+    case 'boolean':
+      return config ? route.params : undefined
+    default:
+      if (true) {
+        warn(
+          false,
+          "props in \"" + (route.path) + "\" is a " + (typeof config) + ", " +
+          "expecting an object, function or boolean."
+        );
+      }
+  }
+}
+
+/*  */
+
+var encodeReserveRE = /[!'()*]/g;
+var encodeReserveReplacer = function (c) { return '%' + c.charCodeAt(0).toString(16); };
+var commaRE = /%2C/g;
+
+// fixed encodeURIComponent which is more conformant to RFC3986:
+// - escapes [!'()*]
+// - preserve commas
+var encode = function (str) { return encodeURIComponent(str)
+  .replace(encodeReserveRE, encodeReserveReplacer)
+  .replace(commaRE, ','); };
+
+var decode = decodeURIComponent;
+
+function resolveQuery (
+  query,
+  extraQuery,
+  _parseQuery
+) {
+  if ( extraQuery === void 0 ) extraQuery = {};
+
+  var parse = _parseQuery || parseQuery;
+  var parsedQuery;
+  try {
+    parsedQuery = parse(query || '');
+  } catch (e) {
+     true && warn(false, e.message);
+    parsedQuery = {};
+  }
+  for (var key in extraQuery) {
+    parsedQuery[key] = extraQuery[key];
+  }
+  return parsedQuery
+}
+
+function parseQuery (query) {
+  var res = {};
+
+  query = query.trim().replace(/^(\?|#|&)/, '');
+
+  if (!query) {
+    return res
+  }
+
+  query.split('&').forEach(function (param) {
+    var parts = param.replace(/\+/g, ' ').split('=');
+    var key = decode(parts.shift());
+    var val = parts.length > 0
+      ? decode(parts.join('='))
+      : null;
+
+    if (res[key] === undefined) {
+      res[key] = val;
+    } else if (Array.isArray(res[key])) {
+      res[key].push(val);
+    } else {
+      res[key] = [res[key], val];
+    }
+  });
+
+  return res
+}
+
+function stringifyQuery (obj) {
+  var res = obj ? Object.keys(obj).map(function (key) {
+    var val = obj[key];
+
+    if (val === undefined) {
+      return ''
+    }
+
+    if (val === null) {
+      return encode(key)
+    }
+
+    if (Array.isArray(val)) {
+      var result = [];
+      val.forEach(function (val2) {
+        if (val2 === undefined) {
+          return
+        }
+        if (val2 === null) {
+          result.push(encode(key));
+        } else {
+          result.push(encode(key) + '=' + encode(val2));
+        }
+      });
+      return result.join('&')
+    }
+
+    return encode(key) + '=' + encode(val)
+  }).filter(function (x) { return x.length > 0; }).join('&') : null;
+  return res ? ("?" + res) : ''
+}
+
+/*  */
+
+var trailingSlashRE = /\/?$/;
+
+function createRoute (
+  record,
+  location,
+  redirectedFrom,
+  router
+) {
+  var stringifyQuery$$1 = router && router.options.stringifyQuery;
+
+  var query = location.query || {};
+  try {
+    query = clone(query);
+  } catch (e) {}
+
+  var route = {
+    name: location.name || (record && record.name),
+    meta: (record && record.meta) || {},
+    path: location.path || '/',
+    hash: location.hash || '',
+    query: query,
+    params: location.params || {},
+    fullPath: getFullPath(location, stringifyQuery$$1),
+    matched: record ? formatMatch(record) : []
+  };
+  if (redirectedFrom) {
+    route.redirectedFrom = getFullPath(redirectedFrom, stringifyQuery$$1);
+  }
+  return Object.freeze(route)
+}
+
+function clone (value) {
+  if (Array.isArray(value)) {
+    return value.map(clone)
+  } else if (value && typeof value === 'object') {
+    var res = {};
+    for (var key in value) {
+      res[key] = clone(value[key]);
+    }
+    return res
+  } else {
+    return value
+  }
+}
+
+// the starting route that represents the initial state
+var START = createRoute(null, {
+  path: '/'
+});
+
+function formatMatch (record) {
+  var res = [];
+  while (record) {
+    res.unshift(record);
+    record = record.parent;
+  }
+  return res
+}
+
+function getFullPath (
+  ref,
+  _stringifyQuery
+) {
+  var path = ref.path;
+  var query = ref.query; if ( query === void 0 ) query = {};
+  var hash = ref.hash; if ( hash === void 0 ) hash = '';
+
+  var stringify = _stringifyQuery || stringifyQuery;
+  return (path || '/') + stringify(query) + hash
+}
+
+function isSameRoute (a, b) {
+  if (b === START) {
+    return a === b
+  } else if (!b) {
+    return false
+  } else if (a.path && b.path) {
+    return (
+      a.path.replace(trailingSlashRE, '') === b.path.replace(trailingSlashRE, '') &&
+      a.hash === b.hash &&
+      isObjectEqual(a.query, b.query)
+    )
+  } else if (a.name && b.name) {
+    return (
+      a.name === b.name &&
+      a.hash === b.hash &&
+      isObjectEqual(a.query, b.query) &&
+      isObjectEqual(a.params, b.params)
+    )
+  } else {
+    return false
+  }
+}
+
+function isObjectEqual (a, b) {
+  if ( a === void 0 ) a = {};
+  if ( b === void 0 ) b = {};
+
+  // handle null value #1566
+  if (!a || !b) { return a === b }
+  var aKeys = Object.keys(a);
+  var bKeys = Object.keys(b);
+  if (aKeys.length !== bKeys.length) {
+    return false
+  }
+  return aKeys.every(function (key) {
+    var aVal = a[key];
+    var bVal = b[key];
+    // check nested equality
+    if (typeof aVal === 'object' && typeof bVal === 'object') {
+      return isObjectEqual(aVal, bVal)
+    }
+    return String(aVal) === String(bVal)
+  })
+}
+
+function isIncludedRoute (current, target) {
+  return (
+    current.path.replace(trailingSlashRE, '/').indexOf(
+      target.path.replace(trailingSlashRE, '/')
+    ) === 0 &&
+    (!target.hash || current.hash === target.hash) &&
+    queryIncludes(current.query, target.query)
+  )
+}
+
+function queryIncludes (current, target) {
+  for (var key in target) {
+    if (!(key in current)) {
+      return false
+    }
+  }
+  return true
+}
+
+/*  */
+
+// work around weird flow bug
+var toTypes = [String, Object];
+var eventTypes = [String, Array];
+
+var Link = {
+  name: 'RouterLink',
+  props: {
+    to: {
+      type: toTypes,
+      required: true
+    },
+    tag: {
+      type: String,
+      default: 'a'
+    },
+    exact: Boolean,
+    append: Boolean,
+    replace: Boolean,
+    activeClass: String,
+    exactActiveClass: String,
+    event: {
+      type: eventTypes,
+      default: 'click'
+    }
+  },
+  render: function render (h) {
+    var this$1 = this;
+
+    var router = this.$router;
+    var current = this.$route;
+    var ref = router.resolve(this.to, current, this.append);
+    var location = ref.location;
+    var route = ref.route;
+    var href = ref.href;
+
+    var classes = {};
+    var globalActiveClass = router.options.linkActiveClass;
+    var globalExactActiveClass = router.options.linkExactActiveClass;
+    // Support global empty active class
+    var activeClassFallback = globalActiveClass == null
+      ? 'router-link-active'
+      : globalActiveClass;
+    var exactActiveClassFallback = globalExactActiveClass == null
+      ? 'router-link-exact-active'
+      : globalExactActiveClass;
+    var activeClass = this.activeClass == null
+      ? activeClassFallback
+      : this.activeClass;
+    var exactActiveClass = this.exactActiveClass == null
+      ? exactActiveClassFallback
+      : this.exactActiveClass;
+    var compareTarget = location.path
+      ? createRoute(null, location, null, router)
+      : route;
+
+    classes[exactActiveClass] = isSameRoute(current, compareTarget);
+    classes[activeClass] = this.exact
+      ? classes[exactActiveClass]
+      : isIncludedRoute(current, compareTarget);
+
+    var handler = function (e) {
+      if (guardEvent(e)) {
+        if (this$1.replace) {
+          router.replace(location);
+        } else {
+          router.push(location);
+        }
+      }
+    };
+
+    var on = { click: guardEvent };
+    if (Array.isArray(this.event)) {
+      this.event.forEach(function (e) { on[e] = handler; });
+    } else {
+      on[this.event] = handler;
+    }
+
+    var data = {
+      class: classes
+    };
+
+    if (this.tag === 'a') {
+      data.on = on;
+      data.attrs = { href: href };
+    } else {
+      // find the first <a> child and apply listener and href
+      var a = findAnchor(this.$slots.default);
+      if (a) {
+        // in case the <a> is a static node
+        a.isStatic = false;
+        var aData = a.data = extend({}, a.data);
+        aData.on = on;
+        var aAttrs = a.data.attrs = extend({}, a.data.attrs);
+        aAttrs.href = href;
+      } else {
+        // doesn't have <a> child, apply listener to self
+        data.on = on;
+      }
+    }
+
+    return h(this.tag, data, this.$slots.default)
+  }
+}
+
+function guardEvent (e) {
+  // don't redirect with control keys
+  if (e.metaKey || e.altKey || e.ctrlKey || e.shiftKey) { return }
+  // don't redirect when preventDefault called
+  if (e.defaultPrevented) { return }
+  // don't redirect on right click
+  if (e.button !== undefined && e.button !== 0) { return }
+  // don't redirect if `target="_blank"`
+  if (e.currentTarget && e.currentTarget.getAttribute) {
+    var target = e.currentTarget.getAttribute('target');
+    if (/\b_blank\b/i.test(target)) { return }
+  }
+  // this may be a Weex event which doesn't have this method
+  if (e.preventDefault) {
+    e.preventDefault();
+  }
+  return true
+}
+
+function findAnchor (children) {
+  if (children) {
+    var child;
+    for (var i = 0; i < children.length; i++) {
+      child = children[i];
+      if (child.tag === 'a') {
+        return child
+      }
+      if (child.children && (child = findAnchor(child.children))) {
+        return child
+      }
+    }
+  }
+}
+
+var _Vue;
+
+function install (Vue) {
+  if (install.installed && _Vue === Vue) { return }
+  install.installed = true;
+
+  _Vue = Vue;
+
+  var isDef = function (v) { return v !== undefined; };
+
+  var registerInstance = function (vm, callVal) {
+    var i = vm.$options._parentVnode;
+    if (isDef(i) && isDef(i = i.data) && isDef(i = i.registerRouteInstance)) {
+      i(vm, callVal);
+    }
+  };
+
+  Vue.mixin({
+    beforeCreate: function beforeCreate () {
+      if (isDef(this.$options.router)) {
+        this._routerRoot = this;
+        this._router = this.$options.router;
+        this._router.init(this);
+        Vue.util.defineReactive(this, '_route', this._router.history.current);
+      } else {
+        this._routerRoot = (this.$parent && this.$parent._routerRoot) || this;
+      }
+      registerInstance(this, this);
+    },
+    destroyed: function destroyed () {
+      registerInstance(this);
+    }
+  });
+
+  Object.defineProperty(Vue.prototype, '$router', {
+    get: function get () { return this._routerRoot._router }
+  });
+
+  Object.defineProperty(Vue.prototype, '$route', {
+    get: function get () { return this._routerRoot._route }
+  });
+
+  Vue.component('RouterView', View);
+  Vue.component('RouterLink', Link);
+
+  var strats = Vue.config.optionMergeStrategies;
+  // use the same hook merging strategy for route hooks
+  strats.beforeRouteEnter = strats.beforeRouteLeave = strats.beforeRouteUpdate = strats.created;
+}
+
+/*  */
+
+var inBrowser = typeof window !== 'undefined';
+
+/*  */
+
+function resolvePath (
+  relative,
+  base,
+  append
+) {
+  var firstChar = relative.charAt(0);
+  if (firstChar === '/') {
+    return relative
+  }
+
+  if (firstChar === '?' || firstChar === '#') {
+    return base + relative
+  }
+
+  var stack = base.split('/');
+
+  // remove trailing segment if:
+  // - not appending
+  // - appending to trailing slash (last segment is empty)
+  if (!append || !stack[stack.length - 1]) {
+    stack.pop();
+  }
+
+  // resolve relative path
+  var segments = relative.replace(/^\//, '').split('/');
+  for (var i = 0; i < segments.length; i++) {
+    var segment = segments[i];
+    if (segment === '..') {
+      stack.pop();
+    } else if (segment !== '.') {
+      stack.push(segment);
+    }
+  }
+
+  // ensure leading slash
+  if (stack[0] !== '') {
+    stack.unshift('');
+  }
+
+  return stack.join('/')
+}
+
+function parsePath (path) {
+  var hash = '';
+  var query = '';
+
+  var hashIndex = path.indexOf('#');
+  if (hashIndex >= 0) {
+    hash = path.slice(hashIndex);
+    path = path.slice(0, hashIndex);
+  }
+
+  var queryIndex = path.indexOf('?');
+  if (queryIndex >= 0) {
+    query = path.slice(queryIndex + 1);
+    path = path.slice(0, queryIndex);
+  }
+
+  return {
+    path: path,
+    query: query,
+    hash: hash
+  }
+}
+
+function cleanPath (path) {
+  return path.replace(/\/\//g, '/')
+}
+
+var isarray = Array.isArray || function (arr) {
+  return Object.prototype.toString.call(arr) == '[object Array]';
+};
+
+/**
+ * Expose `pathToRegexp`.
+ */
+var pathToRegexp_1 = pathToRegexp;
+var parse_1 = parse;
+var compile_1 = compile;
+var tokensToFunction_1 = tokensToFunction;
+var tokensToRegExp_1 = tokensToRegExp;
+
+/**
+ * The main path matching regexp utility.
+ *
+ * @type {RegExp}
+ */
+var PATH_REGEXP = new RegExp([
+  // Match escaped characters that would otherwise appear in future matches.
+  // This allows the user to escape special characters that won't transform.
+  '(\\\\.)',
+  // Match Express-style parameters and un-named parameters with a prefix
+  // and optional suffixes. Matches appear as:
+  //
+  // "/:test(\\d+)?" => ["/", "test", "\d+", undefined, "?", undefined]
+  // "/route(\\d+)"  => [undefined, undefined, undefined, "\d+", undefined, undefined]
+  // "/*"            => ["/", undefined, undefined, undefined, undefined, "*"]
+  '([\\/.])?(?:(?:\\:(\\w+)(?:\\(((?:\\\\.|[^\\\\()])+)\\))?|\\(((?:\\\\.|[^\\\\()])+)\\))([+*?])?|(\\*))'
+].join('|'), 'g');
+
+/**
+ * Parse a string for the raw tokens.
+ *
+ * @param  {string}  str
+ * @param  {Object=} options
+ * @return {!Array}
+ */
+function parse (str, options) {
+  var tokens = [];
+  var key = 0;
+  var index = 0;
+  var path = '';
+  var defaultDelimiter = options && options.delimiter || '/';
+  var res;
+
+  while ((res = PATH_REGEXP.exec(str)) != null) {
+    var m = res[0];
+    var escaped = res[1];
+    var offset = res.index;
+    path += str.slice(index, offset);
+    index = offset + m.length;
+
+    // Ignore already escaped sequences.
+    if (escaped) {
+      path += escaped[1];
+      continue
+    }
+
+    var next = str[index];
+    var prefix = res[2];
+    var name = res[3];
+    var capture = res[4];
+    var group = res[5];
+    var modifier = res[6];
+    var asterisk = res[7];
+
+    // Push the current path onto the tokens.
+    if (path) {
+      tokens.push(path);
+      path = '';
+    }
+
+    var partial = prefix != null && next != null && next !== prefix;
+    var repeat = modifier === '+' || modifier === '*';
+    var optional = modifier === '?' || modifier === '*';
+    var delimiter = res[2] || defaultDelimiter;
+    var pattern = capture || group;
+
+    tokens.push({
+      name: name || key++,
+      prefix: prefix || '',
+      delimiter: delimiter,
+      optional: optional,
+      repeat: repeat,
+      partial: partial,
+      asterisk: !!asterisk,
+      pattern: pattern ? escapeGroup(pattern) : (asterisk ? '.*' : '[^' + escapeString(delimiter) + ']+?')
+    });
+  }
+
+  // Match any characters still remaining.
+  if (index < str.length) {
+    path += str.substr(index);
+  }
+
+  // If the path exists, push it onto the end.
+  if (path) {
+    tokens.push(path);
+  }
+
+  return tokens
+}
+
+/**
+ * Compile a string to a template function for the path.
+ *
+ * @param  {string}             str
+ * @param  {Object=}            options
+ * @return {!function(Object=, Object=)}
+ */
+function compile (str, options) {
+  return tokensToFunction(parse(str, options))
+}
+
+/**
+ * Prettier encoding of URI path segments.
+ *
+ * @param  {string}
+ * @return {string}
+ */
+function encodeURIComponentPretty (str) {
+  return encodeURI(str).replace(/[\/?#]/g, function (c) {
+    return '%' + c.charCodeAt(0).toString(16).toUpperCase()
+  })
+}
+
+/**
+ * Encode the asterisk parameter. Similar to `pretty`, but allows slashes.
+ *
+ * @param  {string}
+ * @return {string}
+ */
+function encodeAsterisk (str) {
+  return encodeURI(str).replace(/[?#]/g, function (c) {
+    return '%' + c.charCodeAt(0).toString(16).toUpperCase()
+  })
+}
+
+/**
+ * Expose a method for transforming tokens into the path function.
+ */
+function tokensToFunction (tokens) {
+  // Compile all the tokens into regexps.
+  var matches = new Array(tokens.length);
+
+  // Compile all the patterns before compilation.
+  for (var i = 0; i < tokens.length; i++) {
+    if (typeof tokens[i] === 'object') {
+      matches[i] = new RegExp('^(?:' + tokens[i].pattern + ')$');
+    }
+  }
+
+  return function (obj, opts) {
+    var path = '';
+    var data = obj || {};
+    var options = opts || {};
+    var encode = options.pretty ? encodeURIComponentPretty : encodeURIComponent;
+
+    for (var i = 0; i < tokens.length; i++) {
+      var token = tokens[i];
+
+      if (typeof token === 'string') {
+        path += token;
+
+        continue
+      }
+
+      var value = data[token.name];
+      var segment;
+
+      if (value == null) {
+        if (token.optional) {
+          // Prepend partial segment prefixes.
+          if (token.partial) {
+            path += token.prefix;
+          }
+
+          continue
+        } else {
+          throw new TypeError('Expected "' + token.name + '" to be defined')
+        }
+      }
+
+      if (isarray(value)) {
+        if (!token.repeat) {
+          throw new TypeError('Expected "' + token.name + '" to not repeat, but received `' + JSON.stringify(value) + '`')
+        }
+
+        if (value.length === 0) {
+          if (token.optional) {
+            continue
+          } else {
+            throw new TypeError('Expected "' + token.name + '" to not be empty')
+          }
+        }
+
+        for (var j = 0; j < value.length; j++) {
+          segment = encode(value[j]);
+
+          if (!matches[i].test(segment)) {
+            throw new TypeError('Expected all "' + token.name + '" to match "' + token.pattern + '", but received `' + JSON.stringify(segment) + '`')
+          }
+
+          path += (j === 0 ? token.prefix : token.delimiter) + segment;
+        }
+
+        continue
+      }
+
+      segment = token.asterisk ? encodeAsterisk(value) : encode(value);
+
+      if (!matches[i].test(segment)) {
+        throw new TypeError('Expected "' + token.name + '" to match "' + token.pattern + '", but received "' + segment + '"')
+      }
+
+      path += token.prefix + segment;
+    }
+
+    return path
+  }
+}
+
+/**
+ * Escape a regular expression string.
+ *
+ * @param  {string} str
+ * @return {string}
+ */
+function escapeString (str) {
+  return str.replace(/([.+*?=^!:${}()[\]|\/\\])/g, '\\$1')
+}
+
+/**
+ * Escape the capturing group by escaping special characters and meaning.
+ *
+ * @param  {string} group
+ * @return {string}
+ */
+function escapeGroup (group) {
+  return group.replace(/([=!:$\/()])/g, '\\$1')
+}
+
+/**
+ * Attach the keys as a property of the regexp.
+ *
+ * @param  {!RegExp} re
+ * @param  {Array}   keys
+ * @return {!RegExp}
+ */
+function attachKeys (re, keys) {
+  re.keys = keys;
+  return re
+}
+
+/**
+ * Get the flags for a regexp from the options.
+ *
+ * @param  {Object} options
+ * @return {string}
+ */
+function flags (options) {
+  return options.sensitive ? '' : 'i'
+}
+
+/**
+ * Pull out keys from a regexp.
+ *
+ * @param  {!RegExp} path
+ * @param  {!Array}  keys
+ * @return {!RegExp}
+ */
+function regexpToRegexp (path, keys) {
+  // Use a negative lookahead to match only capturing groups.
+  var groups = path.source.match(/\((?!\?)/g);
+
+  if (groups) {
+    for (var i = 0; i < groups.length; i++) {
+      keys.push({
+        name: i,
+        prefix: null,
+        delimiter: null,
+        optional: false,
+        repeat: false,
+        partial: false,
+        asterisk: false,
+        pattern: null
+      });
+    }
+  }
+
+  return attachKeys(path, keys)
+}
+
+/**
+ * Transform an array into a regexp.
+ *
+ * @param  {!Array}  path
+ * @param  {Array}   keys
+ * @param  {!Object} options
+ * @return {!RegExp}
+ */
+function arrayToRegexp (path, keys, options) {
+  var parts = [];
+
+  for (var i = 0; i < path.length; i++) {
+    parts.push(pathToRegexp(path[i], keys, options).source);
+  }
+
+  var regexp = new RegExp('(?:' + parts.join('|') + ')', flags(options));
+
+  return attachKeys(regexp, keys)
+}
+
+/**
+ * Create a path regexp from string input.
+ *
+ * @param  {string}  path
+ * @param  {!Array}  keys
+ * @param  {!Object} options
+ * @return {!RegExp}
+ */
+function stringToRegexp (path, keys, options) {
+  return tokensToRegExp(parse(path, options), keys, options)
+}
+
+/**
+ * Expose a function for taking tokens and returning a RegExp.
+ *
+ * @param  {!Array}          tokens
+ * @param  {(Array|Object)=} keys
+ * @param  {Object=}         options
+ * @return {!RegExp}
+ */
+function tokensToRegExp (tokens, keys, options) {
+  if (!isarray(keys)) {
+    options = /** @type {!Object} */ (keys || options);
+    keys = [];
+  }
+
+  options = options || {};
+
+  var strict = options.strict;
+  var end = options.end !== false;
+  var route = '';
+
+  // Iterate over the tokens and create our regexp string.
+  for (var i = 0; i < tokens.length; i++) {
+    var token = tokens[i];
+
+    if (typeof token === 'string') {
+      route += escapeString(token);
+    } else {
+      var prefix = escapeString(token.prefix);
+      var capture = '(?:' + token.pattern + ')';
+
+      keys.push(token);
+
+      if (token.repeat) {
+        capture += '(?:' + prefix + capture + ')*';
+      }
+
+      if (token.optional) {
+        if (!token.partial) {
+          capture = '(?:' + prefix + '(' + capture + '))?';
+        } else {
+          capture = prefix + '(' + capture + ')?';
+        }
+      } else {
+        capture = prefix + '(' + capture + ')';
+      }
+
+      route += capture;
+    }
+  }
+
+  var delimiter = escapeString(options.delimiter || '/');
+  var endsWithDelimiter = route.slice(-delimiter.length) === delimiter;
+
+  // In non-strict mode we allow a slash at the end of match. If the path to
+  // match already ends with a slash, we remove it for consistency. The slash
+  // is valid at the end of a path match, not in the middle. This is important
+  // in non-ending mode, where "/test/" shouldn't match "/test//route".
+  if (!strict) {
+    route = (endsWithDelimiter ? route.slice(0, -delimiter.length) : route) + '(?:' + delimiter + '(?=$))?';
+  }
+
+  if (end) {
+    route += '$';
+  } else {
+    // In non-ending mode, we need the capturing groups to match as much as
+    // possible by using a positive lookahead to the end or next path segment.
+    route += strict && endsWithDelimiter ? '' : '(?=' + delimiter + '|$)';
+  }
+
+  return attachKeys(new RegExp('^' + route, flags(options)), keys)
+}
+
+/**
+ * Normalize the given path string, returning a regular expression.
+ *
+ * An empty array can be passed in for the keys, which will hold the
+ * placeholder key descriptions. For example, using `/user/:id`, `keys` will
+ * contain `[{ name: 'id', delimiter: '/', optional: false, repeat: false }]`.
+ *
+ * @param  {(string|RegExp|Array)} path
+ * @param  {(Array|Object)=}       keys
+ * @param  {Object=}               options
+ * @return {!RegExp}
+ */
+function pathToRegexp (path, keys, options) {
+  if (!isarray(keys)) {
+    options = /** @type {!Object} */ (keys || options);
+    keys = [];
+  }
+
+  options = options || {};
+
+  if (path instanceof RegExp) {
+    return regexpToRegexp(path, /** @type {!Array} */ (keys))
+  }
+
+  if (isarray(path)) {
+    return arrayToRegexp(/** @type {!Array} */ (path), /** @type {!Array} */ (keys), options)
+  }
+
+  return stringToRegexp(/** @type {string} */ (path), /** @type {!Array} */ (keys), options)
+}
+pathToRegexp_1.parse = parse_1;
+pathToRegexp_1.compile = compile_1;
+pathToRegexp_1.tokensToFunction = tokensToFunction_1;
+pathToRegexp_1.tokensToRegExp = tokensToRegExp_1;
+
+/*  */
+
+// $flow-disable-line
+var regexpCompileCache = Object.create(null);
+
+function fillParams (
+  path,
+  params,
+  routeMsg
+) {
+  try {
+    var filler =
+      regexpCompileCache[path] ||
+      (regexpCompileCache[path] = pathToRegexp_1.compile(path));
+    return filler(params || {}, { pretty: true })
+  } catch (e) {
+    if (true) {
+      warn(false, ("missing param for " + routeMsg + ": " + (e.message)));
+    }
+    return ''
+  }
+}
+
+/*  */
+
+function createRouteMap (
+  routes,
+  oldPathList,
+  oldPathMap,
+  oldNameMap
+) {
+  // the path list is used to control path matching priority
+  var pathList = oldPathList || [];
+  // $flow-disable-line
+  var pathMap = oldPathMap || Object.create(null);
+  // $flow-disable-line
+  var nameMap = oldNameMap || Object.create(null);
+
+  routes.forEach(function (route) {
+    addRouteRecord(pathList, pathMap, nameMap, route);
+  });
+
+  // ensure wildcard routes are always at the end
+  for (var i = 0, l = pathList.length; i < l; i++) {
+    if (pathList[i] === '*') {
+      pathList.push(pathList.splice(i, 1)[0]);
+      l--;
+      i--;
+    }
+  }
+
+  return {
+    pathList: pathList,
+    pathMap: pathMap,
+    nameMap: nameMap
+  }
+}
+
+function addRouteRecord (
+  pathList,
+  pathMap,
+  nameMap,
+  route,
+  parent,
+  matchAs
+) {
+  var path = route.path;
+  var name = route.name;
+  if (true) {
+    assert(path != null, "\"path\" is required in a route configuration.");
+    assert(
+      typeof route.component !== 'string',
+      "route config \"component\" for path: " + (String(path || name)) + " cannot be a " +
+      "string id. Use an actual component instead."
+    );
+  }
+
+  var pathToRegexpOptions = route.pathToRegexpOptions || {};
+  var normalizedPath = normalizePath(
+    path,
+    parent,
+    pathToRegexpOptions.strict
+  );
+
+  if (typeof route.caseSensitive === 'boolean') {
+    pathToRegexpOptions.sensitive = route.caseSensitive;
+  }
+
+  var record = {
+    path: normalizedPath,
+    regex: compileRouteRegex(normalizedPath, pathToRegexpOptions),
+    components: route.components || { default: route.component },
+    instances: {},
+    name: name,
+    parent: parent,
+    matchAs: matchAs,
+    redirect: route.redirect,
+    beforeEnter: route.beforeEnter,
+    meta: route.meta || {},
+    props: route.props == null
+      ? {}
+      : route.components
+        ? route.props
+        : { default: route.props }
+  };
+
+  if (route.children) {
+    // Warn if route is named, does not redirect and has a default child route.
+    // If users navigate to this route by name, the default child will
+    // not be rendered (GH Issue #629)
+    if (true) {
+      if (route.name && !route.redirect && route.children.some(function (child) { return /^\/?$/.test(child.path); })) {
+        warn(
+          false,
+          "Named Route '" + (route.name) + "' has a default child route. " +
+          "When navigating to this named route (:to=\"{name: '" + (route.name) + "'\"), " +
+          "the default child route will not be rendered. Remove the name from " +
+          "this route and use the name of the default child route for named " +
+          "links instead."
+        );
+      }
+    }
+    route.children.forEach(function (child) {
+      var childMatchAs = matchAs
+        ? cleanPath((matchAs + "/" + (child.path)))
+        : undefined;
+      addRouteRecord(pathList, pathMap, nameMap, child, record, childMatchAs);
+    });
+  }
+
+  if (route.alias !== undefined) {
+    var aliases = Array.isArray(route.alias)
+      ? route.alias
+      : [route.alias];
+
+    aliases.forEach(function (alias) {
+      var aliasRoute = {
+        path: alias,
+        children: route.children
+      };
+      addRouteRecord(
+        pathList,
+        pathMap,
+        nameMap,
+        aliasRoute,
+        parent,
+        record.path || '/' // matchAs
+      );
+    });
+  }
+
+  if (!pathMap[record.path]) {
+    pathList.push(record.path);
+    pathMap[record.path] = record;
+  }
+
+  if (name) {
+    if (!nameMap[name]) {
+      nameMap[name] = record;
+    } else if ( true && !matchAs) {
+      warn(
+        false,
+        "Duplicate named routes definition: " +
+        "{ name: \"" + name + "\", path: \"" + (record.path) + "\" }"
+      );
+    }
+  }
+}
+
+function compileRouteRegex (path, pathToRegexpOptions) {
+  var regex = pathToRegexp_1(path, [], pathToRegexpOptions);
+  if (true) {
+    var keys = Object.create(null);
+    regex.keys.forEach(function (key) {
+      warn(!keys[key.name], ("Duplicate param keys in route with path: \"" + path + "\""));
+      keys[key.name] = true;
+    });
+  }
+  return regex
+}
+
+function normalizePath (path, parent, strict) {
+  if (!strict) { path = path.replace(/\/$/, ''); }
+  if (path[0] === '/') { return path }
+  if (parent == null) { return path }
+  return cleanPath(((parent.path) + "/" + path))
+}
+
+/*  */
+
+function normalizeLocation (
+  raw,
+  current,
+  append,
+  router
+) {
+  var next = typeof raw === 'string' ? { path: raw } : raw;
+  // named target
+  if (next.name || next._normalized) {
+    return next
+  }
+
+  // relative params
+  if (!next.path && next.params && current) {
+    next = extend({}, next);
+    next._normalized = true;
+    var params = extend(extend({}, current.params), next.params);
+    if (current.name) {
+      next.name = current.name;
+      next.params = params;
+    } else if (current.matched.length) {
+      var rawPath = current.matched[current.matched.length - 1].path;
+      next.path = fillParams(rawPath, params, ("path " + (current.path)));
+    } else if (true) {
+      warn(false, "relative params navigation requires a current route.");
+    }
+    return next
+  }
+
+  var parsedPath = parsePath(next.path || '');
+  var basePath = (current && current.path) || '/';
+  var path = parsedPath.path
+    ? resolvePath(parsedPath.path, basePath, append || next.append)
+    : basePath;
+
+  var query = resolveQuery(
+    parsedPath.query,
+    next.query,
+    router && router.options.parseQuery
+  );
+
+  var hash = next.hash || parsedPath.hash;
+  if (hash && hash.charAt(0) !== '#') {
+    hash = "#" + hash;
+  }
+
+  return {
+    _normalized: true,
+    path: path,
+    query: query,
+    hash: hash
+  }
+}
+
+/*  */
+
+
+
+function createMatcher (
+  routes,
+  router
+) {
+  var ref = createRouteMap(routes);
+  var pathList = ref.pathList;
+  var pathMap = ref.pathMap;
+  var nameMap = ref.nameMap;
+
+  function addRoutes (routes) {
+    createRouteMap(routes, pathList, pathMap, nameMap);
+  }
+
+  function match (
+    raw,
+    currentRoute,
+    redirectedFrom
+  ) {
+    var location = normalizeLocation(raw, currentRoute, false, router);
+    var name = location.name;
+
+    if (name) {
+      var record = nameMap[name];
+      if (true) {
+        warn(record, ("Route with name '" + name + "' does not exist"));
+      }
+      if (!record) { return _createRoute(null, location) }
+      var paramNames = record.regex.keys
+        .filter(function (key) { return !key.optional; })
+        .map(function (key) { return key.name; });
+
+      if (typeof location.params !== 'object') {
+        location.params = {};
+      }
+
+      if (currentRoute && typeof currentRoute.params === 'object') {
+        for (var key in currentRoute.params) {
+          if (!(key in location.params) && paramNames.indexOf(key) > -1) {
+            location.params[key] = currentRoute.params[key];
+          }
+        }
+      }
+
+      if (record) {
+        location.path = fillParams(record.path, location.params, ("named route \"" + name + "\""));
+        return _createRoute(record, location, redirectedFrom)
+      }
+    } else if (location.path) {
+      location.params = {};
+      for (var i = 0; i < pathList.length; i++) {
+        var path = pathList[i];
+        var record$1 = pathMap[path];
+        if (matchRoute(record$1.regex, location.path, location.params)) {
+          return _createRoute(record$1, location, redirectedFrom)
+        }
+      }
+    }
+    // no match
+    return _createRoute(null, location)
+  }
+
+  function redirect (
+    record,
+    location
+  ) {
+    var originalRedirect = record.redirect;
+    var redirect = typeof originalRedirect === 'function'
+      ? originalRedirect(createRoute(record, location, null, router))
+      : originalRedirect;
+
+    if (typeof redirect === 'string') {
+      redirect = { path: redirect };
+    }
+
+    if (!redirect || typeof redirect !== 'object') {
+      if (true) {
+        warn(
+          false, ("invalid redirect option: " + (JSON.stringify(redirect)))
+        );
+      }
+      return _createRoute(null, location)
+    }
+
+    var re = redirect;
+    var name = re.name;
+    var path = re.path;
+    var query = location.query;
+    var hash = location.hash;
+    var params = location.params;
+    query = re.hasOwnProperty('query') ? re.query : query;
+    hash = re.hasOwnProperty('hash') ? re.hash : hash;
+    params = re.hasOwnProperty('params') ? re.params : params;
+
+    if (name) {
+      // resolved named direct
+      var targetRecord = nameMap[name];
+      if (true) {
+        assert(targetRecord, ("redirect failed: named route \"" + name + "\" not found."));
+      }
+      return match({
+        _normalized: true,
+        name: name,
+        query: query,
+        hash: hash,
+        params: params
+      }, undefined, location)
+    } else if (path) {
+      // 1. resolve relative redirect
+      var rawPath = resolveRecordPath(path, record);
+      // 2. resolve params
+      var resolvedPath = fillParams(rawPath, params, ("redirect route with path \"" + rawPath + "\""));
+      // 3. rematch with existing query and hash
+      return match({
+        _normalized: true,
+        path: resolvedPath,
+        query: query,
+        hash: hash
+      }, undefined, location)
+    } else {
+      if (true) {
+        warn(false, ("invalid redirect option: " + (JSON.stringify(redirect))));
+      }
+      return _createRoute(null, location)
+    }
+  }
+
+  function alias (
+    record,
+    location,
+    matchAs
+  ) {
+    var aliasedPath = fillParams(matchAs, location.params, ("aliased route with path \"" + matchAs + "\""));
+    var aliasedMatch = match({
+      _normalized: true,
+      path: aliasedPath
+    });
+    if (aliasedMatch) {
+      var matched = aliasedMatch.matched;
+      var aliasedRecord = matched[matched.length - 1];
+      location.params = aliasedMatch.params;
+      return _createRoute(aliasedRecord, location)
+    }
+    return _createRoute(null, location)
+  }
+
+  function _createRoute (
+    record,
+    location,
+    redirectedFrom
+  ) {
+    if (record && record.redirect) {
+      return redirect(record, redirectedFrom || location)
+    }
+    if (record && record.matchAs) {
+      return alias(record, location, record.matchAs)
+    }
+    return createRoute(record, location, redirectedFrom, router)
+  }
+
+  return {
+    match: match,
+    addRoutes: addRoutes
+  }
+}
+
+function matchRoute (
+  regex,
+  path,
+  params
+) {
+  var m = path.match(regex);
+
+  if (!m) {
+    return false
+  } else if (!params) {
+    return true
+  }
+
+  for (var i = 1, len = m.length; i < len; ++i) {
+    var key = regex.keys[i - 1];
+    var val = typeof m[i] === 'string' ? decodeURIComponent(m[i]) : m[i];
+    if (key) {
+      // Fix #1994: using * with props: true generates a param named 0
+      params[key.name || 'pathMatch'] = val;
+    }
+  }
+
+  return true
+}
+
+function resolveRecordPath (path, record) {
+  return resolvePath(path, record.parent ? record.parent.path : '/', true)
+}
+
+/*  */
+
+var positionStore = Object.create(null);
+
+function setupScroll () {
+  // Fix for #1585 for Firefox
+  // Fix for #2195 Add optional third attribute to workaround a bug in safari https://bugs.webkit.org/show_bug.cgi?id=182678
+  window.history.replaceState({ key: getStateKey() }, '', window.location.href.replace(window.location.origin, ''));
+  window.addEventListener('popstate', function (e) {
+    saveScrollPosition();
+    if (e.state && e.state.key) {
+      setStateKey(e.state.key);
+    }
+  });
+}
+
+function handleScroll (
+  router,
+  to,
+  from,
+  isPop
+) {
+  if (!router.app) {
+    return
+  }
+
+  var behavior = router.options.scrollBehavior;
+  if (!behavior) {
+    return
+  }
+
+  if (true) {
+    assert(typeof behavior === 'function', "scrollBehavior must be a function");
+  }
+
+  // wait until re-render finishes before scrolling
+  router.app.$nextTick(function () {
+    var position = getScrollPosition();
+    var shouldScroll = behavior.call(router, to, from, isPop ? position : null);
+
+    if (!shouldScroll) {
+      return
+    }
+
+    if (typeof shouldScroll.then === 'function') {
+      shouldScroll.then(function (shouldScroll) {
+        scrollToPosition((shouldScroll), position);
+      }).catch(function (err) {
+        if (true) {
+          assert(false, err.toString());
+        }
+      });
+    } else {
+      scrollToPosition(shouldScroll, position);
+    }
+  });
+}
+
+function saveScrollPosition () {
+  var key = getStateKey();
+  if (key) {
+    positionStore[key] = {
+      x: window.pageXOffset,
+      y: window.pageYOffset
+    };
+  }
+}
+
+function getScrollPosition () {
+  var key = getStateKey();
+  if (key) {
+    return positionStore[key]
+  }
+}
+
+function getElementPosition (el, offset) {
+  var docEl = document.documentElement;
+  var docRect = docEl.getBoundingClientRect();
+  var elRect = el.getBoundingClientRect();
+  return {
+    x: elRect.left - docRect.left - offset.x,
+    y: elRect.top - docRect.top - offset.y
+  }
+}
+
+function isValidPosition (obj) {
+  return isNumber(obj.x) || isNumber(obj.y)
+}
+
+function normalizePosition (obj) {
+  return {
+    x: isNumber(obj.x) ? obj.x : window.pageXOffset,
+    y: isNumber(obj.y) ? obj.y : window.pageYOffset
+  }
+}
+
+function normalizeOffset (obj) {
+  return {
+    x: isNumber(obj.x) ? obj.x : 0,
+    y: isNumber(obj.y) ? obj.y : 0
+  }
+}
+
+function isNumber (v) {
+  return typeof v === 'number'
+}
+
+function scrollToPosition (shouldScroll, position) {
+  var isObject = typeof shouldScroll === 'object';
+  if (isObject && typeof shouldScroll.selector === 'string') {
+    var el = document.querySelector(shouldScroll.selector);
+    if (el) {
+      var offset = shouldScroll.offset && typeof shouldScroll.offset === 'object' ? shouldScroll.offset : {};
+      offset = normalizeOffset(offset);
+      position = getElementPosition(el, offset);
+    } else if (isValidPosition(shouldScroll)) {
+      position = normalizePosition(shouldScroll);
+    }
+  } else if (isObject && isValidPosition(shouldScroll)) {
+    position = normalizePosition(shouldScroll);
+  }
+
+  if (position) {
+    window.scrollTo(position.x, position.y);
+  }
+}
+
+/*  */
+
+var supportsPushState = inBrowser && (function () {
+  var ua = window.navigator.userAgent;
+
+  if (
+    (ua.indexOf('Android 2.') !== -1 || ua.indexOf('Android 4.0') !== -1) &&
+    ua.indexOf('Mobile Safari') !== -1 &&
+    ua.indexOf('Chrome') === -1 &&
+    ua.indexOf('Windows Phone') === -1
+  ) {
+    return false
+  }
+
+  return window.history && 'pushState' in window.history
+})();
+
+// use User Timing api (if present) for more accurate key precision
+var Time = inBrowser && window.performance && window.performance.now
+  ? window.performance
+  : Date;
+
+var _key = genKey();
+
+function genKey () {
+  return Time.now().toFixed(3)
+}
+
+function getStateKey () {
+  return _key
+}
+
+function setStateKey (key) {
+  _key = key;
+}
+
+function pushState (url, replace) {
+  saveScrollPosition();
+  // try...catch the pushState call to get around Safari
+  // DOM Exception 18 where it limits to 100 pushState calls
+  var history = window.history;
+  try {
+    if (replace) {
+      history.replaceState({ key: _key }, '', url);
+    } else {
+      _key = genKey();
+      history.pushState({ key: _key }, '', url);
+    }
+  } catch (e) {
+    window.location[replace ? 'replace' : 'assign'](url);
+  }
+}
+
+function replaceState (url) {
+  pushState(url, true);
+}
+
+/*  */
+
+function runQueue (queue, fn, cb) {
+  var step = function (index) {
+    if (index >= queue.length) {
+      cb();
+    } else {
+      if (queue[index]) {
+        fn(queue[index], function () {
+          step(index + 1);
+        });
+      } else {
+        step(index + 1);
+      }
+    }
+  };
+  step(0);
+}
+
+/*  */
+
+function resolveAsyncComponents (matched) {
+  return function (to, from, next) {
+    var hasAsync = false;
+    var pending = 0;
+    var error = null;
+
+    flatMapComponents(matched, function (def, _, match, key) {
+      // if it's a function and doesn't have cid attached,
+      // assume it's an async component resolve function.
+      // we are not using Vue's default async resolving mechanism because
+      // we want to halt the navigation until the incoming component has been
+      // resolved.
+      if (typeof def === 'function' && def.cid === undefined) {
+        hasAsync = true;
+        pending++;
+
+        var resolve = once(function (resolvedDef) {
+          if (isESModule(resolvedDef)) {
+            resolvedDef = resolvedDef.default;
+          }
+          // save resolved on async factory in case it's used elsewhere
+          def.resolved = typeof resolvedDef === 'function'
+            ? resolvedDef
+            : _Vue.extend(resolvedDef);
+          match.components[key] = resolvedDef;
+          pending--;
+          if (pending <= 0) {
+            next();
+          }
+        });
+
+        var reject = once(function (reason) {
+          var msg = "Failed to resolve async component " + key + ": " + reason;
+           true && warn(false, msg);
+          if (!error) {
+            error = isError(reason)
+              ? reason
+              : new Error(msg);
+            next(error);
+          }
+        });
+
+        var res;
+        try {
+          res = def(resolve, reject);
+        } catch (e) {
+          reject(e);
+        }
+        if (res) {
+          if (typeof res.then === 'function') {
+            res.then(resolve, reject);
+          } else {
+            // new syntax in Vue 2.3
+            var comp = res.component;
+            if (comp && typeof comp.then === 'function') {
+              comp.then(resolve, reject);
+            }
+          }
+        }
+      }
+    });
+
+    if (!hasAsync) { next(); }
+  }
+}
+
+function flatMapComponents (
+  matched,
+  fn
+) {
+  return flatten(matched.map(function (m) {
+    return Object.keys(m.components).map(function (key) { return fn(
+      m.components[key],
+      m.instances[key],
+      m, key
+    ); })
+  }))
+}
+
+function flatten (arr) {
+  return Array.prototype.concat.apply([], arr)
+}
+
+var hasSymbol =
+  typeof Symbol === 'function' &&
+  typeof Symbol.toStringTag === 'symbol';
+
+function isESModule (obj) {
+  return obj.__esModule || (hasSymbol && obj[Symbol.toStringTag] === 'Module')
+}
+
+// in Webpack 2, require.ensure now also returns a Promise
+// so the resolve/reject functions may get called an extra time
+// if the user uses an arrow function shorthand that happens to
+// return that Promise.
+function once (fn) {
+  var called = false;
+  return function () {
+    var args = [], len = arguments.length;
+    while ( len-- ) args[ len ] = arguments[ len ];
+
+    if (called) { return }
+    called = true;
+    return fn.apply(this, args)
+  }
+}
+
+/*  */
+
+var History = function History (router, base) {
+  this.router = router;
+  this.base = normalizeBase(base);
+  // start with a route object that stands for "nowhere"
+  this.current = START;
+  this.pending = null;
+  this.ready = false;
+  this.readyCbs = [];
+  this.readyErrorCbs = [];
+  this.errorCbs = [];
+};
+
+History.prototype.listen = function listen (cb) {
+  this.cb = cb;
+};
+
+History.prototype.onReady = function onReady (cb, errorCb) {
+  if (this.ready) {
+    cb();
+  } else {
+    this.readyCbs.push(cb);
+    if (errorCb) {
+      this.readyErrorCbs.push(errorCb);
+    }
+  }
+};
+
+History.prototype.onError = function onError (errorCb) {
+  this.errorCbs.push(errorCb);
+};
+
+History.prototype.transitionTo = function transitionTo (location, onComplete, onAbort) {
+    var this$1 = this;
+
+  var route = this.router.match(location, this.current);
+  this.confirmTransition(route, function () {
+    this$1.updateRoute(route);
+    onComplete && onComplete(route);
+    this$1.ensureURL();
+
+    // fire ready cbs once
+    if (!this$1.ready) {
+      this$1.ready = true;
+      this$1.readyCbs.forEach(function (cb) { cb(route); });
+    }
+  }, function (err) {
+    if (onAbort) {
+      onAbort(err);
+    }
+    if (err && !this$1.ready) {
+      this$1.ready = true;
+      this$1.readyErrorCbs.forEach(function (cb) { cb(err); });
+    }
+  });
+};
+
+History.prototype.confirmTransition = function confirmTransition (route, onComplete, onAbort) {
+    var this$1 = this;
+
+  var current = this.current;
+  var abort = function (err) {
+    if (isError(err)) {
+      if (this$1.errorCbs.length) {
+        this$1.errorCbs.forEach(function (cb) { cb(err); });
+      } else {
+        warn(false, 'uncaught error during route navigation:');
+        console.error(err);
+      }
+    }
+    onAbort && onAbort(err);
+  };
+  if (
+    isSameRoute(route, current) &&
+    // in the case the route map has been dynamically appended to
+    route.matched.length === current.matched.length
+  ) {
+    this.ensureURL();
+    return abort()
+  }
+
+  var ref = resolveQueue(this.current.matched, route.matched);
+    var updated = ref.updated;
+    var deactivated = ref.deactivated;
+    var activated = ref.activated;
+
+  var queue = [].concat(
+    // in-component leave guards
+    extractLeaveGuards(deactivated),
+    // global before hooks
+    this.router.beforeHooks,
+    // in-component update hooks
+    extractUpdateHooks(updated),
+    // in-config enter guards
+    activated.map(function (m) { return m.beforeEnter; }),
+    // async components
+    resolveAsyncComponents(activated)
+  );
+
+  this.pending = route;
+  var iterator = function (hook, next) {
+    if (this$1.pending !== route) {
+      return abort()
+    }
+    try {
+      hook(route, current, function (to) {
+        if (to === false || isError(to)) {
+          // next(false) -> abort navigation, ensure current URL
+          this$1.ensureURL(true);
+          abort(to);
+        } else if (
+          typeof to === 'string' ||
+          (typeof to === 'object' && (
+            typeof to.path === 'string' ||
+            typeof to.name === 'string'
+          ))
+        ) {
+          // next('/') or next({ path: '/' }) -> redirect
+          abort();
+          if (typeof to === 'object' && to.replace) {
+            this$1.replace(to);
+          } else {
+            this$1.push(to);
+          }
+        } else {
+          // confirm transition and pass on the value
+          next(to);
+        }
+      });
+    } catch (e) {
+      abort(e);
+    }
+  };
+
+  runQueue(queue, iterator, function () {
+    var postEnterCbs = [];
+    var isValid = function () { return this$1.current === route; };
+    // wait until async components are resolved before
+    // extracting in-component enter guards
+    var enterGuards = extractEnterGuards(activated, postEnterCbs, isValid);
+    var queue = enterGuards.concat(this$1.router.resolveHooks);
+    runQueue(queue, iterator, function () {
+      if (this$1.pending !== route) {
+        return abort()
+      }
+      this$1.pending = null;
+      onComplete(route);
+      if (this$1.router.app) {
+        this$1.router.app.$nextTick(function () {
+          postEnterCbs.forEach(function (cb) { cb(); });
+        });
+      }
+    });
+  });
+};
+
+History.prototype.updateRoute = function updateRoute (route) {
+  var prev = this.current;
+  this.current = route;
+  this.cb && this.cb(route);
+  this.router.afterHooks.forEach(function (hook) {
+    hook && hook(route, prev);
+  });
+};
+
+function normalizeBase (base) {
+  if (!base) {
+    if (inBrowser) {
+      // respect <base> tag
+      var baseEl = document.querySelector('base');
+      base = (baseEl && baseEl.getAttribute('href')) || '/';
+      // strip full URL origin
+      base = base.replace(/^https?:\/\/[^\/]+/, '');
+    } else {
+      base = '/';
+    }
+  }
+  // make sure there's the starting slash
+  if (base.charAt(0) !== '/') {
+    base = '/' + base;
+  }
+  // remove trailing slash
+  return base.replace(/\/$/, '')
+}
+
+function resolveQueue (
+  current,
+  next
+) {
+  var i;
+  var max = Math.max(current.length, next.length);
+  for (i = 0; i < max; i++) {
+    if (current[i] !== next[i]) {
+      break
+    }
+  }
+  return {
+    updated: next.slice(0, i),
+    activated: next.slice(i),
+    deactivated: current.slice(i)
+  }
+}
+
+function extractGuards (
+  records,
+  name,
+  bind,
+  reverse
+) {
+  var guards = flatMapComponents(records, function (def, instance, match, key) {
+    var guard = extractGuard(def, name);
+    if (guard) {
+      return Array.isArray(guard)
+        ? guard.map(function (guard) { return bind(guard, instance, match, key); })
+        : bind(guard, instance, match, key)
+    }
+  });
+  return flatten(reverse ? guards.reverse() : guards)
+}
+
+function extractGuard (
+  def,
+  key
+) {
+  if (typeof def !== 'function') {
+    // extend now so that global mixins are applied.
+    def = _Vue.extend(def);
+  }
+  return def.options[key]
+}
+
+function extractLeaveGuards (deactivated) {
+  return extractGuards(deactivated, 'beforeRouteLeave', bindGuard, true)
+}
+
+function extractUpdateHooks (updated) {
+  return extractGuards(updated, 'beforeRouteUpdate', bindGuard)
+}
+
+function bindGuard (guard, instance) {
+  if (instance) {
+    return function boundRouteGuard () {
+      return guard.apply(instance, arguments)
+    }
+  }
+}
+
+function extractEnterGuards (
+  activated,
+  cbs,
+  isValid
+) {
+  return extractGuards(activated, 'beforeRouteEnter', function (guard, _, match, key) {
+    return bindEnterGuard(guard, match, key, cbs, isValid)
+  })
+}
+
+function bindEnterGuard (
+  guard,
+  match,
+  key,
+  cbs,
+  isValid
+) {
+  return function routeEnterGuard (to, from, next) {
+    return guard(to, from, function (cb) {
+      next(cb);
+      if (typeof cb === 'function') {
+        cbs.push(function () {
+          // #750
+          // if a router-view is wrapped with an out-in transition,
+          // the instance may not have been registered at this time.
+          // we will need to poll for registration until current route
+          // is no longer valid.
+          poll(cb, match.instances, key, isValid);
+        });
+      }
+    })
+  }
+}
+
+function poll (
+  cb, // somehow flow cannot infer this is a function
+  instances,
+  key,
+  isValid
+) {
+  if (
+    instances[key] &&
+    !instances[key]._isBeingDestroyed // do not reuse being destroyed instance
+  ) {
+    cb(instances[key]);
+  } else if (isValid()) {
+    setTimeout(function () {
+      poll(cb, instances, key, isValid);
+    }, 16);
+  }
+}
+
+/*  */
+
+var HTML5History = (function (History$$1) {
+  function HTML5History (router, base) {
+    var this$1 = this;
+
+    History$$1.call(this, router, base);
+
+    var expectScroll = router.options.scrollBehavior;
+    var supportsScroll = supportsPushState && expectScroll;
+
+    if (supportsScroll) {
+      setupScroll();
+    }
+
+    var initLocation = getLocation(this.base);
+    window.addEventListener('popstate', function (e) {
+      var current = this$1.current;
+
+      // Avoiding first `popstate` event dispatched in some browsers but first
+      // history route not updated since async guard at the same time.
+      var location = getLocation(this$1.base);
+      if (this$1.current === START && location === initLocation) {
+        return
+      }
+
+      this$1.transitionTo(location, function (route) {
+        if (supportsScroll) {
+          handleScroll(router, route, current, true);
+        }
+      });
+    });
+  }
+
+  if ( History$$1 ) HTML5History.__proto__ = History$$1;
+  HTML5History.prototype = Object.create( History$$1 && History$$1.prototype );
+  HTML5History.prototype.constructor = HTML5History;
+
+  HTML5History.prototype.go = function go (n) {
+    window.history.go(n);
+  };
+
+  HTML5History.prototype.push = function push (location, onComplete, onAbort) {
+    var this$1 = this;
+
+    var ref = this;
+    var fromRoute = ref.current;
+    this.transitionTo(location, function (route) {
+      pushState(cleanPath(this$1.base + route.fullPath));
+      handleScroll(this$1.router, route, fromRoute, false);
+      onComplete && onComplete(route);
+    }, onAbort);
+  };
+
+  HTML5History.prototype.replace = function replace (location, onComplete, onAbort) {
+    var this$1 = this;
+
+    var ref = this;
+    var fromRoute = ref.current;
+    this.transitionTo(location, function (route) {
+      replaceState(cleanPath(this$1.base + route.fullPath));
+      handleScroll(this$1.router, route, fromRoute, false);
+      onComplete && onComplete(route);
+    }, onAbort);
+  };
+
+  HTML5History.prototype.ensureURL = function ensureURL (push) {
+    if (getLocation(this.base) !== this.current.fullPath) {
+      var current = cleanPath(this.base + this.current.fullPath);
+      push ? pushState(current) : replaceState(current);
+    }
+  };
+
+  HTML5History.prototype.getCurrentLocation = function getCurrentLocation () {
+    return getLocation(this.base)
+  };
+
+  return HTML5History;
+}(History));
+
+function getLocation (base) {
+  var path = decodeURI(window.location.pathname);
+  if (base && path.indexOf(base) === 0) {
+    path = path.slice(base.length);
+  }
+  return (path || '/') + window.location.search + window.location.hash
+}
+
+/*  */
+
+var HashHistory = (function (History$$1) {
+  function HashHistory (router, base, fallback) {
+    History$$1.call(this, router, base);
+    // check history fallback deeplinking
+    if (fallback && checkFallback(this.base)) {
+      return
+    }
+    ensureSlash();
+  }
+
+  if ( History$$1 ) HashHistory.__proto__ = History$$1;
+  HashHistory.prototype = Object.create( History$$1 && History$$1.prototype );
+  HashHistory.prototype.constructor = HashHistory;
+
+  // this is delayed until the app mounts
+  // to avoid the hashchange listener being fired too early
+  HashHistory.prototype.setupListeners = function setupListeners () {
+    var this$1 = this;
+
+    var router = this.router;
+    var expectScroll = router.options.scrollBehavior;
+    var supportsScroll = supportsPushState && expectScroll;
+
+    if (supportsScroll) {
+      setupScroll();
+    }
+
+    window.addEventListener(supportsPushState ? 'popstate' : 'hashchange', function () {
+      var current = this$1.current;
+      if (!ensureSlash()) {
+        return
+      }
+      this$1.transitionTo(getHash(), function (route) {
+        if (supportsScroll) {
+          handleScroll(this$1.router, route, current, true);
+        }
+        if (!supportsPushState) {
+          replaceHash(route.fullPath);
+        }
+      });
+    });
+  };
+
+  HashHistory.prototype.push = function push (location, onComplete, onAbort) {
+    var this$1 = this;
+
+    var ref = this;
+    var fromRoute = ref.current;
+    this.transitionTo(location, function (route) {
+      pushHash(route.fullPath);
+      handleScroll(this$1.router, route, fromRoute, false);
+      onComplete && onComplete(route);
+    }, onAbort);
+  };
+
+  HashHistory.prototype.replace = function replace (location, onComplete, onAbort) {
+    var this$1 = this;
+
+    var ref = this;
+    var fromRoute = ref.current;
+    this.transitionTo(location, function (route) {
+      replaceHash(route.fullPath);
+      handleScroll(this$1.router, route, fromRoute, false);
+      onComplete && onComplete(route);
+    }, onAbort);
+  };
+
+  HashHistory.prototype.go = function go (n) {
+    window.history.go(n);
+  };
+
+  HashHistory.prototype.ensureURL = function ensureURL (push) {
+    var current = this.current.fullPath;
+    if (getHash() !== current) {
+      push ? pushHash(current) : replaceHash(current);
+    }
+  };
+
+  HashHistory.prototype.getCurrentLocation = function getCurrentLocation () {
+    return getHash()
+  };
+
+  return HashHistory;
+}(History));
+
+function checkFallback (base) {
+  var location = getLocation(base);
+  if (!/^\/#/.test(location)) {
+    window.location.replace(
+      cleanPath(base + '/#' + location)
+    );
+    return true
+  }
+}
+
+function ensureSlash () {
+  var path = getHash();
+  if (path.charAt(0) === '/') {
+    return true
+  }
+  replaceHash('/' + path);
+  return false
+}
+
+function getHash () {
+  // We can't use window.location.hash here because it's not
+  // consistent across browsers - Firefox will pre-decode it!
+  var href = window.location.href;
+  var index = href.indexOf('#');
+  return index === -1 ? '' : decodeURI(href.slice(index + 1))
+}
+
+function getUrl (path) {
+  var href = window.location.href;
+  var i = href.indexOf('#');
+  var base = i >= 0 ? href.slice(0, i) : href;
+  return (base + "#" + path)
+}
+
+function pushHash (path) {
+  if (supportsPushState) {
+    pushState(getUrl(path));
+  } else {
+    window.location.hash = path;
+  }
+}
+
+function replaceHash (path) {
+  if (supportsPushState) {
+    replaceState(getUrl(path));
+  } else {
+    window.location.replace(getUrl(path));
+  }
+}
+
+/*  */
+
+var AbstractHistory = (function (History$$1) {
+  function AbstractHistory (router, base) {
+    History$$1.call(this, router, base);
+    this.stack = [];
+    this.index = -1;
+  }
+
+  if ( History$$1 ) AbstractHistory.__proto__ = History$$1;
+  AbstractHistory.prototype = Object.create( History$$1 && History$$1.prototype );
+  AbstractHistory.prototype.constructor = AbstractHistory;
+
+  AbstractHistory.prototype.push = function push (location, onComplete, onAbort) {
+    var this$1 = this;
+
+    this.transitionTo(location, function (route) {
+      this$1.stack = this$1.stack.slice(0, this$1.index + 1).concat(route);
+      this$1.index++;
+      onComplete && onComplete(route);
+    }, onAbort);
+  };
+
+  AbstractHistory.prototype.replace = function replace (location, onComplete, onAbort) {
+    var this$1 = this;
+
+    this.transitionTo(location, function (route) {
+      this$1.stack = this$1.stack.slice(0, this$1.index).concat(route);
+      onComplete && onComplete(route);
+    }, onAbort);
+  };
+
+  AbstractHistory.prototype.go = function go (n) {
+    var this$1 = this;
+
+    var targetIndex = this.index + n;
+    if (targetIndex < 0 || targetIndex >= this.stack.length) {
+      return
+    }
+    var route = this.stack[targetIndex];
+    this.confirmTransition(route, function () {
+      this$1.index = targetIndex;
+      this$1.updateRoute(route);
+    });
+  };
+
+  AbstractHistory.prototype.getCurrentLocation = function getCurrentLocation () {
+    var current = this.stack[this.stack.length - 1];
+    return current ? current.fullPath : '/'
+  };
+
+  AbstractHistory.prototype.ensureURL = function ensureURL () {
+    // noop
+  };
+
+  return AbstractHistory;
+}(History));
+
+/*  */
+
+
+
+var VueRouter = function VueRouter (options) {
+  if ( options === void 0 ) options = {};
+
+  this.app = null;
+  this.apps = [];
+  this.options = options;
+  this.beforeHooks = [];
+  this.resolveHooks = [];
+  this.afterHooks = [];
+  this.matcher = createMatcher(options.routes || [], this);
+
+  var mode = options.mode || 'hash';
+  this.fallback = mode === 'history' && !supportsPushState && options.fallback !== false;
+  if (this.fallback) {
+    mode = 'hash';
+  }
+  if (!inBrowser) {
+    mode = 'abstract';
+  }
+  this.mode = mode;
+
+  switch (mode) {
+    case 'history':
+      this.history = new HTML5History(this, options.base);
+      break
+    case 'hash':
+      this.history = new HashHistory(this, options.base, this.fallback);
+      break
+    case 'abstract':
+      this.history = new AbstractHistory(this, options.base);
+      break
+    default:
+      if (true) {
+        assert(false, ("invalid mode: " + mode));
+      }
+  }
+};
+
+var prototypeAccessors = { currentRoute: { configurable: true } };
+
+VueRouter.prototype.match = function match (
+  raw,
+  current,
+  redirectedFrom
+) {
+  return this.matcher.match(raw, current, redirectedFrom)
+};
+
+prototypeAccessors.currentRoute.get = function () {
+  return this.history && this.history.current
+};
+
+VueRouter.prototype.init = function init (app /* Vue component instance */) {
+    var this$1 = this;
+
+   true && assert(
+    install.installed,
+    "not installed. Make sure to call `Vue.use(VueRouter)` " +
+    "before creating root instance."
+  );
+
+  this.apps.push(app);
+
+  // main app already initialized.
+  if (this.app) {
+    return
+  }
+
+  this.app = app;
+
+  var history = this.history;
+
+  if (history instanceof HTML5History) {
+    history.transitionTo(history.getCurrentLocation());
+  } else if (history instanceof HashHistory) {
+    var setupHashListener = function () {
+      history.setupListeners();
+    };
+    history.transitionTo(
+      history.getCurrentLocation(),
+      setupHashListener,
+      setupHashListener
+    );
+  }
+
+  history.listen(function (route) {
+    this$1.apps.forEach(function (app) {
+      app._route = route;
+    });
+  });
+};
+
+VueRouter.prototype.beforeEach = function beforeEach (fn) {
+  return registerHook(this.beforeHooks, fn)
+};
+
+VueRouter.prototype.beforeResolve = function beforeResolve (fn) {
+  return registerHook(this.resolveHooks, fn)
+};
+
+VueRouter.prototype.afterEach = function afterEach (fn) {
+  return registerHook(this.afterHooks, fn)
+};
+
+VueRouter.prototype.onReady = function onReady (cb, errorCb) {
+  this.history.onReady(cb, errorCb);
+};
+
+VueRouter.prototype.onError = function onError (errorCb) {
+  this.history.onError(errorCb);
+};
+
+VueRouter.prototype.push = function push (location, onComplete, onAbort) {
+  this.history.push(location, onComplete, onAbort);
+};
+
+VueRouter.prototype.replace = function replace (location, onComplete, onAbort) {
+  this.history.replace(location, onComplete, onAbort);
+};
+
+VueRouter.prototype.go = function go (n) {
+  this.history.go(n);
+};
+
+VueRouter.prototype.back = function back () {
+  this.go(-1);
+};
+
+VueRouter.prototype.forward = function forward () {
+  this.go(1);
+};
+
+VueRouter.prototype.getMatchedComponents = function getMatchedComponents (to) {
+  var route = to
+    ? to.matched
+      ? to
+      : this.resolve(to).route
+    : this.currentRoute;
+  if (!route) {
+    return []
+  }
+  return [].concat.apply([], route.matched.map(function (m) {
+    return Object.keys(m.components).map(function (key) {
+      return m.components[key]
+    })
+  }))
+};
+
+VueRouter.prototype.resolve = function resolve (
+  to,
+  current,
+  append
+) {
+  var location = normalizeLocation(
+    to,
+    current || this.history.current,
+    append,
+    this
+  );
+  var route = this.match(location, current);
+  var fullPath = route.redirectedFrom || route.fullPath;
+  var base = this.history.base;
+  var href = createHref(base, fullPath, this.mode);
+  return {
+    location: location,
+    route: route,
+    href: href,
+    // for backwards compat
+    normalizedTo: location,
+    resolved: route
+  }
+};
+
+VueRouter.prototype.addRoutes = function addRoutes (routes) {
+  this.matcher.addRoutes(routes);
+  if (this.history.current !== START) {
+    this.history.transitionTo(this.history.getCurrentLocation());
+  }
+};
+
+Object.defineProperties( VueRouter.prototype, prototypeAccessors );
+
+function registerHook (list, fn) {
+  list.push(fn);
+  return function () {
+    var i = list.indexOf(fn);
+    if (i > -1) { list.splice(i, 1); }
+  }
+}
+
+function createHref (base, fullPath, mode) {
+  var path = mode === 'hash' ? '#' + fullPath : fullPath;
+  return base ? cleanPath(base + '/' + path) : path
+}
+
+VueRouter.install = install;
+VueRouter.version = '3.0.2';
+
+if (inBrowser && window.Vue) {
+  window.Vue.use(VueRouter);
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (VueRouter);
+
 
 /***/ }),
 
 /***/ "./node_modules/vue/dist/vue.js":
+/*!**************************************!*\
+  !*** ./node_modules/vue/dist/vue.js ***!
+  \**************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, setImmediate) {/*!
@@ -57927,8 +63856,7 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
  */
 (function (global, factory) {
    true ? module.exports = factory() :
-  typeof define === 'function' && define.amd ? define(factory) :
-  (global.Vue = factory());
+  undefined;
 }(this, (function () { 'use strict';
 
   /*  */
@@ -68976,11 +74904,15 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/webpack/buildin/global.js"), __webpack_require__("./node_modules/timers-browserify/main.js").setImmediate))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js"), __webpack_require__(/*! ./../../timers-browserify/main.js */ "./node_modules/timers-browserify/main.js").setImmediate))
 
 /***/ }),
 
 /***/ "./node_modules/webpack/buildin/global.js":
+/*!***********************************!*\
+  !*** (webpack)/buildin/global.js ***!
+  \***********************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 var g;
@@ -68992,11 +74924,10 @@ g = (function() {
 
 try {
 	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
+	g = g || new Function("return this")();
+} catch (e) {
 	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
+	if (typeof window === "object") g = window;
 }
 
 // g can still be undefined, but nothing to do about it...
@@ -69009,14 +74940,18 @@ module.exports = g;
 /***/ }),
 
 /***/ "./node_modules/webpack/buildin/module.js":
+/*!***********************************!*\
+  !*** (webpack)/buildin/module.js ***!
+  \***********************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
-	if(!module.webpackPolyfill) {
+	if (!module.webpackPolyfill) {
 		module.deprecate = function() {};
 		module.paths = [];
 		// module.parent = undefined by default
-		if(!module.children) module.children = [];
+		if (!module.children) module.children = [];
 		Object.defineProperty(module, "loaded", {
 			enumerable: true,
 			get: function() {
@@ -69038,9 +74973,18 @@ module.exports = function(module) {
 /***/ }),
 
 /***/ "./resources/js/app.js":
-/***/ (function(module, exports, __webpack_require__) {
+/*!*****************************!*\
+  !*** ./resources/js/app.js ***!
+  \*****************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./router */ "./resources/js/router/index.js");
 /*
  |--------------------------------------------------------------------------
  | Laravel Spark Bootstrap
@@ -69055,20 +74999,180 @@ module.exports = function(module) {
  | customize this script as you desire and load your own components.
  |
  */
+__webpack_require__(/*! spark-bootstrap */ "./spark/resources/assets/js/spark-bootstrap.js");
 
-__webpack_require__("./spark/resources/assets/js/spark-bootstrap.js");
+__webpack_require__(/*! ./components/bootstrap */ "./resources/js/components/bootstrap.js");
 
-__webpack_require__("./resources/js/components/bootstrap.js");
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('passport-clients', __webpack_require__(/*! ./components/passport/Clients.vue */ "./resources/js/components/passport/Clients.vue").default);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('passport-authorized-clients', __webpack_require__(/*! ./components/passport/AuthorizedClients.vue */ "./resources/js/components/passport/AuthorizedClients.vue").default);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('passport-personal-access-tokens', __webpack_require__(/*! ./components/passport/PersonalAccessTokens.vue */ "./resources/js/components/passport/PersonalAccessTokens.vue").default);
 
-var app = new Vue({
-  mixins: [__webpack_require__("./spark/resources/assets/js/spark.js")]
+
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
+  mode: 'history',
+  routes: _router__WEBPACK_IMPORTED_MODULE_2__["default"]
+});
+var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
+  router: router
+}).$mount('#app');
+
+/***/ }),
+
+/***/ "./resources/js/components/CycleComponent.js":
+/*!***************************************************!*\
+  !*** ./resources/js/components/CycleComponent.js ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+Vue.component('model', {
+  props: ['taxpayer', 'cycle'],
+  data: function data() {
+    return {
+      showList: true,
+      cycle_id: 0,
+      cycles: [],
+      showCycle: 0
+    };
+  },
+  methods: {
+    changeCycle: function changeCycle(cycleID) {
+      var app = this;
+      window.location.href = '/' + app.taxpayer + '/' + cycleID + '/stats/';
+    },
+    init: function init(data) {
+      var app = this;
+      axios.get('/api/' + app.taxpayer + '/get_cycle').then(function (_ref) {
+        var data = _ref.data;
+        app.cycles = data;
+      });
+    }
+  },
+  mounted: function mounted() {
+    var app = this;
+    app.init();
+    app.cycle_id = app.cycle;
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/components/ListComponent.js":
+/*!**************************************************!*\
+  !*** ./resources/js/components/ListComponent.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+Vue.component('list', {
+  props: ['taxpayer', 'cycle', 'base-url'],
+  data: function data() {
+    return {
+      list: [],
+      selectedList: [],
+      total: 0,
+      skip: 0,
+      pageSize: 100,
+      search: ''
+    };
+  },
+  methods: {
+    list: function list() {
+      var app = this;
+      axios.get('/api/' + this.taxpayer + '/' + this.cycle + '/' + this.baseurl + '/' + app.skip + '', {
+        params: {
+          page: app.list.length / 100 + 1
+        }
+      }).then(function (_ref) {
+        var data = _ref.data;
+
+        if (data.length > 0) {
+          for (var i = 0; i < data.length; i++) {
+            app.list.push(data[i]);
+          }
+
+          app.skip += app.pageSize;
+          $state.loaded();
+        }
+      });
+    },
+    onEdit: function onEdit(data) {
+      var app = this;
+      $.ajax({
+        url: '/api/' + app.taxpayer + '/' + app.cycle + '/' + app.baseurl + '/by-id/' + data,
+        headers: {
+          'X-CSRF-TOKEN': CSRF_TOKEN
+        },
+        type: 'get',
+        dataType: 'json',
+        async: true,
+        success: function success(data) {
+          console.log('/api/' + app.taxpayer + '/' + app.cycle + '/' + app.baseurl + '/by-id/' + data);
+          app.$children[0].onEdit(data[0]);
+        },
+        error: function error(xhr, status, _error) {
+          console.log(status);
+        }
+      });
+    },
+    onDelete: function onDelete(data) {
+      //SweetAlert message and confirmation.
+      var app = this;
+      $.ajax({
+        url: '/taxpayer/' + this.taxpayer + '/' + this.cycle + '/' + this.baseurl + '/' + data.ID,
+        headers: {
+          'X-CSRF-TOKEN': CSRF_TOKEN
+        },
+        type: 'delete',
+        dataType: 'json',
+        async: true,
+        success: function success(responsedata) {
+          for (var i = 0; i < app.list.length; i++) {
+            if (data.ID == app.list[i].ID) {
+              app.list.splice(i, 1);
+            }
+          } //console.log(data);
+
+        },
+        error: function error(xhr, status, _error2) {
+          console.log(xhr.responseText);
+        }
+      });
+    },
+    onAnull: function onAnull(data) {
+      //SweetAlert message and confirmation.
+      var app = this;
+      $.ajax({
+        url: '/taxpayer/' + this.taxpayer + '/' + this.cycle + '/' + this.baseurl + '/anull/' + data.ID,
+        headers: {
+          'X-CSRF-TOKEN': CSRF_TOKEN
+        },
+        type: 'get',
+        dataType: 'json',
+        async: true,
+        success: function success(responsedata) {
+          data.Value = 0;
+        },
+        error: function error(xhr, status, _error3) {
+          console.log(xhr.responseText);
+        }
+      });
+    } //onApprove??
+
+  },
+  mounted: function mounted() {}
 });
 
 /***/ }),
 
 /***/ "./resources/js/components/bootstrap.js":
+/*!**********************************************!*\
+  !*** ./resources/js/components/bootstrap.js ***!
+  \**********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
-
 
 /*
  |--------------------------------------------------------------------------
@@ -69079,653 +75183,1237 @@ var app = new Vue({
  | application. This is also a convenient spot for you to load all of
  | your components that you write while building your applications.
  */
+__webpack_require__(/*! ./../spark-components/bootstrap */ "./resources/js/spark-components/bootstrap.js");
 
-__webpack_require__("./resources/js/spark-components/bootstrap.js");
+__webpack_require__(/*! ./CycleComponent */ "./resources/js/components/CycleComponent.js");
 
-__webpack_require__("./resources/js/components/home.js");
+__webpack_require__(/*! ./ListComponent */ "./resources/js/components/ListComponent.js");
 
 /***/ }),
 
-/***/ "./resources/js/components/home.js":
-/***/ (function(module, exports) {
+/***/ "./resources/js/components/passport/AuthorizedClients.vue":
+/*!****************************************************************!*\
+  !*** ./resources/js/components/passport/AuthorizedClients.vue ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-Vue.component('home', {
-    props: ['user'],
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _AuthorizedClients_vue_vue_type_template_id_397d14ca_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AuthorizedClients.vue?vue&type=template&id=397d14ca&scoped=true& */ "./resources/js/components/passport/AuthorizedClients.vue?vue&type=template&id=397d14ca&scoped=true&");
+/* harmony import */ var _AuthorizedClients_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AuthorizedClients.vue?vue&type=script&lang=js& */ "./resources/js/components/passport/AuthorizedClients.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _AuthorizedClients_vue_vue_type_style_index_0_id_397d14ca_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AuthorizedClients.vue?vue&type=style&index=0&id=397d14ca&scoped=true&lang=css& */ "./resources/js/components/passport/AuthorizedClients.vue?vue&type=style&index=0&id=397d14ca&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
-    mounted: function mounted() {
-        //
-    }
-});
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _AuthorizedClients_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AuthorizedClients_vue_vue_type_template_id_397d14ca_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _AuthorizedClients_vue_vue_type_template_id_397d14ca_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "397d14ca",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/passport/AuthorizedClients.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/passport/AuthorizedClients.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/passport/AuthorizedClients.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AuthorizedClients_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./AuthorizedClients.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/passport/AuthorizedClients.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AuthorizedClients_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/passport/AuthorizedClients.vue?vue&type=style&index=0&id=397d14ca&scoped=true&lang=css&":
+/*!*************************************************************************************************************************!*\
+  !*** ./resources/js/components/passport/AuthorizedClients.vue?vue&type=style&index=0&id=397d14ca&scoped=true&lang=css& ***!
+  \*************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AuthorizedClients_vue_vue_type_style_index_0_id_397d14ca_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--7-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--7-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./AuthorizedClients.vue?vue&type=style&index=0&id=397d14ca&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/passport/AuthorizedClients.vue?vue&type=style&index=0&id=397d14ca&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AuthorizedClients_vue_vue_type_style_index_0_id_397d14ca_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AuthorizedClients_vue_vue_type_style_index_0_id_397d14ca_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AuthorizedClients_vue_vue_type_style_index_0_id_397d14ca_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AuthorizedClients_vue_vue_type_style_index_0_id_397d14ca_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_AuthorizedClients_vue_vue_type_style_index_0_id_397d14ca_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/passport/AuthorizedClients.vue?vue&type=template&id=397d14ca&scoped=true&":
+/*!***********************************************************************************************************!*\
+  !*** ./resources/js/components/passport/AuthorizedClients.vue?vue&type=template&id=397d14ca&scoped=true& ***!
+  \***********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AuthorizedClients_vue_vue_type_template_id_397d14ca_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./AuthorizedClients.vue?vue&type=template&id=397d14ca&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/passport/AuthorizedClients.vue?vue&type=template&id=397d14ca&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AuthorizedClients_vue_vue_type_template_id_397d14ca_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AuthorizedClients_vue_vue_type_template_id_397d14ca_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/passport/Clients.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/passport/Clients.vue ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Clients_vue_vue_type_template_id_1552a5b6_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Clients.vue?vue&type=template&id=1552a5b6&scoped=true& */ "./resources/js/components/passport/Clients.vue?vue&type=template&id=1552a5b6&scoped=true&");
+/* harmony import */ var _Clients_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Clients.vue?vue&type=script&lang=js& */ "./resources/js/components/passport/Clients.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _Clients_vue_vue_type_style_index_0_id_1552a5b6_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Clients.vue?vue&type=style&index=0&id=1552a5b6&scoped=true&lang=css& */ "./resources/js/components/passport/Clients.vue?vue&type=style&index=0&id=1552a5b6&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _Clients_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Clients_vue_vue_type_template_id_1552a5b6_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Clients_vue_vue_type_template_id_1552a5b6_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "1552a5b6",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/passport/Clients.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/passport/Clients.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/passport/Clients.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Clients_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./Clients.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/passport/Clients.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Clients_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/passport/Clients.vue?vue&type=style&index=0&id=1552a5b6&scoped=true&lang=css&":
+/*!***************************************************************************************************************!*\
+  !*** ./resources/js/components/passport/Clients.vue?vue&type=style&index=0&id=1552a5b6&scoped=true&lang=css& ***!
+  \***************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Clients_vue_vue_type_style_index_0_id_1552a5b6_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--7-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--7-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./Clients.vue?vue&type=style&index=0&id=1552a5b6&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/passport/Clients.vue?vue&type=style&index=0&id=1552a5b6&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Clients_vue_vue_type_style_index_0_id_1552a5b6_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Clients_vue_vue_type_style_index_0_id_1552a5b6_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Clients_vue_vue_type_style_index_0_id_1552a5b6_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Clients_vue_vue_type_style_index_0_id_1552a5b6_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_Clients_vue_vue_type_style_index_0_id_1552a5b6_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/passport/Clients.vue?vue&type=template&id=1552a5b6&scoped=true&":
+/*!*************************************************************************************************!*\
+  !*** ./resources/js/components/passport/Clients.vue?vue&type=template&id=1552a5b6&scoped=true& ***!
+  \*************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Clients_vue_vue_type_template_id_1552a5b6_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./Clients.vue?vue&type=template&id=1552a5b6&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/passport/Clients.vue?vue&type=template&id=1552a5b6&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Clients_vue_vue_type_template_id_1552a5b6_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Clients_vue_vue_type_template_id_1552a5b6_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/passport/PersonalAccessTokens.vue":
+/*!*******************************************************************!*\
+  !*** ./resources/js/components/passport/PersonalAccessTokens.vue ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _PersonalAccessTokens_vue_vue_type_template_id_49962cc0_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PersonalAccessTokens.vue?vue&type=template&id=49962cc0&scoped=true& */ "./resources/js/components/passport/PersonalAccessTokens.vue?vue&type=template&id=49962cc0&scoped=true&");
+/* harmony import */ var _PersonalAccessTokens_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PersonalAccessTokens.vue?vue&type=script&lang=js& */ "./resources/js/components/passport/PersonalAccessTokens.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _PersonalAccessTokens_vue_vue_type_style_index_0_id_49962cc0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./PersonalAccessTokens.vue?vue&type=style&index=0&id=49962cc0&scoped=true&lang=css& */ "./resources/js/components/passport/PersonalAccessTokens.vue?vue&type=style&index=0&id=49962cc0&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _PersonalAccessTokens_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _PersonalAccessTokens_vue_vue_type_template_id_49962cc0_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _PersonalAccessTokens_vue_vue_type_template_id_49962cc0_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "49962cc0",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/passport/PersonalAccessTokens.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/passport/PersonalAccessTokens.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/components/passport/PersonalAccessTokens.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PersonalAccessTokens_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./PersonalAccessTokens.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/passport/PersonalAccessTokens.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PersonalAccessTokens_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/passport/PersonalAccessTokens.vue?vue&type=style&index=0&id=49962cc0&scoped=true&lang=css&":
+/*!****************************************************************************************************************************!*\
+  !*** ./resources/js/components/passport/PersonalAccessTokens.vue?vue&type=style&index=0&id=49962cc0&scoped=true&lang=css& ***!
+  \****************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PersonalAccessTokens_vue_vue_type_style_index_0_id_49962cc0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--7-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--7-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./PersonalAccessTokens.vue?vue&type=style&index=0&id=49962cc0&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/passport/PersonalAccessTokens.vue?vue&type=style&index=0&id=49962cc0&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PersonalAccessTokens_vue_vue_type_style_index_0_id_49962cc0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PersonalAccessTokens_vue_vue_type_style_index_0_id_49962cc0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PersonalAccessTokens_vue_vue_type_style_index_0_id_49962cc0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PersonalAccessTokens_vue_vue_type_style_index_0_id_49962cc0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_7_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_2_node_modules_vue_loader_lib_index_js_vue_loader_options_PersonalAccessTokens_vue_vue_type_style_index_0_id_49962cc0_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/passport/PersonalAccessTokens.vue?vue&type=template&id=49962cc0&scoped=true&":
+/*!**************************************************************************************************************!*\
+  !*** ./resources/js/components/passport/PersonalAccessTokens.vue?vue&type=template&id=49962cc0&scoped=true& ***!
+  \**************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PersonalAccessTokens_vue_vue_type_template_id_49962cc0_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./PersonalAccessTokens.vue?vue&type=template&id=49962cc0&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/passport/PersonalAccessTokens.vue?vue&type=template&id=49962cc0&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PersonalAccessTokens_vue_vue_type_template_id_49962cc0_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PersonalAccessTokens_vue_vue_type_template_id_49962cc0_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/router/index.js":
+/*!**************************************!*\
+  !*** ./resources/js/router/index.js ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _views_404__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../views/404 */ "./resources/js/views/404.vue");
+
+/* harmony default export */ __webpack_exports__["default"] = ([//This will cause 404 Errors to be redirected to proper site.
+{
+  path: '/',
+  component: _views_404__WEBPACK_IMPORTED_MODULE_0__["default"],
+  meta: {
+    requiresAuth: false
+  } //,
+  // {
+  //   path: '/:taxPayer/:cycle',
+  //   component: DashBoard,
+  //   name: 'index',
+  //   meta: {
+  //     requiresAuth: true,
+  //
+  //   },
+  //   children:
+  //   [
+  //
+  //   ]
+  // }
+
+}]);
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/auth/register-braintree.js":
+/*!******************************************************************!*\
+  !*** ./resources/js/spark-components/auth/register-braintree.js ***!
+  \******************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/auth/register-braintree.js");
+var base = __webpack_require__(/*! auth/register-braintree */ "./spark/resources/assets/js/auth/register-braintree.js");
 
 Vue.component('spark-register-braintree', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/auth/register-stripe.js":
+/*!***************************************************************!*\
+  !*** ./resources/js/spark-components/auth/register-stripe.js ***!
+  \***************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/auth/register-stripe.js");
+var base = __webpack_require__(/*! auth/register-stripe */ "./spark/resources/assets/js/auth/register-stripe.js");
 
 Vue.component('spark-register-stripe', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/bootstrap.js":
+/*!****************************************************!*\
+  !*** ./resources/js/spark-components/bootstrap.js ***!
+  \****************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
-
 
 /**
  * Layout Components...
  */
-__webpack_require__("./resources/js/spark-components/navbar/navbar.js");
-__webpack_require__("./resources/js/spark-components/notifications/notifications.js");
+__webpack_require__(/*! ./navbar/navbar */ "./resources/js/spark-components/navbar/navbar.js");
 
+__webpack_require__(/*! ./notifications/notifications */ "./resources/js/spark-components/notifications/notifications.js");
 /**
  * Authentication Components...
  */
-__webpack_require__("./resources/js/spark-components/auth/register-stripe.js");
-__webpack_require__("./resources/js/spark-components/auth/register-braintree.js");
 
+
+__webpack_require__(/*! ./auth/register-stripe */ "./resources/js/spark-components/auth/register-stripe.js");
+
+__webpack_require__(/*! ./auth/register-braintree */ "./resources/js/spark-components/auth/register-braintree.js");
 /**
  * Settings Component...
  */
-__webpack_require__("./resources/js/spark-components/settings/settings.js");
 
+
+__webpack_require__(/*! ./settings/settings */ "./resources/js/spark-components/settings/settings.js");
 /**
  * Profile Settings Components...
  */
-__webpack_require__("./resources/js/spark-components/settings/profile.js");
-__webpack_require__("./resources/js/spark-components/settings/profile/update-profile-photo.js");
-__webpack_require__("./resources/js/spark-components/settings/profile/update-contact-information.js");
 
+
+__webpack_require__(/*! ./settings/profile */ "./resources/js/spark-components/settings/profile.js");
+
+__webpack_require__(/*! ./settings/profile/update-profile-photo */ "./resources/js/spark-components/settings/profile/update-profile-photo.js");
+
+__webpack_require__(/*! ./settings/profile/update-contact-information */ "./resources/js/spark-components/settings/profile/update-contact-information.js");
 /**
  * Teams Settings Components...
  */
-__webpack_require__("./resources/js/spark-components/settings/teams.js");
-__webpack_require__("./resources/js/spark-components/settings/teams/create-team.js");
-__webpack_require__("./resources/js/spark-components/settings/teams/pending-invitations.js");
-__webpack_require__("./resources/js/spark-components/settings/teams/current-teams.js");
-__webpack_require__("./resources/js/spark-components/settings/teams/team-settings.js");
-__webpack_require__("./resources/js/spark-components/settings/teams/team-profile.js");
-__webpack_require__("./resources/js/spark-components/settings/teams/update-team-photo.js");
-__webpack_require__("./resources/js/spark-components/settings/teams/update-team-name.js");
-__webpack_require__("./resources/js/spark-components/settings/teams/team-membership.js");
-__webpack_require__("./resources/js/spark-components/settings/teams/send-invitation.js");
-__webpack_require__("./resources/js/spark-components/settings/teams/mailed-invitations.js");
-__webpack_require__("./resources/js/spark-components/settings/teams/team-members.js");
 
+
+__webpack_require__(/*! ./settings/teams */ "./resources/js/spark-components/settings/teams.js");
+
+__webpack_require__(/*! ./settings/teams/create-team */ "./resources/js/spark-components/settings/teams/create-team.js");
+
+__webpack_require__(/*! ./settings/teams/pending-invitations */ "./resources/js/spark-components/settings/teams/pending-invitations.js");
+
+__webpack_require__(/*! ./settings/teams/current-teams */ "./resources/js/spark-components/settings/teams/current-teams.js");
+
+__webpack_require__(/*! ./settings/teams/team-settings */ "./resources/js/spark-components/settings/teams/team-settings.js");
+
+__webpack_require__(/*! ./settings/teams/team-profile */ "./resources/js/spark-components/settings/teams/team-profile.js");
+
+__webpack_require__(/*! ./settings/teams/update-team-photo */ "./resources/js/spark-components/settings/teams/update-team-photo.js");
+
+__webpack_require__(/*! ./settings/teams/update-team-name */ "./resources/js/spark-components/settings/teams/update-team-name.js");
+
+__webpack_require__(/*! ./settings/teams/team-membership */ "./resources/js/spark-components/settings/teams/team-membership.js");
+
+__webpack_require__(/*! ./settings/teams/send-invitation */ "./resources/js/spark-components/settings/teams/send-invitation.js");
+
+__webpack_require__(/*! ./settings/teams/mailed-invitations */ "./resources/js/spark-components/settings/teams/mailed-invitations.js");
+
+__webpack_require__(/*! ./settings/teams/team-members */ "./resources/js/spark-components/settings/teams/team-members.js");
 /**
  * Security Settings Components...
  */
-__webpack_require__("./resources/js/spark-components/settings/security.js");
-__webpack_require__("./resources/js/spark-components/settings/security/update-password.js");
-__webpack_require__("./resources/js/spark-components/settings/security/enable-two-factor-auth.js");
-__webpack_require__("./resources/js/spark-components/settings/security/disable-two-factor-auth.js");
 
+
+__webpack_require__(/*! ./settings/security */ "./resources/js/spark-components/settings/security.js");
+
+__webpack_require__(/*! ./settings/security/update-password */ "./resources/js/spark-components/settings/security/update-password.js");
+
+__webpack_require__(/*! ./settings/security/enable-two-factor-auth */ "./resources/js/spark-components/settings/security/enable-two-factor-auth.js");
+
+__webpack_require__(/*! ./settings/security/disable-two-factor-auth */ "./resources/js/spark-components/settings/security/disable-two-factor-auth.js");
 /**
  * API Settings Components...
  */
-__webpack_require__("./resources/js/spark-components/settings/api.js");
-__webpack_require__("./resources/js/spark-components/settings/api/create-token.js");
-__webpack_require__("./resources/js/spark-components/settings/api/tokens.js");
 
+
+__webpack_require__(/*! ./settings/api */ "./resources/js/spark-components/settings/api.js");
+
+__webpack_require__(/*! ./settings/api/create-token */ "./resources/js/spark-components/settings/api/create-token.js");
+
+__webpack_require__(/*! ./settings/api/tokens */ "./resources/js/spark-components/settings/api/tokens.js");
 /**
  * Subscription Settings Components...
  */
-__webpack_require__("./resources/js/spark-components/settings/subscription.js");
-__webpack_require__("./resources/js/spark-components/settings/subscription/subscribe-stripe.js");
-__webpack_require__("./resources/js/spark-components/settings/subscription/subscribe-braintree.js");
-__webpack_require__("./resources/js/spark-components/settings/subscription/update-subscription.js");
-__webpack_require__("./resources/js/spark-components/settings/subscription/resume-subscription.js");
-__webpack_require__("./resources/js/spark-components/settings/subscription/cancel-subscription.js");
 
+
+__webpack_require__(/*! ./settings/subscription */ "./resources/js/spark-components/settings/subscription.js");
+
+__webpack_require__(/*! ./settings/subscription/subscribe-stripe */ "./resources/js/spark-components/settings/subscription/subscribe-stripe.js");
+
+__webpack_require__(/*! ./settings/subscription/subscribe-braintree */ "./resources/js/spark-components/settings/subscription/subscribe-braintree.js");
+
+__webpack_require__(/*! ./settings/subscription/update-subscription */ "./resources/js/spark-components/settings/subscription/update-subscription.js");
+
+__webpack_require__(/*! ./settings/subscription/resume-subscription */ "./resources/js/spark-components/settings/subscription/resume-subscription.js");
+
+__webpack_require__(/*! ./settings/subscription/cancel-subscription */ "./resources/js/spark-components/settings/subscription/cancel-subscription.js");
 /**
  * Payment Method Components...
  */
-__webpack_require__("./resources/js/spark-components/settings/payment-method-stripe.js");
-__webpack_require__("./resources/js/spark-components/settings/payment-method-braintree.js");
-__webpack_require__("./resources/js/spark-components/settings/payment-method/update-vat-id.js");
-__webpack_require__("./resources/js/spark-components/settings/payment-method/update-payment-method-stripe.js");
-__webpack_require__("./resources/js/spark-components/settings/payment-method/update-payment-method-braintree.js");
-__webpack_require__("./resources/js/spark-components/settings/payment-method/redeem-coupon.js");
 
+
+__webpack_require__(/*! ./settings/payment-method-stripe */ "./resources/js/spark-components/settings/payment-method-stripe.js");
+
+__webpack_require__(/*! ./settings/payment-method-braintree */ "./resources/js/spark-components/settings/payment-method-braintree.js");
+
+__webpack_require__(/*! ./settings/payment-method/update-vat-id */ "./resources/js/spark-components/settings/payment-method/update-vat-id.js");
+
+__webpack_require__(/*! ./settings/payment-method/update-payment-method-stripe */ "./resources/js/spark-components/settings/payment-method/update-payment-method-stripe.js");
+
+__webpack_require__(/*! ./settings/payment-method/update-payment-method-braintree */ "./resources/js/spark-components/settings/payment-method/update-payment-method-braintree.js");
+
+__webpack_require__(/*! ./settings/payment-method/redeem-coupon */ "./resources/js/spark-components/settings/payment-method/redeem-coupon.js");
 /**
  * Billing History Components...
  */
-__webpack_require__("./resources/js/spark-components/settings/invoices.js");
-__webpack_require__("./resources/js/spark-components/settings/invoices/update-extra-billing-information.js");
-__webpack_require__("./resources/js/spark-components/settings/invoices/invoice-list.js");
 
+
+__webpack_require__(/*! ./settings/invoices */ "./resources/js/spark-components/settings/invoices.js");
+
+__webpack_require__(/*! ./settings/invoices/update-extra-billing-information */ "./resources/js/spark-components/settings/invoices/update-extra-billing-information.js");
+
+__webpack_require__(/*! ./settings/invoices/invoice-list */ "./resources/js/spark-components/settings/invoices/invoice-list.js");
 /**
  * Kiosk Components...
  */
-__webpack_require__("./resources/js/spark-components/kiosk/kiosk.js");
-__webpack_require__("./resources/js/spark-components/kiosk/announcements.js");
-__webpack_require__("./resources/js/spark-components/kiosk/metrics.js");
-__webpack_require__("./resources/js/spark-components/kiosk/users.js");
-__webpack_require__("./resources/js/spark-components/kiosk/profile.js");
-__webpack_require__("./resources/js/spark-components/kiosk/add-discount.js");
+
+
+__webpack_require__(/*! ./kiosk/kiosk */ "./resources/js/spark-components/kiosk/kiosk.js");
+
+__webpack_require__(/*! ./kiosk/announcements */ "./resources/js/spark-components/kiosk/announcements.js");
+
+__webpack_require__(/*! ./kiosk/metrics */ "./resources/js/spark-components/kiosk/metrics.js");
+
+__webpack_require__(/*! ./kiosk/users */ "./resources/js/spark-components/kiosk/users.js");
+
+__webpack_require__(/*! ./kiosk/profile */ "./resources/js/spark-components/kiosk/profile.js");
+
+__webpack_require__(/*! ./kiosk/add-discount */ "./resources/js/spark-components/kiosk/add-discount.js");
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/kiosk/add-discount.js":
+/*!*************************************************************!*\
+  !*** ./resources/js/spark-components/kiosk/add-discount.js ***!
+  \*************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/kiosk/add-discount.js");
+var base = __webpack_require__(/*! kiosk/add-discount */ "./spark/resources/assets/js/kiosk/add-discount.js");
 
 Vue.component('spark-kiosk-add-discount', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/kiosk/announcements.js":
+/*!**************************************************************!*\
+  !*** ./resources/js/spark-components/kiosk/announcements.js ***!
+  \**************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/kiosk/announcements.js");
+var base = __webpack_require__(/*! kiosk/announcements */ "./spark/resources/assets/js/kiosk/announcements.js");
 
 Vue.component('spark-kiosk-announcements', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/kiosk/kiosk.js":
+/*!******************************************************!*\
+  !*** ./resources/js/spark-components/kiosk/kiosk.js ***!
+  \******************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/kiosk/kiosk.js");
+var base = __webpack_require__(/*! kiosk/kiosk */ "./spark/resources/assets/js/kiosk/kiosk.js");
 
 Vue.component('spark-kiosk', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/kiosk/metrics.js":
+/*!********************************************************!*\
+  !*** ./resources/js/spark-components/kiosk/metrics.js ***!
+  \********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/kiosk/metrics.js");
+var base = __webpack_require__(/*! kiosk/metrics */ "./spark/resources/assets/js/kiosk/metrics.js");
 
 Vue.component('spark-kiosk-metrics', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/kiosk/profile.js":
+/*!********************************************************!*\
+  !*** ./resources/js/spark-components/kiosk/profile.js ***!
+  \********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/kiosk/profile.js");
+var base = __webpack_require__(/*! kiosk/profile */ "./spark/resources/assets/js/kiosk/profile.js");
 
 Vue.component('spark-kiosk-profile', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/kiosk/users.js":
+/*!******************************************************!*\
+  !*** ./resources/js/spark-components/kiosk/users.js ***!
+  \******************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/kiosk/users.js");
+var base = __webpack_require__(/*! kiosk/users */ "./spark/resources/assets/js/kiosk/users.js");
 
 Vue.component('spark-kiosk-users', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/navbar/navbar.js":
+/*!********************************************************!*\
+  !*** ./resources/js/spark-components/navbar/navbar.js ***!
+  \********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/navbar/navbar.js");
+var base = __webpack_require__(/*! navbar/navbar */ "./spark/resources/assets/js/navbar/navbar.js");
 
 Vue.component('spark-navbar', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/notifications/notifications.js":
+/*!**********************************************************************!*\
+  !*** ./resources/js/spark-components/notifications/notifications.js ***!
+  \**********************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/notifications/notifications.js");
+var base = __webpack_require__(/*! notifications/notifications */ "./spark/resources/assets/js/notifications/notifications.js");
 
 Vue.component('spark-notifications', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/settings/api.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/spark-components/settings/api.js ***!
+  \*******************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/settings/api.js");
+var base = __webpack_require__(/*! settings/api */ "./spark/resources/assets/js/settings/api.js");
 
 Vue.component('spark-api', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/settings/api/create-token.js":
+/*!********************************************************************!*\
+  !*** ./resources/js/spark-components/settings/api/create-token.js ***!
+  \********************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/settings/api/create-token.js");
+var base = __webpack_require__(/*! settings/api/create-token */ "./spark/resources/assets/js/settings/api/create-token.js");
 
 Vue.component('spark-create-token', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/settings/api/tokens.js":
+/*!**************************************************************!*\
+  !*** ./resources/js/spark-components/settings/api/tokens.js ***!
+  \**************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/settings/api/tokens.js");
+var base = __webpack_require__(/*! settings/api/tokens */ "./spark/resources/assets/js/settings/api/tokens.js");
 
 Vue.component('spark-tokens', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/settings/invoices.js":
+/*!************************************************************!*\
+  !*** ./resources/js/spark-components/settings/invoices.js ***!
+  \************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/settings/invoices.js");
+var base = __webpack_require__(/*! settings/invoices */ "./spark/resources/assets/js/settings/invoices.js");
 
 Vue.component('spark-invoices', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/settings/invoices/invoice-list.js":
+/*!*************************************************************************!*\
+  !*** ./resources/js/spark-components/settings/invoices/invoice-list.js ***!
+  \*************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/settings/invoices/invoice-list.js");
+var base = __webpack_require__(/*! settings/invoices/invoice-list */ "./spark/resources/assets/js/settings/invoices/invoice-list.js");
 
 Vue.component('spark-invoice-list', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/settings/invoices/update-extra-billing-information.js":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/spark-components/settings/invoices/update-extra-billing-information.js ***!
+  \*********************************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/settings/invoices/update-extra-billing-information.js");
+var base = __webpack_require__(/*! settings/invoices/update-extra-billing-information */ "./spark/resources/assets/js/settings/invoices/update-extra-billing-information.js");
 
 Vue.component('spark-update-extra-billing-information', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/settings/payment-method-braintree.js":
+/*!****************************************************************************!*\
+  !*** ./resources/js/spark-components/settings/payment-method-braintree.js ***!
+  \****************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/settings/payment-method-braintree.js");
+var base = __webpack_require__(/*! settings/payment-method-braintree */ "./spark/resources/assets/js/settings/payment-method-braintree.js");
 
 Vue.component('spark-payment-method-braintree', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/settings/payment-method-stripe.js":
+/*!*************************************************************************!*\
+  !*** ./resources/js/spark-components/settings/payment-method-stripe.js ***!
+  \*************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/settings/payment-method-stripe.js");
+var base = __webpack_require__(/*! settings/payment-method-stripe */ "./spark/resources/assets/js/settings/payment-method-stripe.js");
 
 Vue.component('spark-payment-method-stripe', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/settings/payment-method/redeem-coupon.js":
+/*!********************************************************************************!*\
+  !*** ./resources/js/spark-components/settings/payment-method/redeem-coupon.js ***!
+  \********************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/settings/payment-method/redeem-coupon.js");
+var base = __webpack_require__(/*! settings/payment-method/redeem-coupon */ "./spark/resources/assets/js/settings/payment-method/redeem-coupon.js");
 
 Vue.component('spark-redeem-coupon', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/settings/payment-method/update-payment-method-braintree.js":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/spark-components/settings/payment-method/update-payment-method-braintree.js ***!
+  \**************************************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/settings/payment-method/update-payment-method-braintree.js");
+var base = __webpack_require__(/*! settings/payment-method/update-payment-method-braintree */ "./spark/resources/assets/js/settings/payment-method/update-payment-method-braintree.js");
 
 Vue.component('spark-update-payment-method-braintree', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/settings/payment-method/update-payment-method-stripe.js":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/spark-components/settings/payment-method/update-payment-method-stripe.js ***!
+  \***********************************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/settings/payment-method/update-payment-method-stripe.js");
+var base = __webpack_require__(/*! settings/payment-method/update-payment-method-stripe */ "./spark/resources/assets/js/settings/payment-method/update-payment-method-stripe.js");
 
 Vue.component('spark-update-payment-method-stripe', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/settings/payment-method/update-vat-id.js":
+/*!********************************************************************************!*\
+  !*** ./resources/js/spark-components/settings/payment-method/update-vat-id.js ***!
+  \********************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/settings/payment-method/update-vat-id.js");
+var base = __webpack_require__(/*! settings/payment-method/update-vat-id */ "./spark/resources/assets/js/settings/payment-method/update-vat-id.js");
 
 Vue.component('spark-update-vat-id', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/settings/profile.js":
+/*!***********************************************************!*\
+  !*** ./resources/js/spark-components/settings/profile.js ***!
+  \***********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/settings/profile.js");
+var base = __webpack_require__(/*! settings/profile */ "./spark/resources/assets/js/settings/profile.js");
 
 Vue.component('spark-profile', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/settings/profile/update-contact-information.js":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/spark-components/settings/profile/update-contact-information.js ***!
+  \**************************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/settings/profile/update-contact-information.js");
+var base = __webpack_require__(/*! settings/profile/update-contact-information */ "./spark/resources/assets/js/settings/profile/update-contact-information.js");
 
 Vue.component('spark-update-contact-information', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/settings/profile/update-profile-photo.js":
+/*!********************************************************************************!*\
+  !*** ./resources/js/spark-components/settings/profile/update-profile-photo.js ***!
+  \********************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/settings/profile/update-profile-photo.js");
+var base = __webpack_require__(/*! settings/profile/update-profile-photo */ "./spark/resources/assets/js/settings/profile/update-profile-photo.js");
 
 Vue.component('spark-update-profile-photo', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/settings/security.js":
+/*!************************************************************!*\
+  !*** ./resources/js/spark-components/settings/security.js ***!
+  \************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/settings/security.js");
+var base = __webpack_require__(/*! settings/security */ "./spark/resources/assets/js/settings/security.js");
 
 Vue.component('spark-security', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/settings/security/disable-two-factor-auth.js":
+/*!************************************************************************************!*\
+  !*** ./resources/js/spark-components/settings/security/disable-two-factor-auth.js ***!
+  \************************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/settings/security/disable-two-factor-auth.js");
+var base = __webpack_require__(/*! settings/security/disable-two-factor-auth */ "./spark/resources/assets/js/settings/security/disable-two-factor-auth.js");
 
 Vue.component('spark-disable-two-factor-auth', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/settings/security/enable-two-factor-auth.js":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/spark-components/settings/security/enable-two-factor-auth.js ***!
+  \***********************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/settings/security/enable-two-factor-auth.js");
+var base = __webpack_require__(/*! settings/security/enable-two-factor-auth */ "./spark/resources/assets/js/settings/security/enable-two-factor-auth.js");
 
 Vue.component('spark-enable-two-factor-auth', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/settings/security/update-password.js":
+/*!****************************************************************************!*\
+  !*** ./resources/js/spark-components/settings/security/update-password.js ***!
+  \****************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/settings/security/update-password.js");
+var base = __webpack_require__(/*! settings/security/update-password */ "./spark/resources/assets/js/settings/security/update-password.js");
 
 Vue.component('spark-update-password', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/settings/settings.js":
+/*!************************************************************!*\
+  !*** ./resources/js/spark-components/settings/settings.js ***!
+  \************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/settings/settings.js");
+var base = __webpack_require__(/*! settings/settings */ "./spark/resources/assets/js/settings/settings.js");
 
 Vue.component('spark-settings', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/settings/subscription.js":
+/*!****************************************************************!*\
+  !*** ./resources/js/spark-components/settings/subscription.js ***!
+  \****************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/settings/subscription.js");
+var base = __webpack_require__(/*! settings/subscription */ "./spark/resources/assets/js/settings/subscription.js");
 
 Vue.component('spark-subscription', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/settings/subscription/cancel-subscription.js":
+/*!************************************************************************************!*\
+  !*** ./resources/js/spark-components/settings/subscription/cancel-subscription.js ***!
+  \************************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/settings/subscription/cancel-subscription.js");
+var base = __webpack_require__(/*! settings/subscription/cancel-subscription */ "./spark/resources/assets/js/settings/subscription/cancel-subscription.js");
 
 Vue.component('spark-cancel-subscription', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/settings/subscription/resume-subscription.js":
+/*!************************************************************************************!*\
+  !*** ./resources/js/spark-components/settings/subscription/resume-subscription.js ***!
+  \************************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/settings/subscription/resume-subscription.js");
+var base = __webpack_require__(/*! settings/subscription/resume-subscription */ "./spark/resources/assets/js/settings/subscription/resume-subscription.js");
 
 Vue.component('spark-resume-subscription', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/settings/subscription/subscribe-braintree.js":
+/*!************************************************************************************!*\
+  !*** ./resources/js/spark-components/settings/subscription/subscribe-braintree.js ***!
+  \************************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/settings/subscription/subscribe-braintree.js");
+var base = __webpack_require__(/*! settings/subscription/subscribe-braintree */ "./spark/resources/assets/js/settings/subscription/subscribe-braintree.js");
 
 Vue.component('spark-subscribe-braintree', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/settings/subscription/subscribe-stripe.js":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/spark-components/settings/subscription/subscribe-stripe.js ***!
+  \*********************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/settings/subscription/subscribe-stripe.js");
+var base = __webpack_require__(/*! settings/subscription/subscribe-stripe */ "./spark/resources/assets/js/settings/subscription/subscribe-stripe.js");
 
 Vue.component('spark-subscribe-stripe', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/settings/subscription/update-subscription.js":
+/*!************************************************************************************!*\
+  !*** ./resources/js/spark-components/settings/subscription/update-subscription.js ***!
+  \************************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/settings/subscription/update-subscription.js");
+var base = __webpack_require__(/*! settings/subscription/update-subscription */ "./spark/resources/assets/js/settings/subscription/update-subscription.js");
 
 Vue.component('spark-update-subscription', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/settings/teams.js":
+/*!*********************************************************!*\
+  !*** ./resources/js/spark-components/settings/teams.js ***!
+  \*********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/settings/teams.js");
+var base = __webpack_require__(/*! settings/teams */ "./spark/resources/assets/js/settings/teams.js");
 
 Vue.component('spark-teams', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/settings/teams/create-team.js":
+/*!*********************************************************************!*\
+  !*** ./resources/js/spark-components/settings/teams/create-team.js ***!
+  \*********************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/settings/teams/create-team.js");
+var base = __webpack_require__(/*! settings/teams/create-team */ "./spark/resources/assets/js/settings/teams/create-team.js");
 
 Vue.component('spark-create-team', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/settings/teams/current-teams.js":
+/*!***********************************************************************!*\
+  !*** ./resources/js/spark-components/settings/teams/current-teams.js ***!
+  \***********************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/settings/teams/current-teams.js");
+var base = __webpack_require__(/*! settings/teams/current-teams */ "./spark/resources/assets/js/settings/teams/current-teams.js");
 
 Vue.component('spark-current-teams', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/settings/teams/mailed-invitations.js":
+/*!****************************************************************************!*\
+  !*** ./resources/js/spark-components/settings/teams/mailed-invitations.js ***!
+  \****************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/settings/teams/mailed-invitations.js");
+var base = __webpack_require__(/*! settings/teams/mailed-invitations */ "./spark/resources/assets/js/settings/teams/mailed-invitations.js");
 
 Vue.component('spark-mailed-invitations', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/settings/teams/pending-invitations.js":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/spark-components/settings/teams/pending-invitations.js ***!
+  \*****************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/settings/teams/pending-invitations.js");
+var base = __webpack_require__(/*! settings/teams/pending-invitations */ "./spark/resources/assets/js/settings/teams/pending-invitations.js");
 
 Vue.component('spark-pending-invitations', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/settings/teams/send-invitation.js":
+/*!*************************************************************************!*\
+  !*** ./resources/js/spark-components/settings/teams/send-invitation.js ***!
+  \*************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/settings/teams/send-invitation.js");
+var base = __webpack_require__(/*! settings/teams/send-invitation */ "./spark/resources/assets/js/settings/teams/send-invitation.js");
 
 Vue.component('spark-send-invitation', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/settings/teams/team-members.js":
+/*!**********************************************************************!*\
+  !*** ./resources/js/spark-components/settings/teams/team-members.js ***!
+  \**********************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/settings/teams/team-members.js");
+var base = __webpack_require__(/*! settings/teams/team-members */ "./spark/resources/assets/js/settings/teams/team-members.js");
 
 Vue.component('spark-team-members', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/settings/teams/team-membership.js":
+/*!*************************************************************************!*\
+  !*** ./resources/js/spark-components/settings/teams/team-membership.js ***!
+  \*************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/settings/teams/team-membership.js");
+var base = __webpack_require__(/*! settings/teams/team-membership */ "./spark/resources/assets/js/settings/teams/team-membership.js");
 
 Vue.component('spark-team-membership', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/settings/teams/team-profile.js":
+/*!**********************************************************************!*\
+  !*** ./resources/js/spark-components/settings/teams/team-profile.js ***!
+  \**********************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/settings/teams/team-profile.js");
+var base = __webpack_require__(/*! settings/teams/team-profile */ "./spark/resources/assets/js/settings/teams/team-profile.js");
 
 Vue.component('spark-team-profile', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/settings/teams/team-settings.js":
+/*!***********************************************************************!*\
+  !*** ./resources/js/spark-components/settings/teams/team-settings.js ***!
+  \***********************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/settings/teams/team-settings.js");
+var base = __webpack_require__(/*! settings/teams/team-settings */ "./spark/resources/assets/js/settings/teams/team-settings.js");
 
 Vue.component('spark-team-settings', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/settings/teams/update-team-name.js":
+/*!**************************************************************************!*\
+  !*** ./resources/js/spark-components/settings/teams/update-team-name.js ***!
+  \**************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/settings/teams/update-team-name.js");
+var base = __webpack_require__(/*! settings/teams/update-team-name */ "./spark/resources/assets/js/settings/teams/update-team-name.js");
 
 Vue.component('spark-update-team-name', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
 /***/ "./resources/js/spark-components/settings/teams/update-team-photo.js":
+/*!***************************************************************************!*\
+  !*** ./resources/js/spark-components/settings/teams/update-team-photo.js ***!
+  \***************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-var base = __webpack_require__("./spark/resources/assets/js/settings/teams/update-team-photo.js");
+var base = __webpack_require__(/*! settings/teams/update-team-photo */ "./spark/resources/assets/js/settings/teams/update-team-photo.js");
 
 Vue.component('spark-update-team-photo', {
-    mixins: [base]
+  mixins: [base]
 });
 
 /***/ }),
 
+/***/ "./resources/js/views/404.vue":
+/*!************************************!*\
+  !*** ./resources/js/views/404.vue ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _404_vue_vue_type_template_id_d215c3ee___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./404.vue?vue&type=template&id=d215c3ee& */ "./resources/js/views/404.vue?vue&type=template&id=d215c3ee&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  script,
+  _404_vue_vue_type_template_id_d215c3ee___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _404_vue_vue_type_template_id_d215c3ee___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/404.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/views/404.vue?vue&type=template&id=d215c3ee&":
+/*!*******************************************************************!*\
+  !*** ./resources/js/views/404.vue?vue&type=template&id=d215c3ee& ***!
+  \*******************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_404_vue_vue_type_template_id_d215c3ee___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./404.vue?vue&type=template&id=d215c3ee& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/404.vue?vue&type=template&id=d215c3ee&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_404_vue_vue_type_template_id_d215c3ee___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_404_vue_vue_type_template_id_d215c3ee___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/sass/app-rtl.scss":
+/*!*************************************!*\
+  !*** ./resources/sass/app-rtl.scss ***!
+  \*************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -69733,6 +76421,10 @@ Vue.component('spark-update-team-photo', {
 /***/ }),
 
 /***/ "./resources/sass/app.scss":
+/*!*********************************!*\
+  !*** ./resources/sass/app.scss ***!
+  \*********************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
@@ -69740,444 +76432,425 @@ Vue.component('spark-update-team-photo', {
 /***/ }),
 
 /***/ "./spark/resources/assets/js/auth/register-braintree.js":
+/*!**************************************************************!*\
+  !*** ./spark/resources/assets/js/auth/register-braintree.js ***!
+  \**************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = {
+  /**
+   * Load mixins for the component.
+   */
+  mixins: [__webpack_require__(/*! ./../mixins/braintree */ "./spark/resources/assets/js/mixins/braintree.js"), __webpack_require__(/*! ./../mixins/plans */ "./spark/resources/assets/js/mixins/plans.js"), __webpack_require__(/*! ./../mixins/register */ "./spark/resources/assets/js/mixins/register.js")],
+
+  /**
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      query: null,
+      coupon: null,
+      invalidCoupon: false,
+      registerForm: $.extend(true, new SparkForm({
+        braintree_type: '',
+        braintree_token: '',
+        plan: '',
+        team: '',
+        team_slug: '',
+        name: '',
+        email: '',
+        password: '',
+        password_confirmation: '',
+        terms: false,
+        coupon: null,
+        invitation: null
+      }), Spark.forms.register)
+    };
+  },
+  watch: {
     /**
-     * Load mixins for the component.
+     * Watch the team name for changes.
      */
-    mixins: [__webpack_require__("./spark/resources/assets/js/mixins/braintree.js"), __webpack_require__("./spark/resources/assets/js/mixins/plans.js"), __webpack_require__("./spark/resources/assets/js/mixins/register.js")],
-
-    /**
-     * The component's data.
-     */
-    data: function data() {
-        return {
-            query: null,
-
-            coupon: null,
-            invalidCoupon: false,
-
-            registerForm: $.extend(true, new SparkForm({
-                braintree_type: '',
-                braintree_token: '',
-                plan: '',
-                team: '',
-                team_slug: '',
-                name: '',
-                email: '',
-                password: '',
-                password_confirmation: '',
-                terms: false,
-                coupon: null,
-                invitation: null
-            }), Spark.forms.register)
-        };
-    },
-
-
-    watch: {
-        /**
-         * Watch the team name for changes.
-         */
-        'registerForm.team': function registerFormTeam(val, oldVal) {
-            if (this.registerForm.team_slug == '' || this.registerForm.team_slug == oldVal.toLowerCase().replace(/[\s\W-]+/g, '-')) {
-                this.registerForm.team_slug = val.toLowerCase().replace(/[\s\W-]+/g, '-');
-            }
-        }
-    },
-
-    /**
-     * The component has been created by Vue.
-     */
-    created: function created() {
-        this.getPlans();
-
-        this.query = URI(document.URL).query(true);
-
-        if (this.query.coupon) {
-            this.getCoupon();
-
-            this.registerForm.coupon = this.query.coupon;
-        }
-
-        if (this.query.invitation) {
-            this.getInvitation();
-
-            this.registerForm.invitation = this.query.invitation;
-        }
-    },
-
-
-    /**
-     * Prepare the component.
-     */
-    mounted: function mounted() {
-        this.configureBraintree();
-    },
-
-
-    methods: {
-        configureBraintree: function configureBraintree() {
-            var _this = this;
-
-            if (!Spark.cardUpFront) {
-                return;
-            }
-
-            this.braintree('braintree-container', function (response) {
-                _this.registerForm.braintree_type = response.type;
-                _this.registerForm.braintree_token = response.nonce;
-
-                _this.register();
-            });
-        },
-
-
-        /**
-         * Get the coupon specified in the query string.
-         */
-        getCoupon: function getCoupon() {
-            var _this2 = this;
-
-            axios.get('/coupon/' + this.query.coupon).then(function (response) {
-                _this2.coupon = response.data;
-            }).catch(function (response) {
-                _this2.invalidCoupon = true;
-            });
-        },
-
-
-        /**
-         * Attempt to register with the application.
-         */
-        register: function register() {
-            Spark.post('/register', this.registerForm).then(function (response) {
-                window.location = response.redirect;
-            });
-        }
-    },
-
-    computed: {
-        /**
-         * Get the displayable discount for the coupon.
-         */
-        discount: function discount() {
-            if (this.coupon) {
-                return Vue.filter('currency')(this.coupon.amount_off);
-            }
-        }
+    'registerForm.team': function registerFormTeam(val, oldVal) {
+      if (this.registerForm.team_slug == '' || this.registerForm.team_slug == oldVal.toLowerCase().replace(/[\s\W-]+/g, '-')) {
+        this.registerForm.team_slug = val.toLowerCase().replace(/[\s\W-]+/g, '-');
+      }
     }
+  },
+
+  /**
+   * The component has been created by Vue.
+   */
+  created: function created() {
+    this.getPlans();
+    this.query = URI(document.URL).query(true);
+
+    if (this.query.coupon) {
+      this.getCoupon();
+      this.registerForm.coupon = this.query.coupon;
+    }
+
+    if (this.query.invitation) {
+      this.getInvitation();
+      this.registerForm.invitation = this.query.invitation;
+    }
+  },
+
+  /**
+   * Prepare the component.
+   */
+  mounted: function mounted() {
+    this.configureBraintree();
+  },
+  methods: {
+    configureBraintree: function configureBraintree() {
+      var _this = this;
+
+      if (!Spark.cardUpFront) {
+        return;
+      }
+
+      this.braintree('braintree-container', function (response) {
+        _this.registerForm.braintree_type = response.type;
+        _this.registerForm.braintree_token = response.nonce;
+
+        _this.register();
+      });
+    },
+
+    /**
+     * Get the coupon specified in the query string.
+     */
+    getCoupon: function getCoupon() {
+      var _this2 = this;
+
+      axios.get('/coupon/' + this.query.coupon).then(function (response) {
+        _this2.coupon = response.data;
+      }).catch(function (response) {
+        _this2.invalidCoupon = true;
+      });
+    },
+
+    /**
+     * Attempt to register with the application.
+     */
+    register: function register() {
+      Spark.post('/register', this.registerForm).then(function (response) {
+        window.location = response.redirect;
+      });
+    }
+  },
+  computed: {
+    /**
+     * Get the displayable discount for the coupon.
+     */
+    discount: function discount() {
+      if (this.coupon) {
+        return Vue.filter('currency')(this.coupon.amount_off);
+      }
+    }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/auth/register-stripe.js":
+/*!***********************************************************!*\
+  !*** ./spark/resources/assets/js/auth/register-stripe.js ***!
+  \***********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = {
+  /**
+   * Load mixins for the component.
+   */
+  mixins: [__webpack_require__(/*! ./../mixins/register */ "./spark/resources/assets/js/mixins/register.js"), __webpack_require__(/*! ./../mixins/plans */ "./spark/resources/assets/js/mixins/plans.js"), __webpack_require__(/*! ./../mixins/vat */ "./spark/resources/assets/js/mixins/vat.js"), __webpack_require__(/*! ./../mixins/stripe */ "./spark/resources/assets/js/mixins/stripe.js")],
+
+  /**
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      query: null,
+      cardElement: null,
+      coupon: null,
+      invalidCoupon: false,
+      country: null,
+      taxRate: 0,
+      registerForm: $.extend(true, new SparkForm({
+        stripe_token: '',
+        plan: '',
+        team: '',
+        team_slug: '',
+        name: '',
+        email: '',
+        password: '',
+        password_confirmation: '',
+        address: '',
+        address_line_2: '',
+        city: '',
+        state: '',
+        zip: '',
+        country: 'US',
+        vat_id: '',
+        terms: false,
+        coupon: null,
+        invitation: null
+      }), Spark.forms.register),
+      cardForm: new SparkForm({
+        name: '',
+        number: '',
+        cvc: '',
+        month: '',
+        year: ''
+      })
+    };
+  },
+  watch: {
     /**
-     * Load mixins for the component.
+     * Watch for changes on the entire billing address.
      */
-    mixins: [__webpack_require__("./spark/resources/assets/js/mixins/register.js"), __webpack_require__("./spark/resources/assets/js/mixins/plans.js"), __webpack_require__("./spark/resources/assets/js/mixins/vat.js"), __webpack_require__("./spark/resources/assets/js/mixins/stripe.js")],
+    'currentBillingAddress': function currentBillingAddress(value) {
+      if (!Spark.collectsEuropeanVat) {
+        return;
+      }
 
-    /**
-     * The component's data.
-     */
-    data: function data() {
-        return {
-            query: null,
-
-            cardElement: null,
-
-            coupon: null,
-            invalidCoupon: false,
-
-            country: null,
-            taxRate: 0,
-
-            registerForm: $.extend(true, new SparkForm({
-                stripe_token: '',
-                plan: '',
-                team: '',
-                team_slug: '',
-                name: '',
-                email: '',
-                password: '',
-                password_confirmation: '',
-                address: '',
-                address_line_2: '',
-                city: '',
-                state: '',
-                zip: '',
-                country: 'US',
-                vat_id: '',
-                terms: false,
-                coupon: null,
-                invitation: null
-            }), Spark.forms.register),
-
-            cardForm: new SparkForm({
-                name: '',
-                number: '',
-                cvc: '',
-                month: '',
-                year: ''
-            })
-        };
-    },
-
-
-    watch: {
-        /**
-         * Watch for changes on the entire billing address.
-         */
-        'currentBillingAddress': function currentBillingAddress(value) {
-            if (!Spark.collectsEuropeanVat) {
-                return;
-            }
-
-            this.refreshTaxRate(this.registerForm);
-        },
-
-        /**
-         * Watch the team name for changes.
-         */
-        'registerForm.team': function registerFormTeam(val, oldVal) {
-            if (this.registerForm.team_slug == '' || this.registerForm.team_slug == oldVal.toLowerCase().replace(/[\s\W-]+/g, '-')) {
-                this.registerForm.team_slug = val.toLowerCase().replace(/[\s\W-]+/g, '-');
-            }
-        },
-
-        /**
-         * Watch for changes on the selected plan.
-         */
-        selectedPlan: function selectedPlan(val) {
-            var _this = this;
-
-            if (!val || val.price == 0) {
-                this.cardElement = null;
-                return;
-            }
-
-            if (!this.cardElement) {
-                this.$nextTick(function () {
-                    _this.cardElement = _this.createCardElement('#card-element');
-                });
-            }
-        }
+      this.refreshTaxRate(this.registerForm);
     },
 
     /**
-     * The component has been created by Vue.
+     * Watch the team name for changes.
      */
-    created: function created() {
-        this.getPlans();
-
-        this.guessCountry();
-
-        this.query = URI(document.URL).query(true);
-
-        if (this.query.coupon) {
-            this.getCoupon();
-
-            this.registerForm.coupon = this.query.coupon;
-        }
-
-        if (this.query.invitation) {
-            this.getInvitation();
-
-            this.registerForm.invitation = this.query.invitation;
-        }
+    'registerForm.team': function registerFormTeam(val, oldVal) {
+      if (this.registerForm.team_slug == '' || this.registerForm.team_slug == oldVal.toLowerCase().replace(/[\s\W-]+/g, '-')) {
+        this.registerForm.team_slug = val.toLowerCase().replace(/[\s\W-]+/g, '-');
+      }
     },
 
+    /**
+     * Watch for changes on the selected plan.
+     */
+    selectedPlan: function selectedPlan(val) {
+      var _this = this;
 
-    methods: {
-        /**
-         * Attempt to guess the user's country.
-         */
-        guessCountry: function guessCountry() {
-            var _this2 = this;
+      if (!val || val.price == 0) {
+        this.cardElement = null;
+        return;
+      }
 
-            axios.get('/geocode/country').then(function (response) {
-                if (response.data != 'ZZ') {
-                    _this2.registerForm.country = response.data;
-                }
-            }).catch(function (response) {
-                //
-            });
-        },
-
-
-        /**
-         * Get the coupon specified in the query string.
-         */
-        getCoupon: function getCoupon() {
-            var _this3 = this;
-
-            axios.get('/coupon/' + this.query.coupon).then(function (response) {
-                _this3.coupon = response.data;
-            }).catch(function (response) {
-                _this3.invalidCoupon = true;
-            });
-        },
-
-
-        /**
-         * Attempt to register with the application.
-         */
-        register: function register() {
-            var _this4 = this;
-
-            this.cardForm.errors.forget();
-
-            this.registerForm.busy = true;
-            this.registerForm.errors.forget();
-
-            if (!Spark.cardUpFront || this.registerForm.invitation || this.selectedPlan.price == 0) {
-                return this.sendRegistration();
-            }
-
-            // Here we will build out the payload to send to Stripe to obtain a card token so
-            // we can create the actual subscription. We will build out this data that has
-            // this credit card number, CVC, etc. and exchange it for a secure token ID.
-            var payload = {
-                name: this.cardForm.name,
-                address_line1: this.registerForm.address || '',
-                address_line2: this.registerForm.address_line_2 || '',
-                address_city: this.registerForm.city || '',
-                address_state: this.registerForm.state || '',
-                address_zip: this.registerForm.zip || '',
-                address_country: this.registerForm.country || ''
-            };
-
-            this.stripe.createToken(this.cardElement, payload).then(function (response) {
-                if (response.error) {
-                    _this4.cardForm.errors.set({ card: [response.error.message] });
-
-                    _this4.registerForm.busy = false;
-                } else {
-                    _this4.registerForm.stripe_token = response.token.id;
-
-                    _this4.sendRegistration();
-                }
-            });
-        },
-
-
-        /*
-         * After obtaining the Stripe token, send the registration to Spark.
-         */
-        sendRegistration: function sendRegistration() {
-            Spark.post('/register', this.registerForm).then(function (response) {
-                window.location = response.redirect;
-            });
-        }
-    },
-
-    computed: {
-        /**
-         * Determine if the selected country collects European VAT.
-         */
-        countryCollectsVat: function countryCollectsVat() {
-            return this.collectsVat(this.registerForm.country);
-        },
-
-
-        /**
-         * Get the displayable discount for the coupon.
-         */
-        discount: function discount() {
-            if (this.coupon) {
-                if (this.coupon.percent_off) {
-                    return this.coupon.percent_off + '%';
-                } else {
-                    return Vue.filter('currency')(this.coupon.amount_off / 100);
-                }
-            }
-        },
-
-
-        /**
-         * Get the current billing address from the register form.
-         *
-         * This used primarily for watching.
-         */
-        currentBillingAddress: function currentBillingAddress() {
-            return this.registerForm.address + this.registerForm.address_line_2 + this.registerForm.city + this.registerForm.state + this.registerForm.zip + this.registerForm.country + this.registerForm.vat_id;
-        }
+      if (!this.cardElement) {
+        this.$nextTick(function () {
+          _this.cardElement = _this.createCardElement('#card-element');
+        });
+      }
     }
+  },
+
+  /**
+   * The component has been created by Vue.
+   */
+  created: function created() {
+    this.getPlans();
+    this.guessCountry();
+    this.query = URI(document.URL).query(true);
+
+    if (this.query.coupon) {
+      this.getCoupon();
+      this.registerForm.coupon = this.query.coupon;
+    }
+
+    if (this.query.invitation) {
+      this.getInvitation();
+      this.registerForm.invitation = this.query.invitation;
+    }
+  },
+  methods: {
+    /**
+     * Attempt to guess the user's country.
+     */
+    guessCountry: function guessCountry() {
+      var _this2 = this;
+
+      axios.get('/geocode/country').then(function (response) {
+        if (response.data != 'ZZ') {
+          _this2.registerForm.country = response.data;
+        }
+      }).catch(function (response) {//
+      });
+    },
+
+    /**
+     * Get the coupon specified in the query string.
+     */
+    getCoupon: function getCoupon() {
+      var _this3 = this;
+
+      axios.get('/coupon/' + this.query.coupon).then(function (response) {
+        _this3.coupon = response.data;
+      }).catch(function (response) {
+        _this3.invalidCoupon = true;
+      });
+    },
+
+    /**
+     * Attempt to register with the application.
+     */
+    register: function register() {
+      var _this4 = this;
+
+      this.cardForm.errors.forget();
+      this.registerForm.busy = true;
+      this.registerForm.errors.forget();
+
+      if (!Spark.cardUpFront || this.registerForm.invitation || this.selectedPlan.price == 0) {
+        return this.sendRegistration();
+      } // Here we will build out the payload to send to Stripe to obtain a card token so
+      // we can create the actual subscription. We will build out this data that has
+      // this credit card number, CVC, etc. and exchange it for a secure token ID.
+
+
+      var payload = {
+        name: this.cardForm.name,
+        address_line1: this.registerForm.address || '',
+        address_line2: this.registerForm.address_line_2 || '',
+        address_city: this.registerForm.city || '',
+        address_state: this.registerForm.state || '',
+        address_zip: this.registerForm.zip || '',
+        address_country: this.registerForm.country || ''
+      };
+      this.stripe.createToken(this.cardElement, payload).then(function (response) {
+        if (response.error) {
+          _this4.cardForm.errors.set({
+            card: [response.error.message]
+          });
+
+          _this4.registerForm.busy = false;
+        } else {
+          _this4.registerForm.stripe_token = response.token.id;
+
+          _this4.sendRegistration();
+        }
+      });
+    },
+
+    /*
+     * After obtaining the Stripe token, send the registration to Spark.
+     */
+    sendRegistration: function sendRegistration() {
+      Spark.post('/register', this.registerForm).then(function (response) {
+        window.location = response.redirect;
+      });
+    }
+  },
+  computed: {
+    /**
+     * Determine if the selected country collects European VAT.
+     */
+    countryCollectsVat: function countryCollectsVat() {
+      return this.collectsVat(this.registerForm.country);
+    },
+
+    /**
+     * Get the displayable discount for the coupon.
+     */
+    discount: function discount() {
+      if (this.coupon) {
+        if (this.coupon.percent_off) {
+          return this.coupon.percent_off + '%';
+        } else {
+          return Vue.filter('currency')(this.coupon.amount_off / 100);
+        }
+      }
+    },
+
+    /**
+     * Get the current billing address from the register form.
+     *
+     * This used primarily for watching.
+     */
+    currentBillingAddress: function currentBillingAddress() {
+      return this.registerForm.address + this.registerForm.address_line_2 + this.registerForm.city + this.registerForm.state + this.registerForm.zip + this.registerForm.country + this.registerForm.vat_id;
+    }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/filters.js":
+/*!**********************************************!*\
+  !*** ./spark/resources/assets/js/filters.js ***!
+  \**********************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 /**
  * Format the given date.
  */
 Vue.filter('date', function (value) {
-    return moment.utc(value).local().format('MMMM Do, YYYY');
+  return moment.utc(value).local().format('MMMM Do, YYYY');
 });
-
 /**
  * Format the given date as a timestamp.
  */
-Vue.filter('datetime', function (value) {
-    return moment.utc(value).local().format('MMMM Do, YYYY h:mm A');
-});
 
+Vue.filter('datetime', function (value) {
+  return moment.utc(value).local().format('MMMM Do, YYYY h:mm A');
+});
 /**
  * Format the given date into a relative time.
  */
-Vue.filter('relative', function (value) {
-    return moment.utc(value).local().locale('en-short').fromNow();
-});
 
+Vue.filter('relative', function (value) {
+  return moment.utc(value).local().locale('en-short').fromNow();
+});
 /**
  * Convert the first character to upper case.
  *
  * Source: https://github.com/vuejs/vue/blob/1.0/src/filters/index.js#L37
  */
+
 Vue.filter('capitalize', function (value) {
-    if (!value && value !== 0) {
-        return '';
-    }
+  if (!value && value !== 0) {
+    return '';
+  }
 
-    return value.toString().charAt(0).toUpperCase() + value.slice(1);
+  return value.toString().charAt(0).toUpperCase() + value.slice(1);
 });
-
 /**
  * Format the given money value.
  *
  * Source: https://github.com/vuejs/vue/blob/1.0/src/filters/index.js#L70
  */
+
 Vue.filter('currency', function (value) {
-    value = parseFloat(value);
+  value = parseFloat(value);
 
-    if (!isFinite(value) || !value && value !== 0) {
-        return '';
-    }
+  if (!isFinite(value) || !value && value !== 0) {
+    return '';
+  }
 
-    var stringified = Math.abs(value).toFixed(2);
+  var stringified = Math.abs(value).toFixed(2);
 
-    var _int = stringified.slice(0, -1 - 2);
+  var _int = stringified.slice(0, -1 - 2);
 
-    var i = _int.length % 3;
+  var i = _int.length % 3;
+  var head = i > 0 ? _int.slice(0, i) + (_int.length > 3 ? ',' : '') : '';
 
-    var head = i > 0 ? _int.slice(0, i) + (_int.length > 3 ? ',' : '') : '';
+  var _float = stringified.slice(-1 - 2);
 
-    var _float = stringified.slice(-1 - 2);
-
-    var sign = value < 0 ? '-' : '';
-
-    return sign + window.Spark.currencySymbol + head + _int.slice(i).replace(/(\d{3})(?=\d)/g, '$1,') + _float;
+  var sign = value < 0 ? '-' : '';
+  return sign + window.Spark.currencySymbol + head + _int.slice(i).replace(/(\d{3})(?=\d)/g, '$1,') + _float;
 });
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/forms/bootstrap.js":
+/*!******************************************************!*\
+  !*** ./spark/resources/assets/js/forms/bootstrap.js ***!
+  \******************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -70188,98 +76861,116 @@ Spark.forms = {
   updateContactInformation: {},
   updateTeamMember: {}
 };
-
 /**
  * Load the SparkForm helper class.
  */
-__webpack_require__("./spark/resources/assets/js/forms/form.js");
 
+__webpack_require__(/*! ./form */ "./spark/resources/assets/js/forms/form.js");
 /**
  * Define the SparkFormError collection class.
  */
-__webpack_require__("./spark/resources/assets/js/forms/errors.js");
 
+
+__webpack_require__(/*! ./errors */ "./spark/resources/assets/js/forms/errors.js");
 /**
  * Add additional HTTP / form helpers to the Spark object.
  */
-$.extend(Spark, __webpack_require__("./spark/resources/assets/js/forms/http.js"));
+
+
+$.extend(Spark, __webpack_require__(/*! ./http */ "./spark/resources/assets/js/forms/http.js"));
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/forms/errors.js":
+/*!***************************************************!*\
+  !*** ./spark/resources/assets/js/forms/errors.js ***!
+  \***************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 /**
  * Spark form error collection class.
  */
 window.SparkFormErrors = function () {
-    this.errors = {};
+  this.errors = {};
+  /**
+   * Determine if the collection has any errors.
+   */
 
-    /**
-     * Determine if the collection has any errors.
-     */
-    this.hasErrors = function () {
-        return !_.isEmpty(this.errors);
-    };
+  this.hasErrors = function () {
+    return !_.isEmpty(this.errors);
+  };
+  /**
+   * Determine if the collection has errors for a given field.
+   */
 
-    /**
-     * Determine if the collection has errors for a given field.
-     */
-    this.has = function (field) {
-        return _.indexOf(_.keys(this.errors), field) > -1;
-    };
 
-    /**
-     * Get all of the raw errors for the collection.
-     */
-    this.all = function () {
-        return this.errors;
-    };
+  this.has = function (field) {
+    return _.indexOf(_.keys(this.errors), field) > -1;
+  };
+  /**
+   * Get all of the raw errors for the collection.
+   */
 
-    /**
-     * Get all of the errors for the collection in a flat array.
-     */
-    this.flatten = function () {
-        return _.flatten(_.toArray(this.errors));
-    };
 
-    /**
-     * Get the first error message for a given field.
-     */
-    this.get = function (field) {
-        if (this.has(field)) {
-            return this.errors[field][0];
-        }
-    };
+  this.all = function () {
+    return this.errors;
+  };
+  /**
+   * Get all of the errors for the collection in a flat array.
+   */
 
-    /**
-     * Set the raw errors for the collection.
-     */
-    this.set = function (errors) {
-        if ((typeof errors === 'undefined' ? 'undefined' : _typeof(errors)) === 'object') {
-            this.errors = errors;
-        } else {
-            this.errors = { 'form': [__('Something went wrong. Please try again or contact customer support.')] };
-        }
-    };
 
-    /**
-     * Remove errors from the collection.
-     */
-    this.forget = function (field) {
-        if (typeof field === 'undefined') {
-            this.errors = {};
-        } else {
-            Vue.delete(this.errors, field);
-        }
-    };
+  this.flatten = function () {
+    return _.flatten(_.toArray(this.errors));
+  };
+  /**
+   * Get the first error message for a given field.
+   */
+
+
+  this.get = function (field) {
+    if (this.has(field)) {
+      return this.errors[field][0];
+    }
+  };
+  /**
+   * Set the raw errors for the collection.
+   */
+
+
+  this.set = function (errors) {
+    if (_typeof(errors) === 'object') {
+      this.errors = errors;
+    } else {
+      this.errors = {
+        'form': [__('Something went wrong. Please try again or contact customer support.')]
+      };
+    }
+  };
+  /**
+   * Remove errors from the collection.
+   */
+
+
+  this.forget = function (field) {
+    if (typeof field === 'undefined') {
+      this.errors = {};
+    } else {
+      Vue.delete(this.errors, field);
+    }
+  };
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/forms/form.js":
+/*!*************************************************!*\
+  !*** ./spark/resources/assets/js/forms/form.js ***!
+  \*************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 /**
@@ -70287,46 +76978,47 @@ window.SparkFormErrors = function () {
  */
 window.SparkForm = function (data) {
   var form = this;
-
   $.extend(this, data);
-
   /**
    * Create the form error helper instance.
    */
-  this.errors = new SparkFormErrors();
 
+  this.errors = new SparkFormErrors();
   this.busy = false;
   this.successful = false;
-
   /**
    * Start processing the form.
    */
+
   this.startProcessing = function () {
     form.errors.forget();
     form.busy = true;
     form.successful = false;
   };
-
   /**
    * Finish processing the form.
    */
+
+
   this.finishProcessing = function () {
     form.busy = false;
     form.successful = true;
   };
-
   /**
    * Reset the errors and other state for the form.
    */
+
+
   this.resetStatus = function () {
     form.errors.forget();
     form.busy = false;
     form.successful = false;
   };
-
   /**
    * Set the errors on the form.
    */
+
+
   this.setErrors = function (errors) {
     form.busy = false;
     form.errors.set(errors);
@@ -70336,1049 +77028,986 @@ window.SparkForm = function (data) {
 /***/ }),
 
 /***/ "./spark/resources/assets/js/forms/http.js":
+/*!*************************************************!*\
+  !*** ./spark/resources/assets/js/forms/http.js ***!
+  \*************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = {
-    /**
-     * Helper method for making POST HTTP requests.
-     */
-    post: function post(uri, form) {
-        return Spark.sendForm('post', uri, form);
-    },
+  /**
+   * Helper method for making POST HTTP requests.
+   */
+  post: function post(uri, form) {
+    return Spark.sendForm('post', uri, form);
+  },
 
+  /**
+   * Helper method for making PUT HTTP requests.
+   */
+  put: function put(uri, form) {
+    return Spark.sendForm('put', uri, form);
+  },
 
-    /**
-     * Helper method for making PUT HTTP requests.
-     */
-    put: function put(uri, form) {
-        return Spark.sendForm('put', uri, form);
-    },
+  /**
+   * Helper method for making PATCH HTTP requests.
+   */
+  patch: function patch(uri, form) {
+    return Spark.sendForm('patch', uri, form);
+  },
 
+  /**
+   * Helper method for making DELETE HTTP requests.
+   */
+  delete: function _delete(uri, form) {
+    return Spark.sendForm('delete', uri, form);
+  },
 
-    /**
-     * Helper method for making PATCH HTTP requests.
-     */
-    patch: function patch(uri, form) {
-        return Spark.sendForm('patch', uri, form);
-    },
-
-
-    /**
-     * Helper method for making DELETE HTTP requests.
-     */
-    delete: function _delete(uri, form) {
-        return Spark.sendForm('delete', uri, form);
-    },
-
-
-    /**
-     * Send the form to the back-end server.
-     *
-     * This function will clear old errors, update "busy" status, etc.
-     */
-    sendForm: function sendForm(method, uri, form) {
-        return new Promise(function (resolve, reject) {
-            form.startProcessing();
-
-            axios[method](uri, JSON.parse(JSON.stringify(form))).then(function (response) {
-                form.finishProcessing();
-
-                resolve(response.data);
-            }).catch(function (errors) {
-                form.setErrors(errors.response.data.errors);
-
-                reject(errors.response.data);
-            });
-        });
-    }
+  /**
+   * Send the form to the back-end server.
+   *
+   * This function will clear old errors, update "busy" status, etc.
+   */
+  sendForm: function sendForm(method, uri, form) {
+    return new Promise(function (resolve, reject) {
+      form.startProcessing();
+      axios[method](uri, JSON.parse(JSON.stringify(form))).then(function (response) {
+        form.finishProcessing();
+        resolve(response.data);
+      }).catch(function (errors) {
+        form.setErrors(errors.response.data.errors);
+        reject(errors.response.data);
+      });
+    });
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/kiosk/add-discount.js":
+/*!*********************************************************!*\
+  !*** ./spark/resources/assets/js/kiosk/add-discount.js ***!
+  \*********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 function kioskAddDiscountForm() {
-    return {
-        type: 'amount',
-        value: null,
-        duration: 'once',
-        months: null
-    };
+  return {
+    type: 'amount',
+    value: null,
+    duration: 'once',
+    months: null
+  };
 }
 
 module.exports = {
-    mixins: [__webpack_require__("./spark/resources/assets/js/mixins/discounts.js")],
+  mixins: [__webpack_require__(/*! ./../mixins/discounts */ "./spark/resources/assets/js/mixins/discounts.js")],
 
+  /**
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      loadingCurrentDiscount: false,
+      currentDiscount: null,
+      discountingUser: null,
+      form: new SparkForm(kioskAddDiscountForm())
+    };
+  },
+
+  /**
+   * The component has been created by Vue.
+   */
+  created: function created() {
+    var self = this;
+    Bus.$on('addDiscount', function (user) {
+      self.form = new SparkForm(kioskAddDiscountForm());
+      self.setUser(user);
+      $('#modal-add-discount').modal('show');
+    });
+  },
+  methods: {
     /**
-     * The component's data.
+     * Set the user receiving teh discount.
      */
-    data: function data() {
-        return {
-            loadingCurrentDiscount: false,
-            currentDiscount: null,
-
-            discountingUser: null,
-            form: new SparkForm(kioskAddDiscountForm())
-        };
+    setUser: function setUser(user) {
+      this.discountingUser = user;
+      this.getCurrentDiscountForUser(user);
     },
 
-
     /**
-     * The component has been created by Vue.
+     * Apply the discount to the user.
      */
-    created: function created() {
-        var self = this;
-
-        Bus.$on('addDiscount', function (user) {
-            self.form = new SparkForm(kioskAddDiscountForm());
-
-            self.setUser(user);
-
-            $('#modal-add-discount').modal('show');
-        });
-    },
-
-
-    methods: {
-        /**
-         * Set the user receiving teh discount.
-         */
-        setUser: function setUser(user) {
-            this.discountingUser = user;
-
-            this.getCurrentDiscountForUser(user);
-        },
-
-
-        /**
-         * Apply the discount to the user.
-         */
-        applyDiscount: function applyDiscount() {
-            Spark.post('/spark/kiosk/users/discount/' + this.discountingUser.id, this.form).then(function () {
-                $('#modal-add-discount').modal('hide');
-            });
-        }
+    applyDiscount: function applyDiscount() {
+      Spark.post('/spark/kiosk/users/discount/' + this.discountingUser.id, this.form).then(function () {
+        $('#modal-add-discount').modal('hide');
+      });
     }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/kiosk/announcements.js":
+/*!**********************************************************!*\
+  !*** ./spark/resources/assets/js/kiosk/announcements.js ***!
+  \**********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 var announcementsCreateForm = function announcementsCreateForm() {
-    return {
-        body: '',
-        action_text: '',
-        action_url: ''
-    };
+  return {
+    body: '',
+    action_text: '',
+    action_url: ''
+  };
 };
 
 module.exports = {
+  /**
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      announcements: [],
+      updatingAnnouncement: null,
+      deletingAnnouncement: null,
+      createForm: new SparkForm(announcementsCreateForm()),
+      updateForm: new SparkForm(announcementsCreateForm()),
+      deleteForm: new SparkForm({})
+    };
+  },
+
+  /**
+   * The component has been created by Vue.
+   */
+  created: function created() {
+    var self = this;
+    Bus.$on('sparkHashChanged', function (hash, parameters) {
+      if (hash == 'announcements' && self.announcements.length === 0) {
+        self.getAnnouncements();
+      }
+    });
+  },
+  methods: {
     /**
-     * The component's data.
+     * Get all of the announcements.
      */
-    data: function data() {
-        return {
-            announcements: [],
-            updatingAnnouncement: null,
-            deletingAnnouncement: null,
+    getAnnouncements: function getAnnouncements() {
+      var _this = this;
 
-            createForm: new SparkForm(announcementsCreateForm()),
-            updateForm: new SparkForm(announcementsCreateForm()),
-
-            deleteForm: new SparkForm({})
-        };
+      axios.get('/spark/kiosk/announcements').then(function (response) {
+        _this.announcements = response.data;
+      });
     },
 
-
     /**
-     * The component has been created by Vue.
+     * Create a new announcement.
      */
-    created: function created() {
-        var self = this;
+    create: function create() {
+      var _this2 = this;
 
-        Bus.$on('sparkHashChanged', function (hash, parameters) {
-            if (hash == 'announcements' && self.announcements.length === 0) {
-                self.getAnnouncements();
-            }
-        });
+      Spark.post('/spark/kiosk/announcements', this.createForm).then(function () {
+        _this2.createForm = new SparkForm(announcementsCreateForm());
+
+        _this2.getAnnouncements();
+      });
     },
 
+    /**
+     * Edit the given announcement.
+     */
+    editAnnouncement: function editAnnouncement(announcement) {
+      this.updatingAnnouncement = announcement;
+      this.updateForm.icon = announcement.icon;
+      this.updateForm.body = announcement.body;
+      this.updateForm.action_text = announcement.action_text;
+      this.updateForm.action_url = announcement.action_url;
+      $('#modal-update-announcement').modal('show');
+    },
 
-    methods: {
-        /**
-         * Get all of the announcements.
-         */
-        getAnnouncements: function getAnnouncements() {
-            var _this = this;
+    /**
+     * Update the specified announcement.
+     */
+    update: function update() {
+      var _this3 = this;
 
-            axios.get('/spark/kiosk/announcements').then(function (response) {
-                _this.announcements = response.data;
-            });
-        },
+      Spark.put('/spark/kiosk/announcements/' + this.updatingAnnouncement.id, this.updateForm).then(function () {
+        _this3.getAnnouncements();
 
+        $('#modal-update-announcement').modal('hide');
+      });
+    },
 
-        /**
-         * Create a new announcement.
-         */
-        create: function create() {
-            var _this2 = this;
+    /**
+     * Show the approval dialog for deleting an announcement.
+     */
+    approveAnnouncementDelete: function approveAnnouncementDelete(announcement) {
+      this.deletingAnnouncement = announcement;
+      $('#modal-delete-announcement').modal('show');
+    },
 
-            Spark.post('/spark/kiosk/announcements', this.createForm).then(function () {
-                _this2.createForm = new SparkForm(announcementsCreateForm());
+    /**
+     * Delete the specified announcement.
+     */
+    deleteAnnouncement: function deleteAnnouncement() {
+      var _this4 = this;
 
-                _this2.getAnnouncements();
-            });
-        },
+      Spark.delete('/spark/kiosk/announcements/' + this.deletingAnnouncement.id, this.deleteForm).then(function () {
+        _this4.getAnnouncements();
 
-
-        /**
-         * Edit the given announcement.
-         */
-        editAnnouncement: function editAnnouncement(announcement) {
-            this.updatingAnnouncement = announcement;
-
-            this.updateForm.icon = announcement.icon;
-            this.updateForm.body = announcement.body;
-            this.updateForm.action_text = announcement.action_text;
-            this.updateForm.action_url = announcement.action_url;
-
-            $('#modal-update-announcement').modal('show');
-        },
-
-
-        /**
-         * Update the specified announcement.
-         */
-        update: function update() {
-            var _this3 = this;
-
-            Spark.put('/spark/kiosk/announcements/' + this.updatingAnnouncement.id, this.updateForm).then(function () {
-                _this3.getAnnouncements();
-
-                $('#modal-update-announcement').modal('hide');
-            });
-        },
-
-
-        /**
-         * Show the approval dialog for deleting an announcement.
-         */
-        approveAnnouncementDelete: function approveAnnouncementDelete(announcement) {
-            this.deletingAnnouncement = announcement;
-
-            $('#modal-delete-announcement').modal('show');
-        },
-
-
-        /**
-         * Delete the specified announcement.
-         */
-        deleteAnnouncement: function deleteAnnouncement() {
-            var _this4 = this;
-
-            Spark.delete('/spark/kiosk/announcements/' + this.deletingAnnouncement.id, this.deleteForm).then(function () {
-                _this4.getAnnouncements();
-
-                $('#modal-delete-announcement').modal('hide');
-            });
-        }
+        $('#modal-delete-announcement').modal('hide');
+      });
     }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/kiosk/kiosk.js":
+/*!**************************************************!*\
+  !*** ./spark/resources/assets/js/kiosk/kiosk.js ***!
+  \**************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = {
-    props: ['user'],
+  props: ['user'],
 
-    /**
-     * Load mixins for the component.
-     */
-    mixins: [__webpack_require__("./spark/resources/assets/js/mixins/tab-state.js")],
+  /**
+   * Load mixins for the component.
+   */
+  mixins: [__webpack_require__(/*! ./../mixins/tab-state */ "./spark/resources/assets/js/mixins/tab-state.js")],
 
-    /**
-     * Prepare the component.
-     */
-    mounted: function mounted() {
-        this.usePushStateForTabs('.spark-settings-tabs');
-    },
+  /**
+   * Prepare the component.
+   */
+  mounted: function mounted() {
+    this.usePushStateForTabs('.spark-settings-tabs');
+  },
 
+  /**
+   * The component has been created by Vue.
+   */
+  created: function created() {
+    Bus.$on('sparkHashChanged', function (hash, parameters) {
+      if (hash == 'users') {
+        setTimeout(function () {
+          $('#kiosk-users-search').focus();
+        }, 150);
+      }
 
-    /**
-     * The component has been created by Vue.
-     */
-    created: function created() {
-        Bus.$on('sparkHashChanged', function (hash, parameters) {
-            if (hash == 'users') {
-                setTimeout(function () {
-                    $('#kiosk-users-search').focus();
-                }, 150);
-            }
-
-            return true;
-        });
-    }
+      return true;
+    });
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/kiosk/metrics.js":
+/*!****************************************************!*\
+  !*** ./spark/resources/assets/js/kiosk/metrics.js ***!
+  \****************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = {
-    props: ['user'],
+  props: ['user'],
 
+  /**
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      monthlyRecurringRevenue: 0,
+      yearlyRecurringRevenue: 0,
+      totalVolume: 0,
+      genericTrialUsers: 0,
+      indicators: [],
+      lastMonthsIndicators: null,
+      lastYearsIndicators: null,
+      plans: []
+    };
+  },
+
+  /**
+   * The component has been created by Vue.
+   */
+  created: function created() {
+    var self = this;
+    Bus.$on('sparkHashChanged', function (hash, parameters) {
+      if (hash == 'metrics' && self.yearlyRecurringRevenue === 0) {
+        self.getRevenue();
+        self.getPlans();
+        self.getTrialUsers();
+        self.getPerformanceIndicators();
+      }
+    });
+  },
+  methods: {
     /**
-     * The component's data.
+     * Get the revenue information for the application.
      */
-    data: function data() {
-        return {
-            monthlyRecurringRevenue: 0,
-            yearlyRecurringRevenue: 0,
-            totalVolume: 0,
-            genericTrialUsers: 0,
+    getRevenue: function getRevenue() {
+      var _this = this;
 
-            indicators: [],
-            lastMonthsIndicators: null,
-            lastYearsIndicators: null,
-
-            plans: []
-        };
+      axios.get('/spark/kiosk/performance-indicators/revenue').then(function (response) {
+        _this.yearlyRecurringRevenue = response.data.yearlyRecurringRevenue;
+        _this.monthlyRecurringRevenue = response.data.monthlyRecurringRevenue;
+        _this.totalVolume = response.data.totalVolume;
+      });
     },
 
+    /**
+     * Get the subscriber information for the application.
+     */
+    getPlans: function getPlans() {
+      var _this2 = this;
+
+      axios.get('/spark/kiosk/performance-indicators/plans').then(function (response) {
+        _this2.plans = response.data;
+      });
+    },
 
     /**
-     * The component has been created by Vue.
+     * Get the number of users that are on a generic trial.
      */
-    created: function created() {
-        var self = this;
+    getTrialUsers: function getTrialUsers() {
+      var _this3 = this;
 
-        Bus.$on('sparkHashChanged', function (hash, parameters) {
-            if (hash == 'metrics' && self.yearlyRecurringRevenue === 0) {
-                self.getRevenue();
-                self.getPlans();
-                self.getTrialUsers();
-                self.getPerformanceIndicators();
-            }
+      axios.get('/spark/kiosk/performance-indicators/trialing').then(function (response) {
+        _this3.genericTrialUsers = parseInt(response.data);
+      });
+    },
+
+    /**
+     * Get the performance indicators for the application.
+     */
+    getPerformanceIndicators: function getPerformanceIndicators() {
+      var _this4 = this;
+
+      axios.get('/spark/kiosk/performance-indicators').then(function (response) {
+        _this4.indicators = response.data.indicators;
+        _this4.lastMonthsIndicators = response.data.last_month;
+        _this4.lastYearsIndicators = response.data.last_year;
+        Vue.nextTick(function () {
+          _this4.drawCharts();
         });
+      });
     },
 
-
-    methods: {
-        /**
-         * Get the revenue information for the application.
-         */
-        getRevenue: function getRevenue() {
-            var _this = this;
-
-            axios.get('/spark/kiosk/performance-indicators/revenue').then(function (response) {
-                _this.yearlyRecurringRevenue = response.data.yearlyRecurringRevenue;
-                _this.monthlyRecurringRevenue = response.data.monthlyRecurringRevenue;
-                _this.totalVolume = response.data.totalVolume;
-            });
-        },
-
-
-        /**
-         * Get the subscriber information for the application.
-         */
-        getPlans: function getPlans() {
-            var _this2 = this;
-
-            axios.get('/spark/kiosk/performance-indicators/plans').then(function (response) {
-                _this2.plans = response.data;
-            });
-        },
-
-
-        /**
-         * Get the number of users that are on a generic trial.
-         */
-        getTrialUsers: function getTrialUsers() {
-            var _this3 = this;
-
-            axios.get('/spark/kiosk/performance-indicators/trialing').then(function (response) {
-                _this3.genericTrialUsers = parseInt(response.data);
-            });
-        },
-
-
-        /**
-         * Get the performance indicators for the application.
-         */
-        getPerformanceIndicators: function getPerformanceIndicators() {
-            var _this4 = this;
-
-            axios.get('/spark/kiosk/performance-indicators').then(function (response) {
-                _this4.indicators = response.data.indicators;
-                _this4.lastMonthsIndicators = response.data.last_month;
-                _this4.lastYearsIndicators = response.data.last_year;
-
-                Vue.nextTick(function () {
-                    _this4.drawCharts();
-                });
-            });
-        },
-
-
-        /**
-         * Draw the performance indicator charts.
-         */
-        drawCharts: function drawCharts() {
-            this.drawMonthlyRecurringRevenueChart();
-            this.drawYearlyRecurringRevenueChart();
-            this.drawDailyVolumeChart();
-            this.drawNewUsersChart();
-        },
-
-
-        /**
-         * Draw the monthly recurring revenue chart.
-         */
-        drawMonthlyRecurringRevenueChart: function drawMonthlyRecurringRevenueChart() {
-            return this.drawCurrencyChart('monthlyRecurringRevenueChart', 30, function (indicator) {
-                return indicator.monthly_recurring_revenue;
-            });
-        },
-
-
-        /**
-         * Draw the yearly recurring revenue chart.
-         */
-        drawYearlyRecurringRevenueChart: function drawYearlyRecurringRevenueChart() {
-            return this.drawCurrencyChart('yearlyRecurringRevenueChart', 30, function (indicator) {
-                return indicator.yearly_recurring_revenue;
-            });
-        },
-
-
-        /**
-         * Draw the daily volume chart.
-         */
-        drawDailyVolumeChart: function drawDailyVolumeChart() {
-            return this.drawCurrencyChart('dailyVolumeChart', 14, function (indicator) {
-                return indicator.daily_volume;
-            });
-        },
-
-
-        /**
-         * Draw the daily new users chart.
-         */
-        drawNewUsersChart: function drawNewUsersChart() {
-            return this.drawChart('newUsersChart', 14, function (indicator) {
-                return indicator.new_users;
-            });
-        },
-
-
-        /**
-         * Draw a chart with currency formatting on the Y-Axis.
-         */
-        drawCurrencyChart: function drawCurrencyChart(id, days, dataGatherer) {
-            return this.drawChart(id, days, dataGatherer, function (value) {
-                return Vue.filter('currency')(value.value);
-            });
-        },
-
-
-        /**
-         * Draw a chart with the given parameters.
-         */
-        drawChart: function drawChart(id, days, dataGatherer, scaleLabelFormatter) {
-            var dataset = JSON.parse(JSON.stringify(this.baseChartDataSet));
-
-            dataset.data = _.map(_.takeRight(this.indicators, days), dataGatherer);
-
-            // Here we will build out the dataset for the chart. This will contain the dates and data
-            // points for the chart. Each chart on the Kiosk only gets one dataset so we only need
-            // to add it a single element to this array here. But, charts could have more later.
-            var data = {
-                labels: _.takeRight(this.availableChartDates, days),
-                datasets: [dataset]
-            };
-
-            var options = { responsive: true };
-
-            // If a scale label formatter was passed, we will hand that to this chart library to fill
-            // out the Y-Axis labels. This is particularly useful when we want to format them as a
-            // currency as we do on all of our revenue charts that we display on the Kiosk here.
-            if (arguments.length === 4) {
-                options.scaleLabel = scaleLabelFormatter;
-            }
-
-            var chart = new Chart(document.getElementById(id).getContext('2d'), {
-                type: 'line',
-                data: data,
-                options: options
-            });
-        },
-
-
-        /**
-         * Calculate the percent change between two numbers.
-         */
-        percentChange: function percentChange(current, previous) {
-            var change = Math.round((current - previous) / previous * 100);
-
-            return change > 0 ? '+' + change.toFixed(0) : change.toFixed(0);
-        }
+    /**
+     * Draw the performance indicator charts.
+     */
+    drawCharts: function drawCharts() {
+      this.drawMonthlyRecurringRevenueChart();
+      this.drawYearlyRecurringRevenueChart();
+      this.drawDailyVolumeChart();
+      this.drawNewUsersChart();
     },
 
-    computed: {
-        /**
-         * Calculate the monthly change in monthly recurring revenue.
-         */
-        monthlyChangeInMonthlyRecurringRevenue: function monthlyChangeInMonthlyRecurringRevenue() {
-            if (!this.lastMonthsIndicators || !this.indicators) {
-                return false;
-            }
+    /**
+     * Draw the monthly recurring revenue chart.
+     */
+    drawMonthlyRecurringRevenueChart: function drawMonthlyRecurringRevenueChart() {
+      return this.drawCurrencyChart('monthlyRecurringRevenueChart', 30, function (indicator) {
+        return indicator.monthly_recurring_revenue;
+      });
+    },
 
-            return this.percentChange(_.takeRight(this.indicators).monthly_recurring_revenue, this.lastMonthsIndicators.monthly_recurring_revenue);
-        },
+    /**
+     * Draw the yearly recurring revenue chart.
+     */
+    drawYearlyRecurringRevenueChart: function drawYearlyRecurringRevenueChart() {
+      return this.drawCurrencyChart('yearlyRecurringRevenueChart', 30, function (indicator) {
+        return indicator.yearly_recurring_revenue;
+      });
+    },
 
+    /**
+     * Draw the daily volume chart.
+     */
+    drawDailyVolumeChart: function drawDailyVolumeChart() {
+      return this.drawCurrencyChart('dailyVolumeChart', 14, function (indicator) {
+        return indicator.daily_volume;
+      });
+    },
 
-        /**
-         * Calculate the yearly change in monthly recurring revenue.
-         */
-        yearlyChangeInMonthlyRecurringRevenue: function yearlyChangeInMonthlyRecurringRevenue() {
-            if (!this.lastYearsIndicators || !this.indicators) {
-                return false;
-            }
+    /**
+     * Draw the daily new users chart.
+     */
+    drawNewUsersChart: function drawNewUsersChart() {
+      return this.drawChart('newUsersChart', 14, function (indicator) {
+        return indicator.new_users;
+      });
+    },
 
-            return this.percentChange(_.takeRight(this.indicators).monthly_recurring_revenue, this.lastYearsIndicators.monthly_recurring_revenue);
-        },
+    /**
+     * Draw a chart with currency formatting on the Y-Axis.
+     */
+    drawCurrencyChart: function drawCurrencyChart(id, days, dataGatherer) {
+      return this.drawChart(id, days, dataGatherer, function (value) {
+        return Vue.filter('currency')(value.value);
+      });
+    },
 
+    /**
+     * Draw a chart with the given parameters.
+     */
+    drawChart: function drawChart(id, days, dataGatherer, scaleLabelFormatter) {
+      var dataset = JSON.parse(JSON.stringify(this.baseChartDataSet));
+      dataset.data = _.map(_.takeRight(this.indicators, days), dataGatherer); // Here we will build out the dataset for the chart. This will contain the dates and data
+      // points for the chart. Each chart on the Kiosk only gets one dataset so we only need
+      // to add it a single element to this array here. But, charts could have more later.
 
-        /**
-         * Calculate the monthly change in yearly recurring revenue.
-         */
-        monthlyChangeInYearlyRecurringRevenue: function monthlyChangeInYearlyRecurringRevenue() {
-            if (!this.lastMonthsIndicators || !this.indicators) {
-                return false;
-            }
+      var data = {
+        labels: _.takeRight(this.availableChartDates, days),
+        datasets: [dataset]
+      };
+      var options = {
+        responsive: true
+      }; // If a scale label formatter was passed, we will hand that to this chart library to fill
+      // out the Y-Axis labels. This is particularly useful when we want to format them as a
+      // currency as we do on all of our revenue charts that we display on the Kiosk here.
 
-            return this.percentChange(_.takeRight(this.indicators).yearly_recurring_revenue, this.lastMonthsIndicators.yearly_recurring_revenue);
-        },
+      if (arguments.length === 4) {
+        options.scaleLabel = scaleLabelFormatter;
+      }
 
+      var chart = new Chart(document.getElementById(id).getContext('2d'), {
+        type: 'line',
+        data: data,
+        options: options
+      });
+    },
 
-        /**
-         * Calculate the yearly change in yearly recurring revenue.
-         */
-        yearlyChangeInYearlyRecurringRevenue: function yearlyChangeInYearlyRecurringRevenue() {
-            if (!this.lastYearsIndicators || !this.indicators) {
-                return false;
-            }
-
-            return this.percentChange(_.takeRight(this.indicators).yearly_recurring_revenue, this.lastYearsIndicators.yearly_recurring_revenue);
-        },
-
-
-        /**
-         * Get the total number of users trialing.
-         */
-        totalTrialUsers: function totalTrialUsers() {
-            return this.genericTrialUsers + _.reduce(this.plans, function (memo, plan) {
-                return memo + plan.trialing;
-            }, 0);
-        },
-
-
-        /**
-         * Get the available, formatted chart dates for the current indicators.
-         */
-        availableChartDates: function availableChartDates() {
-            return _.map(this.indicators, function (indicator) {
-                return moment(indicator.created_at).format('M/D');
-            });
-        },
-
-
-        /**
-         * Get the base chart data set.
-         */
-        baseChartDataSet: function baseChartDataSet() {
-            return {
-                label: "Dataset",
-                fillColor: "rgba(151,187,205,0.2)",
-                strokeColor: "rgba(151,187,205,1)",
-                pointColor: "rgba(151,187,205,1)",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(151,187,205,1)"
-            };
-        }
+    /**
+     * Calculate the percent change between two numbers.
+     */
+    percentChange: function percentChange(current, previous) {
+      var change = Math.round((current - previous) / previous * 100);
+      return change > 0 ? '+' + change.toFixed(0) : change.toFixed(0);
     }
+  },
+  computed: {
+    /**
+     * Calculate the monthly change in monthly recurring revenue.
+     */
+    monthlyChangeInMonthlyRecurringRevenue: function monthlyChangeInMonthlyRecurringRevenue() {
+      if (!this.lastMonthsIndicators || !this.indicators) {
+        return false;
+      }
+
+      return this.percentChange(_.takeRight(this.indicators).monthly_recurring_revenue, this.lastMonthsIndicators.monthly_recurring_revenue);
+    },
+
+    /**
+     * Calculate the yearly change in monthly recurring revenue.
+     */
+    yearlyChangeInMonthlyRecurringRevenue: function yearlyChangeInMonthlyRecurringRevenue() {
+      if (!this.lastYearsIndicators || !this.indicators) {
+        return false;
+      }
+
+      return this.percentChange(_.takeRight(this.indicators).monthly_recurring_revenue, this.lastYearsIndicators.monthly_recurring_revenue);
+    },
+
+    /**
+     * Calculate the monthly change in yearly recurring revenue.
+     */
+    monthlyChangeInYearlyRecurringRevenue: function monthlyChangeInYearlyRecurringRevenue() {
+      if (!this.lastMonthsIndicators || !this.indicators) {
+        return false;
+      }
+
+      return this.percentChange(_.takeRight(this.indicators).yearly_recurring_revenue, this.lastMonthsIndicators.yearly_recurring_revenue);
+    },
+
+    /**
+     * Calculate the yearly change in yearly recurring revenue.
+     */
+    yearlyChangeInYearlyRecurringRevenue: function yearlyChangeInYearlyRecurringRevenue() {
+      if (!this.lastYearsIndicators || !this.indicators) {
+        return false;
+      }
+
+      return this.percentChange(_.takeRight(this.indicators).yearly_recurring_revenue, this.lastYearsIndicators.yearly_recurring_revenue);
+    },
+
+    /**
+     * Get the total number of users trialing.
+     */
+    totalTrialUsers: function totalTrialUsers() {
+      return this.genericTrialUsers + _.reduce(this.plans, function (memo, plan) {
+        return memo + plan.trialing;
+      }, 0);
+    },
+
+    /**
+     * Get the available, formatted chart dates for the current indicators.
+     */
+    availableChartDates: function availableChartDates() {
+      return _.map(this.indicators, function (indicator) {
+        return moment(indicator.created_at).format('M/D');
+      });
+    },
+
+    /**
+     * Get the base chart data set.
+     */
+    baseChartDataSet: function baseChartDataSet() {
+      return {
+        label: "Dataset",
+        fillColor: "rgba(151,187,205,0.2)",
+        strokeColor: "rgba(151,187,205,1)",
+        pointColor: "rgba(151,187,205,1)",
+        pointStrokeColor: "#fff",
+        pointHighlightFill: "#fff",
+        pointHighlightStroke: "rgba(151,187,205,1)"
+      };
+    }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/kiosk/profile.js":
+/*!****************************************************!*\
+  !*** ./spark/resources/assets/js/kiosk/profile.js ***!
+  \****************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = {
-    props: ['user', 'plans'],
+  props: ['user', 'plans'],
 
+  /**
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      loading: false,
+      profile: null,
+      revenue: 0
+    };
+  },
+
+  /**
+   * The component has been created by Vue.
+   */
+  created: function created() {
+    var self = this;
+    this.$parent.$on('showUserProfile', function (id) {
+      self.getUserProfile(id);
+    });
+  },
+
+  /**
+   * Prepare the component.
+   */
+  mounted: function mounted() {
+    var _this = this;
+
+    Mousetrap.bind('esc', function (e) {
+      return _this.showSearch();
+    });
+  },
+  methods: {
     /**
-     * The component's data.
+     * Get the profile user.
      */
-    data: function data() {
-        return {
-            loading: false,
-            profile: null,
-            revenue: 0
-        };
+    getUserProfile: function getUserProfile(id) {
+      var _this2 = this;
+
+      this.loading = true;
+      axios.get('/spark/kiosk/users/' + id + '/profile').then(function (response) {
+        _this2.profile = response.data.user;
+        _this2.revenue = response.data.revenue;
+        _this2.loading = false;
+      });
     },
 
+    /**
+     * Impersonate the given user.
+     */
+    impersonate: function impersonate(user) {
+      window.location = '/spark/kiosk/users/impersonate/' + user.id;
+    },
 
     /**
-     * The component has been created by Vue.
+     * Show the discount modal for the given user.
      */
-    created: function created() {
-        var self = this;
+    addDiscount: function addDiscount(user) {
+      Bus.$emit('addDiscount', user);
+    },
 
-        this.$parent.$on('showUserProfile', function (id) {
-            self.getUserProfile(id);
+    /**
+     * Get the plan the user is actively subscribed to.
+     */
+    activePlan: function activePlan(billable) {
+      if (this.activeSubscription(billable)) {
+        var activeSubscription = this.activeSubscription(billable);
+        return _.find(this.plans, function (plan) {
+          return plan.id == activeSubscription.provider_plan;
         });
+      }
     },
-
 
     /**
-     * Prepare the component.
+     * Get the active, valid subscription for the user.
      */
-    mounted: function mounted() {
-        var _this = this;
+    activeSubscription: function activeSubscription(billable) {
+      var subscription = this.subscription(billable);
 
-        Mousetrap.bind('esc', function (e) {
-            return _this.showSearch();
-        });
+      if (!subscription || subscription.ends_at && moment.utc().isAfter(moment.utc(subscription.ends_at))) {
+        return;
+      }
+
+      return subscription;
     },
 
+    /**
+     * Get the active subscription instance.
+     */
+    subscription: function subscription(billable) {
+      if (!billable) {
+        return;
+      }
 
-    methods: {
-        /**
-         * Get the profile user.
-         */
-        getUserProfile: function getUserProfile(id) {
-            var _this2 = this;
+      var subscription = _.find(billable.subscriptions, function (subscription) {
+        return subscription.name == 'default';
+      });
 
-            this.loading = true;
+      if (typeof subscription !== 'undefined') {
+        return subscription;
+      }
+    },
 
-            axios.get('/spark/kiosk/users/' + id + '/profile').then(function (response) {
-                _this2.profile = response.data.user;
-                _this2.revenue = response.data.revenue;
+    /**
+     * Get the customer URL on the billing provider's website.
+     */
+    customerUrlOnBillingProvider: function customerUrlOnBillingProvider(billable) {
+      if (!billable) {
+        return;
+      }
 
-                _this2.loading = false;
-            });
-        },
+      if (this.spark.usesStripe) {
+        return 'https://dashboard.stripe.com/customers/' + billable.stripe_id;
+      } else {
+        var domain = Spark.env == 'production' ? '' : 'sandbox.';
+        return 'https://' + domain + 'braintreegateway.com/merchants/' + Spark.braintreeMerchantId + '/customers/' + billable.braintree_id;
+      }
+    },
 
-
-        /**
-         * Impersonate the given user.
-         */
-        impersonate: function impersonate(user) {
-            window.location = '/spark/kiosk/users/impersonate/' + user.id;
-        },
-
-
-        /**
-         * Show the discount modal for the given user.
-         */
-        addDiscount: function addDiscount(user) {
-            Bus.$emit('addDiscount', user);
-        },
-
-
-        /**
-         * Get the plan the user is actively subscribed to.
-         */
-        activePlan: function activePlan(billable) {
-            if (this.activeSubscription(billable)) {
-                var activeSubscription = this.activeSubscription(billable);
-
-                return _.find(this.plans, function (plan) {
-                    return plan.id == activeSubscription.provider_plan;
-                });
-            }
-        },
-
-
-        /**
-         * Get the active, valid subscription for the user.
-         */
-        activeSubscription: function activeSubscription(billable) {
-            var subscription = this.subscription(billable);
-
-            if (!subscription || subscription.ends_at && moment.utc().isAfter(moment.utc(subscription.ends_at))) {
-                return;
-            }
-
-            return subscription;
-        },
-
-
-        /**
-         * Get the active subscription instance.
-         */
-        subscription: function subscription(billable) {
-            if (!billable) {
-                return;
-            }
-
-            var subscription = _.find(billable.subscriptions, function (subscription) {
-                return subscription.name == 'default';
-            });
-
-            if (typeof subscription !== 'undefined') {
-                return subscription;
-            }
-        },
-
-
-        /**
-         * Get the customer URL on the billing provider's website.
-         */
-        customerUrlOnBillingProvider: function customerUrlOnBillingProvider(billable) {
-            if (!billable) {
-                return;
-            }
-
-            if (this.spark.usesStripe) {
-                return 'https://dashboard.stripe.com/customers/' + billable.stripe_id;
-            } else {
-                var domain = Spark.env == 'production' ? '' : 'sandbox.';
-
-                return 'https://' + domain + 'braintreegateway.com/merchants/' + Spark.braintreeMerchantId + '/customers/' + billable.braintree_id;
-            }
-        },
-
-
-        /**
-         * Show the search results and hide the user profile.
-         */
-        showSearch: function showSearch() {
-            this.$parent.$emit('showSearch');
-
-            this.profile = null;
-        }
+    /**
+     * Show the search results and hide the user profile.
+     */
+    showSearch: function showSearch() {
+      this.$parent.$emit('showSearch');
+      this.profile = null;
     }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/kiosk/users.js":
+/*!**************************************************!*\
+  !*** ./spark/resources/assets/js/kiosk/users.js ***!
+  \**************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = {
-    props: ['user'],
+  props: ['user'],
 
+  /**
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      plans: [],
+      searchForm: new SparkForm({
+        query: ''
+      }),
+      searching: false,
+      noSearchResults: false,
+      searchResults: [],
+      showingUserProfile: false
+    };
+  },
+
+  /**
+   * The component has been created by Vue.
+   */
+  created: function created() {
+    var self = this;
+    this.getPlans();
+    this.$on('showSearch', function () {
+      self.navigateToSearch();
+    });
+    Bus.$on('sparkHashChanged', function (hash, parameters) {
+      if (hash != 'users') {
+        return true;
+      }
+
+      if (parameters && parameters.length > 0) {
+        self.loadProfile({
+          id: parameters[0]
+        });
+      } else {
+        self.showSearch();
+      }
+
+      return true;
+    });
+  },
+  methods: {
     /**
-     * The component's data.
+     * Get all of the available subscription plans.
      */
-    data: function data() {
-        return {
-            plans: [],
+    getPlans: function getPlans() {
+      var _this = this;
 
-            searchForm: new SparkForm({
-                query: ''
-            }),
-
-            searching: false,
-            noSearchResults: false,
-            searchResults: [],
-
-            showingUserProfile: false
-        };
+      axios.get('/spark/plans').then(function (response) {
+        _this.plans = response.data;
+      });
     },
 
-
     /**
-     * The component has been created by Vue.
+     * Perform a search for the given query.
      */
-    created: function created() {
-        var self = this;
+    search: function search() {
+      var _this2 = this;
 
-        this.getPlans();
-
-        this.$on('showSearch', function () {
-            self.navigateToSearch();
-        });
-
-        Bus.$on('sparkHashChanged', function (hash, parameters) {
-            if (hash != 'users') {
-                return true;
-            }
-
-            if (parameters && parameters.length > 0) {
-                self.loadProfile({ id: parameters[0] });
-            } else {
-                self.showSearch();
-            }
-
-            return true;
-        });
+      this.searching = true;
+      this.noSearchResults = false;
+      axios.post('/spark/kiosk/users/search', this.searchForm).then(function (response) {
+        _this2.searchResults = response.data;
+        _this2.noSearchResults = _this2.searchResults.length === 0;
+        _this2.searching = false;
+      });
     },
 
+    /**
+     * Show the search results and update the browser history.
+     */
+    navigateToSearch: function navigateToSearch() {
+      history.pushState(null, null, '#/users');
+      this.showSearch();
+    },
 
-    methods: {
-        /**
-         * Get all of the available subscription plans.
-         */
-        getPlans: function getPlans() {
-            var _this = this;
+    /**
+     * Show the search results.
+     */
+    showSearch: function showSearch() {
+      this.showingUserProfile = false;
+      Vue.nextTick(function () {
+        $('#kiosk-users-search').focus();
+      });
+    },
 
-            axios.get('/spark/plans').then(function (response) {
-                _this.plans = response.data;
-            });
-        },
+    /**
+     * Show the user profile for the given user.
+     */
+    showUserProfile: function showUserProfile(user) {
+      history.pushState(null, null, '#/users/' + user.id);
+      this.loadProfile(user);
+    },
 
-
-        /**
-         * Perform a search for the given query.
-         */
-        search: function search() {
-            var _this2 = this;
-
-            this.searching = true;
-            this.noSearchResults = false;
-
-            axios.post('/spark/kiosk/users/search', this.searchForm).then(function (response) {
-                _this2.searchResults = response.data;
-                _this2.noSearchResults = _this2.searchResults.length === 0;
-
-                _this2.searching = false;
-            });
-        },
-
-
-        /**
-         * Show the search results and update the browser history.
-         */
-        navigateToSearch: function navigateToSearch() {
-            history.pushState(null, null, '#/users');
-
-            this.showSearch();
-        },
-
-
-        /**
-         * Show the search results.
-         */
-        showSearch: function showSearch() {
-            this.showingUserProfile = false;
-
-            Vue.nextTick(function () {
-                $('#kiosk-users-search').focus();
-            });
-        },
-
-
-        /**
-         * Show the user profile for the given user.
-         */
-        showUserProfile: function showUserProfile(user) {
-            history.pushState(null, null, '#/users/' + user.id);
-
-            this.loadProfile(user);
-        },
-
-
-        /**
-         * Load the user profile for the given user.
-         */
-        loadProfile: function loadProfile(user) {
-            this.$emit('showUserProfile', user.id);
-
-            this.showingUserProfile = true;
-        }
+    /**
+     * Load the user profile for the given user.
+     */
+    loadProfile: function loadProfile(user) {
+      this.$emit('showUserProfile', user.id);
+      this.showingUserProfile = true;
     }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/mixin.js":
+/*!********************************************!*\
+  !*** ./spark/resources/assets/js/mixin.js ***!
+  \********************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = {
-    computed: {
-        /**
-         * Get the billable entity.
-         */
-        billable: function billable() {
-            if (this.billableType) {
-                return this.billableType == 'user' ? this.user : this.team;
-            } else {
-                return this.user;
-            }
-        },
+  computed: {
+    /**
+     * Get the billable entity.
+     */
+    billable: function billable() {
+      if (this.billableType) {
+        return this.billableType == 'user' ? this.user : this.team;
+      } else {
+        return this.user;
+      }
+    },
 
+    /**
+     * Determine if the current billable entity is a user.
+     */
+    billingUser: function billingUser() {
+      return this.billableType && this.billableType == 'user';
+    },
 
-        /**
-         * Determine if the current billable entity is a user.
-         */
-        billingUser: function billingUser() {
-            return this.billableType && this.billableType == 'user';
-        },
-
-
-        /**
-         * Access the global Spark object.
-         */
-        spark: function spark() {
-            return window.Spark;
-        }
+    /**
+     * Access the global Spark object.
+     */
+    spark: function spark() {
+      return window.Spark;
     }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/mixins/braintree.js":
+/*!*******************************************************!*\
+  !*** ./spark/resources/assets/js/mixins/braintree.js ***!
+  \*******************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 window.braintreeCheckout = [];
-
 module.exports = {
-    methods: {
-        /**
-         * Configure the Braintree container.
-         */
-        braintree: function (_braintree) {
-            function braintree(_x, _x2) {
-                return _braintree.apply(this, arguments);
-            }
+  methods: {
+    /**
+     * Configure the Braintree container.
+     */
+    braintree: function (_braintree) {
+      function braintree(_x, _x2) {
+        return _braintree.apply(this, arguments);
+      }
 
-            braintree.toString = function () {
-                return _braintree.toString();
-            };
+      braintree.toString = function () {
+        return _braintree.toString();
+      };
 
-            return braintree;
-        }(function (containerName, callback) {
-            braintree.setup(Spark.braintreeToken, 'dropin', {
-                container: containerName,
-                paypal: {
-                    singleUse: false,
-                    locale: 'en_us',
-                    enableShippingAddress: false
-                },
-                dataCollector: {
-                    paypal: true
-                },
-                onReady: function onReady(checkout) {
-                    window.braintreeCheckout[containerName] = checkout;
-                },
+      return braintree;
+    }(function (containerName, callback) {
+      braintree.setup(Spark.braintreeToken, 'dropin', {
+        container: containerName,
+        paypal: {
+          singleUse: false,
+          locale: 'en_us',
+          enableShippingAddress: false
+        },
+        dataCollector: {
+          paypal: true
+        },
+        onReady: function onReady(checkout) {
+          window.braintreeCheckout[containerName] = checkout;
+        },
+        onPaymentMethodReceived: callback
+      });
+    }),
 
-                onPaymentMethodReceived: callback
-            });
-        }),
+    /**
+     * Reset the Braintree container.
+     */
+    resetBraintree: function resetBraintree(containerName, callback) {
+      var _this = this;
 
+      window.braintreeCheckout[containerName].teardown(function () {
+        window.braintreeCheckout[containerName] = null;
 
-        /**
-         * Reset the Braintree container.
-         */
-        resetBraintree: function resetBraintree(containerName, callback) {
-            var _this = this;
-
-            window.braintreeCheckout[containerName].teardown(function () {
-                window.braintreeCheckout[containerName] = null;
-
-                _this.braintree(containerName, callback);
-            });
-        }
+        _this.braintree(containerName, callback);
+      });
     }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/mixins/discounts.js":
+/*!*******************************************************!*\
+  !*** ./spark/resources/assets/js/mixins/discounts.js ***!
+  \*******************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = {
-    methods: {
-        /**
-         * Get the current discount for the given billable entity.
-         */
-        getCurrentDiscountForBillable: function getCurrentDiscountForBillable(type, billable) {
-            if (type === 'user') {
-                return this.getCurrentDiscountForUser(billable);
-            } else {
-                return this.getCurrentDiscountForTeam(billable);
-            }
-        },
+  methods: {
+    /**
+     * Get the current discount for the given billable entity.
+     */
+    getCurrentDiscountForBillable: function getCurrentDiscountForBillable(type, billable) {
+      if (type === 'user') {
+        return this.getCurrentDiscountForUser(billable);
+      } else {
+        return this.getCurrentDiscountForTeam(billable);
+      }
+    },
 
+    /**
+     * Get the current discount for the user.
+     */
+    getCurrentDiscountForUser: function getCurrentDiscountForUser(user) {
+      var _this = this;
 
-        /**
-         * Get the current discount for the user.
-         */
-        getCurrentDiscountForUser: function getCurrentDiscountForUser(user) {
-            var _this = this;
-
-            this.currentDiscount = null;
-
-            this.loadingCurrentDiscount = true;
-
-            axios.get('/coupon/user/' + user.id).then(function (response) {
-                if (response.status == 200) {
-                    _this.currentDiscount = response.data;
-                }
-
-                _this.loadingCurrentDiscount = false;
-            });
-        },
-
-
-        /**
-         * Get the current discount for the team.
-         */
-        getCurrentDiscountForTeam: function getCurrentDiscountForTeam(team) {
-            var _this2 = this;
-
-            this.currentDiscount = null;
-
-            this.loadingCurrentDiscount = true;
-
-            axios.get('/settings/' + Spark.teamsPrefix + '/coupon/' + team.id).then(function (response) {
-                if (response.status == 200) {
-                    _this2.currentDiscount = response.data;
-                }
-
-                _this2.loadingCurrentDiscount = false;
-            });
-        },
-
-
-        /**
-         * Get the formatted discount amount for the given discount.
-         */
-        formattedDiscount: function formattedDiscount(discount) {
-            if (!discount) {
-                return;
-            }
-
-            if (discount.percent_off) {
-                return discount.percent_off + '%';
-            } else {
-                return Vue.filter('currency')(this.calculateAmountOff(discount.amount_off));
-            }
-        },
-
-
-        /**
-         * Calculate the amount off for the given discount amount.
-         */
-        calculateAmountOff: function calculateAmountOff(amount) {
-            return amount / 100;
+      this.currentDiscount = null;
+      this.loadingCurrentDiscount = true;
+      axios.get("/coupon/user/".concat(user.id)).then(function (response) {
+        if (response.status == 200) {
+          _this.currentDiscount = response.data;
         }
+
+        _this.loadingCurrentDiscount = false;
+      });
+    },
+
+    /**
+     * Get the current discount for the team.
+     */
+    getCurrentDiscountForTeam: function getCurrentDiscountForTeam(team) {
+      var _this2 = this;
+
+      this.currentDiscount = null;
+      this.loadingCurrentDiscount = true;
+      axios.get("/settings/".concat(Spark.teamsPrefix, "/coupon/").concat(team.id)).then(function (response) {
+        if (response.status == 200) {
+          _this2.currentDiscount = response.data;
+        }
+
+        _this2.loadingCurrentDiscount = false;
+      });
+    },
+
+    /**
+     * Get the formatted discount amount for the given discount.
+     */
+    formattedDiscount: function formattedDiscount(discount) {
+      if (!discount) {
+        return;
+      }
+
+      if (discount.percent_off) {
+        return "".concat(discount.percent_off, "%");
+      } else {
+        return Vue.filter('currency')(this.calculateAmountOff(discount.amount_off));
+      }
+    },
+
+    /**
+     * Calculate the amount off for the given discount amount.
+     */
+    calculateAmountOff: function calculateAmountOff(amount) {
+      return amount / 100;
     }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/mixins/plans.js":
+/*!***************************************************!*\
+  !*** ./spark/resources/assets/js/mixins/plans.js ***!
+  \***************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 /*
@@ -71387,340 +78016,331 @@ module.exports = {
  * all of the various subscription plans offered by the application.
  */
 module.exports = {
-    data: function data() {
-        return {
-            selectedPlan: null,
-            detailingPlan: null,
-
-            showingMonthlyPlans: true,
-            showingYearlyPlans: false
-        };
+  data: function data() {
+    return {
+      selectedPlan: null,
+      detailingPlan: null,
+      showingMonthlyPlans: true,
+      showingYearlyPlans: false
+    };
+  },
+  methods: {
+    /**
+     * Switch to showing monthly plans.
+     */
+    showMonthlyPlans: function showMonthlyPlans() {
+      this.showingMonthlyPlans = true;
+      this.showingYearlyPlans = false;
     },
 
-
-    methods: {
-        /**
-         * Switch to showing monthly plans.
-         */
-        showMonthlyPlans: function showMonthlyPlans() {
-            this.showingMonthlyPlans = true;
-
-            this.showingYearlyPlans = false;
-        },
-
-
-        /**
-         * Switch to showing yearly plans.
-         */
-        showYearlyPlans: function showYearlyPlans() {
-            this.showingMonthlyPlans = false;
-
-            this.showingYearlyPlans = true;
-        },
-
-
-        /**
-         * Show the plan details for the given plan.
-         */
-        showPlanDetails: function showPlanDetails(plan) {
-            this.detailingPlan = plan;
-
-            $('#modal-plan-details').modal('show');
-        }
+    /**
+     * Switch to showing yearly plans.
+     */
+    showYearlyPlans: function showYearlyPlans() {
+      this.showingMonthlyPlans = false;
+      this.showingYearlyPlans = true;
     },
 
-    computed: {
-        /**
-         * Get the active "interval" being displayed.
-         */
-        activeInterval: function activeInterval() {
-            return this.showingMonthlyPlans ? 'monthly' : 'yearly';
-        },
-
-
-        /**
-         * Get all of the plans for the active interval.
-         */
-        plansForActiveInterval: function plansForActiveInterval() {
-            var _this = this;
-
-            return _.filter(this.plans, function (plan) {
-                return plan.active && (plan.price == 0 || plan.interval == _this.activeInterval);
-            });
-        },
-
-
-        /**
-         * Get all of the paid plans.
-         */
-        paidPlans: function paidPlans() {
-            return _.filter(this.plans, function (plan) {
-                return plan.active && plan.price > 0;
-            });
-        },
-
-
-        /**
-         * Get all of the paid plans for the active interval.
-         */
-        paidPlansForActiveInterval: function paidPlansForActiveInterval() {
-            return _.filter(this.plansForActiveInterval, function (plan) {
-                return plan.active && plan.price > 0;
-            });
-        },
-
-
-        /**
-         * Determine if both monthly and yearly plans are available.
-         */
-        hasMonthlyAndYearlyPlans: function hasMonthlyAndYearlyPlans() {
-            return this.monthlyPlans.length > 0 && this.yearlyPlans.length > 0;
-        },
-
-
-        /**
-         * Determine if both monthly and yearly plans are available.
-         */
-        hasMonthlyAndYearlyPaidPlans: function hasMonthlyAndYearlyPaidPlans() {
-            return _.filter(this.paidPlans, { interval: 'monthly' }).length > 0 && _.filter(this.paidPlans, { interval: 'yearly' }).length > 0;
-        },
-
-
-        /**
-         * Determine if only yearly plans are available.
-         */
-        onlyHasYearlyPlans: function onlyHasYearlyPlans() {
-            return this.monthlyPlans.length == 0 && this.yearlyPlans.length > 0;
-        },
-
-
-        /**
-         * Determine if both monthly and yearly plans are available.
-         */
-        onlyHasYearlyPaidPlans: function onlyHasYearlyPaidPlans() {
-            return _.filter(this.paidPlans, { interval: 'monthly' }).length == 0 && _.filter(this.paidPlans, { interval: 'yearly' }).length > 0;
-        },
-
-
-        /**
-         * Get all of the monthly plans.
-         */
-        monthlyPlans: function monthlyPlans() {
-            return _.filter(this.plans, function (plan) {
-                return plan.active && plan.interval == 'monthly';
-            });
-        },
-
-
-        /**
-         * Get all of the yearly plans.
-         */
-        yearlyPlans: function yearlyPlans() {
-            return _.filter(this.plans, function (plan) {
-                return plan.active && plan.interval == 'yearly';
-            });
-        }
+    /**
+     * Show the plan details for the given plan.
+     */
+    showPlanDetails: function showPlanDetails(plan) {
+      this.detailingPlan = plan;
+      $('#modal-plan-details').modal('show');
     }
+  },
+  computed: {
+    /**
+     * Get the active "interval" being displayed.
+     */
+    activeInterval: function activeInterval() {
+      return this.showingMonthlyPlans ? 'monthly' : 'yearly';
+    },
+
+    /**
+     * Get all of the plans for the active interval.
+     */
+    plansForActiveInterval: function plansForActiveInterval() {
+      var _this = this;
+
+      return _.filter(this.plans, function (plan) {
+        return plan.active && (plan.price == 0 || plan.interval == _this.activeInterval);
+      });
+    },
+
+    /**
+     * Get all of the paid plans.
+     */
+    paidPlans: function paidPlans() {
+      return _.filter(this.plans, function (plan) {
+        return plan.active && plan.price > 0;
+      });
+    },
+
+    /**
+     * Get all of the paid plans for the active interval.
+     */
+    paidPlansForActiveInterval: function paidPlansForActiveInterval() {
+      return _.filter(this.plansForActiveInterval, function (plan) {
+        return plan.active && plan.price > 0;
+      });
+    },
+
+    /**
+     * Determine if both monthly and yearly plans are available.
+     */
+    hasMonthlyAndYearlyPlans: function hasMonthlyAndYearlyPlans() {
+      return this.monthlyPlans.length > 0 && this.yearlyPlans.length > 0;
+    },
+
+    /**
+     * Determine if both monthly and yearly plans are available.
+     */
+    hasMonthlyAndYearlyPaidPlans: function hasMonthlyAndYearlyPaidPlans() {
+      return _.filter(this.paidPlans, {
+        interval: 'monthly'
+      }).length > 0 && _.filter(this.paidPlans, {
+        interval: 'yearly'
+      }).length > 0;
+    },
+
+    /**
+     * Determine if only yearly plans are available.
+     */
+    onlyHasYearlyPlans: function onlyHasYearlyPlans() {
+      return this.monthlyPlans.length == 0 && this.yearlyPlans.length > 0;
+    },
+
+    /**
+     * Determine if both monthly and yearly plans are available.
+     */
+    onlyHasYearlyPaidPlans: function onlyHasYearlyPaidPlans() {
+      return _.filter(this.paidPlans, {
+        interval: 'monthly'
+      }).length == 0 && _.filter(this.paidPlans, {
+        interval: 'yearly'
+      }).length > 0;
+    },
+
+    /**
+     * Get all of the monthly plans.
+     */
+    monthlyPlans: function monthlyPlans() {
+      return _.filter(this.plans, function (plan) {
+        return plan.active && plan.interval == 'monthly';
+      });
+    },
+
+    /**
+     * Get all of the yearly plans.
+     */
+    yearlyPlans: function yearlyPlans() {
+      return _.filter(this.plans, function (plan) {
+        return plan.active && plan.interval == 'yearly';
+      });
+    }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/mixins/register.js":
+/*!******************************************************!*\
+  !*** ./spark/resources/assets/js/mixins/register.js ***!
+  \******************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = {
+  /**
+   * The mixin's data.
+   */
+  data: function data() {
+    return {
+      plans: [],
+      selectedPlan: null,
+      invitation: null,
+      invalidInvitation: false
+    };
+  },
+  methods: {
     /**
-     * The mixin's data.
+     * Get the active plans for the application.
      */
-    data: function data() {
-        return {
-            plans: [],
-            selectedPlan: null,
+    getPlans: function getPlans() {
+      var _this = this;
 
-            invitation: null,
-            invalidInvitation: false
-        };
+      if (!Spark.cardUpFront) {
+        return;
+      }
+
+      axios.get('/spark/plans').then(function (response) {
+        var plans = response.data;
+        _this.plans = _.filter(plans, {
+          type: "user"
+        }).length > 0 ? _.filter(plans, {
+          type: "user"
+        }) : _.filter(plans, {
+          type: "team"
+        });
+
+        _this.selectAppropriateDefaultPlan();
+      });
     },
 
+    /**
+     * Get the invitation specified in the query string.
+     */
+    getInvitation: function getInvitation() {
+      var _this2 = this;
 
-    methods: {
-        /**
-         * Get the active plans for the application.
-         */
-        getPlans: function getPlans() {
-            var _this = this;
+      axios.get("/invitations/".concat(this.query.invitation)).then(function (response) {
+        _this2.invitation = response.data;
+      }).catch(function (response) {
+        _this2.invalidInvitation = true;
+      });
+    },
 
-            if (!Spark.cardUpFront) {
-                return;
-            }
+    /**
+     * Select the appropriate default plan for registration.
+     */
+    selectAppropriateDefaultPlan: function selectAppropriateDefaultPlan() {
+      if (this.query.plan) {
+        this.selectPlanById(this.query.plan) || this.selectPlanByName(this.query.plan);
+      } else if (this.query.invitation) {
+        this.selectFreePlan();
+      } else if (this.paidPlansForActiveInterval.length > 0) {
+        this.selectPlan(this.paidPlansForActiveInterval[0]);
+      } else {
+        this.selectFreePlan();
+      }
 
-            axios.get('/spark/plans').then(function (response) {
-                var plans = response.data;
+      if (this.shouldShowYearlyPlans()) {
+        this.showYearlyPlans();
+      }
+    },
 
-                _this.plans = _.filter(plans, { type: "user" }).length > 0 ? _.filter(plans, { type: "user" }) : _.filter(plans, { type: "team" });
+    /**
+     * Select the free plan.
+     */
+    selectFreePlan: function selectFreePlan() {
+      var plan = _.find(this.plans, function (plan) {
+        return plan.price === 0;
+      });
 
-                _this.selectAppropriateDefaultPlan();
-            });
-        },
+      if (typeof plan !== 'undefined') {
+        this.selectPlan(plan);
+      }
+    },
 
+    /**
+     * Select the plan with the given id.
+     */
+    selectPlanById: function selectPlanById(id) {
+      var _this3 = this;
 
-        /**
-         * Get the invitation specified in the query string.
-         */
-        getInvitation: function getInvitation() {
-            var _this2 = this;
-
-            axios.get("/invitations/" + this.query.invitation).then(function (response) {
-                _this2.invitation = response.data;
-            }).catch(function (response) {
-                _this2.invalidInvitation = true;
-            });
-        },
-
-
-        /**
-         * Select the appropriate default plan for registration.
-         */
-        selectAppropriateDefaultPlan: function selectAppropriateDefaultPlan() {
-            if (this.query.plan) {
-                this.selectPlanById(this.query.plan) || this.selectPlanByName(this.query.plan);
-            } else if (this.query.invitation) {
-                this.selectFreePlan();
-            } else if (this.paidPlansForActiveInterval.length > 0) {
-                this.selectPlan(this.paidPlansForActiveInterval[0]);
-            } else {
-                this.selectFreePlan();
-            }
-
-            if (this.shouldShowYearlyPlans()) {
-                this.showYearlyPlans();
-            }
-        },
-
-
-        /**
-         * Select the free plan.
-         */
-        selectFreePlan: function selectFreePlan() {
-            var plan = _.find(this.plans, function (plan) {
-                return plan.price === 0;
-            });
-
-            if (typeof plan !== 'undefined') {
-                this.selectPlan(plan);
-            }
-        },
-
-
-        /**
-         * Select the plan with the given id.
-         */
-        selectPlanById: function selectPlanById(id) {
-            var _this3 = this;
-
-            _.each(this.plans, function (plan) {
-                if (plan.id == id) {
-                    _this3.selectPlan(plan);
-                }
-            });
-
-            return this.selectedPlan;
-        },
-
-
-        /**
-         * Select the plan with the given name.
-         */
-        selectPlanByName: function selectPlanByName(name) {
-            var _this4 = this;
-
-            _.each(this.plans, function (plan) {
-                if (plan.name == name) {
-                    _this4.selectPlan(plan);
-                }
-            });
-
-            return this.selectedPlan;
-        },
-
-
-        /**
-         * Determine if the given plan is selected.
-         */
-        isSelected: function isSelected(plan) {
-            return this.selectedPlan && plan.id == this.selectedPlan.id;
-        },
-
-
-        /**
-         * Select the given plan.
-         */
-        selectPlan: function selectPlan(plan) {
-            this.selectedPlan = plan;
-
-            this.registerForm.plan = plan.id;
-        },
-
-
-        /**
-         * Determine if we should show the yearly plans.
-         */
-        shouldShowYearlyPlans: function shouldShowYearlyPlans() {
-            return this.monthlyPlans.length == 0 && this.yearlyPlans.length > 0 || this.selectedPlan.interval == 'yearly';
+      _.each(this.plans, function (plan) {
+        if (plan.id == id) {
+          _this3.selectPlan(plan);
         }
+      });
+
+      return this.selectedPlan;
+    },
+
+    /**
+     * Select the plan with the given name.
+     */
+    selectPlanByName: function selectPlanByName(name) {
+      var _this4 = this;
+
+      _.each(this.plans, function (plan) {
+        if (plan.name == name) {
+          _this4.selectPlan(plan);
+        }
+      });
+
+      return this.selectedPlan;
+    },
+
+    /**
+     * Determine if the given plan is selected.
+     */
+    isSelected: function isSelected(plan) {
+      return this.selectedPlan && plan.id == this.selectedPlan.id;
+    },
+
+    /**
+     * Select the given plan.
+     */
+    selectPlan: function selectPlan(plan) {
+      this.selectedPlan = plan;
+      this.registerForm.plan = plan.id;
+    },
+
+    /**
+     * Determine if we should show the yearly plans.
+     */
+    shouldShowYearlyPlans: function shouldShowYearlyPlans() {
+      return this.monthlyPlans.length == 0 && this.yearlyPlans.length > 0 || this.selectedPlan.interval == 'yearly';
     }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/mixins/stripe.js":
+/*!****************************************************!*\
+  !*** ./spark/resources/assets/js/mixins/stripe.js ***!
+  \****************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = {
+  /**
+   * The mixin's data.
+   */
+  data: function data() {
+    return {
+      stripe: Spark.stripeKey ? Stripe(Spark.stripeKey) : null
+    };
+  },
+  methods: {
     /**
-     * The mixin's data.
+     * Create a Stripe Card Element.
      */
-    data: function data() {
-        return {
-            stripe: Spark.stripeKey ? Stripe(Spark.stripeKey) : null
-        };
-    },
+    createCardElement: function createCardElement(container) {
+      if (!this.stripe) {
+        throw "Invalid Stripe Key/Secret";
+      }
 
-
-    methods: {
-        /**
-         * Create a Stripe Card Element.
-         */
-        createCardElement: function createCardElement(container) {
-            if (!this.stripe) {
-                throw "Invalid Stripe Key/Secret";
-            }
-
-            var card = this.stripe.elements().create('card', {
-                hideIcon: true,
-                hidePostalCode: true,
-                style: {
-                    base: {
-                        '::placeholder': {
-                            color: '#aab7c4'
-                        },
-                        fontFamily: 'Whitney, Lato, -apple-system, BlinkMacSystemFont,"Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji","Segoe UI Emoji", "Segoe UI Symbol"',
-                        color: '#495057',
-                        fontSize: '15px'
-                    }
-                }
-            });
-
-            card.mount(container);
-
-            return card;
+      var card = this.stripe.elements().create('card', {
+        hideIcon: true,
+        hidePostalCode: true,
+        style: {
+          base: {
+            '::placeholder': {
+              color: '#aab7c4'
+            },
+            fontFamily: 'Whitney, Lato, -apple-system, BlinkMacSystemFont,"Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji","Segoe UI Emoji", "Segoe UI Symbol"',
+            color: '#495057',
+            fontSize: '15px'
+          }
         }
+      });
+      card.mount(container);
+      return card;
     }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/mixins/subscriptions.js":
+/*!***********************************************************!*\
+  !*** ./spark/resources/assets/js/mixins/subscriptions.js ***!
+  \***********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 /*
@@ -71729,3466 +78349,3093 @@ module.exports = {
  * the active subscription, trial information and other convenience helpers.
  */
 module.exports = {
+  /**
+   * The mixin's data.
+   */
+  data: function data() {
+    return {
+      selectingPlan: null,
+      planForm: new SparkForm({})
+    };
+  },
+  methods: {
     /**
-     * The mixin's data.
+     * Update the subscription to the given plan.
+     *
+     * Used when updating or resuming the subscription plan.
      */
-    data: function data() {
-        return {
-            selectingPlan: null,
+    updateSubscription: function updateSubscription(plan) {
+      var _this = this;
 
-            planForm: new SparkForm({})
-        };
+      this.selectingPlan = plan;
+      this.planForm.errors.forget(); // Here we will send the request to the server to update the subscription plan and
+      // update the user and team once the request is complete. This method gets used
+      // for both updating subscriptions plus resuming any cancelled subscriptions.
+
+      axios.put(this.urlForPlanUpdate, {
+        "plan": plan.id
+      }).then(function () {
+        Bus.$emit('updateUser');
+        Bus.$emit('updateTeam');
+      }).catch(function (errors) {
+        if (errors.response.status == 422) {
+          _this.planForm.errors.set(errors.response.data.errors);
+        } else {
+          _this.planForm.errors.set({
+            plan: [__("We were unable to update your subscription. Please contact customer support.")]
+          });
+        }
+      }).finally(function () {
+        _this.selectingPlan = null;
+      });
     },
 
-
-    methods: {
-        /**
-         * Update the subscription to the given plan.
-         *
-         * Used when updating or resuming the subscription plan.
-         */
-        updateSubscription: function updateSubscription(plan) {
-            var _this = this;
-
-            this.selectingPlan = plan;
-
-            this.planForm.errors.forget();
-
-            // Here we will send the request to the server to update the subscription plan and
-            // update the user and team once the request is complete. This method gets used
-            // for both updating subscriptions plus resuming any cancelled subscriptions.
-            axios.put(this.urlForPlanUpdate, { "plan": plan.id }).then(function () {
-                Bus.$emit('updateUser');
-                Bus.$emit('updateTeam');
-            }).catch(function (errors) {
-                if (errors.response.status == 422) {
-                    _this.planForm.errors.set(errors.response.data.errors);
-                } else {
-                    _this.planForm.errors.set({ plan: [__("We were unable to update your subscription. Please contact customer support.")] });
-                }
-            }).finally(function () {
-                _this.selectingPlan = null;
-            });
-        },
-
-
-        /**
-         * Determine if the given plan is selected.
-         */
-        isActivePlan: function isActivePlan(plan) {
-            return this.activeSubscription && this.activeSubscription.provider_plan == plan.id;
-        }
-    },
-
-    computed: {
-        /**
-         * Get the active plan instance.
-         */
-        activePlan: function activePlan() {
-            var _this2 = this;
-
-            if (this.activeSubscription) {
-                return _.find(this.plans, function (plan) {
-                    return plan.id == _this2.activeSubscription.provider_plan;
-                });
-            }
-        },
-
-
-        /**
-         * Determine if the active plan is a monthly plan.
-         */
-        activePlanIsMonthly: function activePlanIsMonthly() {
-            return this.activePlan && this.activePlan.interval == 'monthly';
-        },
-
-
-        /**
-         * Get the active subscription instance.
-         */
-        activeSubscription: function activeSubscription() {
-            if (!this.billable) {
-                return;
-            }
-
-            var subscription = _.find(this.billable.subscriptions, function (subscription) {
-                return subscription.name == 'default';
-            });
-
-            if (typeof subscription !== 'undefined') {
-                return subscription;
-            }
-        },
-
-
-        /**
-         * Determine if the current subscription is active.
-         */
-        subscriptionIsActive: function subscriptionIsActive() {
-            return this.activeSubscription && !this.activeSubscription.ends_at;
-        },
-
-
-        /**
-         * Determine if the billable entity is on a generic trial.
-         */
-        onGenericTrial: function onGenericTrial() {
-            return this.billable.trial_ends_at && moment.utc(this.billable.trial_ends_at).isAfter(moment.utc());
-        },
-
-
-        /**
-         * Determine if the current subscription is active.
-         */
-        subscriptionIsOnTrial: function subscriptionIsOnTrial() {
-            if (this.onGenericTrial) {
-                return true;
-            }
-
-            return this.activeSubscription && this.activeSubscription.trial_ends_at && moment.utc().isBefore(moment.utc(this.activeSubscription.trial_ends_at));
-        },
-
-
-        /**
-         * Get the formatted trial ending date.
-         */
-        trialEndsAt: function trialEndsAt() {
-            if (!this.subscriptionIsOnTrial) {
-                return;
-            }
-
-            if (this.onGenericTrial) {
-                return moment.utc(this.billable.trial_ends_at).local().format('MMMM Do, YYYY');
-            }
-
-            return moment.utc(this.activeSubscription.trial_ends_at).local().format('MMMM Do, YYYY');
-        },
-
-
-        /**
-         * Determine if the current subscription is active.
-         */
-        subscriptionIsOnGracePeriod: function subscriptionIsOnGracePeriod() {
-            return this.activeSubscription && this.activeSubscription.ends_at && moment.utc().isBefore(moment.utc(this.activeSubscription.ends_at));
-        },
-
-
-        /**
-         * Determine if the billable entity has no active subscription.
-         */
-        needsSubscription: function needsSubscription() {
-            return !this.activeSubscription || this.activeSubscription.ends_at && moment.utc().isAfter(moment.utc(this.activeSubscription.ends_at));
-        },
-
-
-        /**
-         * Get the URL for the subscription plan update.
-         */
-        urlForPlanUpdate: function urlForPlanUpdate() {
-            return this.billingUser ? '/settings/subscription' : '/settings/' + Spark.teamsPrefix + '/' + this.team.id + '/subscription';
-        }
+    /**
+     * Determine if the given plan is selected.
+     */
+    isActivePlan: function isActivePlan(plan) {
+      return this.activeSubscription && this.activeSubscription.provider_plan == plan.id;
     }
+  },
+  computed: {
+    /**
+     * Get the active plan instance.
+     */
+    activePlan: function activePlan() {
+      var _this2 = this;
+
+      if (this.activeSubscription) {
+        return _.find(this.plans, function (plan) {
+          return plan.id == _this2.activeSubscription.provider_plan;
+        });
+      }
+    },
+
+    /**
+     * Determine if the active plan is a monthly plan.
+     */
+    activePlanIsMonthly: function activePlanIsMonthly() {
+      return this.activePlan && this.activePlan.interval == 'monthly';
+    },
+
+    /**
+     * Get the active subscription instance.
+     */
+    activeSubscription: function activeSubscription() {
+      if (!this.billable) {
+        return;
+      }
+
+      var subscription = _.find(this.billable.subscriptions, function (subscription) {
+        return subscription.name == 'default';
+      });
+
+      if (typeof subscription !== 'undefined') {
+        return subscription;
+      }
+    },
+
+    /**
+     * Determine if the current subscription is active.
+     */
+    subscriptionIsActive: function subscriptionIsActive() {
+      return this.activeSubscription && !this.activeSubscription.ends_at;
+    },
+
+    /**
+     * Determine if the billable entity is on a generic trial.
+     */
+    onGenericTrial: function onGenericTrial() {
+      return this.billable.trial_ends_at && moment.utc(this.billable.trial_ends_at).isAfter(moment.utc());
+    },
+
+    /**
+     * Determine if the current subscription is active.
+     */
+    subscriptionIsOnTrial: function subscriptionIsOnTrial() {
+      if (this.onGenericTrial) {
+        return true;
+      }
+
+      return this.activeSubscription && this.activeSubscription.trial_ends_at && moment.utc().isBefore(moment.utc(this.activeSubscription.trial_ends_at));
+    },
+
+    /**
+     * Get the formatted trial ending date.
+     */
+    trialEndsAt: function trialEndsAt() {
+      if (!this.subscriptionIsOnTrial) {
+        return;
+      }
+
+      if (this.onGenericTrial) {
+        return moment.utc(this.billable.trial_ends_at).local().format('MMMM Do, YYYY');
+      }
+
+      return moment.utc(this.activeSubscription.trial_ends_at).local().format('MMMM Do, YYYY');
+    },
+
+    /**
+     * Determine if the current subscription is active.
+     */
+    subscriptionIsOnGracePeriod: function subscriptionIsOnGracePeriod() {
+      return this.activeSubscription && this.activeSubscription.ends_at && moment.utc().isBefore(moment.utc(this.activeSubscription.ends_at));
+    },
+
+    /**
+     * Determine if the billable entity has no active subscription.
+     */
+    needsSubscription: function needsSubscription() {
+      return !this.activeSubscription || this.activeSubscription.ends_at && moment.utc().isAfter(moment.utc(this.activeSubscription.ends_at));
+    },
+
+    /**
+     * Get the URL for the subscription plan update.
+     */
+    urlForPlanUpdate: function urlForPlanUpdate() {
+      return this.billingUser ? '/settings/subscription' : "/settings/".concat(Spark.teamsPrefix, "/").concat(this.team.id, "/subscription");
+    }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/mixins/tab-state.js":
+/*!*******************************************************!*\
+  !*** ./spark/resources/assets/js/mixins/tab-state.js ***!
+  \*******************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = {
-    pushStateSelector: null,
+  pushStateSelector: null,
+  methods: {
+    /**
+     * Initialize push state handling for tabs.
+     */
+    usePushStateForTabs: function usePushStateForTabs(selector) {
+      var _this = this;
 
-    methods: {
-        /**
-         * Initialize push state handling for tabs.
-         */
-        usePushStateForTabs: function usePushStateForTabs(selector) {
-            var _this = this;
+      this.pushStateSelector = selector;
+      this.registerTabClickHandler();
+      window.addEventListener('popstate', function (e) {
+        _this.activateTabForCurrentHash();
+      });
 
-            this.pushStateSelector = selector;
+      if (window.location.hash) {
+        this.activateTabForCurrentHash();
+      } else {
+        this.activateFirstTab();
+      }
+    },
 
-            this.registerTabClickHandler();
+    /**
+     * Register the click handler for all of the tabs.
+     */
+    registerTabClickHandler: function registerTabClickHandler() {
+      var self = this;
+      $("".concat(this.pushStateSelector, " a[data-toggle=\"tab\"]")).on('click', function (e) {
+        self.removeActiveClassFromTabs();
+        history.pushState(null, null, '#/' + $(this).attr('href').substring(1));
+        self.broadcastTabChange($(this).attr('href').substring(1));
+      });
+    },
 
-            window.addEventListener('popstate', function (e) {
-                _this.activateTabForCurrentHash();
-            });
+    /**
+     * Activate the tab for the current hash in the URL.
+     */
+    activateTabForCurrentHash: function activateTabForCurrentHash() {
+      var hash = window.location.hash.substring(2);
+      var parameters = hash.split('/');
+      hash = parameters.shift();
+      this.removeActiveClassFromTabs();
+      var tab = $("".concat(this.pushStateSelector, " a[href=\"#").concat(hash, "\"][data-toggle=\"tab\"]"));
 
-            if (window.location.hash) {
-                this.activateTabForCurrentHash();
-            } else {
-                this.activateFirstTab();
-            }
-        },
+      if (tab.length > 0) {
+        tab.tab('show');
+        this.broadcastTabChange(hash, parameters);
+      } else {
+        this.activateFirstTab();
+      }
+    },
 
+    /**
+     * Activate the first tab in a list.
+     */
+    activateFirstTab: function activateFirstTab() {
+      var tab = $("".concat(this.pushStateSelector, " a[data-toggle=\"tab\"]")).first();
 
-        /**
-         * Register the click handler for all of the tabs.
-         */
-        registerTabClickHandler: function registerTabClickHandler() {
-            var self = this;
+      if (tab.length) {
+        tab.tab('show');
+        this.broadcastTabChange(tab.attr('href').substring(1));
+      }
+    },
 
-            $(this.pushStateSelector + ' a[data-toggle="tab"]').on('click', function (e) {
-                self.removeActiveClassFromTabs();
+    /**
+     * Remove the active class from the tabs.
+     */
+    removeActiveClassFromTabs: function removeActiveClassFromTabs() {
+      $("".concat(this.pushStateSelector, " a")).removeClass('active');
+    },
 
-                history.pushState(null, null, '#/' + $(this).attr('href').substring(1));
-
-                self.broadcastTabChange($(this).attr('href').substring(1));
-            });
-        },
-
-
-        /**
-         * Activate the tab for the current hash in the URL.
-         */
-        activateTabForCurrentHash: function activateTabForCurrentHash() {
-            var hash = window.location.hash.substring(2);
-
-            var parameters = hash.split('/');
-
-            hash = parameters.shift();
-
-            this.removeActiveClassFromTabs();
-
-            var tab = $(this.pushStateSelector + ' a[href="#' + hash + '"][data-toggle="tab"]');
-
-            if (tab.length > 0) {
-                tab.tab('show');
-
-                this.broadcastTabChange(hash, parameters);
-            } else {
-                this.activateFirstTab();
-            }
-        },
-
-
-        /**
-         * Activate the first tab in a list.
-         */
-        activateFirstTab: function activateFirstTab() {
-            var tab = $(this.pushStateSelector + ' a[data-toggle="tab"]').first();
-
-            if (tab.length) {
-                tab.tab('show');
-
-                this.broadcastTabChange(tab.attr('href').substring(1));
-            }
-        },
-
-
-        /**
-         * Remove the active class from the tabs.
-         */
-        removeActiveClassFromTabs: function removeActiveClassFromTabs() {
-            $(this.pushStateSelector + ' a').removeClass('active');
-        },
-
-
-        /**
-         * Broadcast that a tab change happened.
-         */
-        broadcastTabChange: function broadcastTabChange(hash, parameters) {
-            Bus.$emit('sparkHashChanged', hash, parameters);
-        }
+    /**
+     * Broadcast that a tab change happened.
+     */
+    broadcastTabChange: function broadcastTabChange(hash, parameters) {
+      Bus.$emit('sparkHashChanged', hash, parameters);
     }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/mixins/vat.js":
+/*!*************************************************!*\
+  !*** ./spark/resources/assets/js/mixins/vat.js ***!
+  \*************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = {
-    methods: {
-        /**
-         * Determine if the given country collects European VAT.
-         */
-        collectsVat: function collectsVat(country) {
-            return Spark.collectsEuropeanVat ? _.includes(['BE', 'BG', 'CZ', 'DK', 'DE', 'EE', 'IE', 'GR', 'ES', 'FR', 'HR', 'IT', 'CY', 'LV', 'LT', 'LU', 'HU', 'MT', 'NL', 'AT', 'PL', 'PT', 'RO', 'SI', 'SK', 'FI', 'SE', 'GB'], country) : false;
-        },
+  methods: {
+    /**
+     * Determine if the given country collects European VAT.
+     */
+    collectsVat: function collectsVat(country) {
+      return Spark.collectsEuropeanVat ? _.includes(['BE', 'BG', 'CZ', 'DK', 'DE', 'EE', 'IE', 'GR', 'ES', 'FR', 'HR', 'IT', 'CY', 'LV', 'LT', 'LU', 'HU', 'MT', 'NL', 'AT', 'PL', 'PT', 'RO', 'SI', 'SK', 'FI', 'SE', 'GB'], country) : false;
+    },
 
+    /**
+     * Refresh the tax rate using the given form input.
+     */
+    refreshTaxRate: function refreshTaxRate(form) {
+      var _this = this;
 
-        /**
-         * Refresh the tax rate using the given form input.
-         */
-        refreshTaxRate: function refreshTaxRate(form) {
-            var _this = this;
+      axios.post('/tax-rate', JSON.parse(JSON.stringify(form))).then(function (response) {
+        _this.taxRate = response.data.rate;
+      });
+    },
 
-            axios.post('/tax-rate', JSON.parse(JSON.stringify(form))).then(function (response) {
-                _this.taxRate = response.data.rate;
-            });
-        },
+    /**
+     * Get the tax amount for the selected plan.
+     */
+    taxAmount: function taxAmount(plan) {
+      return plan.price * (this.taxRate / 100);
+    },
 
-
-        /**
-         * Get the tax amount for the selected plan.
-         */
-        taxAmount: function taxAmount(plan) {
-            return plan.price * (this.taxRate / 100);
-        },
-
-
-        /**
-         * Get the total plan price including the applicable tax.
-         */
-        priceWithTax: function priceWithTax(plan) {
-            return plan.price + this.taxAmount(plan);
-        }
+    /**
+     * Get the total plan price including the applicable tax.
+     */
+    priceWithTax: function priceWithTax(plan) {
+      return plan.price + this.taxAmount(plan);
     }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/navbar/navbar.js":
+/*!****************************************************!*\
+  !*** ./spark/resources/assets/js/navbar/navbar.js ***!
+  \****************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = {
-    props: ['user', 'teams', 'currentTeam', 'unreadAnnouncementsCount', 'unreadNotificationsCount'],
-
-    computed: {
-        notificationsCount: function notificationsCount() {
-            return this.unreadAnnouncementsCount + this.unreadNotificationsCount;
-        }
+  props: ['user', 'teams', 'currentTeam', 'unreadAnnouncementsCount', 'unreadNotificationsCount'],
+  computed: {
+    notificationsCount: function notificationsCount() {
+      return this.unreadAnnouncementsCount + this.unreadNotificationsCount;
+    }
+  },
+  methods: {
+    /**
+     * Show the user's notifications.
+     */
+    showNotifications: function showNotifications() {
+      Bus.$emit('showNotifications');
     },
 
-    methods: {
-        /**
-         * Show the user's notifications.
-         */
-        showNotifications: function showNotifications() {
-            Bus.$emit('showNotifications');
-        },
-
-
-        /**
-         * Show the customer support e-mail form.
-         */
-        showSupportForm: function showSupportForm() {
-            Bus.$emit('showSupportForm');
-        }
+    /**
+     * Show the customer support e-mail form.
+     */
+    showSupportForm: function showSupportForm() {
+      Bus.$emit('showSupportForm');
     }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/notifications/notifications.js":
+/*!******************************************************************!*\
+  !*** ./spark/resources/assets/js/notifications/notifications.js ***!
+  \******************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = {
-    props: ['notifications', 'hasUnreadAnnouncements', 'loadingNotifications'],
+  props: ['notifications', 'hasUnreadAnnouncements', 'loadingNotifications'],
+
+  /**
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      showingNotifications: true,
+      showingAnnouncements: false
+    };
+  },
+  methods: {
+    /**
+     * Show the user notifications.
+     */
+    showNotifications: function showNotifications() {
+      this.showingNotifications = true;
+      this.showingAnnouncements = false;
+    },
 
     /**
-     * The component's data.
+     * Show the product announcements.
      */
-    data: function data() {
-        return {
-            showingNotifications: true,
-            showingAnnouncements: false
-        };
+    showAnnouncements: function showAnnouncements() {
+      this.showingNotifications = false;
+      this.showingAnnouncements = true;
+      this.updateLastReadAnnouncementsTimestamp();
     },
 
-
-    methods: {
-        /**
-         * Show the user notifications.
-         */
-        showNotifications: function showNotifications() {
-            this.showingNotifications = true;
-            this.showingAnnouncements = false;
-        },
-
-
-        /**
-         * Show the product announcements.
-         */
-        showAnnouncements: function showAnnouncements() {
-            this.showingNotifications = false;
-            this.showingAnnouncements = true;
-
-            this.updateLastReadAnnouncementsTimestamp();
-        },
-
-
-        /**
-         * Update the last read announcements timestamp.
-         */
-        updateLastReadAnnouncementsTimestamp: function updateLastReadAnnouncementsTimestamp() {
-            axios.put('/user/last-read-announcements-at').then(function () {
-                Bus.$emit('updateUser');
-            });
-        }
-    },
-
-    computed: {
-        /**
-         * Get the active notifications or announcements.
-         */
-        activeNotifications: function activeNotifications() {
-            if (!this.notifications) {
-                return [];
-            }
-
-            if (this.showingNotifications) {
-                return this.notifications.notifications;
-            } else {
-                return this.notifications.announcements;
-            }
-        },
-
-
-        /**
-         * Determine if the user has any notifications.
-         */
-        hasNotifications: function hasNotifications() {
-            return this.notifications && this.notifications.notifications.length > 0;
-        },
-
-
-        /**
-         * Determine if the user has any announcements.
-         */
-        hasAnnouncements: function hasAnnouncements() {
-            return this.notifications && this.notifications.announcements.length > 0;
-        }
+    /**
+     * Update the last read announcements timestamp.
+     */
+    updateLastReadAnnouncementsTimestamp: function updateLastReadAnnouncementsTimestamp() {
+      axios.put('/user/last-read-announcements-at').then(function () {
+        Bus.$emit('updateUser');
+      });
     }
+  },
+  computed: {
+    /**
+     * Get the active notifications or announcements.
+     */
+    activeNotifications: function activeNotifications() {
+      if (!this.notifications) {
+        return [];
+      }
+
+      if (this.showingNotifications) {
+        return this.notifications.notifications;
+      } else {
+        return this.notifications.announcements;
+      }
+    },
+
+    /**
+     * Determine if the user has any notifications.
+     */
+    hasNotifications: function hasNotifications() {
+      return this.notifications && this.notifications.notifications.length > 0;
+    },
+
+    /**
+     * Determine if the user has any announcements.
+     */
+    hasAnnouncements: function hasAnnouncements() {
+      return this.notifications && this.notifications.announcements.length > 0;
+    }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/settings/api.js":
+/*!***************************************************!*\
+  !*** ./spark/resources/assets/js/settings/api.js ***!
+  \***************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = {
+  /**
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      tokens: [],
+      availableAbilities: []
+    };
+  },
+
+  /**
+   * Prepare the component.
+   */
+  mounted: function mounted() {
+    this.getTokens();
+    this.getAvailableAbilities();
+  },
+
+  /**
+   * The component has been created by Vue.
+   */
+  created: function created() {
+    var self = this;
+    this.$on('updateTokens', function () {
+      self.getTokens();
+    });
+  },
+  methods: {
     /**
-     * The component's data.
+     * Get the current API tokens for the user.
      */
-    data: function data() {
-        return {
-            tokens: [],
-            availableAbilities: []
-        };
+    getTokens: function getTokens() {
+      var _this = this;
+
+      axios.get('/settings/api/tokens').then(function (response) {
+        return _this.tokens = response.data;
+      });
     },
 
-
     /**
-     * Prepare the component.
+     * Get all of the available token abilities.
      */
-    mounted: function mounted() {
-        this.getTokens();
-        this.getAvailableAbilities();
-    },
+    getAvailableAbilities: function getAvailableAbilities() {
+      var _this2 = this;
 
-
-    /**
-     * The component has been created by Vue.
-     */
-    created: function created() {
-        var self = this;
-
-        this.$on('updateTokens', function () {
-            self.getTokens();
-        });
-    },
-
-
-    methods: {
-        /**
-         * Get the current API tokens for the user.
-         */
-        getTokens: function getTokens() {
-            var _this = this;
-
-            axios.get('/settings/api/tokens').then(function (response) {
-                return _this.tokens = response.data;
-            });
-        },
-
-
-        /**
-         * Get all of the available token abilities.
-         */
-        getAvailableAbilities: function getAvailableAbilities() {
-            var _this2 = this;
-
-            axios.get('/settings/api/token/abilities').then(function (response) {
-                return _this2.availableAbilities = response.data;
-            });
-        }
+      axios.get('/settings/api/token/abilities').then(function (response) {
+        return _this2.availableAbilities = response.data;
+      });
     }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/settings/api/create-token.js":
+/*!****************************************************************!*\
+  !*** ./spark/resources/assets/js/settings/api/create-token.js ***!
+  \****************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = {
-    props: ['availableAbilities'],
+  props: ['availableAbilities'],
+
+  /**
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      showingToken: null,
+      allAbilitiesAssigned: false,
+      form: new SparkForm({
+        name: '',
+        abilities: []
+      })
+    };
+  },
+  computed: {
+    copyCommandSupported: function copyCommandSupported() {
+      return document.queryCommandSupported('copy');
+    }
+  },
+  watch: {
+    /**
+     * Watch the available abilities for changes.
+     */
+    availableAbilities: function availableAbilities() {
+      if (this.availableAbilities.length > 0) {
+        this.assignDefaultAbilities();
+      }
+    }
+  },
+  methods: {
+    /**
+     * Assign all of the default abilities.
+     */
+    assignDefaultAbilities: function assignDefaultAbilities() {
+      var defaults = _.filter(this.availableAbilities, function (a) {
+        return a.default;
+      });
+
+      this.form.abilities = _.map(defaults, 'value');
+    },
 
     /**
-     * The component's data.
+     * Enable all the available abilities for the given token.
      */
-    data: function data() {
-        return {
-            showingToken: null,
-            allAbilitiesAssigned: false,
-
-            form: new SparkForm({
-                name: '',
-                abilities: []
-            })
-        };
+    assignAllAbilities: function assignAllAbilities() {
+      this.allAbilitiesAssigned = true;
+      this.form.abilities = _.map(this.availableAbilities, 'value');
     },
 
-
-    computed: {
-        copyCommandSupported: function copyCommandSupported() {
-            return document.queryCommandSupported('copy');
-        }
+    /**
+     * Remove all of the abilities from the token.
+     */
+    removeAllAbilities: function removeAllAbilities() {
+      this.allAbilitiesAssigned = false;
+      this.form.abilities = [];
     },
 
-    watch: {
-        /**
-         * Watch the available abilities for changes.
-         */
-        availableAbilities: function availableAbilities() {
-            if (this.availableAbilities.length > 0) {
-                this.assignDefaultAbilities();
-            }
-        }
+    /**
+     * Toggle the given ability in the list of assigned abilities.
+     */
+    toggleAbility: function toggleAbility(ability) {
+      if (this.abilityIsAssigned(ability)) {
+        this.form.abilities = _.reject(this.form.abilities, function (a) {
+          return a == ability;
+        });
+      } else {
+        this.form.abilities.push(ability);
+      }
     },
 
-    methods: {
-        /**
-         * Assign all of the default abilities.
-         */
-        assignDefaultAbilities: function assignDefaultAbilities() {
-            var defaults = _.filter(this.availableAbilities, function (a) {
-                return a.default;
-            });
+    /**
+     * Determine if the given ability has been assigned to the token.
+     */
+    abilityIsAssigned: function abilityIsAssigned(ability) {
+      return _.includes(this.form.abilities, ability);
+    },
 
-            this.form.abilities = _.map(defaults, 'value');
-        },
+    /**
+     * Create a new API token.
+     */
+    create: function create() {
+      var _this = this;
 
+      Spark.post('/settings/api/token', this.form).then(function (response) {
+        _this.showToken(response.token);
 
-        /**
-         * Enable all the available abilities for the given token.
-         */
-        assignAllAbilities: function assignAllAbilities() {
-            this.allAbilitiesAssigned = true;
+        _this.resetForm();
 
-            this.form.abilities = _.map(this.availableAbilities, 'value');
-        },
+        _this.$parent.$emit('updateTokens');
+      });
+    },
 
+    /**
+     * Display the token to the user.
+     */
+    showToken: function showToken(token) {
+      this.showingToken = token;
+      $('#modal-show-token').modal('show');
+    },
 
-        /**
-         * Remove all of the abilities from the token.
-         */
-        removeAllAbilities: function removeAllAbilities() {
-            this.allAbilitiesAssigned = false;
+    /**
+     * Select the token and copy to Clipboard.
+     */
+    selectToken: function selectToken() {
+      $('#api-token').select();
 
-            this.form.abilities = [];
-        },
+      if (this.copyCommandSupported) {
+        document.execCommand("copy");
+      }
+    },
 
-
-        /**
-         * Toggle the given ability in the list of assigned abilities.
-         */
-        toggleAbility: function toggleAbility(ability) {
-            if (this.abilityIsAssigned(ability)) {
-                this.form.abilities = _.reject(this.form.abilities, function (a) {
-                    return a == ability;
-                });
-            } else {
-                this.form.abilities.push(ability);
-            }
-        },
-
-
-        /**
-         * Determine if the given ability has been assigned to the token.
-         */
-        abilityIsAssigned: function abilityIsAssigned(ability) {
-            return _.includes(this.form.abilities, ability);
-        },
-
-
-        /**
-         * Create a new API token.
-         */
-        create: function create() {
-            var _this = this;
-
-            Spark.post('/settings/api/token', this.form).then(function (response) {
-                _this.showToken(response.token);
-
-                _this.resetForm();
-
-                _this.$parent.$emit('updateTokens');
-            });
-        },
-
-
-        /**
-         * Display the token to the user.
-         */
-        showToken: function showToken(token) {
-            this.showingToken = token;
-
-            $('#modal-show-token').modal('show');
-        },
-
-
-        /**
-         * Select the token and copy to Clipboard.
-         */
-        selectToken: function selectToken() {
-            $('#api-token').select();
-
-            if (this.copyCommandSupported) {
-                document.execCommand("copy");
-            }
-        },
-
-
-        /**
-         * Reset the token form back to its default state.
-         */
-        resetForm: function resetForm() {
-            this.form.name = '';
-
-            this.assignDefaultAbilities();
-
-            this.allAbilitiesAssigned = false;
-        }
+    /**
+     * Reset the token form back to its default state.
+     */
+    resetForm: function resetForm() {
+      this.form.name = '';
+      this.assignDefaultAbilities();
+      this.allAbilitiesAssigned = false;
     }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/settings/api/tokens.js":
+/*!**********************************************************!*\
+  !*** ./spark/resources/assets/js/settings/api/tokens.js ***!
+  \**********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = {
-    props: ['tokens', 'availableAbilities'],
+  props: ['tokens', 'availableAbilities'],
 
+  /**
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      updatingToken: null,
+      deletingToken: null,
+      updateTokenForm: new SparkForm({
+        name: '',
+        abilities: []
+      }),
+      deleteTokenForm: new SparkForm({})
+    };
+  },
+  methods: {
     /**
-     * The component's data.
+     * Show the edit token modal.
      */
-    data: function data() {
-        return {
-            updatingToken: null,
-            deletingToken: null,
-
-            updateTokenForm: new SparkForm({
-                name: '',
-                abilities: []
-            }),
-
-            deleteTokenForm: new SparkForm({})
-        };
+    editToken: function editToken(token) {
+      this.updatingToken = token;
+      this.initializeUpdateFormWith(token);
+      $('#modal-update-token').modal('show');
     },
 
+    /**
+     * Initialize the edit form with the given token.
+     */
+    initializeUpdateFormWith: function initializeUpdateFormWith(token) {
+      this.updateTokenForm.name = token.name;
+      this.updateTokenForm.abilities = token.metadata.abilities;
+    },
 
-    methods: {
-        /**
-         * Show the edit token modal.
-         */
-        editToken: function editToken(token) {
-            this.updatingToken = token;
+    /**
+     * Update the token being edited.
+     */
+    updateToken: function updateToken() {
+      var _this = this;
 
-            this.initializeUpdateFormWith(token);
+      Spark.put("/settings/api/token/".concat(this.updatingToken.id), this.updateTokenForm).then(function (response) {
+        _this.$parent.$emit('updateTokens');
 
-            $('#modal-update-token').modal('show');
-        },
+        $('#modal-update-token').modal('hide');
+      });
+    },
 
+    /**
+     * Toggle the ability on the current token being edited.
+     */
+    toggleAbility: function toggleAbility(ability) {
+      if (this.abilityIsAssigned(ability)) {
+        this.updateTokenForm.abilities = _.reject(this.updateTokenForm.abilities, function (a) {
+          return a == ability;
+        });
+      } else {
+        this.updateTokenForm.abilities.push(ability);
+      }
+    },
 
-        /**
-         * Initialize the edit form with the given token.
-         */
-        initializeUpdateFormWith: function initializeUpdateFormWith(token) {
-            this.updateTokenForm.name = token.name;
+    /**
+     * Determine if the ability has been assigned to the token being edited.
+     */
+    abilityIsAssigned: function abilityIsAssigned(ability) {
+      return _.includes(this.updateTokenForm.abilities, ability);
+    },
 
-            this.updateTokenForm.abilities = token.metadata.abilities;
-        },
+    /**
+     * Get user confirmation that the token should be deleted.
+     */
+    approveTokenDelete: function approveTokenDelete(token) {
+      this.deletingToken = token;
+      $('#modal-delete-token').modal('show');
+    },
 
+    /**
+     * Delete the specified token.
+     */
+    deleteToken: function deleteToken() {
+      var _this2 = this;
 
-        /**
-         * Update the token being edited.
-         */
-        updateToken: function updateToken() {
-            var _this = this;
+      Spark.delete("/settings/api/token/".concat(this.deletingToken.id), this.deleteTokenForm).then(function () {
+        _this2.$parent.$emit('updateTokens');
 
-            Spark.put('/settings/api/token/' + this.updatingToken.id, this.updateTokenForm).then(function (response) {
-                _this.$parent.$emit('updateTokens');
-
-                $('#modal-update-token').modal('hide');
-            });
-        },
-
-
-        /**
-         * Toggle the ability on the current token being edited.
-         */
-        toggleAbility: function toggleAbility(ability) {
-            if (this.abilityIsAssigned(ability)) {
-                this.updateTokenForm.abilities = _.reject(this.updateTokenForm.abilities, function (a) {
-                    return a == ability;
-                });
-            } else {
-                this.updateTokenForm.abilities.push(ability);
-            }
-        },
-
-
-        /**
-         * Determine if the ability has been assigned to the token being edited.
-         */
-        abilityIsAssigned: function abilityIsAssigned(ability) {
-            return _.includes(this.updateTokenForm.abilities, ability);
-        },
-
-
-        /**
-         * Get user confirmation that the token should be deleted.
-         */
-        approveTokenDelete: function approveTokenDelete(token) {
-            this.deletingToken = token;
-
-            $('#modal-delete-token').modal('show');
-        },
-
-
-        /**
-         * Delete the specified token.
-         */
-        deleteToken: function deleteToken() {
-            var _this2 = this;
-
-            Spark.delete('/settings/api/token/' + this.deletingToken.id, this.deleteTokenForm).then(function () {
-                _this2.$parent.$emit('updateTokens');
-
-                $('#modal-delete-token').modal('hide');
-            });
-        }
+        $('#modal-delete-token').modal('hide');
+      });
     }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/settings/invoices.js":
+/*!********************************************************!*\
+  !*** ./spark/resources/assets/js/settings/invoices.js ***!
+  \********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = {
-	props: ['user', 'team', 'billableType'],
+  props: ['user', 'team', 'billableType'],
 
-	/**
-  * The component's data.
-  */
-	data: function data() {
-		return {
-			invoices: []
-		};
-	},
-
-
-	/**
-  * Prepare the component.
-  */
-	mounted: function mounted() {
-		this.getInvoices();
-	},
-
-
-	methods: {
-		/**
-   * Get the user's billing invoices
+  /**
+   * The component's data.
    */
-		getInvoices: function getInvoices() {
-			var _this = this;
+  data: function data() {
+    return {
+      invoices: []
+    };
+  },
 
-			axios.get(this.urlForInvoices).then(function (response) {
-				_this.invoices = _.filter(response.data, function (invoice) {
-					return invoice.total != '$0.00';
-				});
-			});
-		}
-	},
-
-	computed: {
-		/**
-   * Get the URL for retrieving the invoices.
+  /**
+   * Prepare the component.
    */
-		urlForInvoices: function urlForInvoices() {
-			return this.billingUser ? '/settings/invoices' : '/settings/' + Spark.teamsPrefix + '/' + this.team.id + '/invoices';
-		}
-	}
+  mounted: function mounted() {
+    this.getInvoices();
+  },
+  methods: {
+    /**
+     * Get the user's billing invoices
+     */
+    getInvoices: function getInvoices() {
+      var _this = this;
+
+      axios.get(this.urlForInvoices).then(function (response) {
+        _this.invoices = _.filter(response.data, function (invoice) {
+          return invoice.total != '$0.00';
+        });
+      });
+    }
+  },
+  computed: {
+    /**
+     * Get the URL for retrieving the invoices.
+     */
+    urlForInvoices: function urlForInvoices() {
+      return this.billingUser ? '/settings/invoices' : "/settings/".concat(Spark.teamsPrefix, "/").concat(this.team.id, "/invoices");
+    }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/settings/invoices/invoice-list.js":
+/*!*********************************************************************!*\
+  !*** ./spark/resources/assets/js/settings/invoices/invoice-list.js ***!
+  \*********************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = {
-    props: ['user', 'team', 'invoices', 'billableType'],
-
-    methods: {
-        /**
-         * Get the URL for downloading a given invoice.
-         */
-        downloadUrlFor: function downloadUrlFor(invoice) {
-            return this.billingUser ? '/settings/invoice/' + invoice.id : '/settings/' + Spark.teamsPrefix + '/' + this.team.id + '/invoice/' + invoice.id;
-        }
+  props: ['user', 'team', 'invoices', 'billableType'],
+  methods: {
+    /**
+     * Get the URL for downloading a given invoice.
+     */
+    downloadUrlFor: function downloadUrlFor(invoice) {
+      return this.billingUser ? "/settings/invoice/".concat(invoice.id) : "/settings/".concat(Spark.teamsPrefix, "/").concat(this.team.id, "/invoice/").concat(invoice.id);
     }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/settings/invoices/update-extra-billing-information.js":
+/*!*****************************************************************************************!*\
+  !*** ./spark/resources/assets/js/settings/invoices/update-extra-billing-information.js ***!
+  \*****************************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = {
-    props: ['user', 'team', 'billableType'],
+  props: ['user', 'team', 'billableType'],
 
+  /**
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      form: new SparkForm({
+        information: ''
+      })
+    };
+  },
+
+  /**
+   * Prepare the component.
+   */
+  mounted: function mounted() {
+    this.form.information = this.billable.extra_billing_information;
+  },
+  methods: {
     /**
-     * The component's data.
+     * Update the extra billing information.
      */
-    data: function data() {
-        return {
-            form: new SparkForm({
-                information: ''
-            })
-        };
-    },
-
-
-    /**
-     * Prepare the component.
-     */
-    mounted: function mounted() {
-        this.form.information = this.billable.extra_billing_information;
-    },
-
-
-    methods: {
-        /**
-         * Update the extra billing information.
-         */
-        update: function update() {
-            Spark.put(this.urlForUpdate, this.form);
-        }
-    },
-
-    computed: {
-        /**
-         * Get the URL for the extra billing information method update.
-         */
-        urlForUpdate: function urlForUpdate() {
-            return this.billingUser ? '/settings/extra-billing-information' : '/settings/' + Spark.teamsPrefix + '/' + this.team.id + '/extra-billing-information';
-        }
+    update: function update() {
+      Spark.put(this.urlForUpdate, this.form);
     }
+  },
+  computed: {
+    /**
+     * Get the URL for the extra billing information method update.
+     */
+    urlForUpdate: function urlForUpdate() {
+      return this.billingUser ? '/settings/extra-billing-information' : "/settings/".concat(Spark.teamsPrefix, "/").concat(this.team.id, "/extra-billing-information");
+    }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/settings/payment-method-braintree.js":
+/*!************************************************************************!*\
+  !*** ./spark/resources/assets/js/settings/payment-method-braintree.js ***!
+  \************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = {
-    props: ['user', 'team', 'billableType'],
+  props: ['user', 'team', 'billableType'],
 
+  /**
+   * Load mixins for the component.
+   */
+  mixins: [__webpack_require__(/*! ./../mixins/discounts */ "./spark/resources/assets/js/mixins/discounts.js")],
+
+  /**
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      currentDiscount: null,
+      loadingCurrentDiscount: false
+    };
+  },
+
+  /**
+   * The component has been created by Vue.
+   */
+  created: function created() {
+    var self = this;
+    this.$on('updateDiscount', function () {
+      self.getCurrentDiscountForBillable(self.billableType, self.billable);
+      return true;
+    });
+  },
+
+  /**
+   * Prepare the component.
+   */
+  mounted: function mounted() {
+    this.getCurrentDiscountForBillable(this.billableType, this.billable);
+  },
+  methods: {
     /**
-     * Load mixins for the component.
+     * Calculate the amount off for the given discount amount.
      */
-    mixins: [__webpack_require__("./spark/resources/assets/js/mixins/discounts.js")],
-
-    /**
-     * The component's data.
-     */
-    data: function data() {
-        return {
-            currentDiscount: null,
-            loadingCurrentDiscount: false
-        };
-    },
-
-
-    /**
-     * The component has been created by Vue.
-     */
-    created: function created() {
-        var self = this;
-
-        this.$on('updateDiscount', function () {
-            self.getCurrentDiscountForBillable(self.billableType, self.billable);
-
-            return true;
-        });
-    },
-
-
-    /**
-     * Prepare the component.
-     */
-    mounted: function mounted() {
-        this.getCurrentDiscountForBillable(this.billableType, this.billable);
-    },
-
-
-    methods: {
-        /**
-         * Calculate the amount off for the given discount amount.
-         */
-        calculateAmountOff: function calculateAmountOff(amount) {
-            return amount;
-        }
+    calculateAmountOff: function calculateAmountOff(amount) {
+      return amount;
     }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/settings/payment-method-stripe.js":
+/*!*********************************************************************!*\
+  !*** ./spark/resources/assets/js/settings/payment-method-stripe.js ***!
+  \*********************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = {
-    props: ['user', 'team', 'billableType'],
+  props: ['user', 'team', 'billableType'],
 
-    /**
-     * Load mixins for the component.
-     */
-    mixins: [__webpack_require__("./spark/resources/assets/js/mixins/discounts.js")],
+  /**
+   * Load mixins for the component.
+   */
+  mixins: [__webpack_require__(/*! ./../mixins/discounts */ "./spark/resources/assets/js/mixins/discounts.js")],
 
-    /**
-     * The component's data.
-     */
-    data: function data() {
-        return {
-            currentDiscount: null,
-            loadingCurrentDiscount: false
-        };
-    },
+  /**
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      currentDiscount: null,
+      loadingCurrentDiscount: false
+    };
+  },
 
+  /**
+   * The component has been created by Vue.
+   */
+  created: function created() {
+    var self = this;
+    this.$on('updateDiscount', function () {
+      self.getCurrentDiscountForBillable(self.billableType, self.billable);
+      return true;
+    });
+  },
 
-    /**
-     * The component has been created by Vue.
-     */
-    created: function created() {
-        var self = this;
-
-        this.$on('updateDiscount', function () {
-            self.getCurrentDiscountForBillable(self.billableType, self.billable);
-
-            return true;
-        });
-    },
-
-
-    /**
-     * Prepare the component.
-     */
-    mounted: function mounted() {
-        this.getCurrentDiscountForBillable(this.billableType, this.billable);
-    }
+  /**
+   * Prepare the component.
+   */
+  mounted: function mounted() {
+    this.getCurrentDiscountForBillable(this.billableType, this.billable);
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/settings/payment-method/redeem-coupon.js":
+/*!****************************************************************************!*\
+  !*** ./spark/resources/assets/js/settings/payment-method/redeem-coupon.js ***!
+  \****************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = {
-    props: ['user', 'team', 'billableType'],
+  props: ['user', 'team', 'billableType'],
 
+  /**
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      form: new SparkForm({
+        coupon: ''
+      })
+    };
+  },
+  methods: {
     /**
-     * The component's data.
+     * Redeem the given coupon code.
      */
-    data: function data() {
-        return {
-            form: new SparkForm({
-                coupon: ''
-            })
-        };
-    },
+    redeem: function redeem() {
+      var _this = this;
 
+      Spark.post(this.urlForRedemption, this.form).then(function () {
+        _this.form.coupon = '';
 
-    methods: {
-        /**
-         * Redeem the given coupon code.
-         */
-        redeem: function redeem() {
-            var _this = this;
-
-            Spark.post(this.urlForRedemption, this.form).then(function () {
-                _this.form.coupon = '';
-
-                _this.$parent.$emit('updateDiscount');
-            });
-        }
-    },
-
-    computed: {
-        /**
-         * Get the URL for redeeming a coupon.
-         */
-        urlForRedemption: function urlForRedemption() {
-            return this.billingUser ? '/settings/payment-method/coupon' : '/settings/' + Spark.teamsPrefix + '/' + this.team.id + '/payment-method/coupon';
-        }
+        _this.$parent.$emit('updateDiscount');
+      });
     }
+  },
+  computed: {
+    /**
+     * Get the URL for redeeming a coupon.
+     */
+    urlForRedemption: function urlForRedemption() {
+      return this.billingUser ? '/settings/payment-method/coupon' : "/settings/".concat(Spark.teamsPrefix, "/").concat(this.team.id, "/payment-method/coupon");
+    }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/settings/payment-method/update-payment-method-braintree.js":
+/*!**********************************************************************************************!*\
+  !*** ./spark/resources/assets/js/settings/payment-method/update-payment-method-braintree.js ***!
+  \**********************************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = {
-    props: ['user', 'team', 'billableType'],
+  props: ['user', 'team', 'billableType'],
 
-    /**
-     * Load mixins for the component.
-     */
-    mixins: [__webpack_require__("./spark/resources/assets/js/mixins/braintree.js")],
+  /**
+   * Load mixins for the component.
+   */
+  mixins: [__webpack_require__(/*! ./../../mixins/braintree */ "./spark/resources/assets/js/mixins/braintree.js")],
 
+  /**
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      form: new SparkForm({
+        braintree_type: '',
+        braintree_token: ''
+      })
+    };
+  },
+
+  /**
+   * Prepare the component.
+   */
+  mounted: function mounted() {
+    this.braintree('braintree-payment-method-container', this.braintreeCallback);
+  },
+  methods: {
     /**
-     * The component's data.
+     * Update the entity's card information.
      */
-    data: function data() {
-        return {
-            form: new SparkForm({
-                braintree_type: '',
-                braintree_token: ''
-            })
-        };
+    update: function update() {
+      var _this = this;
+
+      Spark.put(this.urlForUpdate, this.form).then(function () {
+        Bus.$emit('updateUser');
+        Bus.$emit('updateTeam');
+
+        _this.resetBraintree('braintree-payment-method-container', _this.braintreeCallback);
+      });
     },
 
-
     /**
-     * Prepare the component.
+     * The Braintree payment method received callback.
      */
-    mounted: function mounted() {
-        this.braintree('braintree-payment-method-container', this.braintreeCallback);
-    },
-
-
-    methods: {
-        /**
-         * Update the entity's card information.
-         */
-        update: function update() {
-            var _this = this;
-
-            Spark.put(this.urlForUpdate, this.form).then(function () {
-                Bus.$emit('updateUser');
-                Bus.$emit('updateTeam');
-
-                _this.resetBraintree('braintree-payment-method-container', _this.braintreeCallback);
-            });
-        },
-
-
-        /**
-         * The Braintree payment method received callback.
-         */
-        braintreeCallback: function braintreeCallback(response) {
-            this.form.braintree_type = response.type;
-            this.form.braintree_token = response.nonce;
-
-            this.update();
-        }
-    },
-
-    computed: {
-        /**
-         * Get the URL for the payment method update.
-         */
-        urlForUpdate: function urlForUpdate() {
-            return this.billingUser ? '/settings/payment-method' : '/settings/' + Spark.teamsPrefix + '/' + this.team.id + '/payment-method';
-        },
-
-
-        /**
-         * Get the proper brand icon for the customer's credit card.
-         */
-        cardIcon: function cardIcon() {
-            if (!this.billable.card_brand) {
-                return 'fa-credit-card';
-            }
-
-            switch (this.billable.card_brand) {
-                case 'American Express':
-                    return 'fa-cc-amex';
-                case 'Diners Club':
-                    return 'fa-cc-diners-club';
-                case 'Discover':
-                    return 'fa-cc-discover';
-                case 'JCB':
-                    return 'fa-cc-jcb';
-                case 'MasterCard':
-                    return 'fa-cc-mastercard';
-                case 'Visa':
-                    return 'fa-cc-visa';
-                default:
-                    return 'fa-credit-card';
-            }
-        }
+    braintreeCallback: function braintreeCallback(response) {
+      this.form.braintree_type = response.type;
+      this.form.braintree_token = response.nonce;
+      this.update();
     }
+  },
+  computed: {
+    /**
+     * Get the URL for the payment method update.
+     */
+    urlForUpdate: function urlForUpdate() {
+      return this.billingUser ? '/settings/payment-method' : "/settings/".concat(Spark.teamsPrefix, "/").concat(this.team.id, "/payment-method");
+    },
+
+    /**
+     * Get the proper brand icon for the customer's credit card.
+     */
+    cardIcon: function cardIcon() {
+      if (!this.billable.card_brand) {
+        return 'fa-credit-card';
+      }
+
+      switch (this.billable.card_brand) {
+        case 'American Express':
+          return 'fa-cc-amex';
+
+        case 'Diners Club':
+          return 'fa-cc-diners-club';
+
+        case 'Discover':
+          return 'fa-cc-discover';
+
+        case 'JCB':
+          return 'fa-cc-jcb';
+
+        case 'MasterCard':
+          return 'fa-cc-mastercard';
+
+        case 'Visa':
+          return 'fa-cc-visa';
+
+        default:
+          return 'fa-credit-card';
+      }
+    }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/settings/payment-method/update-payment-method-stripe.js":
+/*!*******************************************************************************************!*\
+  !*** ./spark/resources/assets/js/settings/payment-method/update-payment-method-stripe.js ***!
+  \*******************************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = {
-    props: ['user', 'team', 'billableType'],
+  props: ['user', 'team', 'billableType'],
 
+  /**
+   * Load mixins for the component.
+   */
+  mixins: [__webpack_require__(/*! ./../../mixins/stripe */ "./spark/resources/assets/js/mixins/stripe.js")],
+
+  /**
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      cardElement: null,
+      form: new SparkForm({
+        stripe_token: '',
+        address: '',
+        address_line_2: '',
+        city: '',
+        state: '',
+        zip: '',
+        country: 'US'
+      }),
+      cardForm: new SparkForm({
+        name: ''
+      })
+    };
+  },
+
+  /**
+   * Prepare the component.
+   */
+  mounted: function mounted() {
+    this.cardElement = this.createCardElement('#payment-card-element');
+    this.initializeBillingAddress();
+  },
+  methods: {
     /**
-     * Load mixins for the component.
+     * Initialize the billing address form for the billable entity.
      */
-    mixins: [__webpack_require__("./spark/resources/assets/js/mixins/stripe.js")],
+    initializeBillingAddress: function initializeBillingAddress() {
+      if (!Spark.collectsBillingAddress) {
+        return;
+      }
 
-    /**
-     * The component's data.
-     */
-    data: function data() {
-        return {
-            cardElement: null,
-
-            form: new SparkForm({
-                stripe_token: '',
-                address: '',
-                address_line_2: '',
-                city: '',
-                state: '',
-                zip: '',
-                country: 'US'
-            }),
-
-            cardForm: new SparkForm({
-                name: ''
-            })
-        };
+      this.form.address = this.billable.billing_address;
+      this.form.address_line_2 = this.billable.billing_address_line_2;
+      this.form.city = this.billable.billing_city;
+      this.form.state = this.billable.billing_state;
+      this.form.zip = this.billable.billing_zip;
+      this.form.country = this.billable.billing_country || 'US';
     },
 
-
     /**
-     * Prepare the component.
+     * Update the billable's card information.
      */
-    mounted: function mounted() {
-        this.cardElement = this.createCardElement('#payment-card-element');
+    update: function update() {
+      var _this = this;
 
-        this.initializeBillingAddress();
-    },
+      this.form.busy = true;
+      this.form.errors.forget();
+      this.form.successful = false;
+      this.cardForm.errors.forget(); // Here we will build out the payload to send to Stripe to obtain a card token so
+      // we can create the actual subscription. We will build out this data that has
+      // this credit card number, CVC, etc. and exchange it for a secure token ID.
 
+      var payload = {
+        name: this.cardForm.name,
+        address_line1: this.form.address || '',
+        address_line2: this.form.address_line_2 || '',
+        address_city: this.form.city || '',
+        address_state: this.form.state || '',
+        address_zip: this.form.zip || '',
+        address_country: this.form.country || ''
+      }; // Once we have the Stripe payload we'll send it off to Stripe and obtain a token
+      // which we will send to the server to update this payment method. If there is
+      // an error we will display that back out to the user for their information.
 
-    methods: {
-        /**
-         * Initialize the billing address form for the billable entity.
-         */
-        initializeBillingAddress: function initializeBillingAddress() {
-            if (!Spark.collectsBillingAddress) {
-                return;
-            }
+      this.stripe.createToken(this.cardElement, payload).then(function (response) {
+        if (response.error) {
+          _this.cardForm.errors.set({
+            card: [response.error.message]
+          });
 
-            this.form.address = this.billable.billing_address;
-            this.form.address_line_2 = this.billable.billing_address_line_2;
-            this.form.city = this.billable.billing_city;
-            this.form.state = this.billable.billing_state;
-            this.form.zip = this.billable.billing_zip;
-            this.form.country = this.billable.billing_country || 'US';
-        },
-
-
-        /**
-         * Update the billable's card information.
-         */
-        update: function update() {
-            var _this = this;
-
-            this.form.busy = true;
-            this.form.errors.forget();
-            this.form.successful = false;
-            this.cardForm.errors.forget();
-
-            // Here we will build out the payload to send to Stripe to obtain a card token so
-            // we can create the actual subscription. We will build out this data that has
-            // this credit card number, CVC, etc. and exchange it for a secure token ID.
-            var payload = {
-                name: this.cardForm.name,
-                address_line1: this.form.address || '',
-                address_line2: this.form.address_line_2 || '',
-                address_city: this.form.city || '',
-                address_state: this.form.state || '',
-                address_zip: this.form.zip || '',
-                address_country: this.form.country || ''
-            };
-
-            // Once we have the Stripe payload we'll send it off to Stripe and obtain a token
-            // which we will send to the server to update this payment method. If there is
-            // an error we will display that back out to the user for their information.
-            this.stripe.createToken(this.cardElement, payload).then(function (response) {
-                if (response.error) {
-                    _this.cardForm.errors.set({ card: [response.error.message] });
-
-                    _this.form.busy = false;
-                } else {
-                    _this.sendUpdateToServer(response.token.id);
-                }
-            });
-        },
-
-
-        /**
-         * Send the credit card update information to the server.
-         */
-        sendUpdateToServer: function sendUpdateToServer(token) {
-            var _this2 = this;
-
-            this.form.stripe_token = token;
-
-            Spark.put(this.urlForUpdate, this.form).then(function () {
-                Bus.$emit('updateUser');
-                Bus.$emit('updateTeam');
-
-                _this2.cardForm.name = '';
-                _this2.cardForm.number = '';
-                _this2.cardForm.cvc = '';
-                _this2.cardForm.month = '';
-                _this2.cardForm.year = '';
-
-                if (!Spark.collectsBillingAddress) {
-                    _this2.form.zip = '';
-                }
-            });
+          _this.form.busy = false;
+        } else {
+          _this.sendUpdateToServer(response.token.id);
         }
+      });
     },
 
-    computed: {
-        /**
-         * Get the billable entity's "billable" name.
-         */
-        billableName: function billableName() {
-            return this.billingUser ? this.user.name : this.team.owner.name;
-        },
+    /**
+     * Send the credit card update information to the server.
+     */
+    sendUpdateToServer: function sendUpdateToServer(token) {
+      var _this2 = this;
 
+      this.form.stripe_token = token;
+      Spark.put(this.urlForUpdate, this.form).then(function () {
+        Bus.$emit('updateUser');
+        Bus.$emit('updateTeam');
+        _this2.cardForm.name = '';
+        _this2.cardForm.number = '';
+        _this2.cardForm.cvc = '';
+        _this2.cardForm.month = '';
+        _this2.cardForm.year = '';
 
-        /**
-         * Get the URL for the payment method update.
-         */
-        urlForUpdate: function urlForUpdate() {
-            return this.billingUser ? '/settings/payment-method' : '/settings/' + Spark.teamsPrefix + '/' + this.team.id + '/payment-method';
-        },
-
-
-        /**
-         * Get the proper brand icon for the customer's credit card.
-         */
-        cardIcon: function cardIcon() {
-            if (!this.billable.card_brand) {
-                return 'fa-cc-stripe';
-            }
-
-            switch (this.billable.card_brand) {
-                case 'American Express':
-                    return 'fa-cc-amex';
-                case 'Diners Club':
-                    return 'fa-cc-diners-club';
-                case 'Discover':
-                    return 'fa-cc-discover';
-                case 'JCB':
-                    return 'fa-cc-jcb';
-                case 'MasterCard':
-                    return 'fa-cc-mastercard';
-                case 'Visa':
-                    return 'fa-cc-visa';
-                default:
-                    return 'fa-cc-stripe';
-            }
-        },
-
-
-        /**
-         * Get the placeholder for the billable entity's credit card.
-         */
-        placeholder: function placeholder() {
-            if (this.billable.card_last_four) {
-                return '************' + this.billable.card_last_four;
-            }
-
-            return '';
+        if (!Spark.collectsBillingAddress) {
+          _this2.form.zip = '';
         }
+      });
     }
+  },
+  computed: {
+    /**
+     * Get the billable entity's "billable" name.
+     */
+    billableName: function billableName() {
+      return this.billingUser ? this.user.name : this.team.owner.name;
+    },
+
+    /**
+     * Get the URL for the payment method update.
+     */
+    urlForUpdate: function urlForUpdate() {
+      return this.billingUser ? '/settings/payment-method' : "/settings/".concat(Spark.teamsPrefix, "/").concat(this.team.id, "/payment-method");
+    },
+
+    /**
+     * Get the proper brand icon for the customer's credit card.
+     */
+    cardIcon: function cardIcon() {
+      if (!this.billable.card_brand) {
+        return 'fa-cc-stripe';
+      }
+
+      switch (this.billable.card_brand) {
+        case 'American Express':
+          return 'fa-cc-amex';
+
+        case 'Diners Club':
+          return 'fa-cc-diners-club';
+
+        case 'Discover':
+          return 'fa-cc-discover';
+
+        case 'JCB':
+          return 'fa-cc-jcb';
+
+        case 'MasterCard':
+          return 'fa-cc-mastercard';
+
+        case 'Visa':
+          return 'fa-cc-visa';
+
+        default:
+          return 'fa-cc-stripe';
+      }
+    },
+
+    /**
+     * Get the placeholder for the billable entity's credit card.
+     */
+    placeholder: function placeholder() {
+      if (this.billable.card_last_four) {
+        return "************".concat(this.billable.card_last_four);
+      }
+
+      return '';
+    }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/settings/payment-method/update-vat-id.js":
+/*!****************************************************************************!*\
+  !*** ./spark/resources/assets/js/settings/payment-method/update-vat-id.js ***!
+  \****************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = {
-    props: ['user', 'team', 'billableType'],
+  props: ['user', 'team', 'billableType'],
 
+  /**
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      form: new SparkForm({
+        vat_id: ''
+      })
+    };
+  },
+
+  /**
+   * Bootstrap the component.
+   */
+  mounted: function mounted() {
+    this.form.vat_id = this.billable.vat_id;
+  },
+  methods: {
     /**
-     * The component's data.
+     * Update the customer's VAT ID.
      */
-    data: function data() {
-        return {
-            form: new SparkForm({ vat_id: '' })
-        };
-    },
-
-
-    /**
-     * Bootstrap the component.
-     */
-    mounted: function mounted() {
-        this.form.vat_id = this.billable.vat_id;
-    },
-
-
-    methods: {
-        /**
-         * Update the customer's VAT ID.
-         */
-        update: function update() {
-            Spark.put(this.urlForUpdate, this.form);
-        }
-    },
-
-    computed: {
-        /**
-         * Get the URL for the VAT ID update.
-         */
-        urlForUpdate: function urlForUpdate() {
-            return this.billingUser ? '/settings/payment-method/vat-id' : '/settings/' + Spark.teamsPrefix + '/' + this.team.id + '/payment-method/vat-id';
-        }
+    update: function update() {
+      Spark.put(this.urlForUpdate, this.form);
     }
+  },
+  computed: {
+    /**
+     * Get the URL for the VAT ID update.
+     */
+    urlForUpdate: function urlForUpdate() {
+      return this.billingUser ? '/settings/payment-method/vat-id' : "/settings/".concat(Spark.teamsPrefix, "/").concat(this.team.id, "/payment-method/vat-id");
+    }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/settings/profile.js":
+/*!*******************************************************!*\
+  !*** ./spark/resources/assets/js/settings/profile.js ***!
+  \*******************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = {
-    props: ['user']
+  props: ['user']
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/settings/profile/update-contact-information.js":
+/*!**********************************************************************************!*\
+  !*** ./spark/resources/assets/js/settings/profile/update-contact-information.js ***!
+  \**********************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = {
-    props: ['user'],
+  props: ['user'],
 
+  /**
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      form: $.extend(true, new SparkForm({
+        name: '',
+        email: ''
+      }), Spark.forms.updateContactInformation)
+    };
+  },
+
+  /**
+   * Bootstrap the component.
+   */
+  mounted: function mounted() {
+    this.form.name = this.user.name;
+    this.form.email = this.user.email;
+  },
+  methods: {
     /**
-     * The component's data.
+     * Update the user's contact information.
      */
-    data: function data() {
-        return {
-            form: $.extend(true, new SparkForm({
-                name: '',
-                email: ''
-            }), Spark.forms.updateContactInformation)
-        };
-    },
-
-
-    /**
-     * Bootstrap the component.
-     */
-    mounted: function mounted() {
-        this.form.name = this.user.name;
-        this.form.email = this.user.email;
-    },
-
-
-    methods: {
-        /**
-         * Update the user's contact information.
-         */
-        update: function update() {
-            Spark.put('/settings/contact', this.form).then(function () {
-                Bus.$emit('updateUser');
-            });
-        }
+    update: function update() {
+      Spark.put('/settings/contact', this.form).then(function () {
+        Bus.$emit('updateUser');
+      });
     }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/settings/profile/update-profile-photo.js":
+/*!****************************************************************************!*\
+  !*** ./spark/resources/assets/js/settings/profile/update-profile-photo.js ***!
+  \****************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = {
-    props: ['user'],
+  props: ['user'],
+
+  /**
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      form: new SparkForm({})
+    };
+  },
+  methods: {
+    /**
+     * Update the user's profile photo.
+     */
+    update: function update(e) {
+      e.preventDefault();
+
+      if (!this.$refs.photo.files.length) {
+        return;
+      }
+
+      var self = this;
+      this.form.startProcessing(); // We need to gather a fresh FormData instance with the profile photo appended to
+      // the data so we can POST it up to the server. This will allow us to do async
+      // uploads of the profile photos. We will update the user after this action.
+
+      axios.post('/settings/photo', this.gatherFormData()).then(function () {
+        Bus.$emit('updateUser');
+        self.form.finishProcessing();
+      }, function (error) {
+        self.form.setErrors(error.response.data.errors);
+      });
+    },
 
     /**
-     * The component's data.
+     * Gather the form data for the photo upload.
      */
-    data: function data() {
-        return {
-            form: new SparkForm({})
-        };
-    },
-
-
-    methods: {
-        /**
-         * Update the user's profile photo.
-         */
-        update: function update(e) {
-            e.preventDefault();
-
-            if (!this.$refs.photo.files.length) {
-                return;
-            }
-
-            var self = this;
-
-            this.form.startProcessing();
-
-            // We need to gather a fresh FormData instance with the profile photo appended to
-            // the data so we can POST it up to the server. This will allow us to do async
-            // uploads of the profile photos. We will update the user after this action.
-            axios.post('/settings/photo', this.gatherFormData()).then(function () {
-                Bus.$emit('updateUser');
-
-                self.form.finishProcessing();
-            }, function (error) {
-                self.form.setErrors(error.response.data.errors);
-            });
-        },
-
-
-        /**
-         * Gather the form data for the photo upload.
-         */
-        gatherFormData: function gatherFormData() {
-            var data = new FormData();
-
-            data.append('photo', this.$refs.photo.files[0]);
-
-            return data;
-        }
-    },
-
-    computed: {
-        /**
-         * Calculate the style attribute for the photo preview.
-         */
-        previewStyle: function previewStyle() {
-            return 'background-image: url(' + this.user.photo_url + ')';
-        }
+    gatherFormData: function gatherFormData() {
+      var data = new FormData();
+      data.append('photo', this.$refs.photo.files[0]);
+      return data;
     }
+  },
+  computed: {
+    /**
+     * Calculate the style attribute for the photo preview.
+     */
+    previewStyle: function previewStyle() {
+      return "background-image: url(".concat(this.user.photo_url, ")");
+    }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/settings/security.js":
+/*!********************************************************!*\
+  !*** ./spark/resources/assets/js/settings/security.js ***!
+  \********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = {
-    props: ['user'],
+  props: ['user'],
 
-    /**
-     * The component's data.
-     */
-    data: function data() {
-        return {
-            twoFactorResetCode: null
-        };
-    },
+  /**
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      twoFactorResetCode: null
+    };
+  },
 
-
-    /**
-     * The component has been created by Vue.
-     */
-    created: function created() {
-        var self = this;
-
-        this.$on('receivedTwoFactorResetCode', function (code) {
-            self.twoFactorResetCode = code;
-
-            $('#modal-show-two-factor-reset-code').modal('show');
-        });
-    }
+  /**
+   * The component has been created by Vue.
+   */
+  created: function created() {
+    var self = this;
+    this.$on('receivedTwoFactorResetCode', function (code) {
+      self.twoFactorResetCode = code;
+      $('#modal-show-two-factor-reset-code').modal('show');
+    });
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/settings/security/disable-two-factor-auth.js":
+/*!********************************************************************************!*\
+  !*** ./spark/resources/assets/js/settings/security/disable-two-factor-auth.js ***!
+  \********************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = {
-	props: ['user'],
+  props: ['user'],
 
-	/**
-  * The component's data.
-  */
-	data: function data() {
-		return {
-			form: new SparkForm({})
-		};
-	},
-
-
-	methods: {
-		/**
-   * Disable two-factor authentication for the user.
+  /**
+   * The component's data.
    */
-		disable: function disable() {
-			Spark.delete('/settings/two-factor-auth', this.form).then(function () {
-				Bus.$emit('updateUser');
-			});
-		}
-	}
+  data: function data() {
+    return {
+      form: new SparkForm({})
+    };
+  },
+  methods: {
+    /**
+     * Disable two-factor authentication for the user.
+     */
+    disable: function disable() {
+      Spark.delete('/settings/two-factor-auth', this.form).then(function () {
+        Bus.$emit('updateUser');
+      });
+    }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/settings/security/enable-two-factor-auth.js":
+/*!*******************************************************************************!*\
+  !*** ./spark/resources/assets/js/settings/security/enable-two-factor-auth.js ***!
+  \*******************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = {
-	props: ['user'],
+  props: ['user'],
 
-	/**
-  * The component's data.
-  */
-	data: function data() {
-		return {
-			form: new SparkForm({
-				country_code: '',
-				phone: ''
-			})
-		};
-	},
-
-
-	/**
-  * Prepare the component.
-  */
-	mounted: function mounted() {
-		this.form.country_code = this.user.country_code;
-		this.form.phone = this.user.phone;
-	},
-
-
-	methods: {
-		/**
-   * Enable two-factor authentication for the user.
+  /**
+   * The component's data.
    */
-		enable: function enable() {
-			var _this = this;
+  data: function data() {
+    return {
+      form: new SparkForm({
+        country_code: '',
+        phone: ''
+      })
+    };
+  },
 
-			Spark.post('/settings/two-factor-auth', this.form).then(function (code) {
-				_this.$parent.$emit('receivedTwoFactorResetCode', code);
+  /**
+   * Prepare the component.
+   */
+  mounted: function mounted() {
+    this.form.country_code = this.user.country_code;
+    this.form.phone = this.user.phone;
+  },
+  methods: {
+    /**
+     * Enable two-factor authentication for the user.
+     */
+    enable: function enable() {
+      var _this = this;
 
-				Bus.$emit('updateUser');
-			});
-		}
-	}
+      Spark.post('/settings/two-factor-auth', this.form).then(function (code) {
+        _this.$parent.$emit('receivedTwoFactorResetCode', code);
+
+        Bus.$emit('updateUser');
+      });
+    }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/settings/security/update-password.js":
+/*!************************************************************************!*\
+  !*** ./spark/resources/assets/js/settings/security/update-password.js ***!
+  \************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = {
+  /**
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      form: new SparkForm({
+        current_password: '',
+        password: '',
+        password_confirmation: ''
+      })
+    };
+  },
+  methods: {
     /**
-     * The component's data.
+     * Update the user's password.
      */
-    data: function data() {
-        return {
-            form: new SparkForm({
-                current_password: '',
-                password: '',
-                password_confirmation: ''
-            })
-        };
-    },
-
-
-    methods: {
-        /**
-         * Update the user's password.
-         */
-        update: function update() {
-            Spark.put('/settings/password', this.form);
-        }
+    update: function update() {
+      Spark.put('/settings/password', this.form);
     }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/settings/settings.js":
+/*!********************************************************!*\
+  !*** ./spark/resources/assets/js/settings/settings.js ***!
+  \********************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = {
-    props: ['user', 'teams'],
+  props: ['user', 'teams'],
 
-    /**
-     * Load mixins for the component.
-     */
-    mixins: [__webpack_require__("./spark/resources/assets/js/mixins/tab-state.js")],
+  /**
+   * Load mixins for the component.
+   */
+  mixins: [__webpack_require__(/*! ./../mixins/tab-state */ "./spark/resources/assets/js/mixins/tab-state.js")],
 
-    /**
-     * The component's data.
-     */
-    data: function data() {
-        return {
-            billableType: 'user',
-            team: null
-        };
-    },
+  /**
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      billableType: 'user',
+      team: null
+    };
+  },
 
-
-    /**
-     * Prepare the component.
-     */
-    mounted: function mounted() {
-        this.usePushStateForTabs('.spark-settings-tabs');
-    }
+  /**
+   * Prepare the component.
+   */
+  mounted: function mounted() {
+    this.usePushStateForTabs('.spark-settings-tabs');
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/settings/subscription.js":
+/*!************************************************************!*\
+  !*** ./spark/resources/assets/js/settings/subscription.js ***!
+  \************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = {
-    props: ['user', 'team', 'billableType'],
+  props: ['user', 'team', 'billableType'],
 
+  /**
+   * Load mixins for the component.
+   */
+  mixins: [__webpack_require__(/*! ./../mixins/plans */ "./spark/resources/assets/js/mixins/plans.js"), __webpack_require__(/*! ./../mixins/subscriptions */ "./spark/resources/assets/js/mixins/subscriptions.js")],
+
+  /**
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      plans: []
+    };
+  },
+
+  /**
+   * Prepare the component.
+   */
+  mounted: function mounted() {
+    var self = this;
+    this.getPlans();
+    this.$on('showPlanDetails', function (plan) {
+      self.showPlanDetails(plan);
+    });
+  },
+  methods: {
     /**
-     * Load mixins for the component.
+     * Get the active plans for the application.
      */
-    mixins: [__webpack_require__("./spark/resources/assets/js/mixins/plans.js"), __webpack_require__("./spark/resources/assets/js/mixins/subscriptions.js")],
+    getPlans: function getPlans() {
+      var _this = this;
 
-    /**
-     * The component's data.
-     */
-    data: function data() {
-        return {
-            plans: []
-        };
-    },
-
-
-    /**
-     * Prepare the component.
-     */
-    mounted: function mounted() {
-        var self = this;
-
-        this.getPlans();
-
-        this.$on('showPlanDetails', function (plan) {
-            self.showPlanDetails(plan);
+      axios.get('/spark/plans').then(function (response) {
+        _this.plans = _this.billingUser ? _.filter(response.data, {
+          type: "user"
+        }) : _.filter(response.data, {
+          type: "team"
         });
-    },
-
-
-    methods: {
-        /**
-         * Get the active plans for the application.
-         */
-        getPlans: function getPlans() {
-            var _this = this;
-
-            axios.get('/spark/plans').then(function (response) {
-                _this.plans = _this.billingUser ? _.filter(response.data, { type: "user" }) : _.filter(response.data, { type: "team" });
-            });
-        }
+      });
     }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/settings/subscription/cancel-subscription.js":
+/*!********************************************************************************!*\
+  !*** ./spark/resources/assets/js/settings/subscription/cancel-subscription.js ***!
+  \********************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = {
-    props: ['user', 'team', 'billableType'],
+  props: ['user', 'team', 'billableType'],
+
+  /**
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      form: new SparkForm({})
+    };
+  },
+  methods: {
+    /**
+     * Confirm the cancellation operation.
+     */
+    confirmCancellation: function confirmCancellation() {
+      $('#modal-confirm-cancellation').modal('show');
+    },
 
     /**
-     * The component's data.
+     * Cancel the current subscription.
      */
-    data: function data() {
-        return {
-            form: new SparkForm({})
-        };
-    },
-
-
-    methods: {
-        /**
-         * Confirm the cancellation operation.
-         */
-        confirmCancellation: function confirmCancellation() {
-            $('#modal-confirm-cancellation').modal('show');
-        },
-
-
-        /**
-         * Cancel the current subscription.
-         */
-        cancel: function cancel() {
-            Spark.delete(this.urlForCancellation, this.form).then(function () {
-                Bus.$emit('updateUser');
-                Bus.$emit('updateTeam');
-
-                $('#modal-confirm-cancellation').modal('hide');
-            });
-        }
-    },
-
-    computed: {
-        /**
-         * Get the URL for the subscription cancellation.
-         */
-        urlForCancellation: function urlForCancellation() {
-            return this.billingUser ? '/settings/subscription' : '/settings/' + Spark.teamsPrefix + '/' + this.team.id + '/subscription';
-        }
+    cancel: function cancel() {
+      Spark.delete(this.urlForCancellation, this.form).then(function () {
+        Bus.$emit('updateUser');
+        Bus.$emit('updateTeam');
+        $('#modal-confirm-cancellation').modal('hide');
+      });
     }
+  },
+  computed: {
+    /**
+     * Get the URL for the subscription cancellation.
+     */
+    urlForCancellation: function urlForCancellation() {
+      return this.billingUser ? '/settings/subscription' : "/settings/".concat(Spark.teamsPrefix, "/").concat(this.team.id, "/subscription");
+    }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/settings/subscription/resume-subscription.js":
+/*!********************************************************************************!*\
+  !*** ./spark/resources/assets/js/settings/subscription/resume-subscription.js ***!
+  \********************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = {
-    props: ['user', 'team', 'plans', 'billableType'],
+  props: ['user', 'team', 'plans', 'billableType'],
 
-    /**
-     * Load mixins for the component.
-     */
-    mixins: [__webpack_require__("./spark/resources/assets/js/mixins/plans.js"), __webpack_require__("./spark/resources/assets/js/mixins/subscriptions.js")],
+  /**
+   * Load mixins for the component.
+   */
+  mixins: [__webpack_require__(/*! ./../../mixins/plans */ "./spark/resources/assets/js/mixins/plans.js"), __webpack_require__(/*! ./../../mixins/subscriptions */ "./spark/resources/assets/js/mixins/subscriptions.js")],
 
+  /**
+   * Prepare the component.
+   */
+  mounted: function mounted() {
+    if (this.onlyHasYearlyPlans) {
+      this.showYearlyPlans();
+    }
+  },
+  methods: {
     /**
-     * Prepare the component.
+     * Show the plan details for the given plan.
+     *
+     * We'll ask the parent subscription component to display it.
      */
-    mounted: function mounted() {
-        if (this.onlyHasYearlyPlans) {
-            this.showYearlyPlans();
-        }
+    showPlanDetails: function showPlanDetails(plan) {
+      this.$parent.$emit('showPlanDetails', plan);
     },
 
-
-    methods: {
-        /**
-         * Show the plan details for the given plan.
-         *
-         * We'll ask the parent subscription component to display it.
-         */
-        showPlanDetails: function showPlanDetails(plan) {
-            this.$parent.$emit('showPlanDetails', plan);
-        },
-
-
-        /**
-         * Get the plan price with the applicable VAT.
-         */
-        priceWithTax: function priceWithTax(plan) {
-            return plan.price + plan.price * (this.billable.tax_rate / 100);
-        }
+    /**
+     * Get the plan price with the applicable VAT.
+     */
+    priceWithTax: function priceWithTax(plan) {
+      return plan.price + plan.price * (this.billable.tax_rate / 100);
     }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/settings/subscription/subscribe-braintree.js":
+/*!********************************************************************************!*\
+  !*** ./spark/resources/assets/js/settings/subscription/subscribe-braintree.js ***!
+  \********************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = {
-    props: ['user', 'team', 'plans', 'billableType'],
+  props: ['user', 'team', 'plans', 'billableType'],
 
-    /**
-     * Load mixins for the component.
-     */
-    mixins: [__webpack_require__("./spark/resources/assets/js/mixins/braintree.js"), __webpack_require__("./spark/resources/assets/js/mixins/plans.js"), __webpack_require__("./spark/resources/assets/js/mixins/subscriptions.js")],
+  /**
+   * Load mixins for the component.
+   */
+  mixins: [__webpack_require__(/*! ./../../mixins/braintree */ "./spark/resources/assets/js/mixins/braintree.js"), __webpack_require__(/*! ./../../mixins/plans */ "./spark/resources/assets/js/mixins/plans.js"), __webpack_require__(/*! ./../../mixins/subscriptions */ "./spark/resources/assets/js/mixins/subscriptions.js")],
 
+  /**
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      form: new SparkForm({
+        use_existing_payment_method: this.hasPaymentMethod() ? '1' : '0',
+        braintree_type: '',
+        braintree_token: '',
+        plan: '',
+        coupon: null
+      })
+    };
+  },
+
+  /**
+   * Prepare the component.
+   */
+  mounted: function mounted() {
+    var _this = this;
+
+    // If only yearly subscription plans are available, we will select that interval so that we
+    // can show the plans. Then we'll select the first available paid plan from the list and
+    // start the form in a good default spot. The user may then select another plan later.
+    if (this.onlyHasYearlyPaidPlans) {
+      this.showYearlyPlans();
+    } // Next, we will configure the braintree container element on the page and handle the nonce
+    // received callback. We'll then set the nonce and fire off the subscribe method so this
+    // nonce can be used to create the subscription for the billable entity being managed.
+
+
+    this.braintree('braintree-subscribe-container', function (response) {
+      _this.form.braintree_type = response.type;
+      _this.form.braintree_token = response.nonce;
+
+      _this.subscribe();
+    });
+  },
+  methods: {
     /**
-     * The component's data.
+     * Mark the given plan as selected.
      */
-    data: function data() {
-        return {
-            form: new SparkForm({
-                use_existing_payment_method: this.hasPaymentMethod() ? '1' : '0',
-                braintree_type: '',
-                braintree_token: '',
-                plan: '',
-                coupon: null
-            })
-        };
+    selectPlan: function selectPlan(plan) {
+      this.selectedPlan = plan;
+      this.form.plan = this.selectedPlan.id;
     },
 
+    /**
+     * Subscribe to the specified plan.
+     */
+    subscribe: function subscribe() {
+      Spark.post(this.urlForNewSubscription, this.form).then(function (response) {
+        Bus.$emit('updateUser');
+        Bus.$emit('updateTeam');
+      });
+    },
 
     /**
-     * Prepare the component.
+     * Show the plan details for the given plan.
+     *
+     * We'll ask the parent subscription component to display it.
      */
-    mounted: function mounted() {
-        var _this = this;
-
-        // If only yearly subscription plans are available, we will select that interval so that we
-        // can show the plans. Then we'll select the first available paid plan from the list and
-        // start the form in a good default spot. The user may then select another plan later.
-        if (this.onlyHasYearlyPaidPlans) {
-            this.showYearlyPlans();
-        }
-
-        // Next, we will configure the braintree container element on the page and handle the nonce
-        // received callback. We'll then set the nonce and fire off the subscribe method so this
-        // nonce can be used to create the subscription for the billable entity being managed.
-        this.braintree('braintree-subscribe-container', function (response) {
-            _this.form.braintree_type = response.type;
-            _this.form.braintree_token = response.nonce;
-
-            _this.subscribe();
-        });
+    showPlanDetails: function showPlanDetails(plan) {
+      this.$parent.$emit('showPlanDetails', plan);
     },
 
-
-    methods: {
-        /**
-         * Mark the given plan as selected.
-         */
-        selectPlan: function selectPlan(plan) {
-            this.selectedPlan = plan;
-
-            this.form.plan = this.selectedPlan.id;
-        },
-
-
-        /**
-         * Subscribe to the specified plan.
-         */
-        subscribe: function subscribe() {
-            Spark.post(this.urlForNewSubscription, this.form).then(function (response) {
-                Bus.$emit('updateUser');
-                Bus.$emit('updateTeam');
-            });
-        },
-
-
-        /**
-         * Show the plan details for the given plan.
-         *
-         * We'll ask the parent subscription component to display it.
-         */
-        showPlanDetails: function showPlanDetails(plan) {
-            this.$parent.$emit('showPlanDetails', plan);
-        },
-
-
-        /**
-         * Determine if the user/team has a payment method defined.
-         */
-        hasPaymentMethod: function hasPaymentMethod() {
-            return this.team ? this.team.card_last_four || this.team.paypal_email : this.user.card_last_four || this.user.paypal_email;
-        }
-    },
-
-    computed: {
-        /**
-         * Get the URL for subscribing to a plan.
-         */
-        urlForNewSubscription: function urlForNewSubscription() {
-            return this.billingUser ? '/settings/subscription' : '/settings/' + Spark.teamsPrefix + '/' + this.team.id + '/subscription';
-        }
+    /**
+     * Determine if the user/team has a payment method defined.
+     */
+    hasPaymentMethod: function hasPaymentMethod() {
+      return this.team ? this.team.card_last_four || this.team.paypal_email : this.user.card_last_four || this.user.paypal_email;
     }
+  },
+  computed: {
+    /**
+     * Get the URL for subscribing to a plan.
+     */
+    urlForNewSubscription: function urlForNewSubscription() {
+      return this.billingUser ? '/settings/subscription' : "/settings/".concat(Spark.teamsPrefix, "/").concat(this.team.id, "/subscription");
+    }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/settings/subscription/subscribe-stripe.js":
+/*!*****************************************************************************!*\
+  !*** ./spark/resources/assets/js/settings/subscription/subscribe-stripe.js ***!
+  \*****************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = {
-    props: ['user', 'team', 'plans', 'billableType'],
+  props: ['user', 'team', 'plans', 'billableType'],
 
+  /**
+   * Load mixins for the component.
+   */
+  mixins: [__webpack_require__(/*! ./../../mixins/plans */ "./spark/resources/assets/js/mixins/plans.js"), __webpack_require__(/*! ./../../mixins/subscriptions */ "./spark/resources/assets/js/mixins/subscriptions.js"), __webpack_require__(/*! ./../../mixins/vat */ "./spark/resources/assets/js/mixins/vat.js"), __webpack_require__(/*! ./../../mixins/stripe */ "./spark/resources/assets/js/mixins/stripe.js")],
+
+  /**
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      taxRate: 0,
+      cardElement: null,
+      form: new SparkForm({
+        use_existing_payment_method: this.hasPaymentMethod() ? '1' : '0',
+        stripe_token: '',
+        plan: '',
+        coupon: null,
+        address: '',
+        address_line_2: '',
+        city: '',
+        state: '',
+        zip: '',
+        country: 'US',
+        vat_id: ''
+      }),
+      cardForm: new SparkForm({
+        name: ''
+      })
+    };
+  },
+  watch: {
     /**
-     * Load mixins for the component.
+     * Watch for changes on the entire billing address.
      */
-    mixins: [__webpack_require__("./spark/resources/assets/js/mixins/plans.js"), __webpack_require__("./spark/resources/assets/js/mixins/subscriptions.js"), __webpack_require__("./spark/resources/assets/js/mixins/vat.js"), __webpack_require__("./spark/resources/assets/js/mixins/stripe.js")],
+    'currentBillingAddress': function currentBillingAddress(value) {
+      if (!Spark.collectsEuropeanVat) {
+        return;
+      }
 
-    /**
-     * The component's data.
-     */
-    data: function data() {
-        return {
-            taxRate: 0,
-
-            cardElement: null,
-
-            form: new SparkForm({
-                use_existing_payment_method: this.hasPaymentMethod() ? '1' : '0',
-                stripe_token: '',
-                plan: '',
-                coupon: null,
-                address: '',
-                address_line_2: '',
-                city: '',
-                state: '',
-                zip: '',
-                country: 'US',
-                vat_id: ''
-            }),
-
-            cardForm: new SparkForm({
-                name: ''
-            })
-        };
-    },
-
-
-    watch: {
-        /**
-         * Watch for changes on the entire billing address.
-         */
-        'currentBillingAddress': function currentBillingAddress(value) {
-            if (!Spark.collectsEuropeanVat) {
-                return;
-            }
-
-            this.refreshTaxRate(this.form);
-        }
-    },
-
-    /**
-     * Prepare the component.
-     */
-    mounted: function mounted() {
-        this.cardElement = this.createCardElement('#subscription-card-element');
-
-        this.initializeBillingAddress();
-
-        if (this.onlyHasYearlyPaidPlans) {
-            this.showYearlyPlans();
-        }
-    },
-
-
-    methods: {
-        /**
-         * Initialize the billing address form for the billable entity.
-         */
-        initializeBillingAddress: function initializeBillingAddress() {
-            this.form.address = this.billable.billing_address;
-            this.form.address_line_2 = this.billable.billing_address_line_2;
-            this.form.city = this.billable.billing_city;
-            this.form.state = this.billable.billing_state;
-            this.form.zip = this.billable.billing_zip;
-            this.form.country = this.billable.billing_country || 'US';
-            this.form.vat_id = this.billable.vat_id;
-        },
-
-
-        /**
-         * Mark the given plan as selected.
-         */
-        selectPlan: function selectPlan(plan) {
-            this.selectedPlan = plan;
-
-            this.form.plan = this.selectedPlan.id;
-        },
-
-
-        /**
-         * Subscribe to the specified plan.
-         */
-        subscribe: function subscribe() {
-            var _this = this;
-
-            this.cardForm.errors.forget();
-
-            this.form.startProcessing();
-
-            if (this.form.use_existing_payment_method == '1') {
-                return this.createSubscription();
-            }
-
-            // Here we will build out the payload to send to Stripe to obtain a card token so
-            // we can create the actual subscription. We will build out this data that has
-            // this credit card number, CVC, etc. and exchange it for a secure token ID.
-            var payload = {
-                name: this.cardForm.name,
-                address_line1: this.form.address || '',
-                address_line2: this.form.address_line_2 || '',
-                address_city: this.form.city || '',
-                address_state: this.form.state || '',
-                address_zip: this.form.zip || '',
-                address_country: this.form.country || ''
-            };
-
-            // Next, we will send the payload to Stripe and handle the response. If we have a
-            // valid token we can send that to the server and use the token to create this
-            // subscription on the back-end. Otherwise, we will show the error messages.
-            this.stripe.createToken(this.cardElement, payload).then(function (response) {
-                if (response.error) {
-                    _this.cardForm.errors.set({ card: [response.error.message] });
-
-                    _this.form.busy = false;
-                } else {
-                    _this.createSubscription(response.token.id);
-                }
-            });
-        },
-
-
-        /*
-         * After obtaining the Stripe token, create subscription on the Spark server.
-         */
-        createSubscription: function createSubscription(token) {
-            this.form.stripe_token = token;
-
-            Spark.post(this.urlForNewSubscription, this.form).then(function (response) {
-                Bus.$emit('updateUser');
-                Bus.$emit('updateTeam');
-            });
-        },
-
-
-        /**
-         * Determine if the user has subscribed to the given plan before.
-         */
-        hasSubscribed: function hasSubscribed(plan) {
-            return !!_.filter(this.billable.subscriptions, { provider_plan: plan.id }).length;
-        },
-
-
-        /**
-         * Show the plan details for the given plan.
-         *
-         * We'll ask the parent subscription component to display it.
-         */
-        showPlanDetails: function showPlanDetails(plan) {
-            this.$parent.$emit('showPlanDetails', plan);
-        },
-
-
-        /**
-         * Determine if the user/team has a payment method defined.
-         */
-        hasPaymentMethod: function hasPaymentMethod() {
-            return this.team ? this.team.card_last_four : this.user.card_last_four;
-        }
-    },
-
-    computed: {
-        /**
-         * Get the billable entity's "billable" name.
-         */
-        billableName: function billableName() {
-            return this.billingUser ? this.user.name : this.team.owner.name;
-        },
-
-
-        /**
-         * Determine if the selected country collects European VAT.
-         */
-        countryCollectsVat: function countryCollectsVat() {
-            return this.collectsVat(this.form.country);
-        },
-
-
-        /**
-         * Get the URL for subscribing to a plan.
-         */
-        urlForNewSubscription: function urlForNewSubscription() {
-            return this.billingUser ? '/settings/subscription' : '/settings/' + Spark.teamsPrefix + '/' + this.team.id + '/subscription';
-        },
-
-
-        /**
-         * Get the current billing address from the subscribe form.
-         *
-         * This used primarily for watching.
-         */
-        currentBillingAddress: function currentBillingAddress() {
-            return this.form.address + this.form.address_line_2 + this.form.city + this.form.state + this.form.zip + this.form.country + this.form.vat_id;
-        }
+      this.refreshTaxRate(this.form);
     }
+  },
+
+  /**
+   * Prepare the component.
+   */
+  mounted: function mounted() {
+    this.cardElement = this.createCardElement('#subscription-card-element');
+    this.initializeBillingAddress();
+
+    if (this.onlyHasYearlyPaidPlans) {
+      this.showYearlyPlans();
+    }
+  },
+  methods: {
+    /**
+     * Initialize the billing address form for the billable entity.
+     */
+    initializeBillingAddress: function initializeBillingAddress() {
+      this.form.address = this.billable.billing_address;
+      this.form.address_line_2 = this.billable.billing_address_line_2;
+      this.form.city = this.billable.billing_city;
+      this.form.state = this.billable.billing_state;
+      this.form.zip = this.billable.billing_zip;
+      this.form.country = this.billable.billing_country || 'US';
+      this.form.vat_id = this.billable.vat_id;
+    },
+
+    /**
+     * Mark the given plan as selected.
+     */
+    selectPlan: function selectPlan(plan) {
+      this.selectedPlan = plan;
+      this.form.plan = this.selectedPlan.id;
+    },
+
+    /**
+     * Subscribe to the specified plan.
+     */
+    subscribe: function subscribe() {
+      var _this = this;
+
+      this.cardForm.errors.forget();
+      this.form.startProcessing();
+
+      if (this.form.use_existing_payment_method == '1') {
+        return this.createSubscription();
+      } // Here we will build out the payload to send to Stripe to obtain a card token so
+      // we can create the actual subscription. We will build out this data that has
+      // this credit card number, CVC, etc. and exchange it for a secure token ID.
+
+
+      var payload = {
+        name: this.cardForm.name,
+        address_line1: this.form.address || '',
+        address_line2: this.form.address_line_2 || '',
+        address_city: this.form.city || '',
+        address_state: this.form.state || '',
+        address_zip: this.form.zip || '',
+        address_country: this.form.country || ''
+      }; // Next, we will send the payload to Stripe and handle the response. If we have a
+      // valid token we can send that to the server and use the token to create this
+      // subscription on the back-end. Otherwise, we will show the error messages.
+
+      this.stripe.createToken(this.cardElement, payload).then(function (response) {
+        if (response.error) {
+          _this.cardForm.errors.set({
+            card: [response.error.message]
+          });
+
+          _this.form.busy = false;
+        } else {
+          _this.createSubscription(response.token.id);
+        }
+      });
+    },
+
+    /*
+     * After obtaining the Stripe token, create subscription on the Spark server.
+     */
+    createSubscription: function createSubscription(token) {
+      this.form.stripe_token = token;
+      Spark.post(this.urlForNewSubscription, this.form).then(function (response) {
+        Bus.$emit('updateUser');
+        Bus.$emit('updateTeam');
+      });
+    },
+
+    /**
+     * Determine if the user has subscribed to the given plan before.
+     */
+    hasSubscribed: function hasSubscribed(plan) {
+      return !!_.filter(this.billable.subscriptions, {
+        provider_plan: plan.id
+      }).length;
+    },
+
+    /**
+     * Show the plan details for the given plan.
+     *
+     * We'll ask the parent subscription component to display it.
+     */
+    showPlanDetails: function showPlanDetails(plan) {
+      this.$parent.$emit('showPlanDetails', plan);
+    },
+
+    /**
+     * Determine if the user/team has a payment method defined.
+     */
+    hasPaymentMethod: function hasPaymentMethod() {
+      return this.team ? this.team.card_last_four : this.user.card_last_four;
+    }
+  },
+  computed: {
+    /**
+     * Get the billable entity's "billable" name.
+     */
+    billableName: function billableName() {
+      return this.billingUser ? this.user.name : this.team.owner.name;
+    },
+
+    /**
+     * Determine if the selected country collects European VAT.
+     */
+    countryCollectsVat: function countryCollectsVat() {
+      return this.collectsVat(this.form.country);
+    },
+
+    /**
+     * Get the URL for subscribing to a plan.
+     */
+    urlForNewSubscription: function urlForNewSubscription() {
+      return this.billingUser ? '/settings/subscription' : "/settings/".concat(Spark.teamsPrefix, "/").concat(this.team.id, "/subscription");
+    },
+
+    /**
+     * Get the current billing address from the subscribe form.
+     *
+     * This used primarily for watching.
+     */
+    currentBillingAddress: function currentBillingAddress() {
+      return this.form.address + this.form.address_line_2 + this.form.city + this.form.state + this.form.zip + this.form.country + this.form.vat_id;
+    }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/settings/subscription/update-subscription.js":
+/*!********************************************************************************!*\
+  !*** ./spark/resources/assets/js/settings/subscription/update-subscription.js ***!
+  \********************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = {
-    props: ['user', 'team', 'plans', 'billableType'],
+  props: ['user', 'team', 'plans', 'billableType'],
 
-    /**
-     * Load mixins for the component.
-     */
-    mixins: [__webpack_require__("./spark/resources/assets/js/mixins/plans.js"), __webpack_require__("./spark/resources/assets/js/mixins/subscriptions.js")],
+  /**
+   * Load mixins for the component.
+   */
+  mixins: [__webpack_require__(/*! ./../../mixins/plans */ "./spark/resources/assets/js/mixins/plans.js"), __webpack_require__(/*! ./../../mixins/subscriptions */ "./spark/resources/assets/js/mixins/subscriptions.js")],
 
-    /**
-     * The component's data.
-     */
-    data: function data() {
-        return {
-            confirmingPlan: null
-        };
-    },
+  /**
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      confirmingPlan: null
+    };
+  },
 
+  /**
+   * Prepare the component.
+   */
+  mounted: function mounted() {
+    var _this = this;
 
-    /**
-     * Prepare the component.
-     */
-    mounted: function mounted() {
-        var _this = this;
+    this.selectActivePlanInterval(); // We need to watch the activePlan computed property for changes so we can select
+    // the proper active plan on the plan interval button group. So, we will watch
+    // this property and fire off a method anytime it changes so it can sync up.
 
-        this.selectActivePlanInterval();
+    this.$watch('activePlan', function (value) {
+      _this.selectActivePlanInterval();
+    });
 
-        // We need to watch the activePlan computed property for changes so we can select
-        // the proper active plan on the plan interval button group. So, we will watch
-        // this property and fire off a method anytime it changes so it can sync up.
-        this.$watch('activePlan', function (value) {
-            _this.selectActivePlanInterval();
-        });
-
-        if (this.onlyHasYearlyPlans) {
-            this.showYearlyPlans();
-        }
-    },
-
-
-    methods: {
-        /**
-         * Confirm the plan update with the user.
-         */
-        confirmPlanUpdate: function confirmPlanUpdate(plan) {
-            this.confirmingPlan = plan;
-
-            $('#modal-confirm-plan-update').modal('show');
-        },
-
-
-        /**
-         * Approve the plan update.
-         */
-        approvePlanUpdate: function approvePlanUpdate() {
-            $('#modal-confirm-plan-update').modal('hide');
-
-            this.updateSubscription(this.confirmingPlan);
-        },
-
-
-        /**
-         * Select the active plan interval.
-         */
-        selectActivePlanInterval: function selectActivePlanInterval() {
-            if (this.activePlanIsMonthly || this.yearlyPlans.length == 0) {
-                this.showMonthlyPlans();
-            } else {
-                this.showYearlyPlans();
-            }
-        },
-
-
-        /**
-         * Show the plan details for the given plan.
-         *
-         * We'll ask the parent subscription component to display it.
-         */
-        showPlanDetails: function showPlanDetails(plan) {
-            this.$parent.$emit('showPlanDetails', plan);
-        },
-
-
-        /**
-         * Get the plan price with the applicable VAT.
-         */
-        priceWithTax: function priceWithTax(plan) {
-            return plan.price + plan.price * (this.billable.tax_rate / 100);
-        }
+    if (this.onlyHasYearlyPlans) {
+      this.showYearlyPlans();
     }
+  },
+  methods: {
+    /**
+     * Confirm the plan update with the user.
+     */
+    confirmPlanUpdate: function confirmPlanUpdate(plan) {
+      this.confirmingPlan = plan;
+      $('#modal-confirm-plan-update').modal('show');
+    },
+
+    /**
+     * Approve the plan update.
+     */
+    approvePlanUpdate: function approvePlanUpdate() {
+      $('#modal-confirm-plan-update').modal('hide');
+      this.updateSubscription(this.confirmingPlan);
+    },
+
+    /**
+     * Select the active plan interval.
+     */
+    selectActivePlanInterval: function selectActivePlanInterval() {
+      if (this.activePlanIsMonthly || this.yearlyPlans.length == 0) {
+        this.showMonthlyPlans();
+      } else {
+        this.showYearlyPlans();
+      }
+    },
+
+    /**
+     * Show the plan details for the given plan.
+     *
+     * We'll ask the parent subscription component to display it.
+     */
+    showPlanDetails: function showPlanDetails(plan) {
+      this.$parent.$emit('showPlanDetails', plan);
+    },
+
+    /**
+     * Get the plan price with the applicable VAT.
+     */
+    priceWithTax: function priceWithTax(plan) {
+      return plan.price + plan.price * (this.billable.tax_rate / 100);
+    }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/settings/teams.js":
+/*!*****************************************************!*\
+  !*** ./spark/resources/assets/js/settings/teams.js ***!
+  \*****************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = {
-    props: ['user', 'teams']
+  props: ['user', 'teams']
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/settings/teams/create-team.js":
+/*!*****************************************************************!*\
+  !*** ./spark/resources/assets/js/settings/teams/create-team.js ***!
+  \*****************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = {
+  /**
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      plans: [],
+      form: new SparkForm({
+        name: '',
+        slug: ''
+      })
+    };
+  },
+  computed: {
     /**
-     * The component's data.
+     * Get the active subscription instance.
      */
-    data: function data() {
-        return {
-            plans: [],
+    activeSubscription: function activeSubscription() {
+      if (!this.$parent.billable) {
+        return;
+      }
 
-            form: new SparkForm({
-                name: '',
-                slug: ''
-            })
-        };
-    },
+      var subscription = _.find(this.$parent.billable.subscriptions, function (subscription) {
+        return subscription.name == 'default';
+      });
 
-
-    computed: {
-        /**
-         * Get the active subscription instance.
-         */
-        activeSubscription: function activeSubscription() {
-            if (!this.$parent.billable) {
-                return;
-            }
-
-            var subscription = _.find(this.$parent.billable.subscriptions, function (subscription) {
-                return subscription.name == 'default';
-            });
-
-            if (typeof subscription !== 'undefined') {
-                return subscription;
-            }
-        },
-
-
-        /**
-         * Get the active plan instance.
-         */
-        activePlan: function activePlan() {
-            var _this = this;
-
-            if (this.activeSubscription) {
-                return _.find(this.plans, function (plan) {
-                    return plan.id == _this.activeSubscription.provider_plan;
-                });
-            }
-        },
-
-
-        /**
-         * Check if there's a limit for the number of teams.
-         */
-        hasTeamLimit: function hasTeamLimit() {
-            if (!this.activePlan) {
-                return false;
-            }
-
-            return !!this.activePlan.attributes.teams;
-        },
-
-
-        /**
-         *
-         * Get the remaining teams in the active plan.
-         */
-        remainingTeams: function remainingTeams() {
-            var ownedTeams = _.filter(this.$parent.teams, { owner_id: this.$parent.billable.id });
-
-            return this.activePlan ? this.activePlan.attributes.teams - ownedTeams.length : 0;
-        },
-
-
-        /**
-         * Check if the user can create more teams.
-         */
-        canCreateMoreTeams: function canCreateMoreTeams() {
-            if (!this.hasTeamLimit) {
-                return true;
-            }
-
-            return this.remainingTeams > 0;
-        }
+      if (typeof subscription !== 'undefined') {
+        return subscription;
+      }
     },
 
     /**
-     * The component has been created by Vue.
+     * Get the active plan instance.
      */
-    created: function created() {
-        this.getPlans();
+    activePlan: function activePlan() {
+      var _this = this;
+
+      if (this.activeSubscription) {
+        return _.find(this.plans, function (plan) {
+          return plan.id == _this.activeSubscription.provider_plan;
+        });
+      }
     },
 
+    /**
+     * Check if there's a limit for the number of teams.
+     */
+    hasTeamLimit: function hasTeamLimit() {
+      if (!this.activePlan) {
+        return false;
+      }
 
-    watch: {
-        /**
-         * Watch the team name for changes.
-         */
-        'form.name': function formName(val, oldVal) {
-            if (this.form.slug == '' || this.form.slug == oldVal.toLowerCase().replace(/[\s\W-]+/g, '-')) {
-                this.form.slug = val.toLowerCase().replace(/[\s\W-]+/g, '-');
-            }
-        }
+      return !!this.activePlan.attributes.teams;
     },
 
-    methods: {
-        /**
-         * Create a new team.
-         */
-        create: function create() {
-            var _this2 = this;
+    /**
+     *
+     * Get the remaining teams in the active plan.
+     */
+    remainingTeams: function remainingTeams() {
+      var ownedTeams = _.filter(this.$parent.teams, {
+        owner_id: this.$parent.billable.id
+      });
 
-            Spark.post('/settings/' + Spark.teamsPrefix, this.form).then(function () {
-                _this2.form.name = '';
-                _this2.form.slug = '';
+      return this.activePlan ? this.activePlan.attributes.teams - ownedTeams.length : 0;
+    },
 
-                Bus.$emit('updateUser');
-                Bus.$emit('updateTeams');
-            });
-        },
+    /**
+     * Check if the user can create more teams.
+     */
+    canCreateMoreTeams: function canCreateMoreTeams() {
+      if (!this.hasTeamLimit) {
+        return true;
+      }
 
-
-        /**
-         * Get all the plans defined in the application.
-         */
-        getPlans: function getPlans() {
-            var _this3 = this;
-
-            axios.get('/spark/plans').then(function (response) {
-                _this3.plans = response.data;
-            });
-        }
+      return this.remainingTeams > 0;
     }
+  },
+
+  /**
+   * The component has been created by Vue.
+   */
+  created: function created() {
+    this.getPlans();
+  },
+  watch: {
+    /**
+     * Watch the team name for changes.
+     */
+    'form.name': function formName(val, oldVal) {
+      if (this.form.slug == '' || this.form.slug == oldVal.toLowerCase().replace(/[\s\W-]+/g, '-')) {
+        this.form.slug = val.toLowerCase().replace(/[\s\W-]+/g, '-');
+      }
+    }
+  },
+  methods: {
+    /**
+     * Create a new team.
+     */
+    create: function create() {
+      var _this2 = this;
+
+      Spark.post('/settings/' + Spark.teamsPrefix, this.form).then(function () {
+        _this2.form.name = '';
+        _this2.form.slug = '';
+        Bus.$emit('updateUser');
+        Bus.$emit('updateTeams');
+      });
+    },
+
+    /**
+     * Get all the plans defined in the application.
+     */
+    getPlans: function getPlans() {
+      var _this3 = this;
+
+      axios.get('/spark/plans').then(function (response) {
+        _this3.plans = response.data;
+      });
+    }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/settings/teams/current-teams.js":
+/*!*******************************************************************!*\
+  !*** ./spark/resources/assets/js/settings/teams/current-teams.js ***!
+  \*******************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = {
-    props: ['user', 'teams'],
+  props: ['user', 'teams'],
 
+  /**
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      leavingTeam: null,
+      deletingTeam: null,
+      leaveTeamForm: new SparkForm({}),
+      deleteTeamForm: new SparkForm({})
+    };
+  },
+
+  /**
+   * Prepare the component.
+   */
+  mounted: function mounted() {
+    $('[data-toggle="tooltip"]').tooltip();
+  },
+  computed: {
     /**
-     * The component's data.
+     * Get the URL for leaving a team.
      */
-    data: function data() {
-        return {
-            leavingTeam: null,
-            deletingTeam: null,
-
-            leaveTeamForm: new SparkForm({}),
-            deleteTeamForm: new SparkForm({})
-        };
-    },
-
-
-    /**
-     * Prepare the component.
-     */
-    mounted: function mounted() {
-        $('[data-toggle="tooltip"]').tooltip();
-    },
-
-
-    computed: {
-        /**
-         * Get the URL for leaving a team.
-         */
-        urlForLeaving: function urlForLeaving() {
-            return '/settings/' + Spark.teamsPrefix + '/' + this.leavingTeam.id + '/members/' + this.user.id;
-        }
-    },
-
-    methods: {
-        /**
-         * Approve leaving the given team.
-         */
-        approveLeavingTeam: function approveLeavingTeam(team) {
-            this.leavingTeam = team;
-
-            $('#modal-leave-team').modal('show');
-        },
-
-
-        /**
-         * Leave the given team.
-         */
-        leaveTeam: function leaveTeam() {
-            Spark.delete(this.urlForLeaving, this.leaveTeamForm).then(function () {
-                Bus.$emit('updateUser');
-                Bus.$emit('updateTeams');
-
-                $('#modal-leave-team').modal('hide');
-            });
-        },
-
-
-        /**
-         * Approve the deletion of the given team.
-         */
-        approveTeamDelete: function approveTeamDelete(team) {
-            this.deletingTeam = team;
-
-            $('#modal-delete-team').modal('show');
-        },
-
-
-        /**
-         * Delete the given team.
-         */
-        deleteTeam: function deleteTeam() {
-            Spark.delete('/settings/' + Spark.teamsPrefix + '/' + this.deletingTeam.id, this.deleteTeamForm).then(function () {
-                Bus.$emit('updateUser');
-                Bus.$emit('updateTeams');
-
-                $('#modal-delete-team').modal('hide');
-            });
-        }
+    urlForLeaving: function urlForLeaving() {
+      return "/settings/".concat(Spark.teamsPrefix, "/").concat(this.leavingTeam.id, "/members/").concat(this.user.id);
     }
+  },
+  methods: {
+    /**
+     * Approve leaving the given team.
+     */
+    approveLeavingTeam: function approveLeavingTeam(team) {
+      this.leavingTeam = team;
+      $('#modal-leave-team').modal('show');
+    },
+
+    /**
+     * Leave the given team.
+     */
+    leaveTeam: function leaveTeam() {
+      Spark.delete(this.urlForLeaving, this.leaveTeamForm).then(function () {
+        Bus.$emit('updateUser');
+        Bus.$emit('updateTeams');
+        $('#modal-leave-team').modal('hide');
+      });
+    },
+
+    /**
+     * Approve the deletion of the given team.
+     */
+    approveTeamDelete: function approveTeamDelete(team) {
+      this.deletingTeam = team;
+      $('#modal-delete-team').modal('show');
+    },
+
+    /**
+     * Delete the given team.
+     */
+    deleteTeam: function deleteTeam() {
+      Spark.delete("/settings/".concat(Spark.teamsPrefix, "/").concat(this.deletingTeam.id), this.deleteTeamForm).then(function () {
+        Bus.$emit('updateUser');
+        Bus.$emit('updateTeams');
+        $('#modal-delete-team').modal('hide');
+      });
+    }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/settings/teams/mailed-invitations.js":
+/*!************************************************************************!*\
+  !*** ./spark/resources/assets/js/settings/teams/mailed-invitations.js ***!
+  \************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = {
-    props: ['team', 'invitations'],
+  props: ['team', 'invitations'],
+  methods: {
+    /**
+     * Cancel the sent invitation.
+     */
+    cancel: function cancel(invitation) {
+      var _this = this;
 
-    methods: {
-        /**
-         * Cancel the sent invitation.
-         */
-        cancel: function cancel(invitation) {
-            var _this = this;
-
-            axios.delete('/settings/invitations/' + invitation.id).then(function () {
-                _this.$parent.$emit('updateInvitations');
-            });
-        }
+      axios.delete("/settings/invitations/".concat(invitation.id)).then(function () {
+        _this.$parent.$emit('updateInvitations');
+      });
     }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/settings/teams/pending-invitations.js":
+/*!*************************************************************************!*\
+  !*** ./spark/resources/assets/js/settings/teams/pending-invitations.js ***!
+  \*************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = {
+  /**
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      invitations: []
+    };
+  },
+
+  /**
+   * The component has been created by Vue.
+   */
+  created: function created() {
+    this.getPendingInvitations();
+  },
+  methods: {
     /**
-     * The component's data.
+     * Get the pending invitations for the user.
      */
-    data: function data() {
-        return {
-            invitations: []
-        };
+    getPendingInvitations: function getPendingInvitations() {
+      var _this = this;
+
+      axios.get('/settings/invitations/pending').then(function (response) {
+        _this.invitations = response.data;
+      });
     },
 
-
     /**
-     * The component has been created by Vue.
+     * Accept the given invitation.
      */
-    created: function created() {
-        this.getPendingInvitations();
+    accept: function accept(invitation) {
+      var _this2 = this;
+
+      axios.post("/settings/invitations/".concat(invitation.id, "/accept")).then(function () {
+        Bus.$emit('updateTeams');
+
+        _this2.getPendingInvitations();
+      });
+      this.removeInvitation(invitation);
     },
 
+    /**
+     * Reject the given invitation.
+     */
+    reject: function reject(invitation) {
+      var _this3 = this;
 
-    methods: {
-        /**
-         * Get the pending invitations for the user.
-         */
-        getPendingInvitations: function getPendingInvitations() {
-            var _this = this;
+      axios.post("/settings/invitations/".concat(invitation.id, "/reject")).then(function () {
+        _this3.getPendingInvitations();
+      });
+      this.removeInvitation(invitation);
+    },
 
-            axios.get('/settings/invitations/pending').then(function (response) {
-                _this.invitations = response.data;
-            });
-        },
-
-
-        /**
-         * Accept the given invitation.
-         */
-        accept: function accept(invitation) {
-            var _this2 = this;
-
-            axios.post('/settings/invitations/' + invitation.id + '/accept').then(function () {
-                Bus.$emit('updateTeams');
-
-                _this2.getPendingInvitations();
-            });
-
-            this.removeInvitation(invitation);
-        },
-
-
-        /**
-         * Reject the given invitation.
-         */
-        reject: function reject(invitation) {
-            var _this3 = this;
-
-            axios.post('/settings/invitations/' + invitation.id + '/reject').then(function () {
-                _this3.getPendingInvitations();
-            });
-
-            this.removeInvitation(invitation);
-        },
-
-
-        /**
-         * Remove the given invitation from the list.
-         */
-        removeInvitation: function removeInvitation(invitation) {
-            this.invitations = _.reject(this.invitations, function (i) {
-                return i.id === invitation.id;
-            });
-        }
+    /**
+     * Remove the given invitation from the list.
+     */
+    removeInvitation: function removeInvitation(invitation) {
+      this.invitations = _.reject(this.invitations, function (i) {
+        return i.id === invitation.id;
+      });
     }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/settings/teams/send-invitation.js":
+/*!*********************************************************************!*\
+  !*** ./spark/resources/assets/js/settings/teams/send-invitation.js ***!
+  \*********************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = {
-    props: ['user', 'team', 'billableType', 'defaultRole'],
+  props: ['user', 'team', 'billableType', 'defaultRole'],
 
+  /**
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      plans: [],
+      roles: [],
+      form: new SparkForm({
+        email: '',
+        role: this.defaultRole
+      })
+    };
+  },
+  computed: {
     /**
-     * The component's data.
+     * Get the active subscription instance.
      */
-    data: function data() {
-        return {
-            plans: [],
+    activeSubscription: function activeSubscription() {
+      if (!this.billable) {
+        return;
+      }
 
-            roles: [],
+      var subscription = _.find(this.billable.subscriptions, function (subscription) {
+        return subscription.name == 'default';
+      });
 
-            form: new SparkForm({
-                email: '',
-                role: this.defaultRole
-            })
-        };
-    },
-
-
-    computed: {
-        /**
-         * Get the active subscription instance.
-         */
-        activeSubscription: function activeSubscription() {
-            if (!this.billable) {
-                return;
-            }
-
-            var subscription = _.find(this.billable.subscriptions, function (subscription) {
-                return subscription.name == 'default';
-            });
-
-            if (typeof subscription !== 'undefined') {
-                return subscription;
-            }
-        },
-
-
-        /**
-         * Get the active plan instance.
-         */
-        activePlan: function activePlan() {
-            var _this = this;
-
-            if (this.activeSubscription) {
-                return _.find(this.plans, function (plan) {
-                    return plan.id == _this.activeSubscription.provider_plan;
-                });
-            }
-        },
-
-
-        /**
-         * Check if there's a limit for the number of team members.
-         */
-        hasTeamMembersLimit: function hasTeamMembersLimit() {
-            if (!this.activePlan) {
-                return false;
-            }
-
-            return !!this.activePlan.attributes.teamMembers;
-        },
-
-
-        /**
-         *
-         * Get the remaining team members in the active plan.
-         */
-        remainingTeamMembers: function remainingTeamMembers() {
-            return this.activePlan ? this.activePlan.attributes.teamMembers - this.$parent.team.users.length : 0;
-        },
-
-
-        /**
-         * Check if the user can invite more team members.
-         */
-        canInviteMoreTeamMembers: function canInviteMoreTeamMembers() {
-            if (!this.hasTeamMembersLimit) {
-                return true;
-            }
-
-            return this.remainingTeamMembers > 0;
-        }
+      if (typeof subscription !== 'undefined') {
+        return subscription;
+      }
     },
 
     /**
-     * The component has been created by Vue.
+     * Get the active plan instance.
      */
-    created: function created() {
-        this.getPlans();
+    activePlan: function activePlan() {
+      var _this = this;
 
-        this.getRoles();
+      if (this.activeSubscription) {
+        return _.find(this.plans, function (plan) {
+          return plan.id == _this.activeSubscription.provider_plan;
+        });
+      }
     },
 
+    /**
+     * Check if there's a limit for the number of team members.
+     */
+    hasTeamMembersLimit: function hasTeamMembersLimit() {
+      if (!this.activePlan) {
+        return false;
+      }
 
-    methods: {
-        /**
-         * Send a team invitation.
-         */
-        send: function send() {
-            var _this2 = this;
+      return !!this.activePlan.attributes.teamMembers;
+    },
 
-            Spark.post('/settings/' + Spark.teamsPrefix + '/' + this.team.id + '/invitations', this.form).then(function () {
-                _this2.form.email = '';
-                _this2.form.role = Spark.defaultRole;
+    /**
+     *
+     * Get the remaining team members in the active plan.
+     */
+    remainingTeamMembers: function remainingTeamMembers() {
+      return this.activePlan ? this.activePlan.attributes.teamMembers - this.$parent.team.users.length : 0;
+    },
 
-                _this2.$parent.$emit('updateInvitations');
-            });
-        },
+    /**
+     * Check if the user can invite more team members.
+     */
+    canInviteMoreTeamMembers: function canInviteMoreTeamMembers() {
+      if (!this.hasTeamMembersLimit) {
+        return true;
+      }
 
-
-        /**
-         * Get all the plans defined in the application.
-         */
-        getPlans: function getPlans() {
-            var _this3 = this;
-
-            axios.get('/spark/plans').then(function (response) {
-                _this3.plans = response.data;
-            });
-        },
-
-
-        /**
-         * Get the available member roles.
-         */
-        getRoles: function getRoles() {
-            var _this4 = this;
-
-            axios.get('/settings/' + Spark.teamsPrefix + '/roles').then(function (response) {
-                _this4.roles = response.data;
-            });
-        }
+      return this.remainingTeamMembers > 0;
     }
+  },
+
+  /**
+   * The component has been created by Vue.
+   */
+  created: function created() {
+    this.getPlans();
+    this.getRoles();
+  },
+  methods: {
+    /**
+     * Send a team invitation.
+     */
+    send: function send() {
+      var _this2 = this;
+
+      Spark.post("/settings/".concat(Spark.teamsPrefix, "/").concat(this.team.id, "/invitations"), this.form).then(function () {
+        _this2.form.email = '';
+        _this2.form.role = Spark.defaultRole;
+
+        _this2.$parent.$emit('updateInvitations');
+      });
+    },
+
+    /**
+     * Get all the plans defined in the application.
+     */
+    getPlans: function getPlans() {
+      var _this3 = this;
+
+      axios.get('/spark/plans').then(function (response) {
+        _this3.plans = response.data;
+      });
+    },
+
+    /**
+     * Get the available member roles.
+     */
+    getRoles: function getRoles() {
+      var _this4 = this;
+
+      axios.get("/settings/".concat(Spark.teamsPrefix, "/roles")).then(function (response) {
+        _this4.roles = response.data;
+      });
+    }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/settings/teams/team-members.js":
+/*!******************************************************************!*\
+  !*** ./spark/resources/assets/js/settings/teams/team-members.js ***!
+  \******************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = {
-    props: ['user', 'team'],
+  props: ['user', 'team'],
+
+  /**
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      roles: [],
+      updatingTeamMember: null,
+      deletingTeamMember: null,
+      updateTeamMemberForm: $.extend(true, new SparkForm({
+        role: ''
+      }), Spark.forms.updateTeamMember),
+      deleteTeamMemberForm: new SparkForm({})
+    };
+  },
+
+  /**
+   * The component has been created by Vue.
+   */
+  created: function created() {
+    this.getRoles();
+  },
+  computed: {
+    /**
+     * Get the URL for updating a team member.
+     */
+    urlForUpdating: function urlForUpdating() {
+      return "/settings/".concat(Spark.teamsPrefix, "/").concat(this.team.id, "/members/").concat(this.updatingTeamMember.id);
+    },
 
     /**
-     * The component's data.
+     * Get the URL for deleting a team member.
      */
-    data: function data() {
-        return {
-            roles: [],
-
-            updatingTeamMember: null,
-            deletingTeamMember: null,
-
-            updateTeamMemberForm: $.extend(true, new SparkForm({
-                role: ''
-            }), Spark.forms.updateTeamMember),
-
-            deleteTeamMemberForm: new SparkForm({})
-        };
-    },
-
-
-    /**
-     * The component has been created by Vue.
-     */
-    created: function created() {
-        this.getRoles();
-    },
-
-
-    computed: {
-        /**
-         * Get the URL for updating a team member.
-         */
-        urlForUpdating: function urlForUpdating() {
-            return '/settings/' + Spark.teamsPrefix + '/' + this.team.id + '/members/' + this.updatingTeamMember.id;
-        },
-
-        /**
-         * Get the URL for deleting a team member.
-         */
-        urlForDeleting: function urlForDeleting() {
-            return '/settings/' + Spark.teamsPrefix + '/' + this.team.id + '/members/' + this.deletingTeamMember.id;
-        }
-    },
-
-    methods: {
-        /**
-         * Get the available team member roles.
-         */
-        getRoles: function getRoles() {
-            var _this = this;
-
-            axios.get('/settings/' + Spark.teamsPrefix + '/roles').then(function (response) {
-                _this.roles = response.data;
-            });
-        },
-
-
-        /**
-         * Edit the given team member.
-         */
-        editTeamMember: function editTeamMember(member) {
-            this.updatingTeamMember = member;
-            this.updateTeamMemberForm.role = member.pivot.role;
-
-            $('#modal-update-team-member').modal('show');
-        },
-
-
-        /**
-         * Update the team member.
-         */
-        update: function update() {
-            Spark.put(this.urlForUpdating, this.updateTeamMemberForm).then(function () {
-                Bus.$emit('updateTeam');
-
-                $('#modal-update-team-member').modal('hide');
-            });
-        },
-
-
-        /**
-         * Display the approval modal for the deletion of a team member.
-         */
-        approveTeamMemberDelete: function approveTeamMemberDelete(member) {
-            this.deletingTeamMember = member;
-
-            $('#modal-delete-member').modal('show');
-        },
-
-
-        /**
-         * Delete the given team member.
-         */
-        deleteMember: function deleteMember() {
-            Spark.delete(this.urlForDeleting, this.deleteTeamMemberForm).then(function () {
-                Bus.$emit('updateTeam');
-
-                $('#modal-delete-member').modal('hide');
-            });
-        },
-
-
-        /**
-         * Determine if the current user can edit a team member.
-         */
-        canEditTeamMember: function canEditTeamMember(member) {
-            return this.user.id === this.team.owner_id && this.user.id !== member.id;
-        },
-
-
-        /**
-         * Determine if the current user can delete a team member.
-         */
-        canDeleteTeamMember: function canDeleteTeamMember(member) {
-            return this.user.id === this.team.owner_id && this.user.id !== member.id;
-        },
-
-
-        /**
-         * Get the displayable role for the given team member.
-         */
-        teamMemberRole: function teamMemberRole(member) {
-            if (this.roles.length == 0) {
-                return '';
-            }
-
-            if (member.pivot.role == 'owner') {
-                return 'Owner';
-            }
-
-            var role = _.find(this.roles, function (role) {
-                return role.value == member.pivot.role;
-            });
-
-            if (typeof role !== 'undefined') {
-                return role.text;
-            }
-        }
+    urlForDeleting: function urlForDeleting() {
+      return "/settings/".concat(Spark.teamsPrefix, "/").concat(this.team.id, "/members/").concat(this.deletingTeamMember.id);
     }
+  },
+  methods: {
+    /**
+     * Get the available team member roles.
+     */
+    getRoles: function getRoles() {
+      var _this = this;
+
+      axios.get("/settings/".concat(Spark.teamsPrefix, "/roles")).then(function (response) {
+        _this.roles = response.data;
+      });
+    },
+
+    /**
+     * Edit the given team member.
+     */
+    editTeamMember: function editTeamMember(member) {
+      this.updatingTeamMember = member;
+      this.updateTeamMemberForm.role = member.pivot.role;
+      $('#modal-update-team-member').modal('show');
+    },
+
+    /**
+     * Update the team member.
+     */
+    update: function update() {
+      Spark.put(this.urlForUpdating, this.updateTeamMemberForm).then(function () {
+        Bus.$emit('updateTeam');
+        $('#modal-update-team-member').modal('hide');
+      });
+    },
+
+    /**
+     * Display the approval modal for the deletion of a team member.
+     */
+    approveTeamMemberDelete: function approveTeamMemberDelete(member) {
+      this.deletingTeamMember = member;
+      $('#modal-delete-member').modal('show');
+    },
+
+    /**
+     * Delete the given team member.
+     */
+    deleteMember: function deleteMember() {
+      Spark.delete(this.urlForDeleting, this.deleteTeamMemberForm).then(function () {
+        Bus.$emit('updateTeam');
+        $('#modal-delete-member').modal('hide');
+      });
+    },
+
+    /**
+     * Determine if the current user can edit a team member.
+     */
+    canEditTeamMember: function canEditTeamMember(member) {
+      return this.user.id === this.team.owner_id && this.user.id !== member.id;
+    },
+
+    /**
+     * Determine if the current user can delete a team member.
+     */
+    canDeleteTeamMember: function canDeleteTeamMember(member) {
+      return this.user.id === this.team.owner_id && this.user.id !== member.id;
+    },
+
+    /**
+     * Get the displayable role for the given team member.
+     */
+    teamMemberRole: function teamMemberRole(member) {
+      if (this.roles.length == 0) {
+        return '';
+      }
+
+      if (member.pivot.role == 'owner') {
+        return 'Owner';
+      }
+
+      var role = _.find(this.roles, function (role) {
+        return role.value == member.pivot.role;
+      });
+
+      if (typeof role !== 'undefined') {
+        return role.text;
+      }
+    }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/settings/teams/team-membership.js":
+/*!*********************************************************************!*\
+  !*** ./spark/resources/assets/js/settings/teams/team-membership.js ***!
+  \*********************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = {
-    props: ['user', 'team', 'billableType'],
+  props: ['user', 'team', 'billableType'],
 
+  /**
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      invitations: []
+    };
+  },
+
+  /**
+   * The component has been created by Vue.
+   */
+  created: function created() {
+    var self = this;
+    this.getInvitations();
+    this.$on('updateInvitations', function () {
+      self.getInvitations();
+    });
+  },
+  methods: {
     /**
-     * The component's data.
+     * Get all of the invitations for the team.
      */
-    data: function data() {
-        return {
-            invitations: []
-        };
-    },
+    getInvitations: function getInvitations() {
+      var _this = this;
 
-
-    /**
-     * The component has been created by Vue.
-     */
-    created: function created() {
-        var self = this;
-
-        this.getInvitations();
-
-        this.$on('updateInvitations', function () {
-            self.getInvitations();
-        });
-    },
-
-
-    methods: {
-        /**
-         * Get all of the invitations for the team.
-         */
-        getInvitations: function getInvitations() {
-            var _this = this;
-
-            axios.get('/settings/' + Spark.teamsPrefix + '/' + this.team.id + '/invitations').then(function (response) {
-                _this.invitations = response.data;
-            });
-        }
+      axios.get("/settings/".concat(Spark.teamsPrefix, "/").concat(this.team.id, "/invitations")).then(function (response) {
+        _this.invitations = response.data;
+      });
     }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/settings/teams/team-profile.js":
+/*!******************************************************************!*\
+  !*** ./spark/resources/assets/js/settings/teams/team-profile.js ***!
+  \******************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = {
-    props: ['user', 'team']
+  props: ['user', 'team']
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/settings/teams/team-settings.js":
+/*!*******************************************************************!*\
+  !*** ./spark/resources/assets/js/settings/teams/team-settings.js ***!
+  \*******************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = {
-    props: ['user', 'teamId'],
+  props: ['user', 'teamId'],
 
+  /**
+   * Load mixins for the component.
+   */
+  mixins: [__webpack_require__(/*! ./../../mixins/tab-state */ "./spark/resources/assets/js/mixins/tab-state.js")],
+
+  /**
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      billableType: 'team',
+      team: null
+    };
+  },
+
+  /**
+   * The component has been created by Vue.
+   */
+  created: function created() {
+    var self = this;
+    this.getTeam();
+    Bus.$on('updateTeam', function () {
+      self.getTeam();
+    });
+  },
+
+  /**
+   * Prepare the component.
+   */
+  mounted: function mounted() {
+    this.usePushStateForTabs('.spark-settings-tabs');
+  },
+  methods: {
     /**
-     * Load mixins for the component.
+     * Get the team being managed.
      */
-    mixins: [__webpack_require__("./spark/resources/assets/js/mixins/tab-state.js")],
+    getTeam: function getTeam() {
+      var _this = this;
 
-    /**
-     * The component's data.
-     */
-    data: function data() {
-        return {
-            billableType: 'team',
-            team: null
-        };
-    },
-
-
-    /**
-     * The component has been created by Vue.
-     */
-    created: function created() {
-        var self = this;
-
-        this.getTeam();
-
-        Bus.$on('updateTeam', function () {
-            self.getTeam();
-        });
-    },
-
-
-    /**
-     * Prepare the component.
-     */
-    mounted: function mounted() {
-        this.usePushStateForTabs('.spark-settings-tabs');
-    },
-
-
-    methods: {
-        /**
-         * Get the team being managed.
-         */
-        getTeam: function getTeam() {
-            var _this = this;
-
-            axios.get('/settings/' + Spark.teamsPrefix + '/json/' + this.teamId).then(function (response) {
-                _this.team = response.data;
-            });
-        }
+      axios.get("/settings/".concat(Spark.teamsPrefix, "/json/").concat(this.teamId)).then(function (response) {
+        _this.team = response.data;
+      });
     }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/settings/teams/update-team-name.js":
+/*!**********************************************************************!*\
+  !*** ./spark/resources/assets/js/settings/teams/update-team-name.js ***!
+  \**********************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = {
-    props: ['user', 'team'],
+  props: ['user', 'team'],
 
+  /**
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      form: new SparkForm({
+        name: ''
+      })
+    };
+  },
+
+  /**
+   * Prepare the component.
+   */
+  mounted: function mounted() {
+    this.form.name = this.team.name;
+  },
+  methods: {
     /**
-     * The component's data.
+     * Update the team name.
      */
-    data: function data() {
-        return {
-            form: new SparkForm({
-                name: ''
-            })
-        };
-    },
-
-
-    /**
-     * Prepare the component.
-     */
-    mounted: function mounted() {
-        this.form.name = this.team.name;
-    },
-
-
-    methods: {
-        /**
-         * Update the team name.
-         */
-        update: function update() {
-            Spark.put('/settings/' + Spark.teamsPrefix + '/' + this.team.id + '/name', this.form).then(function () {
-                Bus.$emit('updateTeam');
-                Bus.$emit('updateTeams');
-            });
-        }
+    update: function update() {
+      Spark.put("/settings/".concat(Spark.teamsPrefix, "/").concat(this.team.id, "/name"), this.form).then(function () {
+        Bus.$emit('updateTeam');
+        Bus.$emit('updateTeams');
+      });
     }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/settings/teams/update-team-photo.js":
+/*!***********************************************************************!*\
+  !*** ./spark/resources/assets/js/settings/teams/update-team-photo.js ***!
+  \***********************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = {
-    props: ['user', 'team'],
+  props: ['user', 'team'],
+
+  /**
+   * The component's data.
+   */
+  data: function data() {
+    return {
+      form: new SparkForm({})
+    };
+  },
+  methods: {
+    /**
+     * Update the team's photo.
+     */
+    update: function update(e) {
+      e.preventDefault();
+
+      if (!this.$refs.photo.files.length) {
+        return;
+      }
+
+      var self = this;
+      this.form.startProcessing(); // We need to gather a fresh FormData instance with the profile photo appended to
+      // the data so we can POST it up to the server. This will allow us to do async
+      // uploads of the profile photos. We will update the user after this action.
+
+      axios.post(this.urlForUpdate, this.gatherFormData()).then(function () {
+        Bus.$emit('updateTeam');
+        Bus.$emit('updateTeams');
+        self.form.finishProcessing();
+      }, function (error) {
+        self.form.setErrors(error.response.data.errors);
+      });
+    },
 
     /**
-     * The component's data.
+     * Gather the form data for the photo upload.
      */
-    data: function data() {
-        return {
-            form: new SparkForm({})
-        };
-    },
-
-
-    methods: {
-        /**
-         * Update the team's photo.
-         */
-        update: function update(e) {
-            e.preventDefault();
-
-            if (!this.$refs.photo.files.length) {
-                return;
-            }
-
-            var self = this;
-
-            this.form.startProcessing();
-
-            // We need to gather a fresh FormData instance with the profile photo appended to
-            // the data so we can POST it up to the server. This will allow us to do async
-            // uploads of the profile photos. We will update the user after this action.
-            axios.post(this.urlForUpdate, this.gatherFormData()).then(function () {
-                Bus.$emit('updateTeam');
-                Bus.$emit('updateTeams');
-
-                self.form.finishProcessing();
-            }, function (error) {
-                self.form.setErrors(error.response.data.errors);
-            });
-        },
-
-
-        /**
-         * Gather the form data for the photo upload.
-         */
-        gatherFormData: function gatherFormData() {
-            var data = new FormData();
-
-            data.append('photo', this.$refs.photo.files[0]);
-
-            return data;
-        }
-    },
-
-    computed: {
-        /**
-         * Get the URL for updating the team photo.
-         */
-        urlForUpdate: function urlForUpdate() {
-            return '/settings/' + Spark.teamsPrefix + '/' + this.team.id + '/photo';
-        },
-
-
-        /**
-         * Calculate the style attribute for the photo preview.
-         */
-        previewStyle: function previewStyle() {
-            return 'background-image: url(' + this.team.photo_url + ')';
-        }
+    gatherFormData: function gatherFormData() {
+      var data = new FormData();
+      data.append('photo', this.$refs.photo.files[0]);
+      return data;
     }
+  },
+  computed: {
+    /**
+     * Get the URL for updating the team photo.
+     */
+    urlForUpdate: function urlForUpdate() {
+      return "/settings/".concat(Spark.teamsPrefix, "/").concat(this.team.id, "/photo");
+    },
+
+    /**
+     * Calculate the style attribute for the photo preview.
+     */
+    previewStyle: function previewStyle() {
+      return "background-image: url(".concat(this.team.photo_url, ")");
+    }
+  }
 };
 
 /***/ }),
 
 /***/ "./spark/resources/assets/js/spark-bootstrap.js":
+/*!******************************************************!*\
+  !*** ./spark/resources/assets/js/spark-bootstrap.js ***!
+  \******************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
  * Load various JavaScript modules that assist Spark.
  */
-window.URI = __webpack_require__("./node_modules/urijs/src/URI.js");
-window.axios = __webpack_require__("./node_modules/axios/index.js");
-window._ = __webpack_require__("./node_modules/lodash/lodash.js");
-window.moment = __webpack_require__("./node_modules/moment/moment.js");
-window.Promise = __webpack_require__("./node_modules/promise/index.js");
-window.Popper = __webpack_require__("./node_modules/popper.js/dist/esm/popper.js").default;
+window.URI = __webpack_require__(/*! urijs */ "./node_modules/urijs/src/URI.js");
+window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+window.moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+window.Promise = __webpack_require__(/*! promise */ "./node_modules/promise/index.js");
+window.Popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js").default;
+
 window.__ = function (key, replace) {
-    var translation = Spark.translations[key] ? Spark.translations[key] : key;
+  var translation = Spark.translations[key] ? Spark.translations[key] : key;
 
-    _.forEach(replace, function (value, key) {
-        translation = translation.replace(':' + key, value);
-    });
+  _.forEach(replace, function (value, key) {
+    translation = translation.replace(':' + key, value);
+  });
 
-    return translation;
+  return translation;
 };
-
 /*
  * Define Moment locales
  */
+
+
 window.moment.defineLocale('en-short', {
-    parentLocale: 'en',
-    relativeTime: {
-        future: "in %s",
-        past: "%s",
-        s: "1s",
-        m: "1m",
-        mm: "%dm",
-        h: "1h",
-        hh: "%dh",
-        d: "1d",
-        dd: "%dd",
-        M: "1 month ago",
-        MM: "%d months ago",
-        y: "1y",
-        yy: "%dy"
-    }
+  parentLocale: 'en',
+  relativeTime: {
+    future: "in %s",
+    past: "%s",
+    s: "1s",
+    m: "1m",
+    mm: "%dm",
+    h: "1h",
+    hh: "%dh",
+    d: "1d",
+    dd: "%dd",
+    M: "1 month ago",
+    MM: "%d months ago",
+    y: "1y",
+    yy: "%dy"
+  }
 });
 window.moment.locale('en');
-
 /*
  * Load jQuery and Bootstrap jQuery, used for front-end interaction.
  */
+
 if (window.$ === undefined || window.jQuery === undefined) {
-    window.$ = window.jQuery = __webpack_require__("./node_modules/jquery/dist/jquery.js");
+  window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 }
 
-__webpack_require__("./node_modules/bootstrap/dist/js/bootstrap.js");
-
+__webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
 /**
  * Load Vue if this application is using Vue as its framework.
  */
-if ($('#spark-app').length > 0) {
-    __webpack_require__("./spark/resources/assets/js/vue-bootstrap.js");
-}
 
+
+if ($('#spark-app').length > 0) {
+  __webpack_require__(/*! vue-bootstrap */ "./spark/resources/assets/js/vue-bootstrap.js");
+}
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
-window.axios.defaults.headers.common = {
-    'X-Requested-With': 'XMLHttpRequest',
-    'X-CSRF-TOKEN': Spark.csrfToken
-};
 
+
+window.axios.defaults.headers.common = {
+  'X-Requested-With': 'XMLHttpRequest',
+  'X-CSRF-TOKEN': Spark.csrfToken
+};
 /**
  * Intercept the incoming responses.
  *
  * Handle any unexpected HTTP errors and pop up modals, etc.
  */
+
 window.axios.interceptors.response.use(function (response) {
-    return response;
+  return response;
 }, function (error) {
-    switch (error.response.status) {
-        case 401:
-            window.axios.get('/logout');
-            $('#modal-session-expired').modal('show');
-            break;
+  switch (error.response.status) {
+    case 401:
+      window.axios.get('/logout');
+      $('#modal-session-expired').modal('show');
+      break;
 
-        case 402:
-            window.location = '/settings#/subscription';
-            break;
-    }
+    case 402:
+      window.location = '/settings#/subscription';
+      break;
+  }
 
-    return Promise.reject(error);
+  return Promise.reject(error);
 });
 
 /***/ }),
 
-/***/ "./spark/resources/assets/js/spark.js":
-/***/ (function(module, exports) {
-
-/**
- * Export the root Spark application.
- */
-module.exports = {
-    el: '#spark-app',
-
-    /**
-     * Holds the timestamp for the last time we updated the API token.
-     */
-    lastRefreshedApiTokenAt: null,
-
-    /**
-     * The application's data.
-     */
-    data: {
-        user: Spark.state.user,
-        teams: Spark.state.teams,
-        currentTeam: Spark.state.currentTeam,
-
-        loadingNotifications: false,
-        notifications: null,
-
-        supportForm: new SparkForm({
-            from: '',
-            subject: '',
-            message: ''
-        })
-    },
-
-    /**
-     * The component has been created by Vue.
-     */
-    created: function created() {
-        var self = this;
-
-        if (Spark.userId) {
-            this.loadDataForAuthenticatedUser();
-        }
-
-        if (Spark.userId && Spark.usesApi) {
-            this.refreshApiTokenEveryFewMinutes();
-        }
-
-        Bus.$on('updateUser', function () {
-            self.getUser();
-        });
-
-        Bus.$on('updateUserData', function () {
-            self.loadDataForAuthenticatedUser();
-        });
-
-        Bus.$on('updateTeams', function () {
-            self.getTeams();
-        });
-
-        Bus.$on('showNotifications', function () {
-            $('#modal-notifications').modal('show');
-
-            self.markNotificationsAsRead();
-        });
-
-        Bus.$on('showSupportForm', function () {
-            if (self.user) {
-                self.supportForm.from = self.user.email;
-            }
-
-            $('#modal-support').modal('show');
-
-            setTimeout(function () {
-                $('#support-subject').focus();
-            }, 500);
-        });
-    },
-
-
-    /**
-     * Prepare the application.
-     */
-    mounted: function mounted() {
-        this.whenReady();
-    },
-
-
-    methods: {
-        /**
-         * Finish bootstrapping the application.
-         */
-        whenReady: function whenReady() {
-            //
-        },
-
-
-        /**
-         * Load the data for an authenticated user.
-         */
-        loadDataForAuthenticatedUser: function loadDataForAuthenticatedUser() {
-            this.getNotifications();
-        },
-
-
-        /**
-         * Refresh the current API token every few minutes.
-         */
-        refreshApiTokenEveryFewMinutes: function refreshApiTokenEveryFewMinutes() {
-            var _this = this;
-
-            this.lastRefreshedApiTokenAt = moment();
-
-            setInterval(function () {
-                _this.refreshApiToken();
-            }, 240000);
-
-            setInterval(function () {
-                if (moment().diff(_this.lastRefreshedApiTokenAt, 'minutes') >= 5) {
-                    _this.refreshApiToken();
-                }
-            }, 5000);
-        },
-
-
-        /**
-         * Refresh the current API token.
-         */
-        refreshApiToken: function refreshApiToken() {
-            this.lastRefreshedApiTokenAt = moment();
-
-            axios.put('/spark/token');
-        },
-
-
-        /*
-         * Get the current user of the application.
-         */
-        getUser: function getUser() {
-            var _this2 = this;
-
-            axios.get('/user/current').then(function (response) {
-                _this2.user = response.data;
-            });
-        },
-
-
-        /**
-         * Get the current team list.
-         */
-        getTeams: function getTeams() {
-            var _this3 = this;
-
-            axios.get('/settings/' + Spark.teamsPrefix).then(function (response) {
-                _this3.teams = response.data;
-            });
-        },
-
-
-        /**
-         * Get the current team.
-         */
-        getCurrentTeam: function getCurrentTeam() {
-            var _this4 = this;
-
-            axios.get('/settings/' + Spark.teamsPrefix + '/current').then(function (response) {
-                _this4.currentTeam = response.data;
-            }).catch(function (response) {
-                //
-            });
-        },
-
-
-        /**
-         * Get the application notifications.
-         */
-        getNotifications: function getNotifications() {
-            var _this5 = this;
-
-            this.loadingNotifications = true;
-
-            axios.get('/notifications/recent').then(function (response) {
-                _this5.notifications = response.data;
-
-                _this5.loadingNotifications = false;
-            });
-        },
-
-
-        /**
-         * Mark the current notifications as read.
-         */
-        markNotificationsAsRead: function markNotificationsAsRead() {
-            if (!this.hasUnreadNotifications) {
-                return;
-            }
-
-            axios.put('/notifications/read', {
-                notifications: _.map(this.notifications.notifications, 'id')
-            });
-
-            _.each(this.notifications.notifications, function (notification) {
-                notification.read = 1;
-            });
-        },
-
-
-        /**
-         * Send a customer support request.
-         */
-        sendSupportRequest: function sendSupportRequest() {
-            var _this6 = this;
-
-            Spark.post('/support/email', this.supportForm).then(function () {
-                $('#modal-support').modal('hide');
-
-                _this6.showSupportRequestSuccessMessage();
-
-                _this6.supportForm.subject = '';
-                _this6.supportForm.message = '';
-            });
-        },
-
-
-        /**
-         * Show an alert informing the user their support request was sent.
-         */
-        showSupportRequestSuccessMessage: function showSupportRequestSuccessMessage() {
-            swal({
-                title: __('Got It!'),
-                text: __('We have received your message and will respond soon!'),
-                type: 'success',
-                showConfirmButton: false,
-                timer: 2000
-            });
-        }
-    },
-
-    computed: {
-        /**
-         * The number of unread announcements.
-         */
-        unreadAnnouncementsCount: function unreadAnnouncementsCount() {
-            var _this7 = this;
-
-            if (this.notifications && this.user) {
-                if (this.notifications.announcements.length && !this.user.last_read_announcements_at) {
-                    return this.notifications.announcements.length;
-                }
-
-                return _.filter(this.notifications.announcements, function (announcement) {
-                    return moment.utc(_this7.user.last_read_announcements_at).isBefore(moment.utc(announcement.created_at));
-                }).length;
-            }
-
-            return 0;
-        },
-
-
-        /**
-         * The number of unread notifications.
-         */
-        unreadNotificationsCount: function unreadNotificationsCount() {
-            if (this.notifications) {
-                return _.filter(this.notifications.notifications, function (notification) {
-                    return !notification.read;
-                }).length;
-            }
-
-            return 0;
-        },
-
-
-        /**
-         * Determine if the user has any unread notifications.
-         */
-        hasUnreadAnnouncements: function hasUnreadAnnouncements() {
-            return this.unreadAnnouncementsCount > 0;
-        },
-
-
-        /**
-         * Determine if the user has any unread notifications.
-         */
-        hasUnreadNotifications: function hasUnreadNotifications() {
-            return this.unreadNotificationsCount > 0;
-        }
-    }
-};
-
-/***/ }),
-
 /***/ "./spark/resources/assets/js/vue-bootstrap.js":
+/*!****************************************************!*\
+  !*** ./spark/resources/assets/js/vue-bootstrap.js ***!
+  \****************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
  * Load Vue, the JavaScript framework used by Spark.
  */
 if (window.Vue === undefined) {
-  window.Vue = __webpack_require__("./node_modules/vue/dist/vue.js");
-
+  window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.js");
   window.Bus = new Vue();
 }
-
 /**
  * Load Vue Global Mixin.
  */
-Vue.mixin(__webpack_require__("./spark/resources/assets/js/mixin.js"));
 
+
+Vue.mixin(__webpack_require__(/*! ./mixin */ "./spark/resources/assets/js/mixin.js"));
 /**
  * Define the Vue filters.
  */
-__webpack_require__("./spark/resources/assets/js/filters.js");
 
+__webpack_require__(/*! ./filters */ "./spark/resources/assets/js/filters.js");
 /**
  * Load the Spark form utilities.
  */
-__webpack_require__("./spark/resources/assets/js/forms/bootstrap.js");
+
+
+__webpack_require__(/*! ./forms/bootstrap */ "./spark/resources/assets/js/forms/bootstrap.js");
 
 /***/ }),
 
 /***/ 0:
+/*!*******************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/app-rtl.scss ***!
+  \*******************************************************************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__("./resources/js/app.js");
-__webpack_require__("./resources/sass/app.scss");
-module.exports = __webpack_require__("./resources/sass/app-rtl.scss");
+__webpack_require__(/*! C:\Users\SMART\Documents\GitHub\DebeHaber7\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\Users\SMART\Documents\GitHub\DebeHaber7\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\Users\SMART\Documents\GitHub\DebeHaber7\resources\sass\app-rtl.scss */"./resources/sass/app-rtl.scss");
 
 
 /***/ })
