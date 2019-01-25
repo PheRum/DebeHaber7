@@ -18,7 +18,7 @@ class CreateCurrencyRatesTable extends Migration
             $table->unsignedInteger('currency_id');
             $table->foreign('currency_id')->references('id')->on('currencies')->onDelete('cascade');
 
-            $table->unsignedInteger('taxpayer_id')->nullable()->after('currency_id');
+            $table->unsignedInteger('taxpayer_id')->nullable();
             $table->foreign('taxpayer_id')->references('id')->on('taxpayers')->onDelete('cascade');
 
             $table->date('date');

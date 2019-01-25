@@ -1283,7 +1283,7 @@
             "dist": {
                 "type": "path",
                 "url": "./spark",
-                "reference": "0975fe6e202d89e8f54fc14ca7b48b698ff07d33",
+                "reference": "94676e574eba34c957215b986490e257adf6e0c4",
                 "shasum": null
             },
             "require": {
@@ -2774,16 +2774,16 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v6.29.0",
+            "version": "v6.29.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "b21d9a4a7198f99e2ad0915fa2389bca6717c219"
+                "reference": "fbbcc90cd3da9be5005650d56a1316ee00b79dc1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/b21d9a4a7198f99e2ad0915fa2389bca6717c219",
-                "reference": "b21d9a4a7198f99e2ad0915fa2389bca6717c219",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/fbbcc90cd3da9be5005650d56a1316ee00b79dc1",
+                "reference": "fbbcc90cd3da9be5005650d56a1316ee00b79dc1",
                 "shasum": ""
             },
             "require": {
@@ -2826,7 +2826,7 @@
                 "payment processing",
                 "stripe"
             ],
-            "time": "2019-01-23T23:51:39+00:00"
+            "time": "2019-01-25T14:24:25+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
