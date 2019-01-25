@@ -75003,6 +75003,9 @@ __webpack_require__(/*! spark-bootstrap */ "./spark/resources/assets/js/spark-bo
 
 __webpack_require__(/*! ./components/bootstrap */ "./resources/js/components/bootstrap.js");
 
+var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
+  mixins: [__webpack_require__(/*! spark */ "./spark/resources/assets/js/spark.js")]
+});
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('passport-clients', __webpack_require__(/*! ./components/passport/Clients.vue */ "./resources/js/components/passport/Clients.vue").default);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('passport-authorized-clients', __webpack_require__(/*! ./components/passport/AuthorizedClients.vue */ "./resources/js/components/passport/AuthorizedClients.vue").default);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('passport-personal-access-tokens', __webpack_require__(/*! ./components/passport/PersonalAccessTokens.vue */ "./resources/js/components/passport/PersonalAccessTokens.vue").default);
@@ -81389,6 +81392,268 @@ window.axios.interceptors.response.use(function (response) {
 
   return Promise.reject(error);
 });
+
+/***/ }),
+
+/***/ "./spark/resources/assets/js/spark.js":
+/*!********************************************!*\
+  !*** ./spark/resources/assets/js/spark.js ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * Export the root Spark application.
+ */
+module.exports = {
+  el: '#spark-app',
+
+  /**
+   * Holds the timestamp for the last time we updated the API token.
+   */
+  lastRefreshedApiTokenAt: null,
+
+  /**
+   * The application's data.
+   */
+  data: {
+    user: Spark.state.user,
+    teams: Spark.state.teams,
+    currentTeam: Spark.state.currentTeam,
+    loadingNotifications: false,
+    notifications: null,
+    supportForm: new SparkForm({
+      from: '',
+      subject: '',
+      message: ''
+    })
+  },
+
+  /**
+   * The component has been created by Vue.
+   */
+  created: function created() {
+    var self = this;
+
+    if (Spark.userId) {
+      this.loadDataForAuthenticatedUser();
+    }
+
+    if (Spark.userId && Spark.usesApi) {
+      this.refreshApiTokenEveryFewMinutes();
+    }
+
+    Bus.$on('updateUser', function () {
+      self.getUser();
+    });
+    Bus.$on('updateUserData', function () {
+      self.loadDataForAuthenticatedUser();
+    });
+    Bus.$on('updateTeams', function () {
+      self.getTeams();
+    });
+    Bus.$on('showNotifications', function () {
+      $('#modal-notifications').modal('show');
+      self.markNotificationsAsRead();
+    });
+    Bus.$on('showSupportForm', function () {
+      if (self.user) {
+        self.supportForm.from = self.user.email;
+      }
+
+      $('#modal-support').modal('show');
+      setTimeout(function () {
+        $('#support-subject').focus();
+      }, 500);
+    });
+  },
+
+  /**
+   * Prepare the application.
+   */
+  mounted: function mounted() {
+    this.whenReady();
+  },
+  methods: {
+    /**
+     * Finish bootstrapping the application.
+     */
+    whenReady: function whenReady() {//
+    },
+
+    /**
+     * Load the data for an authenticated user.
+     */
+    loadDataForAuthenticatedUser: function loadDataForAuthenticatedUser() {
+      this.getNotifications();
+    },
+
+    /**
+     * Refresh the current API token every few minutes.
+     */
+    refreshApiTokenEveryFewMinutes: function refreshApiTokenEveryFewMinutes() {
+      var _this = this;
+
+      this.lastRefreshedApiTokenAt = moment();
+      setInterval(function () {
+        _this.refreshApiToken();
+      }, 240000);
+      setInterval(function () {
+        if (moment().diff(_this.lastRefreshedApiTokenAt, 'minutes') >= 5) {
+          _this.refreshApiToken();
+        }
+      }, 5000);
+    },
+
+    /**
+     * Refresh the current API token.
+     */
+    refreshApiToken: function refreshApiToken() {
+      this.lastRefreshedApiTokenAt = moment();
+      axios.put('/spark/token');
+    },
+
+    /*
+     * Get the current user of the application.
+     */
+    getUser: function getUser() {
+      var _this2 = this;
+
+      axios.get('/user/current').then(function (response) {
+        _this2.user = response.data;
+      });
+    },
+
+    /**
+     * Get the current team list.
+     */
+    getTeams: function getTeams() {
+      var _this3 = this;
+
+      axios.get('/settings/' + Spark.teamsPrefix).then(function (response) {
+        _this3.teams = response.data;
+      });
+    },
+
+    /**
+     * Get the current team.
+     */
+    getCurrentTeam: function getCurrentTeam() {
+      var _this4 = this;
+
+      axios.get("/settings/".concat(Spark.teamsPrefix, "/current")).then(function (response) {
+        _this4.currentTeam = response.data;
+      }).catch(function (response) {//
+      });
+    },
+
+    /**
+     * Get the application notifications.
+     */
+    getNotifications: function getNotifications() {
+      var _this5 = this;
+
+      this.loadingNotifications = true;
+      axios.get('/notifications/recent').then(function (response) {
+        _this5.notifications = response.data;
+        _this5.loadingNotifications = false;
+      });
+    },
+
+    /**
+     * Mark the current notifications as read.
+     */
+    markNotificationsAsRead: function markNotificationsAsRead() {
+      if (!this.hasUnreadNotifications) {
+        return;
+      }
+
+      axios.put('/notifications/read', {
+        notifications: _.map(this.notifications.notifications, 'id')
+      });
+
+      _.each(this.notifications.notifications, function (notification) {
+        notification.read = 1;
+      });
+    },
+
+    /**
+     * Send a customer support request.
+     */
+    sendSupportRequest: function sendSupportRequest() {
+      var _this6 = this;
+
+      Spark.post('/support/email', this.supportForm).then(function () {
+        $('#modal-support').modal('hide');
+
+        _this6.showSupportRequestSuccessMessage();
+
+        _this6.supportForm.subject = '';
+        _this6.supportForm.message = '';
+      });
+    },
+
+    /**
+     * Show an alert informing the user their support request was sent.
+     */
+    showSupportRequestSuccessMessage: function showSupportRequestSuccessMessage() {
+      swal({
+        title: __('Got It!'),
+        text: __('We have received your message and will respond soon!'),
+        type: 'success',
+        showConfirmButton: false,
+        timer: 2000
+      });
+    }
+  },
+  computed: {
+    /**
+     * The number of unread announcements.
+     */
+    unreadAnnouncementsCount: function unreadAnnouncementsCount() {
+      var _this7 = this;
+
+      if (this.notifications && this.user) {
+        if (this.notifications.announcements.length && !this.user.last_read_announcements_at) {
+          return this.notifications.announcements.length;
+        }
+
+        return _.filter(this.notifications.announcements, function (announcement) {
+          return moment.utc(_this7.user.last_read_announcements_at).isBefore(moment.utc(announcement.created_at));
+        }).length;
+      }
+
+      return 0;
+    },
+
+    /**
+     * The number of unread notifications.
+     */
+    unreadNotificationsCount: function unreadNotificationsCount() {
+      if (this.notifications) {
+        return _.filter(this.notifications.notifications, function (notification) {
+          return !notification.read;
+        }).length;
+      }
+
+      return 0;
+    },
+
+    /**
+     * Determine if the user has any unread notifications.
+     */
+    hasUnreadAnnouncements: function hasUnreadAnnouncements() {
+      return this.unreadAnnouncementsCount > 0;
+    },
+
+    /**
+     * Determine if the user has any unread notifications.
+     */
+    hasUnreadNotifications: function hasUnreadNotifications() {
+      return this.unreadNotificationsCount > 0;
+    }
+  }
+};
 
 /***/ }),
 
