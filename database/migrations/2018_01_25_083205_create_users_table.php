@@ -20,6 +20,11 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->text('photo_url')->nullable();
+
+            $table->string('country', 3)->default('PRY');
+            $table->string('language', 5)->default('es');
+            $table->string('timezone', 32)->default('America/La_Paz');
+
             $table->tinyInteger('uses_two_factor_auth')->default(0);
             $table->string('authy_id')->nullable();
             $table->string('country_code', 10)->nullable();
