@@ -11,7 +11,7 @@
 |
 */
 
-Route::group([ 'middleware' => 'auth:api' ], function () {
+//Route::group([ 'middleware' => 'auth:api' ], function () {
 
     //Used for accepting or rejecting a team from accesing your taxpayer's data.
     Route::prefix('teams')->group(function ()
@@ -86,8 +86,9 @@ Route::group([ 'middleware' => 'auth:api' ], function () {
 
             Route::prefix('commercial')->group(function ()
             {
-                Route::get('sales', 'SalesController@get_sales');
-                Route::get('sales/by-id/{id}', 'SalesController@get_salesByID');
+                Route::resources(['sales' => 'SalesController']);
+
+                // Route::get('sales/by-id/{id}', 'SalesController@get_salesByID');
                 Route::get('sales/default/{partnerID}', 'SalesController@getLastSale');
                 Route::get('sales/last', 'SalesController@get_lastDate');
                 Route::get('sales/get-charts', 'ChartController@getSalesAccounts');
@@ -136,4 +137,4 @@ Route::group([ 'middleware' => 'auth:api' ], function () {
             Route::get('/hechauka/{startDate}/{endDate}', 'API\PRY\HechukaController@getHechauka');
         });
     });
-});
+//});

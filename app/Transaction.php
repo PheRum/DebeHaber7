@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Spatie\ModelStatus\HasStatuses;
 use RyanWeber\Mutators\Timezoned;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Laravel\Scout\Searchable;
@@ -11,7 +10,7 @@ use Laravel\Scout\Searchable;
 class Transaction extends Model
 {
     use SoftDeletes, Searchable;
-    use HasStatuses, Timezoned;
+    use  Timezoned;
 
     protected $timezoned = ['date', 'created_at', 'updated_at', 'deleted_at'];
     protected $softDelete = true;
