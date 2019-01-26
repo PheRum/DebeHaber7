@@ -307,34 +307,27 @@ class TaxpayerController extends Controller
 
     public function showDashboard(Taxpayer $taxPayer, Cycle $cycle)
     {
-        $chartsAccountable = 1; //Chart::where('is_accountable', true)->pluck('type', 'sub_type')->get();
-        $chartFixedAssets = 1; //$chartsAccountable->where('type', 1)->where('sub_type', 9)->count();
-        $chartMoneyAccounts = 1; //$chartsAccountable->where('type', 1)->where('sub_type', 1)->count();
-        $chartExpenses = 1; //$chartsAccountable->where('type', 5)->count();
-        $chartInventories = 1; //$chartsAccountable->where('type', 1)->where('sub_type', 8)->count();
-        $chartIncomes = 1; //$chartsAccountable->where('type', 4)->count();
+        // $chartsAccountable = 1; //Chart::where('is_accountable', true)->pluck('type', 'sub_type')->get();
+        // $chartFixedAssets = 1; //$chartsAccountable->where('type', 1)->where('sub_type', 9)->count();
+        // $chartMoneyAccounts = 1; //$chartsAccountable->where('type', 1)->where('sub_type', 1)->count();
+        // $chartExpenses = 1; //$chartsAccountable->where('type', 5)->count();
+        // $chartInventories = 1; //$chartsAccountable->where('type', 1)->where('sub_type', 8)->count();
+        // $chartIncomes = 1; //$chartsAccountable->where('type', 4)->count();
+        //
+        // $totalSales = Transaction::MySales()
+        // ->whereBetween('date', [new Carbon('first day of last month'), new Carbon('last day of last month')])
+        // ->where('supplier_id', $taxPayer->id)
+        // ->count();
+        //
+        // $totalPurchases = Transaction::MyPurchases()
+        // ->whereBetween('date', [new Carbon('first day of last month'), new Carbon('last day of last month')])
+        // ->where('customer_id', $taxPayer->id)
+        // ->count();
 
-        $totalSales = Transaction::MySales()
-        ->whereBetween('date', [new Carbon('first day of last month'), new Carbon('last day of last month')])
-        ->where('supplier_id', $taxPayer->id)
-        ->count();
-
-        $totalPurchases = Transaction::MyPurchases()
-        ->whereBetween('date', [new Carbon('first day of last month'), new Carbon('last day of last month')])
-        ->where('customer_id', $taxPayer->id)
-        ->count();
-
-        return view('taxpayer/dashboard')
-        ->with('chartFixedAssets', $chartFixedAssets)
-        ->with('chartMoneyAccounts', $chartMoneyAccounts)
-        ->with('chartExpenses', $chartExpenses)
-        ->with('chartInventories', $chartInventories)
-        ->with('chartIncomes', $chartIncomes)
-        ->with('totalSales', $totalSales)
-        ->with('totalPurchases', $totalPurchases);
+        return view('taxpayer-dashboard');
     }
 
-    public function selectTaxpayer(Request $request,Taxpayer $taxPayer)
+    public function selectTaxpayer(Request $request, Taxpayer $taxPayer)
     {
         //Get current month sub 1 month.
         $workingYear = Carbon::now()->subMonth(1)->year;

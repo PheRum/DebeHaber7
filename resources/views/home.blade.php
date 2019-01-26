@@ -7,9 +7,13 @@
             <b-col>
                 <b-card header="Taxpayers" header-tag="header">
                     @if(isset($taxPayerIntegrations))
-                        @foreach ($taxPayerIntegrations->sortBy('taxpayer.name') as $integration)
-                            <a href="{{ url('selectTaxPayer', $integration->taxpayer) }}">{{ $integration->taxPayer->name }}</a>
-                        @endforeach
+                        <ul>
+                            @foreach ($taxPayerIntegrations->sortBy('taxpayer.name') as $integration)
+                                <li>
+                                    <a href="{{ url('selectTaxPayer', $integration->taxpayer) }}">{{ $integration->taxPayer->name }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
                     @endif
                 </b-card>
             </b-col>
@@ -29,8 +33,4 @@
             </b-col>
         </b-row>
     </b-container>
-
-    <div class="container">
-
-    </div>
 @endsection

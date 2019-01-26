@@ -2862,10 +2862,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "",
   data: function data() {
@@ -78774,31 +78770,7 @@ var render = function() {
             header: "Primary"
           }
         },
-        [
-          _c(
-            "a",
-            {
-              attrs: {
-                href: _vm.$router.resolve({
-                  name: "index",
-                  params: { profile: _vm.org.following.slug }
-                }).href
-              }
-            },
-            [_vm._v("Link Name")]
-          ),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              attrs: {
-                to: { name: "routeName", params: { property: _vm.value } }
-              }
-            },
-            [_vm._v("\n                Icon\n            ")]
-          )
-        ],
-        1
+        [_vm._v("\n        Hi, this is commercial\n    ")]
       )
     ],
     1
@@ -93243,7 +93215,7 @@ __webpack_require__.r(__webpack_exports__);
     img: '/images/icons/type.svg'
   },
   children: [{
-    path: '/commercial',
+    path: 'commercial',
     component: _views_commercials_index__WEBPACK_IMPORTED_MODULE_2__["default"],
     name: 'commercialMenu',
     meta: {
@@ -93252,17 +93224,17 @@ __webpack_require__.r(__webpack_exports__);
       img: '/images/icons/type.svg'
     },
     children: [{
-      path: '/sales',
+      path: 'sales',
       component: _views_commercials_salesList__WEBPACK_IMPORTED_MODULE_3__["default"],
       name: 'salesList',
       meta: {
-        apiUrl: '/sales',
+        apiUrl: 'sales',
         title: 'Sales Book',
         description: 'Some description',
         img: '/images/icons/type.svg'
       },
       children: [{
-        path: '/{id}',
+        path: '{id}',
         component: _views_commercials_salesForm__WEBPACK_IMPORTED_MODULE_4__["default"],
         name: 'salesForm',
         meta: {
@@ -93272,7 +93244,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       }]
     }, {
-      path: '/credit-note',
+      path: 'credit-note',
       component: _views_commercials_creditList__WEBPACK_IMPORTED_MODULE_7__["default"],
       name: 'creditList',
       meta: {
@@ -93281,7 +93253,7 @@ __webpack_require__.r(__webpack_exports__);
         img: '/images/icons/type.svg'
       },
       children: [{
-        path: '/{id}',
+        path: '{id}',
         component: _views_commercials_creditForm__WEBPACK_IMPORTED_MODULE_8__["default"],
         name: 'creditForm',
         meta: {
@@ -93330,7 +93302,7 @@ __webpack_require__.r(__webpack_exports__);
       }]
     }]
   }, {
-    path: '/accounting',
+    path: 'accounting',
     component: _views_accounts_index__WEBPACK_IMPORTED_MODULE_11__["default"],
     name: 'accountingMenu',
     meta: {
@@ -93339,7 +93311,7 @@ __webpack_require__.r(__webpack_exports__);
       img: '/images/icons/type.svg'
     },
     children: [{
-      path: '/journals',
+      path: 'journals',
       component: _views_commercials_index__WEBPACK_IMPORTED_MODULE_2__["default"],
       name: 'journals',
       meta: {

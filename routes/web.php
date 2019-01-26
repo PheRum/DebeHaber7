@@ -13,4 +13,14 @@
 //
 Route::get('/', 'WelcomeController@show');
 Route::get('/home', 'HomeController@show');
- Route::get('{any}', function () { return view('home'); })->where('any','.*');
+
+Route::group(['middleware' => 'auth'], function ()
+{
+    Route::get('selectTaxPayer/{taxPayer}', 'TaxpayerController@selectTaxpayer')->name('selectTaxPayer');
+
+    Route::prefix('{taxPayer}/{cycle}')->group(function ()
+    {
+        Route::get('', 'TaxpayerController@showDashboard')->name('taxpayer.dashboard');
+        Route::get('{any}', function () { return view('home'); })->where('any','.*');
+    });
+});

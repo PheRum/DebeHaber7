@@ -1,8 +1,8 @@
 
 import FourZeroFour from '../views/404';
 import DashBoard from '../views/index';
-import Commercial from '../views/commercials/index';
 
+import Commercial from '../views/commercials/index';
 import SalesList from '../views/commercials/salesList';
 import SalesForm from '../views/commercials/salesForm';
 import PurchaseList from '../views/commercials/purchaseList';
@@ -41,7 +41,7 @@ export default
         children:
         [
             {
-                path: '/commercial',
+                path: 'commercial',
                 component: Commercial,
                 name: 'commercialMenu',
                 meta: {
@@ -52,11 +52,11 @@ export default
                 children:
                 [
                     {
-                        path: '/sales',
+                        path: 'sales',
                         component: SalesList,
                         name: 'salesList',
                         meta: {
-                            apiUrl: '/sales',
+                            apiUrl: 'sales',
                             title: 'Sales Book',
                             description: 'Some description',
                             img: '/images/icons/type.svg',
@@ -64,7 +64,7 @@ export default
                         children:
                         [
                             {
-                                path: '/{id}',
+                                path: '{id}',
                                 component: SalesForm,
                                 name: 'salesForm',
                                 meta: {
@@ -77,7 +77,7 @@ export default
                         ]
                     },
                     {
-                        path: '/credit-note',
+                        path: 'credit-note',
                         component: CreditList,
                         name: 'creditList',
                         meta: {
@@ -88,7 +88,7 @@ export default
                         children:
                         [
                             {
-                                path: '/{id}',
+                                path: '{id}',
                                 component: CreditForm,
                                 name: 'creditForm',
                                 meta: {
@@ -151,7 +151,7 @@ export default
                 ]
             },
             {
-                path: '/accounting',
+                path: 'accounting',
                 component: Accounting,
                 name: 'accountingMenu',
                 meta: {
@@ -162,7 +162,7 @@ export default
                 children:
                 [
                     {
-                        path: '/journals',
+                        path: 'journals',
                         component: Commercial,
                         name: 'journals',
                         meta: {

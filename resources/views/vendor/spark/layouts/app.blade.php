@@ -25,7 +25,7 @@
         if (isset($currentTeam) && request()->route('taxPayer') != null) {
 
             $integrationType = App\TaxpayerIntegration::where('team_id', $currentTeam->id)
-            ->where('taxpayer_id', $request->route('taxPayer')->id)
+            ->where('taxpayer_id', request()->route('taxPayer'))
             ->whereIn('status', [1, 2])
             ->select('type')
             ->first();
