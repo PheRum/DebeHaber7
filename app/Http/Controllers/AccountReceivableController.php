@@ -21,15 +21,6 @@ class AccountReceivableController extends Controller
     */
     public function index(Taxpayer $taxPayer, Cycle $cycle)
     {
-        $chart = Chart::MoneyAccounts()->orderBy('name')
-        ->select('name', 'id', 'sub_type')
-        ->get();
-
-        return view('/commercial/accounts-receivable')->with('charts',$chart);
-    }
-
-    public function get_account_receivable(Taxpayer $taxPayer, Cycle $cycle)
-    {
         return ModelResource::collection(Transaction::MySales()
         ->join('taxpayers', 'taxpayers.id', 'transactions.customer_id')
         ->join('currencies', 'transactions.currency_id','currencies.id')
@@ -59,7 +50,7 @@ class AccountReceivableController extends Controller
         ->paginate(100));
     }
 
-    public function get_account_receivableByID(Taxpayer $taxPayer, Cycle $cycle,$id)
+    public function get_account_receivableByID(Taxpayer $taxPayer, Cycle $cycle, $id)
     {
         $accountMovement = $transactions = Transaction::MySales()
         ->join('taxpayers', 'taxpayers.id', 'transactions.customer_id')

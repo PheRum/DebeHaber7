@@ -32,7 +32,6 @@ class CycleController extends Controller
 
         $versions = ChartVersion::My($taxPayer)->get();
 
-
         $budgets = CycleBudget::where('cycle_id', $cycle->id)->get();
 
         return view('accounting/cycles')
@@ -57,16 +56,6 @@ class CycleController extends Controller
     }
 
     /**
-    * Show the form for creating a new resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-    public function create()
-    {
-        //
-    }
-
-    /**
     * Store a newly created resource in storage.
     *
     * @param  \Illuminate\Http\Request  $request
@@ -74,7 +63,6 @@ class CycleController extends Controller
     */
     public function store(Request $request,Taxpayer $taxPayer, Cycle $cycle)
     {
-
         if ($request->id == 0)
         {
             $cycle = new Cycle();
@@ -97,19 +85,6 @@ class CycleController extends Controller
         }
     }
 
-
-
-    /**
-    * Display the specified resource.
-    *
-    * @param  \App\Cycle  $cycle
-    * @return \Illuminate\Http\Response
-    */
-    public function show(Cycle $cycle)
-    {
-        //
-    }
-
     /**
     * Show the form for editing the specified resource.
     *
@@ -117,18 +92,6 @@ class CycleController extends Controller
     * @return \Illuminate\Http\Response
     */
     public function edit(Cycle $cycle)
-    {
-        //
-    }
-
-    /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  \App\Cycle  $cycle
-    * @return \Illuminate\Http\Response
-    */
-    public function update(Request $request, Cycle $cycle)
     {
         //
     }

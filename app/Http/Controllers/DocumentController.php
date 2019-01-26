@@ -16,34 +16,20 @@ class DocumentController extends Controller
     */
     public function index(Taxpayer $taxPayer, Cycle $cycle)
     {
-        return view('/configs/documents/list');
+        $document = Document::where('type',$type)->where('taxpayer_id',$taxPayer->id)->get();
+        return response()->json($document);
     }
-    public function get_document(Taxpayer $taxPayer,$type)
-    {
-        $Document=Document::where('type',$type)->where('taxpayer_id',$taxPayer->id)->get();
 
-        return response()->json($Document);
-    }
     public function get_Alldocument(Taxpayer $taxPayer)
     {
-        $Document=Document::where('taxpayer_id',$taxPayer->id)->get();
-
-        return response()->json($Document);
+        $document = Document::where('taxpayer_id',$taxPayer->id)->get();
+        return response()->json($document);
     }
-    public function get_documentByID(Taxpayer $taxPayer,$id)
-    {
-        $Document=Document::where('id',$id)->first();
 
-        return response()->json($Document);
-    }
-    /**
-    * Show the form for creating a new resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-    public function create()
+    public function get_documentByID(Taxpayer $taxPayer, $id)
     {
-        //
+        $document = Document::where('id',$id)->first();
+        return response()->json($document);
     }
 
     /**
@@ -54,7 +40,6 @@ class DocumentController extends Controller
     */
     public function store(Request $request,Taxpayer $taxPayer)
     {
-
         $document = $request->id == 0 ? $document = new Document() : Document::where('id', $request->id)->first();
 
         $document->prefix = $request->prefix;
@@ -72,35 +57,12 @@ class DocumentController extends Controller
     }
 
     /**
-    * Display the specified resource.
-    *
-    * @param  \App\Document  $document
-    * @return \Illuminate\Http\Response
-    */
-    public function show(Document $document)
-    {
-        //
-    }
-
-    /**
     * Show the form for editing the specified resource.
     *
     * @param  \App\Document  $document
     * @return \Illuminate\Http\Response
     */
     public function edit(Document $document)
-    {
-        //
-    }
-
-    /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  \App\Document  $document
-    * @return \Illuminate\Http\Response
-    */
-    public function update(Request $request, Document $document)
     {
         //
     }

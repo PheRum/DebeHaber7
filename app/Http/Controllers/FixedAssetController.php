@@ -32,16 +32,8 @@ class FixedAssetController extends Controller
         $fixedasset = FixedAsset::with('chart')
         ->where('id',$id)
         ->get();
+
         return response()->json($fixedasset);
-    }
-    /**
-    * Show the form for creating a new resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -50,7 +42,7 @@ class FixedAssetController extends Controller
     * @param  \Illuminate\Http\Request  $request
     * @return \Illuminate\Http\Response
     */
-    public function store(Request $request,Taxpayer $taxPayer,Cycle $cycle)
+    public function store(Request $request, Taxpayer $taxPayer, Cycle $cycle)
     {
         $fixedasset = $request->id == 0 ? new FixedAsset() : FixedAsset::where('id', $request->id)->first();
         $fixedasset->chart_id = $request->chart_id;
@@ -69,35 +61,12 @@ class FixedAssetController extends Controller
     }
 
     /**
-    * Display the specified resource.
-    *
-    * @param  \App\FixedAsset  $fixedAsset
-    * @return \Illuminate\Http\Response
-    */
-    public function show(FixedAsset $fixedAsset)
-    {
-        //
-    }
-
-    /**
     * Show the form for editing the specified resource.
     *
     * @param  \App\FixedAsset  $fixedAsset
     * @return \Illuminate\Http\Response
     */
     public function edit(FixedAsset $fixedAsset)
-    {
-        //
-    }
-
-    /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  \App\FixedAsset  $fixedAsset
-    * @return \Illuminate\Http\Response
-    */
-    public function update(Request $request, FixedAsset $fixedAsset)
     {
         //
     }

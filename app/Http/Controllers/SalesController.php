@@ -23,12 +23,6 @@ class SalesController extends Controller
     */
     public function index(Taxpayer $taxPayer, Cycle $cycle)
     {
-        return view('/commercial/sales');
-    }
-
-    public function get_sales(Taxpayer $taxPayer, Cycle $cycle)
-    {
-
         return TransactionResource::collection(
             Transaction::MySales()
             ->with('customer:name,id')
@@ -55,14 +49,13 @@ class SalesController extends Controller
         return response()->json($transaction, 200);
     }
 
-
     public function get_salesByID(Taxpayer $taxPayer, Cycle $cycle, $id)
     {
-
         $transaction = Transaction::MySales()->join('taxpayers', 'taxpayers.id', 'transactions.customer_id')
         ->where('transactions.id', $id)
         ->with('details')
-        ->select(DB::raw('false as selected,transactions.id,
+        ->select(DB::raw('false as selected,
+        transactions.id,
         taxpayers.name as customer,
         customer_id,
         document_id,
@@ -247,7 +240,7 @@ class SalesController extends Controller
 
         $querySales = Transaction::MySalesForJournals($startDate, $endDate, $taxPayer->id)
         ->get();
-        
+
         if ($querySales->where('journal_id', '!=', null)->count() > 0)
         {
             $arrJournalIDs = $querySales->where('journal_id', '!=', null)->pluck('journal_id');

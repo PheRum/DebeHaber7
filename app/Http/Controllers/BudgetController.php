@@ -19,13 +19,6 @@ class BudgetController extends Controller
      */
      public function index(Taxpayer $taxPayer, Cycle $cycle)
      {
-
-
-         return view('accounting/budget');
-     }
-
-     public function getBudget(Taxpayer $taxPayer, Cycle $cycle)
-     {
          //get the journals used as opening balance; is_first = true.
          $cycleBudgets = CycleBudget::where('cycle_id', $cycle->id)->get();
 
@@ -61,7 +54,6 @@ class BudgetController extends Controller
          return response()->json(BalanceResource::collection($budget));
      }
 
-
     /**
      * Store a newly created resource in storage.
      *
@@ -74,7 +66,6 @@ class BudgetController extends Controller
 
         foreach ($details as $detail)
         {
-            // JournalDetail::where('id', $detail->journal_id)->first() ??
             $cycleBudget = CycleBudget::where('cycle_id',$cycle->id)->first() ?? new CycleBudget();;
 
             $cycleBudget->cycle_id = $cycle->id;
@@ -89,6 +80,8 @@ class BudgetController extends Controller
                 $cycleBudget->save();
             }
         }
+
+        $nonAccountables = collect($request)->where('is_accountable', '=', 0);
 
         return response()->json('Ok', 200);
     }

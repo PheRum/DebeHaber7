@@ -16,11 +16,6 @@ class MoneyTransferController extends Controller
     */
     public function index(Taxpayer $taxPayer, Cycle $cycle)
     {
-        return view('/commercial/money-transfers');
-    }
-
-    public function get_money_transfers(Taxpayer $taxPayer, Cycle $cycle, $skip)
-    {
         $movements = AccountMovement::leftJoin('transactions', 'transactions.id', 'account_movements.transaction_id')
         ->join('currencies', 'currencies.id', 'account_movements.currency_id')
         ->join('charts', 'charts.id', 'account_movements.chart_id')
@@ -47,16 +42,6 @@ class MoneyTransferController extends Controller
     }
 
     /**
-    * Show the form for creating a new resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-    public function create()
-    {
-        //
-    }
-
-    /**
     * Store a newly created resource in storage.
     *
     * @param  \Illuminate\Http\Request  $request
@@ -68,35 +53,12 @@ class MoneyTransferController extends Controller
     }
 
     /**
-    * Display the specified resource.
-    *
-    * @param  \App\AccountMovement  $accountMovement
-    * @return \Illuminate\Http\Response
-    */
-    public function show(AccountMovement $accountMovement)
-    {
-        //
-    }
-
-    /**
     * Show the form for editing the specified resource.
     *
     * @param  \App\AccountMovement  $accountMovement
     * @return \Illuminate\Http\Response
     */
     public function edit(AccountMovement $accountMovement)
-    {
-        //
-    }
-
-    /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  \App\AccountMovement  $accountMovement
-    * @return \Illuminate\Http\Response
-    */
-    public function update(Request $request, AccountMovement $accountMovement)
     {
         //
     }

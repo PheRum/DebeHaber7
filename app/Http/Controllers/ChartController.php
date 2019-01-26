@@ -26,14 +26,8 @@ class ChartController extends Controller
     */
     public function index(Taxpayer $taxPayer, Cycle $cycle)
     {
-        return view('accounting/chart');
-    }
-
-    // All API related Queries.
-    public function getCharts(Taxpayer $taxPayer, Cycle $cycle)
-    {
         $charts = Chart::orderBy('code')
-        ->paginate(10000);
+        ->paginate(1000);
 
         return response()->json($charts);
     }
@@ -45,16 +39,6 @@ class ChartController extends Controller
     }
 
     /**
-    * Show the form for creating a new resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-    public function create()
-    {
-        //
-    }
-
-    /**
     * Store a newly created resource in storage.
     *
     * @param  \Illuminate\Http\Request  $request
@@ -62,47 +46,40 @@ class ChartController extends Controller
     */
     public function store(Request $request, Taxpayer $taxPayer, Cycle $cycle)
     {
-
         $chart = $request->id == 0 ? $chart = new Chart() : Chart::where('id', $request->id)->first();
 
         $chart->chart_version_id = $cycle->chart_version_id;
         $chart->country = $taxPayer->country;
         $chart->taxpayer_id = $taxPayer->id;
 
-        if ($request->parent_id > 0)
-        {
+        if ($request->parent_id > 0) {
             $chart->parent_id = $request->parent_id;
         }
 
-        if ($request->is_accountable == true)
-        {
+        if ($request->is_accountable == true) {
             $chart->is_accountable = 1;
             $chart->sub_type = $request->sub_type;
-        }
-        else
-        {
+        } else {
             $chart->is_accountable = 0;
             $chart->sub_type = 0;
         }
 
-        if ($request->type > 0)
-        {
+        if ($request->type > 0) {
             $chart->type = $request->type;
         }
 
-        if ($request->coefficient > 0)
-        {
+        if ($request->coefficient > 0) {
             $chart->coefficient = $request->coefficient;
         }
 
-        if ($request->asset_years > 0)
-        {
+        if ($request->asset_years > 0) {
             $chart->asset_years = $request->asset_years;
         }
 
         $chart->code = $request->code;
         $chart->name = $request->name;
-        if ($request->partner_id>0) {
+
+        if ($request->partner_id > 0) {
             $chart->partner_id = $request->partner_id;
         }
 

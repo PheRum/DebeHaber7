@@ -22,11 +22,6 @@ class CreditNoteController extends Controller
     */
     public function index(Taxpayer $taxPayer, Cycle $cycle)
     {
-        return view('/commercial/creditnote');
-    }
-
-    public function get_credit_note(Taxpayer $taxPayer, Cycle $cycle)
-    {
         return TransactionResource::collection(
             Transaction::MyCreditNotes()
             ->with('customer:name,id')
@@ -36,40 +31,6 @@ class CreditNoteController extends Controller
             ->orderBy('transactions.date', 'desc')
             ->paginate(50)
         );
-
-        return response()->json($transactions);
-    }
-
-    public function get_credit_noteByID($taxPayerID,Cycle $cycle,$id)
-    {
-        $Transaction = Transaction::join('taxpayers', 'taxpayers.id', 'transactions.customer_id')
-        ->where('supplier_id', $taxPayerID)
-        ->where('transactions.id', $id)
-        ->where('transactions.type', 5)
-        ->with('details')
-        ->select(DB::raw('false as selected,transactions.id,taxpayers.name as customer,
-        customer_id,
-        document_id,
-        currency_id,
-        rate,
-        payment_condition,
-        chart_account_id,
-        date,
-        number,
-        type,
-        transactions.code,
-        code_expiry'))
-        ->get();
-        return response()->json($Transaction);
-    }
-    /**
-    * Show the form for creating a new resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -84,14 +45,16 @@ class CreditNoteController extends Controller
 
         $Transaction->customer_id = $request->customer_id;
         $Transaction->supplier_id = $taxPayer->id;
+
         if ($request->document_id > 0)
         {
             $Transaction->document_id = $request->document_id;
         }
 
         $Transaction->currency_id = $request->currency_id;
-        $Transaction->rate = $request->rate??1;
+        $Transaction->rate = $request->rate ?? 1;
         $Transaction->payment_condition = $request->payment_condition;
+
         if ($request->chart_account_id > 0)
         {
             $Transaction->chart_account_id = $request->chart_account_id;
@@ -124,18 +87,8 @@ class CreditNoteController extends Controller
             $TransactionDetail->value = $detail['value'];
             $TransactionDetail->save();
         }
-        return response()->json('ok');
-    }
 
-    /**
-    * Display the specified resource.
-    *
-    * @param  \App\Transaction  $transaction
-    * @return \Illuminate\Http\Response
-    */
-    public function show(Transaction $transaction)
-    {
-        //
+        return response()->json('ok', 200);
     }
 
     /**
@@ -146,19 +99,26 @@ class CreditNoteController extends Controller
     */
     public function edit(Transaction $transaction)
     {
-        //
-    }
+        $Transaction = Transaction::join('taxpayers', 'taxpayers.id', 'transactions.customer_id')
+        ->where('supplier_id', $taxPayerID)
+        ->where('transactions.id', $transaction->id)
+        ->where('transactions.type', 5)
+        ->with('details')
+        ->select(DB::raw('false as selected,transactions.id,taxpayers.name as customer,
+        customer_id,
+        document_id,
+        currency_id,
+        rate,
+        payment_condition,
+        chart_account_id,
+        date,
+        number,
+        type,
+        transactions.code,
+        code_expiry'))
+        ->get();
 
-    /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  \App\Transaction  $transaction
-    * @return \Illuminate\Http\Response
-    */
-    public function update(Request $request, Transaction $transaction)
-    {
-        //
+        return response()->json($Transaction);
     }
 
     /**

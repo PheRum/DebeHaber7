@@ -20,12 +20,6 @@ class OpeningBalanceController extends Controller
     */
     public function index(Taxpayer $taxPayer, Cycle $cycle)
     {
-        //get the journals used as opening balance; is_first = true.
-        return view('accounting/opening-balance');
-    }
-
-    public function getOpeningBalance(Taxpayer $taxPayer, Cycle $cycle)
-    {
         $journalDetails = JournalDetail::whereHas('journal', function ($query) use($cycle) {
             $query->where('cycle_id', $cycle->id)
             ->where('is_first', 1);
@@ -61,6 +55,7 @@ class OpeningBalanceController extends Controller
         $openingBalance = $charts->sortBy('type')->sortBy('code');
         return response()->json(BalanceResource::collection($openingBalance));
     }
+
     /**
     * Store a newly created resource in storage.
     *
@@ -69,7 +64,6 @@ class OpeningBalanceController extends Controller
     */
     public function store(Request $request,Taxpayer $taxPayer, Cycle $cycle)
     {
-        //    return response()->json($request,500);
         $journal =  Journal::where('is_first', true)->where('cycle_id', $cycle->id)->first() ?? new Journal();
 
         $journal->date = $cycle->start_date;
@@ -96,7 +90,6 @@ class OpeningBalanceController extends Controller
                     $journalDetail->save();
                 }
             }
-
         }
 
         return response()->json("Ok", 200);

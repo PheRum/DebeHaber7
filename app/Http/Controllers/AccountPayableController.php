@@ -21,15 +21,6 @@ class AccountPayableController extends Controller
     */
     public function index(Taxpayer $taxPayer, Cycle $cycle)
     {
-        $chart = Chart::MoneyAccounts()->orderBy('name')
-        ->select('name', 'id', 'sub_type')
-        ->get();
-
-        return view('/commercial/accounts-payable')->with('charts',$chart);
-    }
-
-    public function get_account_payable(Taxpayer $taxPayer, Cycle $cycle)
-    {
         $transactions = Transaction::MyPurchases()
         ->join('taxpayers', 'taxpayers.id', 'transactions.supplier_id')
         ->join('currencies', 'transactions.currency_id','currencies.id')
@@ -61,46 +52,6 @@ class AccountPayableController extends Controller
         return ModelResource::collection($transactions);
     }
 
-    public function get_account_payableByID(Taxpayer $taxPayer, Cycle $cycle,$id)
-    {
-        $accountMovement = Transaction::MyPurchases()
-        ->join('taxpayers', 'taxpayers.id', 'transactions.supplier_id')
-        ->join('currencies', 'transactions.currency_id','currencies.id')
-        ->join('transaction_details as td', 'td.transaction_id', 'transactions.id')
-        ->where('transactions.customer_id', $taxPayer->id)
-        ->where('transactions.id', $id)
-        ->where('transactions.payment_condition', '>', 0)
-        ->groupBy('transactions.id')
-        ->select(DB::raw('max(transactions.id) as id'),
-        DB::raw('max(taxpayers.name) as Supplier'),
-        DB::raw('max(taxpayers.taxid) as SupplierTaxID'),
-        DB::raw('max(currencies.code) as currency_code'),
-        DB::raw('max(transactions.payment_condition) as payment_condition'),
-        DB::raw('max(transactions.date) as date'),
-        DB::raw('DATE_ADD(max(transactions.date), INTERVAL max(transactions.payment_condition) DAY) as code_expiry'),
-        DB::raw('max(transactions.number) as number'),
-        DB::raw('(select ifnull(sum(account_movements.debit * account_movements.rate), 0)  from account_movements where `transactions`.`id` = `account_movements`.`transaction_id`) as Paid'),
-        DB::raw('sum(td.value * transactions.rate) as Value'),
-        DB::raw('(sum(td.value * transactions.rate) - (select
-        ifnull(sum(account_movements.debit * account_movements.rate), 0)
-        from account_movements
-        where transactions.id = account_movements.transaction_id))
-        as Balance')
-        )
-        ->get();
-
-        return response()->json($accountMovement);
-    }
-    /**
-    * Show the form for creating a new resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-    public function create()
-    {
-        //
-    }
-
     /**
     * Store a newly created resource in storage.
     *
@@ -124,21 +75,10 @@ class AccountPayableController extends Controller
 
             $accountMovement->save();
 
-            return response()->json('ok', 200);
+            return response()->json('Ok', 200);
         }
 
-        return response()->json('no value', 403);
-    }
-
-    /**
-    * Display the specified resource.
-    *
-    * @param  \App\AccountMovement  $accountMovement
-    * @return \Illuminate\Http\Response
-    */
-    public function show(AccountMovement $accountMovement)
-    {
-        //
+        return response()->json('No Value', 403);
     }
 
     /**
@@ -147,21 +87,35 @@ class AccountPayableController extends Controller
     * @param  \App\AccountMovement  $accountMovement
     * @return \Illuminate\Http\Response
     */
-    public function edit(AccountMovement $accountMovement)
+    public function edit($taxPayerId, $cycleId, $transactionId)
     {
-        //
-    }
+        $accountMovement = Transaction::MyPurchases()
+        ->join('taxpayers', 'taxpayers.id', 'transactions.supplier_id')
+        ->join('currencies', 'transactions.currency_id','currencies.id')
+        ->join('transaction_details as td', 'td.transaction_id', 'transactions.id')
+        ->where('transactions.customer_id', $taxPayerId)
+        ->where('transactions.id', $transactionId)
+        ->where('transactions.payment_condition', '>', 0)
+        ->groupBy('transactions.id')
+        ->select(DB::raw('max(transactions.id) as id'),
+        DB::raw('max(taxpayers.name) as Supplier'),
+        DB::raw('max(taxpayers.taxid) as SupplierTaxID'),
+        DB::raw('max(currencies.code) as currency_code'),
+        DB::raw('max(transactions.payment_condition) as payment_condition'),
+        DB::raw('max(transactions.date) as date'),
+        DB::raw('DATE_ADD(max(transactions.date), INTERVAL max(transactions.payment_condition) DAY) as code_expiry'),
+        DB::raw('max(transactions.number) as number'),
+        DB::raw('(select ifnull(sum(account_movements.debit * account_movements.rate), 0)  from account_movements where `transactions`.`id` = `account_movements`.`transaction_id`) as Paid'),
+        DB::raw('sum(td.value * transactions.rate) as Value'),
+        DB::raw('(sum(td.value * transactions.rate) - (select
+        ifnull(sum(account_movements.debit * account_movements.rate), 0)
+        from account_movements
+        where transactions.id = account_movements.transaction_id))
+        as Balance')
+        )
+        ->get();
 
-    /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  \App\AccountMovement  $accountMovement
-    * @return \Illuminate\Http\Response
-    */
-    public function update(Request $request, AccountMovement $accountMovement)
-    {
-        //
+        return response()->json($accountMovement);
     }
 
     /**
@@ -172,19 +126,7 @@ class AccountPayableController extends Controller
     */
     public function destroy(Taxpayer $taxPayer, Cycle $cycle, $transactionID)
     {
-        // try
-        // {
-        //     //TODO: Run Tests to make sure it deletes all journals related to transaction
-        //     AccountMovement::where('transaction_id', $transactionID)->delete();
-        //     JournalTransaction::where('transaction_id', $transactionID)->delete();
-        //     Transaction::where('id', $transactionID)->delete();
-        //
-        //     return response()->json('ok', 200);
-        // }
-        // catch (\Exception $e)
-        // {
-        //     return response()->json($e, 500);
-        // }
+
     }
 
     public function generate_Journals($startDate, $endDate, $taxPayer, $cycle)

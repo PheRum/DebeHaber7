@@ -30,16 +30,6 @@ class TaxpayerIntegrationController extends Controller
     }
 
     /**
-    * Show the form for creating a new resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-    public function create()
-    {
-        //
-    }
-
-    /**
     * Display the specified resource.
     *
     * @param  \App\TaxpayerIntegration  $taxpayerIntegration
@@ -52,17 +42,6 @@ class TaxpayerIntegrationController extends Controller
         ->get();
 
         return view('taxpayer/profile')->with('taxPayerIntegration', $taxPayerIntegration);
-    }
-
-    /**
-    * Show the form for editing the specified resource.
-    *
-    * @param  \App\TaxpayerIntegration  $taxpayerIntegration
-    * @return \Illuminate\Http\Response
-    */
-    public function edit(TaxpayerIntegration $taxpayerIntegration)
-    {
-        //
     }
 
     /**

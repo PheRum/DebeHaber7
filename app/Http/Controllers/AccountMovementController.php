@@ -35,14 +35,11 @@ class AccountMovementController extends Controller
             $accountMovement->taxpayer_id = $request->taxpayer_id;
             $accountMovement->chart_id = $request->from_chart_id ;
             $accountMovement->date =  Carbon::now();;
-
             $accountMovement->debit = $request->debit ?? 0;
             $accountMovement->credit = $request->credit ?? 0;
-
             $accountMovement->currency_id = $request->currency_id;
             $accountMovement->rate = $request->rate ?? 1;
             $accountMovement->comment = $request->comment;
-
             $accountMovement->save();
         }
         else

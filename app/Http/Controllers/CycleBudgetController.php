@@ -21,16 +21,6 @@ class CycleBudgetController extends Controller
     }
 
     /**
-    * Show the form for creating a new resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-    public function create()
-    {
-        //
-    }
-
-    /**
     * Store a newly created resource in storage.
     *
     * @param  \Illuminate\Http\Request  $request
@@ -59,10 +49,16 @@ class CycleBudgetController extends Controller
         return response()->json('Ok', 200);
     }
 
-    public function getCycleBudgetsByCycleID (Request $request, Taxpayer $taxPayer, Cycle $cycle, $cycleID)
+    /**
+    * Show the form for editing the specified resource.
+    *
+    * @param  \App\CycleBudget  $cycleBudget
+    * @return \Illuminate\Http\Response
+    */
+    public function edit($taxPayerId, $cycleId, $cycleBudgetId)
     {
-        $cyclebudget = CycleBudget::join('charts', 'cycle_budgets.chart_id', 'charts.id')
-        ->where('cycle_id', $cycleID)
+        $cycleBudget = CycleBudget::join('charts', 'cycle_budgets.chart_id', 'charts.id')
+        ->where('cycle_id', $cycleBudgetId)
         ->select(DB::raw('cycle_budgets.id as id'),
         DB::raw('cycle_budgets.chart_id'),
         DB::raw('charts.is_accountable'),
@@ -71,42 +67,7 @@ class CycleBudgetController extends Controller
         DB::raw('debit'),
         DB::raw('credit'))->get();
 
-
-        return response()->json($cyclebudget);
-    }
-
-    /**
-    * Display the specified resource.
-    *
-    * @param  \App\CycleBudget  $cycleBudget
-    * @return \Illuminate\Http\Response
-    */
-    public function show(CycleBudget $cycleBudget)
-    {
-        //
-    }
-
-    /**
-    * Show the form for editing the specified resource.
-    *
-    * @param  \App\CycleBudget  $cycleBudget
-    * @return \Illuminate\Http\Response
-    */
-    public function edit(CycleBudget $cycleBudget)
-    {
-        //
-    }
-
-    /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  \App\CycleBudget  $cycleBudget
-    * @return \Illuminate\Http\Response
-    */
-    public function update(Request $request, CycleBudget $cycleBudget)
-    {
-        //
+        return response()->json($cycleBudget);
     }
 
     /**
@@ -115,7 +76,7 @@ class CycleBudgetController extends Controller
     * @param  \App\CycleBudget  $cycleBudget
     * @return \Illuminate\Http\Response
     */
-    public function destroy(CycleBudget $cycleBudget)
+    public function destroy($taxPayerId, $cycleId, $cycleBudgetId)
     {
         //
     }
