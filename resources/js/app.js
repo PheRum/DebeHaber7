@@ -17,10 +17,6 @@
 require('spark-bootstrap');
 require('./components/bootstrap');
 
-var app = new Vue({
-    mixins: [require('spark')]
-});
-
 Vue.component(
     'passport-clients',
     require('./components/passport/Clients.vue').default
@@ -48,5 +44,6 @@ const router = new VueRouter({
 });
 
 const app = new Vue({
-    router
-}).$mount('#app');
+    router,
+    mixins: [require('spark')]
+});

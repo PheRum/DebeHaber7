@@ -13,6 +13,6 @@ class Team extends SparkTeam
    */
   public function taxPayerIntegration()
   {
-    return $this->hasMany(App\TaxpayerIntegration::class);
+    return $this->hasMany(TaxpayerIntegration::class);
   }
 }
