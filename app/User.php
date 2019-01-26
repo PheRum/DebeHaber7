@@ -6,6 +6,7 @@ use Laravel\Passport\HasApiTokens;
 use Laravel\Spark\CanJoinTeams;
 use Laravel\Spark\User as SparkUser;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 class User extends SparkUser
 {

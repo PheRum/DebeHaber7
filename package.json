@@ -10,6 +10,7 @@
     "ajv": "^6.7.0",
     "axios": "^0.18",
     "bootstrap": "^4.1.1",
+    "bootstrap-vue": "^2.0.0-rc.11",
     "cross-env": "^5.1",
     "imagemin": "^6.1.0",
     "jquery": "^3.2",

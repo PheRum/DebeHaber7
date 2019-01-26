@@ -35,10 +35,12 @@ Vue.component(
 );
 
 import Vue from 'vue'
+import BootstrapVue from 'bootstrap-vue'
 import VueRouter from 'vue-router'
 import Router from './router'
 
-Vue.use(VueRouter)
+Vue.use(BootstrapVue);
+Vue.use(VueRouter);
 
 const router = new VueRouter({
     mode:'history',

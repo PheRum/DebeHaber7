@@ -23,7 +23,6 @@ class CreateInventoriesTable extends Migration
             $table->unsignedInteger('chart_id');
             $table->foreign('chart_id')->references('id')->on('charts')->onDelete('cascade');
 
-
             $table->date('start_date');
             $table->date('end_date');
 
@@ -34,7 +33,7 @@ class CreateInventoriesTable extends Migration
             $table->string('comments');
 
             $table->unsignedDecimal('current_value', 18, 2);
-            
+
             $table->timestamps();
         });
     }
