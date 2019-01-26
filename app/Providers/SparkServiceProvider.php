@@ -8,30 +8,30 @@ use Laravel\Spark\Providers\AppServiceProvider as ServiceProvider;
 class SparkServiceProvider extends ServiceProvider
 {
     /**
-     * Your application and company details.
-     *
-     * @var array
-     */
+    * Your application and company details.
+    *
+    * @var array
+    */
     protected $details = [
-        'vendor' => 'Your Company',
-        'product' => 'Your Product',
+        'vendor' => 'Bazaar Social Inc.',
+        'product' => 'DebeHaber',
         'street' => 'PO Box 111',
-        'location' => 'Your Town, NY 12345',
+        'location' => 'Your Town, DL 12345',
         'phone' => '555-555-5555',
     ];
 
     /**
-     * The address where customer support e-mails should be sent.
-     *
-     * @var string
-     */
+    * The address where customer support e-mails should be sent.
+    *
+    * @var string
+    */
     protected $sendSupportEmailsTo = null;
 
     /**
-     * All of the application developer e-mail addresses.
-     *
-     * @var array
-     */
+    * All of the application developer e-mail addresses.
+    *
+    * @var array
+    */
     protected $developers = [
         'ashah@indopar.com.py',
         'abhi@cognitivo.in',
@@ -40,30 +40,45 @@ class SparkServiceProvider extends ServiceProvider
     ];
 
     /**
-     * Indicates if the application will expose an API.
-     *
-     * @var bool
-     */
+    * Indicates if the application will expose an API.
+    *
+    * @var bool
+    */
     protected $usesApi = true;
 
     /**
-     * Finish configuring Spark for the application.
-     *
-     * @return void
-     */
+    * Finish configuring Spark for the application.
+    *
+    * @return void
+    */
     public function booted()
     {
-        Spark::useStripe()->noCardUpFront()->teamTrialDays(10);
+        //Do not let Users create additional Teams
+        Spark::noAdditionalTeams();
+        //Do not let Users switch Teams
+        Spark::identifyTeamsByPath();
+
+        Spark::useRoles([
+            'admin' => 'Administrator',
+            'data-entry' => 'Data Entry',
+            'data-view' => 'Data View',
+        ]);
+
+        Spark::useStripe()->noCardUpFront()->teamTrialDays(30);
 
         Spark::freeTeamPlan()
-            ->features([
-                'First', 'Second', 'Third'
-            ]);
+        ->features([
+            'All Features, only 1 Taxpayer'
+        ]);
+
+        Spark::chargeTeamsPerSeat('Taxpayer', function ($team) {
+            return $team->taxPayerIntegration()->count();
+        });
 
         Spark::teamPlan('Pro', 'provider-id-1')
-            ->price(10)
-            ->features([
-                'First', 'Second', 'Third'
-            ]);
+        ->price(6)
+        ->features([
+            'All features on each Taxpayer'
+        ]);
     }
 }
