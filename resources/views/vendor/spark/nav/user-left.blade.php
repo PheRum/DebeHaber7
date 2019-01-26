@@ -5,13 +5,22 @@
     <li class="nav-item">
         <b-nav fill>
             <b-nav-item>
-                <router-link :to="{ name: 'commercialMenu'}">
-                    Commercial
+                <router-link :to="{ name: 'taxPayer'}">
+                    <i class="fa fa-folder-open"></i> Hi
                 </router-link>
             </b-nav-item>
-            <b-nav-item> Accounting</b-nav-item>
+            <b-nav-item>
+                <router-link :to="{ name: 'commercialMenu'}">
+                    <i class="fa fa-briefcase"></i> Commercial
+                </router-link>
+            </b-nav-item>
+            <b-nav-item>
+                <i class="fa fa-calculator"></i> Accounting
+            </b-nav-item>
             {{-- <b-nav-item @if($teamRole != 'Audit') disabled @endif> Audits</b-nav-item> --}}
-            <b-nav-item> Reports</b-nav-item>
+            <b-nav-item>
+                <i class="fa fa-chart-pie"></i> Reports
+            </b-nav-item>
         </b-nav>
     </li>
 @else

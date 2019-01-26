@@ -37,142 +37,139 @@ export default
             title: 'Dashboard',
             description: 'Some description',
             img: '/images/icons/type.svg',
+        }
+    },
+    {
+        path: 'commercial',
+        component: Commercial,
+        name: 'commercialMenu',
+        meta: {
+            title: 'Dashboard',
+            description: 'Some description',
+            img: '/images/icons/type.svg',
         },
         children:
         [
             {
-                path: 'commercial',
-                component: Commercial,
-                name: 'commercialMenu',
+                path: 'sales',
+                component: SalesList,
+                name: 'salesList',
                 meta: {
-                    title: 'Dashboard',
+                    apiUrl: 'sales',
+                    title: 'Sales Book',
                     description: 'Some description',
                     img: '/images/icons/type.svg',
                 },
                 children:
                 [
                     {
-                        path: 'sales',
-                        component: SalesList,
-                        name: 'salesList',
+                        path: '{id}',
+                        component: SalesForm,
+                        name: 'salesForm',
                         meta: {
-                            apiUrl: 'sales',
-                            title: 'Sales Book',
+                            title: 'Sales Invoice',
                             description: 'Some description',
                             img: '/images/icons/type.svg',
                         },
-                        children:
-                        [
-                            {
-                                path: '{id}',
-                                component: SalesForm,
-                                name: 'salesForm',
-                                meta: {
-                                    title: 'Sales Invoice',
-                                    description: 'Some description',
-                                    img: '/images/icons/type.svg',
-                                },
 
-                            }
-                        ]
-                    },
-                    {
-                        path: 'credit-note',
-                        component: CreditList,
-                        name: 'creditList',
-                        meta: {
-                            title: 'Credit Book',
-                            description: 'Some description',
-                            img: '/images/icons/type.svg',
-                        },
-                        children:
-                        [
-                            {
-                                path: '{id}',
-                                component: CreditForm,
-                                name: 'creditForm',
-                                meta: {
-                                    title: 'Credit Note',
-                                    description: 'Some description',
-                                    img: '/images/icons/type.svg',
-                                },
-
-                            }
-                        ]
-                    },
-                    {
-                        path: '/purchase',
-                        component: PurchaseList,
-                        name: 'purchaseList',
-                        meta: {
-                            title: 'Purchase Book',
-                            description: 'Some description',
-                            img: '/images/icons/type.svg',
-                        },
-                        children:
-                        [
-                            {
-                                path: '/{id}',
-                                component: PurchaseForm,
-                                name: 'purchaseForm',
-                                meta: {
-                                    title: 'Purchase Invoice',
-                                    description: 'Some description',
-                                    img: '/images/icons/type.svg',
-                                },
-
-                            }
-                        ]
-                    },
-                    {
-                        path: '/debit-note',
-                        component: DebitList,
-                        name: 'debitList',
-                        meta: {
-                            title: 'Debit Book',
-                            description: 'Some description',
-                            img: '/images/icons/type.svg',
-                        },
-                        children:
-                        [
-                            {
-                                path: '/{id}',
-                                component: DebitForm,
-                                name: 'debitForm',
-                                meta: {
-                                    title: 'Debit Note',
-                                    description: 'Some description',
-                                    img: '/images/icons/type.svg',
-                                },
-
-                            }
-                        ]
                     }
                 ]
             },
+            {
+                path: 'credit-note',
+                component: CreditList,
+                name: 'creditList',
+                meta: {
+                    title: 'Credit Book',
+                    description: 'Some description',
+                    img: '/images/icons/type.svg',
+                },
+                children:
+                [
+                    {
+                        path: '{id}',
+                        component: CreditForm,
+                        name: 'creditForm',
+                        meta: {
+                            title: 'Credit Note',
+                            description: 'Some description',
+                            img: '/images/icons/type.svg',
+                        },
+
+                    }
+                ]
+            },
+            {
+                path: '/purchase',
+                component: PurchaseList,
+                name: 'purchaseList',
+                meta: {
+                    title: 'Purchase Book',
+                    description: 'Some description',
+                    img: '/images/icons/type.svg',
+                },
+                children:
+                [
+                    {
+                        path: '/{id}',
+                        component: PurchaseForm,
+                        name: 'purchaseForm',
+                        meta: {
+                            title: 'Purchase Invoice',
+                            description: 'Some description',
+                            img: '/images/icons/type.svg',
+                        },
+
+                    }
+                ]
+            },
+            {
+                path: '/debit-note',
+                component: DebitList,
+                name: 'debitList',
+                meta: {
+                    title: 'Debit Book',
+                    description: 'Some description',
+                    img: '/images/icons/type.svg',
+                },
+                children:
+                [
+                    {
+                        path: '/{id}',
+                        component: DebitForm,
+                        name: 'debitForm',
+                        meta: {
+                            title: 'Debit Note',
+                            description: 'Some description',
+                            img: '/images/icons/type.svg',
+                        },
+
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        path: 'accounting',
+        component: Accounting,
+        name: 'accountingMenu',
+        meta: {
+            title: 'Dashboard',
+            description: 'Some description',
+            img: '/images/icons/type.svg',
+        },
+        children:
+        [
             {
-                path: 'accounting',
-                component: Accounting,
-                name: 'accountingMenu',
+                path: 'journals',
+                component: Commercial,
+                name: 'journals',
                 meta: {
-                    title: 'Dashboard',
+                    title: 'Journal',
                     description: 'Some description',
                     img: '/images/icons/type.svg',
                 },
-                children:
-                [
-                    {
-                        path: 'journals',
-                        component: Commercial,
-                        name: 'journals',
-                        meta: {
-                            title: 'Journal',
-                            description: 'Some description',
-                            img: '/images/icons/type.svg',
-                        },
 
-                    }
-                ]
             }
         ]
     }

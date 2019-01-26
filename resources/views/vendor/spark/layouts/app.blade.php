@@ -49,7 +49,8 @@
     window.Spark = @json(array_merge(Spark::scriptVariables(), []));
     window.Spark = <?php echo json_encode(array_merge(
         Spark::scriptVariables(), [
-            'teamRole' => $teamRole ?? ''
+            'teamRole' => $teamRole ?? '',
+            'language' => Auth::user()->language
         ]
     )); ?>
     </script>
