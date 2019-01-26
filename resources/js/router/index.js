@@ -24,6 +24,7 @@ export default
     //This will cause 404 Errors to be redirected to proper site.
     {
         path: '/', component: FourZeroFour,
+         redirect: `/es`,
         meta: {
             requiresAuth: false
         }
