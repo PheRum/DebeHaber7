@@ -16,6 +16,7 @@
     "jquery": "^3.2",
     "laravel-mix": "^4.0.14",
     "lodash": "^4.17.4",
+    "mdi-vue": "^0.2.14",
     "moment": "^2.10.6",
     "popper.js": "^1.12",
     "promise": "^7.1.1",
@@ -23,6 +24,7 @@
     "sweetalert": "^1.1.3",
     "urijs": "^1.17.0",
     "vue": "2.*",
+    "vue-awesome": "^3.3.1",
     "vue-router": "^3.0.2"
   },
   "devDependencies": {
