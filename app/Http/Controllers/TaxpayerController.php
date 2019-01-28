@@ -324,7 +324,7 @@ class TaxpayerController extends Controller
         // ->where('customer_id', $taxPayer->id)
         // ->count();
 
-        return view('taxpayer-dashboard');
+        return view('platform');
     }
 
     public function selectTaxpayer(Request $request, Taxpayer $taxPayer)
@@ -336,7 +336,6 @@ class TaxpayerController extends Controller
         $cycle = Cycle::where('year', $workingYear)
         ->where('taxpayer_id', $taxPayer->id)
         ->first();
-
 
         //If null, then create it.
         if (isset($cycle) == false)

@@ -24,10 +24,6 @@ export default
     //This will cause 404 Errors to be redirected to proper site.
     {
         path: '/', component: FourZeroFour,
-         redirect: `/es`,
-        meta: {
-            requiresAuth: false
-        }
     },
     {
         path: '/:taxPayer/:cycle/',
@@ -155,8 +151,8 @@ export default
         component: Accounting,
         name: 'accountingMenu',
         meta: {
-            title: 'Dashboard',
-            description: 'Some description',
+            title: 'Accounting',
+            description: 'All your accounting data is here',
             img: '/images/icons/type.svg',
         },
         children:
@@ -173,5 +169,15 @@ export default
 
             }
         ]
+    },
+    {
+        path: '/:taxPayer/:cycle/reports',
+        component: Report,
+        name: 'reportingMenu',
+        meta: {
+            title: 'Reports',
+            description: 'All your accounting data is here',
+            img: '/images/icons/type.svg',
+        }
     }
 ]

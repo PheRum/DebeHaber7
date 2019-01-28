@@ -21,6 +21,6 @@ Route::group(['middleware' => 'auth'], function ()
     Route::prefix('{taxPayer}/{cycle}')->group(function ()
     {
         Route::get('', 'TaxpayerController@showDashboard')->name('taxpayer.dashboard');
-        Route::get('{any}', function () { return view('home'); })->where('any','.*');
+        Route::get('{any}', function () { return view('platform'); })->where('any','.*');
     });
 });

@@ -73,11 +73,11 @@ class AccountMovementController extends Controller
     {
         return
         GeneralResource::collection(
-            AccountMovement::
-            ->with('chart')
+            AccountMovement::with('chart')
             ->with('transaction:id,number,comment')
             ->with('currency')
-            ->where('id', $movement->id)->paginate(1)
+            ->where('id', $movement->id)
+            ->paginate(1)
         );
     }
 

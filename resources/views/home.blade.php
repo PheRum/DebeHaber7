@@ -1,7 +1,6 @@
 @extends('spark::layouts.app')
 
 @section('content')
-
     <b-container>
         <b-row>
             <b-col>
@@ -14,6 +13,8 @@
                                 </li>
                             @endforeach
                         </ul>
+                    @else
+                        Nothing Here, but still on Home.Blade
                     @endif
                 </b-card>
             </b-col>

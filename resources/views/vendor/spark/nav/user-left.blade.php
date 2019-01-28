@@ -4,14 +4,16 @@
 @if (request()->route('taxPayer') != null)
     <li class="nav-item">
         <b-nav fill>
-            <b-nav-item href="/home" active> <i class="fa fa-fw fa-chart-line"></i> Dashboard</b-nav-item>
+            <b-nav-item href="/home" active>
+                <i class="fa fa-home"></i>
+            </b-nav-item>
         </b-nav>
     </li>
     <li class="nav-item">
         <b-nav fill>
             <b-nav-item>
                 <router-link :to="{ name: 'taxPayer'}">
-                    <i class="fa fa-home"></i>
+                    <i class="fa fa-user"></i>
                 </router-link>
             </b-nav-item>
             <b-nav-item>
@@ -20,11 +22,15 @@
                 </router-link>
             </b-nav-item>
             <b-nav-item>
-                <i class="fa fa-calculator"></i> Accounting
+                <router-link :to="{ name: 'accountingMenu'}">
+                    <i class="fa fa-book"></i> Accounting
+                </router-link>
             </b-nav-item>
             {{-- <b-nav-item @if($teamRole != 'Audit') disabled @endif> Audits</b-nav-item> --}}
             <b-nav-item>
-                <i class="fa fa-chart-pie"></i> Reports
+                <router-link :to="{ name: 'reportingMenu'}">
+                    <i class="fa fa-chart-pie"></i> Reports
+                </router-link>
             </b-nav-item>
         </b-nav>
     </li>
