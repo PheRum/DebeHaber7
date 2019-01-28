@@ -4,9 +4,14 @@
 @if (request()->route('taxPayer') != null)
     <li class="nav-item">
         <b-nav fill>
+            <b-nav-item href="/home" active> <i class="fa fa-fw fa-chart-line"></i> Dashboard</b-nav-item>
+        </b-nav>
+    </li>
+    <li class="nav-item">
+        <b-nav fill>
             <b-nav-item>
                 <router-link :to="{ name: 'taxPayer'}">
-                    <i class="fa fa-folder-open"></i> Hi
+                    <i class="fa fa-home"></i>
                 </router-link>
             </b-nav-item>
             <b-nav-item>

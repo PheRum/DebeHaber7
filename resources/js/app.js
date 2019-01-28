@@ -37,10 +37,8 @@ import BootstrapVue from 'bootstrap-vue'
 import VueRouter from 'vue-router'
 import Router from './router'
 
-
 Vue.use(BootstrapVue);
 Vue.use(VueRouter);
-
 
 const router = new VueRouter({
     mode:'history',

@@ -41,7 +41,7 @@ export default
         }
     },
     {
-        path: 'commercial',
+        path: '/:taxPayer/:cycle/commercial',
         component: Commercial,
         name: 'commercialMenu',
         meta: {
@@ -151,7 +151,7 @@ export default
         ]
     },
     {
-        path: 'accounting',
+        path: '/:taxPayer/:cycle/accounting',
         component: Accounting,
         name: 'accountingMenu',
         meta: {

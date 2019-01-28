@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <b-container class="bv-example-row">
+    <b-container>
         <b-row>
             <b-col>
                 <b-card header="Taxpayers" header-tag="header">
