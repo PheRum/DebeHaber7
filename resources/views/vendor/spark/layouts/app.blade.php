@@ -50,7 +50,7 @@
     window.Spark = <?php echo json_encode(array_merge(
         Spark::scriptVariables(), [
             'teamRole' => $teamRole ?? '',
-            'language' => Auth::user()->language
+            'language' => Auth::user()!=null?Auth::user()->language:'en'
         ]
     )); ?>
     </script>
