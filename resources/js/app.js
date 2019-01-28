@@ -36,9 +36,15 @@ import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue'
 import VueRouter from 'vue-router'
 import Router from './router'
+import i18n from './plugins/i18n';
+
+
 
 Vue.use(BootstrapVue);
 Vue.use(VueRouter);
+Vue.config.productionTip = false;
+
+
 
 const router = new VueRouter({
     mode:'history',
@@ -46,6 +52,7 @@ const router = new VueRouter({
 });
 
 const app = new Vue({
+    i18n,
     router,
     mixins: [require('spark')]
 });
