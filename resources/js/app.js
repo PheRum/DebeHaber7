@@ -14,42 +14,45 @@
  |
  */
 
+//Base Components
 require('spark-bootstrap');
 require('./components/bootstrap');
 
+//Passport Components for API
 Vue.component(
     'passport-clients',
     require('./components/passport/Clients.vue').default
 );
-
 Vue.component(
     'passport-authorized-clients',
     require('./components/passport/AuthorizedClients.vue').default
 );
-
 Vue.component(
     'passport-personal-access-tokens',
     require('./components/passport/PersonalAccessTokens.vue').default
 );
 
-import Vue from 'vue'
-import BootstrapVue from 'bootstrap-vue'
-import VueRouter from 'vue-router'
-import Router from './router'
+import Vue from 'vue';
+import BootstrapVue from 'bootstrap-vue';
+import VueRouter from 'vue-router';
+import Router from './router';
 import i18n from './plugins/i18n';
+import VueGoogleCharts from 'vue-google-charts';
 
-
-
+Vue.use(VueGoogleCharts);
 Vue.use(BootstrapVue);
 Vue.use(VueRouter);
 Vue.config.productionTip = false;
-
-
 
 const router = new VueRouter({
     mode:'history',
     routes: Router
 });
+
+//Saves new fields into registration form.
+Spark.forms.register = {
+    language: ''
+};
 
 const app = new Vue({
     i18n,

@@ -1,5 +1,6 @@
 <template>
-    <b-container>
+
+    <b-container v-if="$route.name == 'commercialMenu'">
         <b-row>
             <b-col>
                 <b-card no-body header="Expenses" header-tag="header">
@@ -43,10 +44,10 @@
                             </div>
                         </b-list-group-item>
                         <b-list-group-item href="#">
-                            <div>
+                            <router-link :to="{ name: 'creditList'}">
                                 <img src="/img/icons/credit-note.svg" width="32" alt="">
                                 Credit Notes
-                            </div>
+                            </router-link>
                         </b-list-group-item>
                         <b-list-group-item href="#">
                             <div>
@@ -69,10 +70,10 @@
                             </div>
                         </b-list-group-item>
                         <b-list-group-item href="#">
-                            <div>
+                            <router-link :to="{ name: 'creditList'}">
                                 <img src="/img/icons/credit-note.svg" width="32" alt="">
                                 Credit Notes
-                            </div>
+                            </router-link>
                         </b-list-group-item>
                         <b-list-group-item href="#">
                             <div>
@@ -85,6 +86,9 @@
             </b-col>
         </b-row>
     </b-container>
+
+    <router-view v-else></router-view>
+
 </template>
 <script>
 export default {

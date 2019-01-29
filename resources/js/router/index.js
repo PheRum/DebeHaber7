@@ -73,7 +73,7 @@ export default
                 ]
             },
             {
-                path: 'credit-note',
+                path: 'credit-notes',
                 component: CreditList,
                 name: 'creditList',
                 meta: {
@@ -97,7 +97,7 @@ export default
                 ]
             },
             {
-                path: '/purchase',
+                path: '/purchases',
                 component: PurchaseList,
                 name: 'purchaseList',
                 meta: {
@@ -121,7 +121,7 @@ export default
                 ]
             },
             {
-                path: '/debit-note',
+                path: '/debit-notes',
                 component: DebitList,
                 name: 'debitList',
                 meta: {

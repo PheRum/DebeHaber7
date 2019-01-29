@@ -56,7 +56,7 @@ class SparkServiceProvider extends ServiceProvider
         //Do not let Users create additional Teams
         Spark::noAdditionalTeams();
         //Do not let Users switch Teams
-        Spark::identifyTeamsByPath();
+        // Spark::identifyTeamsByPath();
 
         Spark::useRoles([
             'admin' => 'Administrator',

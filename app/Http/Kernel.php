@@ -65,5 +65,7 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'subscribed' => \Laravel\Spark\Http\Middleware\VerifyUserIsSubscribed::class,
         'teamSubscribed' => \Laravel\Spark\Http\Middleware\VerifyTeamIsSubscribed::class,
+
+        'accessTaxPayer' => Middleware\AccessTaxpayer::class,
     ];
 }

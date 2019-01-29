@@ -1,5 +1,3 @@
 <template>
-    <div>
-        <img src="/svg/404.svg" alt="">
-    </div>
+    <img src="/svg/404.svg" alt="Lost in Space">
 </template>

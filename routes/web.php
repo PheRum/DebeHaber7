@@ -18,7 +18,7 @@ Route::group(['middleware' => 'auth'], function ()
 {
     Route::get('selectTaxPayer/{taxPayer}', 'TaxpayerController@selectTaxpayer')->name('selectTaxPayer');
 
-    Route::prefix('{taxPayer}/{cycle}')->group(function ()
+    Route::prefix('{taxPayer}/{cycle}')->middleware('accessTaxPayer')->group(function ()
     {
         Route::get('', 'TaxpayerController@showDashboard')->name('taxpayer.dashboard');
         Route::get('{any}', function () { return view('platform'); })->where('any','.*');

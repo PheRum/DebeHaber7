@@ -305,7 +305,7 @@ class TaxpayerController extends Controller
         //
     }
 
-    public function showDashboard(Taxpayer $taxPayer, Cycle $cycle)
+    public function showDashboard($taxPayer, $cycle)
     {
         // $chartsAccountable = 1; //Chart::where('is_accountable', true)->pluck('type', 'sub_type')->get();
         // $chartFixedAssets = 1; //$chartsAccountable->where('type', 1)->where('sub_type', 9)->count();

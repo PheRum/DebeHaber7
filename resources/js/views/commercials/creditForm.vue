@@ -5,7 +5,6 @@
                 <b-card :title="$parent.$route.meta.title" :sub-title="$parent.$route.meta.description">
                     <b-container>
                         <b-row>
-                            <hr>
                             <b-col>
                                 <b-form-group label="Invoice Date">
                                     <b-input type="date" required placeholder="Missing Information"/>

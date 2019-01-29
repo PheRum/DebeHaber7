@@ -19,9 +19,6 @@ export default
     mounted: function mounted()
     {
         var app = this;
-         i18n.locale = this.$parent.spark.language;
-        //make code to navigate to profile if
-        //app.onLoad();
     }
 }
 </script>
