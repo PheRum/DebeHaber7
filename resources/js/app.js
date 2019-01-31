@@ -31,6 +31,14 @@ Vue.component(
     'passport-personal-access-tokens',
     require('./components/passport/PersonalAccessTokens.vue').default
 );
+Vue.component(
+    'menu-buttons',
+    require('./components/menu-button.vue').default
+);
+Vue.component(
+    'table-buttons',
+    require('./components/table-button.vue').default
+);
 
 import Vue from 'vue';
 import BootstrapVue from 'bootstrap-vue';

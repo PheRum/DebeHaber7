@@ -3,3 +3,17 @@
 
 // @import "~bootstrap/dist/css/bootstrap.css";
 @import "~bootstrap-vue/dist/bootstrap-vue.css";
+
+body {
+    background-color: #e3e8ee !important;
+}
+
+.material-icons {
+    font-size: 18px !important;
+    vertical-align: middle !important;
+}
+
+.navbar-spark {
+    background-color: inherit !important;
+    box-shadow: 0 0px 0px white !important;
+}

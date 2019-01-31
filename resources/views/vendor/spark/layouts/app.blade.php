@@ -10,8 +10,10 @@
 
     <!-- Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600' rel='stylesheet' type='text/css'>
-    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+    {{-- Remove This --}}
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
     <!-- CSS -->
     <link href="{{ mix(Spark::usesRightToLeftTheme() ? 'css/app-rtl.css' : 'css/app.css') }}" rel="stylesheet">
 
@@ -23,6 +25,10 @@
         $currentTeam = Auth::user()->currentTeam;
 
         if (isset($currentTeam) && request()->route('taxPayer') != null) {
+
+            $taxPayerData = App\Taxpayer::where('id', request()->route('taxPayer'))
+            ->select('name', 'alias', 'taxid')
+            ->first();
 
             $integrationType = App\TaxpayerIntegration::where('team_id', $currentTeam->id)
             ->where('taxpayer_id', request()->route('taxPayer'))
@@ -49,6 +55,7 @@
     window.Spark = @json(array_merge(Spark::scriptVariables(), []));
     window.Spark = <?php echo json_encode(array_merge(
         Spark::scriptVariables(), [
+            'taxPayerData' => $taxPayerData ?? [],
             'teamRole' => $teamRole ?? '',
             'language' => Auth::user()!=null?Auth::user()->language:'en'
         ]
@@ -66,9 +73,26 @@
         @endif
 
         <!-- Main Content -->
-        <main class="py-4">
+        @if (request()->route('taxPayer') != null)
+            <b-container>
+                <b-row>
+                    <div class="spark-screen container">
+                        <div class="row">
+                            <!-- App Menu -->
+                            <div class="col-md-3 spark-settings-tabs">
+                                @include('spark::nav.apps')
+                            </div>
+                            <!-- Main Content -->
+                            <b-col cols="9">
+                                @yield('content')
+                            </b-col>
+                        </div>
+                    </div>
+                </b-row>
+            </b-container>
+        @else
             @yield('content')
-        </main>
+        @endif
 
         <!-- Application Level Modals -->
         @if (Auth::check())
