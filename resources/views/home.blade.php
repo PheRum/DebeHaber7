@@ -20,8 +20,13 @@
             </b-col>
 
             <b-col>
-                <b-card header="Invite" header-tag="header">
-
+                <b-card header="Members" header-tag="header">
+                    <div v-for="user in currentTeam.users" :key="user.key">
+                        <img :src="user.photo_url" alt="">
+                        <span>@{{ user.name }}</span>
+                        <span>@{{ user.email }}</span>
+                        <span>@{{ user.pivot.role }}</span>
+                    </div>
                 </b-card>
             </b-col>
         </b-row>

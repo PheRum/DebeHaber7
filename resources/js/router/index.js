@@ -37,7 +37,7 @@ export default
         }
     },
     {
-        path: '/:taxPayer/:cycle/commercial',
+        path: '/:taxPayer/:cycle/commercial/',
         component: Commercial,
         name: 'commercialMenu',
         meta: {
@@ -97,7 +97,7 @@ export default
                 ]
             },
             {
-                path: '/purchases',
+                path: 'purchases',
                 component: PurchaseList,
                 name: 'purchaseList',
                 meta: {
@@ -121,7 +121,7 @@ export default
                 ]
             },
             {
-                path: '/debit-notes',
+                path: 'debit-notes',
                 component: DebitList,
                 name: 'debitList',
                 meta: {
@@ -147,7 +147,7 @@ export default
         ]
     },
     {
-        path: '/:taxPayer/:cycle/accounting',
+        path: '/:taxPayer/:cycle/accounting/',
         component: Accounting,
         name: 'accountingMenu',
         meta: {
@@ -171,7 +171,7 @@ export default
         ]
     },
     {
-        path: '/:taxPayer/:cycle/reports',
+        path: '/:taxPayer/:cycle/reports/',
         component: Report,
         name: 'reportingMenu',
         meta: {

@@ -5,6 +5,7 @@
                 <i class="material-icons">remove_red_eye</i>
             </router-link>
         </b-button>
+        
         <b-button variant="link" v-if="form != ''">
             <router-link :to="{ name: form, param: { id: 0}}">
                 <i class="material-icons">library_add</i>

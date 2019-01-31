@@ -13,7 +13,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     {{-- Remove This --}}
-    <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+    {{-- <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'> --}}
     <!-- CSS -->
     <link href="{{ mix(Spark::usesRightToLeftTheme() ? 'css/app-rtl.css' : 'css/app.css') }}" rel="stylesheet">
 
@@ -29,6 +29,12 @@
             $taxPayerData = App\Taxpayer::where('id', request()->route('taxPayer'))
             ->select('name', 'alias', 'taxid')
             ->first();
+
+            $cycleData = App\Cycle::where('taxpayer_id', request()->route('taxPayer'))
+            ->select('id', 'year')
+            ->orderBy('id', 'desc')
+            ->take(3)
+            ->get();
 
             $integrationType = App\TaxpayerIntegration::where('team_id', $currentTeam->id)
             ->where('taxpayer_id', request()->route('taxPayer'))
@@ -73,27 +79,24 @@
         @endif
 
         <!-- Main Content -->
-        @if (request()->route('taxPayer') != null)
-            <b-container>
-                <b-row>
-                    <div class="spark-screen container">
-                        <div class="row">
-                            <!-- App Menu -->
-                            <div class="col-md-3 spark-settings-tabs">
-                                @include('spark::nav.apps')
-                            </div>
-                            <!-- Main Content -->
-                            <b-col cols="9">
-                                @yield('content')
-                            </b-col>
+        <b-container fluid>
+            @if (request()->route('taxPayer') != null)
+                <b-container class="spark-screen" fluid>
+                    <b-row>
+                        <!-- App Menu -->
+                        <div class="col-md-2 spark-settings-tabs">
+                            @include('spark::nav.apps')
                         </div>
-                    </div>
-                </b-row>
-            </b-container>
-        @else
-            @yield('content')
-        @endif
-
+                        <!-- Main Content -->
+                        <b-col md="10">
+                            @yield('content')
+                        </b-col>
+                    </b-row>
+                </b-container>
+            @else
+                @yield('content')
+            @endif
+        </b-container>
         <!-- Application Level Modals -->
         @if (Auth::check())
             @include('spark::modals.notifications')

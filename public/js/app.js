@@ -2096,6 +2096,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['list', 'form', 'report'],
   data: function data() {
@@ -96375,7 +96376,7 @@ __webpack_require__.r(__webpack_exports__);
     img: '/images/icons/type.svg'
   }
 }, {
-  path: '/:taxPayer/:cycle/commercial',
+  path: '/:taxPayer/:cycle/commercial/',
   component: _views_commercials_index__WEBPACK_IMPORTED_MODULE_2__["default"],
   name: 'commercialMenu',
   meta: {
@@ -96423,7 +96424,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     }]
   }, {
-    path: '/purchases',
+    path: 'purchases',
     component: _views_commercials_purchaseList__WEBPACK_IMPORTED_MODULE_5__["default"],
     name: 'purchaseList',
     meta: {
@@ -96442,7 +96443,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     }]
   }, {
-    path: '/debit-notes',
+    path: 'debit-notes',
     component: _views_commercials_debitList__WEBPACK_IMPORTED_MODULE_9__["default"],
     name: 'debitList',
     meta: {
@@ -96462,7 +96463,7 @@ __webpack_require__.r(__webpack_exports__);
     }]
   }]
 }, {
-  path: '/:taxPayer/:cycle/accounting',
+  path: '/:taxPayer/:cycle/accounting/',
   component: _views_accounts_index__WEBPACK_IMPORTED_MODULE_11__["default"],
   name: 'accountingMenu',
   meta: {
@@ -96481,7 +96482,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   }]
 }, {
-  path: '/:taxPayer/:cycle/reports',
+  path: '/:taxPayer/:cycle/reports/',
   component: _views_reports_index__WEBPACK_IMPORTED_MODULE_12__["default"],
   name: 'reportingMenu',
   meta: {
