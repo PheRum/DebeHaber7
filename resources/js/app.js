@@ -36,8 +36,8 @@ Vue.component(
     require('./components/menu-button.vue').default
 );
 Vue.component(
-    'table-buttons',
-    require('./components/table-button.vue').default
+    'table-template',
+    require('./components/table.vue').default
 );
 Vue.component(
     'invoices-this-month-kpi',

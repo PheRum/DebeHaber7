@@ -16,11 +16,15 @@ body {
     text-transform: uppercase !important;
 }
 
+.table thead th {
+    background-color: white !important;
+}
+
 .card-deck {
     margin-bottom: 15px;
 }
 
-.card {
+.card-deck .card {
     margin-bottom: 15px;
 }
 

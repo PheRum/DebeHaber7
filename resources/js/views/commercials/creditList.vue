@@ -36,24 +36,9 @@
         </b-row>
         <b-row>
             <b-col>
-                <b-card title="Credit List" sub-title="All your credit data will be shown here." v-if="$route.name == 'creditList'">
-                    <b-table hover :items="lists" :fields="fields">
-                        <template slot="HEAD_name" slot-scope="data">
-                            <!-- A custom formatted header cell for field 'name' -->
-                            <em>{{data.label}}</em>
-                            ABHISDFHa
-                        </template>
-                        <template slot="actions" slot-scope="row">
-                            <!-- We use @click.stop here to prevent a 'row-clicked' event from also happening -->
-                            <b-button size="sm" @click.stop="info(row.item, row.index, $event.target)" class="mr-1">
-                                Info modal
-                            </b-button>
-                            <b-button size="sm" @click.stop="row.toggleDetails">
-                                {{ row.detailsShowing ? 'Hide' : 'Show' }} Details
-                            </b-button>
-                        </template>
-                    </b-table>
-                </b-card>
+                <div v-if="$route.name == 'creditList'">
+                    <table-template :columns="columns"></table-template>
+                </div>
                 <router-view v-else></router-view>
             </b-col>
         </b-row>
@@ -64,30 +49,16 @@
 export default {
     name: "",
     data: () => ({
-        lists: [
-            { customer: { name: 'John' }, date: '11/11/2000', number: 42, value: 10000 },
-            { customer: { name: 'John' }, date: '11/11/2001', number: 36, value: 12000 },
-            { customer: { name: 'John' }, date: '11/11/2002', number: 73, value: 13000 },
-            { customer: { name: 'John' }, date: '11/11/2003', number: 62, value: 14000 }
+        columns: [
+            {
+                key: 'number',
+                sortable: true
+            },
+            {
+                key: 'action',
+                sortable: false
+            },
         ],
-        fields: {
-            date: {
-                label: 'Date',
-                sortable: true
-            },
-            'customer.name': {
-                label: 'Customer',
-                sortable: true
-            },
-            number: {
-                label: 'Person age',
-                sortable: true
-            },
-            value: {
-                label: 'Value',
-                sortable: true
-            },
-        },
     })
 }
 </script>

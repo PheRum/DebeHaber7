@@ -1,10 +1,14 @@
 
 <b-nav vertical>
 
-     <b-form-input v-model="text" type="text" class="mb-10" placeholder="Search"></b-form-input>
+    <b-form-input v-model="text" type="text" class="mb-10" placeholder="Search"></b-form-input>
+
+    <h3 class="nav-heading sub">
+        Taxpayer
+    </h3>
 
     <b-button variant="light" class="mb-10" v-b-toggle.collapse-taxpayer>
-        <i class="material-icons when-closed">expand_more</i>
+        <i class="material-icons float-left">expand_more</i>
         <span class="nav-heading"> @{{ spark.taxPayerData.alias }} </span>
 
         <b-badge variant="primary">
@@ -55,8 +59,12 @@
         </b-nav>
     </b-collapse>
 
+    <h3 class="nav-heading sub">
+        Menu
+    </h3>
+
     <b-button variant="light" class="mb-10" v-b-toggle.collapse-commercial>
-        <i class="material-icons when-closed">expand_more</i>
+        <i class="material-icons float-left">expand_more</i>
         <span class="nav-heading"> Commercial </span>
     </b-button>
 
@@ -122,7 +130,7 @@
     </b-collapse>
 
     <b-button variant="light" class="mb-10" v-b-toggle.collapse-accounting>
-        <i class="material-icons when-closed">expand_more</i>
+        <i class="material-icons float-left">expand_more</i>
         <span class="nav-heading"> Accounting </span>
     </b-button>
 
@@ -165,12 +173,12 @@
     </b-collapse>
 
     <b-button variant="light" class="mb-10" v-b-toggle.collapse-accounting @if($teamRole != 'Audit') disabled @endif>
-        <i class="material-icons when-closed">expand_more</i>
+        <i class="material-icons float-left">expand_more</i>
         <span class="nav-heading"> Auditing </span>
     </b-button>
 
     <b-button variant="light" v-b-toggle.collapse-reporting>
-        <i class="material-icons when-closed">expand_more</i>
+        <i class="material-icons float-left">expand_more</i>
         <span class="nav-heading"> Reports </span>
     </b-button>
 

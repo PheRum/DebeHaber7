@@ -1,5 +1,4 @@
 <template>
-
     <b-container v-if="$route.name == 'commercialMenu'">
         <b-row>
             <b-col>
@@ -88,7 +87,6 @@
     </b-container>
 
     <router-view v-else></router-view>
-
 </template>
 <script>
 export default {
