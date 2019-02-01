@@ -32,10 +32,10 @@ return [
     */
 
     'versions'      => [
-        'default'   => 'Español',
+        'default'   => 'es',
         'published' => [
-            'Español',
-            'English'
+            'es',
+            'en'
         ]
     ],
 
@@ -70,7 +70,7 @@ return [
     */
 
     'cache'       => [
-        'enabled' => true,
+        'enabled' => false,
         'period'  => 5
     ],
 
@@ -88,12 +88,12 @@ return [
     */
 
     'search'            => [
-        'enabled'       => false,
+        'enabled'       => true,
         'default'       => 'algolia',
         'engines'       => [
             'algolia'   => [
-                'key'   => '',
-                'index' => ''
+                'key'   => 'fe812fdf8eade29b037db60cf3f77377',
+                'index' => 'prod_Documentation'
             ]
         ]
     ],
@@ -110,10 +110,10 @@ return [
     |
     */
 
-    // 'repository'   => [
-    //     'provider' => 'github',
-    //     'url'      => 'https://github.com/saleem-hadad/larecipe'
-    // ],
+    'repository'   => [
+        'provider' => '',
+        'url'      => ''
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -129,9 +129,9 @@ return [
     */
 
     'ui'                 => [
-        'show_app_name'  => true,
-        'logo'           => '/img/logos/debehaber.png', // e.g.: /images/logo.svg
-        'fav'            => '', // e.g.: /fav.png
+        'show_app_name'  => false,
+        'logo'           => '/img/logos/debehaber.jpg', // e.g.: /images/logo.svg
+        'fav'            => '/img/favicon.png', // e.g.: /fav.png
         'theme'          => 'light',
         'code'           => 'dark',
         'back_to_top'    => true,
@@ -188,7 +188,7 @@ return [
    */
 
   'forum'                 => [
-        'enabled'           => true,
+        'enabled'           => false,
         'default'           => 'disqus',
         'services'          => [
             'disqus'        => [

@@ -33,7 +33,7 @@ export default
             url: 'index',
             title: 'Dashboard',
             description: 'Some description',
-            img: '/images/icons/type.svg',
+            img: '/img/apps/sales.svg',
         }
     },
     {
@@ -43,7 +43,7 @@ export default
         meta: {
             title: 'Dashboard',
             description: 'Some description',
-            img: '/images/icons/type.svg',
+            img: '/img/apps/sales.svg',
         },
         children:
         [
@@ -55,7 +55,7 @@ export default
                     apiUrl: 'sales',
                     title: 'Sales Book',
                     description: 'Some description',
-                    img: '/images/icons/type.svg',
+                    img: '/img/apps/sales.svg',
                 },
                 children:
                 [
@@ -65,21 +65,19 @@ export default
                         name: 'salesForm',
                         meta: {
                             title: 'Sales Invoice',
-                            description: 'Some description',
-                            img: '/images/icons/type.svg',
                         },
 
                     }
                 ]
             },
             {
-                path: 'credit-notes',
+                path: 'credits',
                 component: CreditList,
                 name: 'creditList',
                 meta: {
                     title: 'Credit Book',
                     description: 'Some description',
-                    img: '/images/icons/type.svg',
+                    img: '/img/apps/credit-note.svg',
                 },
                 children:
                 [
@@ -89,8 +87,6 @@ export default
                         name: 'creditForm',
                         meta: {
                             title: 'Credit Note',
-                            description: 'Some description',
-                            img: '/images/icons/type.svg',
                         },
 
                     }
@@ -103,7 +99,7 @@ export default
                 meta: {
                     title: 'Purchase Book',
                     description: 'Some description',
-                    img: '/images/icons/type.svg',
+                    img: '/img/apps/sales.svg',
                 },
                 children:
                 [
@@ -114,20 +110,20 @@ export default
                         meta: {
                             title: 'Purchase Invoice',
                             description: 'Some description',
-                            img: '/images/icons/type.svg',
+                            img: '/img/apps/sales.svg',
                         },
 
                     }
                 ]
             },
             {
-                path: 'debit-notes',
+                path: 'debits',
                 component: DebitList,
                 name: 'debitList',
                 meta: {
                     title: 'Debit Book',
                     description: 'Some description',
-                    img: '/images/icons/type.svg',
+                    img: '/img/apps/sales.svg',
                 },
                 children:
                 [
@@ -138,7 +134,7 @@ export default
                         meta: {
                             title: 'Debit Note',
                             description: 'Some description',
-                            img: '/images/icons/type.svg',
+                            img: '/img/apps/sales.svg',
                         },
 
                     }
@@ -153,7 +149,7 @@ export default
         meta: {
             title: 'Accounting',
             description: 'All your accounting data is here',
-            img: '/images/icons/type.svg',
+            img: '/img/apps/sales.svg',
         },
         children:
         [
@@ -164,7 +160,7 @@ export default
                 meta: {
                     title: 'Journal',
                     description: 'Some description',
-                    img: '/images/icons/type.svg',
+                    img: '/img/apps/sales.svg',
                 },
 
             }
@@ -177,7 +173,7 @@ export default
         meta: {
             title: 'Reports',
             description: 'All your accounting data is here',
-            img: '/images/icons/type.svg',
+            img: '/img/apps/sales.svg',
         }
     }
 ]

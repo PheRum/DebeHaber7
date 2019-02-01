@@ -1,16 +1,22 @@
 
 <b-nav vertical>
-    <b-nav-item :to="{ name: 'taxPayer'}" v-b-toggle.collapse-taxpayer class="nav-heading" disabled>
+
+     <b-form-input v-model="text" type="text" class="mb-10" placeholder="Search"></b-form-input>
+
+    <b-button variant="light" class="mb-10" v-b-toggle.collapse-taxpayer>
         <i class="material-icons when-closed">expand_more</i>
-        @{{ spark.taxPayerData.alias }}
-        <b-badge pill variant="info">
-            <span>
-                {{ $cycleData->where('id', request()->route('cycle'))->first()->year }}
-            </span>
+        <span class="nav-heading"> @{{ spark.taxPayerData.alias }} </span>
+
+        <b-badge variant="primary">
+            {{ $cycleData->where('id', request()->route('cycle'))->first()->year }}
         </b-badge>
-    </b-nav-item>
+    </b-button>
 
     <b-collapse id="collapse-taxpayer" accordion="sub-menu">
+        <b-nav-item class="sub-menu" :to="{ name: 'taxPayer'}">
+            <i class="material-icons ml-10 mr-10">dashboard</i>
+            Dashboard
+        </b-nav-item>
         <h3 class="nav-heading sub">
             Configuration
         </h3>
@@ -49,10 +55,10 @@
         </b-nav>
     </b-collapse>
 
-    <b-nav-item :to="{ name: 'commercialMenu'}" v-b-toggle.collapse-commercial class="nav-heading" disabled>
+    <b-button variant="light" class="mb-10" v-b-toggle.collapse-commercial>
         <i class="material-icons when-closed">expand_more</i>
-        Commercial
-    </b-nav-item>
+        <span class="nav-heading"> Commercial </span>
+    </b-button>
 
     <b-collapse id="collapse-commercial" accordion="sub-menu">
 
@@ -113,13 +119,12 @@
                 Money Movements
             </b-nav-item>
         </b-nav>
-
     </b-collapse>
 
-    <b-nav-item v-b-toggle.collapse-accounting disabled class="nav-heading">
+    <b-button variant="light" class="mb-10" v-b-toggle.collapse-accounting>
         <i class="material-icons when-closed">expand_more</i>
-        Accounting
-    </b-nav-item>
+        <span class="nav-heading"> Accounting </span>
+    </b-button>
 
     <b-collapse id="collapse-accounting" accordion="sub-menu">
         <h3 class="nav-heading sub">
@@ -159,13 +164,33 @@
         </b-nav>
     </b-collapse>
 
-    <b-nav-item @if($teamRole != 'Audit') disabled @endif v-b-toggle.collapse-auditing class="nav-heading">
+    <b-button variant="light" class="mb-10" v-b-toggle.collapse-accounting @if($teamRole != 'Audit') disabled @endif>
         <i class="material-icons when-closed">expand_more</i>
-        Auditing
-    </b-nav-item>
+        <span class="nav-heading"> Auditing </span>
+    </b-button>
 
-    <b-nav-item v-b-toggle.collapse-reports disabled class="nav-heading">
+    <b-button variant="light" v-b-toggle.collapse-reporting>
         <i class="material-icons when-closed">expand_more</i>
-        Reports
-    </b-nav-item>
+        <span class="nav-heading"> Reports </span>
+    </b-button>
+
+    <b-collapse id="collapse-reporting" accordion="sub-menu">
+        <h3 class="nav-heading sub">
+            General
+        </h3>
+        <b-nav vertical>
+            <b-nav-item class="sub-menu" :to="{ name: 'journalList'}">
+                <i class="material-icons ml-10 mr-10">list</i>
+                Commercial
+            </b-nav-item>
+            <b-nav-item class="sub-menu" :to="{ name: 'journalList'}">
+                <i class="material-icons ml-10 mr-10">list</i>
+                Accounting
+            </b-nav-item>
+            <b-nav-item class="sub-menu" :to="{ name: 'journalList'}">
+                <i class="material-icons ml-10 mr-10">list</i>
+                Auditing
+            </b-nav-item>
+        </b-nav>
+    </b-collapse>
 </b-nav>

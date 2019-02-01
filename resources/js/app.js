@@ -39,6 +39,10 @@ Vue.component(
     'table-buttons',
     require('./components/table-button.vue').default
 );
+Vue.component(
+    'invoices-this-month-kpi',
+    require('./components/dashboard/InvoicesThisMonthKPI.vue').default
+);
 
 import Vue from 'vue';
 import BootstrapVue from 'bootstrap-vue';

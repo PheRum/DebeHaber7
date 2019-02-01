@@ -5,8 +5,8 @@
             <!-- Branding Image -->
             @include('spark::nav.brand')
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+            <button class="navbar-toggler md" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="material-icons">menu</i>
             </button>
 
             <div id="navbarSupportedContent" class="collapse navbar-collapse">
@@ -15,11 +15,10 @@
                 </ul>
 
                 <b-nav class="navbar-nav" fill>
-
                     <b-nav-item v-if="spark.env != 'production'" class="nav-heading">
                         <b-badge variant="warning">
                             <i class="material-icons mr-10">warning</i>
-                            <span>@{{spark.env}}</span> ENV
+                            @{{spark.env}} Enviornment
                         </b-badge>
                     </b-nav-item>
 
@@ -36,8 +35,8 @@
                         <i class="material-icons mr-10">import_contacts</i> Docs
                     </b-nav-item>
 
-                    <b-nav-item @click="showNotifications" active class="nav-heading">
-                        <i v-if="notificationsCount > 0" class="material-icons mr-10">notifications</i>
+                    <b-nav-item @click="showNotifications" class="nav-heading">
+                        <i v-if="notificationsCount > 0" red400 class="material-icons error mr-10">notifications_active</i>
                         <i v-else class="material-icons mr-10">notifications</i>
                         Notifications
                         <b-badge v-if="notificationsCount > 0" variant="primary">@{{notificationsCount}}</b-badge>
