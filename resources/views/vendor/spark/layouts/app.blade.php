@@ -63,7 +63,7 @@
         Spark::scriptVariables(), [
             'taxPayerData' => $taxPayerData ?? [],
             'teamRole' => $teamRole ?? '',
-            'language' => Auth::user()!=null?Auth::user()->language:'en'
+            'language' => Auth::user()!=null?Auth::user()->language : 'en'
         ]
     )); ?>
     </script>

@@ -14,11 +14,19 @@
 <body>
     <div class="full-height flex-column">
         <nav class="links">
-            <a href="/login" style="margin-right: 15px;">
-                <button>
-                    {{__('Login')}}
-                </button>
-            </a>
+            @auth
+                <a href="/home" style="margin-right: 15px;">
+                    <button>
+                        {{__('Enter')}}
+                    </button>
+                </a>
+            @else
+                <a href="/login" style="margin-right: 15px;">
+                    <button>
+                        {{__('Login')}}
+                    </button>
+                </a>
+            @endauth
 
             <a href="/register">
                 <button>

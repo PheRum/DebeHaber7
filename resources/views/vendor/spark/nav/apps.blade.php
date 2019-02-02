@@ -5,6 +5,9 @@
 
     <h3 class="nav-heading sub">
         Taxpayer
+        <i class="material-icons md-14 float-right">
+            <b-link href="/home" v-b-tooltip.hover title="Change Taxpayer">sync</b-link>
+        </i>
     </h3>
 
     <b-button variant="light" class="mb-10" v-b-toggle.collapse-taxpayer>
@@ -38,7 +41,7 @@
                 Taxpayer Settings
             </b-nav-item>
             <b-nav-item href="/home" class="sub-menu">
-                <i class="material-icons ml-10 mr-10">undo</i>
+                <i class="material-icons ml-10 mr-10">sync</i>
                 Change Taxpayer
             </b-nav-item>
         </b-nav>
@@ -79,7 +82,7 @@
                 Sales Book
             </b-nav-item>
             <b-nav-item class="sub-menu" :to="{ name: 'creditList'}">
-                <i class="material-icons ml-10 mr-10">cancel_presentation</i>
+                <i class="material-icons ml-10 mr-10">redo</i>
                 Credit Notes
             </b-nav-item>
             <b-nav-item class="sub-menu" disabled>
@@ -97,7 +100,7 @@
                 Purchase Book
             </b-nav-item>
             <b-nav-item class="sub-menu" :to="{ name: 'debitList'}">
-                <i class="material-icons ml-10 mr-10">cancel_presentation</i>
+                <i class="material-icons ml-10 mr-10">undo</i>
                 Debit Notes
             </b-nav-item>
             <b-nav-item class="sub-menu" disabled>

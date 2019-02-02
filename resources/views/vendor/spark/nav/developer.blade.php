@@ -5,7 +5,7 @@
     <i class="material-icons ">supervised_user_circle</i> {{__('Kiosk')}}
 </a>
 
-<a class="dropdown-item" href="/spark/kiosk">
+<a class="dropdown-item" href="/nova">
     <i class="material-icons ">launch</i> Nova
 </a>
 

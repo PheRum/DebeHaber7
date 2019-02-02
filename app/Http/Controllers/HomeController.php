@@ -38,7 +38,7 @@ class HomeController extends Controller
         ->whereIn('status', [1, 2])
         ->with('taxpayer')
         ->with('taxpayer.setting')
-        ->get();
+        ->paginate(10);
 
         $integrationInvites = TaxpayerIntegration::
         where('is_owner', 0)
@@ -52,5 +52,24 @@ class HomeController extends Controller
         ->with('integrationInvites', $integrationInvites);
 
         return view('home');
+    }
+
+    public function myTaxpayers()
+    {
+        $user = Auth()->user();
+
+        if (isset($user) == false)
+        {
+            return view('welcome');
+        }
+
+        $taxPayerIntegrations = TaxpayerIntegration::MyTaxPayers($user->current_team->id)
+        ->whereIn('status', [1, 2])
+        ->with('taxpayer')
+        ->with('taxpayer.setting')
+        ->orderBy('name')
+        ->paginate(10);
+
+        return $taxPayerIntegrations;
     }
 }

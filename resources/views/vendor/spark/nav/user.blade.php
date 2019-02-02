@@ -17,27 +17,29 @@
                 <b-nav class="navbar-nav" fill>
                     <b-nav-item v-if="spark.env != 'production'" class="nav-heading">
                         <b-badge variant="warning">
-                            <i class="material-icons mr-10">warning</i>
+                            <i class="material-icons mr-5">warning</i>
                             @{{spark.env}} Enviornment
                         </b-badge>
                     </b-nav-item>
 
                     <b-nav-item href="/home" active class="nav-heading">
-                        <i class="material-icons mr-10">home</i>
+                        <i class="material-icons mr-5">supervised_user_circle</i>
                         <span>Team @{{ currentTeam.name }}</span>
                     </b-nav-item>
 
                     <b-nav-item href="/settings/{{ Spark::teamsPrefix() }}/{{ \Auth::user()->currentTeam->id }}" active class="nav-heading">
-                        <i class="material-icons mr-10">settings</i> Config
+                        <i class="material-icons mr-5">settings</i>
+                        Config
                     </b-nav-item>
 
                     <b-nav-item href="/docs" active class="nav-heading">
-                        <i class="material-icons mr-10">import_contacts</i> Docs
+                        <i class="material-icons mr-5">import_contacts</i>
+                        Docs
                     </b-nav-item>
 
                     <b-nav-item @click="showNotifications" class="nav-heading">
-                        <i v-if="notificationsCount > 0" red400 class="material-icons error mr-10">notifications_active</i>
-                        <i v-else class="material-icons mr-10">notifications</i>
+                        <i v-if="notificationsCount > 0" red400 class="material-icons error mr-5">notifications_active</i>
+                        <i v-else class="material-icons mr-5">notifications</i>
                         Notifications
                         <b-badge v-if="notificationsCount > 0" variant="primary">@{{notificationsCount}}</b-badge>
                     </b-nav-item>

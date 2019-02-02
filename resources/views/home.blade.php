@@ -4,19 +4,34 @@
     <b-container>
         <b-row>
             <b-col>
-                <b-card header="Taxpayers" header-tag="header">
-                    @if(isset($taxPayerIntegrations))
-                        <ul>
+                @if(isset($taxPayerIntegrations))
+                    <b-card no-body>
+                        <em slot="header">
+                            Taxpayers for the Team
+                            <div class="float-right">
+                                 <b-form-input v-model="text"
+                                              type="text"
+                                              placeholder="Enter your name"
+                                ></b-form-input>
+                            </div>
+                        </em>
+                        <b-list-group flush>
                             @foreach ($taxPayerIntegrations->sortBy('taxpayer.name') as $integration)
-                                <li>
-                                    <a href="{{ url('selectTaxPayer', $integration->taxpayer) }}">{{ $integration->taxPayer->name }}</a>
-                                </li>
+                                <b-list-group-item href="{{ url('selectTaxPayer', $integration->taxpayer) }}">
+                                    @if ($integration->taxpayer->setting->is_company == 1)
+                                        <i class="material-icons">work_outline</i>
+                                    @else
+                                        <i class="material-icons">person_outline</i>
+                                    @endif
+                                    {{ $integration->taxPayer->name }} <span class="text-muted"> | {{ $integration->taxPayer->taxid }}</span>
+                                </b-list-group-item>
                             @endforeach
-                        </ul>
-                    @else
-                        Nothing Here, but still on Home.Blade
-                    @endif
-                </b-card>
+                        </b-list-group>
+                        <em slot="footer">{{ $taxPayerIntegrations->links() }}</em>
+                    </b-card>
+                @else
+                    Nothing Here, but still on Home.Blade
+                @endif
             </b-col>
 
             <b-col>

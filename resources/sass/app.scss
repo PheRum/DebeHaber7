@@ -7,6 +7,8 @@ body {
 }
 
 .material-icons { vertical-align: middle !important; }
+.material-icons.md-10 { font-size: 10px; }
+.material-icons.md-14 { font-size: 14px; }
 .material-icons.md-18 { font-size: 18px; }
 .material-icons.md-24 { font-size: 24px; }
 .material-icons.md-36 { font-size: 36px; }
@@ -19,6 +21,18 @@ body {
 .table thead th {
     background-color: white !important;
 }
+
+.list-group-item {
+    background-color: inherit !important;
+    .list-group-item-action {
+        color: $blue !important;
+    }
+}
+.list-group-item.disabled {
+    background-color: inherit !important;
+    color: #a8b6bf !important;
+}
+
 
 .card-deck {
     margin-bottom: 15px;
@@ -61,13 +75,13 @@ $spaceamounts: (5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 75, 100); // Adjust this 
 $sides: (top, bottom, left, right); // Leave this variable alone
 
 @each $space in $spaceamounts {
-  @each $side in $sides {
-    .m#{str-slice($side, 0, 1)}-#{$space} {
-      margin-#{$side}: #{$space}px !important;
-    }
+    @each $side in $sides {
+        .m#{str-slice($side, 0, 1)}-#{$space} {
+            margin-#{$side}: #{$space}px !important;
+        }
 
-    .p#{str-slice($side, 0, 1)}-#{$space} {
-      padding-#{$side}: #{$space}px !important;
+        .p#{str-slice($side, 0, 1)}-#{$space} {
+            padding-#{$side}: #{$space}px !important;
+        }
     }
-  }
 }

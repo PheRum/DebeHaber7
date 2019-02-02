@@ -2946,21 +2946,40 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['columns'],
   data: function data() {
     return {
-      lists: [{
-        id: 1,
-        number: 1123
-      }, {
-        id: 2,
-        number: 2345
-      }, {
-        id: 3,
-        number: 3456
-      }]
+      lists: [// { id: 1, number: 1123 },
+        // { id: 2, number: 2345 },
+        // { id: 3, number: 3456 }
+      ]
     };
+  },
+  methods: {
+    list: function list() {
+      var app = this;
+      axios.get('/api/' + this.taxpayer + '/' + this.cycle + '/' + this.baseurl + '/' + app.skip + '', {
+        params: {
+          page: app.list.length / 100 + 1
+        }
+      }).then(function (_ref) {
+        var data = _ref.data;
+
+        if (data.length > 0) {
+          for (var i = 0; i < data.length; i++) {
+            app.list.push(data[i]);
+          }
+
+          app.skip += app.pageSize;
+          $state.loaded();
+        }
+      });
+    } //onApprove??
+
   }
 });
 
@@ -3067,6 +3086,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -81065,49 +81085,89 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("b-card", { attrs: { "no-body": "" } }, [
-    _vm.lists.length > 0
-      ? _c(
-          "div",
-          [
-            _c("b-table", {
-              attrs: { hover: "", items: _vm.lists, fields: _vm.columns },
-              scopedSlots: _vm._u([
-                {
-                  key: "action",
-                  fn: function(data) {
-                    return [
-                      _vm._v(
-                        "\n                " +
-                          _vm._s(data.id) +
-                          " years old\n            "
-                      )
-                    ]
+  return _c(
+    "div",
+    [
+      _vm.lists.length > 0
+        ? _c(
+            "b-card",
+            { attrs: { "no-body": "" } },
+            [
+              _c("b-table", {
+                attrs: { hover: "", items: _vm.lists, fields: _vm.columns },
+                scopedSlots: _vm._u([
+                  {
+                    key: "action",
+                    fn: function(data) {
+                      return [
+                        _vm._v(
+                          "\n                " +
+                            _vm._s(data.item.number) +
+                            " years old\n            "
+                        )
+                      ]
+                    }
                   }
+                ])
+              })
+            ],
+            1
+          )
+        : _c(
+            "b-card",
+            [
+              _c("h4", [_vm._v("You're running on empty!")]),
+              _vm._v(" "),
+              _c(
+                "p",
+                { staticClass: "lead" },
+                [
+                  _vm._v("How about "),
+                  _c(
+                    "router-link",
+                    {
+                      attrs: { to: { name: "creditForm", params: { id: 0 } } }
+                    },
+                    [_vm._v("creating")]
+                  ),
+                  _vm._v(" some data")
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("b-img", {
+                attrs: {
+                  thumbnail: "",
+                  fluid: "",
+                  width: "256",
+                  src: "/img/apps/no-data.svg",
+                  alt: "Thumbnail"
                 }
-              ])
-            }),
-            _vm._v(" "),
-            _c("b-pagination", {
-              attrs: {
-                size: "md",
-                align: "center",
-                "total-rows": 100,
-                "per-page": 10
+              })
+            ],
+            1
+          ),
+      _vm._v(" "),
+      _vm.lists.length > 0
+        ? _c("b-pagination", {
+            attrs: {
+              size: "md",
+              align: "center",
+              "total-rows": 100,
+              "per-page": 10
+            },
+            model: {
+              value: _vm.currentPage,
+              callback: function($$v) {
+                _vm.currentPage = $$v
               },
-              model: {
-                value: _vm.currentPage,
-                callback: function($$v) {
-                  _vm.currentPage = $$v
-                },
-                expression: "currentPage"
-              }
-            })
-          ],
-          1
-        )
-      : _c("div", [_vm._v("\n        Bottom of the Barrel\n    ")])
-  ])
+              expression: "currentPage"
+            }
+          })
+        : _vm._e()
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -81363,7 +81423,8 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "b-container",
+    "div",
+    {},
     [
       _c(
         "b-row",
@@ -81545,7 +81606,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "b-container",
+    "div",
     [
       _c(
         "b-row",
@@ -81557,7 +81618,7 @@ var render = function() {
                 "b-card-group",
                 { attrs: { deck: "" } },
                 [
-                  _c("b-card", { attrs: { "bg-variant": "light" } }, [
+                  _c("b-card", [
                     _c("h4", { staticClass: "upper-case" }, [
                       _c("img", {
                         staticClass: "ml-5 mr-5",
@@ -81587,7 +81648,7 @@ var render = function() {
                           "router-link",
                           {
                             attrs: {
-                              to: "{ name: 'creditForm', param: { id: 0}}"
+                              to: "{ name: 'creditForm', params: { id: 0}}"
                             }
                           },
                           [_vm._v("Create")]
@@ -81608,31 +81669,41 @@ var render = function() {
                         { attrs: { flush: "" } },
                         [
                           _c("b-list-group-item", { attrs: { href: "#" } }, [
+                            _c("i", { staticClass: "material-icons" }, [
+                              _vm._v("insert_chart")
+                            ]),
+                            _vm._v(
+                              "\n                            Report " +
+                                _vm._s(_vm.$route.meta.title) +
+                                "\n                        "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "b-list-group-item",
+                            { attrs: { href: "#", disabled: "" } },
+                            [
+                              _c("i", { staticClass: "material-icons" }, [
+                                _vm._v("cloud_upload")
+                              ]),
+                              _vm._v(
+                                "\n                            Upload " +
+                                  _vm._s(_vm.$route.meta.title) +
+                                  "\n                        "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("b-list-group-item", { attrs: { href: "#" } }, [
                             _c(
                               "i",
                               { staticClass: "material-icons md-light" },
-                              [_vm._v("insert_chart")]
+                              [_vm._v("add_box")]
                             ),
                             _vm._v(
-                              "\n                            Credit Book\n                        "
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("b-list-group-item", { attrs: { href: "#" } }, [
-                            _c("i", { staticClass: "material-icons" }, [
-                              _vm._v("insert_chart")
-                            ]),
-                            _vm._v(
-                              "\n                            Credit Notes by Customer\n                        "
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _c("b-list-group-item", { attrs: { href: "#" } }, [
-                            _c("i", { staticClass: "material-icons" }, [
-                              _vm._v("insert_chart")
-                            ]),
-                            _vm._v(
-                              "\n                            Credit Notes by Vat\n                        "
+                              "\n                            Create new " +
+                                _vm._s(_vm.$route.meta.title) +
+                                "\n                        "
                             )
                           ])
                         ],

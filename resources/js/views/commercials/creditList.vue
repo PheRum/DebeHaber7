@@ -1,15 +1,15 @@
 <template>
-    <b-container>
+    <div>
         <b-row>
             <b-col>
                 <b-card-group deck>
-                    <b-card bg-variant="light">
+                    <b-card>
                         <h4 class="upper-case">
                             <img :src="$route.meta.img" alt="" class="ml-5 mr-5" width="26">
                             {{ $route.meta.title }}
                         </h4>
                         <p class="lead">
-                            {{ $route.meta.description }}, <router-link to="{ name: 'creditForm', param: { id: 0}}">Create</router-link>
+                            {{ $route.meta.description }}, <router-link to="{ name: 'creditForm', params: { id: 0}}">Create</router-link>
                         </p>
                     </b-card>
 
@@ -18,16 +18,16 @@
                     <b-card no-body>
                         <b-list-group flush>
                             <b-list-group-item href="#">
-                                <i class="material-icons md-light">insert_chart</i>
-                                Credit Book
+                                <i class="material-icons">insert_chart</i>
+                                Report {{ $route.meta.title }}
+                            </b-list-group-item>
+                            <b-list-group-item href="#" disabled>
+                                <i class="material-icons">cloud_upload</i>
+                                Upload {{ $route.meta.title }}
                             </b-list-group-item>
                             <b-list-group-item href="#">
-                                <i class="material-icons">insert_chart</i>
-                                Credit Notes by Customer
-                            </b-list-group-item>
-                            <b-list-group-item href="#">
-                                <i class="material-icons">insert_chart</i>
-                                Credit Notes by Vat
+                                <i class="material-icons md-light">add_box</i>
+                                Create new {{ $route.meta.title }}
                             </b-list-group-item>
                         </b-list-group>
                     </b-card>
@@ -42,7 +42,7 @@
                 <router-view v-else></router-view>
             </b-col>
         </b-row>
-    </b-container>
+    </div>
 </template>
 
 <script>

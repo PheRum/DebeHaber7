@@ -18,7 +18,9 @@
         "laravel/scout": "^6.1",
         "laravel/spark-aurelius": "*@dev",
         "laravel/tinker": "^1.0",
-        "rweber7912/timezoned": "dev-master"
+        "laravel/nova": "*",
+        "rweber7912/timezoned": "dev-master",
+        "spatie/laravel-activitylog": "^3.2"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
@@ -70,6 +72,10 @@
         {
             "type": "path",
             "url": "./spark"
+        },
+        {
+            "type": "path",
+            "url": "./nova"
         }
     ]
 }
