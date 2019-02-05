@@ -179,7 +179,7 @@ return [
         App\Providers\NovaServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         RyanWeber\Mutators\TimezonedServiceProvider::class,
-
+        Kordy\Ticketit\TicketitServiceProvider::class,
     ],
 
     /*

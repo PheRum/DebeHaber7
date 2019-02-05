@@ -37,7 +37,6 @@ class CreateAccountMovementsTable extends Migration
             $table->unsignedDecimal('credit', 18, 2)->default(0);
 
             $table->string('comment')->nullable();
-            $table->unsignedInteger('ref_id')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

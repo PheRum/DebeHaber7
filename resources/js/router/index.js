@@ -22,9 +22,9 @@ import Report from '../views/reports/index';
 export default
 [
     //This will cause 404 Errors to be redirected to proper site.
-    {
-        path: '/', component: FourZeroFour,
-    },
+    // {
+    //     path: '', component: FourZeroFour,
+    // },
     {
         path: '/:taxPayer/:cycle/',
         component: DashBoard,

@@ -1,2 +1,27 @@
 - ## Get Started
     - [Overview](/docs/{{version}}/overview)
+    - [Teams](/docs/{{version}}/teams)
+    - [Integration](/docs/{{version}}/integration)
+- ## Commercial
+    - [Sales Book](/docs/{{version}}/comercial/sales-book)
+    - [Credit Notes](/docs/{{version}}/comercial/credit-note)
+    - [Accounts Receivables](/docs/{{version}}/comercial/accounts-receivables)
+    - [Purchase Book](/docs/{{version}}/comercial/purchase-book)
+    - [Debit Notes](/docs/{{version}}/comercial/debit-note)
+    - [Accounts Payables](/docs/{{version}}/comercial/accounts-payables)
+    - [Fixed Assets](/docs/{{version}}/comercial/fixed-assets)
+    - [Inventories](/docs/{{version}}/comercial/inventory)
+    - [Production](/docs/{{version}}/comercial/production)
+- ## Accounting
+    - [Chart of Accounts](/docs/{{version}}/accounting/overview)
+    - [Journals](/docs/{{version}}/accounting/overview)
+    - [Accounting Cycle](/docs/{{version}}/accounting/overview)
+    - [Opening & Closing Balance](/docs/{{version}}/accounting/overview)
+    - [Annual Budget](/docs/{{version}}/accounting/overview)
+- ## Auditing
+    - [Under Construction](/docs/{{version}}/auditing/overview)
+- ## Reporting
+    - [Overview](/docs/{{version}}/reports/overview)
+    - [Sales Book](/docs/{{version}}/reports/sales-book)
+    - [Credit Notes](/docs/{{version}}/reports/credit-note)
+    - [Accounts Receivables](/docs/{{version}}/reports/accounts-receivables)

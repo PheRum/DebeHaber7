@@ -25,7 +25,6 @@ class CreateProductionsTable extends Migration
 
             $table->string('name');
             $table->date('date');
-            $table->unsignedInteger('ref_id')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

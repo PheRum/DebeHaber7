@@ -34,5 +34,9 @@ return [
         'key'    => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
-
+    'bugsnag' => [
+        'api_key' => env('NOVA_BUGSNAG_API_KEY'),
+        'project_id' => env('NOVA_BUGSNAG_PROJECT_ID'),
+        'account_slug' => env('NOVA_BUGSNAG_ACCOUNT_SLUG'),
+    ]    
 ];

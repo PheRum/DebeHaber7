@@ -42,8 +42,6 @@ class CreateFixedAssetsTable extends Migration
 
             $table->date('sync_date')->nullable();
 
-            $table->unsignedInteger('ref_id')->nullable();
-
             $table->timestamps();
 
             $table->date('depreciated_at')->nullable();

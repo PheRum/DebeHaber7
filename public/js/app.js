@@ -2949,14 +2949,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['columns'],
   data: function data() {
     return {
-      lists: [// { id: 1, number: 1123 },
-        // { id: 2, number: 2345 },
-        // { id: 3, number: 3456 }
-      ]
+      lists: [{
+        id: 1,
+        number: 1123
+      }, {
+        id: 2,
+        number: 2345
+      }, {
+        id: 3,
+        number: 3456
+      }]
     };
   },
   methods: {
@@ -81100,6 +81110,17 @@ var render = function() {
                     key: "action",
                     fn: function(data) {
                       return [
+                        _vm.row - _vm.hovered
+                          ? _c(
+                              "b-button",
+                              { attrs: { variant: "primary", href: "" } },
+                              [
+                                _vm._v(
+                                  "\n                    submit\n                "
+                                )
+                              ]
+                            )
+                          : _vm._e(),
                         _vm._v(
                           "\n                " +
                             _vm._s(data.item.number) +
@@ -96920,10 +96941,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ __webpack_exports__["default"] = ([//This will cause 404 Errors to be redirected to proper site.
+// {
+//     path: '', component: FourZeroFour,
+// },
 {
-  path: '/',
-  component: _views_404__WEBPACK_IMPORTED_MODULE_0__["default"]
-}, {
   path: '/:taxPayer/:cycle/',
   component: _views_index__WEBPACK_IMPORTED_MODULE_1__["default"],
   name: 'taxPayer',

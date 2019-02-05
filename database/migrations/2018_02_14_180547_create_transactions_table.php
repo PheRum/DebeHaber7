@@ -50,7 +50,6 @@ class CreateTransactionsTable extends Migration
             $table->boolean('is_deductible')->default(false);
 
             $table->string('comment')->nullable();
-            $table->unsignedInteger('ref_id')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

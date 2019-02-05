@@ -28,6 +28,10 @@
             Configuration
         </h3>
         <b-nav vertical>
+            <b-nav-item class="sub-menu" :to="{ name: 'creditList'}">
+                <i class="material-icons ml-10 mr-10">settings</i>
+                Configuration
+            </b-nav-item>
             <b-nav-item class="sub-menu" :to="{ name: 'salesList'}">
                 <i class="material-icons ml-10 mr-10">file_copy</i>
                 Documents
@@ -35,10 +39,6 @@
             <b-nav-item class="sub-menu" :to="{ name: 'creditList'}">
                 <i class="material-icons ml-10 mr-10">public</i>
                 Exchange Rates
-            </b-nav-item>
-            <b-nav-item class="sub-menu" :to="{ name: 'creditList'}">
-                <i class="material-icons ml-10 mr-10">settings</i>
-                Taxpayer Settings
             </b-nav-item>
             <b-nav-item href="/home" class="sub-menu">
                 <i class="material-icons ml-10 mr-10">sync</i>

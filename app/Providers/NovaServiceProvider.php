@@ -6,7 +6,7 @@ use Laravel\Nova\Nova;
 use Laravel\Nova\Cards\Help;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\NovaApplicationServiceProvider;
-use Laravel\Spark;
+use Laravel\Spark\Spark;
 
 class NovaServiceProvider extends NovaApplicationServiceProvider
 {
@@ -56,6 +56,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         return [
             new Help,
+            new \Napp\NovaBugsnag\BugsnagErrorRate(),
+            new \Napp\NovaBugsnag\BugsnagCriticalErrors()
         ];
     }
 
