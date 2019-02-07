@@ -1,5 +1,5 @@
 - ## Get Started
-    - [Overview](/docs/{{version}}/overview)
+    - [Overview](/docs/{{version}}/getting-started)
     - [Teams](/docs/{{version}}/teams)
     - [Integration](/docs/{{version}}/integration)
 - ## Commercial

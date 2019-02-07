@@ -13,7 +13,13 @@ import DebitList from '../views/commercials/debitList';
 import DebitForm from '../views/commercials/debitForm';
 
 import Accounting from '../views/accounts/index';
-import JournalForm from '../views/commercials/index';
+import JournalList from '../views/accounts/journalList';
+import JournalForm from '../views/accounts/journalForm';
+import CycleList from '../views/accounts/cycleList';
+import CycleForm from '../views/accounts/cycleForm';
+import OpeningBalance from '../views/accounts/openingBalanceForm';
+import ClosingBalance from '../views/accounts/closingBalanceForm';
+import AnualBudget from '../views/accounts/budgetForm';
 import TemplateForm from '../views/commercials/index';
 import ChartForm from '../views/commercials/index';
 
@@ -71,7 +77,7 @@ export default
                 ]
             },
             {
-                path: 'credits',
+                path: 'credit-notes',
                 component: CreditList,
                 name: 'creditList',
                 meta: {
@@ -155,15 +161,78 @@ export default
         [
             {
                 path: 'journals',
-                component: Commercial,
-                name: 'journals',
+                component: JournalList,
+                name: 'journalList',
                 meta: {
                     title: 'Journal',
                     description: 'Some description',
                     img: '/img/apps/sales.svg',
                 },
+                children:
+                [
+                    {
+                        path: '{id}',
+                        component: JournalForm,
+                        name: 'journalForm',
+                        meta: {
+                            title: 'Journal Form',
+                        },
 
-            }
+                    }
+                ]
+            },
+            {
+                path: 'cycles',
+                component: CycleList,
+                name: 'cycleList',
+                meta: {
+                    title: 'Accounting Cycles',
+                    description: 'Some description',
+                    img: '/img/apps/sales.svg',
+                },
+                children:
+                [
+                    {
+                        path: '{id}',
+                        component: CycleForm,
+                        name: 'cycleForm',
+                        meta: {
+                            title: 'Cycle Form',
+                        },
+
+                    }
+                ]
+            },
+            {
+                path: 'opening-balance',
+                component: OpeningBalance,
+                name: 'openingBalanceForm',
+                meta: {
+                    title: 'Opening Balance',
+                    description: 'Some description',
+                    img: '/img/apps/sales.svg',
+                },
+            },
+            {
+                path: 'closing-balance',
+                component: ClosingBalance,
+                name: 'closingBalanceForm',
+                meta: {
+                    title: 'Closing Balance',
+                    description: 'Some description',
+                    img: '/img/apps/sales.svg',
+                },
+            },
+            {
+                path: 'budget',
+                component: AnualBudget,
+                name: 'budgetForm',
+                meta: {
+                    title: 'Anual Budget',
+                    description: 'Some description',
+                    img: '/img/apps/sales.svg',
+                },
+            },
         ]
     },
     {

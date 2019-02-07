@@ -44,6 +44,8 @@ Vue.component(
     require('./components/dashboard/InvoicesThisMonthKPI.vue').default
 );
 
+
+
 import Vue from 'vue';
 import BootstrapVue from 'bootstrap-vue';
 import VueRouter from 'vue-router';

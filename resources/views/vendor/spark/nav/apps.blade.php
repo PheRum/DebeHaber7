@@ -155,9 +155,13 @@
                 <i class="material-icons ml-10 mr-10">calendar_today</i>
                 Accounting Cycles
             </b-nav-item>
-            <b-nav-item class="sub-menu" :to="{ name: 'openingForm'}">
+            <b-nav-item class="sub-menu" :to="{ name: 'openingBalanceForm'}">
                 <i class="material-icons ml-10 mr-10">playlist_play</i>
-                Open &amp; Close Cycle
+                Opening Balance
+            </b-nav-item>
+            <b-nav-item class="sub-menu" :to="{ name: 'closingBalanceForm'}">
+                <i class="material-icons ml-10 mr-10">playlist_play</i>
+                Closing Balance
             </b-nav-item>
             <b-nav-item class="sub-menu" :to="{ name: 'budgetForm'}">
                 <i class="material-icons ml-10 mr-10">playlist_add_check</i>

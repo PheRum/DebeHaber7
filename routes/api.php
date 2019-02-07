@@ -11,7 +11,7 @@
 |
 */
 
-Route::group([ 'middleware' => 'auth:api' ], function () {
+// Route::group([ 'middleware' => 'auth:api' ], function () {
 
     //Used for accepting or rejecting a team from accesing your taxpayer's data.
     Route::prefix('teams')->group(function ()
@@ -132,6 +132,6 @@ Route::group([ 'middleware' => 'auth:api' ], function () {
         {
             Route::get('/hechauka/{startDate}/{endDate}', 'API\PRY\HechukaController@getHechauka');
         });
-    });
+    // });
 
 });

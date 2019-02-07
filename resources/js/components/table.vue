@@ -1,9 +1,12 @@
 <template>
     <div>
         <b-card v-if="lists.length > 0" no-body>
-            <b-table hover :items="lists" :fields="columns">
+            <b-table hover :items="lists" :fields="columns"  :current-page="current_page">
+                <template slot="date" slot-scope="data">
+                    {{ new Number(data.item.date).toLocaleString() }}
+                </template>
                 <template slot="action" slot-scope="data">
-                    <b-button v-if="row-hovered" variant="primary" href="">
+                    <b-button variant="primary" href="">
                         submit
                     </b-button>
                     {{ data.item.number }} years old
@@ -17,19 +20,19 @@
             <b-img thumbnail fluid width="256" src="/img/apps/no-data.svg" alt="Thumbnail" />
         </b-card>
 
-        <b-pagination v-if="lists.length > 0" size="md" align="center" :total-rows="100" v-model="currentPage" :per-page="10"></b-pagination>
+        <b-pagination v-if="lists.length > 0" size="md" align="center" :total-rows="meta.total"
+            :per-page="meta.per_page" v-model="current_page" @change="list()"></b-pagination>
     </div>
 </template>
 
 <script>
 export default {
-    props: ['columns'],
+    props: ['columns', 'url'],
     data: () => ({
-        lists: [
-            { id: 1, number: 1123 },
-            { id: 2, number: 2345 },
-            { id: 3, number: 3456 }
-        ],
+        skip: 1,
+        lists: [],
+        meta: [],
+        current_page:1
     }),
     methods:
     {
@@ -37,33 +40,25 @@ export default {
         {
             var app = this;
 
-            axios.get('/api/' + this.taxpayer + '/' + this.cycle + '/' + this.baseurl + '/' + app.skip + '',
-            {
-                params:
-                {
-                    page: app.list.length / 100 + 1,
-                },
-            })
+            axios.get('/api' + app.$route.path + '?page=' + app.current_page)
             .then(({ data }) =>
             {
-                if (data.length > 0)
+                if (data.data.length > 0)
                 {
-                    for (let i = 0; i < data.length; i++)
-                    {
-                        app.list.push(data[i]);
-                    }
-
+                    app.lists = data.data;
+                    app.meta=data.meta;
                     app.skip += app.pageSize;
                     $state.loaded();
                 }
             });
         }
 
-
-
-
-
         //onApprove??
     },
+    mounted() {
+      //do something after mounting vue instance
+      var app = this;
+      this.list();
+    }
 }
 </script>

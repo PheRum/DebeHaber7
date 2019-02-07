@@ -47,10 +47,23 @@
 </template>
 
 <script>
+import crud from '../../components/crud.vue'
 export default {
-    name: "",
     data: () => ({
 
-    })
+    }),
+    methods: {
+        onSave()
+        {
+            crud.onSave(1);
+        }
+
+
+    },mounted() {
+
+      //do something after mounting vue instance
+      //crud.onSave(1);
+
+    }
 }
 </script>

@@ -9,7 +9,7 @@ use App\AccountMovement;
 use App\TransactionDetail;
 use App\JournalTransaction;
 use App\Chart;
-use App\Http\Resources\TransactionResource;
+use App\Http\Resources\GeneralResource;
 use Illuminate\Http\Request;
 use DB;
 
@@ -22,7 +22,7 @@ class CreditNoteController extends Controller
     */
     public function index(Taxpayer $taxPayer, Cycle $cycle)
     {
-        return TransactionResource::collection(
+        return GeneralResource::collection(
             Transaction::MyCreditNotes()
             ->with('customer:name,id')
             ->with('currency')

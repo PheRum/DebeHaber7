@@ -36,8 +36,9 @@
         </b-row>
         <b-row>
             <b-col>
-                <div v-if="$route.name == 'creditList'">
-                    <table-template :columns="columns"></table-template>
+                <div v-if="$route.name.includes('List')">
+
+                    <table-template :columns="columns" ></table-template>
                 </div>
                 <router-view v-else></router-view>
             </b-col>
@@ -46,6 +47,7 @@
 </template>
 
 <script>
+import crud from '../../components/crud.vue'
 export default {
     name: "",
     data: () => ({
@@ -59,6 +61,7 @@ export default {
                 sortable: false
             },
         ],
+
     })
 }
 </script>

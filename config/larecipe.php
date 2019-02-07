@@ -32,7 +32,7 @@ return [
     */
 
     'versions'      => [
-        'default'   => 'es',
+        'default'   => 'en',
         'published' => [
             'es',
             'en'
