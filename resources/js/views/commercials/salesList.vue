@@ -56,7 +56,7 @@ export default {
                 sortable: true
             },
             {
-                key: 'customer',
+                key: 'customer.name',
                 sortable: true
             },
             {

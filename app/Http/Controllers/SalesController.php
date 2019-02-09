@@ -30,7 +30,7 @@ class SalesController extends Controller
             ->with('details')
             ->whereBetween('date', [$cycle->start_date, $cycle->end_date])
             ->orderBy('transactions.date', 'desc')
-            ->paginate(10)
+            ->paginate(50)
         );
     }
 

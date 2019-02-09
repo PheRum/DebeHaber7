@@ -1,9 +1,19 @@
 $blue: #1DA1F2 !default;
+$success: rgb(78,171,95) !default;
+$warning: rgb(201,143,60) !default;
 
 @import "./../../vendor/laravel/spark-aurelius/resources/assets/sass/spark";
 
 body {
     background-color: #e3e8ee !important;
+}
+
+.success {
+    background-color: $success !important;
+}
+
+.warning {
+    background-color: $warning !important;
 }
 
 .material-icons { vertical-align: middle !important; }

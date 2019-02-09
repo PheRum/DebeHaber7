@@ -3009,15 +3009,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['columns', 'url'],
+  props: ['columns'],
   data: function data() {
     return {
       skip: 1,
       lists: [],
       meta: [],
-      current_page: 1
+      current_page: 1,
+      hoveredRow: null
     };
+  },
+  computed: {
+    // a computed getter
+    formURL: function formURL() {
+      return this.$route.name.replace('List', 'Form');
+    },
+    viewURL: function viewURL() {
+      return this.$route.name.replace('List', 'View');
+    }
   },
   methods: {
     list: function list() {
@@ -3032,6 +3044,13 @@ __webpack_require__.r(__webpack_exports__);
           $state.loaded();
         }
       });
+    },
+    rowHovered: function rowHovered(item) {
+      this.hoveredRow = item;
+      this.$refs.table.refresh();
+    },
+    isHovered: function isHovered(item) {
+      return item == this.hoveredRow;
     } //onApprove??
 
   },
@@ -3461,7 +3480,7 @@ __webpack_require__.r(__webpack_exports__);
         key: 'date',
         sortable: true
       }, {
-        key: 'customer',
+        key: 'customer.name',
         sortable: true
       }, {
         key: 'number',
@@ -81252,6 +81271,7 @@ var render = function() {
                   fields: _vm.columns,
                   "current-page": _vm.current_page
                 },
+                on: { "row-hovered": _vm.rowHovered },
                 scopedSlots: _vm._u([
                   {
                     key: "date",
@@ -81272,18 +81292,53 @@ var render = function() {
                     fn: function(data) {
                       return [
                         _c(
-                          "b-button",
-                          { attrs: { variant: "primary", href: "" } },
+                          "div",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: _vm.isHovered(data.item),
+                                expression: "isHovered(data.item)"
+                              }
+                            ]
+                          },
                           [
-                            _vm._v(
-                              "\n                    submit\n                "
+                            _c(
+                              "b-button-group",
+                              { attrs: { size: "sm" } },
+                              [
+                                _c(
+                                  "b-button",
+                                  {
+                                    attrs: {
+                                      to: {
+                                        name: _vm.formURL,
+                                        params: { id: data.item.id }
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c(
+                                      "i",
+                                      { staticClass: "material-icons md-18" },
+                                      [_vm._v("edit")]
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("b-button", [
+                                  _c(
+                                    "i",
+                                    { staticClass: "material-icons md-18" },
+                                    [_vm._v("delete_outline")]
+                                  )
+                                ])
+                              ],
+                              1
                             )
-                          ]
-                        ),
-                        _vm._v(
-                          "\n                " +
-                            _vm._s(data.item.number) +
-                            " years old\n            "
+                          ],
+                          1
                         )
                       ]
                     }
@@ -81305,9 +81360,7 @@ var render = function() {
                   _vm._v("How about "),
                   _c(
                     "router-link",
-                    {
-                      attrs: { to: { name: "creditForm", params: { id: 0 } } }
-                    },
+                    { attrs: { to: { name: _vm.formURL, params: { id: 0 } } } },
                     [_vm._v("creating")]
                   ),
                   _vm._v(" some data")
