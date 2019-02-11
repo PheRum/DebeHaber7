@@ -34,8 +34,8 @@ return [
     'versions'      => [
         'default'   => 'en',
         'published' => [
-            'es',
-            'en'
+            'en',
+            'es'
         ]
     ],
 
@@ -88,12 +88,12 @@ return [
     */
 
     'search'            => [
-        'enabled'       => true,
+        'enabled'       => false,
         'default'       => 'algolia',
         'engines'       => [
             'algolia'   => [
-                'key'   => 'fe812fdf8eade29b037db60cf3f77377',
-                'index' => 'prod_Documentation'
+                'key'   => '',
+                'index' => ''
             ]
         ]
     ],
@@ -111,7 +111,7 @@ return [
     */
 
     'repository'   => [
-        'provider' => '',
+        'provider' => 'github',
         'url'      => ''
     ],
 
@@ -131,7 +131,7 @@ return [
     'ui'                 => [
         'show_app_name'  => false,
         'logo'           => '/img/logos/debehaber.jpg', // e.g.: /images/logo.svg
-        'fav'            => '/img/favicon.png', // e.g.: /fav.png
+        'fav'            => '/img/favicon/favicon-96x96.png', // e.g.: /fav.png
         'theme'          => 'light',
         'code'           => 'dark',
         'back_to_top'    => true,
@@ -162,9 +162,9 @@ return [
     */
 
     'seo'                 => [
-        'author'          => 'Bazaar Social',
+        'author'          => '',
         'description'     => '',
-        'keywords'        => 'Accounting, Contabbilidad',
+        'keywords'        => '',
         'og'              => [
             'title'       => '',
             'type'        => 'article',
@@ -188,11 +188,11 @@ return [
    */
 
   'forum'                 => [
-        'enabled'           => false,
+        'enabled'           => true,
         'default'           => 'disqus',
         'services'          => [
             'disqus'        => [
-                'site_name' => '', // yoursite.disqus.com
+                'site_name' => 'debehaber.disqus.com', // yoursite.disqus.com
             ]
         ]
     ]

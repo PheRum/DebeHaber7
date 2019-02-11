@@ -64,6 +64,10 @@ export default {
                 sortable: true
             },
             {
+                key: 'total',
+                sortable: true
+            },
+            {
                 key: 'action',
                 sortable: false
             },

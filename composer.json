@@ -10,7 +10,7 @@
     "require": {
         "php": "^7.1.3",
         "binarytorch/blogged": "^1.0",
-        "binarytorch/larecipe": "^1.2",
+        "binarytorch/larecipe": "^1.3",
         "fideloper/proxy": "^4.0",
         "kordy/ticketit": "0.*",
         "laravel/cashier": "~8.0",

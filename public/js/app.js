@@ -3011,6 +3011,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['columns'],
   data: function data() {
@@ -3019,7 +3042,8 @@ __webpack_require__.r(__webpack_exports__);
       lists: [],
       meta: [],
       current_page: 1,
-      hoveredRow: null
+      hoveredRow: null,
+      is_loaded: false
     };
   },
   computed: {
@@ -3035,27 +3059,28 @@ __webpack_require__.r(__webpack_exports__);
     list: function list() {
       var app = this;
       axios.get('/api' + app.$route.path + '?page=' + app.current_page).then(function (_ref) {
-        var data = _ref.data;
-
-        if (data.data.length > 0) {
-          app.lists = data.data;
-          app.meta = data.meta;
-          app.skip += app.pageSize;
-          $state.loaded();
-        }
+        var reponse = _ref.reponse;
+        app.lists = reponse.data;
+        app.meta = reponse.meta;
+        app.skip += app.pageSize;
+        $state.loaded();
+        app.is_loaded = true;
       });
     },
+    delete: function _delete() {},
     rowHovered: function rowHovered(item) {
       this.hoveredRow = item;
-      this.$refs.table.refresh();
     },
     isHovered: function isHovered(item) {
       return item == this.hoveredRow;
-    } //onApprove??
-
+    },
+    sumValue: function sumValue(details) {
+      return details.reduce(function (sum, row) {
+        return sum + new Number(row.value);
+      }, 0);
+    }
   },
   mounted: function mounted() {
-    //do something after mounting vue instance
     var app = this;
     this.list();
   }
@@ -3484,6 +3509,9 @@ __webpack_require__.r(__webpack_exports__);
         sortable: true
       }, {
         key: 'number',
+        sortable: true
+      }, {
+        key: 'total',
         sortable: true
       }, {
         key: 'action',
@@ -81259,7 +81287,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _vm.lists.length > 0
+      _vm.lists.length > 0 && _vm.is_loaded
         ? _c(
             "b-card",
             { attrs: { "no-body": "" } },
@@ -81280,10 +81308,88 @@ var render = function() {
                         _vm._v(
                           "\n                " +
                             _vm._s(
-                              new Number(data.item.date).toLocaleString()
+                              new Date(data.item.date).toLocaleDateString()
                             ) +
                             "\n            "
                         )
+                      ]
+                    }
+                  },
+                  {
+                    key: "expiry",
+                    fn: function(data) {
+                      return [
+                        data.item.expiry >= new Date()
+                          ? _c("div", [
+                              _vm._v(
+                                "\n                    " +
+                                  _vm._s(
+                                    new Date(
+                                      data.item.expiry
+                                    ).toLocaleDateString()
+                                  ) +
+                                  "\n                "
+                              )
+                            ])
+                          : _c("div", [
+                              _c("span", { staticClass: "text-danger" }, [
+                                _vm._v(
+                                  _vm._s(
+                                    new Date(
+                                      data.item.expiry
+                                    ).toLocaleDateString()
+                                  )
+                                )
+                              ])
+                            ])
+                      ]
+                    }
+                  },
+                  {
+                    key: "total",
+                    fn: function(data) {
+                      return [
+                        _c("span", { staticClass: "float-right" }, [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(
+                                new Number(
+                                  _vm.sumValue(data.item.details)
+                                ).toLocaleString()
+                              ) +
+                              "\n                    "
+                          ),
+                          data.item.currency != null
+                            ? _c(
+                                "small",
+                                { staticClass: "text-success text-uppercase" },
+                                [_vm._v(_vm._s(data.item.currency.code))]
+                              )
+                            : _vm._e()
+                        ])
+                      ]
+                    }
+                  },
+                  {
+                    key: "balance",
+                    fn: function(data) {
+                      return [
+                        _c("span", { staticClass: "float-right" }, [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(
+                                new Number(data.item.balance).toLocaleString()
+                              ) +
+                              "\n                    "
+                          ),
+                          data.item.currency != null
+                            ? _c(
+                                "small",
+                                { staticClass: "text-success text-uppercase" },
+                                [_vm._v(_vm._s(data.item.currency.code))]
+                              )
+                            : _vm._e()
+                        ])
                       ]
                     }
                   },
@@ -81348,38 +81454,48 @@ var render = function() {
             ],
             1
           )
-        : _c(
-            "b-card",
-            [
-              _c("h4", [_vm._v("You're running on empty!")]),
+        : _vm.is_loaded
+          ? _c("b-card", [
+              _c("h4", [_vm._v("Please Wait")]),
               _vm._v(" "),
-              _c(
-                "p",
-                { staticClass: "lead" },
-                [
-                  _vm._v("How about "),
-                  _c(
-                    "router-link",
-                    { attrs: { to: { name: _vm.formURL, params: { id: 0 } } } },
-                    [_vm._v("creating")]
-                  ),
-                  _vm._v(" some data")
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("b-img", {
-                attrs: {
-                  thumbnail: "",
-                  fluid: "",
-                  width: "256",
-                  src: "/img/apps/no-data.svg",
-                  alt: "Thumbnail"
-                }
-              })
-            ],
-            1
-          ),
+              _c("p", { staticClass: "lead" }, [
+                _vm._v("We are currently fetching your data.")
+              ])
+            ])
+          : _c(
+              "b-card",
+              [
+                _c("h4", [_vm._v("You're running on empty!")]),
+                _vm._v(" "),
+                _c(
+                  "p",
+                  { staticClass: "lead" },
+                  [
+                    _vm._v("How about "),
+                    _c(
+                      "router-link",
+                      {
+                        attrs: { to: { name: _vm.formURL, params: { id: 0 } } }
+                      },
+                      [_vm._v("creating")]
+                    ),
+                    _vm._v(" some data")
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c("b-img", {
+                  attrs: {
+                    thumbnail: "",
+                    fluid: "",
+                    width: "256",
+                    src: "/img/apps/no-data.svg",
+                    alt: "Thumbnail"
+                  }
+                })
+              ],
+              1
+            ),
       _vm._v(" "),
       _vm.lists.length > 0
         ? _c("b-pagination", {

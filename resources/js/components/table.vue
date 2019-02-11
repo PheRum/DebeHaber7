@@ -1,9 +1,29 @@
 <template>
     <div>
-        <b-card v-if="lists.length > 0" no-body>
+        <b-card v-if="lists.length > 0 && is_loaded" no-body>
             <b-table hover :items="lists" :fields="columns" :current-page="current_page" @row-hovered="rowHovered">
                 <template slot="date" slot-scope="data">
-                    {{ new Number(data.item.date).toLocaleString() }}
+                    {{ new Date(data.item.date).toLocaleDateString() }}
+                </template>
+                <template slot="expiry" slot-scope="data">
+                    <div v-if="data.item.expiry >= new Date()">
+                        {{ new Date(data.item.expiry).toLocaleDateString() }}
+                    </div>
+                    <div v-else>
+                        <span class="text-danger">{{ new Date(data.item.expiry).toLocaleDateString() }}</span>
+                    </div>
+                </template>
+                <template slot="total" slot-scope="data">
+                    <span class="float-right">
+                        {{ new Number(sumValue(data.item.details)).toLocaleString() }}
+                        <small class="text-success text-uppercase" v-if="data.item.currency != null">{{ data.item.currency.code }}</small>
+                    </span>
+                </template>
+                <template slot="balance" slot-scope="data">
+                    <span class="float-right">
+                        {{ new Number(data.item.balance).toLocaleString() }}
+                        <small class="text-success text-uppercase" v-if="data.item.currency != null">{{ data.item.currency.code }}</small>
+                    </span>
                 </template>
                 <template slot="action" slot-scope="data">
                     <div v-show="isHovered(data.item)">
@@ -15,7 +35,10 @@
                 </template>
             </b-table>
         </b-card>
-
+        <b-card v-else-if="is_loaded">
+            <h4>Please Wait</h4>
+            <p class="lead">We are currently fetching your data.</p>
+        </b-card>
         <b-card v-else>
             <h4>You're running on empty!</h4>
             <p class="lead">How about <router-link :to="{ name: formURL, params: { id: 0}}">creating</router-link> some data</p>
@@ -35,7 +58,8 @@
             lists: [],
             meta: [],
             current_page: 1,
-            hoveredRow: null
+            hoveredRow: null,
+            is_loaded: false,
         }),
         computed: {
             // a computed getter
@@ -44,37 +68,44 @@
             },
             viewURL: function () {
                 return this.$route.name.replace('List', 'View');
-            }
+            },
         },
         methods:
         {
-            list()
-            {
+            list() {
                 var app = this;
 
                 axios.get('/api' + app.$route.path + '?page=' + app.current_page)
-                .then(({ data }) =>
+                .then(({ reponse }) =>
                 {
-                    if (data.data.length > 0)
-                    {
-                        app.lists = data.data;
-                        app.meta = data.meta;
-                        app.skip += app.pageSize;
-                        $state.loaded();
-                    }
+                    app.lists = reponse.data;
+                    app.meta = reponse.meta;
+                    app.skip += app.pageSize;
+                    $state.loaded();
+                    app.is_loaded = true;
                 });
             },
-            rowHovered(item){
-                this.hoveredRow = item;
-                this.$refs.table.refresh();
+
+            delete() {
+
             },
-            isHovered(item){
+
+            rowHovered(item) {
+                this.hoveredRow = item;
+            },
+
+            isHovered(item) {
                 return item == this.hoveredRow;
+            },
+
+            sumValue(details) {
+                return details.reduce(function(sum, row) {
+                    return sum + new Number(row.value);
+                }, 0);
             }
-            //onApprove??
         },
+
         mounted() {
-            //do something after mounting vue instance
             var app = this;
             this.list();
         }
