@@ -50,6 +50,20 @@ class Transaction extends Model
         ];
     }
 
+    public function scopeMy($query)
+    {
+        $taxPayerID = request()->route('taxPayer')->id ?? request()->route('taxPayer');
+
+        return $query
+        ->where(function($subQuery) use ($taxPayer, $cycle) {
+            $subQuery->whereIn('transactions.type', [4, 5])
+            ->where('supplier_id', $taxPayerID);
+        })->where(function($subQuery) use ($taxPayer, $cycle) {
+            $subQuery->whereIn('transactions.type', [1, 2, 3])
+            ->where('customer_id', $taxPayerID);
+        });
+    }
+
     public function scopeMySales($query)
     {
         $taxPayerID = request()->route('taxPayer')->id ?? request()->route('taxPayer');

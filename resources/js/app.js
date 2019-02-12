@@ -40,6 +40,10 @@ Vue.component(
     require('./components/table.vue').default
 );
 Vue.component(
+    'search-box',
+    require('./components/search.vue').default
+);
+Vue.component(
     'invoices-this-month-kpi',
     require('./components/dashboard/InvoicesThisMonthKPI.vue').default
 );

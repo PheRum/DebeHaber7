@@ -1,6 +1,7 @@
 
 import FourZeroFour from '../views/404';
 import DashBoard from '../views/index';
+import SearchResult from '../views/searchResult';
 
 import Commercial from '../views/commercials/index';
 import SalesList from '../views/commercials/salesList';
@@ -40,6 +41,17 @@ export default
             title: 'Dashboard',
             description: 'Some description',
             img: '/img/apps/sales.svg',
+        }
+    },
+    {
+        path: '/:taxPayer/:cycle/search/q={q}',
+        component: SearchResult,
+        name: 'searchResult',
+        meta: {
+            url: 'search',
+            title: 'Search',
+            description: '',
+            img: '/img/apps/search.svg',
         }
     },
     {
@@ -177,7 +189,6 @@ export default
                         meta: {
                             title: 'Journal Form',
                         },
-
                     }
                 ]
             },

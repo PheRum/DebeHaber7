@@ -22,7 +22,8 @@
         "laravel/tinker": "^1.0",
         "napp/nova-bugsnag": "^1.0",
         "rweber7912/timezoned": "dev-master",
-        "spatie/laravel-activitylog": "^3.2"
+        "spatie/laravel-activitylog": "^3.2",
+        "spatie/laravel-query-builder": "^1.13"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

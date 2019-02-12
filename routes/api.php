@@ -39,11 +39,14 @@
         {
             Route::prefix('search')->group(function ()
             {
-                Route::get('purchases/{q}', 'SearchController@searchPurchases');
-                Route::get('debits/{q}', 'SearchController@searchDebits');
-                Route::get('sales/{q}', 'SearchController@searchSales');
-                Route::get('credits/{q}', 'SearchController@searchCredits');
+                // Route::get('purchases/{q}', 'SearchController@searchPurchases');
+                // Route::get('debits/{q}', 'SearchController@searchDebits');
+                // Route::get('sales/{q}', 'SearchController@searchSales');
+                // Route::get('credits/{q}', 'SearchController@searchCredits');
+
+                Route::get('transactions/{q}', 'SearchController@searchTransactions');
                 Route::get('taxpayers/{q}', 'SearchController@searchTaxPayers');
+                Route::get('charts/{q}', 'SearchController@searchCharts');
             });
 
             Route::prefix('accounting')->group(function ()

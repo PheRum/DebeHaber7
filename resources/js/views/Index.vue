@@ -27,8 +27,7 @@
                 </p>
                 <small class="text-muted">Last updated 3 mins ago</small>
             </b-card>
-            <b-card bg-variant="primary"
-                    text-variant="white">
+            <b-card bg-variant="primary" text-variant="white">
                 <blockquote class="card-blockquote">
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.
@@ -49,10 +48,7 @@
                     img-alt="image"
                     overlay>
             </b-card>
-            <b-card img-src="https://picsum.photos/400/200/?image=41"
-                    img-fluid
-                    img-alt="image"
-                    img-top>
+            <b-card img-src="https://picsum.photos/400/200/?image=41" img-fluid img-alt="image" img-top>
                 <p class="card-text">
                     This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content
                     than the first.

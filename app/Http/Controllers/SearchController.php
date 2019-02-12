@@ -10,28 +10,7 @@ use App\Http\Resources\ModelResource;
 
 class SearchController extends Controller
 {
-    public function search(Taxpayer $taxPayer, Cycle $cycle, $q)
-    {
-        $purchases = $this->searchPurchases($taxPayer, $cycle, $q);
-
-        $debits = $this->searchDebits($taxPayer, $cycle, $q);
-
-        $sales = $this->searchSales($taxPayer, $cycle, $q);
-
-        $credits = $this->searchCredits($taxPayer, $cycle, $q);
-
-        $taxPayers = $this->searchTaxPayers($taxPayer, $cycle, $q);
-
-        return view('search')
-        ->with('purchases', $purchases)
-        ->with('debits', $debits)
-        ->with('sales', $sales)
-        ->with('credits', $credits)
-        ->with('taxPayers', $taxPayers)
-        ->with('q', $q);
-    }
-
-    public function searchPurchases(Taxpayer $taxPayer, Cycle $cycle, $q)
+    public function searchPurchases($taxPayer, $cycle, $q)
     {
         $results = Transaction::search($q)
         ->where('customer_id', $taxPayer->id)
@@ -41,7 +20,7 @@ class SearchController extends Controller
         return ModelResource::collection($results->load('supplier'));
     }
 
-    public function searchDebits(Taxpayer $taxPayer, Cycle $cycle, $q)
+    public function searchDebits($taxPayer, $cycle, $q)
     {
         $results = Transaction::search($q)
         ->where('customer_id', $taxPayer->id)
@@ -51,7 +30,7 @@ class SearchController extends Controller
         return ModelResource::collection($results->load('supplier'));
     }
 
-    public function searchSales(Taxpayer $taxPayer, Cycle $cycle, $q)
+    public function searchSales($taxPayer, $cycle, $q)
     {
         $results = Transaction::search($q)
         ->where('supplier_id', $taxPayer->id)
@@ -61,7 +40,7 @@ class SearchController extends Controller
         return ModelResource::collection($results->load('customer'));
     }
 
-    public function searchCredits(Taxpayer $taxPayer, Cycle $cycle, $q)
+    public function searchCredits($taxPayer, $cycle, $q)
     {
         $results = Transaction::search($q)
         ->where('supplier_id', $taxPayer->id)
@@ -71,9 +50,48 @@ class SearchController extends Controller
         return ModelResource::collection($results->load('customer'));
     }
 
-    public function searchTaxPayers(Taxpayer $taxPayer, Cycle $cycle, $q)
+    public function searchTransactions($taxPayer, $cycle, $q)
     {
-        return Taxpayer::search($q)
-        ->get();
+        $taxPayerID = $taxPayer->id ?? $taxPayer;
+
+        return GeneralResource::collection(
+            Transaction::where(function($query) use ($taxPayer, $q)
+            {
+                $query
+                ->where(function($subQuery) use ($taxPayer, $q) {
+                    $subQuery->whereIn('type', [4, 5])
+                    ->where('supplier_id', $taxPayerID)
+                    ->where('number', 'like', '%' . $q . '%')
+                    ->where('code', 'like', '%' . $q . '%')
+                    ->whereHas('customer', function($subSubQuery) use ($q) {
+                        $subSubQuery->where('name', 'like', '%' . $q . '%')
+                        ->where('taxid', 'like', '%' . $q . '%');
+                    });
+                })
+                ->orWhere(function($subQuery) use ($taxPayer, $q) {
+                    $subQuery->whereIn('type', [1, 2, 3])
+                    ->where('customer_id', $taxPayerID)
+                    ->where('number', 'like', '%' . $q . '%')
+                    ->where('code', 'like', '%' . $q . '%')
+                    ->whereHas('supplier', function($subSubQuery) use ($q) {
+                        $subSubQuery->where('name', 'like', '%' . $q . '%')
+                        ->where('taxid', 'like', '%' . $q . '%');
+                    });
+                });
+            })
+            ->with('details')
+            ->with('customer')
+            ->with('supplier')
+        );
+    }
+
+    public function searchTaxPayers($taxPayer, $cycle, $q)
+    {
+        return GeneralResource::collection(Taxpayer::search($q)->paginate(25));
+    }
+
+    public function searchCharts($taxPayer, $cycle, $q)
+    {
+        return GeneralResource::collection(Chart::search($q)->paginate(25));
     }
 }

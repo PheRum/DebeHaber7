@@ -35,79 +35,80 @@
                 </template>
             </b-table>
         </b-card>
-        <b-card v-else-if="is_loaded">
+        <b-card v-else-if="is_loaded == false">
             <h4>Please Wait</h4>
             <p class="lead">We are currently fetching your data.</p>
         </b-card>
-        <b-card v-else>
+        <b-card v-else-if="lists.length == 0">
             <h4>You're running on empty!</h4>
             <p class="lead">How about <router-link :to="{ name: formURL, params: { id: 0}}">creating</router-link> some data</p>
             <b-img thumbnail fluid width="256" src="/img/apps/no-data.svg" alt="Thumbnail" />
         </b-card>
+        <b-pagination v-if="lists.length > 0" size="md" align="center" :total-rows="meta.total" :per-page="meta.per_page" v-model="current_page" @change="list()"></b-pagination>
+    </div>
+</template>
 
-        <b-pagination v-if="lists.length > 0" size="md" align="center" :total-rows="meta.total"
-            :per-page="meta.per_page" v-model="current_page" @change="list()"></b-pagination>
-        </div>
-    </template>
-
-    <script>
-    export default {
-        props: ['columns'],
-        data: () => ({
-            skip: 1,
-            lists: [],
-            meta: [],
-            current_page: 1,
-            hoveredRow: null,
-            is_loaded: false,
-        }),
-        computed: {
-            // a computed getter
-            formURL: function () {
-                return this.$route.name.replace('List', 'Form');
-            },
-            viewURL: function () {
-                return this.$route.name.replace('List', 'View');
-            },
+<script>
+export default {
+    props: ['columns'],
+    data: () => ({
+        skip: 1,
+        lists: [],
+        meta: [],
+        current_page: 1,
+        hoveredRow: null,
+        is_loaded: false,
+    }),
+    computed: {
+        // a computed getter
+        formURL: function () {
+            return this.$route.name.replace('List', 'Form');
         },
-        methods:
-        {
-            list() {
-                var app = this;
-
-                axios.get('/api' + app.$route.path + '?page=' + app.current_page)
-                .then(({ reponse }) =>
-                {
-                    app.lists = reponse.data;
-                    app.meta = reponse.meta;
-                    app.skip += app.pageSize;
-                    $state.loaded();
-                    app.is_loaded = true;
-                });
-            },
-
-            delete() {
-
-            },
-
-            rowHovered(item) {
-                this.hoveredRow = item;
-            },
-
-            isHovered(item) {
-                return item == this.hoveredRow;
-            },
-
-            sumValue(details) {
-                return details.reduce(function(sum, row) {
-                    return sum + new Number(row.value);
-                }, 0);
-            }
+        viewURL: function () {
+            return this.$route.name.replace('List', 'View');
         },
-
-        mounted() {
+    },
+    methods:
+    {
+        list() {
             var app = this;
-            this.list();
+
+            axios.get('/api' + app.$route.path + '?page=' + app.current_page)
+            .then(({ data }) =>
+            {
+                app.lists = data.data;
+                app.meta = data.meta;
+                app.skip += app.pageSize;
+                app.is_loaded = true;
+            });
+        },
+
+        delete() {
+
+        },
+
+        edit() {
+
+        },
+
+        rowHovered(item) {
+            this.hoveredRow = item;
+        },
+
+        isHovered(item) {
+            return item == this.hoveredRow;
+        },
+
+        sumValue(details) {
+            return details.reduce(function(sum, row) {
+                return sum + new Number(row.value);
+            }, 0);
         }
+    },
+
+    mounted() {
+        var app = this;
+        this.list();
     }
-    </script>
+}
+</script>

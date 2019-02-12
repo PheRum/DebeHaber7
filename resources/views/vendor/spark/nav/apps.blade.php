@@ -1,7 +1,7 @@
 
 <b-nav vertical>
 
-    <b-form-input v-model="text" type="text" class="mb-10" placeholder="Search"></b-form-input>
+    <search-box></search-box>
 
     <h3 class="nav-heading sub">
         Taxpayer

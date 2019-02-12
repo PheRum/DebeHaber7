@@ -14,6 +14,7 @@
                     </b-card>
 
                     <invoices-this-month-kpi></invoices-this-month-kpi>
+                    <invoices-this-month-kpi></invoices-this-month-kpi>
 
                     <b-card no-body>
                         <b-list-group flush>
@@ -48,7 +49,6 @@
 <script>
 import crud from '../../components/crud.vue'
 export default {
-    name: "",
     data: () => ({
         columns: [
             {

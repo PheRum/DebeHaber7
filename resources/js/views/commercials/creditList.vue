@@ -49,7 +49,6 @@
 <script>
 import crud from '../../components/crud.vue'
 export default {
-    name: "",
     data: () => ({
         columns: [
             {
