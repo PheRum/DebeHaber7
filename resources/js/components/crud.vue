@@ -21,6 +21,7 @@ export default {
             })
             .then(function (response) {
                 resp = response.data;
+                Toast.fire({ type: 'success', title: 'Data Loaded' })
             })
             .catch(function (error) {
                 Toast.fire({ type: 'error', title: 'Unable to Access Data' })
@@ -41,8 +42,10 @@ export default {
             {
                 app.data = response.data;
             })
-            .catch(function (error)
-            { console.log(app.data); });
+            .catch(function (error) {
+                Toast.fire({ type: 'error', title: 'Unable to Save Data' })
+                console.log(app.data);
+            });
         },
 
         onDelete($url, $dataId) {

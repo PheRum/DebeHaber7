@@ -75,7 +75,7 @@ Spark.forms.register = {
 //Creates a default SweetAlert message to use as Toast.
 const Toast = Swal.mixin({
     toast: true,
-    position: 'top-end',
+    position: 'bottom-end',
     showConfirmButton: false,
     timer: 3000
 });

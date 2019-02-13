@@ -10,8 +10,9 @@
                                     <b-input type="date" required placeholder="Missing Information" v-model="data.date"/>
                                 </b-form-group>
                                 <b-form-group label="Customer">
-                                    <!-- <b-input type="text" placeholder="Search for Customer" v-model="data.customer.name"/> -->
+                                    <b-input type="text" placeholder="Search for Customer" v-model="customer_id"/>
                                 </b-form-group>
+                                {{ data.customer }}
                             </b-col>
                             <b-col>
                                 <b-form-group label="Document">

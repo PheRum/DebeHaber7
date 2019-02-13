@@ -2123,6 +2123,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   responseType: 'json'
                 }).then(function (response) {
                   resp = response.data;
+                  Toast.fire({
+                    type: 'success',
+                    title: 'Data Loaded'
+                  });
                 }).catch(function (error) {
                   Toast.fire({
                     type: 'error',
@@ -2157,6 +2161,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }).then(function (response) {
         app.data = response.data;
       }).catch(function (error) {
+        Toast.fire({
+          type: 'error',
+          title: 'Unable to Save Data'
+        });
         console.log(app.data);
       });
     },
@@ -3550,6 +3558,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/crud.vue */ "./resources/js/components/crud.vue");
+//
 //
 //
 //
@@ -86327,9 +86336,31 @@ var render = function() {
                                 1
                               ),
                               _vm._v(" "),
-                              _c("b-form-group", {
-                                attrs: { label: "Customer" }
-                              })
+                              _c(
+                                "b-form-group",
+                                { attrs: { label: "Customer" } },
+                                [
+                                  _c("b-input", {
+                                    attrs: {
+                                      type: "text",
+                                      placeholder: "Search for Customer"
+                                    },
+                                    model: {
+                                      value: _vm.customer_id,
+                                      callback: function($$v) {
+                                        _vm.customer_id = $$v
+                                      },
+                                      expression: "customer_id"
+                                    }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(
+                                "\n                            " +
+                                  _vm._s(_vm.data.customer) +
+                                  "\n                        "
+                              )
                             ],
                             1
                           ),
@@ -100857,7 +100888,7 @@ Spark.forms.register = {
 
 var Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_6___default.a.mixin({
   toast: true,
-  position: 'top-end',
+  position: 'bottom-end',
   showConfirmButton: false,
   timer: 3000
 });
