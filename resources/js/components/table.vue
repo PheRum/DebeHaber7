@@ -55,7 +55,7 @@ export default {
         skip: 1,
         lists: [],
         meta: [],
-        current_page: 1,
+        current_page: 0,
         hoveredRow: null,
         is_loaded: false,
     }),

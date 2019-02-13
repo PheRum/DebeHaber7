@@ -71,13 +71,12 @@ class AccountMovementController extends Controller
 
     public function edit(AccountMovement $movement)
     {
-        return
-        GeneralResource::collection(
+        return new GeneralResource(
             AccountMovement::with('chart')
             ->with('transaction:id,number,comment')
             ->with('currency')
             ->where('id', $movement->id)
-            ->paginate(1)
+            ->first()
         );
     }
 

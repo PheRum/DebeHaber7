@@ -29,7 +29,7 @@ class SalesController extends Controller
             ->with('currency')
             ->with('details')
             ->whereBetween('date', [$cycle->start_date, $cycle->end_date])
-            ->orderBy('transactions.date', 'desc')
+            ->orderBy('date', 'desc')
             ->paginate(50)
         );
     }
@@ -100,11 +100,11 @@ class SalesController extends Controller
     */
     public function show(Taxpayer $taxPayer, Cycle $cycle,$transactionId)
     {
-
-        return GeneralResource::collection(
+        return new GeneralResource(
             Transaction::MySales()->with('customer:name,id')
-            ->where('transactions.id', $transactionId)
-            ->with('details')->paginate(1)
+            ->where('id', $transactionId)
+            ->with('details')
+            ->first()
         );
     }
 

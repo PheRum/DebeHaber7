@@ -71,8 +71,10 @@ class SearchController extends Controller
                 ->orWhere(function($subQuery) use ($taxPayer, $q) {
                     $subQuery->whereIn('type', [1, 2, 3])
                     ->where('customer_id', $taxPayerID)
-                    ->where('number', 'like', '%' . $q . '%')
-                    ->where('code', 'like', '%' . $q . '%')
+                    ->where(function($subSubQuery) use ($q) {
+                        $subSubQuery->where('number', 'like', '%' . $q . '%')
+                        ->orWhere('code', 'like', '%' . $q . '%');
+                    })
                     ->whereHas('supplier', function($subSubQuery) use ($q) {
                         $subSubQuery->where('name', 'like', '%' . $q . '%')
                         ->where('taxid', 'like', '%' . $q . '%');
