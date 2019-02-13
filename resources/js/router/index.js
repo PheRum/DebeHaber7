@@ -78,7 +78,7 @@ export default
                 children:
                 [
                     {
-                        path: '{id}',
+                        path: ':id',
                         component: SalesForm,
                         name: 'salesForm',
                         meta: {
@@ -100,7 +100,7 @@ export default
                 children:
                 [
                     {
-                        path: '{id}',
+                        path: ':id',
                         component: CreditForm,
                         name: 'creditForm',
                         meta: {

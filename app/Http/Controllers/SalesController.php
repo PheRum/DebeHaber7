@@ -98,11 +98,12 @@ class SalesController extends Controller
     * @param  \App\Transaction  $transaction
     * @return \Illuminate\Http\Response
     */
-    public function edit(Transaction $transaction)
+    public function show(Taxpayer $taxPayer, Cycle $cycle,$transactionId)
     {
+
         return GeneralResource::collection(
             Transaction::MySales()->with('customer:name,id')
-            ->where('transactions.id', $transaction->id)
+            ->where('transactions.id', $transactionId)
             ->with('details')->paginate(1)
         );
     }
