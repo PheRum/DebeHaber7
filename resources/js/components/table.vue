@@ -1,7 +1,7 @@
 <template>
     <div>
         <b-card v-if="lists.length > 0 && is_loaded" no-body>
-            <b-table hover :items="lists"  :current-page="current_page" @row-hovered="rowHovered">
+            <b-table hover :items="lists" :fields="columns" :current-page="current_page" @row-hovered="rowHovered">
                 <template slot="date" slot-scope="data">
                     {{ new Date(data.item.date).toLocaleDateString() }}
                 </template>
