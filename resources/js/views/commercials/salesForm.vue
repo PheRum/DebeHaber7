@@ -10,7 +10,7 @@
                                     <b-input type="date" required placeholder="Missing Information" v-model="data.date"/>
                                 </b-form-group>
                                 <b-form-group label="Customer">
-                                    <b-input type="text" placeholder="Search for Customer" v-model="customer_id"/>
+                                    <b-input type="text" placeholder="Search for Customer" v-model="data.customer.name"/>
                                 </b-form-group>
                                 {{ data.customer }}
                             </b-col>
@@ -25,9 +25,9 @@
 
                                 <b-form-group label="Invoice Code">
                                     <b-input-group>
-                                        <b-input type="text" placeholder="Invoice Code"/>
+                                        <b-input type="text" placeholder="Invoice Code" v-model="data.code"/>
                                         <b-input-group-append>
-                                            <b-input type="date" placeholder="Code Expiry Date"/>
+                                            <b-input type="date" placeholder="Code Expiry Date" v-model="data.code_expiry"/>
                                         </b-input-group-append>
                                     </b-input-group>
                                 </b-form-group>
@@ -40,7 +40,9 @@
         <b-row>
             <b-col>
                 <b-card no-body>
-                    <b-table hover> </b-table>
+                    <b-table hover :items="data.details" :fields="columns">
+
+                    </b-table>
                 </b-card>
             </b-col>
         </b-row>
@@ -71,7 +73,7 @@ export default {
         var baseUrl = '/api/' + app.$route.params.taxPayer + '/' + app.$route.params.cycle + '/'
 
         crud.methods.onRead(baseUrl + "commercial/sales/" + app.$route.params.id)
-        .then(function (response) { app.data = response.data; });
+        .then(function (response) {  app.data = response; });
 
         crud.methods.onRead(baseUrl + "charts/for/money/")
         .then(function (response) { app.accountCharts = response.data; });

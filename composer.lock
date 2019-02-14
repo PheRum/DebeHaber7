@@ -1660,16 +1660,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.7.25",
+            "version": "v5.7.26",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "f8fb354878064b94a3ff09a6ffd48ee9a8d712cf"
+                "reference": "ca3bc9769969e8af3bd9878a3e0242051c74dae4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/f8fb354878064b94a3ff09a6ffd48ee9a8d712cf",
-                "reference": "f8fb354878064b94a3ff09a6ffd48ee9a8d712cf",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/ca3bc9769969e8af3bd9878a3e0242051c74dae4",
+                "reference": "ca3bc9769969e8af3bd9878a3e0242051c74dae4",
                 "shasum": ""
             },
             "require": {
@@ -1802,7 +1802,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2019-02-05T14:28:43+00:00"
+            "time": "2019-02-12T14:52:21+00:00"
         },
         {
             "name": "laravel/nexmo-notification-channel",
@@ -1867,7 +1867,7 @@
             "dist": {
                 "type": "path",
                 "url": "./nova",
-                "reference": "6b34fd3882e3cff2dc99d288393e92025bc93094",
+                "reference": "3f3e9f1b67293b957f5c96da00a8da56f7e263ff",
                 "shasum": null
             },
             "require": {
@@ -2122,7 +2122,7 @@
             "dist": {
                 "type": "path",
                 "url": "./spark",
-                "reference": "94676e574eba34c957215b986490e257adf6e0c4",
+                "reference": "0975fe6e202d89e8f54fc14ca7b48b698ff07d33",
                 "shasum": null
             },
             "require": {
@@ -2646,16 +2646,16 @@
         },
         {
             "name": "mockery/mockery",
-            "version": "1.2.1",
+            "version": "1.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mockery/mockery.git",
-                "reference": "dc4f10b6b1148744facb784015e4b339d7feec23"
+                "reference": "0eb0b48c3f07b3b89f5169ce005b7d05b18cf1d2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mockery/mockery/zipball/dc4f10b6b1148744facb784015e4b339d7feec23",
-                "reference": "dc4f10b6b1148744facb784015e4b339d7feec23",
+                "url": "https://api.github.com/repos/mockery/mockery/zipball/0eb0b48c3f07b3b89f5169ce005b7d05b18cf1d2",
+                "reference": "0eb0b48c3f07b3b89f5169ce005b7d05b18cf1d2",
                 "shasum": ""
             },
             "require": {
@@ -2707,7 +2707,7 @@
                 "test double",
                 "testing"
             ],
-            "time": "2019-02-08T14:43:54+00:00"
+            "time": "2019-02-13T09:37:52+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -4254,16 +4254,16 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v6.29.3",
+            "version": "v6.30.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "373002ee880f24066279f175957e0e372c127298"
+                "reference": "1a2416766200611c6201d16c30ad925cd44316a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/373002ee880f24066279f175957e0e372c127298",
-                "reference": "373002ee880f24066279f175957e0e372c127298",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/1a2416766200611c6201d16c30ad925cd44316a3",
+                "reference": "1a2416766200611c6201d16c30ad925cd44316a3",
                 "shasum": ""
             },
             "require": {
@@ -4306,7 +4306,7 @@
                 "payment processing",
                 "stripe"
             ],
-            "time": "2019-01-31T15:23:38+00:00"
+            "time": "2019-02-12T16:48:35+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -5537,16 +5537,16 @@
         },
         {
             "name": "yajra/laravel-datatables-oracle",
-            "version": "v8.13.4",
+            "version": "v8.13.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yajra/laravel-datatables.git",
-                "reference": "8aedd88a02599d5d0a4a1a2bb5aac849397dd594"
+                "reference": "a97a173a52f2b60075f310dac39932faa377fb4f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/8aedd88a02599d5d0a4a1a2bb5aac849397dd594",
-                "reference": "8aedd88a02599d5d0a4a1a2bb5aac849397dd594",
+                "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/a97a173a52f2b60075f310dac39932faa377fb4f",
+                "reference": "a97a173a52f2b60075f310dac39932faa377fb4f",
                 "shasum": ""
             },
             "require": {
@@ -5604,7 +5604,7 @@
                 "jquery",
                 "laravel"
             ],
-            "time": "2019-01-29T03:12:37+00:00"
+            "time": "2019-02-13T01:34:34+00:00"
         },
         {
             "name": "zendframework/zend-diactoros",

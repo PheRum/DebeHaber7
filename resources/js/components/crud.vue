@@ -20,13 +20,13 @@ export default {
                 responseType: 'json',
             })
             .then(function (response) {
-                resp = response.data;
-                Toast.fire({ type: 'success', title: 'Data Loaded' })
+
+                resp = response.data.data;
+                // Toast.fire({ type: 'success', title: 'Data Loaded' });
             })
             .catch(function (error) {
                 Toast.fire({ type: 'error', title: 'Unable to Access Data' })
             });
-
             return resp;
         },
 

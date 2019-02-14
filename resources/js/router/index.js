@@ -122,7 +122,7 @@ export default
                 children:
                 [
                     {
-                        path: '/{id}',
+                        path: ':id',
                         component: PurchaseForm,
                         name: 'purchaseForm',
                         meta: {
@@ -146,7 +146,7 @@ export default
                 children:
                 [
                     {
-                        path: '/{id}',
+                        path: ':id',
                         component: DebitForm,
                         name: 'debitForm',
                         meta: {
@@ -183,7 +183,7 @@ export default
                 children:
                 [
                     {
-                        path: '{id}',
+                        path: ':id',
                         component: JournalForm,
                         name: 'journalForm',
                         meta: {
@@ -204,7 +204,7 @@ export default
                 children:
                 [
                     {
-                        path: '{id}',
+                        path: ':id',
                         component: CycleForm,
                         name: 'cycleForm',
                         meta: {
