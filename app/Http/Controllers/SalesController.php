@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\AccountMovement;
-//use App\JournalTransaction;
 use App\Taxpayer;
 use App\Cycle;
 use App\Chart;
@@ -98,10 +97,10 @@ class SalesController extends Controller
     * @param  \App\Transaction  $transaction
     * @return \Illuminate\Http\Response
     */
-    public function show(Taxpayer $taxPayer, Cycle $cycle,$transactionId)
+    public function show(Taxpayer $taxPayer, Cycle $cycle, $transactionId)
     {
         return new GeneralResource(
-            Transaction::MySales()->with('customer:name,id')
+            Transaction::MySales()->with('customer:name,taxid,id')
             ->where('id', $transactionId)
             ->with('details')
             ->first()

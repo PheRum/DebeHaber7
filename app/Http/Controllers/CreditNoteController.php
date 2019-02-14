@@ -41,7 +41,7 @@ class CreditNoteController extends Controller
     */
     public function store(Request $request,Taxpayer $taxPayer,Cycle $cycle)
     {
-        $Transaction = $request->id == 0 ? new Transaction() : Transaction::where('id', $request->id)->first();
+        $transaction = Transaction::firstOrNew('id', $request->id);
 
         $Transaction->customer_id = $request->customer_id;
         $Transaction->supplier_id = $taxPayer->id;
@@ -88,7 +88,7 @@ class CreditNoteController extends Controller
             $TransactionDetail->save();
         }
 
-        return response()->json('ok', 200);
+        return response()->json('Ok', 200);
     }
 
     /**
@@ -97,29 +97,16 @@ class CreditNoteController extends Controller
     * @param  \App\Transaction  $transaction
     * @return \Illuminate\Http\Response
     */
-    public function edit(Transaction $transaction)
+    public function show(Taxpayer $taxPayer, Cycle $cycle, $transactionId)
     {
-        $Transaction = Transaction::join('taxpayers', 'taxpayers.id', 'transactions.customer_id')
-        ->where('supplier_id', $taxPayerID)
-        ->where('transactions.id', $transaction->id)
-        ->where('transactions.type', 5)
-        ->with('details')
-        ->select(DB::raw('false as selected,transactions.id,taxpayers.name as customer,
-        customer_id,
-        document_id,
-        currency_id,
-        rate,
-        payment_condition,
-        chart_account_id,
-        date,
-        number,
-        type,
-        transactions.code,
-        code_expiry'))
-        ->get();
-
-        return response()->json($Transaction);
+        return new GeneralResource(
+            Transaction::MyCreditNotes()->with('customer:name,taxid,id')
+            ->where('id', $transactionId)
+            ->with('details')
+            ->first()
+        );
     }
+
 
     /**
     * Remove the specified resource from storage.

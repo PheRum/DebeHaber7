@@ -8,8 +8,9 @@ use App\Cycle;
 use App\Chart;
 use App\Transaction;
 use App\TransactionDetail;
-use App\Http\Resources\TransactionResource;
+use App\Http\Resources\GeneralResource;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use DB;
 
 class PurchaseController extends Controller
@@ -22,7 +23,7 @@ class PurchaseController extends Controller
     public function index(Taxpayer $taxPayer, Cycle $cycle)
     {
         //TODO improve query using sum of deatils instead of inner join.
-        return TransactionResource::collection(
+        return GeneralResource::collection(
             Transaction::MyPurchases()
             ->with('supplier:name,id')
             ->with('currency')
@@ -33,50 +34,15 @@ class PurchaseController extends Controller
         );
     }
 
-    public function getLastPurchase($taxPayerID)
+    public function getLastSale($partnerId)
     {
-        $Transaction = Transaction::MyPurchases()
-        ->join('taxpayers', 'taxpayers.id', 'transactions.supplier_id')
-        ->where('supplier_id', $taxPayerID)
+        $transaction = Transaction::MyPurchases()
+        ->where('customer_id', $partnerId)
+        ->with('customer:name,id')
         ->with('details')
-        ->orderBy('date', 'desc')
-        ->select(DB::raw('taxpayers.name as Supplier,
-        supplier_id,
-        document_id,
-        currency_id,
-        rate,
-        payment_condition,
-        chart_account_id,
-        date,
-        number,
-        transactions.code,
-        code_expiry'))
-        ->first();
-        return response()->json($Transaction);
-    }
+        ->last();
 
-    public function get_purchasesByID(Taxpayer $taxPayer, Cycle $cycle, $id)
-    {
-        $Transaction = Transaction::MyPurchases()
-        ->join('taxpayers', 'taxpayers.id', 'transactions.supplier_id')
-        ->where('transactions.id', $id)
-        ->with('details')
-        ->select(DB::raw('false as selected,transactions.id,
-        taxpayers.name as supplier,
-        supplier_id,
-        document_id,
-        currency_id,
-        rate,
-        payment_condition,
-        chart_account_id,
-        date,
-        number,
-        type,
-        transactions.code,
-        code_expiry'))
-        ->get();
-
-        return response()->json($Transaction);
+        return response()->json($transaction, 200);
     }
 
     /**
@@ -87,7 +53,7 @@ class PurchaseController extends Controller
     */
     public function store(Request $request,Taxpayer $taxPayer,Cycle $cycle)
     {
-        $transaction = $request->id == 0 ? new Transaction() : Transaction::where('id', $request->id)->first();
+        $transaction = Transaction::firstOrNew('id', $request->id);
         $transaction->customer_id = $taxPayer->id;
 
         if ($request->supplier_id > 0)
@@ -132,9 +98,14 @@ class PurchaseController extends Controller
     * @param  \App\Transaction  $transaction
     * @return \Illuminate\Http\Response
     */
-    public function edit(Transaction $transaction)
+    public function show(Taxpayer $taxPayer, Cycle $cycle, $transactionId)
     {
-        //
+        return new GeneralResource(
+            Transaction::MyPurchases()->with('supplier:name,taxid,id')
+            ->where('id', $transactionId)
+            ->with('details')
+            ->first()
+        );
     }
 
     /**
@@ -153,6 +124,29 @@ class PurchaseController extends Controller
             Transaction::where('id',$transactionID)->delete();
 
             return response()->json('ok', 200);
+        }
+        catch (\Exception $e)
+        {
+            return response()->json($e, 500);
+        }
+    }
+
+    /**
+    * Remove the specified resource from storage (Force Delete).
+    *
+    * @param  \App\Transaction  $transaction
+    * @return \Illuminate\Http\Response
+    */
+    public function destroyForce(Taxpayer $taxPayer, Cycle $cycle, $transactionId)
+    {
+        try
+        {
+            //TODO: Run Tests to make sure it deletes all journals related to transaction
+            AccountMovement::where('transaction_id', $transactionId)->forceDelete();
+            //JournalTransaction::where('transaction_id',$transactionId)->delete();
+            Transaction::where('id', $transactionId)->forceDelete();
+
+            return response()->json('Ok', 200);
         }
         catch (\Exception $e)
         {

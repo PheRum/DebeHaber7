@@ -99,29 +99,14 @@ class DebitNoteController extends Controller
     * @param  \App\Transaction  $transaction
     * @return \Illuminate\Http\Response
     */
-    public function edit(Transaction $transaction)
+    public function show(Taxpayer $taxPayer, Cycle $cycle, $transactionId)
     {
-        $Transaction = Transaction::join('taxpayers', 'taxpayers.id', 'transactions.supplier_id')
-        ->where('customer_id', $taxPayerID)
-        ->where('transactions.id', $id)
-        ->where('transactions.type', 3)
-        ->with('details')
-        ->select(DB::raw('false as selected,transactions.id,
-        taxpayers.name as supplier,
-        supplier_id,
-        document_id,
-        currency_id,
-        rate,
-        payment_condition,
-        chart_account_id,
-        date,
-        number,
-        type,
-        transactions.code,
-        code_expiry'))
-        ->get();
-
-        return response()->json($Transaction);
+        return new GeneralResource(
+            Transaction::MyDebitNotes()->with('supplier:name,taxid,id')
+            ->where('id', $transactionId)
+            ->with('details')
+            ->first()
+        );
     }
 
     /**
