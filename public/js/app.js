@@ -3727,9 +3727,17 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     onSave: function onSave() {//save and go back to previous url.
     },
-    onSaveNew: function onSaveNew() {//save and go back to previous url.
+    onSaveNew: function onSaveNew() {
+      this.onSave();
+      this.$router.push({
+        name: 'salesForm',
+        params: {
+          userId: '0'
+        }
+      });
     },
-    onCancel: function onCancel() {//Go back to previous url, without saving.
+    onCancel: function onCancel() {
+      this.$router.go(-1);
     },
     addDetailRow: function addDetailRow() {
       alert('Row Added Method Reached.');
@@ -86766,7 +86774,7 @@ var render = function() {
                           expression: "['ctrl', 'd']"
                         }
                       ],
-                      staticClass: "ml-15 mb-5",
+                      staticClass: "ml-15 mb-10",
                       on: {
                         shortkey: function($event) {
                           _vm.addDetailRow()
@@ -86781,14 +86789,14 @@ var render = function() {
                         _vm._v("playlist_add")
                       ]),
                       _vm._v(
-                        "\n                    Add Detail\n                "
+                        "\n                    Add Detail Row\n                "
                       )
                     ]
                   ),
                   _vm._v(" "),
                   _c(
                     "b-button-group",
-                    { staticClass: "ml-15 mb-5" },
+                    { staticClass: "ml-15 mb-10" },
                     [
                       _c(
                         "b-btn",
@@ -86866,7 +86874,7 @@ var render = function() {
                           expression: "['esc']"
                         }
                       ],
-                      staticClass: "ml-15 mb-5",
+                      staticClass: "ml-15 mb-10",
                       attrs: { variant: "danger" },
                       on: {
                         shortkey: function($event) {

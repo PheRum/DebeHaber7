@@ -9,11 +9,11 @@
             </b-col>
             <b-col>
                 <b-button-toolbar class="float-right">
-                    <b-btn v-shortkey="['ctrl', 'd']" @shortkey="addDetailRow()" @click="addDetailRow()" class="ml-15 mb-5">
+                    <b-btn v-shortkey="['ctrl', 'd']" @shortkey="addDetailRow()" @click="addDetailRow()" class="ml-15 mb-10">
                         <i class="material-icons">playlist_add</i>
-                        Add Detail
+                        Add Detail Row
                     </b-btn>
-                    <b-button-group class="ml-15 mb-5">
+                    <b-button-group class="ml-15 mb-10">
                         <b-btn variant="primary" v-shortkey="['ctrl', 's']" @shortkey="onSave()" @click="onSave()">
                             <i class="material-icons">save</i>
                             Save
@@ -23,7 +23,7 @@
                             Save &amp; New
                         </b-btn>
                     </b-button-group>
-                    <b-btn v-shortkey="['esc']" @shortkey="onCancel()" @click="onCancel()" variant="danger" class="ml-15 mb-5">
+                    <b-btn v-shortkey="['esc']" @shortkey="onCancel()" @click="onCancel()" variant="danger" class="ml-15 mb-10">
                         <i class="material-icons">cancel</i>
                         Cancel
                     </b-btn>
@@ -179,11 +179,12 @@ export default {
         },
 
         onSaveNew() {
-            //save and go back to previous url.
+            this.onSave();
+            this.$router.push({ name: 'salesForm', params: { userId: '0' } })
         },
 
         onCancel() {
-            //Go back to previous url, without saving.
+            this.$router.go(-1);
         },
 
         addDetailRow() {
