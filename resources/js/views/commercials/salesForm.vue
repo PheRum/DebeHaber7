@@ -45,13 +45,13 @@
                                             <i class="material-icons">search</i>
                                         </b-input-group-text>
                                         <b-input type="text" placeholder="Search for Customer"/>
-                                        <b-input-group-text slot="append">
+                                        <b-input-group-text slot="append" v-if="data.customer != null">
                                             {{ data.customer.name }} | {{ data.customer.taxid }}
                                         </b-input-group-text>
                                     </b-input-group>
                                 </b-form-group>
 
-                                <b-container v-if="data != []">
+                                <b-container v-if="data.customer != null">
                                     Based on your past transactions, we can quickly recomend the same items again.
                                     <b-row>
                                         <b-col>
@@ -199,11 +199,19 @@ export default {
         var app = this;
         var baseUrl = '/api/' + app.$route.params.taxPayer + '/' + app.$route.params.cycle + '/'
 
-        crud.methods.onRead(baseUrl + "commercial/sales/" + app.$route.params.id)
-        .then(function (response) {  app.data = response; });
-
         crud.methods.onRead('/api/' + app.$route.params.taxPayer + '/currencies')
         .then(function (response) { app.currencies = response; });
+
+        if (app.$route.params.id > 0) {
+            crud.methods.onRead(baseUrl + "commercial/sales/" + app.$route.params.id)
+            .then(function (response) {  app.data = response; });
+        } else {
+            app.data.date = new Date(Date.now()).toISOString().split("T")[0];
+            app.data.chart_account_id = app.accountCharts[0] != null ? app.accountCharts[0].id : null;
+            app.data.payment_condition = 0;
+            app.data.currency_id = 1;
+            app.data.rate = 1;
+        }
 
         crud.methods.onRead(baseUrl + "accounting/charts/for/money/")
         .then(function (response) { app.accountCharts = response; });

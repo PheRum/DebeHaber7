@@ -3748,12 +3748,22 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var app = this;
     var baseUrl = '/api/' + app.$route.params.taxPayer + '/' + app.$route.params.cycle + '/';
-    _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"].methods.onRead(baseUrl + "commercial/sales/" + app.$route.params.id).then(function (response) {
-      app.data = response;
-    });
     _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"].methods.onRead('/api/' + app.$route.params.taxPayer + '/currencies').then(function (response) {
       app.currencies = response;
     });
+
+    if (app.$route.params.id > 0) {
+      _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"].methods.onRead(baseUrl + "commercial/sales/" + app.$route.params.id).then(function (response) {
+        app.data = response;
+      });
+    } else {
+      app.data.date = new Date(Date.now()).toISOString().split("T")[0];
+      app.data.chart_account_id = app.accountCharts[0] != null ? app.accountCharts[0].id : null;
+      app.data.payment_condition = 0;
+      app.data.currency_id = 1;
+      app.data.rate = 1;
+    }
+
     _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"].methods.onRead(baseUrl + "accounting/charts/for/money/").then(function (response) {
       app.accountCharts = response;
     });
@@ -86971,22 +86981,28 @@ var render = function() {
                                         }
                                       }),
                                       _vm._v(" "),
-                                      _c(
-                                        "b-input-group-text",
-                                        {
-                                          attrs: { slot: "append" },
-                                          slot: "append"
-                                        },
-                                        [
-                                          _vm._v(
-                                            "\n                                        " +
-                                              _vm._s(_vm.data.customer.name) +
-                                              " | " +
-                                              _vm._s(_vm.data.customer.taxid) +
-                                              "\n                                    "
+                                      _vm.data.customer != null
+                                        ? _c(
+                                            "b-input-group-text",
+                                            {
+                                              attrs: { slot: "append" },
+                                              slot: "append"
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                        " +
+                                                  _vm._s(
+                                                    _vm.data.customer.name
+                                                  ) +
+                                                  " | " +
+                                                  _vm._s(
+                                                    _vm.data.customer.taxid
+                                                  ) +
+                                                  "\n                                    "
+                                              )
+                                            ]
                                           )
-                                        ]
-                                      )
+                                        : _vm._e()
                                     ],
                                     1
                                   )
@@ -86994,7 +87010,7 @@ var render = function() {
                                 1
                               ),
                               _vm._v(" "),
-                              _vm.data != []
+                              _vm.data.customer != null
                                 ? _c(
                                     "b-container",
                                     [
