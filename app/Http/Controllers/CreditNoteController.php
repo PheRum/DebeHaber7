@@ -39,53 +39,43 @@ class CreditNoteController extends Controller
     * @param  \Illuminate\Http\Request  $request
     * @return \Illuminate\Http\Response
     */
-    public function store(Request $request,Taxpayer $taxPayer,Cycle $cycle)
+    public function store(Request $request, Taxpayer $taxPayer, $cycle)
     {
         $transaction = Transaction::firstOrNew('id', $request->id);
-
-        $Transaction->customer_id = $request->customer_id;
-        $Transaction->supplier_id = $taxPayer->id;
+        $transaction->customer_id = $request->customer_id;
+        $transaction->supplier_id = $taxPayer->id;
 
         if ($request->document_id > 0)
         {
-            $Transaction->document_id = $request->document_id;
+            $transaction->document_id = $request->document_id;
         }
 
-        $Transaction->currency_id = $request->currency_id;
-        $Transaction->rate = $request->rate ?? 1;
-        $Transaction->payment_condition = $request->payment_condition;
+        $transaction->currency_id = $request->currency_id;
+        $transaction->rate = $request->rate ?? 1;
+        $transaction->payment_condition = $request->payment_condition;
 
         if ($request->chart_account_id > 0)
         {
-            $Transaction->chart_account_id = $request->chart_account_id;
+            $transaction->chart_account_id = $request->chart_account_id;
         }
 
-        $Transaction->date = $request->date;
-        $Transaction->number = $request->number;
-        $Transaction->code = $request->code;
-        $Transaction->code_expiry = $request->code_expiry;
-        $Transaction->comment = $request->comment;
+        $transaction->date = $request->date;
+        $transaction->number = $request->number;
+        $transaction->code = $request->code;
+        $transaction->code_expiry = $request->code_expiry;
+        $transaction->comment = $request->comment;
+        $transaction->type = $request->type ?? 5;
 
-        $Transaction->type = $request->type ?? 5;
-
-        $Transaction->save();
+        $transaction->save();
 
         foreach ($request->details as $detail)
         {
-            if ($detail['id'] == 0)
-            {
-                $TransactionDetail = new TransactionDetail();
-            }
-            else
-            {
-                $TransactionDetail = TransactionDetail::where('id',$detail['id'])->first();
-            }
-
-            $TransactionDetail->transaction_id = $Transaction->id;
-            $TransactionDetail->chart_id = $detail['chart_id'];
-            $TransactionDetail->chart_vat_id = $detail['chart_vat_id'];
-            $TransactionDetail->value = $detail['value'];
-            $TransactionDetail->save();
+            $transactionDetail = TransactionDetail::firstOrNew('id', $request->id);
+            $transactionDetail->transaction_id = $transaction->id;
+            $transactionDetail->chart_id = $detail['chart_id'];
+            $transactionDetail->chart_vat_id = $detail['chart_vat_id'];
+            $transactionDetail->value = $detail['value'];
+            $transactionDetail->save();
         }
 
         return response()->json('Ok', 200);

@@ -15,6 +15,7 @@ use App\AccountMovement;
 use App\JournalDetail;
 use App\ProductionDetail;
 use App\Enums\ChartTypeEnum;
+use App\Http\Resources\GeneralResource;
 use Illuminate\Http\Request;
 
 class ChartController extends Controller
@@ -24,13 +25,12 @@ class ChartController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function index(Taxpayer $taxPayer, Cycle $cycle)
-    {
-        return GeneralResource::collection(Chart::orderBy('code')
-        ->paginate(50));
+    public function index(Taxpayer $taxPayer, Cycle $cycle) {
+        return GeneralResource::collection(
+            Chart::orderBy('code')
+            ->paginate(50)
+        );
     }
-
-
 
     /**
     * Store a newly created resource in storage.
@@ -38,10 +38,9 @@ class ChartController extends Controller
     * @param  \Illuminate\Http\Request  $request
     * @return \Illuminate\Http\Response
     */
-    public function store(Request $request, Taxpayer $taxPayer, Cycle $cycle)
-    {
-        $chart = Chart::firstOrNew('id', $request->id);
+    public function store(Request $request, Taxpayer $taxPayer, Cycle $cycle) {
 
+        $chart = Chart::firstOrNew('id', $request->id);
         $chart->chart_version_id = $cycle->chart_version_id;
         $chart->country = $taxPayer->country;
         $chart->taxpayer_id = $taxPayer->id;
@@ -82,16 +81,13 @@ class ChartController extends Controller
         return response()->json(200);
     }
 
-
-
     /**
     * Show the form for editing the specified resource.
     *
     * @param  \App\Chart  $chart
     * @return \Illuminate\Http\Response
     */
-    public function edit(Chart $chart)
-    {
+    public function edit(Chart $chart) {
         return new GeneralResource(
             Chart::where('id', $chart->id)
             ->first()
@@ -109,7 +105,6 @@ class ChartController extends Controller
         try
         {
             Transaction::where('id', $transactionId)->delete();
-
             return response()->json('Ok', 200);
         }
         catch (\Exception $e)
@@ -118,72 +113,72 @@ class ChartController extends Controller
         }
     }
 
-
-
     public function getAccountableCharts(Taxpayer $taxPayer, Cycle $cycle)
     {
-        $charts = Chart::where('is_accountable', true)->orderBy('code')->get();
-        return response()->json($charts);
+        return GeneralResource::collection(
+            Chart::where('is_accountable', true)->orderBy('code')->get()
+        );
     }
 
     public function getSalesAccounts(Taxpayer $taxPayer, Cycle $cycle)
     {
-        $charts = Chart::SalesAccounts()
-        ->orderBy('name')
-        ->select('name', 'id', 'type')
-        ->get();
-
-        return response()->json($charts);
+        return GeneralResource::collection(
+            Chart::SalesAccounts()
+            ->orderBy('name')
+            ->select('name', 'id', 'sub_type')
+            ->get()
+        );
     }
 
     public function getFixedAssets(Taxpayer $taxPayer, Cycle $cycle)
     {
-        $charts = Chart::FixedAssetGroups()
-        ->orderBy('name')
-        ->select('name', 'id', 'type')
-        ->get();
-
-        return response()->json($charts);
+        return GeneralResource::collection(
+            Chart::FixedAssetGroups()
+            ->orderBy('name')
+            ->select('name', 'id', 'sub_type')
+            ->get()
+        );
     }
 
     // Accounts used in Purchase. Expense + Fixed Assets
     public function getPurchaseAccounts(Taxpayer $taxPayer, Cycle $cycle)
     {
-        $charts = Chart::PurchaseAccounts()
-        ->orderBy('name')
-        ->select('name', 'id', 'type')
-        ->get();
-        return response()->json($charts);
+        return GeneralResource::collection(
+            Chart::PurchaseAccounts()
+            ->orderBy('name')
+            ->select('name', 'id', 'sub_type')
+            ->get()
+        );
     }
 
     // Money Accounts
     public function getMoneyAccounts(Taxpayer $taxPayer, Cycle $cycle)
     {
-        $charts = Chart::MoneyAccounts()->orderBy('name')
-        ->select('name', 'id', 'sub_type')
-        ->get();
-        return response()->json($charts);
+        return GeneralResource::collection(
+            Chart::MoneyAccounts()->orderBy('name')
+            ->select('name', 'id', 'sub_type')
+            ->get()
+        );
     }
 
     // Debit VAT, used in Sales. Also Normal Sales Tax (Not VAT).
     public function getVATDebit(Taxpayer $taxPayer, Cycle $cycle)
     {
-        $charts = Chart::
-        VATDebitAccounts()
-        ->select('name', 'code', 'id', 'coefficient')
-        ->get();
-
-        return response()->json($charts);
+        return GeneralResource::collection(
+            Chart::VATDebitAccounts()
+            ->select('name', 'code', 'id', 'coefficient', 'type')
+            ->get()
+        );
     }
 
     // Credit VAT, used in Purchases
     public function getVATCredit(Taxpayer $taxPayer, Cycle $cycle)
     {
-        $charts = Chart::
-        VATCreditAccounts()
-        ->select('name', 'code', 'id', 'coefficient')
-        ->get();
-        return response()->json($charts);
+        return GeneralResource::collection(
+            Chart::VATCreditAccounts()
+            ->select('name', 'code', 'id', 'coefficient', 'type')
+            ->get()
+        );
     }
 
     // Improve with Elastic Search

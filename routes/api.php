@@ -116,11 +116,8 @@ Route::prefix('{taxPayer}')->group(function ()
         });
     });
 
-
     Route::prefix('PRY')->group(function()
     {
         Route::get('/hechauka/{startDate}/{endDate}', 'API\PRY\HechukaController@getHechauka');
     });
-    // });
-
 });

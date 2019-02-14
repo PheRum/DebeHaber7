@@ -3605,6 +3605,44 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3614,9 +3652,20 @@ __webpack_require__.r(__webpack_exports__);
     return {
       data: [],
       documents: [],
+      currencies: [],
       accountCharts: [],
-      accountVats: [],
-      accountItems: []
+      vatCharts: [],
+      itemCharts: [],
+      columns: [{
+        key: 'chart_id',
+        label: 'Item'
+      }, {
+        key: 'chart_vat_id',
+        label: 'Vat'
+      }, {
+        key: 'value',
+        label: 'Value'
+      }]
     };
   },
   methods: {
@@ -3630,18 +3679,18 @@ __webpack_require__.r(__webpack_exports__);
     _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"].methods.onRead(baseUrl + "commercial/sales/" + app.$route.params.id).then(function (response) {
       app.data = response;
     });
-    _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"].methods.onRead(baseUrl + "charts/for/money/").then(function (response) {
-      app.accountCharts = response.data;
+    _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"].methods.onRead('/api/' + app.$route.params.taxPayer + '/currencies').then(function (response) {
+      app.currencies = response;
     });
-    _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"].methods.onRead(baseUrl + "charts/for/vats-debit").then(function (response) {
-      app.accountVats = response.data;
+    _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"].methods.onRead(baseUrl + "accounting/charts/for/money/").then(function (response) {
+      app.accountCharts = response;
     });
-    _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"].methods.onRead(baseUrl + "charts/for/income").then(function (response) {
-      app.accountItems = response.data;
-    }); // Toast.fire({
-    //     type: 'success',
-    //     title: 'Ready when you are!'
-    // })
+    _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"].methods.onRead(baseUrl + "accounting/charts/for/vats-debit").then(function (response) {
+      app.vatCharts = response;
+    });
+    _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"].methods.onRead(baseUrl + "accounting/charts/for/income").then(function (response) {
+      app.itemCharts = response;
+    });
   }
 });
 
@@ -19901,17 +19950,17 @@ function warn(message) {
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
-  * Bootstrap v4.3.1 (https://getbootstrap.com/)
-  * Copyright 2011-2019 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
+  * Bootstrap v4.2.1 (https://getbootstrap.com/)
+  * Copyright 2011-2018 The Bootstrap Authors (https://github.com/twbs/bootstrap/graphs/contributors)
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
   */
 (function (global, factory) {
-   true ? factory(exports, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"), __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")) :
+   true ? factory(exports, __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js"), __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")) :
   undefined;
-}(this, function (exports, $, Popper) { 'use strict';
+}(this, (function (exports,Popper,$) { 'use strict';
 
-  $ = $ && $.hasOwnProperty('default') ? $['default'] : $;
   Popper = Popper && Popper.hasOwnProperty('default') ? Popper['default'] : Popper;
+  $ = $ && $.hasOwnProperty('default') ? $['default'] : $;
 
   function _defineProperties(target, props) {
     for (var i = 0; i < props.length; i++) {
@@ -19971,7 +20020,7 @@ function warn(message) {
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap (v4.3.1): util.js
+   * Bootstrap (v4.2.1): util.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
    * --------------------------------------------------------------------------
    */
@@ -20047,11 +20096,7 @@ function warn(message) {
         selector = hrefAttr && hrefAttr !== '#' ? hrefAttr.trim() : '';
       }
 
-      try {
-        return document.querySelector(selector) ? selector : null;
-      } catch (err) {
-        return null;
-      }
+      return selector && document.querySelector(selector) ? selector : null;
     },
     getTransitionDurationFromElement: function getTransitionDurationFromElement(element) {
       if (!element) {
@@ -20131,7 +20176,7 @@ function warn(message) {
    */
 
   var NAME = 'alert';
-  var VERSION = '4.3.1';
+  var VERSION = '4.2.1';
   var DATA_KEY = 'bs.alert';
   var EVENT_KEY = "." + DATA_KEY;
   var DATA_API_KEY = '.data-api';
@@ -20186,8 +20231,8 @@ function warn(message) {
     _proto.dispose = function dispose() {
       $.removeData(this._element, DATA_KEY);
       this._element = null;
-    } // Private
-    ;
+    }; // Private
+
 
     _proto._getRootElement = function _getRootElement(element) {
       var selector = Util.getSelectorFromElement(element);
@@ -20229,8 +20274,8 @@ function warn(message) {
 
     _proto._destroyElement = function _destroyElement(element) {
       $(element).detach().trigger(Event.CLOSED).remove();
-    } // Static
-    ;
+    }; // Static
+
 
     Alert._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
@@ -20296,7 +20341,7 @@ function warn(message) {
    */
 
   var NAME$1 = 'button';
-  var VERSION$1 = '4.3.1';
+  var VERSION$1 = '4.2.1';
   var DATA_KEY$1 = 'bs.button';
   var EVENT_KEY$1 = "." + DATA_KEY$1;
   var DATA_API_KEY$1 = '.data-api';
@@ -20382,8 +20427,8 @@ function warn(message) {
     _proto.dispose = function dispose() {
       $.removeData(this._element, DATA_KEY$1);
       this._element = null;
-    } // Static
-    ;
+    }; // Static
+
 
     Button._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
@@ -20450,7 +20495,7 @@ function warn(message) {
    */
 
   var NAME$2 = 'carousel';
-  var VERSION$2 = '4.3.1';
+  var VERSION$2 = '4.2.1';
   var DATA_KEY$2 = 'bs.carousel';
   var EVENT_KEY$2 = "." + DATA_KEY$2;
   var DATA_API_KEY$2 = '.data-api';
@@ -20645,8 +20690,8 @@ function warn(message) {
       this._isSliding = null;
       this._activeElement = null;
       this._indicatorsElement = null;
-    } // Private
-    ;
+    }; // Private
+
 
     _proto._getConfig = function _getConfig(config) {
       config = _objectSpread({}, Default, config);
@@ -20690,9 +20735,7 @@ function warn(message) {
         });
       }
 
-      if (this._config.touch) {
-        this._addTouchEventListeners();
-      }
+      this._addTouchEventListeners();
     };
 
     _proto._addTouchEventListeners = function _addTouchEventListeners() {
@@ -20933,8 +20976,8 @@ function warn(message) {
       if (isCycling) {
         this.cycle();
       }
-    } // Static
-    ;
+    }; // Static
+
 
     Carousel._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
@@ -20961,7 +21004,7 @@ function warn(message) {
           }
 
           data[action]();
-        } else if (_config.interval && _config.ride) {
+        } else if (_config.interval) {
           data.pause();
           data.cycle();
         }
@@ -21050,7 +21093,7 @@ function warn(message) {
    */
 
   var NAME$3 = 'collapse';
-  var VERSION$3 = '4.3.1';
+  var VERSION$3 = '4.2.1';
   var DATA_KEY$3 = 'bs.collapse';
   var EVENT_KEY$3 = "." + DATA_KEY$3;
   var DATA_API_KEY$3 = '.data-api';
@@ -21272,8 +21315,8 @@ function warn(message) {
       this._element = null;
       this._triggerArray = null;
       this._isTransitioning = null;
-    } // Private
-    ;
+    }; // Private
+
 
     _proto._getConfig = function _getConfig(config) {
       config = _objectSpread({}, Default$1, config);
@@ -21317,8 +21360,8 @@ function warn(message) {
       if (triggerArray.length) {
         $(triggerArray).toggleClass(ClassName$3.COLLAPSED, !isOpen).attr('aria-expanded', isOpen);
       }
-    } // Static
-    ;
+    }; // Static
+
 
     Collapse._getTargetFromElement = function _getTargetFromElement(element) {
       var selector = Util.getSelectorFromElement(element);
@@ -21410,7 +21453,7 @@ function warn(message) {
    */
 
   var NAME$4 = 'dropdown';
-  var VERSION$4 = '4.3.1';
+  var VERSION$4 = '4.2.1';
   var DATA_KEY$4 = 'bs.dropdown';
   var EVENT_KEY$4 = "." + DATA_KEY$4;
   var DATA_API_KEY$4 = '.data-api';
@@ -21639,8 +21682,8 @@ function warn(message) {
       if (this._popper !== null) {
         this._popper.scheduleUpdate();
       }
-    } // Private
-    ;
+    }; // Private
+
 
     _proto._addEventListeners = function _addEventListeners() {
       var _this = this;
@@ -21696,28 +21739,24 @@ function warn(message) {
       return $(this._element).closest('.navbar').length > 0;
     };
 
-    _proto._getOffset = function _getOffset() {
+    _proto._getPopperConfig = function _getPopperConfig() {
       var _this2 = this;
 
-      var offset = {};
+      var offsetConf = {};
 
       if (typeof this._config.offset === 'function') {
-        offset.fn = function (data) {
-          data.offsets = _objectSpread({}, data.offsets, _this2._config.offset(data.offsets, _this2._element) || {});
+        offsetConf.fn = function (data) {
+          data.offsets = _objectSpread({}, data.offsets, _this2._config.offset(data.offsets) || {});
           return data;
         };
       } else {
-        offset.offset = this._config.offset;
+        offsetConf.offset = this._config.offset;
       }
 
-      return offset;
-    };
-
-    _proto._getPopperConfig = function _getPopperConfig() {
       var popperConfig = {
         placement: this._getPlacement(),
         modifiers: {
-          offset: this._getOffset(),
+          offset: offsetConf,
           flip: {
             enabled: this._config.flip
           },
@@ -21735,8 +21774,8 @@ function warn(message) {
       }
 
       return popperConfig;
-    } // Static
-    ;
+    }; // Static
+
 
     Dropdown._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
@@ -21820,8 +21859,8 @@ function warn(message) {
       }
 
       return parent || element.parentNode;
-    } // eslint-disable-next-line complexity
-    ;
+    }; // eslint-disable-next-line complexity
+
 
     Dropdown._dataApiKeydownHandler = function _dataApiKeydownHandler(event) {
       // If not input/textarea:
@@ -21936,7 +21975,7 @@ function warn(message) {
    */
 
   var NAME$5 = 'modal';
-  var VERSION$5 = '4.3.1';
+  var VERSION$5 = '4.2.1';
   var DATA_KEY$5 = 'bs.modal';
   var EVENT_KEY$5 = "." + DATA_KEY$5;
   var DATA_API_KEY$5 = '.data-api';
@@ -21969,7 +22008,6 @@ function warn(message) {
     CLICK_DATA_API: "click" + EVENT_KEY$5 + DATA_API_KEY$5
   };
   var ClassName$5 = {
-    SCROLLABLE: 'modal-dialog-scrollable',
     SCROLLBAR_MEASURER: 'modal-scrollbar-measure',
     BACKDROP: 'modal-backdrop',
     OPEN: 'modal-open',
@@ -21978,7 +22016,6 @@ function warn(message) {
   };
   var Selector$5 = {
     DIALOG: '.modal-dialog',
-    MODAL_BODY: '.modal-body',
     DATA_TOGGLE: '[data-toggle="modal"]',
     DATA_DISMISS: '[data-dismiss="modal"]',
     FIXED_CONTENT: '.fixed-top, .fixed-bottom, .is-fixed, .sticky-top',
@@ -22131,8 +22168,8 @@ function warn(message) {
 
     _proto.handleUpdate = function handleUpdate() {
       this._adjustDialog();
-    } // Private
-    ;
+    }; // Private
+
 
     _proto._getConfig = function _getConfig(config) {
       config = _objectSpread({}, Default$3, config);
@@ -22156,11 +22193,7 @@ function warn(message) {
 
       this._element.setAttribute('aria-modal', true);
 
-      if ($(this._dialog).hasClass(ClassName$5.SCROLLABLE)) {
-        this._dialog.querySelector(Selector$5.MODAL_BODY).scrollTop = 0;
-      } else {
-        this._element.scrollTop = 0;
-      }
+      this._element.scrollTop = 0;
 
       if (transition) {
         Util.reflow(this._element);
@@ -22330,11 +22363,11 @@ function warn(message) {
       } else if (callback) {
         callback();
       }
-    } // ----------------------------------------------------------------------
+    }; // ----------------------------------------------------------------------
     // the following methods are used to handle overflowing modals
     // todo (fat): these should probably be refactored out of modal.js
     // ----------------------------------------------------------------------
-    ;
+
 
     _proto._adjustDialog = function _adjustDialog() {
       var isModalOverflowing = this._element.scrollHeight > document.documentElement.clientHeight;
@@ -22419,8 +22452,8 @@ function warn(message) {
       var scrollbarWidth = scrollDiv.getBoundingClientRect().width - scrollDiv.clientWidth;
       document.body.removeChild(scrollDiv);
       return scrollbarWidth;
-    } // Static
-    ;
+    }; // Static
+
 
     Modal._jQueryInterface = function _jQueryInterface(config, relatedTarget) {
       return this.each(function () {
@@ -22512,140 +22545,18 @@ function warn(message) {
   };
 
   /**
-   * --------------------------------------------------------------------------
-   * Bootstrap (v4.3.1): tools/sanitizer.js
-   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
-   * --------------------------------------------------------------------------
-   */
-  var uriAttrs = ['background', 'cite', 'href', 'itemtype', 'longdesc', 'poster', 'src', 'xlink:href'];
-  var ARIA_ATTRIBUTE_PATTERN = /^aria-[\w-]*$/i;
-  var DefaultWhitelist = {
-    // Global attributes allowed on any supplied element below.
-    '*': ['class', 'dir', 'id', 'lang', 'role', ARIA_ATTRIBUTE_PATTERN],
-    a: ['target', 'href', 'title', 'rel'],
-    area: [],
-    b: [],
-    br: [],
-    col: [],
-    code: [],
-    div: [],
-    em: [],
-    hr: [],
-    h1: [],
-    h2: [],
-    h3: [],
-    h4: [],
-    h5: [],
-    h6: [],
-    i: [],
-    img: ['src', 'alt', 'title', 'width', 'height'],
-    li: [],
-    ol: [],
-    p: [],
-    pre: [],
-    s: [],
-    small: [],
-    span: [],
-    sub: [],
-    sup: [],
-    strong: [],
-    u: [],
-    ul: []
-    /**
-     * A pattern that recognizes a commonly useful subset of URLs that are safe.
-     *
-     * Shoutout to Angular 7 https://github.com/angular/angular/blob/7.2.4/packages/core/src/sanitization/url_sanitizer.ts
-     */
-
-  };
-  var SAFE_URL_PATTERN = /^(?:(?:https?|mailto|ftp|tel|file):|[^&:/?#]*(?:[/?#]|$))/gi;
-  /**
-   * A pattern that matches safe data URLs. Only matches image, video and audio types.
-   *
-   * Shoutout to Angular 7 https://github.com/angular/angular/blob/7.2.4/packages/core/src/sanitization/url_sanitizer.ts
-   */
-
-  var DATA_URL_PATTERN = /^data:(?:image\/(?:bmp|gif|jpeg|jpg|png|tiff|webp)|video\/(?:mpeg|mp4|ogg|webm)|audio\/(?:mp3|oga|ogg|opus));base64,[a-z0-9+/]+=*$/i;
-
-  function allowedAttribute(attr, allowedAttributeList) {
-    var attrName = attr.nodeName.toLowerCase();
-
-    if (allowedAttributeList.indexOf(attrName) !== -1) {
-      if (uriAttrs.indexOf(attrName) !== -1) {
-        return Boolean(attr.nodeValue.match(SAFE_URL_PATTERN) || attr.nodeValue.match(DATA_URL_PATTERN));
-      }
-
-      return true;
-    }
-
-    var regExp = allowedAttributeList.filter(function (attrRegex) {
-      return attrRegex instanceof RegExp;
-    }); // Check if a regular expression validates the attribute.
-
-    for (var i = 0, l = regExp.length; i < l; i++) {
-      if (attrName.match(regExp[i])) {
-        return true;
-      }
-    }
-
-    return false;
-  }
-
-  function sanitizeHtml(unsafeHtml, whiteList, sanitizeFn) {
-    if (unsafeHtml.length === 0) {
-      return unsafeHtml;
-    }
-
-    if (sanitizeFn && typeof sanitizeFn === 'function') {
-      return sanitizeFn(unsafeHtml);
-    }
-
-    var domParser = new window.DOMParser();
-    var createdDocument = domParser.parseFromString(unsafeHtml, 'text/html');
-    var whitelistKeys = Object.keys(whiteList);
-    var elements = [].slice.call(createdDocument.body.querySelectorAll('*'));
-
-    var _loop = function _loop(i, len) {
-      var el = elements[i];
-      var elName = el.nodeName.toLowerCase();
-
-      if (whitelistKeys.indexOf(el.nodeName.toLowerCase()) === -1) {
-        el.parentNode.removeChild(el);
-        return "continue";
-      }
-
-      var attributeList = [].slice.call(el.attributes);
-      var whitelistedAttributes = [].concat(whiteList['*'] || [], whiteList[elName] || []);
-      attributeList.forEach(function (attr) {
-        if (!allowedAttribute(attr, whitelistedAttributes)) {
-          el.removeAttribute(attr.nodeName);
-        }
-      });
-    };
-
-    for (var i = 0, len = elements.length; i < len; i++) {
-      var _ret = _loop(i, len);
-
-      if (_ret === "continue") continue;
-    }
-
-    return createdDocument.body.innerHTML;
-  }
-
-  /**
    * ------------------------------------------------------------------------
    * Constants
    * ------------------------------------------------------------------------
    */
 
   var NAME$6 = 'tooltip';
-  var VERSION$6 = '4.3.1';
+  var VERSION$6 = '4.2.1';
   var DATA_KEY$6 = 'bs.tooltip';
   var EVENT_KEY$6 = "." + DATA_KEY$6;
   var JQUERY_NO_CONFLICT$6 = $.fn[NAME$6];
   var CLASS_PREFIX = 'bs-tooltip';
   var BSCLS_PREFIX_REGEX = new RegExp("(^|\\s)" + CLASS_PREFIX + "\\S+", 'g');
-  var DISALLOWED_ATTRIBUTES = ['sanitize', 'whiteList', 'sanitizeFn'];
   var DefaultType$4 = {
     animation: 'boolean',
     template: 'string',
@@ -22655,13 +22566,10 @@ function warn(message) {
     html: 'boolean',
     selector: '(string|boolean)',
     placement: '(string|function)',
-    offset: '(number|string|function)',
+    offset: '(number|string)',
     container: '(string|element|boolean)',
     fallbackPlacement: '(string|array)',
-    boundary: '(string|element)',
-    sanitize: 'boolean',
-    sanitizeFn: '(null|function)',
-    whiteList: 'object'
+    boundary: '(string|element)'
   };
   var AttachmentMap$1 = {
     AUTO: 'auto',
@@ -22682,10 +22590,7 @@ function warn(message) {
     offset: 0,
     container: false,
     fallbackPlacement: 'flip',
-    boundary: 'scrollParent',
-    sanitize: true,
-    sanitizeFn: null,
-    whiteList: DefaultWhitelist
+    boundary: 'scrollParent'
   };
   var HoverState = {
     SHOW: 'show',
@@ -22870,7 +22775,9 @@ function warn(message) {
         this._popper = new Popper(this.element, tip, {
           placement: attachment,
           modifiers: {
-            offset: this._getOffset(),
+            offset: {
+              offset: this.config.offset
+            },
             flip: {
               behavior: this.config.fallbackPlacement
             },
@@ -22979,8 +22886,8 @@ function warn(message) {
       if (this._popper !== null) {
         this._popper.scheduleUpdate();
       }
-    } // Protected
-    ;
+    }; // Protected
+
 
     _proto.isWithContent = function isWithContent() {
       return Boolean(this.getTitle());
@@ -23002,27 +22909,19 @@ function warn(message) {
     };
 
     _proto.setElementContent = function setElementContent($element, content) {
+      var html = this.config.html;
+
       if (typeof content === 'object' && (content.nodeType || content.jquery)) {
         // Content is a DOM node or a jQuery
-        if (this.config.html) {
+        if (html) {
           if (!$(content).parent().is($element)) {
             $element.empty().append(content);
           }
         } else {
           $element.text($(content).text());
         }
-
-        return;
-      }
-
-      if (this.config.html) {
-        if (this.config.sanitize) {
-          content = sanitizeHtml(content, this.config.whiteList, this.config.sanitizeFn);
-        }
-
-        $element.html(content);
       } else {
-        $element.text(content);
+        $element[html ? 'html' : 'text'](content);
       }
     };
 
@@ -23034,25 +22933,8 @@ function warn(message) {
       }
 
       return title;
-    } // Private
-    ;
+    }; // Private
 
-    _proto._getOffset = function _getOffset() {
-      var _this3 = this;
-
-      var offset = {};
-
-      if (typeof this.config.offset === 'function') {
-        offset.fn = function (data) {
-          data.offsets = _objectSpread({}, data.offsets, _this3.config.offset(data.offsets, _this3.element) || {});
-          return data;
-        };
-      } else {
-        offset.offset = this.config.offset;
-      }
-
-      return offset;
-    };
 
     _proto._getContainer = function _getContainer() {
       if (this.config.container === false) {
@@ -23071,27 +22953,27 @@ function warn(message) {
     };
 
     _proto._setListeners = function _setListeners() {
-      var _this4 = this;
+      var _this3 = this;
 
       var triggers = this.config.trigger.split(' ');
       triggers.forEach(function (trigger) {
         if (trigger === 'click') {
-          $(_this4.element).on(_this4.constructor.Event.CLICK, _this4.config.selector, function (event) {
-            return _this4.toggle(event);
+          $(_this3.element).on(_this3.constructor.Event.CLICK, _this3.config.selector, function (event) {
+            return _this3.toggle(event);
           });
         } else if (trigger !== Trigger.MANUAL) {
-          var eventIn = trigger === Trigger.HOVER ? _this4.constructor.Event.MOUSEENTER : _this4.constructor.Event.FOCUSIN;
-          var eventOut = trigger === Trigger.HOVER ? _this4.constructor.Event.MOUSELEAVE : _this4.constructor.Event.FOCUSOUT;
-          $(_this4.element).on(eventIn, _this4.config.selector, function (event) {
-            return _this4._enter(event);
-          }).on(eventOut, _this4.config.selector, function (event) {
-            return _this4._leave(event);
+          var eventIn = trigger === Trigger.HOVER ? _this3.constructor.Event.MOUSEENTER : _this3.constructor.Event.FOCUSIN;
+          var eventOut = trigger === Trigger.HOVER ? _this3.constructor.Event.MOUSELEAVE : _this3.constructor.Event.FOCUSOUT;
+          $(_this3.element).on(eventIn, _this3.config.selector, function (event) {
+            return _this3._enter(event);
+          }).on(eventOut, _this3.config.selector, function (event) {
+            return _this3._leave(event);
           });
         }
       });
       $(this.element).closest('.modal').on('hide.bs.modal', function () {
-        if (_this4.element) {
-          _this4.hide();
+        if (_this3.element) {
+          _this3.hide();
         }
       });
 
@@ -23190,13 +23072,7 @@ function warn(message) {
     };
 
     _proto._getConfig = function _getConfig(config) {
-      var dataAttributes = $(this.element).data();
-      Object.keys(dataAttributes).forEach(function (dataAttr) {
-        if (DISALLOWED_ATTRIBUTES.indexOf(dataAttr) !== -1) {
-          delete dataAttributes[dataAttr];
-        }
-      });
-      config = _objectSpread({}, this.constructor.Default, dataAttributes, typeof config === 'object' && config ? config : {});
+      config = _objectSpread({}, this.constructor.Default, $(this.element).data(), typeof config === 'object' && config ? config : {});
 
       if (typeof config.delay === 'number') {
         config.delay = {
@@ -23214,11 +23090,6 @@ function warn(message) {
       }
 
       Util.typeCheckConfig(NAME$6, config, this.constructor.DefaultType);
-
-      if (config.sanitize) {
-        config.template = sanitizeHtml(config.template, config.whiteList, config.sanitizeFn);
-      }
-
       return config;
     };
 
@@ -23267,8 +23138,8 @@ function warn(message) {
       this.hide();
       this.show();
       this.config.animation = initConfigAnimation;
-    } // Static
-    ;
+    }; // Static
+
 
     Tooltip._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
@@ -23356,7 +23227,7 @@ function warn(message) {
    */
 
   var NAME$7 = 'popover';
-  var VERSION$7 = '4.3.1';
+  var VERSION$7 = '4.2.1';
   var DATA_KEY$7 = 'bs.popover';
   var EVENT_KEY$7 = "." + DATA_KEY$7;
   var JQUERY_NO_CONFLICT$7 = $.fn[NAME$7];
@@ -23439,8 +23310,8 @@ function warn(message) {
 
       this.setElementContent($tip.find(Selector$7.CONTENT), content);
       $tip.removeClass(ClassName$7.FADE + " " + ClassName$7.SHOW);
-    } // Private
-    ;
+    }; // Private
+
 
     _proto._getContent = function _getContent() {
       return this.element.getAttribute('data-content') || this.config.content;
@@ -23453,8 +23324,8 @@ function warn(message) {
       if (tabClass !== null && tabClass.length > 0) {
         $tip.removeClass(tabClass.join(''));
       }
-    } // Static
-    ;
+    }; // Static
+
 
     Popover._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
@@ -23543,7 +23414,7 @@ function warn(message) {
    */
 
   var NAME$8 = 'scrollspy';
-  var VERSION$8 = '4.3.1';
+  var VERSION$8 = '4.2.1';
   var DATA_KEY$8 = 'bs.scrollspy';
   var EVENT_KEY$8 = "." + DATA_KEY$8;
   var DATA_API_KEY$6 = '.data-api';
@@ -23666,8 +23537,8 @@ function warn(message) {
       this._targets = null;
       this._activeTarget = null;
       this._scrollHeight = null;
-    } // Private
-    ;
+    }; // Private
+
 
     _proto._getConfig = function _getConfig(config) {
       config = _objectSpread({}, Default$6, typeof config === 'object' && config ? config : {});
@@ -23774,8 +23645,8 @@ function warn(message) {
       }).forEach(function (node) {
         return node.classList.remove(ClassName$8.ACTIVE);
       });
-    } // Static
-    ;
+    }; // Static
+
 
     ScrollSpy._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
@@ -23850,7 +23721,7 @@ function warn(message) {
    */
 
   var NAME$9 = 'tab';
-  var VERSION$9 = '4.3.1';
+  var VERSION$9 = '4.2.1';
   var DATA_KEY$9 = 'bs.tab';
   var EVENT_KEY$9 = "." + DATA_KEY$9;
   var DATA_API_KEY$7 = '.data-api';
@@ -23958,8 +23829,8 @@ function warn(message) {
     _proto.dispose = function dispose() {
       $.removeData(this._element, DATA_KEY$9);
       this._element = null;
-    } // Private
-    ;
+    }; // Private
+
 
     _proto._activate = function _activate(element, container, callback) {
       var _this2 = this;
@@ -24001,10 +23872,7 @@ function warn(message) {
       }
 
       Util.reflow(element);
-
-      if (element.classList.contains(ClassName$9.FADE)) {
-        element.classList.add(ClassName$9.SHOW);
-      }
+      $(element).addClass(ClassName$9.SHOW);
 
       if (element.parentNode && $(element.parentNode).hasClass(ClassName$9.DROPDOWN_MENU)) {
         var dropdownElement = $(element).closest(Selector$9.DROPDOWN)[0];
@@ -24020,8 +23888,8 @@ function warn(message) {
       if (callback) {
         callback();
       }
-    } // Static
-    ;
+    }; // Static
+
 
     Tab._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
@@ -24085,7 +23953,7 @@ function warn(message) {
    */
 
   var NAME$a = 'toast';
-  var VERSION$a = '4.3.1';
+  var VERSION$a = '4.2.1';
   var DATA_KEY$a = 'bs.toast';
   var EVENT_KEY$a = "." + DATA_KEY$a;
   var JQUERY_NO_CONFLICT$a = $.fn[NAME$a];
@@ -24200,8 +24068,8 @@ function warn(message) {
       $.removeData(this._element, DATA_KEY$a);
       this._element = null;
       this._config = null;
-    } // Private
-    ;
+    }; // Private
+
 
     _proto._getConfig = function _getConfig(config) {
       config = _objectSpread({}, Default$7, $(this._element).data(), typeof config === 'object' && config ? config : {});
@@ -24234,8 +24102,8 @@ function warn(message) {
       } else {
         complete();
       }
-    } // Static
-    ;
+    }; // Static
+
 
     Toast._jQueryInterface = function _jQueryInterface(config) {
       return this.each(function () {
@@ -24269,11 +24137,6 @@ function warn(message) {
       get: function get() {
         return DefaultType$7;
       }
-    }, {
-      key: "Default",
-      get: function get() {
-        return Default$7;
-      }
     }]);
 
     return Toast;
@@ -24295,7 +24158,7 @@ function warn(message) {
 
   /**
    * --------------------------------------------------------------------------
-   * Bootstrap (v4.3.1): index.js
+   * Bootstrap (v4.2.1): index.js
    * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
    * --------------------------------------------------------------------------
    */
@@ -24332,7 +24195,7 @@ function warn(message) {
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
-}));
+})));
 //# sourceMappingURL=bootstrap.js.map
 
 
@@ -86482,12 +86345,6 @@ var render = function() {
             [
               _c(
                 "b-card",
-                {
-                  attrs: {
-                    title: _vm.$parent.$route.meta.title,
-                    "sub-title": _vm.$parent.$route.meta.description
-                  }
-                },
                 [
                   _c(
                     "b-container",
@@ -86524,26 +86381,190 @@ var render = function() {
                                 "b-form-group",
                                 { attrs: { label: "Customer" } },
                                 [
-                                  _c("b-input", {
-                                    attrs: {
-                                      type: "text",
-                                      placeholder: "Search for Customer"
-                                    },
-                                    model: {
-                                      value: _vm.data.customer.name,
-                                      callback: function($$v) {
-                                        _vm.$set(_vm.data.customer, "name", $$v)
-                                      },
-                                      expression: "data.customer.name"
-                                    }
-                                  })
+                                  _c(
+                                    "b-input-group",
+                                    [
+                                      _c(
+                                        "b-input-group-text",
+                                        {
+                                          attrs: { slot: "prepend" },
+                                          slot: "prepend"
+                                        },
+                                        [
+                                          _c(
+                                            "i",
+                                            { staticClass: "material-icons" },
+                                            [_vm._v("search")]
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c("b-input", {
+                                        attrs: {
+                                          type: "text",
+                                          placeholder: "Search for Customer"
+                                        },
+                                        model: {
+                                          value: _vm.data.customer.name,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.data.customer,
+                                              "name",
+                                              $$v
+                                            )
+                                          },
+                                          expression: "data.customer.name"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
                                 ],
                                 1
                               ),
-                              _vm._v(
-                                "\n                            " +
-                                  _vm._s(_vm.data.customer) +
-                                  "\n                        "
+                              _vm._v(" "),
+                              _c(
+                                "b-form-group",
+                                { attrs: { label: "Payment Condition" } },
+                                [
+                                  _c(
+                                    "b-input-group",
+                                    [
+                                      _c("b-input", {
+                                        attrs: {
+                                          type: "number",
+                                          placeholder: "Payment"
+                                        },
+                                        model: {
+                                          value: _vm.data.payment_condition,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.data,
+                                              "payment_condition",
+                                              $$v
+                                            )
+                                          },
+                                          expression: "data.payment_condition"
+                                        }
+                                      }),
+                                      _vm._v(" "),
+                                      _vm.data.payment_condition == 0
+                                        ? _c(
+                                            "b-input-group-append",
+                                            [
+                                              _c(
+                                                "b-form-select",
+                                                {
+                                                  staticClass: "mb-3",
+                                                  model: {
+                                                    value:
+                                                      _vm.data.chart_account_id,
+                                                    callback: function($$v) {
+                                                      _vm.$set(
+                                                        _vm.data,
+                                                        "chart_account_id",
+                                                        $$v
+                                                      )
+                                                    },
+                                                    expression:
+                                                      "data.chart_account_id"
+                                                  }
+                                                },
+                                                _vm._l(
+                                                  _vm.accountCharts,
+                                                  function(account) {
+                                                    return _c(
+                                                      "option",
+                                                      {
+                                                        key: account.key,
+                                                        domProps: {
+                                                          value: account.id
+                                                        }
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          _vm._s(account.name)
+                                                        )
+                                                      ]
+                                                    )
+                                                  }
+                                                ),
+                                                0
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        : _vm._e()
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "b-form-group",
+                                { attrs: { label: "Exchange Rates" } },
+                                [
+                                  _c(
+                                    "b-input-group",
+                                    [
+                                      _c(
+                                        "b-input-group-prepend",
+                                        [
+                                          _c(
+                                            "b-form-select",
+                                            {
+                                              model: {
+                                                value: _vm.data.currency_id,
+                                                callback: function($$v) {
+                                                  _vm.$set(
+                                                    _vm.data,
+                                                    "currency_id",
+                                                    $$v
+                                                  )
+                                                },
+                                                expression: "data.currency_id"
+                                              }
+                                            },
+                                            _vm._l(_vm.currencies, function(
+                                              currency
+                                            ) {
+                                              return _c(
+                                                "option",
+                                                {
+                                                  key: currency.key,
+                                                  domProps: {
+                                                    value: currency.id
+                                                  }
+                                                },
+                                                [_vm._v(_vm._s(currency.name))]
+                                              )
+                                            }),
+                                            0
+                                          )
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c("b-input", {
+                                        attrs: {
+                                          type: "number",
+                                          placeholder: "Payment"
+                                        },
+                                        model: {
+                                          value: _vm.data.rate,
+                                          callback: function($$v) {
+                                            _vm.$set(_vm.data, "rate", $$v)
+                                          },
+                                          expression: "data.rate"
+                                        }
+                                      })
+                                    ],
+                                    1
+                                  )
+                                ],
+                                1
                               )
                             ],
                             1
@@ -86552,26 +86573,43 @@ var render = function() {
                           _c(
                             "b-col",
                             [
-                              _c(
-                                "b-form-group",
-                                { attrs: { label: "Document" } },
-                                [
-                                  _c("b-form-select", {
-                                    attrs: {
-                                      placeholder:
-                                        "Documents can simplfy manually loading data"
-                                    },
-                                    model: {
-                                      value: _vm.data.document_id,
-                                      callback: function($$v) {
-                                        _vm.$set(_vm.data, "document_id", $$v)
-                                      },
-                                      expression: "data.document_id"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
+                              _vm.documents.length > 0
+                                ? _c(
+                                    "b-form-group",
+                                    { attrs: { label: "Document" } },
+                                    [
+                                      _c(
+                                        "b-form-select",
+                                        {
+                                          staticClass: "mb-3",
+                                          model: {
+                                            value: _vm.data.document_id,
+                                            callback: function($$v) {
+                                              _vm.$set(
+                                                _vm.data,
+                                                "document_id",
+                                                $$v
+                                              )
+                                            },
+                                            expression: "data.document_id"
+                                          }
+                                        },
+                                        _vm._l(_vm.documents, function(doc) {
+                                          return _c(
+                                            "option",
+                                            {
+                                              key: doc.key,
+                                              domProps: { value: doc.id }
+                                            },
+                                            [_vm._v(_vm._s(doc.name))]
+                                          )
+                                        }),
+                                        0
+                                      )
+                                    ],
+                                    1
+                                  )
+                                : _vm._e(),
                               _vm._v(" "),
                               _c(
                                 "b-form-group",
@@ -86678,7 +86716,85 @@ var render = function() {
                       hover: "",
                       items: _vm.data.details,
                       fields: _vm.columns
-                    }
+                    },
+                    scopedSlots: _vm._u([
+                      {
+                        key: "chart_id",
+                        fn: function(data) {
+                          return [
+                            _c(
+                              "b-form-select",
+                              {
+                                staticClass: "mb-3",
+                                model: {
+                                  value: data.item.chart_id,
+                                  callback: function($$v) {
+                                    _vm.$set(data.item, "chart_id", $$v)
+                                  },
+                                  expression: "data.item.chart_id"
+                                }
+                              },
+                              _vm._l(_vm.itemCharts, function(item) {
+                                return _c(
+                                  "option",
+                                  {
+                                    key: item.key,
+                                    domProps: { value: item.id }
+                                  },
+                                  [_vm._v(_vm._s(item.name))]
+                                )
+                              }),
+                              0
+                            )
+                          ]
+                        }
+                      },
+                      {
+                        key: "chart_vat_id",
+                        fn: function(data) {
+                          return [
+                            _c(
+                              "b-form-select",
+                              {
+                                staticClass: "mb-3",
+                                model: {
+                                  value: data.item.chart_vat_id,
+                                  callback: function($$v) {
+                                    _vm.$set(data.item, "chart_vat_id", $$v)
+                                  },
+                                  expression: "data.item.chart_vat_id"
+                                }
+                              },
+                              _vm._l(_vm.vatCharts, function(vat) {
+                                return _c(
+                                  "option",
+                                  { key: vat.key, domProps: { value: vat.id } },
+                                  [_vm._v(_vm._s(vat.name))]
+                                )
+                              }),
+                              0
+                            )
+                          ]
+                        }
+                      },
+                      {
+                        key: "value",
+                        fn: function(data) {
+                          return [
+                            _c("b-form-input", {
+                              attrs: { type: "number", placeholder: "Value" },
+                              model: {
+                                value: data.item.value,
+                                callback: function($$v) {
+                                  _vm.$set(data.item, "value", $$v)
+                                },
+                                expression: "data.item.value"
+                              }
+                            })
+                          ]
+                        }
+                      }
+                    ])
                   })
                 ],
                 1
@@ -109326,9 +109442,9 @@ __webpack_require__(/*! ./forms/bootstrap */ "./spark/resources/assets/js/forms/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\SMART\Documents\GitHub\DebeHaber7\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\Users\SMART\Documents\GitHub\DebeHaber7\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\Users\SMART\Documents\GitHub\DebeHaber7\resources\sass\app-rtl.scss */"./resources/sass/app-rtl.scss");
+__webpack_require__(/*! /Users/ashah/Projects/debehaber7/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/ashah/Projects/debehaber7/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /Users/ashah/Projects/debehaber7/resources/sass/app-rtl.scss */"./resources/sass/app-rtl.scss");
 
 
 /***/ })

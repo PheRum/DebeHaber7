@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Taxpayer;
 use App\Cycle;
 use App\Currency;
+use App\Http\Resources\GeneralResource;
 use Illuminate\Http\Request;
 
 class CurrencyController extends Controller
@@ -16,16 +17,11 @@ class CurrencyController extends Controller
     */
     public function index(Taxpayer $taxPayer, Cycle $cycle)
     {
-        //
-    }
-
-    public function get_currency(Taxpayer $taxPayer)
-    {
-        $currency = Currency::select('id', 'name', 'code')
-        ->where('country', $taxPayer->country)
-        ->get();
-
-        return response()->json($currency);
+        return GeneralResource::collection(
+            Currency::select('id', 'name', 'code')
+            ->where('country', $taxPayer->country)
+            ->get()
+        );
     }
 
     /**
