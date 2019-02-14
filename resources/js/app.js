@@ -55,11 +55,14 @@ import Router from './router';
 import i18n from './plugins/i18n';
 import VueGoogleCharts from 'vue-google-charts';
 import Swal from 'sweetalert2'
+import VueMask from 'v-mask'
 
-// Vue.use(Swal);
+Vue.use(VueMask);
 Vue.use(VueGoogleCharts);
 Vue.use(BootstrapVue);
 Vue.use(VueRouter);
+Vue.use(require('vue-shortkey'))
+
 Vue.config.productionTip = false;
 
 const router = new VueRouter({

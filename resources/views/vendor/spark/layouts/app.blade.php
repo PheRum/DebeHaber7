@@ -27,8 +27,10 @@
         if (isset($currentTeam) && request()->route('taxPayer') != null) {
 
             $taxPayerData = App\Taxpayer::where('id', request()->route('taxPayer'))
-            ->select('name', 'alias', 'taxid')
+            ->select('name', 'alias', 'taxid', 'country')
             ->first();
+
+            $taxPayerConfig = Config::get('countries.' . $taxPayerData->country);
 
             $cycleData = App\Cycle::where('taxpayer_id', request()->route('taxPayer'))
             ->select('id', 'year')
@@ -41,6 +43,7 @@
             ->whereIn('status', [1, 2])
             ->select('type')
             ->first();
+
 
             if (isset($integrationType))
             {
@@ -62,6 +65,7 @@
     window.Spark = <?php echo json_encode(array_merge(
         Spark::scriptVariables(), [
             'taxPayerData' => $taxPayerData ?? [],
+            'taxPayerConfig' => $taxPayerConfig ?? [],
             'teamRole' => $teamRole ?? '',
             'language' => Auth::user()!=null?Auth::user()->language : 'en'
         ]

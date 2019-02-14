@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-row>
+        <b-row v-if="$route.name.includes('List')">
             <b-col>
                 <b-card-group deck>
                     <b-card>
@@ -8,7 +8,7 @@
                             <img :src="$route.meta.img" alt="" class="ml-5 mr-5" width="26">
                             {{ $route.meta.title }}
                         </h4>
-                        <p class="lead">
+                        <p class="lead" v-if="$route.name.includes('List')">
                             {{ $route.meta.description }}, <router-link to="{ name: 'creditForm', params: { id: 0}}">Create</router-link>
                         </p>
                     </b-card>

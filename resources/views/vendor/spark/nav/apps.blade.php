@@ -143,7 +143,7 @@
         </h3>
         <b-nav vertical>
             <b-nav-item class="sub-menu" :to="{ name: 'journalList'}">
-                <i class="material-icons ml-10 mr-10">list</i>
+                <i class="material-icons ml-10 mr-10">notes</i>
                 Journals
             </b-nav-item>
         </b-nav>
@@ -156,11 +156,11 @@
                 Accounting Cycles
             </b-nav-item>
             <b-nav-item class="sub-menu" :to="{ name: 'openingBalanceForm'}">
-                <i class="material-icons ml-10 mr-10">playlist_play</i>
+                <i class="material-icons ml-10 mr-10">play_circle_outline</i>
                 Opening Balance
             </b-nav-item>
             <b-nav-item class="sub-menu" :to="{ name: 'closingBalanceForm'}">
-                <i class="material-icons ml-10 mr-10">playlist_play</i>
+                <i class="material-icons ml-10 mr-10">pause_circle_outline</i>
                 Closing Balance
             </b-nav-item>
             <b-nav-item class="sub-menu" :to="{ name: 'budgetForm'}">
@@ -169,11 +169,11 @@
             </b-nav-item>
         </b-nav>
         <h3 class="nav-heading sub">
-            Settings
+            Configuration
         </h3>
         <b-nav vertical>
             <b-nav-item class="sub-menu" :to="{ name: 'purchaseList'}">
-                <i class="material-icons ml-10 mr-10">shopping_cart</i>
+                <i class="material-icons ml-10 mr-10">settings</i>
                 Chart of Accounts
             </b-nav-item>
         </b-nav>

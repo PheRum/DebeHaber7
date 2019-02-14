@@ -83,6 +83,7 @@ export default
                         name: 'salesForm',
                         meta: {
                             title: 'Sales Invoice',
+                            img: '/img/apps/sales.svg',
                         },
 
                     }

@@ -1,6 +1,6 @@
 <!-- NavBar For Authenticated Users -->
 <spark-navbar :user="user" :teams="teams" :current-team="currentTeam" :unread-announcements-count="unreadAnnouncementsCount" :unread-notifications-count="unreadNotificationsCount" inline-template>
-    <nav class="navbar navbar-light navbar-expand-md navbar-spark">
+    <nav class="navbar navbar-light navbar-expand-md navbar-spark mb-5">
         <div class="container-fluid" v-if="user">
             <!-- Branding Image -->
             @include('spark::nav.brand')
