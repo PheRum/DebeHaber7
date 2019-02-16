@@ -2,10 +2,10 @@
     <div>
         <b-row>
             <b-col>
-                <h4 class="upper-case">
+                <h3 class="upper-case">
                     <img :src="$route.meta.img" alt="" class="mr-10" width="32">
                     {{ $route.meta.title }}
-                </h4>
+                </h3>
             </b-col>
             <b-col>
                 <b-button-toolbar class="float-right">
@@ -42,12 +42,13 @@
                                 <b-form-group label="Customer">
                                     <b-input-group>
                                         <b-input-group-text slot="prepend">
-                                            <i class="material-icons">search</i>
+                                            <span v-if="data.customer != null">
+                                                {{ data.customer.name }} | {{ data.customer.taxid }}
+                                                <i class="material-icons md-18 ml-20">search</i>
+                                            </span>
+                                            <i v-else class="material-icons md-18">search</i>
                                         </b-input-group-text>
                                         <b-input type="text" placeholder="Search for Customer"/>
-                                        <b-input-group-text slot="append" v-if="data.customer != null">
-                                            {{ data.customer.name }} | {{ data.customer.taxid }}
-                                        </b-input-group-text>
                                     </b-input-group>
                                 </b-form-group>
 
@@ -72,10 +73,6 @@
                                     </b-form-select>
                                 </b-form-group>
 
-                                <b-form-group label="Invoice Number">
-                                    <b-input type="text" placeholder="Invoice Number" v-mask="spark.taxPayerConfig.document_mask" v-model="data.number"/>
-                                </b-form-group>
-
                                 <b-form-group :label="spark.taxPayerConfig.document_code" v-if="spark.taxPayerConfig.document_code != ''">
                                     <b-input-group>
                                         <b-input type="text" placeholder="Invoice Code" v-model="data.code"/>
@@ -83,6 +80,10 @@
                                             <b-input type="date" placeholder="Code Expiry Date" v-model="data.code_expiry"/>
                                         </b-input-group-append>
                                     </b-input-group>
+                                </b-form-group>
+
+                                <b-form-group label="Invoice Number">
+                                    <b-input type="text" placeholder="Invoice Number" v-mask="spark.taxPayerConfig.document_mask" v-model="data.number"/>
                                 </b-form-group>
 
                                 <b-form-group label="Condition">
@@ -129,10 +130,20 @@
                             <b-form-input v-model="data.item.value" type="number" placeholder="Value"></b-form-input>
                         </template>
                         <template slot="actions" slot-scope="data">
-                            <b-button variant="link">
-                                <i class="material-icons">delete</i>
+                            <b-button variant="link" @click="deleteRow(data.item)">
+                                <i class="material-icons text-danger">delete_outline</i>
                             </b-button>
                         </template>
+                    </b-table>
+                </b-card>
+            </b-col>
+        </b-row>
+        <b-row v-if="data.journal_id != null">
+            <b-col>
+                <b-card no-body>
+                    Journal
+                    <b-table>
+
                     </b-table>
                 </b-card>
             </b-col>
@@ -146,12 +157,33 @@ export default {
     components: { 'crud': crud },
     data() {
         return {
-            data: [],
+            data: {
+                chart_account_id: 0,
+                code: 0,
+                code_expiry: '',
+                comment: '',
+                currency_id: 0,
+                customer_id: 0,
+                date: '',
+                details: [],
+                document_id: '',
+                document_type: 1,
+                id: 0,
+                is_deductible: 0,
+                journal_id: null,
+                number: '',
+                payment_condition: 0,
+                rate: 1,
+                type: 4
+            },
+
             documents: [],
             currencies: [],
             accountCharts: [],
             vatCharts: [],
             itemCharts: [],
+
+            lastDeletedRow: [],
 
             columns: [
                 {
@@ -170,6 +202,12 @@ export default {
                     key: 'actions',
                     label: '',
                 }
+            ],
+
+            journals: [
+                { chart_id: '', debit: 0, credit: 0 },
+                { chart_id: '', debit: 0, credit: 0 },
+                { chart_id: '', debit: 0, credit: 0 },
             ]
         };
     },
@@ -180,19 +218,60 @@ export default {
 
         onSaveNew() {
             this.onSave();
-            this.$router.push({ name: 'salesForm', params: { userId: '0' } })
+            this.$router.push({ name: 'salesForm', params: { id: '0' } })
         },
 
         onCancel() {
-            this.$router.go(-1);
+
+            this.$swal.fire({
+                title: 'Cancel?',
+                text: "Canceling will not save changes made to this form.",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, cancel changes!',
+                cancelButtonText: 'No, Keep working'
+            }).then((result) => {
+                if (result.value) {
+                    this.$router.go(-1);
+                }
+            })
         },
 
         addDetailRow() {
-            alert('Row Added Method Reached.')
+            this.data.details.push({
+                // index: this.data.details.length + 1,
+                chart_id: this.itemCharts[0].id,
+                chart_vat_id: this.vatCharts[0].id,
+                value: 0,
+            })
         },
 
-        deleteRow() {
-            //slice from details.
+        deleteRow(item) {
+            if (item.id > 0) {
+                //axios code to delete the transaction detail.
+            }
+
+            this.lastDeletedRow = item;
+
+            this.$snack.success({
+                text: 'Record Deleted',
+                button: 'Undo',
+                action: this.undoDeletedRow
+            });
+
+            this.data.details.splice(this.data.details.indexOf(item), 1);
+        },
+
+        undoDeletedRow() {
+            this.data.details.push(this.lastDeletedRow);
+        },
+
+        calculateJournal() {
+            //cash
+
+            //itemCharts
+
+            //vat
         }
     },
     mounted() {
@@ -204,7 +283,17 @@ export default {
 
         if (app.$route.params.id > 0) {
             crud.methods.onRead(baseUrl + "commercial/sales/" + app.$route.params.id)
-            .then(function (response) {  app.data = response; });
+            .then(function (response)
+            {
+                app.data = response;
+                //this is required for eliminating from table.
+                // if (app.data.details.length > 0) {
+                //     var i = 0;
+                //     app.data.details.forEach(function(item) {
+                //         item.index = i + 1;
+                //     });
+                // }
+            });
         } else {
             app.data.date = new Date(Date.now()).toISOString().split("T")[0];
             app.data.chart_account_id = app.accountCharts[0] != null ? app.accountCharts[0].id : null;

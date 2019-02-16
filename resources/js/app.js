@@ -54,9 +54,13 @@ import VueRouter from 'vue-router';
 import Router from './router';
 import i18n from './plugins/i18n';
 import VueGoogleCharts from 'vue-google-charts';
-import Swal from 'sweetalert2'
-import VueMask from 'v-mask'
+import VueSweetalert2 from 'vue-sweetalert2';
+import VueMask from 'v-mask';
+import VueSnackbar from 'vue-snack';
+import 'vue-snack/dist/vue-snack.min.css';
 
+Vue.use(VueSnackbar)
+Vue.use(VueSweetalert2);
 Vue.use(VueMask);
 Vue.use(VueGoogleCharts);
 Vue.use(BootstrapVue);
@@ -75,12 +79,6 @@ Spark.forms.register = {
     language: 'en'
 };
 
-//Creates a default SweetAlert message to use as Toast.
-const Toast = Swal.mixin({
-    position: 'bottom-end',
-    showConfirmButton: false,
-    timer: 3000
-});
 
 const app = new Vue({
     i18n,

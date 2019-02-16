@@ -80,7 +80,7 @@ class SalesController extends Controller
 
         foreach ($request->details as $detail)
         {
-            $transactionDetail = TransactionDetail::firstOrNew('id',$detail['id']);
+            $transactionDetail = TransactionDetail::firstOrNew('id', $detail['id']);
             $transactionDetail->transaction_id = $transaction->id;
             $transactionDetail->chart_id = $detail['chart_id'];
             $transactionDetail->chart_vat_id = $detail['chart_vat_id'];
