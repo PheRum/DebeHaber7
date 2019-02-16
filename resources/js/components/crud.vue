@@ -2,7 +2,7 @@
 export default {
     data() {
         return {
-            data:[]
+
         };
     },
     methods:
@@ -12,39 +12,28 @@ export default {
         },
 
         onRead: async function($url) {
-            var app = this;
-            var resp;
-            await  axios({
+            return axios({
                 method: 'get',
-                url:  $url ,
+                url: $url,
                 responseType: 'json',
             })
             .then(function (response) {
-
-                resp = response.data.data;
-                // Toast.fire({ type: 'success', title: 'Data Loaded' });
-            })
-            .catch(function (error) {
-                Toast.fire({ type: 'error', title: 'Unable to Access Data' })
+                return response.data.data;
             });
-            return resp;
         },
 
         onUpdate($url, $data) {
-            var app = this;
-            axios({
+            return axios({
                 method: 'post',
-                url: '/api/' + app.$route.params.taxPayer + '/' + app.$route.params.cycle + '/' + $url ,
+                url: $url,
                 responseType: 'json',
                 data: $data
             })
-            .then(function (response)
-            {
-                app.data = response.data;
+            .then(function (response) {
+                return response
             })
             .catch(function (error) {
-                Toast.fire({ type: 'error', title: 'Unable to Save Data' })
-                console.log(app.data);
+                return error
             });
         },
 
@@ -52,15 +41,15 @@ export default {
             var app = this;
             axios({
                 method: 'delete',
-                url: '/api/' + app.$route.params.taxPayer + '/' + app.$route.params.cycle + '/' + $url + '/' + $dataId,
+                url: $url + '/' + $dataId,
                 responseType: 'json',
             })
-            .then(function (response)
-            {
+            .then(function (response) {
                 return response;
             })
-            .catch(function (error)
-            { });
+            .catch(function (error) {
+
+            });
         }
     }
 }

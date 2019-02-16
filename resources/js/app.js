@@ -58,8 +58,10 @@ import VueSweetalert2 from 'vue-sweetalert2';
 import VueMask from 'v-mask';
 import VueSnackbar from 'vue-snack';
 import 'vue-snack/dist/vue-snack.min.css';
+import vueTopprogress from 'vue-top-progress';
 
-Vue.use(VueSnackbar)
+Vue.use(vueTopprogress);
+Vue.use(VueSnackbar);
 Vue.use(VueSweetalert2);
 Vue.use(VueMask);
 Vue.use(VueGoogleCharts);

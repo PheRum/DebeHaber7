@@ -2099,9 +2099,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {
-      data: []
-    };
+    return {};
   },
   methods: {
     onCreate: function onCreate() {//unused
@@ -2110,30 +2108,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _onRead = _asyncToGenerator(
       /*#__PURE__*/
       _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee($url) {
-        var app, resp;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                app = this;
-                _context.next = 3;
-                return axios({
+                return _context.abrupt("return", axios({
                   method: 'get',
                   url: $url,
                   responseType: 'json'
                 }).then(function (response) {
-                  resp = response.data.data; // Toast.fire({ type: 'success', title: 'Data Loaded' });
-                }).catch(function (error) {
-                  Toast.fire({
-                    type: 'error',
-                    title: 'Unable to Access Data'
-                  });
-                });
+                  return response.data.data;
+                }));
 
-              case 3:
-                return _context.abrupt("return", resp);
-
-              case 4:
+              case 1:
               case "end":
                 return _context.stop();
             }
@@ -2148,27 +2135,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       return onRead;
     }(),
     onUpdate: function onUpdate($url, $data) {
-      var app = this;
-      axios({
+      return axios({
         method: 'post',
-        url: '/api/' + app.$route.params.taxPayer + '/' + app.$route.params.cycle + '/' + $url,
+        url: $url,
         responseType: 'json',
         data: $data
       }).then(function (response) {
-        app.data = response.data;
+        return response;
       }).catch(function (error) {
-        Toast.fire({
-          type: 'error',
-          title: 'Unable to Save Data'
-        });
-        console.log(app.data);
+        return error;
       });
     },
     onDelete: function onDelete($url, $dataId) {
       var app = this;
       axios({
         method: 'delete',
-        url: '/api/' + app.$route.params.taxPayer + '/' + app.$route.params.cycle + '/' + $url + '/' + $dataId,
+        url: $url + '/' + $dataId,
         responseType: 'json'
       }).then(function (response) {
         return response;
@@ -3768,15 +3750,29 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    onSave: function onSave() {//save and go back to previous url.
+    onSave: function onSave() {
+      var app = this;
+      var baseUrl = '/api/' + app.$route.params.taxPayer + '/' + app.$route.params.cycle + '/sales';
+      _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"].methods.onUpdate(baseUrl, this.data).then(function (response) {
+        this.$snack.success({
+          text: 'Saved!'
+        });
+        this.$router.go(-1);
+      });
     },
     onSaveNew: function onSaveNew() {
-      this.onSave();
-      this.$router.push({
-        name: 'salesForm',
-        params: {
-          id: '0'
-        }
+      var app = this;
+      var baseUrl = '/api/' + app.$route.params.taxPayer + '/' + app.$route.params.cycle + '/sales';
+      _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"].methods.onUpdate(baseUrl, this.data).then(function (response) {
+        this.$snack.success({
+          text: 'Saved!'
+        });
+        this.$router.push({
+          name: 'salesForm',
+          params: {
+            id: '0'
+          }
+        });
       });
     },
     onCancel: function onCancel() {
@@ -3816,6 +3812,9 @@ __webpack_require__.r(__webpack_exports__);
       this.data.details.splice(this.data.details.indexOf(item), 1);
     },
     undoDeletedRow: function undoDeletedRow() {
+      if (this.lastDeletedRow.id > 0) {//axios code to delete the transaction detail.
+      }
+
       this.data.details.push(this.lastDeletedRow);
     },
     calculateJournal: function calculateJournal() {//cash
@@ -3832,14 +3831,8 @@ __webpack_require__.r(__webpack_exports__);
 
     if (app.$route.params.id > 0) {
       _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"].methods.onRead(baseUrl + "commercial/sales/" + app.$route.params.id).then(function (response) {
-        app.data = response; //this is required for eliminating from table.
-        // if (app.data.details.length > 0) {
-        //     var i = 0;
-        //     app.data.details.forEach(function(item) {
-        //         item.index = i + 1;
-        //     });
-        // }
-      });
+        app.data = response;
+      }).catch(function (error) {});
     } else {
       app.data.date = new Date(Date.now()).toISOString().split("T")[0];
       app.data.chart_account_id = app.accountCharts[0] != null ? app.accountCharts[0].id : null;
@@ -88289,6 +88282,18 @@ VueSweetalert2.install = function (Vue, options) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-top-progress/dist/vue-top-progress.min.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/vue-top-progress/dist/vue-top-progress.min.js ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+!function(t,e){ true?module.exports=e():undefined}(this,function(){"use strict";function t(t,e,s){return t<e?e:t>s?s:t}var e=function(){function t(){var s=e.shift();s&&s(t)}var e=[];return function(s){e.push(s),1===e.length&&t()}}(),s={render:function(){var t=this,e=t.$createElement,s=t._self._c||e;return s("transition",{attrs:{css:!1},on:{"before-enter":t.beforeEnter,enter:t.enter,"after-enter":t.afterEnter}},[t.show?s("div",{staticClass:"top-progress",style:t.barStyle},[s("div",{staticClass:"peg",style:t.pegStyle})]):t._e()])},staticRenderFns:[],name:"vueTopprogress",data:function(){return{error:!1,show:!1,progress:0,opacity:1,status:null,isPaused:!1}},props:{speed:{type:Number,default:350},color:{type:String,default:"#29d"},colorShadow:String,errorColor:{type:String,default:"#f44336"},trickle:{type:Boolean,default:!0},trickleSpeed:{type:Number,default:250},easing:{type:String,default:"linear"},height:{type:Number,default:3},minimum:{type:Number,default:.8},maximum:{type:Number,default:97.5},zIndex:{type:Number,default:9999}},computed:{progressColor:function(){return this.error?this.errorColor:this.color},isStarted:function(){return"number"==typeof this.status},boxShadow:function(){return this.colorShadow||this.progressColor},barStyle:function(){return{position:"fixed",top:"0",left:"0",right:"0",width:this.progress+"%",height:this.height+"px",backgroundColor:this.progressColor,transition:"all "+this.speed+"ms "+this.easing,opacity:""+this.opacity,zIndex:""+this.zIndex}},pegStyle:function(){return{display:"block",position:"absolute",right:"0",width:"100px",height:"100%",opacity:this.progress?"1":"0",boxShadow:"0 0 10px "+this.boxShadow+", 0 0 5px "+this.boxShadow,transform:"rotate(3deg) translate(0px, -4px)"}}},methods:{beforeEnter:function(t){this.opacity=0,this.progress=0,this.width=0},enter:function(t,e){this.opacity=1,e()},afterEnter:function(t){this._runStart()},_work:function(){var t=this;setTimeout(function(){t.isStarted&&!t.isPaused&&(t.increase(),t._work())},this.trickleSpeed)},_runStart:function(){this.status=100===this.progress?null:this.progress,this.trickle&&this._work()},start:function(){this.isPaused=!1,this.show?this._runStart():this.show=!0},set:function(s){var r=this;this.isPaused=!1;var i=void 0;i=this.isStarted?s<this.progress?t(s,0,100):t(s,this.minimum,100):0,this.status=100===i?null:i,e(function(t){r.progress=i,100===i?setTimeout(function(){r.opacity=0,setTimeout(function(){r.show=!1,r.error=!1,t()},r.speed)},r.speed):setTimeout(t,r.speed)})},increase:function(e){var s=this.progress;s<100&&"number"!=typeof e&&(e=s>=0&&s<25?3*Math.random()+3:s>=25&&s<50?3*Math.random():s>=50&&s<85?2*Math.random():s>=85&&s<99?.5:0),this.set(t(s+e,0,this.maximum))},decrease:function(t){0!==this.progress&&this.increase(-t)},done:function(){this.set(100)},getProgress:function(){return this.status?this.progress:0},pause:function(){this.isPaused=!0},fail:function(){this.error=!0,this.done()}}},r=function t(e){t.installed||e.component(s.name,s)};return"undefined"!=typeof window&&window.Vue&&r(window.Vue),{vueTopprogress:s,install:r}});
+
+
+/***/ }),
+
 /***/ "./node_modules/vue/dist/vue.js":
 /*!**************************************!*\
   !*** ./node_modules/vue/dist/vue.js ***!
@@ -99441,6 +99446,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_snack__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(vue_snack__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var vue_snack_dist_vue_snack_min_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue-snack/dist/vue-snack.min.css */ "./node_modules/vue-snack/dist/vue-snack.min.css");
 /* harmony import */ var vue_snack_dist_vue_snack_min_css__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(vue_snack_dist_vue_snack_min_css__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var vue_top_progress__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vue-top-progress */ "./node_modules/vue-top-progress/dist/vue-top-progress.min.js");
+/* harmony import */ var vue_top_progress__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(vue_top_progress__WEBPACK_IMPORTED_MODULE_10__);
 /*
 |--------------------------------------------------------------------------
 | Laravel Spark Bootstrap
@@ -99478,6 +99485,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('invoices-this-month-kpi', 
 
 
 
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_top_progress__WEBPACK_IMPORTED_MODULE_10___default.a);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_snack__WEBPACK_IMPORTED_MODULE_8___default.a);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_sweetalert2__WEBPACK_IMPORTED_MODULE_6__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(v_mask__WEBPACK_IMPORTED_MODULE_7__["default"]);

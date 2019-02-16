@@ -213,12 +213,33 @@ export default {
     },
     methods: {
         onSave() {
-            //save and go back to previous url.
+            var app = this;
+            var baseUrl = '/api/' + app.$route.params.taxPayer + '/' + app.$route.params.cycle + '/sales'
+
+            crud.methods
+            .onUpdate(baseUrl, this.data)
+            .then(function (response) {
+                this.$snack.success({
+                    text: 'Saved!',
+                });
+
+                this.$router.go(-1);
+            });
         },
 
         onSaveNew() {
-            this.onSave();
-            this.$router.push({ name: 'salesForm', params: { id: '0' } })
+            var app = this;
+            var baseUrl = '/api/' + app.$route.params.taxPayer + '/' + app.$route.params.cycle + '/sales'
+
+            crud.methods
+            .onUpdate(baseUrl, this.data)
+            .then(function (response) {
+                this.$snack.success({
+                    text: 'Saved!',
+                });
+                
+                this.$router.push({ name: 'salesForm', params: { id: '0' } })
+            });
         },
 
         onCancel() {
@@ -263,6 +284,10 @@ export default {
         },
 
         undoDeletedRow() {
+            if (this.lastDeletedRow.id > 0) {
+                //axios code to delete the transaction detail.
+            }
+
             this.data.details.push(this.lastDeletedRow);
         },
 
@@ -278,22 +303,23 @@ export default {
         var app = this;
         var baseUrl = '/api/' + app.$route.params.taxPayer + '/' + app.$route.params.cycle + '/'
 
-        crud.methods.onRead('/api/' + app.$route.params.taxPayer + '/currencies')
-        .then(function (response) { app.currencies = response; });
+        crud.methods
+        .onRead('/api/' + app.$route.params.taxPayer + '/currencies')
+        .then(function (response) {
+            app.currencies = response;
+        });
 
         if (app.$route.params.id > 0) {
-            crud.methods.onRead(baseUrl + "commercial/sales/" + app.$route.params.id)
-            .then(function (response)
-            {
+
+            crud.methods
+            .onRead(baseUrl + "commercial/sales/" + app.$route.params.id)
+            .then(function (response) {
                 app.data = response;
-                //this is required for eliminating from table.
-                // if (app.data.details.length > 0) {
-                //     var i = 0;
-                //     app.data.details.forEach(function(item) {
-                //         item.index = i + 1;
-                //     });
-                // }
+            })
+            .catch(function (error) {
+
             });
+
         } else {
             app.data.date = new Date(Date.now()).toISOString().split("T")[0];
             app.data.chart_account_id = app.accountCharts[0] != null ? app.accountCharts[0].id : null;
@@ -302,14 +328,23 @@ export default {
             app.data.rate = 1;
         }
 
-        crud.methods.onRead(baseUrl + "accounting/charts/for/money/")
-        .then(function (response) { app.accountCharts = response; });
+        crud.methods
+        .onRead(baseUrl + "accounting/charts/for/money/")
+        .then(function (response) {
+            app.accountCharts = response;
+        });
 
-        crud.methods.onRead(baseUrl + "accounting/charts/for/vats-debit")
-        .then(function (response) { app.vatCharts = response; });
+        crud.methods
+        .onRead(baseUrl + "accounting/charts/for/vats-debit")
+        .then(function (response) {
+            app.vatCharts = response;
+        });
 
-        crud.methods.onRead(baseUrl + "accounting/charts/for/income")
-        .then(function (response) { app.itemCharts = response; });
+        crud.methods
+        .onRead(baseUrl + "accounting/charts/for/income")
+        .then(function (response) {
+            app.itemCharts = response;
+        });
     }
 }
 </script>
