@@ -2478,8 +2478,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   method: 'get',
                   url: $url,
                   responseType: 'json'
-                }).then(function (response) {
-                  return response.data.data;
+                }).catch(function (error) {
+                  console.log(error.response);
+                  return error.response;
                 }));
 
               case 1:
@@ -2510,7 +2511,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
     },
     onDelete: function onDelete($url, $dataId) {
-      var app = this;
       return axios({
         method: 'delete',
         url: $url + '/' + $dataId,
@@ -2519,6 +2519,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return response;
       }).catch(function (error) {
         console.log(error.response);
+        return error.response;
       });
     }
   }
@@ -3487,6 +3488,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['columns'],
   data: function data() {
@@ -3510,14 +3512,19 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     list: function list() {
+      var _this = this;
+
       var app = this;
+      this.$refs.topProgress.start();
       axios.get('/api' + app.$route.path + '?page=' + app.current_page).then(function (_ref) {
         var data = _ref.data;
         app.lists = data.data;
         app.meta = data.meta;
         app.skip += app.pageSize;
-        app.is_loaded = true;
-      });
+        app.is_loaded = true; //finishes the top progress bar
+
+        _this.$refs.topProgress.done();
+      }); //todo add fail function in topProgress
     },
     delete: function _delete() {},
     edit: function edit() {},
@@ -4068,6 +4075,7 @@ __webpack_require__.r(__webpack_exports__);
         comment: '',
         currency_id: 0,
         customer_id: 0,
+        customer: [],
         date: '',
         details: [],
         document_id: '',
@@ -4118,25 +4126,35 @@ __webpack_require__.r(__webpack_exports__);
     onSave: function onSave() {
       var app = this;
       var baseUrl = '/api/' + app.$route.params.taxPayer + '/' + app.$route.params.cycle + '/commercial/sales';
-      _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"].methods.onUpdate(baseUrl, this.data).then(function (response) {
-        this.$snack.success({
-          text: 'Saved!'
+      _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"].methods.onUpdate(baseUrl, app.data).then(function (response) {
+        app.$snack.success({
+          text: 'Invoice Nr. ' + app.data.number + ', Saved!'
         });
-        this.$router.go(-1);
+        app.$router.go(-1);
+      }).catch(function (error) {
+        app.$snack.danger({
+          text: 'Error OMG!'
+        });
       });
     },
     onSaveNew: function onSaveNew() {
       var app = this;
-      var baseUrl = '/api/' + app.$route.params.taxPayer + '/' + app.$route.params.cycle + '/sales';
-      _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"].methods.onUpdate(baseUrl, this.data).then(function (response) {
-        this.$snack.success({
-          text: 'Saved!'
+      var baseUrl = '/api/' + app.$route.params.taxPayer + '/' + app.$route.params.cycle + '/commercial/sales';
+      _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"].methods.onUpdate(baseUrl, app.data).then(function (response) {
+        app.$snack.success({
+          text: 'Invoice Nr. ' + app.data.number + ', Saved!'
         });
-        this.$router.push({
+        app.$router.push({
           name: 'salesForm',
           params: {
             id: '0'
           }
+        });
+        app.data.customer_id = 0;
+        app.data.customer = [];
+      }).catch(function (error) {
+        app.$snack.danger({
+          text: 'Error OMG!'
         });
       });
     },
@@ -4191,15 +4209,15 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     var app = this;
-    var baseUrl = '/api/' + app.$route.params.taxPayer + '/' + app.$route.params.cycle + '/';
+    var baseUrl = '/api/' + app.$route.params.taxPayer + '/' + app.$route.params.cycle;
     _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"].methods.onRead('/api/' + app.$route.params.taxPayer + '/currencies').then(function (response) {
-      app.currencies = response;
+      app.currencies = response.data.data;
     });
 
     if (app.$route.params.id > 0) {
-      _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"].methods.onRead(baseUrl + "commercial/sales/" + app.$route.params.id).then(function (response) {
-        app.data = response;
-      }).catch(function (error) {});
+      _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"].methods.onRead(baseUrl + "/commercial/sales/" + app.$route.params.id).then(function (response) {
+        app.data = response.data.data;
+      });
     } else {
       app.data.date = new Date(Date.now()).toISOString().split("T")[0];
       app.data.chart_account_id = app.accountCharts[0] != null ? app.accountCharts[0].id : null;
@@ -4208,14 +4226,14 @@ __webpack_require__.r(__webpack_exports__);
       app.data.rate = 1;
     }
 
-    _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"].methods.onRead(baseUrl + "accounting/charts/for/money/").then(function (response) {
-      app.accountCharts = response;
+    _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"].methods.onRead(baseUrl + "/accounting/charts/for/money/").then(function (response) {
+      app.accountCharts = response.data.data;
     });
-    _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"].methods.onRead(baseUrl + "accounting/charts/for/vats-debit").then(function (response) {
-      app.vatCharts = response;
+    _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"].methods.onRead(baseUrl + "/accounting/charts/for/vats-debit").then(function (response) {
+      app.vatCharts = response.data.data;
     });
-    _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"].methods.onRead(baseUrl + "accounting/charts/for/income").then(function (response) {
-      app.itemCharts = response;
+    _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"].methods.onRead(baseUrl + "/accounting/charts/for/income").then(function (response) {
+      app.itemCharts = response.data.data;
     });
   }
 });
@@ -86787,6 +86805,8 @@ var render = function() {
   return _c(
     "div",
     [
+      _c("vue-topprogress", { ref: "topProgress" }),
+      _vm._v(" "),
       _vm.lists.length > 0 && _vm.is_loaded
         ? _c(
             "b-card",
@@ -88021,7 +88041,7 @@ var render = function() {
                               return _vm.onSaveNew()
                             },
                             click: function($event) {
-                              return _vm.onSave()
+                              return _vm.onSaveNew()
                             }
                           }
                         },
@@ -112270,9 +112290,9 @@ __webpack_require__(/*! ./forms/bootstrap */ "./spark/resources/assets/js/forms/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\SMART\Documents\GitHub\DebeHaber7\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\Users\SMART\Documents\GitHub\DebeHaber7\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\Users\SMART\Documents\GitHub\DebeHaber7\resources\sass\app-rtl.scss */"./resources/sass/app-rtl.scss");
+__webpack_require__(/*! /Users/ashah/Projects/debehaber7/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/ashah/Projects/debehaber7/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /Users/ashah/Projects/debehaber7/resources/sass/app-rtl.scss */"./resources/sass/app-rtl.scss");
 
 
 /***/ })

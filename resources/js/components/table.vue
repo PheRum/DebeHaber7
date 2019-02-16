@@ -1,5 +1,6 @@
 <template>
     <div>
+        <vue-topprogress ref="topProgress"></vue-topprogress>
         <b-card v-if="lists.length > 0 && is_loaded" no-body>
             <b-table hover :items="lists" :fields="columns" :current-page="current_page" @row-hovered="rowHovered">
                 <template slot="date" slot-scope="data">
@@ -72,6 +73,7 @@ export default {
     {
         list() {
             var app = this;
+            this.$refs.topProgress.start();
 
             axios.get('/api' + app.$route.path + '?page=' + app.current_page)
             .then(({ data }) =>
@@ -80,7 +82,11 @@ export default {
                 app.meta = data.meta;
                 app.skip += app.pageSize;
                 app.is_loaded = true;
+                //finishes the top progress bar
+                this.$refs.topProgress.done()
             });
+
+            //todo add fail function in topProgress
         },
 
         delete() {
@@ -108,6 +114,7 @@ export default {
 
     mounted() {
         var app = this;
+
         this.list();
     }
 }

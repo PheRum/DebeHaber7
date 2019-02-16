@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'driver' => env('SCOUT_DRIVER', 'algolia'),
+    'driver' => env('SCOUT_DRIVER', 'elasticsearch'),
 
     /*
     |--------------------------------------------------------------------------
@@ -41,7 +41,7 @@ return [
     |
     */
 
-    'queue' => env('SCOUT_QUEUE', false),
+    'queue' => env('SCOUT_QUEUE', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -55,7 +55,7 @@ return [
     */
 
     'chunk' => [
-        'searchable' => 500,
+        'searchable' => 1000,
         'unsearchable' => 500,
     ],
 
@@ -88,4 +88,12 @@ return [
         'secret' => env('ALGOLIA_SECRET', ''),
     ],
 
+    'elasticsearch' => [
+        'index' => env('ELASTICSEARCH_INDEX', 'laravel'),
+        'config' => [
+            'hosts' => [
+                env('ELASTICSEARCH_HOST', 'localhost'),
+            ],
+        ],
+    ]    
 ];

@@ -15,34 +15,6 @@
                 </ul>
 
                 <b-nav class="navbar-nav" fill>
-                    @if (Spark::developer(Auth::user()->email))
-                        <b-nav-item v-if="spark.env != 'production'" class="nav-heading" disabled>
-                            <b-badge variant="success" class="success">
-                                <i class="material-icons mr-5">check_circle_outline</i>
-                                <span style="vertical-align: middle">@{{spark.env}} Enviornment</span>
-                            </b-badge>
-                        </b-nav-item>
-                        <b-nav-item v-else class="nav-heading" disabled>
-                            <b-badge variant="danger">
-                                <i class="material-icons mr-5">warning</i>
-                                <span style="vertical-align: middle">@{{spark.env}} Enviornment</span>
-                            </b-badge>
-                        </b-nav-item>
-                    @endif
-
-                    <b-nav-item href="/home" class="nav-heading" v-b-tooltip.hover title="Team Dashboard">
-                        <i class="material-icons mr-5">supervised_user_circle</i>
-                        <span>@{{ currentTeam.name }}</span>
-                    </b-nav-item>
-
-                    <b-nav-item href="/settings/{{ Spark::teamsPrefix() }}/{{ \Auth::user()->currentTeam->id }}" class="nav-heading" v-b-tooltip.hover title="Team Settings">
-                        <i class="material-icons mr-5">settings</i>
-                    </b-nav-item>
-
-                    <b-nav-item disabled class="nav-heading">
-                        |
-                    </b-nav-item>
-
                     <b-nav-item href="/docs" class="nav-heading" v-b-tooltip.hover title="Documentation">
                         <i class="material-icons mr-5">import_contacts</i>
                     </b-nav-item>
@@ -57,6 +29,9 @@
                         <b-badge v-if="notificationsCount > 0" variant="primary">@{{notificationsCount}}</b-badge>
                     </b-nav-item>
 
+                    <b-nav-item disabled class="nav-heading">
+                        |
+                    </b-nav-item>
                 </b-nav>
 
                 <ul class="navbar-nav ml-4">

@@ -17,8 +17,9 @@ export default {
                 url: $url,
                 responseType: 'json',
             })
-            .then(function (response) {
-                return response.data.data;
+            .catch(function (error) {
+                console.log(error.response);
+                return error.response
             });
         },
 
@@ -39,7 +40,6 @@ export default {
         },
 
         onDelete($url, $dataId) {
-            var app = this;
             return axios({
                 method: 'delete',
                 url: $url + '/' + $dataId,
@@ -49,7 +49,8 @@ export default {
                 return response;
             })
             .catch(function (error) {
-console.log(error.response);
+                console.log(error.response);
+                return error.response
             });
         }
     }

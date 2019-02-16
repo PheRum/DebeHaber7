@@ -50,12 +50,12 @@ class SalesController extends Controller
     * @param  \Illuminate\Http\Request  $request
     * @return \Illuminate\Http\Response
     */
-    public function store(Request $request, Taxpayer $taxPayer,Cycle $cycle)
+    public function store(Request $request, Taxpayer $taxPayer, Cycle $cycle)
     {
         $transaction = Transaction::firstOrNew(['id' => $request->id]);
 
         if ($request->customer_id > 0) {
-            $transaction->customer_id = $request->customer_id;
+            $transaction->customer_id = $request->customer->id;
         }
 
         if ($request->document_id > 0) {
@@ -68,7 +68,7 @@ class SalesController extends Controller
 
         $transaction->supplier_id = $taxPayer->id;
         $transaction->currency_id = $request->currency_id;
-        $transaction->rate = $request->rate;
+        $transaction->rate = $request->rate ?? 1;
         $transaction->payment_condition = $request->payment_condition;
         $transaction->date = $request->date;
         $transaction->number = $request->number;
@@ -80,7 +80,7 @@ class SalesController extends Controller
 
         foreach ($request->details as $detail)
         {
-            $transactionDetail = TransactionDetail::firstOrNew('id', $detail['id']);
+            $transactionDetail = TransactionDetail::firstOrNew(['id' => $detail['id']]);
             $transactionDetail->transaction_id = $transaction->id;
             $transactionDetail->chart_id = $detail['chart_id'];
             $transactionDetail->chart_vat_id = $detail['chart_vat_id'];
@@ -100,8 +100,9 @@ class SalesController extends Controller
     public function show(Taxpayer $taxPayer, Cycle $cycle, $transactionId)
     {
         return new GeneralResource(
-            Transaction::MySales()->with('customer:name,taxid,id')
+            Transaction::MySales()
             ->where('id', $transactionId)
+            ->with('customer:name,taxid,id')
             ->with('details')
             ->first()
         );

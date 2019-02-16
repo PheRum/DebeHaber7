@@ -18,7 +18,7 @@
                             <i class="material-icons">save</i>
                             Save
                         </b-btn>
-                        <b-btn variant="secondary" v-shortkey="['ctrl', 'n']" @shortkey="onSaveNew()" @click="onSave()">
+                        <b-btn variant="secondary" v-shortkey="['ctrl', 'n']" @shortkey="onSaveNew()" @click="onSaveNew()">
                             <i class="material-icons">save</i>
                             Save &amp; New
                         </b-btn>
@@ -164,6 +164,7 @@ export default {
                 comment: '',
                 currency_id: 0,
                 customer_id: 0,
+                customer: [],
                 date: '',
                 details: [],
                 document_id: '',
@@ -217,33 +218,35 @@ export default {
             var baseUrl = '/api/' + app.$route.params.taxPayer + '/' + app.$route.params.cycle + '/commercial/sales'
 
             crud.methods
-            .onUpdate(baseUrl, this.data)
+            .onUpdate(baseUrl, app.data)
             .then(function (response) {
-                this.$snack.success({
-                    text: 'Saved!',
-                });
-
-                this.$router.go(-1);
+                app.$snack.success({ text: 'Invoice Nr. ' + app.data.number + ', Saved!' });
+                app.$router.go(-1);
+            }).catch(function (error) {
+                app.$snack.danger({ text: 'Error OMG!' });
             });
         },
 
         onSaveNew() {
             var app = this;
-            var baseUrl = '/api/' + app.$route.params.taxPayer + '/' + app.$route.params.cycle + '/sales'
+            var baseUrl = '/api/' + app.$route.params.taxPayer + '/' + app.$route.params.cycle + '/commercial/sales'
 
             crud.methods
-            .onUpdate(baseUrl, this.data)
+            .onUpdate(baseUrl, app.data)
             .then(function (response) {
-                this.$snack.success({
-                    text: 'Saved!',
-                });
+                app.$snack.success({ text: 'Invoice Nr. ' + app.data.number + ', Saved!' });
+                app.$router.push({ name: 'salesForm', params: { id: '0' }})
+                app.data.customer_id = 0;
+                app.data.customer = [];
 
-                this.$router.push({ name: 'salesForm', params: { id: '0' } })
+            }).catch(function (error) {
+                app.$snack.danger({
+                    text: 'Error OMG!',
+                });
             });
         },
 
         onCancel() {
-
             this.$swal.fire({
                 title: 'Cancel?',
                 text: "Canceling will not save changes made to this form.",
@@ -309,23 +312,20 @@ export default {
     },
     mounted() {
         var app = this;
-        var baseUrl = '/api/' + app.$route.params.taxPayer + '/' + app.$route.params.cycle + '/'
+        var baseUrl = '/api/' + app.$route.params.taxPayer + '/' + app.$route.params.cycle
 
         crud.methods
         .onRead('/api/' + app.$route.params.taxPayer + '/currencies')
         .then(function (response) {
-            app.currencies = response;
+            app.currencies = response.data.data;
         });
 
         if (app.$route.params.id > 0) {
 
             crud.methods
-            .onRead(baseUrl + "commercial/sales/" + app.$route.params.id)
+            .onRead(baseUrl + "/commercial/sales/" + app.$route.params.id)
             .then(function (response) {
-                app.data = response;
-            })
-            .catch(function (error) {
-
+                app.data = response.data.data;
             });
 
         } else {
@@ -337,21 +337,21 @@ export default {
         }
 
         crud.methods
-        .onRead(baseUrl + "accounting/charts/for/money/")
+        .onRead(baseUrl + "/accounting/charts/for/money/")
         .then(function (response) {
-            app.accountCharts = response;
+            app.accountCharts = response.data.data;
         });
 
         crud.methods
-        .onRead(baseUrl + "accounting/charts/for/vats-debit")
+        .onRead(baseUrl + "/accounting/charts/for/vats-debit")
         .then(function (response) {
-            app.vatCharts = response;
+            app.vatCharts = response.data.data;
         });
 
         crud.methods
-        .onRead(baseUrl + "accounting/charts/for/income")
+        .onRead(baseUrl + "/accounting/charts/for/income")
         .then(function (response) {
-            app.itemCharts = response;
+            app.itemCharts = response.data.data;
         });
     }
 }

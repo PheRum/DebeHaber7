@@ -24,6 +24,10 @@
             <i class="material-icons ml-10 mr-10">dashboard</i>
             Dashboard
         </b-nav-item>
+        <b-nav-item href="/home" class="sub-menu">
+            <i class="material-icons ml-10 mr-10">sync</i>
+            Change Taxpayer
+        </b-nav-item>
         <h3 class="nav-heading sub">
             Configuration
         </h3>
@@ -40,10 +44,6 @@
                 <i class="material-icons ml-10 mr-10">public</i>
                 Exchange Rates
             </b-nav-item>
-            <b-nav-item href="/home" class="sub-menu">
-                <i class="material-icons ml-10 mr-10">sync</i>
-                Change Taxpayer
-            </b-nav-item>
         </b-nav>
         <h3 class="nav-heading sub">
             Change Cycle
@@ -58,6 +58,20 @@
             <b-nav-item class="sub-menu">
                 <i class="material-icons ml-10 mr-10">more_horiz</i>
                 more
+            </b-nav-item>
+        </b-nav>
+        <h3 class="nav-heading sub">
+            @{{ currentTeam.name }}
+        </h3>
+        <b-nav vertical>
+            <b-nav-item href="/home" class="sub-menu" v-b-tooltip.hover title="Team Dashboard">
+                <i class="material-icons ml-10 mr-10">dashboard</i>
+                Team Dashboard
+            </b-nav-item>
+
+            <b-nav-item href="/settings/{{ Spark::teamsPrefix() }}/{{ \Auth::user()->currentTeam->id }}" class="sub-menu" v-b-tooltip.hover title="Team Settings">
+                <i class="material-icons ml-10 mr-10">settings</i>
+                Team Settings
             </b-nav-item>
         </b-nav>
     </b-collapse>
