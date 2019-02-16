@@ -52,7 +52,7 @@ class SalesController extends Controller
     */
     public function store(Request $request, Taxpayer $taxPayer,Cycle $cycle)
     {
-        $transaction = Transaction::firstOrNew('id', $request->id);
+        $transaction = Transaction::firstOrNew(['id' => $request->id]);
 
         if ($request->customer_id > 0) {
             $transaction->customer_id = $request->customer_id;

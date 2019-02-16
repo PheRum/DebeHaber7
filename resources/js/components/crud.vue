@@ -33,13 +33,14 @@ export default {
                 return response
             })
             .catch(function (error) {
-                return error
+                console.log(error.response);
+                return error.response
             });
         },
 
         onDelete($url, $dataId) {
             var app = this;
-            axios({
+            return axios({
                 method: 'delete',
                 url: $url + '/' + $dataId,
                 responseType: 'json',
@@ -48,7 +49,7 @@ export default {
                 return response;
             })
             .catch(function (error) {
-
+console.log(error.response);
             });
         }
     }

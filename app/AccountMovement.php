@@ -4,12 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Spatie\ModelStatus\HasStatuses;
 use App\Scopes\TaxpayerScope;
 
 class AccountMovement extends Model
 {
-    use HasStatuses, SoftDeletes;
+    use SoftDeletes;
     protected static function boot()
     {
         parent::boot();

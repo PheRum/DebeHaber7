@@ -214,7 +214,7 @@ export default {
     methods: {
         onSave() {
             var app = this;
-            var baseUrl = '/api/' + app.$route.params.taxPayer + '/' + app.$route.params.cycle + '/sales'
+            var baseUrl = '/api/' + app.$route.params.taxPayer + '/' + app.$route.params.cycle + '/commercial/sales'
 
             crud.methods
             .onUpdate(baseUrl, this.data)
@@ -237,7 +237,7 @@ export default {
                 this.$snack.success({
                     text: 'Saved!',
                 });
-                
+
                 this.$router.push({ name: 'salesForm', params: { id: '0' } })
             });
         },
@@ -269,18 +269,26 @@ export default {
 
         deleteRow(item) {
             if (item.id > 0) {
-                //axios code to delete the transaction detail.
+                var app = this;
+                var baseUrl = '/api/' + app.$route.params.taxPayer + '/' + app.$route.params.cycle + '/commercial/sales'
+
+                crud.methods
+                .onDelete(baseUrl,item.id)
+                .then(function (response){
+
+                });
+                this.lastDeletedRow = item;
+
+                this.$snack.success({
+                    text: 'Record Deleted',
+                    button: 'Undo',
+                    action: this.undoDeletedRow
+                });
+
+                this.data.details.splice(this.data.details.indexOf(item), 1);
             }
 
-            this.lastDeletedRow = item;
 
-            this.$snack.success({
-                text: 'Record Deleted',
-                button: 'Undo',
-                action: this.undoDeletedRow
-            });
-
-            this.data.details.splice(this.data.details.indexOf(item), 1);
         },
 
         undoDeletedRow() {
