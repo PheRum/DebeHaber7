@@ -1,35 +1,53 @@
 <template>
     <div>
-        <b-row>
-            <b-col>
+        <b-row class="mb-5">
+            <b-col >
+                <b-btn class="d-none d-md-block float-left" v-shortkey="['esc']" @shortkey="onCancel()" @click="onCancel()">
+                    <i class="material-icons">keyboard_backspace</i>
+                    Return
+                </b-btn>
                 <h3 class="upper-case">
                     <img :src="$route.meta.img" alt="" class="mr-10" width="32">
                     {{ $route.meta.title }}
                 </h3>
             </b-col>
             <b-col>
-                <b-button-toolbar class="float-right">
-                    <b-btn v-shortkey="['ctrl', 'd']" @shortkey="addDetailRow()" @click="addDetailRow()" class="ml-15 mb-10">
+                <b-button-toolbar class="float-right d-none d-md-block">
+                    <b-btn class="ml-15" v-shortkey="['ctrl', 'd']" @shortkey="addDetailRow()" @click="addDetailRow()">
                         <i class="material-icons">playlist_add</i>
                         Add Detail Row
                     </b-btn>
-                    <b-button-group class="ml-15 mb-10">
-                        <b-btn variant="primary" v-shortkey="['ctrl', 's']" @shortkey="onSave()" @click="onSave()">
+                    <b-button-group class="ml-15">
+                        <b-btn variant="primary" v-shortkey="['ctrl', 'n']" @shortkey="onSaveNew()" @click="onSaveNew()">
                             <i class="material-icons">save</i>
                             Save
                         </b-btn>
-                        <b-btn variant="secondary" v-shortkey="['ctrl', 'n']" @shortkey="onSaveNew()" @click="onSaveNew()">
+                        <b-btn variant="secondary" v-shortkey="['ctrl', 's']" @shortkey="onSave()" @click="onSave()">
                             <i class="material-icons">save</i>
-                            Save &amp; New
+                            Save &amp; Return
+                        </b-btn>
+                        <b-btn variant="danger" v-shortkey="['esc']" @shortkey="onCancel()" @click="onCancel()">
+                            <i class="material-icons">cancel</i>
+                            Cancel
                         </b-btn>
                     </b-button-group>
-                    <b-btn v-shortkey="['esc']" @shortkey="onCancel()" @click="onCancel()" variant="danger" class="ml-15 mb-10">
-                        <i class="material-icons">cancel</i>
-                        Cancel
+                </b-button-toolbar>
+                <b-button-toolbar class="float-right d-md-none">
+                    <b-btn class="ml-15" v-shortkey="['ctrl', 'd']" @shortkey="addDetailRow()" @click="addDetailRow()">
+                        <i class="material-icons">playlist_add</i>
                     </b-btn>
+                    <b-button-group class="ml-15">
+                        <b-btn variant="primary" v-shortkey="['ctrl', 'n']" @shortkey="onSaveNew()" @click="onSaveNew()">
+                            <i class="material-icons">save</i>
+                        </b-btn>
+                        <b-btn variant="danger" v-shortkey="['esc']" @shortkey="onCancel()" @click="onCancel()">
+                            <i class="material-icons">cancel</i>
+                        </b-btn>
+                    </b-button-group>
                 </b-button-toolbar>
             </b-col>
         </b-row>
+
         <b-row>
             <b-col>
                 <b-card>
@@ -112,6 +130,7 @@
                 </b-card>
             </b-col>
         </b-row>
+
         <b-row>
             <b-col>
                 <b-card no-body>
@@ -134,16 +153,6 @@
                                 <i class="material-icons text-danger">delete_outline</i>
                             </b-button>
                         </template>
-                    </b-table>
-                </b-card>
-            </b-col>
-        </b-row>
-        <b-row v-if="data.journal_id != null">
-            <b-col>
-                <b-card no-body>
-                    Journal
-                    <b-table>
-
                     </b-table>
                 </b-card>
             </b-col>

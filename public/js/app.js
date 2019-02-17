@@ -3487,8 +3487,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['columns'],
   data: function data() {
@@ -3528,12 +3526,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     delete: function _delete() {},
     edit: function edit() {},
-    rowHovered: function rowHovered(item) {
-      this.hoveredRow = item;
-    },
-    isHovered: function isHovered(item) {
-      return item == this.hoveredRow;
-    },
     sumValue: function sumValue(details) {
       return details.reduce(function (sum, row) {
         return sum + new Number(row.value);
@@ -3908,6 +3900,15 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../components/crud.vue */ "./resources/js/components/crud.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -86768,7 +86769,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("b-form-input", {
-    staticClass: "mb-10",
     attrs: { type: "text", placeholder: "Search" },
     on: { change: _vm.search },
     model: {
@@ -86815,11 +86815,11 @@ var render = function() {
               _c("b-table", {
                 attrs: {
                   hover: "",
+                  responsive: "",
                   items: _vm.lists,
                   fields: _vm.columns,
                   "current-page": _vm.current_page
                 },
-                on: { "row-hovered": _vm.rowHovered },
                 scopedSlots: _vm._u([
                   {
                     key: "date",
@@ -86918,51 +86918,36 @@ var render = function() {
                     fn: function(data) {
                       return [
                         _c(
-                          "div",
+                          "b-button-group",
                           {
-                            directives: [
-                              {
-                                name: "show",
-                                rawName: "v-show",
-                                value: _vm.isHovered(data.item),
-                                expression: "isHovered(data.item)"
-                              }
-                            ]
+                            staticClass: "show-when-hovered",
+                            attrs: { size: "sm" }
                           },
                           [
                             _c(
-                              "b-button-group",
-                              { attrs: { size: "sm" } },
+                              "b-button",
+                              {
+                                attrs: {
+                                  to: {
+                                    name: _vm.formURL,
+                                    params: { id: data.item.id }
+                                  }
+                                }
+                              },
                               [
                                 _c(
-                                  "b-button",
-                                  {
-                                    attrs: {
-                                      to: {
-                                        name: _vm.formURL,
-                                        params: { id: data.item.id }
-                                      }
-                                    }
-                                  },
-                                  [
-                                    _c(
-                                      "i",
-                                      { staticClass: "material-icons md-18" },
-                                      [_vm._v("edit")]
-                                    )
-                                  ]
-                                ),
-                                _vm._v(" "),
-                                _c("b-button", [
-                                  _c(
-                                    "i",
-                                    { staticClass: "material-icons md-18" },
-                                    [_vm._v("delete_outline")]
-                                  )
-                                ])
-                              ],
-                              1
-                            )
+                                  "i",
+                                  { staticClass: "material-icons md-18" },
+                                  [_vm._v("edit")]
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("b-button", [
+                              _c("i", { staticClass: "material-icons md-18" }, [
+                                _vm._v("delete_outline")
+                              ])
+                            ])
                           ],
                           1
                         )
@@ -87936,27 +87921,61 @@ var render = function() {
     [
       _c(
         "b-row",
+        { staticClass: "mb-5" },
         [
-          _c("b-col", [
-            _c("h3", { staticClass: "upper-case" }, [
-              _c("img", {
-                staticClass: "mr-10",
-                attrs: { src: _vm.$route.meta.img, alt: "", width: "32" }
-              }),
-              _vm._v(
-                "\n                " +
-                  _vm._s(_vm.$route.meta.title) +
-                  "\n            "
-              )
-            ])
-          ]),
+          _c(
+            "b-col",
+            [
+              _c(
+                "b-btn",
+                {
+                  directives: [
+                    {
+                      name: "shortkey",
+                      rawName: "v-shortkey",
+                      value: ["esc"],
+                      expression: "['esc']"
+                    }
+                  ],
+                  staticClass: "d-none d-md-block float-left",
+                  on: {
+                    shortkey: function($event) {
+                      return _vm.onCancel()
+                    },
+                    click: function($event) {
+                      return _vm.onCancel()
+                    }
+                  }
+                },
+                [
+                  _c("i", { staticClass: "material-icons" }, [
+                    _vm._v("keyboard_backspace")
+                  ]),
+                  _vm._v("\n                Return\n            ")
+                ]
+              ),
+              _vm._v(" "),
+              _c("h3", { staticClass: "upper-case" }, [
+                _c("img", {
+                  staticClass: "mr-10",
+                  attrs: { src: _vm.$route.meta.img, alt: "", width: "32" }
+                }),
+                _vm._v(
+                  "\n                " +
+                    _vm._s(_vm.$route.meta.title) +
+                    "\n            "
+                )
+              ])
+            ],
+            1
+          ),
           _vm._v(" "),
           _c(
             "b-col",
             [
               _c(
                 "b-button-toolbar",
-                { staticClass: "float-right" },
+                { staticClass: "float-right d-none d-md-block" },
                 [
                   _c(
                     "b-btn",
@@ -87969,7 +87988,7 @@ var render = function() {
                           expression: "['ctrl', 'd']"
                         }
                       ],
-                      staticClass: "ml-15 mb-10",
+                      staticClass: "ml-15",
                       on: {
                         shortkey: function($event) {
                           return _vm.addDetailRow()
@@ -87991,7 +88010,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "b-button-group",
-                    { staticClass: "ml-15 mb-10" },
+                    { staticClass: "ml-15" },
                     [
                       _c(
                         "b-btn",
@@ -88000,17 +88019,17 @@ var render = function() {
                             {
                               name: "shortkey",
                               rawName: "v-shortkey",
-                              value: ["ctrl", "s"],
-                              expression: "['ctrl', 's']"
+                              value: ["ctrl", "n"],
+                              expression: "['ctrl', 'n']"
                             }
                           ],
                           attrs: { variant: "primary" },
                           on: {
                             shortkey: function($event) {
-                              return _vm.onSave()
+                              return _vm.onSaveNew()
                             },
                             click: function($event) {
-                              return _vm.onSave()
+                              return _vm.onSaveNew()
                             }
                           }
                         },
@@ -88031,11 +88050,115 @@ var render = function() {
                             {
                               name: "shortkey",
                               rawName: "v-shortkey",
+                              value: ["ctrl", "s"],
+                              expression: "['ctrl', 's']"
+                            }
+                          ],
+                          attrs: { variant: "secondary" },
+                          on: {
+                            shortkey: function($event) {
+                              return _vm.onSave()
+                            },
+                            click: function($event) {
+                              return _vm.onSave()
+                            }
+                          }
+                        },
+                        [
+                          _c("i", { staticClass: "material-icons" }, [
+                            _vm._v("save")
+                          ]),
+                          _vm._v(
+                            "\n                        Save & Return\n                    "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-btn",
+                        {
+                          directives: [
+                            {
+                              name: "shortkey",
+                              rawName: "v-shortkey",
+                              value: ["esc"],
+                              expression: "['esc']"
+                            }
+                          ],
+                          attrs: { variant: "danger" },
+                          on: {
+                            shortkey: function($event) {
+                              return _vm.onCancel()
+                            },
+                            click: function($event) {
+                              return _vm.onCancel()
+                            }
+                          }
+                        },
+                        [
+                          _c("i", { staticClass: "material-icons" }, [
+                            _vm._v("cancel")
+                          ]),
+                          _vm._v(
+                            "\n                        Cancel\n                    "
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-button-toolbar",
+                { staticClass: "float-right d-md-none" },
+                [
+                  _c(
+                    "b-btn",
+                    {
+                      directives: [
+                        {
+                          name: "shortkey",
+                          rawName: "v-shortkey",
+                          value: ["ctrl", "d"],
+                          expression: "['ctrl', 'd']"
+                        }
+                      ],
+                      staticClass: "ml-15",
+                      on: {
+                        shortkey: function($event) {
+                          return _vm.addDetailRow()
+                        },
+                        click: function($event) {
+                          return _vm.addDetailRow()
+                        }
+                      }
+                    },
+                    [
+                      _c("i", { staticClass: "material-icons" }, [
+                        _vm._v("playlist_add")
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-button-group",
+                    { staticClass: "ml-15" },
+                    [
+                      _c(
+                        "b-btn",
+                        {
+                          directives: [
+                            {
+                              name: "shortkey",
+                              rawName: "v-shortkey",
                               value: ["ctrl", "n"],
                               expression: "['ctrl', 'n']"
                             }
                           ],
-                          attrs: { variant: "secondary" },
+                          attrs: { variant: "primary" },
                           on: {
                             shortkey: function($event) {
                               return _vm.onSaveNew()
@@ -88048,44 +88171,39 @@ var render = function() {
                         [
                           _c("i", { staticClass: "material-icons" }, [
                             _vm._v("save")
-                          ]),
-                          _vm._v(
-                            "\n                        Save & New\n                    "
-                          )
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-btn",
+                        {
+                          directives: [
+                            {
+                              name: "shortkey",
+                              rawName: "v-shortkey",
+                              value: ["esc"],
+                              expression: "['esc']"
+                            }
+                          ],
+                          attrs: { variant: "danger" },
+                          on: {
+                            shortkey: function($event) {
+                              return _vm.onCancel()
+                            },
+                            click: function($event) {
+                              return _vm.onCancel()
+                            }
+                          }
+                        },
+                        [
+                          _c("i", { staticClass: "material-icons" }, [
+                            _vm._v("cancel")
+                          ])
                         ]
                       )
                     ],
                     1
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "b-btn",
-                    {
-                      directives: [
-                        {
-                          name: "shortkey",
-                          rawName: "v-shortkey",
-                          value: ["esc"],
-                          expression: "['esc']"
-                        }
-                      ],
-                      staticClass: "ml-15 mb-10",
-                      attrs: { variant: "danger" },
-                      on: {
-                        shortkey: function($event) {
-                          return _vm.onCancel()
-                        },
-                        click: function($event) {
-                          return _vm.onCancel()
-                        }
-                      }
-                    },
-                    [
-                      _c("i", { staticClass: "material-icons" }, [
-                        _vm._v("cancel")
-                      ]),
-                      _vm._v("\n                    Cancel\n                ")
-                    ]
                   )
                 ],
                 1
@@ -88661,31 +88779,7 @@ var render = function() {
           )
         ],
         1
-      ),
-      _vm._v(" "),
-      _vm.data.journal_id != null
-        ? _c(
-            "b-row",
-            [
-              _c(
-                "b-col",
-                [
-                  _c(
-                    "b-card",
-                    { attrs: { "no-body": "" } },
-                    [
-                      _vm._v("\n                Journal\n                "),
-                      _c("b-table")
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        : _vm._e()
+      )
     ],
     1
   )
@@ -88769,9 +88863,13 @@ var render = function() {
                           : _vm._e()
                       ]),
                       _vm._v(" "),
-                      _c("invoices-this-month-kpi"),
+                      _c("invoices-this-month-kpi", {
+                        staticClass: "d-none d-xl-block"
+                      }),
                       _vm._v(" "),
-                      _c("invoices-this-month-kpi"),
+                      _c("invoices-this-month-kpi", {
+                        staticClass: "d-none d-xl-block"
+                      }),
                       _vm._v(" "),
                       _c(
                         "b-card",

@@ -29,9 +29,21 @@ body {
     text-transform: uppercase !important;
 }
 
-.table thead th {
-    background-color: white !important;
+// @media (min-width: 1000) {
+//     .b-table > tbody > tr:not(:hover) .show-when-hovered {
+//       display: none;
+//     }
+// }
+
+@media (pointer:fine) {
+    .b-table > tbody > tr:not(:hover) .show-when-hovered {
+      display: none;
+    }
 }
+
+// .table thead th {
+//     background-color: white !important;
+// }
 
 .list-group-item {
     background-color: inherit !important;
@@ -39,27 +51,14 @@ body {
         color: $blue !important;
     }
 }
+
 .list-group-item.disabled {
     background-color: inherit !important;
     color: #a8b6bf !important;
 }
 
-
-.card-deck {
-    margin-bottom: 15px;
-}
-
 .card-deck .card {
-    margin-bottom: 15px;
-}
-
-.navbar-spark {
-    background-color: inherit !important;
-    box-shadow: 0 0px 0px white !important;
-}
-
-.nav-heading {
-    margin-bottom: 0px !important;
+    margin-bottom: 25px;
 }
 
 .nav-heading.sub {

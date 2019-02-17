@@ -83,20 +83,18 @@
         @endif
 
         <!-- Main Content -->
-        <b-container fluid>
+        <b-container class="spark-screen" fluid>
             @if (request()->route('taxPayer') != null)
-                <b-container class="spark-screen" fluid>
-                    <b-row>
-                        <!-- App Menu -->
-                        <div class="col-md-2 spark-settings-tabs">
-                            @include('spark::nav.apps')
-                        </div>
-                        <!-- Main Content -->
-                        <b-col md="10">
-                            @yield('content')
-                        </b-col>
-                    </b-row>
-                </b-container>
+                <b-row>
+                    <!-- App Menu -->
+                    <b-collapse id="menu" visible class="col-lg-2 spark-settings-tabs">
+                        @include('spark::nav.apps')
+                    </b-collapse>
+                    <!-- Main Content -->
+                    <b-col>
+                        @yield('content')
+                    </b-col>
+                </b-row>
             @else
                 @yield('content')
             @endif

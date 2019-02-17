@@ -2,7 +2,7 @@
     <div>
         <vue-topprogress ref="topProgress"></vue-topprogress>
         <b-card v-if="lists.length > 0 && is_loaded" no-body>
-            <b-table hover :items="lists" :fields="columns" :current-page="current_page" @row-hovered="rowHovered">
+            <b-table hover responsive :items="lists" :fields="columns" :current-page="current_page">
                 <template slot="date" slot-scope="data">
                     {{ new Date(data.item.date).toLocaleDateString() }}
                 </template>
@@ -27,12 +27,10 @@
                     </span>
                 </template>
                 <template slot="action" slot-scope="data">
-                    <div v-show="isHovered(data.item)">
-                        <b-button-group size="sm">
-                            <b-button :to="{ name: formURL, params: { id: data.item.id }}"><i class="material-icons md-18">edit</i></b-button>
-                            <b-button><i class="material-icons md-18">delete_outline</i></b-button>
-                        </b-button-group>
-                    </div>
+                    <b-button-group size="sm" class="show-when-hovered">
+                        <b-button :to="{ name: formURL, params: { id: data.item.id }}"><i class="material-icons md-18">edit</i></b-button>
+                        <b-button><i class="material-icons md-18">delete_outline</i></b-button>
+                    </b-button-group>
                 </template>
             </b-table>
         </b-card>
@@ -95,14 +93,6 @@ export default {
 
         edit() {
 
-        },
-
-        rowHovered(item) {
-            this.hoveredRow = item;
-        },
-
-        isHovered(item) {
-            return item == this.hoveredRow;
         },
 
         sumValue(details) {

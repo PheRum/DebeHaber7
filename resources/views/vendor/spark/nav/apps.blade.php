@@ -1,13 +1,10 @@
-
-<b-nav vertical>
-
-    <search-box></search-box>
-
+<b-nav vertical class="mb-25">
     <h3 class="nav-heading sub">
         Taxpayer
-        <i class="material-icons md-14 float-right">
-            <b-link href="/home" v-b-tooltip.hover title="Change Taxpayer">sync</b-link>
-        </i>
+        <b-link href="/home" v-b-tooltip.hover title="Change Taxpayer" class="float-right">
+            <i class="material-icons md-14 float-right"> sync </i>
+            <small>Change</small>
+        </b-link>
     </h3>
 
     <b-button variant="light" class="mb-10" v-b-toggle.collapse-taxpayer>
@@ -57,7 +54,7 @@
             @endforeach
             <b-nav-item class="sub-menu">
                 <i class="material-icons ml-10 mr-10">more_horiz</i>
-                more
+                show more
             </b-nav-item>
         </b-nav>
         <h3 class="nav-heading sub">
@@ -82,7 +79,7 @@
 
     <b-button variant="light" class="mb-10" v-b-toggle.collapse-commercial>
         <i class="material-icons float-left">expand_more</i>
-        <span class="nav-heading"> Commercial </span>
+        <span class="nav-heading"> Transactions </span>
     </b-button>
 
     <b-collapse id="collapse-commercial" accordion="sub-menu">

@@ -12309,8 +12309,10 @@ body {
   text-transform: uppercase !important;
 }
 
-.table thead th {
-  background-color: white !important;
+@media (pointer: fine) {
+  .b-table > tbody > tr:not(:hover) .show-when-hovered {
+    display: none;
+  }
 }
 
 .list-group-item {
@@ -12326,21 +12328,8 @@ body {
   color: #a8b6bf !important;
 }
 
-.card-deck {
-  margin-bottom: 15px;
-}
-
 .card-deck .card {
-  margin-bottom: 15px;
-}
-
-.navbar-spark {
-  background-color: inherit !important;
-  box-shadow: 0 0px 0px white !important;
-}
-
-.nav-heading {
-  margin-bottom: 0px !important;
+  margin-bottom: 25px;
 }
 
 .nav-heading.sub {
