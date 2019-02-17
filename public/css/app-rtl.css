@@ -12332,6 +12332,10 @@ body {
   margin-bottom: 25px;
 }
 
+.navbar-default .navbar-nav > li {
+  display: inline-block;
+}
+
 .nav-heading.sub {
   text-transform: uppercase;
   font-size: 12px;

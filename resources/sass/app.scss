@@ -29,12 +29,6 @@ body {
     text-transform: uppercase !important;
 }
 
-// @media (min-width: 1000) {
-//     .b-table > tbody > tr:not(:hover) .show-when-hovered {
-//       display: none;
-//     }
-// }
-
 @media (pointer:fine) {
     .b-table > tbody > tr:not(:hover) .show-when-hovered {
       display: none;
@@ -59,6 +53,10 @@ body {
 
 .card-deck .card {
     margin-bottom: 25px;
+}
+
+.navbar-default .navbar-nav>li {
+  display: inline-block;
 }
 
 .nav-heading.sub {

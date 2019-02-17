@@ -85,17 +85,6 @@
         </div>
     </div>
 
-    <!-- Language Configuration -->
-    <div class="form-group row">
-        <label class="col-md-4 col-form-label text-md-right">{{__('Language')}}</label>
-        <div class="col-md-6">
-            <b-form-select class="mb-3">
-                <option value="en" selected>English</option>
-                <option value="es">Español</option>
-            </b-form-select>
-        </div>
-    </div>
-
     <!-- Terms And Conditions -->
     <div v-if=" ! selectedPlan || selectedPlan.price == 0">
         <div class="form-group row">
@@ -111,7 +100,7 @@
                 </div>
             </div>
         </div>
-
+        
         <div class="form-group row mb-0">
             <div class="col-md-6 offset-md-4">
                 <button class="btn btn-primary" @click.prevent="register" :disabled="registerForm.busy">

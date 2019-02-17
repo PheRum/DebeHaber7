@@ -18,11 +18,11 @@
 
     <b-collapse id="collapse-taxpayer" accordion="sub-menu">
         <b-nav-item class="sub-menu" :to="{ name: 'taxPayer'}">
-            <i class="material-icons ml-10 mr-10">dashboard</i>
+            <i class="material-icons md-18 ml-10 mr-10">dashboard</i>
             Dashboard
         </b-nav-item>
         <b-nav-item href="/home" class="sub-menu">
-            <i class="material-icons ml-10 mr-10">sync</i>
+            <i class="material-icons md-18 ml-10 mr-10">sync</i>
             Change Taxpayer
         </b-nav-item>
         <h3 class="nav-heading sub">
@@ -30,15 +30,15 @@
         </h3>
         <b-nav vertical>
             <b-nav-item class="sub-menu" :to="{ name: 'creditList'}">
-                <i class="material-icons ml-10 mr-10">settings</i>
+                <i class="material-icons md-18 ml-10 mr-10">settings</i>
                 Configuration
             </b-nav-item>
             <b-nav-item class="sub-menu" :to="{ name: 'salesList'}">
-                <i class="material-icons ml-10 mr-10">file_copy</i>
+                <i class="material-icons md-18 ml-10 mr-10">file_copy</i>
                 Documents
             </b-nav-item>
             <b-nav-item class="sub-menu" :to="{ name: 'creditList'}">
-                <i class="material-icons ml-10 mr-10">public</i>
+                <i class="material-icons md-18 ml-10 mr-10">public</i>
                 Exchange Rates
             </b-nav-item>
         </b-nav>
@@ -48,12 +48,12 @@
         <b-nav vertical>
             @foreach ($cycleData as $cycle)
                 <b-nav-item class="sub-menu">
-                    <i class="material-icons ml-10 mr-10">calendar_today</i>
+                    <i class="material-icons md-18 ml-10 mr-10">calendar_today</i>
                     {{ $cycle->year }}
                 </b-nav-item>
             @endforeach
             <b-nav-item class="sub-menu">
-                <i class="material-icons ml-10 mr-10">more_horiz</i>
+                <i class="material-icons md-18 ml-10 mr-10">more_horiz</i>
                 show more
             </b-nav-item>
         </b-nav>
@@ -62,12 +62,12 @@
         </h3>
         <b-nav vertical>
             <b-nav-item href="/home" class="sub-menu" v-b-tooltip.hover title="Team Dashboard">
-                <i class="material-icons ml-10 mr-10">dashboard</i>
+                <i class="material-icons md-18 ml-10 mr-10">dashboard</i>
                 Team Dashboard
             </b-nav-item>
 
             <b-nav-item href="/settings/{{ Spark::teamsPrefix() }}/{{ \Auth::user()->currentTeam->id }}" class="sub-menu" v-b-tooltip.hover title="Team Settings">
-                <i class="material-icons ml-10 mr-10">settings</i>
+                <i class="material-icons md-18 ml-10 mr-10">settings</i>
                 Team Settings
             </b-nav-item>
         </b-nav>
@@ -89,15 +89,15 @@
         </h3>
         <b-nav vertical>
             <b-nav-item class="sub-menu" :to="{ name: 'salesList'}">
-                <i class="material-icons ml-10 mr-10">send</i>
+                <i class="material-icons md-18 ml-10 mr-10">send</i>
                 Sales Book
             </b-nav-item>
             <b-nav-item class="sub-menu" :to="{ name: 'creditList'}">
-                <i class="material-icons ml-10 mr-10">redo</i>
+                <i class="material-icons md-18 ml-10 mr-10">redo</i>
                 Credit Notes
             </b-nav-item>
             <b-nav-item class="sub-menu" disabled>
-                <i class="material-icons ml-10 mr-10">attach_money</i>
+                <i class="material-icons md-18 ml-10 mr-10">attach_money</i>
                 Accounts Receivables
             </b-nav-item>
         </b-nav>
@@ -107,15 +107,15 @@
         </h3>
         <b-nav vertical>
             <b-nav-item class="sub-menu" :to="{ name: 'purchaseList'}">
-                <i class="material-icons ml-10 mr-10">shopping_cart</i>
+                <i class="material-icons md-18 ml-10 mr-10">shopping_cart</i>
                 Purchase Book
             </b-nav-item>
             <b-nav-item class="sub-menu" :to="{ name: 'debitList'}">
-                <i class="material-icons ml-10 mr-10">undo</i>
+                <i class="material-icons md-18 ml-10 mr-10">undo</i>
                 Debit Notes
             </b-nav-item>
             <b-nav-item class="sub-menu" disabled>
-                <i class="material-icons ml-10 mr-10">attach_money</i>
+                <i class="material-icons md-18 ml-10 mr-10">attach_money</i>
                 Accounts Payables
             </b-nav-item>
         </b-nav>
@@ -125,19 +125,19 @@
         </h3>
         <b-nav vertical>
             <b-nav-item class="sub-menu" :to="{ name: 'purchaseList'}">
-                <i class="material-icons ml-10 mr-10">vpn_key</i>
+                <i class="material-icons md-18 ml-10 mr-10">vpn_key</i>
                 Fixed Assets
             </b-nav-item>
             <b-nav-item class="sub-menu" :to="{ name: 'debitList'}">
-                <i class="material-icons ml-10 mr-10">unarchive</i>
+                <i class="material-icons md-18 ml-10 mr-10">unarchive</i>
                 Inventories
             </b-nav-item>
             <b-nav-item class="sub-menu" disabled>
-                <i class="material-icons ml-10 mr-10">settings_applications</i>
+                <i class="material-icons md-18 ml-10 mr-10">settings_applications</i>
                 Production
             </b-nav-item>
             <b-nav-item class="sub-menu">
-                <i class="material-icons ml-10 mr-10">attach_money</i>
+                <i class="material-icons md-18 ml-10 mr-10">attach_money</i>
                 Money Movements
             </b-nav-item>
         </b-nav>
@@ -154,7 +154,7 @@
         </h3>
         <b-nav vertical>
             <b-nav-item class="sub-menu" :to="{ name: 'journalList'}">
-                <i class="material-icons ml-10 mr-10">notes</i>
+                <i class="material-icons md-18 ml-10 mr-10">notes</i>
                 Journals
             </b-nav-item>
         </b-nav>
@@ -163,19 +163,19 @@
         </h3>
         <b-nav vertical>
             <b-nav-item class="sub-menu" :to="{ name: 'cycleList'}">
-                <i class="material-icons ml-10 mr-10">calendar_today</i>
+                <i class="material-icons md-18 ml-10 mr-10">calendar_today</i>
                 Accounting Cycles
             </b-nav-item>
             <b-nav-item class="sub-menu" :to="{ name: 'openingBalanceForm'}">
-                <i class="material-icons ml-10 mr-10">play_circle_outline</i>
+                <i class="material-icons md-18 ml-10 mr-10">play_circle_outline</i>
                 Opening Balance
             </b-nav-item>
             <b-nav-item class="sub-menu" :to="{ name: 'closingBalanceForm'}">
-                <i class="material-icons ml-10 mr-10">pause_circle_outline</i>
+                <i class="material-icons md-18 ml-10 mr-10">pause_circle_outline</i>
                 Closing Balance
             </b-nav-item>
             <b-nav-item class="sub-menu" :to="{ name: 'budgetForm'}">
-                <i class="material-icons ml-10 mr-10">playlist_add_check</i>
+                <i class="material-icons md-18 ml-10 mr-10">playlist_add_check</i>
                 Cycle Budgets
             </b-nav-item>
         </b-nav>
@@ -184,7 +184,7 @@
         </h3>
         <b-nav vertical>
             <b-nav-item class="sub-menu" :to="{ name: 'purchaseList'}">
-                <i class="material-icons ml-10 mr-10">settings</i>
+                <i class="material-icons md-18 ml-10 mr-10">settings</i>
                 Chart of Accounts
             </b-nav-item>
         </b-nav>
@@ -206,15 +206,15 @@
         </h3>
         <b-nav vertical>
             <b-nav-item class="sub-menu" :to="{ name: 'journalList'}">
-                <i class="material-icons ml-10 mr-10">list</i>
+                <i class="material-icons md-18 ml-10 mr-10">list</i>
                 Commercial
             </b-nav-item>
             <b-nav-item class="sub-menu" :to="{ name: 'journalList'}">
-                <i class="material-icons ml-10 mr-10">list</i>
+                <i class="material-icons md-18 ml-10 mr-10">list</i>
                 Accounting
             </b-nav-item>
             <b-nav-item class="sub-menu" :to="{ name: 'journalList'}">
-                <i class="material-icons ml-10 mr-10">list</i>
+                <i class="material-icons md-18 ml-10 mr-10">list</i>
                 Auditing
             </b-nav-item>
         </b-nav>
