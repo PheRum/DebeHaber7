@@ -31,7 +31,7 @@
         <b-nav vertical>
             <b-nav-item class="sub-menu" :to="{ name: 'creditList'}">
                 <i class="material-icons md-18 ml-10 mr-10">settings</i>
-                Configuration
+                Taxpayer Settings
             </b-nav-item>
             <b-nav-item class="sub-menu" :to="{ name: 'salesList'}">
                 <i class="material-icons md-18 ml-10 mr-10">file_copy</i>
@@ -58,7 +58,7 @@
             </b-nav-item>
         </b-nav>
         <h3 class="nav-heading sub">
-            @{{ currentTeam.name }}
+            {{__('teams.teams')}}: @{{ currentTeam.name }}
         </h3>
         <b-nav vertical>
             <b-nav-item href="/home" class="sub-menu" v-b-tooltip.hover title="Team Dashboard">

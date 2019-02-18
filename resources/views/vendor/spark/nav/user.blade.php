@@ -37,7 +37,7 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
                         <!-- Impersonation -->
                         @if (session('spark:impersonator'))
-                            <h6 class="dropdown-header">{{__('Impersonation')}}</h6>
+                            <h3 class="nav-heading sub"> {{__('Impersonation')}} </h3>
 
                             <!-- Stop Impersonating -->
                             <a class="dropdown-item" href="/spark/kiosk/users/stop-impersonating">
@@ -56,19 +56,28 @@
                         @include('spark::nav.subscriptions')
 
                         <!-- Settings -->
-                        <h6 class="dropdown-header">{{__('Settings')}}</h6>
-
+                        <h3 class="nav-heading sub"> {{__('Settings')}} </h3>
                         <!-- Your Settings -->
                         <a class="dropdown-item" href="/settings">
-                            <i class="material-icons">settings</i> {{__('Your Settings')}}
+                            <i class="material-icons">account_circle</i> {{__('Your Settings')}}
+                        </a>
+
+                        <a class="dropdown-item" v-for="team in teams" :href="'/settings/{{ Spark::teamsPrefix() }}/'+ team.id +'/switch'">
+                            <span v-if="user.current_team_id == team.id">
+                                <i class="material-icons">supervised_user_circle</i> @{{ team.name }} {{__('Settings')}}
+                            </span>
+
+                            <span v-else>
+                                <img :src="team.photo_url" class="spark-profile-photo-xs" alt="{{__('Team Photo')}}" /><i class="fa fa-btn"></i> @{{ team.name }}
+                            </span>
                         </a>
 
                         <div class="dropdown-divider"></div>
 
-                        @if (Spark::usesTeams() && (Spark::createsAdditionalTeams() || Spark::showsTeamSwitcher()))
+                        {{-- @if (Spark::usesTeams() && (Spark::createsAdditionalTeams() || Spark::showsTeamSwitcher()))
                             <!-- Team Settings -->
                             @include('spark::nav.teams')
-                        @endif
+                        @endif --}}
 
                         @if (Spark::hasSupportAddress())
                             <!-- Support -->

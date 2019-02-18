@@ -3263,16 +3263,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.2.0",
+            "version": "v4.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "594bcae1fc0bccd3993d2f0d61a018e26ac2865a"
+                "reference": "5221f49a608808c1e4d436df32884cbc1b821ac0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/594bcae1fc0bccd3993d2f0d61a018e26ac2865a",
-                "reference": "594bcae1fc0bccd3993d2f0d61a018e26ac2865a",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/5221f49a608808c1e4d436df32884cbc1b821ac0",
+                "reference": "5221f49a608808c1e4d436df32884cbc1b821ac0",
                 "shasum": ""
             },
             "require": {
@@ -3310,7 +3310,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2019-01-12T16:31:37+00:00"
+            "time": "2019-02-16T20:54:15+00:00"
         },
         {
             "name": "opis/closure",
@@ -4630,16 +4630,16 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v6.30.0",
+            "version": "v6.30.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "1a2416766200611c6201d16c30ad925cd44316a3"
+                "reference": "570d47d566da6e87413db1fd3a833c42907cb746"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/1a2416766200611c6201d16c30ad925cd44316a3",
-                "reference": "1a2416766200611c6201d16c30ad925cd44316a3",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/570d47d566da6e87413db1fd3a833c42907cb746",
+                "reference": "570d47d566da6e87413db1fd3a833c42907cb746",
                 "shasum": ""
             },
             "require": {
@@ -4682,7 +4682,7 @@
                 "payment processing",
                 "stripe"
             ],
-            "time": "2019-02-12T16:48:35+00:00"
+            "time": "2019-02-16T17:48:38+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
