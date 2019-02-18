@@ -59,30 +59,21 @@
                         <h3 class="nav-heading sub"> {{__('Settings')}} </h3>
                         <!-- Your Settings -->
                         <a class="dropdown-item" href="/settings">
-                            <i class="material-icons">account_circle</i> {{__('Your Settings')}}
+                            <i class="material-icons">account_circle</i> {{__('Profile')}}
                         </a>
 
                         <a class="dropdown-item" v-for="team in teams" :href="'/settings/{{ Spark::teamsPrefix() }}/'+ team.id +'/switch'">
-                            <span v-if="user.current_team_id == team.id">
-                                <i class="material-icons">supervised_user_circle</i> @{{ team.name }} {{__('Settings')}}
-                            </span>
+                            <img :src="team.photo_url" class="spark-profile-photo-xs" alt="I" /> {{__('teams.teams')}}
+                        </a>
 
-                            <span v-else>
-                                <img :src="team.photo_url" class="spark-profile-photo-xs" alt="{{__('Team Photo')}}" /><i class="fa fa-btn"></i> @{{ team.name }}
-                            </span>
+                        <a class="dropdown-item" href="/settings#/api">
+                            <i class="material-icons">extension</i> Integration
+                            {{-- {{__('API')}} --}}
                         </a>
 
                         <div class="dropdown-divider"></div>
 
-                        {{-- @if (Spark::usesTeams() && (Spark::createsAdditionalTeams() || Spark::showsTeamSwitcher()))
-                            <!-- Team Settings -->
-                            @include('spark::nav.teams')
-                        @endif --}}
-
-                        @if (Spark::hasSupportAddress())
-                            <!-- Support -->
-                            @include('spark::nav.support')
-                        @endif
+                        @include('spark::nav.teams')
 
                         <!-- Logout -->
                         <a class="dropdown-item" href="/logout">
