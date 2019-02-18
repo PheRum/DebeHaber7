@@ -4,4 +4,8 @@
     <i class="material-icons">settings_applications</i> {{__('Kiosk')}}
 </a>
 
+<a class="dropdown-item" href="/nova">
+    <i class="material-icons">vpn_lock</i> Nova
+</a>
+
 <div class="dropdown-divider"></div>
