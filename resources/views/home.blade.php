@@ -9,10 +9,8 @@
                         <em slot="header">
                             Taxpayers for the Team
                             <div class="float-right">
-                                 <b-form-input v-model="text"
-                                              type="text"
-                                              placeholder="Enter your name"
-                                ></b-form-input>
+                                <b-form-input v-model="text" type="text" placeholder="Enter your name">
+                                </b-form-input>
                             </div>
                         </em>
                         <b-list-group flush>
@@ -24,7 +22,6 @@
                                         <i class="material-icons">person_outline</i>
                                     @endif
                                     {{ $integration->taxPayer->name }} <span class="text-muted"> | {{ $integration->taxPayer->taxid }}</span>
-
                                 </b-list-group-item>
                             @endforeach
                         </b-list-group>
