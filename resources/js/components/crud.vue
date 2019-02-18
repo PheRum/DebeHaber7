@@ -31,6 +31,7 @@ export default {
                 data: $data
             })
             .then(function (response) {
+
                 return response
             })
             .catch(function (error) {

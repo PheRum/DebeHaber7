@@ -52,10 +52,11 @@ class SalesController extends Controller
     */
     public function store(Request $request, Taxpayer $taxPayer, Cycle $cycle)
     {
+
         $transaction = Transaction::firstOrNew(['id' => $request->id]);
 
         if ($request->customer_id > 0) {
-            $transaction->customer_id = $request->customer->id;
+        $transaction->customer_id = $request->customer_id;
         }
 
         if ($request->document_id > 0) {
@@ -118,6 +119,7 @@ class SalesController extends Controller
     {
         try
         {
+
             //TODO: Run Tests to make sure it deletes all journals related to transaction
             AccountMovement::where('transaction_id', $transactionId)->delete();
             //JournalTransaction::where('transaction_id',$transactionId)->delete();

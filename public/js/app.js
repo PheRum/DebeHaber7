@@ -3438,6 +3438,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _crud_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./crud.vue */ "./resources/js/components/crud.vue");
 //
 //
 //
@@ -3487,7 +3488,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    'crud': _crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   props: ['columns'],
   data: function data() {
     return {
@@ -3524,7 +3529,22 @@ __webpack_require__.r(__webpack_exports__);
         _this.$refs.topProgress.done();
       }); //todo add fail function in topProgress
     },
-    delete: function _delete() {},
+    onDelete: function onDelete(row) {
+      var app = this;
+      _crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"].methods.onDelete('/api' + app.$route.path, row.id).then(function (response) {
+        console.log(app);
+        app.lists.splice(app.lists.indexOf(row), 1);
+        app.$snack.success({
+          text: 'Deleted'
+        });
+      }).catch(function (error) {
+        console.log(error);
+        app.$snack.danger({
+          text: 'Error OMG!'
+        });
+      });
+      ;
+    },
     edit: function edit() {},
     sumValue: function sumValue(details) {
       return details.reduce(function (sum, row) {
@@ -83889,7 +83909,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /*!
- * vue-i18n v8.8.1 
+ * vue-i18n v8.8.2 
  * (c) 2019 kazuya kawaguchi
  * Released under the MIT License.
  */
@@ -84163,6 +84183,7 @@ var mixin = {
 
       if (self._i18nWatcher) {
         self._i18nWatcher();
+        self._i18n.destroyVM();
         delete self._i18nWatcher;
       }
 
@@ -84905,6 +84926,10 @@ VueI18n.prototype._initVM = function _initVM (data) {
   Vue.config.silent = silent;
 };
 
+VueI18n.prototype.destroyVM = function destroyVM () {
+  this._vm.$destroy();
+};
+
 VueI18n.prototype.subscribeDataChanging = function subscribeDataChanging (vm) {
   this._dataListeners.push(vm);
 };
@@ -85548,7 +85573,7 @@ Object.defineProperty(VueI18n, 'availabilities', {
 });
 
 VueI18n.install = install;
-VueI18n.version = '8.8.1';
+VueI18n.version = '8.8.2';
 
 /* harmony default export */ __webpack_exports__["default"] = (VueI18n);
 
@@ -86943,11 +86968,23 @@ var render = function() {
                               ]
                             ),
                             _vm._v(" "),
-                            _c("b-button", [
-                              _c("i", { staticClass: "material-icons md-18" }, [
-                                _vm._v("delete_outline")
-                              ])
-                            ])
+                            _c(
+                              "b-button",
+                              {
+                                on: {
+                                  click: function($event) {
+                                    return _vm.onDelete(data.item)
+                                  }
+                                }
+                              },
+                              [
+                                _c(
+                                  "i",
+                                  { staticClass: "material-icons md-19" },
+                                  [_vm._v("delete_outline")]
+                                )
+                              ]
+                            )
                           ],
                           1
                         )
@@ -112388,9 +112425,9 @@ __webpack_require__(/*! ./forms/bootstrap */ "./spark/resources/assets/js/forms/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/ashah/Projects/debehaber7/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Users/ashah/Projects/debehaber7/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /Users/ashah/Projects/debehaber7/resources/sass/app-rtl.scss */"./resources/sass/app-rtl.scss");
+__webpack_require__(/*! C:\Users\SMART\Documents\GitHub\DebeHaber7\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\Users\SMART\Documents\GitHub\DebeHaber7\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\Users\SMART\Documents\GitHub\DebeHaber7\resources\sass\app-rtl.scss */"./resources/sass/app-rtl.scss");
 
 
 /***/ })

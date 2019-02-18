@@ -29,7 +29,7 @@
                 <template slot="action" slot-scope="data">
                     <b-button-group size="sm" class="show-when-hovered">
                         <b-button :to="{ name: formURL, params: { id: data.item.id }}"><i class="material-icons md-18">edit</i></b-button>
-                        <b-button><i class="material-icons md-18">delete_outline</i></b-button>
+                        <b-button @click="onDelete(data.item)"><i class="material-icons md-19">delete_outline</i></b-button>
                     </b-button-group>
                 </template>
             </b-table>
@@ -48,7 +48,9 @@
 </template>
 
 <script>
+import crud from './crud.vue';
 export default {
+    components: { 'crud': crud },
     props: ['columns'],
     data: () => ({
         skip: 1,
@@ -87,8 +89,17 @@ export default {
             //todo add fail function in topProgress
         },
 
-        delete() {
+        onDelete(row) {
+            var app=this;
 
+            crud.methods.onDelete('/api' + app.$route.path,row.id).then(function (response) {
+                console.log(app);
+               app.lists.splice(app.lists.indexOf(row), 1);
+                app.$snack.success({text:'Deleted'});
+            }).catch(function (error) {
+                console.log(error);
+                app.$snack.danger({ text: 'Error OMG!' });
+            });;
         },
 
         edit() {

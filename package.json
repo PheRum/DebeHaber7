@@ -9,7 +9,7 @@
   "dependencies": {
     "@fortawesome/vue-fontawesome": "^0.1.5",
     "ajv": "^6.9.1",
-    "apexcharts": "^3.3.1",
+    "apexcharts": "^3.4.1",
     "axios": "^0.18",
     "bootstrap": "^4.3.1",
     "bootstrap-vue": "^2.0.0-rc.12",
@@ -31,7 +31,7 @@
     "vue-apexcharts": "^1.2.9",
     "vue-awesome": "^3.4.0",
     "vue-google-charts": "^0.3.2",
-    "vue-i18n": "^8.8.1",
+    "vue-i18n": "^8.8.2",
     "vue-router": "^3.0.2",
     "vue-select": "^2.5.1",
     "vue-shortkey": "^3.1.6",
