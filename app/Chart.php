@@ -48,14 +48,9 @@ class Chart extends Model
     {
         return $query
         ->where('type', 1)
-        ->where(function ($x) {
-            $x
-            ->where('sub_type', 1)
-            ->orWhere('sub_type', 3);
-        })
+        ->whereIn('sub_type', [1, 3])
         ->where('is_accountable', 1);
     }
-
 
     //Brings all Fixed Asset Type accounts into list.
     public function scopeFixedAssetGroups($query)
@@ -123,27 +118,20 @@ class Chart extends Model
     {
         return $query
         ->where('is_accountable', 1)
-        ->where(function ($y) {
-            $y
-            ->where('type', 5)
-            ->where(function ($z) {
-                //Bring all Expenses except for Wages, Depreciation, these accounts you cannot purchase.
-                $z->where('sub_type', 2);
-                $z->orWhere('sub_type', 3);
-                $z->orWhere('sub_type', 6);
-                $z->orWhere('sub_type', 7);
-                $z->orWhere('sub_type', 9);
-                $z->orWhere('sub_type', 10);
-            });
-        })
-        ->orWhere(function ($y) {
-            $y
-            ->where('type', 1)
-            ->where(function ($z) {
-                //Bring all Expenses except for Wages, Depreciation, these accounts you cannot purchase.
-                $z->where('sub_type', 7);
-                $z->orWhere('sub_type', 8);
-                $z->orWhere('sub_type', 9);
+        ->where(function ($x)
+        {
+            $x
+            ->where(function ($y)
+            {
+                $y
+                ->where('type', 5)
+                ->whereNotIn('sub_type', [4, 9]);
+            })
+            ->orWhere(function ($y)
+            {
+                $y
+                ->where('type', 1)
+                ->whereIn('sub_type', [7, 8, 9]);
             });
         });
     }

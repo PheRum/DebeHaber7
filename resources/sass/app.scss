@@ -31,8 +31,12 @@ body {
 
 @media (pointer:fine) {
     .b-table > tbody > tr:not(:hover) .show-when-hovered {
-      display: none;
+      opacity: 0.16;
     }
+}
+
+.table th, .table td {
+    vertical-align: middle !important;
 }
 
 // .table thead th {
@@ -77,6 +81,11 @@ body {
 .navbar-spark .nav-link, .spark-settings-tabs .nav-link {
     font-weight: 400 !important;
     font-size: 14px !important;
+}
+
+.nav-item {
+    margin-top: auto !important;
+    margin-bottom: auto !important;
 }
 
 $spaceamounts: (5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 75, 100); // Adjust this to include the pixel amounts you need.

@@ -43,7 +43,7 @@
             <p class="lead">How about <router-link :to="{ name: formURL, params: { id: 0}}">creating</router-link> some data</p>
             <b-img thumbnail fluid width="256" src="/img/apps/no-data.svg" alt="Thumbnail" />
         </b-card>
-        <b-pagination v-if="lists.length > 0" size="md" align="center" :total-rows="meta.total" :per-page="meta.per_page" v-model="current_page" @change="list()"></b-pagination>
+        <b-pagination v-if="lists.length > 0" size="md" align="center" :total-rows="meta.total" :per-page="meta.per_page" v-model="meta.current_page" @change="list()"></b-pagination>
     </div>
 </template>
 
@@ -56,8 +56,6 @@ export default {
         skip: 1,
         lists: [],
         meta: [],
-        current_page: 0,
-        hoveredRow: null,
         is_loaded: false,
     }),
     computed: {
@@ -75,7 +73,14 @@ export default {
             var app = this;
             this.$refs.topProgress.start();
 
-            axios.get('/api' + app.$route.path + '?page=' + app.current_page)
+            var page = 1;
+            if (app.meta != null) {
+                page = app.meta.current_page;
+            }
+
+            alert('/api' + app.$route.path + '?page=' + page);
+
+            axios.get('/api' + app.$route.path + '?page=' + page)
             .then(({ data }) =>
             {
                 app.lists = data.data;
@@ -90,11 +95,11 @@ export default {
         },
 
         onDelete(row) {
-            var app=this;
+            var app = this;
 
             crud.methods.onDelete('/api' + app.$route.path,row.id).then(function (response) {
                 console.log(app);
-               app.lists.splice(app.lists.indexOf(row), 1);
+                app.lists.splice(app.lists.indexOf(row), 1);
                 app.$snack.success({text:'Deleted'});
             }).catch(function (error) {
                 console.log(error);
@@ -102,20 +107,15 @@ export default {
             });;
         },
 
-        edit() {
-
-        },
-
         sumValue(details) {
             return details.reduce(function(sum, row) {
-                return sum + new Number(row.value);
+                return sum + new Number(row.default_currency);
             }, 0);
         }
     },
 
     mounted() {
         var app = this;
-
         this.list();
     }
 }

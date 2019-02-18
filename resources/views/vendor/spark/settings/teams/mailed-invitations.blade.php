@@ -21,11 +21,11 @@
 
                             <!-- Delete Button -->
                             <td class="td-fit">
-                                <div class="reveal-target text-right ">
+                                <div class="reveal-target text-right">
                                     <button class="btn-reset" @click="cancel(invitation)">
-                                    <svg class="icon-20 icon-sidenav " xmlns="http://www.w3.org/2000/svg ">
-                                        <path fill="#95A2AE " d="M4 2l2-2h4l2 2h4v2H0V2h4zM1 6h14l-1 14H2L1 6zm5 2v10h1V8H6zm3 0v10h1V8H9z"></path>
-                                    </svg>
+                                        <svg class="icon-20 icon-sidenav " xmlns="http://www.w3.org/2000/svg ">
+                                            <path fill="#95A2AE " d="M4 2l2-2h4l2 2h4v2H0V2h4zM1 6h14l-1 14H2L1 6zm5 2v10h1V8H6zm3 0v10h1V8H9z"></path>
+                                        </svg>
                                     </button>
                                 </div>
                             </td>

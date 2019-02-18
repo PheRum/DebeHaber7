@@ -24,6 +24,7 @@
                                         <i class="material-icons">person_outline</i>
                                     @endif
                                     {{ $integration->taxPayer->name }} <span class="text-muted"> | {{ $integration->taxPayer->taxid }}</span>
+
                                 </b-list-group-item>
                             @endforeach
                         </b-list-group>
@@ -36,13 +37,23 @@
 
             <b-col>
                 <b-card header="Members" header-tag="header">
-                    <div v-for="user in currentTeam.users" :key="user.key">
-                        <img :src="user.photo_url" alt="">
-                        <span>@{{ user.name }}</span>
-                        <span>@{{ user.email }}</span>
-                        <span>@{{ user.pivot.role }}</span>
-                    </div>
+                    <b-row v-for="user in currentTeam.users" :key="user.key" align-v="center">
+                        <b-col cols="2">
+                            <b-img :src="user.photo_url" fluid rounded="circle" alt="Circle image" />
+                        </b-col>
+                        <b-col cols="5">
+                            <span>@{{ user.name }}</span>
+                            <b-badge variant="primary" class="upper-case">
+                                @{{ user.pivot.role }}
+                            </b-badge>
+                        </b-col>
+                        <b-col cols="5">
+                            <a>@{{ user.email }}</a>
+                        </b-col>
+                    </b-row>
                 </b-card>
+
+                @include('spark::settings.teams.send-invitation')
             </b-col>
         </b-row>
 

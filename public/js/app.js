@@ -3499,8 +3499,6 @@ __webpack_require__.r(__webpack_exports__);
       skip: 1,
       lists: [],
       meta: [],
-      current_page: 0,
-      hoveredRow: null,
       is_loaded: false
     };
   },
@@ -3519,7 +3517,14 @@ __webpack_require__.r(__webpack_exports__);
 
       var app = this;
       this.$refs.topProgress.start();
-      axios.get('/api' + app.$route.path + '?page=' + app.current_page).then(function (_ref) {
+      var page = 1;
+
+      if (app.meta != null) {
+        page = app.meta.current_page;
+      }
+
+      alert('/api' + app.$route.path + '?page=' + page);
+      axios.get('/api' + app.$route.path + '?page=' + page).then(function (_ref) {
         var data = _ref.data;
         app.lists = data.data;
         app.meta = data.meta;
@@ -3545,10 +3550,9 @@ __webpack_require__.r(__webpack_exports__);
       });
       ;
     },
-    edit: function edit() {},
     sumValue: function sumValue(details) {
       return details.reduce(function (sum, row) {
-        return sum + new Number(row.value);
+        return sum + new Number(row.default_currency);
       }, 0);
     }
   },
@@ -4328,15 +4332,19 @@ __webpack_require__.r(__webpack_exports__);
         sortable: true
       }, {
         key: 'customer.name',
+        label: 'Customer',
         sortable: true
       }, {
         key: 'number',
+        label: 'Invoice Number',
         sortable: true
       }, {
         key: 'total',
+        label: 'Invoice Total',
         sortable: true
       }, {
         key: 'action',
+        label: '',
         sortable: false
       }]
     };
@@ -83909,7 +83917,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /*!
- * vue-i18n v8.8.2 
+ * vue-i18n v8.8.1 
  * (c) 2019 kazuya kawaguchi
  * Released under the MIT License.
  */
@@ -84183,7 +84191,6 @@ var mixin = {
 
       if (self._i18nWatcher) {
         self._i18nWatcher();
-        self._i18n.destroyVM();
         delete self._i18nWatcher;
       }
 
@@ -84926,10 +84933,6 @@ VueI18n.prototype._initVM = function _initVM (data) {
   Vue.config.silent = silent;
 };
 
-VueI18n.prototype.destroyVM = function destroyVM () {
-  this._vm.$destroy();
-};
-
 VueI18n.prototype.subscribeDataChanging = function subscribeDataChanging (vm) {
   this._dataListeners.push(vm);
 };
@@ -85573,7 +85576,7 @@ Object.defineProperty(VueI18n, 'availabilities', {
 });
 
 VueI18n.install = install;
-VueI18n.version = '8.8.2';
+VueI18n.version = '8.8.1';
 
 /* harmony default export */ __webpack_exports__["default"] = (VueI18n);
 
@@ -87057,11 +87060,11 @@ var render = function() {
               }
             },
             model: {
-              value: _vm.current_page,
+              value: _vm.meta.current_page,
               callback: function($$v) {
-                _vm.current_page = $$v
+                _vm.$set(_vm.meta, "current_page", $$v)
               },
-              expression: "current_page"
+              expression: "meta.current_page"
             }
           })
         : _vm._e()
@@ -88857,48 +88860,57 @@ var render = function() {
                     "b-card-group",
                     { attrs: { deck: "" } },
                     [
-                      _c("b-card", [
-                        _c("h4", { staticClass: "upper-case" }, [
-                          _c("img", {
-                            staticClass: "ml-5 mr-5",
-                            attrs: {
-                              src: _vm.$route.meta.img,
-                              alt: "",
-                              width: "26"
-                            }
-                          }),
-                          _vm._v(
-                            "\n                        " +
-                              _vm._s(_vm.$route.meta.title) +
-                              "\n                    "
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _vm.$route.name.includes("List")
-                          ? _c(
-                              "p",
-                              { staticClass: "lead" },
-                              [
-                                _vm._v(
-                                  "\n                        " +
-                                    _vm._s(_vm.$route.meta.description) +
-                                    ", "
-                                ),
-                                _c(
-                                  "router-link",
-                                  {
-                                    attrs: {
-                                      to:
-                                        "{ name: 'creditForm', params: { id: 0}}"
-                                    }
-                                  },
-                                  [_vm._v("Create")]
-                                )
-                              ],
-                              1
+                      _c(
+                        "b-card",
+                        {
+                          attrs: {
+                            "bg-variant": "dark",
+                            "text-variant": "white"
+                          }
+                        },
+                        [
+                          _c("h4", { staticClass: "upper-case" }, [
+                            _c("img", {
+                              staticClass: "ml-5 mr-5",
+                              attrs: {
+                                src: _vm.$route.meta.img,
+                                alt: "",
+                                width: "26"
+                              }
+                            }),
+                            _vm._v(
+                              "\n                        " +
+                                _vm._s(_vm.$route.meta.title) +
+                                "\n                    "
                             )
-                          : _vm._e()
-                      ]),
+                          ]),
+                          _vm._v(" "),
+                          _vm.$route.name.includes("List")
+                            ? _c(
+                                "p",
+                                { staticClass: "lead" },
+                                [
+                                  _vm._v(
+                                    "\n                        " +
+                                      _vm._s(_vm.$route.meta.description) +
+                                      ", "
+                                  ),
+                                  _c(
+                                    "router-link",
+                                    {
+                                      attrs: {
+                                        to:
+                                          "{ name: 'creditForm', params: { id: 0}}"
+                                      }
+                                    },
+                                    [_vm._v("Create")]
+                                  )
+                                ],
+                                1
+                              )
+                            : _vm._e()
+                        ]
+                      ),
                       _vm._v(" "),
                       _c("invoices-this-month-kpi", {
                         staticClass: "d-none d-xl-block"
@@ -112425,9 +112437,9 @@ __webpack_require__(/*! ./forms/bootstrap */ "./spark/resources/assets/js/forms/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\SMART\Documents\GitHub\DebeHaber7\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\Users\SMART\Documents\GitHub\DebeHaber7\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\Users\SMART\Documents\GitHub\DebeHaber7\resources\sass\app-rtl.scss */"./resources/sass/app-rtl.scss");
+__webpack_require__(/*! /Users/ashah/Projects/debehaber7/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/ashah/Projects/debehaber7/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /Users/ashah/Projects/debehaber7/resources/sass/app-rtl.scss */"./resources/sass/app-rtl.scss");
 
 
 /***/ })

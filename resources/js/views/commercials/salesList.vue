@@ -3,7 +3,7 @@
         <b-row v-if="$route.name.includes('List')">
             <b-col>
                 <b-card-group deck>
-                    <b-card>
+                    <b-card bg-variant="dark" text-variant="white">
                         <h4 class="upper-case">
                             <img :src="$route.meta.img" alt="" class="ml-5 mr-5" width="26">
                             {{ $route.meta.title }}
@@ -57,18 +57,22 @@ export default {
             },
             {
                 key: 'customer.name',
+                label: 'Customer',
                 sortable: true
             },
             {
                 key: 'number',
+                label: 'Invoice Number',
                 sortable: true
             },
             {
                 key: 'total',
+                label: 'Invoice Total',
                 sortable: true
             },
             {
                 key: 'action',
+                label: '',
                 sortable: false
             },
         ],
