@@ -3488,6 +3488,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3499,7 +3501,8 @@ __webpack_require__.r(__webpack_exports__);
       skip: 1,
       lists: [],
       meta: [],
-      is_loaded: false
+      is_loaded: false,
+      current_page: 1
     };
   },
   computed: {
@@ -3519,11 +3522,10 @@ __webpack_require__.r(__webpack_exports__);
       this.$refs.topProgress.start();
       var page = 1;
 
-      if (app.meta != null) {
-        page = app.meta.current_page;
+      if (app.$children[2] != null) {
+        page = app.$children[2].currentPage;
       }
 
-      alert('/api' + app.$route.path + '?page=' + page);
       axios.get('/api' + app.$route.path + '?page=' + page).then(function (_ref) {
         var data = _ref.data;
         app.lists = data.data;
@@ -83917,7 +83919,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /*!
- * vue-i18n v8.8.1 
+ * vue-i18n v8.8.2 
  * (c) 2019 kazuya kawaguchi
  * Released under the MIT License.
  */
@@ -84191,6 +84193,7 @@ var mixin = {
 
       if (self._i18nWatcher) {
         self._i18nWatcher();
+        self._i18n.destroyVM();
         delete self._i18nWatcher;
       }
 
@@ -84933,6 +84936,10 @@ VueI18n.prototype._initVM = function _initVM (data) {
   Vue.config.silent = silent;
 };
 
+VueI18n.prototype.destroyVM = function destroyVM () {
+  this._vm.$destroy();
+};
+
 VueI18n.prototype.subscribeDataChanging = function subscribeDataChanging (vm) {
   this._dataListeners.push(vm);
 };
@@ -85576,7 +85583,7 @@ Object.defineProperty(VueI18n, 'availabilities', {
 });
 
 VueI18n.install = install;
-VueI18n.version = '8.8.1';
+VueI18n.version = '8.8.2';
 
 /* harmony default export */ __webpack_exports__["default"] = (VueI18n);
 
@@ -87058,13 +87065,6 @@ var render = function() {
               change: function($event) {
                 return _vm.list()
               }
-            },
-            model: {
-              value: _vm.meta.current_page,
-              callback: function($$v) {
-                _vm.$set(_vm.meta, "current_page", $$v)
-              },
-              expression: "meta.current_page"
             }
           })
         : _vm._e()
@@ -112437,9 +112437,9 @@ __webpack_require__(/*! ./forms/bootstrap */ "./spark/resources/assets/js/forms/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/ashah/Projects/debehaber7/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Users/ashah/Projects/debehaber7/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /Users/ashah/Projects/debehaber7/resources/sass/app-rtl.scss */"./resources/sass/app-rtl.scss");
+__webpack_require__(/*! C:\Users\SMART\Documents\GitHub\DebeHaber7\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\Users\SMART\Documents\GitHub\DebeHaber7\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\Users\SMART\Documents\GitHub\DebeHaber7\resources\sass\app-rtl.scss */"./resources/sass/app-rtl.scss");
 
 
 /***/ })

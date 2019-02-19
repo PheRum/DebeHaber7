@@ -43,80 +43,81 @@
             <p class="lead">How about <router-link :to="{ name: formURL, params: { id: 0}}">creating</router-link> some data</p>
             <b-img thumbnail fluid width="256" src="/img/apps/no-data.svg" alt="Thumbnail" />
         </b-card>
-        <b-pagination v-if="lists.length > 0" size="md" align="center" :total-rows="meta.total" :per-page="meta.per_page" v-model="meta.current_page" @change="list()"></b-pagination>
-    </div>
-</template>
+        <b-pagination v-if="lists.length > 0"
+            size="md" align="center" :total-rows="meta.total"
+            :per-page="meta.per_page"  @change="list()"></b-pagination>
+        </div>
+    </template>
 
-<script>
-import crud from './crud.vue';
-export default {
-    components: { 'crud': crud },
-    props: ['columns'],
-    data: () => ({
-        skip: 1,
-        lists: [],
-        meta: [],
-        is_loaded: false,
-    }),
-    computed: {
-        // a computed getter
-        formURL: function () {
-            return this.$route.name.replace('List', 'Form');
+    <script>
+    import crud from './crud.vue';
+    export default {
+        components: { 'crud': crud },
+        props: ['columns'],
+        data: () => ({
+            skip: 1,
+            lists: [],
+            meta: [],
+            is_loaded: false,
+            current_page: 1,
+        }),
+        computed: {
+            // a computed getter
+            formURL: function () {
+                return this.$route.name.replace('List', 'Form');
+            },
+            viewURL: function () {
+                return this.$route.name.replace('List', 'View');
+            },
         },
-        viewURL: function () {
-            return this.$route.name.replace('List', 'View');
-        },
-    },
-    methods:
-    {
-        list() {
-            var app = this;
-            this.$refs.topProgress.start();
+        methods:
+        {
+            list() {
+                var app = this;
+                this.$refs.topProgress.start();
+                var page = 1;
 
-            var page = 1;
-            if (app.meta != null) {
-                page = app.meta.current_page;
+                if (app.$children[2]!=null) {
+                    page = app.$children[2].currentPage;
+                }
+
+                axios.get('/api' + app.$route.path + '?page=' + page )
+                .then(({ data }) =>
+                {
+                    app.lists = data.data;
+                    app.meta = data.meta;
+                    app.skip += app.pageSize;
+                    app.is_loaded = true;
+                    //finishes the top progress bar
+                    this.$refs.topProgress.done()
+                });
+
+                //todo add fail function in topProgress
+            },
+
+            onDelete(row) {
+                var app = this;
+
+                crud.methods.onDelete('/api' + app.$route.path,row.id).then(function (response) {
+                    console.log(app);
+                    app.lists.splice(app.lists.indexOf(row), 1);
+                    app.$snack.success({text:'Deleted'});
+                }).catch(function (error) {
+                    console.log(error);
+                    app.$snack.danger({ text: 'Error OMG!' });
+                });;
+            },
+
+            sumValue(details) {
+                return details.reduce(function(sum, row) {
+                    return sum + new Number(row.default_currency);
+                }, 0);
             }
-
-            alert('/api' + app.$route.path + '?page=' + page);
-
-            axios.get('/api' + app.$route.path + '?page=' + page)
-            .then(({ data }) =>
-            {
-                app.lists = data.data;
-                app.meta = data.meta;
-                app.skip += app.pageSize;
-                app.is_loaded = true;
-                //finishes the top progress bar
-                this.$refs.topProgress.done()
-            });
-
-            //todo add fail function in topProgress
         },
 
-        onDelete(row) {
+        mounted() {
             var app = this;
-
-            crud.methods.onDelete('/api' + app.$route.path,row.id).then(function (response) {
-                console.log(app);
-                app.lists.splice(app.lists.indexOf(row), 1);
-                app.$snack.success({text:'Deleted'});
-            }).catch(function (error) {
-                console.log(error);
-                app.$snack.danger({ text: 'Error OMG!' });
-            });;
-        },
-
-        sumValue(details) {
-            return details.reduce(function(sum, row) {
-                return sum + new Number(row.default_currency);
-            }, 0);
+            this.list();
         }
-    },
-
-    mounted() {
-        var app = this;
-        this.list();
     }
-}
-</script>
+    </script>
