@@ -43,8 +43,10 @@ class FixedAssetController extends Controller
                 if (!isset($cycle))
                 {
                     $current_date = Carbon::now();
-                    $version = ChartVersion::where('taxpayer_id', $taxPayer->id)->first();
-
+                    $version = ChartVersion::where('country', $taxPayer->country)
+                    ->orWhere('taxpayer_id', $taxPayer->id)
+                    ->first();
+                    
                     if (!isset($version))
                     {
                         $version = new ChartVersion();
@@ -104,7 +106,7 @@ class FixedAssetController extends Controller
 
         $fixedAsset->serial = $data['ItemCode'];
         $fixedAsset->name = $data['ItemName'];
-        
+
 
         $fixedAsset->purchase_date = $this->convert_date($data['PurchaseDate']);
         $fixedAsset->purchase_value = $data['PurchaseValue'];

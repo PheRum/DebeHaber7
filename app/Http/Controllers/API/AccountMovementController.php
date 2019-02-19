@@ -52,8 +52,9 @@ class AccountMovementController extends Controller
 
                 if (!isset($cycle))
                 {
-                    $current_date = Carbon::now();
-                    $version = ChartVersion::where('taxpayer_id', $taxPayer->id)->first();
+                    $version = ChartVersion::where('country', $taxPayer->country)
+                    ->orWhere('taxpayer_id', $taxPayer->id)
+                    ->first();
 
                     if (!isset($version))
                     {
@@ -65,7 +66,7 @@ class AccountMovementController extends Controller
 
                     $cycle = new Cycle();
                     $cycle->chart_version_id = $version->id;
-                    $cycle->year = $current_date->year;
+                    $cycle->year = $firstDate->year;
                     $cycle->start_date = new Carbon('first day of January');
                     $cycle->end_date = new Carbon('last day of December');
                     $cycle->taxpayer_id = $taxPayer->id;

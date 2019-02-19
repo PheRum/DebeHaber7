@@ -19,8 +19,8 @@ return [
     ],
 
     'mailgun' => [
-        'domain' => env('MAILGUN_DOMAIN'),
-        'secret' => env('MAILGUN_SECRET'),
+        'domain' => env('MAILGUN_DOMAIN', 'sandbox8fae34caa5e74d3ba9dbece796b6a618.mailgun.org'),
+        'secret' => env('MAILGUN_SECRET', 'ab2a9e01c470b1292f8e664f4168e040-9ce9335e-af2ce521'),
     ],
 
     'ses' => [
@@ -38,5 +38,5 @@ return [
         'api_key' => env('NOVA_BUGSNAG_API_KEY'),
         'project_id' => env('NOVA_BUGSNAG_PROJECT_ID'),
         'account_slug' => env('NOVA_BUGSNAG_ACCOUNT_SLUG'),
-    ]    
+    ]
 ];

@@ -43,19 +43,19 @@
                             <td class="td-fit">
                                 <a :href="'/settings/{{Spark::teamsPrefix()}}/'+team.id">
                                     <button class="btn btn-outline-primary">
-                                        <i class="fa fa-cog"></i>
+                                        <i class="material-icons">settings</i>
                                     </button>
                                 </a>
 
                                 <button class="btn btn-outline-warning" @click="approveLeavingTeam(team)"
                                         data-toggle="tooltip" title="{{__('teams.leave_team')}}"
                                         v-if="user.id !== team.owner_id">
-                                    <i class="fa fa-sign-out"></i>
+                                    <i class="material-icons">power_settings</i>
                                 </button>
 
                                 @if (Spark::createsAdditionalTeams())
                                     <button class="btn btn-outline-danger" @click="approveTeamDelete(team)" v-if="user.id === team.owner_id">
-                                        <i class="fa fa-times"></i>
+                                        <i class="material-icons">delete</i>
                                     </button>
                                 @endif
                             </td>

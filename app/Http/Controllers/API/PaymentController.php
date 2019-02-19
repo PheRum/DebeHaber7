@@ -51,8 +51,10 @@ class PaymentController extends Controller
                 if (!isset($cycle))
                 {
                     $current_date = Carbon::now();
-                    $version = ChartVersion::where('taxpayer_id', $taxPayer->id)->first();
-
+                    $version = ChartVersion::where('country', $taxPayer->country)
+                    ->orWhere('taxpayer_id', $taxPayer->id)
+                    ->first();
+                    
                     if (!isset($version))
                     {
                         $version = new ChartVersion();

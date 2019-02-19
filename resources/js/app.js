@@ -41,7 +41,11 @@ Vue.component(
 );
 Vue.component(
     'search-box',
-    require('./components/search.vue').default
+    require('./components/searchSite.vue').default
+);
+Vue.component(
+    'search-taxpayer',
+    require('./components/searchTaxPayer.vue').default
 );
 Vue.component(
     'invoices-this-month-kpi',
@@ -58,16 +62,16 @@ import VueSweetalert2 from 'vue-sweetalert2';
 import VueMask from 'v-mask';
 import VueSnackbar from 'vue-snack';
 import 'vue-snack/dist/vue-snack.min.css';
-import vueTopprogress from 'vue-top-progress';
+import vueTopProgress from 'vue-top-progress';
 
-Vue.use(vueTopprogress);
+Vue.use(vueTopProgress);
 Vue.use(VueSnackbar);
 Vue.use(VueSweetalert2);
 Vue.use(VueMask);
 Vue.use(VueGoogleCharts);
 Vue.use(BootstrapVue);
 Vue.use(VueRouter);
-Vue.use(require('vue-shortkey'))
+Vue.use(require('vue-shortkey'));
 
 Vue.config.productionTip = false;
 
@@ -80,7 +84,6 @@ const router = new VueRouter({
 Spark.forms.register = {
     language: 'en'
 };
-
 
 const app = new Vue({
     i18n,
