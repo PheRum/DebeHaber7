@@ -13,6 +13,12 @@
 
 // Route::group([ 'middleware' => 'auth:api' ], function () {
 
+Route::prefix('{country}')->group(function ()
+{
+  Route::get('/get_owner/{taxPayerID}', 'TaxpayerController@get_owner');
+  Route::get('/get_taxpayers/{searchBy}', 'TaxpayerController@get_taxpayer');
+});
+
 //Used for accepting or rejecting a team from accesing your taxpayer's data.
 Route::prefix('teams')->group(function ()
 {

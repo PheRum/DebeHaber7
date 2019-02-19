@@ -44,7 +44,6 @@ class TaxpayerController extends Controller
         })
         ->take(25)
         ->get();
-
         return response()->json($taxPayers);
     }
 

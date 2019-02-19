@@ -4088,6 +4088,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -4115,6 +4119,8 @@ __webpack_require__.r(__webpack_exports__);
         rate: 1,
         type: 4
       },
+      search: '',
+      customers: [],
       documents: [],
       currencies: [],
       accountCharts: [],
@@ -4232,6 +4238,23 @@ __webpack_require__.r(__webpack_exports__);
     calculateJournal: function calculateJournal() {//cash
       //itemCharts
       //vat
+    },
+    Select: function Select(customer) {
+      var app = this;
+      app.data.customer = customer;
+      app.customers = [];
+      app.search = '';
+    },
+    searchData: function searchData() {
+      var app = this;
+
+      if (app.search === '') {
+        app.customers = [];
+      } else {
+        _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"].methods.onRead('/api/PYG/get_taxpayers/' + app.search).then(function (response) {
+          app.customers = response.data;
+        });
+      }
     }
   },
   mounted: function mounted() {
@@ -87991,7 +88014,7 @@ var render = function() {
                   _c("i", { staticClass: "material-icons" }, [
                     _vm._v("keyboard_backspace")
                   ]),
-                  _vm._v("\n                Return\n            ")
+                  _vm._v("\n        Return\n      ")
                 ]
               ),
               _vm._v(" "),
@@ -88001,9 +88024,7 @@ var render = function() {
                   attrs: { src: _vm.$route.meta.img, alt: "", width: "32" }
                 }),
                 _vm._v(
-                  "\n                " +
-                    _vm._s(_vm.$route.meta.title) +
-                    "\n            "
+                  "\n        " + _vm._s(_vm.$route.meta.title) + "\n      "
                 )
               ])
             ],
@@ -88042,9 +88063,7 @@ var render = function() {
                       _c("i", { staticClass: "material-icons" }, [
                         _vm._v("playlist_add")
                       ]),
-                      _vm._v(
-                        "\n                    Add Detail Row\n                "
-                      )
+                      _vm._v("\n          Add Detail Row\n        ")
                     ]
                   ),
                   _vm._v(" "),
@@ -88077,9 +88096,7 @@ var render = function() {
                           _c("i", { staticClass: "material-icons" }, [
                             _vm._v("save")
                           ]),
-                          _vm._v(
-                            "\n                        Save\n                    "
-                          )
+                          _vm._v("\n            Save\n          ")
                         ]
                       ),
                       _vm._v(" "),
@@ -88108,9 +88125,7 @@ var render = function() {
                           _c("i", { staticClass: "material-icons" }, [
                             _vm._v("save")
                           ]),
-                          _vm._v(
-                            "\n                        Save & Return\n                    "
-                          )
+                          _vm._v("\n            Save & Return\n          ")
                         ]
                       ),
                       _vm._v(" "),
@@ -88139,9 +88154,7 @@ var render = function() {
                           _c("i", { staticClass: "material-icons" }, [
                             _vm._v("cancel")
                           ]),
-                          _vm._v(
-                            "\n                        Cancel\n                    "
-                          )
+                          _vm._v("\n            Cancel\n          ")
                         ]
                       )
                     ],
@@ -88312,7 +88325,7 @@ var render = function() {
                                           _vm.data.customer != null
                                             ? _c("span", [
                                                 _vm._v(
-                                                  "\n                                            " +
+                                                  "\n                      " +
                                                     _vm._s(
                                                       _vm.data.customer.name
                                                     ) +
@@ -88320,7 +88333,7 @@ var render = function() {
                                                     _vm._s(
                                                       _vm.data.customer.taxid
                                                     ) +
-                                                    "\n                                            "
+                                                    "\n                      "
                                                 ),
                                                 _c(
                                                   "i",
@@ -88346,8 +88359,41 @@ var render = function() {
                                         attrs: {
                                           type: "text",
                                           placeholder: "Search for Customer"
+                                        },
+                                        on: {
+                                          change: function($event) {
+                                            return _vm.searchData()
+                                          }
+                                        },
+                                        model: {
+                                          value: _vm.search,
+                                          callback: function($$v) {
+                                            _vm.search = $$v
+                                          },
+                                          expression: "search"
                                         }
-                                      })
+                                      }),
+                                      _vm._v(" "),
+                                      _c(
+                                        "b-list-group",
+                                        _vm._l(_vm.customers, function(
+                                          customer
+                                        ) {
+                                          return _c(
+                                            "b-list-group-item",
+                                            {
+                                              key: customer,
+                                              on: {
+                                                click: function($event) {
+                                                  return _vm.Select(customer)
+                                                }
+                                              }
+                                            },
+                                            [_vm._v(_vm._s(customer.name))]
+                                          )
+                                        }),
+                                        1
+                                      )
                                     ],
                                     1
                                   )
@@ -88360,7 +88406,7 @@ var render = function() {
                                     "b-container",
                                     [
                                       _vm._v(
-                                        "\n                                Based on your past transactions, we can quickly recomend the same items again.\n                                "
+                                        "\n                Based on your past transactions, we can quickly recomend the same items again.\n                "
                                       ),
                                       _c(
                                         "b-row",
@@ -88373,7 +88419,7 @@ var render = function() {
                                                 { attrs: { href: "" } },
                                                 [
                                                   _vm._v(
-                                                    "\n                                            Favorite Detail 1\n                                        "
+                                                    "\n                      Favorite Detail 1\n                    "
                                                   )
                                                 ]
                                               ),
@@ -88383,7 +88429,7 @@ var render = function() {
                                                 { attrs: { href: "" } },
                                                 [
                                                   _vm._v(
-                                                    "\n                                            Favorite Detail 2\n                                        "
+                                                    "\n                      Favorite Detail 2\n                    "
                                                   )
                                                 ]
                                               )
