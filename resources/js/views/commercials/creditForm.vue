@@ -55,7 +55,7 @@
                                     <b-input type="date" required placeholder="Missing Information" v-model="data.date"/>
                                 </b-form-group>
                                 <b-form-group :label="$t('commercial.customer')">
-                                    <search-taxpayer></search-taxpayer>
+                                    <search-taxpayer v-model="data.customer"></search-taxpayer>
                                 </b-form-group>
 
                                 <b-container v-if="data.customer != null">
@@ -94,7 +94,7 @@
 
                                 <b-form-group :label="$t('commercial.paymentCondition')">
                                     <b-input-group>
-                                        <b-input type="number" placeholder="$t('commercial.paymentCondition')" v-model="data.payment_condition"/>
+                                        <b-input type="number" placeholder="$t('commercial.paymentCondition')" :value="data.payment_condition.toString()"/>
                                         <b-input-group-append v-if="data.payment_condition == 0">
                                             <b-form-select v-model="data.chart_account_id">
                                                 <option v-for="account in accountCharts" :key="account.key" :value="account.id">{{ account.name }}</option>
@@ -110,7 +110,7 @@
                                                 <option v-for="currency in currencies" :key="currency.key" :value="currency.id">{{ currency.name }}</option>
                                             </b-form-select>
                                         </b-input-group-prepend>
-                                        <b-input type="number" placeholder="Payment" v-model="data.rate"/>
+                                        <b-input type="number" placeholder="$t('commercial.payment')" :value="data.rate.toString()"/>
                                     </b-input-group>
                                 </b-form-group>
                             </b-col>
@@ -135,7 +135,8 @@
                             </b-form-select>
                         </template>
                         <template slot="value" slot-scope="data">
-                            <b-form-input :value="data.item.value" type="number" placeholder="Value"></b-form-input>
+                            <!-- mask?? -->
+                            <vue-numeric separator="," :value="data.item.value"></vue-numeric>
                         </template>
                         <template slot="actions" slot-scope="data">
                             <b-button variant="link" @click="deleteRow(data.item)">
@@ -157,7 +158,7 @@ export default {
         return {
             data: {
                 chart_account_id: 0,
-                code: 0,
+                code: '',
                 code_expiry: '',
                 comment: '',
                 currency_id: 0,
@@ -175,6 +176,7 @@ export default {
                 rate: 1,
                 type: 4
             },
+            pageUrl: '/commercial/credit-note',
 
             documents: [],
             currencies: [],
@@ -184,35 +186,46 @@ export default {
             itemCharts: [],
 
             lastDeletedRow: [],
-            columns: [
-                {
-                    key: 'chart_id',
-                    label: 'Item',
-                },
-                {
-                    key: 'chart_vat_id',
-                    label: 'Vat',
-                },
-                {
-                    key: 'value',
-                    label: 'Value',
-                },
-                {
-                    key: 'actions',
-                    label: '',
-                }
-            ],
         };
     },
+    computed: {
+        columns()
+        {
+            return  [ {
+                key: 'chart_id',
+                label: this.$i18n.t('commercial.item'),
+                sortable: true
+            },
+            {
+                key: 'chart_vat_id',
+                label: this.$i18n.t('commercial.vat'),
+                sortable: true
+            },
+            {
+                key: 'value',
+                label: this.$i18n.t('commercial.value'),
+                sortable: true
+            },
+            {
+                key: 'actions',
+                label: '',
+                sortable: false
+            }];
+        },
+
+        baseUrl() {
+            return '/api/' + this.$route.params.taxPayer + '/' + this.$route.params.cycle;
+        },
+    },
     methods: {
+
         onSave() {
             var app = this;
-            var baseUrl = '/api/' + app.$route.params.taxPayer + '/' + app.$route.params.cycle + '/commercial/credit-notes'
 
             crud.methods
-            .onUpdate(baseUrl, app.data)
+            .onUpdate(app.baseUrl + app.pageUrl, app.data)
             .then(function (response) {
-                app.$snack.success({ text: 'Invoice Nr. ' + app.data.number + ', Saved!' });
+                app.$snack.success({ text: this.$i18n.t('commercial.invoiceSaved', app.data.number) });
                 app.$router.go(-1);
             }).catch(function (error) {
                 app.$snack.danger({ text: 'Error OMG!' });
@@ -221,31 +234,30 @@ export default {
 
         onSaveNew() {
             var app = this;
-            var baseUrl = '/api/' + app.$route.params.taxPayer + '/' + app.$route.params.cycle + '/commercial/credit-notes'
 
             crud.methods
-            .onUpdate(baseUrl, app.data)
+            .onUpdate(app.baseUrl + app.pageUrl, app.data)
             .then(function (response) {
-                app.$snack.success({ text: 'Invoice Nr. ' + app.data.number + ', Saved!' });
-                app.$router.push({ name: 'salesForm', params: { id: '0' }})
+                app.$snack.success({ text: this.$i18n.t('commercial.invoiceSaved', app.data.number) });
+                app.$router.push({ name: app.$route.name, params: { id: '0' }})
                 app.data.customer_id = 0;
                 app.data.customer = [];
 
             }).catch(function (error) {
                 app.$snack.danger({
-                    text: 'Error OMG!',
+                    text: this.$i18n.t('general.errorMessage'),
                 });
             });
         },
 
         onCancel() {
             this.$swal.fire({
-                title: 'Cancel?',
-                text: "Canceling will not save changes made to this form.",
+                title: this.$i18n.t('general.cancel'),
+                text: this.$i18n.t('general.cancelVerification'),
                 type: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'Yes, cancel changes!',
-                cancelButtonText: 'No, Keep working'
+                confirmButtonText: this.$i18n.t('general.cancelConfirmation'),
+                cancelButtonText: this.$i18n.t('general.cancelRejection'),
             }).then((result) => {
                 if (result.value) {
                     this.$router.go(-1);
@@ -266,18 +278,17 @@ export default {
 
             if (item.id > 0) {
                 var app = this;
-                var baseUrl = '/api/' + app.$route.params.taxPayer + '/' + app.$route.params.cycle + '/commercial/credit-notes'
 
                 crud.methods
-                .onDelete(baseUrl, item.id)
+                .onDelete(app.baseUrl + app.pageUrl + '/details', item.id)
                 .then(function (response) { });
             }
 
             this.lastDeletedRow = item;
 
             this.$snack.success({
-                text: 'Record Deleted',
-                button: 'Undo',
+                text: this.$i18n.t('general.rowDeleted'),
+                button: this.$i18n.t('general.undo'),
                 action: this.undoDeletedRow
             });
 
@@ -286,7 +297,10 @@ export default {
 
         undoDeletedRow() {
             if (this.lastDeletedRow.id > 0) {
-                //axios code to delete the transaction detail.
+                crud.methods
+                .onUpdate(app.baseUrl + app.pageUrl + '/details', this.lastDeletedRow)
+                .then(function (response) { });
+                //axios code to insert detail again??? or let save do it.
             }
 
             this.data.details.push(this.lastDeletedRow);
@@ -295,7 +309,6 @@ export default {
 
     mounted() {
         var app = this;
-        var baseUrl = '/api/' + app.$route.params.taxPayer + '/' + app.$route.params.cycle
 
         crud.methods
         .onRead('/api/' + app.$route.params.taxPayer + '/currencies')
@@ -305,7 +318,7 @@ export default {
 
         if (app.$route.params.id > 0) {
             crud.methods
-            .onRead(baseUrl + "/commercial/sales/" + app.$route.params.id)
+            .onRead(app.baseUrl + app.pageUrl + '/' + app.$route.params.id)
             .then(function (response) {
                 app.data = response.data.data;
             });
@@ -318,19 +331,19 @@ export default {
         }
 
         crud.methods
-        .onRead(baseUrl + "/accounting/charts/for/money/")
+        .onRead(app.baseUrl + "/accounting/charts/for/money/")
         .then(function (response) {
             app.accountCharts = response.data.data;
         });
 
         crud.methods
-        .onRead(baseUrl + "/accounting/charts/for/vats-debit")
+        .onRead(app.baseUrl + "/accounting/charts/for/vats-debit")
         .then(function (response) {
             app.vatCharts = response.data.data;
         });
 
         crud.methods
-        .onRead(baseUrl + "/accounting/charts/for/income")
+        .onRead(app.baseUrl + "/accounting/charts/for/income")
         .then(function (response) {
             app.itemCharts = response.data.data;
         });

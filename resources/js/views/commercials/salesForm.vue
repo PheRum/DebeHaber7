@@ -136,7 +136,7 @@
                         </template>
                         <template slot="value" slot-scope="data">
                             <!-- mask?? -->
-                            <b-form-input :value="new Number(data.item.value).toLocaleString()" type="text" placeholder="Value"></b-form-input>
+                            <vue-numeric separator="," :value="data.item.value"></vue-numeric>
                         </template>
                         <template slot="actions" slot-scope="data">
                             <b-button variant="link" @click="deleteRow(data.item)">

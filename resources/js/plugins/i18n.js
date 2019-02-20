@@ -25,24 +25,10 @@ const messages = {
     }
 };
 
-const numberFormats = {
-  'en': {
-    currency: {
-      style: 'currency', currency: 'USD'
-    }
-  },
-  'es': {
-    currency: {
-      style: 'currency', currency: 'PYG', currencyDisplay: 'symbol'
-    }
-  }
-}
-
 const i18n = new VueI18n({
     locale: Spark.language, // set locale based on user settings.
     fallbackLocale: 'en', // set fallback locale
     messages, // set locale messages
-    numberFormats,
 });
 
 export default i18n;

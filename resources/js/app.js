@@ -66,8 +66,8 @@ import vueTopProgress from 'vue-top-progress';
 
 Vue.use(vueTopProgress);
 Vue.use(VueSnackbar);
-Vue.use(VueSweetalert2);
 Vue.use(VueMask);
+Vue.use(VueSweetalert2);
 Vue.use(VueGoogleCharts);
 Vue.use(BootstrapVue);
 Vue.use(VueRouter);

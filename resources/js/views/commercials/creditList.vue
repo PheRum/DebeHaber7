@@ -37,6 +37,7 @@
         </b-row>
         <b-row>
             <b-col>
+
                 <div v-if="$route.name.includes('List')">
                     <table-template :columns="columns"></table-template>
                 </div>
@@ -50,32 +51,37 @@
 import crud from '../../components/crud.vue'
 export default {
     data: () => ({
-        columns: [
-            {
+
+    }),
+    computed: {
+        columns()
+        {
+
+            return  [ {
                 key: 'date',
                 sortable: true
             },
             {
                 key: 'customer.name',
-                label: 'Customer',
+                label: this.$i18n.t('commercial.supplier'),
                 sortable: true
             },
             {
                 key: 'number',
-                label: 'Credit Number',
+                label: this.$i18n.t('commercial.number'),
                 sortable: true
             },
             {
                 key: 'total',
-                label: 'Invoice Total',
+                label: this.$i18n.t('commercial.total'),
                 sortable: true
             },
             {
                 key: 'action',
                 label: '',
                 sortable: false
-            },
-        ],
-    })
+            }];
+        }
+    }
 }
 </script>
