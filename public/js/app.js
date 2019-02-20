@@ -4413,6 +4413,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -4422,7 +4423,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       data: {
         chart_account_id: 0,
-        code: 0,
+        code: '',
         code_expiry: '',
         comment: '',
         currency_id: 0,
@@ -89593,18 +89594,8 @@ var render = function() {
                                         attrs: {
                                           type: "number",
                                           placeholder:
-                                            "$t('commercial.paymentCondition')"
-                                        },
-                                        model: {
-                                          value: _vm.data.payment_condition,
-                                          callback: function($$v) {
-                                            _vm.$set(
-                                              _vm.data,
-                                              "payment_condition",
-                                              $$v
-                                            )
-                                          },
-                                          expression: "data.payment_condition"
+                                            "$t('commercial.paymentCondition')",
+                                          value: _vm.data.payment_condition.toString()
                                         }
                                       }),
                                       _vm._v(" "),
@@ -89719,14 +89710,9 @@ var render = function() {
                                       _c("b-input", {
                                         attrs: {
                                           type: "number",
-                                          placeholder: "Payment"
-                                        },
-                                        model: {
-                                          value: _vm.data.rate,
-                                          callback: function($$v) {
-                                            _vm.$set(_vm.data, "rate", $$v)
-                                          },
-                                          expression: "data.rate"
+                                          placeholder:
+                                            "$t('commercial.payment')",
+                                          value: _vm.data.rate.toString()
                                         }
                                       })
                                     ],
@@ -89833,13 +89819,12 @@ var render = function() {
                         fn: function(data) {
                           return [
                             _c("b-form-input", {
-                              attrs: { type: "number", placeholder: "Value" },
-                              model: {
-                                value: data.item.value.toString(),
-                                callback: function($$v) {
-                                  _vm.$set(data.item.value, "toString()", $$v)
-                                },
-                                expression: "data.item.value.toString()"
+                              attrs: {
+                                value: new Number(
+                                  data.item.value
+                                ).toLocaleString(),
+                                type: "text",
+                                placeholder: "Value"
                               }
                             })
                           ]
@@ -106225,13 +106210,29 @@ var messages = {
     'accounting': _es_accounting_json__WEBPACK_IMPORTED_MODULE_5__
   }
 };
+var numberFormats = {
+  'en': {
+    currency: {
+      style: 'currency',
+      currency: 'USD'
+    }
+  },
+  'es': {
+    currency: {
+      style: 'currency',
+      currency: 'PYG',
+      currencyDisplay: 'symbol'
+    }
+  }
+};
 var i18n = new vue_i18n__WEBPACK_IMPORTED_MODULE_0__["default"]({
   locale: Spark.language,
   // set locale based on user settings.
   fallbackLocale: 'en',
   // set fallback locale
-  messages: messages // set locale messages
-
+  messages: messages,
+  // set locale messages
+  numberFormats: numberFormats
 });
 /* harmony default export */ __webpack_exports__["default"] = (i18n);
 

@@ -94,7 +94,7 @@
 
                                 <b-form-group :label="$t('commercial.paymentCondition')">
                                     <b-input-group>
-                                        <b-input type="number" placeholder="$t('commercial.paymentCondition')" v-model="data.payment_condition"/>
+                                        <b-input type="number" placeholder="$t('commercial.paymentCondition')" :value="data.payment_condition.toString()"/>
                                         <b-input-group-append v-if="data.payment_condition == 0">
                                             <b-form-select v-model="data.chart_account_id">
                                                 <option v-for="account in accountCharts" :key="account.key" :value="account.id">{{ account.name }}</option>
@@ -110,7 +110,7 @@
                                                 <option v-for="currency in currencies" :key="currency.key" :value="currency.id">{{ currency.name }}</option>
                                             </b-form-select>
                                         </b-input-group-prepend>
-                                        <b-input type="number" placeholder="Payment" v-model="data.rate"/>
+                                        <b-input type="number" placeholder="$t('commercial.payment')" :value="data.rate.toString()"/>
                                     </b-input-group>
                                 </b-form-group>
                             </b-col>
@@ -135,7 +135,8 @@
                             </b-form-select>
                         </template>
                         <template slot="value" slot-scope="data">
-                            <b-form-input v-model="data.item.value.toString()" type="number" placeholder="Value"></b-form-input>
+                            <!-- mask?? -->
+                            <b-form-input :value="new Number(data.item.value).toLocaleString()" type="text" placeholder="Value"></b-form-input>
                         </template>
                         <template slot="actions" slot-scope="data">
                             <b-button variant="link" @click="deleteRow(data.item)">
@@ -157,7 +158,7 @@ export default {
         return {
             data: {
                 chart_account_id: 0,
-                code: 0,
+                code: '',
                 code_expiry: '',
                 comment: '',
                 currency_id: 0,
@@ -214,7 +215,7 @@ export default {
 
         baseUrl() {
             return '/api/' + this.$route.params.taxPayer + '/' + this.$route.params.cycle;
-        }
+        },
     },
     methods: {
 
