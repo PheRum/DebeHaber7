@@ -1,0 +1,29 @@
+{
+    "taxPayer": "Contribuyente",
+    "documentation": "Documentación",
+    "askForHelp": "Solicitar Ayuda",
+    "notifications": "Notificaciones",
+    "showMore": "más",
+    "change": "Cambiar",
+    "changeTaxPayer": "Cambiar de Contribuyente",
+    "settingsTaxPayer": "Configuración (Contribuyente)",
+    "teamDashBoard": "Tablero del Equipo",
+    "teamSettings": "Configuración del Equipo",
+    "dashBoard": "Tablero",
+    "configuration": "Configuración",
+    "settings": "Ajustes",
+    "transactions": "Transacciones",
+    "accounting": "Contabilidad",
+    "auditing": "Auditoria",
+    "integrations": "Integrations",
+
+    "addRowDetail": "Agregar Detalle",
+    "save": "Guardar",
+    "saveReturn": "Guardar y Regresar",
+    "cancel": "Cancelar",
+    "return": "Regresar",
+
+    "report": "Informe | Informes",
+    "upload": "Importar",
+    "create": "Crear"
+}

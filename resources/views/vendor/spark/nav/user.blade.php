@@ -14,15 +14,15 @@
         </ul>
 
         <ul class="nav navbar-nav flex-fill w-100 justify-content-end">
-            <b-nav-item href="/docs" v-b-tooltip.hover title="Documentation">
+            <b-nav-item href="/docs" v-b-tooltip.hover :title="$t('general.documentation')">
                 <i class="material-icons">import_contacts</i>
             </b-nav-item>
 
-            <b-nav-item href="/tickets" v-b-tooltip.hover title="Ask for Help">
+            <b-nav-item href="/tickets" v-b-tooltip.hover :title="$t('general.askForHelp')">
                 <i class="material-icons">contact_support</i>
             </b-nav-item>
 
-            <b-nav-item @click="showNotifications" v-b-tooltip.hover title="Notifications">
+            <b-nav-item @click="showNotifications" v-b-tooltip.hover :title="$t('general.notifications')">
                 <i v-if="notificationsCount > 0" red400 class="material-icons error">notifications_active</i>
                 <i v-else class="material-icons">notifications</i>
                 <b-badge v-if="notificationsCount > 0" variant="primary">@{{notificationsCount}}</b-badge>
@@ -67,7 +67,7 @@
                         </a>
 
                         <a class="dropdown-item" href="/settings#/api">
-                            <i class="material-icons">extension</i> Integration
+                            <i class="material-icons">extension</i> @{{ $t('general.integrations') }}
                             {{-- {{__('API')}} --}}
                         </a>
 

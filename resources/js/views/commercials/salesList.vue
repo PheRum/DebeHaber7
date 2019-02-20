@@ -20,15 +20,15 @@
                         <b-list-group flush>
                             <b-list-group-item href="#">
                                 <i class="material-icons">insert_chart</i>
-                                Report {{ $route.meta.title }}
+                                {{ $t('general.report', 2) }} {{ $route.meta.title }}
                             </b-list-group-item>
                             <b-list-group-item href="#" disabled>
                                 <i class="material-icons">cloud_upload</i>
-                                Upload {{ $route.meta.title }}
+                                {{ $t('general.upload') }} {{ $route.meta.title }}
                             </b-list-group-item>
                             <b-list-group-item href="0">
                                 <i class="material-icons md-light">add_box</i>
-                                Create new {{ $route.meta.title }}
+                                {{ $t('general.create') }} {{ $route.meta.title }}
                             </b-list-group-item>
                         </b-list-group>
                     </b-card>

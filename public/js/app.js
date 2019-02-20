@@ -4148,9 +4148,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -88125,7 +88122,11 @@ var render = function() {
                   _c("i", { staticClass: "material-icons" }, [
                     _vm._v("keyboard_backspace")
                   ]),
-                  _vm._v("\n                Return\n                ")
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.$t("general.return")) +
+                      "\n                "
+                  )
                 ]
               ),
               _vm._v(" "),
@@ -88177,7 +88178,9 @@ var render = function() {
                         _vm._v("playlist_add")
                       ]),
                       _vm._v(
-                        "\n                    Add Detail Row\n                "
+                        "\n                    " +
+                          _vm._s(_vm.$t("general.addRowDetail")) +
+                          "\n                "
                       )
                     ]
                   ),
@@ -88212,38 +88215,9 @@ var render = function() {
                             _vm._v("save")
                           ]),
                           _vm._v(
-                            "\n                        Save\n                    "
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "b-btn",
-                        {
-                          directives: [
-                            {
-                              name: "shortkey",
-                              rawName: "v-shortkey",
-                              value: ["ctrl", "s"],
-                              expression: "['ctrl', 's']"
-                            }
-                          ],
-                          attrs: { variant: "secondary" },
-                          on: {
-                            shortkey: function($event) {
-                              return _vm.onSave()
-                            },
-                            click: function($event) {
-                              return _vm.onSave()
-                            }
-                          }
-                        },
-                        [
-                          _c("i", { staticClass: "material-icons" }, [
-                            _vm._v("save")
-                          ]),
-                          _vm._v(
-                            "\n                        Save & Return\n                    "
+                            "\n                        " +
+                              _vm._s(_vm.$t("general.save")) +
+                              "\n                    "
                           )
                         ]
                       ),
@@ -88274,7 +88248,9 @@ var render = function() {
                             _vm._v("cancel")
                           ]),
                           _vm._v(
-                            "\n                        Cancel\n                    "
+                            "\n                        " +
+                              _vm._s(_vm.$t("general.cancel")) +
+                              "\n                    "
                           )
                         ]
                       )
@@ -88409,7 +88385,7 @@ var render = function() {
                             [
                               _c(
                                 "b-form-group",
-                                { attrs: { label: "Invoice Date" } },
+                                { attrs: { label: _vm.$t("commercial.date") } },
                                 [
                                   _c("b-input", {
                                     attrs: {
@@ -88431,7 +88407,11 @@ var render = function() {
                               _vm._v(" "),
                               _c(
                                 "b-form-group",
-                                { attrs: { label: "Customer" } },
+                                {
+                                  attrs: {
+                                    label: _vm.$t("commercial.customer")
+                                  }
+                                },
                                 [_c("search-taxpayer")],
                                 1
                               ),
@@ -88488,7 +88468,11 @@ var render = function() {
                               _vm.documents.length > 0
                                 ? _c(
                                     "b-form-group",
-                                    { attrs: { label: "Document" } },
+                                    {
+                                      attrs: {
+                                        label: _vm.$t("commercial.document")
+                                      }
+                                    },
                                     [
                                       _c(
                                         "b-form-select",
@@ -88538,7 +88522,8 @@ var render = function() {
                                           _c("b-input", {
                                             attrs: {
                                               type: "text",
-                                              placeholder: "Invoice Code"
+                                              placeholder:
+                                                "$t('commercial.code')"
                                             },
                                             model: {
                                               value: _vm.data.code,
@@ -88556,7 +88541,7 @@ var render = function() {
                                                 attrs: {
                                                   type: "date",
                                                   placeholder:
-                                                    "Code Expiry Date"
+                                                    "$t('commercial.expiryDate')"
                                                 },
                                                 model: {
                                                   value: _vm.data.code_expiry,
@@ -88583,7 +88568,9 @@ var render = function() {
                               _vm._v(" "),
                               _c(
                                 "b-form-group",
-                                { attrs: { label: "Invoice Number" } },
+                                {
+                                  attrs: { label: _vm.$t("commercial.number") }
+                                },
                                 [
                                   _c("b-input", {
                                     directives: [
@@ -88615,7 +88602,11 @@ var render = function() {
                               _vm._v(" "),
                               _c(
                                 "b-form-group",
-                                { attrs: { label: "Condition" } },
+                                {
+                                  attrs: {
+                                    label: _vm.$t("commercial.paymentCondition")
+                                  }
+                                },
                                 [
                                   _c(
                                     "b-input-group",
@@ -88623,7 +88614,8 @@ var render = function() {
                                       _c("b-input", {
                                         attrs: {
                                           type: "number",
-                                          placeholder: "Payment"
+                                          placeholder:
+                                            "$t('commercial.paymentCondition')"
                                         },
                                         model: {
                                           value: _vm.data.payment_condition,
@@ -88686,14 +88678,24 @@ var render = function() {
                                         : _vm._e()
                                     ],
                                     1
-                                  )
+                                  ),
+                                  _vm._v(" "),
+                                  _c("b-form-text", [
+                                    _vm._v(
+                                      "Specify days between invoice and payment dates. Ex: use 0 for cash, and 30 for thrity days payment terms."
+                                    )
+                                  ])
                                 ],
                                 1
                               ),
                               _vm._v(" "),
                               _c(
                                 "b-form-group",
-                                { attrs: { label: "Rates" } },
+                                {
+                                  attrs: {
+                                    label: _vm.$t("commercial.exchangeRate")
+                                  }
+                                },
                                 [
                                   _c(
                                     "b-input-group",
@@ -89014,7 +89016,9 @@ var render = function() {
                                     _vm._v("insert_chart")
                                   ]),
                                   _vm._v(
-                                    "\n                            Report " +
+                                    "\n                            " +
+                                      _vm._s(_vm.$t("general.report", 2)) +
+                                      " " +
                                       _vm._s(_vm.$route.meta.title) +
                                       "\n                        "
                                   )
@@ -89029,7 +89033,9 @@ var render = function() {
                                     _vm._v("cloud_upload")
                                   ]),
                                   _vm._v(
-                                    "\n                            Upload " +
+                                    "\n                            " +
+                                      _vm._s(_vm.$t("general.upload")) +
+                                      " " +
                                       _vm._s(_vm.$route.meta.title) +
                                       "\n                        "
                                   )
@@ -89046,7 +89052,9 @@ var render = function() {
                                     [_vm._v("add_box")]
                                   ),
                                   _vm._v(
-                                    "\n                            Create new " +
+                                    "\n                            " +
+                                      _vm._s(_vm.$t("general.create")) +
+                                      " " +
                                       _vm._s(_vm.$route.meta.title) +
                                       "\n                        "
                                   )
@@ -105140,10 +105148,21 @@ module.exports = {"welcomeMsg":"Welcome to Your Vue.js App"};
 /*!*************************************************!*\
   !*** ./resources/js/plugins/en/commercial.json ***!
   \*************************************************/
-/*! exports provided: welcomeMsg, default */
+/*! exports provided: customer, supplier, income, salesBook, salesInvoice, creditBook, creditNote, accountReceivables, expense, purchaseBook, purchaseInvoice, debitBook, debitNote, accountPayables, fixedAssets, inventories, productions, moneyMovements, date, expiryDate, dueDate, number, code, document, documents, currency, exchangeRate, exchangeRates, paymentCondition, account, concept, vat, value, startingValue, currentRange, endingRange, default */
 /***/ (function(module) {
 
-module.exports = {"welcomeMsg":"Welcome to Your Vue.js App"};
+module.exports = {"customer":"Customer","supplier":"Supplier","income":"Income","salesBook":"Sales Book","salesInvoice":"Sales Invoice","creditBook":"Credit Book","creditNote":"Credit Note","accountReceivables":"Account Receivables","expense":"Expense","purchaseBook":"Purchase Book","purchaseInvoice":"Purchase Invoice","debitBook":"Debit Book","debitNote":"Debit Note","accountPayables":"Account Payables","fixedAssets":"Fixed Assets","inventories":"Inventories","productions":"Productions","moneyMovements":"Money Movements","date":"Date","expiryDate":"Expiry Date","dueDate":"Due Date","number":"Number","code":"Code","document":"Document","documents":"Documents","currency":"Currency","exchangeRate":"Exchange Rate","exchangeRates":"Exchange Rates","paymentCondition":"Payment Condition","account":"Account","concept":"Concept","vat":"Vat","value":"Value","startingValue":"Starting Value","currentRange":"Valor Actual","endingRange":"Valor Final"};
+
+/***/ }),
+
+/***/ "./resources/js/plugins/en/general.json":
+/*!**********************************************!*\
+  !*** ./resources/js/plugins/en/general.json ***!
+  \**********************************************/
+/*! exports provided: taxPayer, documentation, askForHelp, notifications, showMore, change, changeTaxPayer, settingsTaxPayer, teamDashBoard, teamSettings, dashBoard, configuration, settings, transactions, accounting, auditing, reports, integrations, addRowDetail, save, saveReturn, cancel, return, report, upload, create, default */
+/***/ (function(module) {
+
+module.exports = {"taxPayer":"Taxpayer","documentation":"Documentation","askForHelp":"Ask for Help","notifications":"Notifications","showMore":"show more","change":"Change","changeTaxPayer":"Change Taxpayer","settingsTaxPayer":"Taxpayer Settings","teamDashBoard":"Team Dashboard","teamSettings":"Team Settings","dashBoard":"Dashboard","configuration":"Configuration","settings":"Settings","transactions":"Transactions","accounting":"Accounting","auditing":"Auditing","reports":"Reports","integrations":"Integrations","addRowDetail":"Add Row Detail","save":"Save","saveReturn":"Save & Return","cancel":"Cancel","return":"Return","report":"Report","upload":"Upload","create":"Create"};
 
 /***/ }),
 
@@ -105162,10 +105181,21 @@ module.exports = {"welcomeMsg":"Welcome to Your Vue.js App"};
 /*!*************************************************!*\
   !*** ./resources/js/plugins/es/commercial.json ***!
   \*************************************************/
-/*! exports provided: welcomeMsg, default */
+/*! exports provided: customer, supplier, income, salesBook, salesInvoice, creditBook, creditNote, accountReceivables, expense, purchaseBook, purchaseInvoice, debitBook, debitNote, accountPayables, fixedAssets, inventories, productions, moneyMovements, date, expiryDate, dueDate, number, code, document, documents, currency, exchangeRate, exchangeRates, paymentCondition, account, concept, vat, value, startingValue, currentRange, endingRange, default */
 /***/ (function(module) {
 
-module.exports = {"welcomeMsg":"Bienvenido to Your Vue.js App"};
+module.exports = {"customer":"Cliente","supplier":"Proveedor","income":"Ingreso | Ingresos","salesBook":"Libro de Ventas","salesInvoice":"Factura de Ventas","creditBook":"Notas de Credito","creditNote":"Nota de Credito","accountReceivables":"Cuentas por Cobrar","expense":"Egreso | Ingresos","purchaseBook":"Libro de Compras","purchaseInvoice":"Factura de Compra","debitBook":"Notas de Debito","debitNote":"Nota de Debito","accountPayables":"Cuentas por Pagar","fixedAssets":"Activos Fijos","inventories":"Inventario","productions":"Producción","moneyMovements":"Movimiento de Dinero","date":"Fecha","expiryDate":"Caducidad","dueDate":"Vencimiento","number":"Número","code":"Código","document":"Documento","documents":"Documentos","currency":"Moneda","exchangeRate":"Cotización","exchangeRates":"Cotizaciones","paymentCondition":"Condición de Pago","account":"Cuenta","concept":"Concepto","vat":"IVA","value":"Valor","startingValue":"Valor Inicial","currentRange":"Valor Actual","endingRange":"Valor Final"};
+
+/***/ }),
+
+/***/ "./resources/js/plugins/es/general.json":
+/*!**********************************************!*\
+  !*** ./resources/js/plugins/es/general.json ***!
+  \**********************************************/
+/*! exports provided: taxPayer, documentation, askForHelp, notifications, showMore, change, changeTaxPayer, settingsTaxPayer, teamDashBoard, teamSettings, dashBoard, configuration, settings, transactions, accounting, auditing, integrations, addRowDetail, save, saveReturn, cancel, return, report, upload, create, default */
+/***/ (function(module) {
+
+module.exports = {"taxPayer":"Contribuyente","documentation":"Documentación","askForHelp":"Solicitar Ayuda","notifications":"Notificaciones","showMore":"más","change":"Cambiar","changeTaxPayer":"Cambiar de Contribuyente","settingsTaxPayer":"Configuración (Contribuyente)","teamDashBoard":"Tablero del Equipo","teamSettings":"Configuración del Equipo","dashBoard":"Tablero","configuration":"Configuración","settings":"Ajustes","transactions":"Transacciones","accounting":"Contabilidad","auditing":"Auditoria","integrations":"Integrations","addRowDetail":"Agregar Detalle","save":"Guardar","saveReturn":"Guardar y Regresar","cancel":"Cancelar","return":"Regresar","report":"Informe | Informes","upload":"Importar","create":"Crear"};
 
 /***/ }),
 
@@ -105189,6 +105219,12 @@ var _es_commercial_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/__
 var _en_accounting_json__WEBPACK_IMPORTED_MODULE_4___namespace = /*#__PURE__*/__webpack_require__.t(/*! ./en/accounting.json */ "./resources/js/plugins/en/accounting.json", 1);
 /* harmony import */ var _es_accounting_json__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./es/accounting.json */ "./resources/js/plugins/es/accounting.json");
 var _es_accounting_json__WEBPACK_IMPORTED_MODULE_5___namespace = /*#__PURE__*/__webpack_require__.t(/*! ./es/accounting.json */ "./resources/js/plugins/es/accounting.json", 1);
+/* harmony import */ var _en_general_json__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./en/general.json */ "./resources/js/plugins/en/general.json");
+var _en_general_json__WEBPACK_IMPORTED_MODULE_6___namespace = /*#__PURE__*/__webpack_require__.t(/*! ./en/general.json */ "./resources/js/plugins/en/general.json", 1);
+/* harmony import */ var _es_general_json__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./es/general.json */ "./resources/js/plugins/es/general.json");
+var _es_general_json__WEBPACK_IMPORTED_MODULE_7___namespace = /*#__PURE__*/__webpack_require__.t(/*! ./es/general.json */ "./resources/js/plugins/es/general.json", 1);
+
+
 
 
 
@@ -105198,10 +105234,14 @@ var _es_accounting_json__WEBPACK_IMPORTED_MODULE_5___namespace = /*#__PURE__*/__
 vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue_i18n__WEBPACK_IMPORTED_MODULE_0__["default"]);
 var messages = {
   'en': {
-    'commercial': _en_commercial_json__WEBPACK_IMPORTED_MODULE_2__
+    'general': _en_general_json__WEBPACK_IMPORTED_MODULE_6__,
+    'commercial': _en_commercial_json__WEBPACK_IMPORTED_MODULE_2__,
+    'accounting': _en_accounting_json__WEBPACK_IMPORTED_MODULE_4__
   },
   'es': {
-    'commercial': _es_commercial_json__WEBPACK_IMPORTED_MODULE_3__
+    'general': _es_general_json__WEBPACK_IMPORTED_MODULE_7__,
+    'commercial': _es_commercial_json__WEBPACK_IMPORTED_MODULE_3__,
+    'accounting': _es_accounting_json__WEBPACK_IMPORTED_MODULE_5__
   }
 };
 var i18n = new vue_i18n__WEBPACK_IMPORTED_MODULE_0__["default"]({

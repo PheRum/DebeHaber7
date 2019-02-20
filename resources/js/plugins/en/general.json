@@ -1,0 +1,30 @@
+{
+    "taxPayer": "Taxpayer",
+    "documentation": "Documentation",
+    "askForHelp": "Ask for Help",
+    "notifications": "Notifications",
+    "showMore": "show more",
+    "change": "Change",
+    "changeTaxPayer": "Change Taxpayer",
+    "settingsTaxPayer": "Taxpayer Settings",
+    "teamDashBoard": "Team Dashboard",
+    "teamSettings": "Team Settings",
+    "dashBoard": "Dashboard",
+    "configuration": "Configuration",
+    "settings": "Settings",
+    "transactions": "Transactions",
+    "accounting": "Accounting",
+    "auditing": "Auditing",
+    "reports": "Reports",
+    "integrations": "Integrations",
+    
+    "addRowDetail": "Add Row Detail",
+    "save": "Save",
+    "saveReturn": "Save & Return",
+    "cancel": "Cancel",
+    "return": "Return",
+
+    "report": "Report",
+    "upload": "Upload",
+    "create": "Create"
+}

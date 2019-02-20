@@ -4,7 +4,7 @@
             <b-col >
                 <b-btn class="d-none d-md-block float-left" v-shortkey="['esc']" @shortkey="onCancel()" @click="onCancel()">
                     <i class="material-icons">keyboard_backspace</i>
-                    Return
+                    {{ $t('general.return') }}
                     <!-- {{ $t('welcomeMsg') }} -->
                 </b-btn>
                 <h3 class="upper-case">
@@ -16,20 +16,16 @@
                 <b-button-toolbar class="float-right d-none d-md-block">
                     <b-btn class="ml-15" v-shortkey="['ctrl', 'd']" @shortkey="addDetailRow()" @click="addDetailRow()">
                         <i class="material-icons">playlist_add</i>
-                        Add Detail Row
+                        {{ $t('general.addRowDetail') }}
                     </b-btn>
                     <b-button-group class="ml-15">
                         <b-btn variant="primary" v-shortkey="['ctrl', 'n']" @shortkey="onSaveNew()" @click="onSaveNew()">
                             <i class="material-icons">save</i>
-                            Save
-                        </b-btn>
-                        <b-btn variant="secondary" v-shortkey="['ctrl', 's']" @shortkey="onSave()" @click="onSave()">
-                            <i class="material-icons">save</i>
-                            Save &amp; Return
+                            {{ $t('general.save') }}
                         </b-btn>
                         <b-btn variant="danger" v-shortkey="['esc']" @shortkey="onCancel()" @click="onCancel()">
                             <i class="material-icons">cancel</i>
-                            Cancel
+                            {{ $t('general.cancel') }}
                         </b-btn>
                     </b-button-group>
                 </b-button-toolbar>
@@ -55,10 +51,10 @@
                     <b-container>
                         <b-row>
                             <b-col>
-                                <b-form-group label="Invoice Date">
+                                <b-form-group :label="$t('commercial.date')">
                                     <b-input type="date" required placeholder="Missing Information" v-model="data.date"/>
                                 </b-form-group>
-                                <b-form-group label="Customer">
+                                <b-form-group :label="$t('commercial.customer')">
                                     <search-taxpayer></search-taxpayer>
                                 </b-form-group>
 
@@ -77,7 +73,7 @@
                                 </b-container>
                             </b-col>
                             <b-col>
-                                <b-form-group label="Document" v-if="documents.length > 0">
+                                <b-form-group :label="$t('commercial.document')" v-if="documents.length > 0">
                                     <b-form-select v-model="data.document_id">
                                         <option v-for="doc in documents" :key="doc.key" :value="doc.id">{{ doc.name }}</option>
                                     </b-form-select>
@@ -85,28 +81,29 @@
 
                                 <b-form-group :label="spark.taxPayerConfig.document_code" v-if="spark.taxPayerConfig.document_code != ''">
                                     <b-input-group>
-                                        <b-input type="text" placeholder="Invoice Code" v-model="data.code"/>
+                                        <b-input type="text" placeholder="$t('commercial.code')" v-model="data.code"/>
                                         <b-input-group-append>
-                                            <b-input type="date" placeholder="Code Expiry Date" v-model="data.code_expiry"/>
+                                            <b-input type="date" placeholder="$t('commercial.expiryDate')" v-model="data.code_expiry"/>
                                         </b-input-group-append>
                                     </b-input-group>
                                 </b-form-group>
 
-                                <b-form-group label="Invoice Number">
+                                <b-form-group :label="$t('commercial.number')">
                                     <b-input type="text" placeholder="Invoice Number" v-mask="spark.taxPayerConfig.document_mask" v-model="data.number"/>
                                 </b-form-group>
 
-                                <b-form-group label="Condition">
+                                <b-form-group :label="$t('commercial.paymentCondition')">
                                     <b-input-group>
-                                        <b-input type="number" placeholder="Payment" v-model="data.payment_condition"/>
+                                        <b-input type="number" placeholder="$t('commercial.paymentCondition')" v-model="data.payment_condition"/>
                                         <b-input-group-append v-if="data.payment_condition == 0">
                                             <b-form-select v-model="data.chart_account_id">
                                                 <option v-for="account in accountCharts" :key="account.key" :value="account.id">{{ account.name }}</option>
                                             </b-form-select>
                                         </b-input-group-append>
                                     </b-input-group>
+                                    <b-form-text>Specify days between invoice and payment dates. Ex: use 0 for cash, and 30 for thrity days payment terms.</b-form-text>
                                 </b-form-group>
-                                <b-form-group label="Rates">
+                                <b-form-group :label="$t('commercial.exchangeRate')">
                                     <b-input-group>
                                         <b-input-group-prepend>
                                             <b-form-select v-model="data.currency_id">

@@ -1,3 +1,44 @@
 {
-    "welcomeMsg": "Welcome to Your Vue.js App"
+    "customer": "Customer",
+    "supplier": "Supplier",
+
+    "income": "Income",
+    "salesBook": "Sales Book",
+    "salesInvoice": "Sales Invoice",
+    "creditBook": "Credit Book",
+    "creditNote": "Credit Note",
+    "accountReceivables": "Account Receivables",
+
+    "expense": "Expense",
+    "purchaseBook": "Purchase Book",
+    "purchaseInvoice": "Purchase Invoice",
+    "debitBook": "Debit Book",
+    "debitNote": "Debit Note",
+    "accountPayables": "Account Payables",
+
+    "fixedAssets": "Fixed Assets",
+    "inventories": "Inventories",
+    "productions": "Productions",
+    "moneyMovements": "Money Movements",
+
+    "date": "Date",
+    "expiryDate": "Expiry Date",
+    "dueDate": "Due Date",
+
+    "number": "Number",
+    "code": "Code",
+    "document": "Document",
+    "documents": "Documents",
+    "currency": "Currency",
+    "exchangeRate": "Exchange Rate",
+    "exchangeRates": "Exchange Rates",
+
+    "paymentCondition": "Payment Condition",
+    "account": "Account",
+    "concept": "Concept",
+    "vat": "Vat",
+    "value": "Value",
+    "startingValue": "Starting Value",
+    "currentRange": "Valor Actual",
+    "endingRange": "Valor Final"
 }

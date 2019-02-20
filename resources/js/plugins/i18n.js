@@ -7,14 +7,21 @@ import esCommercial from './es/commercial.json';
 import enAccounting from './en/accounting.json';
 import esAccounting from './es/accounting.json';
 
+import enGeneral from './en/general.json';
+import esGeneral from './es/general.json';
+
 Vue.use(VueI18n);
 
 const messages = {
     'en': {
-        'commercial': enCommercial
+        'general': enGeneral,
+        'commercial': enCommercial,
+        'accounting': enAccounting
     },
     'es': {
-        'commercial': esCommercial
+        'general': esGeneral,
+        'commercial': esCommercial,
+        'accounting': esAccounting
     }
 };
 

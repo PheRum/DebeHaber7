@@ -1,9 +1,9 @@
 <b-nav vertical class="mb-25">
     <h3 class="nav-heading sub">
-        Taxpayer
+        @{{ $t('general.taxPayer') }}
         <b-link href="/home" v-b-tooltip.hover title="Change Taxpayer" class="float-right">
             <i class="material-icons md-14 float-right"> sync </i>
-            <small>Change</small>
+            <small>@{{ $t('general.change') }}</small>
         </b-link>
     </h3>
 
@@ -19,27 +19,27 @@
     <b-collapse id="collapse-taxpayer" accordion="sub-menu">
         <b-nav-item class="sub-menu" :to="{ name: 'taxPayer'}">
             <i class="material-icons md-18 ml-10 mr-10">dashboard</i>
-            Dashboard
+            @{{ $t('general.dashBoard') }}
         </b-nav-item>
         <b-nav-item href="/home" class="sub-menu">
             <i class="material-icons md-18 ml-10 mr-10">sync</i>
-            Change Taxpayer
+            @{{ $t('general.changeTaxPayer') }}
         </b-nav-item>
         <h3 class="nav-heading sub">
-            Configuration
+            @{{ $t('general.configuration') }}
         </h3>
         <b-nav vertical>
             <b-nav-item class="sub-menu" :to="{ name: 'creditList'}">
                 <i class="material-icons md-18 ml-10 mr-10">settings</i>
-                Taxpayer Settings
+                @{{ $t('general.settingsTaxPayer') }}
             </b-nav-item>
             <b-nav-item class="sub-menu" :to="{ name: 'salesList'}">
                 <i class="material-icons md-18 ml-10 mr-10">file_copy</i>
-                Documents
+                @{{ $t('commercial.documents') }}
             </b-nav-item>
             <b-nav-item class="sub-menu" :to="{ name: 'creditList'}">
                 <i class="material-icons md-18 ml-10 mr-10">public</i>
-                Exchange Rates
+                @{{ $t('commercial.exchangeRates') }}
             </b-nav-item>
         </b-nav>
         <h3 class="nav-heading sub">
@@ -54,7 +54,7 @@
             @endforeach
             <b-nav-item class="sub-menu">
                 <i class="material-icons md-18 ml-10 mr-10">more_horiz</i>
-                show more
+                @{{ $t('general.showMore') }}
             </b-nav-item>
         </b-nav>
         <h3 class="nav-heading sub">
@@ -63,12 +63,12 @@
         <b-nav vertical>
             <b-nav-item href="/home" class="sub-menu" v-b-tooltip.hover title="Team Dashboard">
                 <i class="material-icons md-18 ml-10 mr-10">dashboard</i>
-                Team Dashboard
+                @{{ $t('general.teamDashBoard') }}
             </b-nav-item>
 
             <b-nav-item href="/settings/{{ Spark::teamsPrefix() }}/{{ \Auth::user()->currentTeam->id }}" class="sub-menu" v-b-tooltip.hover title="Team Settings">
                 <i class="material-icons md-18 ml-10 mr-10">settings</i>
-                Team Settings
+                @{{ $t('general.teamSettings') }}
             </b-nav-item>
         </b-nav>
     </b-collapse>
@@ -79,44 +79,44 @@
 
     <b-button variant="light" class="mb-10" v-b-toggle.collapse-commercial>
         <i class="material-icons float-left">expand_more</i>
-        <span class="nav-heading"> Transactions </span>
+        <span class="nav-heading"> @{{ $t('general.transactions') }} </span>
     </b-button>
 
     <b-collapse id="collapse-commercial" accordion="sub-menu">
 
         <h3 class="nav-heading sub">
-            Revenue
+            @{{ $t('commercial.income', 2) }}
         </h3>
         <b-nav vertical>
             <b-nav-item class="sub-menu" :to="{ name: 'salesList'}">
                 <i class="material-icons md-18 ml-10 mr-10">send</i>
-                Sales Book
+                @{{ $t('commercial.salesBook') }}
             </b-nav-item>
             <b-nav-item class="sub-menu" :to="{ name: 'creditList'}">
                 <i class="material-icons md-18 ml-10 mr-10">redo</i>
-                Credit Notes
+                @{{ $t('commercial.creditBook') }}
             </b-nav-item>
             <b-nav-item class="sub-menu" disabled>
                 <i class="material-icons md-18 ml-10 mr-10">attach_money</i>
-                Accounts Receivables
+                @{{ $t('commercial.accountReceivables') }}
             </b-nav-item>
         </b-nav>
 
         <h3 class="nav-heading sub">
-            Expenses
+            @{{ $t('commercial.expense') }}
         </h3>
         <b-nav vertical>
             <b-nav-item class="sub-menu" :to="{ name: 'purchaseList'}">
                 <i class="material-icons md-18 ml-10 mr-10">shopping_cart</i>
-                Purchase Book
+                @{{ $t('commercial.purchaseBook') }}
             </b-nav-item>
             <b-nav-item class="sub-menu" :to="{ name: 'debitList'}">
                 <i class="material-icons md-18 ml-10 mr-10">undo</i>
-                Debit Notes
+                @{{ $t('commercial.debitBook') }}
             </b-nav-item>
             <b-nav-item class="sub-menu" disabled>
                 <i class="material-icons md-18 ml-10 mr-10">attach_money</i>
-                Accounts Payables
+                @{{ $t('commercial.accountPayables') }}
             </b-nav-item>
         </b-nav>
 
@@ -126,26 +126,26 @@
         <b-nav vertical>
             <b-nav-item class="sub-menu" :to="{ name: 'purchaseList'}">
                 <i class="material-icons md-18 ml-10 mr-10">vpn_key</i>
-                Fixed Assets
+                @{{ $t('commercial.fixedAssets') }}
             </b-nav-item>
             <b-nav-item class="sub-menu" :to="{ name: 'debitList'}">
                 <i class="material-icons md-18 ml-10 mr-10">unarchive</i>
-                Inventories
+                @{{ $t('commercial.inventories') }}
             </b-nav-item>
             <b-nav-item class="sub-menu" disabled>
                 <i class="material-icons md-18 ml-10 mr-10">settings_applications</i>
-                Production
+                @{{ $t('commercial.productions') }}
             </b-nav-item>
             <b-nav-item class="sub-menu">
                 <i class="material-icons md-18 ml-10 mr-10">attach_money</i>
-                Money Movements
+                @{{ $t('commercial.moneyMovements') }}
             </b-nav-item>
         </b-nav>
     </b-collapse>
 
     <b-button variant="light" class="mb-10" v-b-toggle.collapse-accounting>
         <i class="material-icons float-left">expand_more</i>
-        <span class="nav-heading"> Accounting </span>
+        <span class="nav-heading"> @{{ $t('general.accounting') }} </span>
     </b-button>
 
     <b-collapse id="collapse-accounting" accordion="sub-menu">
@@ -192,12 +192,12 @@
 
     <b-button variant="light" class="mb-10" v-b-toggle.collapse-accounting @if($teamRole != 'Audit') disabled @endif>
         <i class="material-icons float-left">expand_more</i>
-        <span class="nav-heading"> Auditing </span>
+        <span class="nav-heading"> @{{ $t('general.auditing') }} </span>
     </b-button>
 
     <b-button variant="light" v-b-toggle.collapse-reporting>
         <i class="material-icons float-left">expand_more</i>
-        <span class="nav-heading"> Reports </span>
+        <span class="nav-heading"> @{{ $t('general.reports') }} </span>
     </b-button>
 
     <b-collapse id="collapse-reporting" accordion="sub-menu">
