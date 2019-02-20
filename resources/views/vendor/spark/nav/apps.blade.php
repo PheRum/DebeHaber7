@@ -197,7 +197,7 @@
 
     <b-button variant="light" v-b-toggle.collapse-reporting>
         <i class="material-icons float-left">expand_more</i>
-        <span class="nav-heading"> @{{ $t('general.reports') }} </span>
+        <span class="nav-heading"> @{{ $t('general.report') }} </span>
     </b-button>
 
     <b-collapse id="collapse-reporting" accordion="sub-menu">

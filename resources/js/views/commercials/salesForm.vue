@@ -192,17 +192,17 @@ export default {
         {
             return  [ {
                 key: 'chart_id',
-                label: this.$i18n.t('commercial.Item'),
+                label: this.$i18n.t('commercial.item'),
                 sortable: true
             },
             {
                 key: 'chart_vat_id',
-                label: this.$i18n.t('commercial.Vat'),
+                label: this.$i18n.t('commercial.vat'),
                 sortable: true
             },
             {
                 key: 'value',
-                label: this.$i18n.t('commercial.Value'),
+                label: this.$i18n.t('commercial.value'),
                 sortable: true
             },
             {
@@ -317,7 +317,7 @@ export default {
 
         if (app.$route.params.id > 0) {
             crud.methods
-            .onRead(app.$route.path)
+            .onRead(app.baseUrl + app.pageUrl + '/' + app.$route.params.id)
             .then(function (response) {
                 app.data = response.data.data;
             });

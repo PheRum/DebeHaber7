@@ -36,6 +36,7 @@
     "paymentCondition": "Condición de Pago",
     "account": "Cuenta",
     "concept": "Concepto",
+    "item": "Producto",
     "vat": "IVA",
     "value": "Valor",
     "startingValue": "Valor Inicial",
