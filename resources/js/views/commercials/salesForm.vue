@@ -135,7 +135,7 @@
                             </b-form-select>
                         </template>
                         <template slot="value" slot-scope="data">
-                            <b-form-input :value="data.item.value" type="number" placeholder="Value"></b-form-input>
+                            <b-form-input v-model="data.item.value" type="number" placeholder="Value"></b-form-input>
                         </template>
                         <template slot="actions" slot-scope="data">
                             <b-button variant="link" @click="deleteRow(data.item)">

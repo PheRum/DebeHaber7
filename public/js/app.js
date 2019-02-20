@@ -89833,10 +89833,13 @@ var render = function() {
                         fn: function(data) {
                           return [
                             _c("b-form-input", {
-                              attrs: {
+                              attrs: { type: "number", placeholder: "Value" },
+                              model: {
                                 value: data.item.value,
-                                type: "number",
-                                placeholder: "Value"
+                                callback: function($$v) {
+                                  _vm.$set(data.item, "value", $$v)
+                                },
+                                expression: "data.item.value"
                               }
                             })
                           ]
