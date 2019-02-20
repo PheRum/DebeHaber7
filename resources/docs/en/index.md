@@ -1,7 +1,7 @@
 - ## Get Started
-    - [Overview](/docs/{{version}}/getting-started)
+    - [Overview](/docs/{{version}}/overview)
     - [Teams](/docs/{{version}}/teams)
-    - [Integration](/docs/{{version}}/integration)
+    - [Integrations](/docs/{{version}}/integrations)
 - ## Commercial
     - [Sales Book](/docs/{{version}}/comercial/sales-book)
     - [Credit Notes](/docs/{{version}}/comercial/credit-note)

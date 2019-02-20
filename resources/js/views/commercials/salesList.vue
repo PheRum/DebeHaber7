@@ -39,7 +39,7 @@
             <b-col>
 
                 <div v-if="$route.name.includes('List')">
-                    <table-template :columns="column"></table-template>
+                    <table-template :columns="columns"></table-template>
                 </div>
                 <router-view v-else></router-view>
             </b-col>
@@ -53,37 +53,35 @@ export default {
     data: () => ({
 
     }),
-    computed:{
-        column()
+    computed: {
+        columns()
         {
 
-            return  [
-                {
-                    key: 'date',
-                    sortable: true
-                },
-                {
-                    key: 'customer.name',
-                    label: this.$i18n.t('commercial.customer'),
-                    sortable: true
-                },
-                {
-                    key: 'number',
-                    label: this.$i18n.t('commercial.number'),
-                    sortable: true
-                },
-                {
-                    key: 'total',
-                    label: this.$i18n.t('commercial.total'),
-                    sortable: true
-                },
-                {
-                    key: 'action',
-                    label: '',
-                    sortable: false
-                }];
-            }
+            return  [ {
+                key: 'date',
+                sortable: true
+            },
+            {
+                key: 'customer.name',
+                label: this.$i18n.t('commercial.customer'),
+                sortable: true
+            },
+            {
+                key: 'number',
+                label: this.$i18n.t('commercial.number'),
+                sortable: true
+            },
+            {
+                key: 'total',
+                label: this.$i18n.t('commercial.total'),
+                sortable: true
+            },
+            {
+                key: 'action',
+                label: '',
+                sortable: false
+            }];
         }
-
     }
-    </script>
+}
+</script>

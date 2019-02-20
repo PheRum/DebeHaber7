@@ -34,8 +34,7 @@ return [
     'versions'      => [
         'default'   => 'en',
         'published' => [
-            'en',
-            'es'
+            'en'
         ]
     ],
 
@@ -48,11 +47,20 @@ return [
     | where you can limit the access to only authenticated users in your
     | system. It is false initially so that guests can view your docs.
     |
+    | You may also specify links to show under the auth dropdown menu.
+    | Logout link will show by default.
+    |
     |
     */
 
     'settings' => [
         'auth'  => false,
+        'auth_links' => [
+            [
+                'name' => '',
+                'url' => '',
+            ],
+        ],
         'ga_id' => ''
     ],
 
@@ -83,7 +91,7 @@ return [
     | You can choose the default engine of your search from the list
     | However, you can also enable/disable the search's visibility
     |
-    | Supported Search Engines: 'algolia'
+    | Supported Search Engines: 'algolia', 'internal'
     |
     */
 
@@ -91,6 +99,9 @@ return [
         'enabled'       => false,
         'default'       => 'algolia',
         'engines'       => [
+            'internal'  => [
+                'index' => ['h2', 'h3']
+            ],
             'algolia'   => [
                 'key'   => '',
                 'index' => ''
@@ -112,7 +123,7 @@ return [
 
     'repository'   => [
         'provider' => 'github',
-        'url'      => ''
+        'url'      => 'https://github.com/saleem-hadad/larecipe'
     ],
 
     /*
@@ -129,9 +140,9 @@ return [
     */
 
     'ui'                 => [
-        'show_app_name'  => false,
-        'logo'           => '/img/logos/debehaber.jpg', // e.g.: /images/logo.svg
-        'fav'            => '/img/favicon/favicon-96x96.png', // e.g.: /fav.png
+        'show_app_name'  => true,
+        'logo'           => '', // e.g.: /images/logo.svg
+        'fav'            => '', // e.g.: /fav.png
         'theme'          => 'light',
         'code'           => 'dark',
         'back_to_top'    => true,
@@ -179,7 +190,7 @@ return [
    | Forum
    |--------------------------------------------------------------------------
    |
-   | Giving a chance to your users to post thier questions or feedback
+   | Giving a chance to your users to post their questions or feedback
    | directly on your docs, is pretty nice way to engage them more.
    | However, you can also enable/disable the forum's visibility.
    |
@@ -188,11 +199,11 @@ return [
    */
 
   'forum'                 => [
-        'enabled'           => true,
+        'enabled'           => false,
         'default'           => 'disqus',
         'services'          => [
             'disqus'        => [
-                'site_name' => 'debehaber.disqus.com', // yoursite.disqus.com
+                'site_name' => '', // yoursite.disqus.com
             ]
         ]
     ]

@@ -175,8 +175,7 @@ export default {
                 rate: 1,
                 type: 4
             },
-            baseUrl: '',
-            pageUrl: '',
+            pageUrl: '/commercial/sales',
 
             documents: [],
             currencies: [],
@@ -186,36 +185,46 @@ export default {
             itemCharts: [],
 
             lastDeletedRow: [],
-            columns: [
-                {
-                    key: 'chart_id',
-                    label: 'Item',
-                },
-                {
-                    key: 'chart_vat_id',
-                    label: 'Vat',
-                },
-                {
-                    key: 'value',
-                    label: 'Value',
-                },
-                {
-                    key: 'actions',
-                    label: '',
-                }
-            ],
         };
+    },
+    computed: {
+        columns()
+        {
+            return  [ {
+                key: 'chart_id',
+                label: this.$i18n.t('commercial.Item'),
+                sortable: true
+            },
+            {
+                key: 'chart_vat_id',
+                label: this.$i18n.t('commercial.Vat'),
+                sortable: true
+            },
+            {
+                key: 'value',
+                label: this.$i18n.t('commercial.Value'),
+                sortable: true
+            },
+            {
+                key: 'action',
+                label: '',
+                sortable: false
+            }];
+        },
+
+        baseUrl() {
+            return '/api/' + this.$route.params.taxPayer + '/' + this.$route.params.cycle;
+        }
     },
     methods: {
 
         onSave() {
             var app = this;
 
-
             crud.methods
             .onUpdate(app.baseUrl + app.pageUrl, app.data)
             .then(function (response) {
-                app.$snack.success({ text: 'Invoice Nr. ' + app.data.number + ', Saved!' });
+                app.$snack.success({ text: this.$i18n.t('commercial.invoiceSaved', app.data.number) });
                 app.$router.go(-1);
             }).catch(function (error) {
                 app.$snack.danger({ text: 'Error OMG!' });
@@ -228,26 +237,26 @@ export default {
             crud.methods
             .onUpdate(app.baseUrl + app.pageUrl, app.data)
             .then(function (response) {
-                app.$snack.success({ text: 'Invoice Nr. ' + app.data.number + ', Saved!' });
-                app.$router.push({ name: 'salesForm', params: { id: '0' }})
+                app.$snack.success({ text: this.$i18n.t('commercial.invoiceSaved', app.data.number) });
+                app.$router.push({ name: app.$route.name, params: { id: '0' }})
                 app.data.customer_id = 0;
                 app.data.customer = [];
 
             }).catch(function (error) {
                 app.$snack.danger({
-                    text: 'Error OMG!',
+                    text: this.$i18n.t('general.errorMessage'),
                 });
             });
         },
 
         onCancel() {
             this.$swal.fire({
-                title: 'Cancel?',
-                text: "Canceling will not save changes made to this form.",
+                title: this.$i18n.t('general.cancel'),
+                text: this.$i18n.t('general.cancelVerification'),
                 type: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'Yes, cancel changes!',
-                cancelButtonText: 'No, Keep working'
+                confirmButtonText: this.$i18n.t('general.cancelConfirmation'),
+                cancelButtonText: this.$i18n.t('general.cancelRejection'),
             }).then((result) => {
                 if (result.value) {
                     this.$router.go(-1);
@@ -270,15 +279,15 @@ export default {
                 var app = this;
 
                 crud.methods
-                .onDelete(app.baseUrl + app.pageUrl, item.id)
+                .onDelete(app.baseUrl + app.pageUrl + '/details', item.id)
                 .then(function (response) { });
             }
 
             this.lastDeletedRow = item;
 
             this.$snack.success({
-                text: 'Record Deleted',
-                button: 'Undo',
+                text: this.$i18n.t('general.rowDeleted'),
+                button: this.$i18n.t('general.undo'),
                 action: this.undoDeletedRow
             });
 
@@ -287,7 +296,10 @@ export default {
 
         undoDeletedRow() {
             if (this.lastDeletedRow.id > 0) {
-                //axios code to delete the transaction detail.
+                crud.methods
+                .onUpdate(app.baseUrl + app.pageUrl + '/details', this.lastDeletedRow)
+                .then(function (response) { });
+                //axios code to insert detail again??? or let save do it.
             }
 
             this.data.details.push(this.lastDeletedRow);
@@ -296,8 +308,6 @@ export default {
 
     mounted() {
         var app = this;
-        app.baseUrl = '/api/' + app.$route.params.taxPayer + '/' + app.$route.params.cycle;
-        app.pageUrl = '/commercial/sales';
 
         crud.methods
         .onRead('/api/' + app.$route.params.taxPayer + '/currencies')
@@ -307,7 +317,7 @@ export default {
 
         if (app.$route.params.id > 0) {
             crud.methods
-            .onRead(app.baseUrl + app.pageUrl + "/" + app.$route.params.id)
+            .onRead(app.$route.path)
             .then(function (response) {
                 app.data = response.data.data;
             });
