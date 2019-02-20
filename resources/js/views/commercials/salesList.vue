@@ -37,8 +37,9 @@
         </b-row>
         <b-row>
             <b-col>
+
                 <div v-if="$route.name.includes('List')">
-                    <table-template :columns="columns"></table-template>
+                    <table-template :columns="column"></table-template>
                 </div>
                 <router-view v-else></router-view>
             </b-col>
@@ -50,32 +51,39 @@
 import crud from '../../components/crud.vue'
 export default {
     data: () => ({
-        columns: [
-            {
-                key: 'date',
-                sortable: true
-            },
-            {
-                key: 'customer.name',
-                label: 'Customer',
-                sortable: true
-            },
-            {
-                key: 'number',
-                label: 'Invoice Number',
-                sortable: true
-            },
-            {
-                key: 'total',
-                label: 'Invoice Total',
-                sortable: true
-            },
-            {
-                key: 'action',
-                label: '',
-                sortable: false
-            },
-        ],
-    })
-}
-</script>
+
+    }),
+    computed:{
+        column()
+        {
+
+            return  [
+                {
+                    key: 'date',
+                    sortable: true
+                },
+                {
+                    key: 'customer.name',
+                    label: this.$i18n.t('commercial.customer'),
+                    sortable: true
+                },
+                {
+                    key: 'number',
+                    label: this.$i18n.t('commercial.number'),
+                    sortable: true
+                },
+                {
+                    key: 'total',
+                    label: this.$i18n.t('commercial.total'),
+                    sortable: true
+                },
+                {
+                    key: 'action',
+                    label: '',
+                    sortable: false
+                }];
+            }
+        }
+
+    }
+    </script>

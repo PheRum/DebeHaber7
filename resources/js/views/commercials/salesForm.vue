@@ -55,7 +55,7 @@
                                     <b-input type="date" required placeholder="Missing Information" v-model="data.date"/>
                                 </b-form-group>
                                 <b-form-group :label="$t('commercial.customer')">
-                                    <search-taxpayer></search-taxpayer>
+                                    <search-taxpayer v-model="data.customer"></search-taxpayer>
                                 </b-form-group>
 
                                 <b-container v-if="data.customer != null">
@@ -175,6 +175,8 @@ export default {
                 rate: 1,
                 type: 4
             },
+            baseUrl: '',
+            pageUrl: '',
 
             documents: [],
             currencies: [],
@@ -205,12 +207,13 @@ export default {
         };
     },
     methods: {
+
         onSave() {
             var app = this;
-            var baseUrl = '/api/' + app.$route.params.taxPayer + '/' + app.$route.params.cycle + '/commercial/sales'
+
 
             crud.methods
-            .onUpdate(baseUrl, app.data)
+            .onUpdate(app.baseUrl + app.pageUrl, app.data)
             .then(function (response) {
                 app.$snack.success({ text: 'Invoice Nr. ' + app.data.number + ', Saved!' });
                 app.$router.go(-1);
@@ -221,10 +224,9 @@ export default {
 
         onSaveNew() {
             var app = this;
-            var baseUrl = '/api/' + app.$route.params.taxPayer + '/' + app.$route.params.cycle + '/commercial/sales'
 
             crud.methods
-            .onUpdate(baseUrl, app.data)
+            .onUpdate(app.baseUrl + app.pageUrl, app.data)
             .then(function (response) {
                 app.$snack.success({ text: 'Invoice Nr. ' + app.data.number + ', Saved!' });
                 app.$router.push({ name: 'salesForm', params: { id: '0' }})
@@ -266,10 +268,9 @@ export default {
 
             if (item.id > 0) {
                 var app = this;
-                var baseUrl = '/api/' + app.$route.params.taxPayer + '/' + app.$route.params.cycle + '/commercial/sales'
 
                 crud.methods
-                .onDelete(baseUrl, item.id)
+                .onDelete(app.baseUrl + app.pageUrl, item.id)
                 .then(function (response) { });
             }
 
@@ -295,7 +296,8 @@ export default {
 
     mounted() {
         var app = this;
-        var baseUrl = '/api/' + app.$route.params.taxPayer + '/' + app.$route.params.cycle
+        app.baseUrl = '/api/' + app.$route.params.taxPayer + '/' + app.$route.params.cycle;
+        app.pageUrl = '/commercial/sales';
 
         crud.methods
         .onRead('/api/' + app.$route.params.taxPayer + '/currencies')
@@ -305,7 +307,7 @@ export default {
 
         if (app.$route.params.id > 0) {
             crud.methods
-            .onRead(baseUrl + "/commercial/sales/" + app.$route.params.id)
+            .onRead(app.baseUrl + app.pageUrl + "/" + app.$route.params.id)
             .then(function (response) {
                 app.data = response.data.data;
             });
@@ -318,19 +320,19 @@ export default {
         }
 
         crud.methods
-        .onRead(baseUrl + "/accounting/charts/for/money/")
+        .onRead(app.baseUrl + "/accounting/charts/for/money/")
         .then(function (response) {
             app.accountCharts = response.data.data;
         });
 
         crud.methods
-        .onRead(baseUrl + "/accounting/charts/for/vats-debit")
+        .onRead(app.baseUrl + "/accounting/charts/for/vats-debit")
         .then(function (response) {
             app.vatCharts = response.data.data;
         });
 
         crud.methods
-        .onRead(baseUrl + "/accounting/charts/for/income")
+        .onRead(app.baseUrl + "/accounting/charts/for/income")
         .then(function (response) {
             app.itemCharts = response.data.data;
         });
