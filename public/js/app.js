@@ -86,6 +86,368 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {
+      arr2[i] = arr[i];
+    }
+
+    return arr2;
+  }
+}
+
+module.exports = _arrayWithoutHoles;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/assertThisInitialized.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+
+module.exports = _assertThisInitialized;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/classCallCheck.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/classCallCheck.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+module.exports = _classCallCheck;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/createClass.js":
+/*!************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/createClass.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+
+module.exports = _createClass;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/defineProperty.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/defineProperty.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+module.exports = _defineProperty;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/getPrototypeOf.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _getPrototypeOf(o) {
+  module.exports = _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  return _getPrototypeOf(o);
+}
+
+module.exports = _getPrototypeOf;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/inherits.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/inherits.js ***!
+  \*********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var setPrototypeOf = __webpack_require__(/*! ./setPrototypeOf */ "./node_modules/@babel/runtime/helpers/setPrototypeOf.js");
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
+  }
+
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) setPrototypeOf(subClass, superClass);
+}
+
+module.exports = _inherits;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/interopRequireDefault.js ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    default: obj
+  };
+}
+
+module.exports = _interopRequireDefault;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/interopRequireWildcard.js ***!
+  \***********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _interopRequireWildcard(obj) {
+  if (obj && obj.__esModule) {
+    return obj;
+  } else {
+    var newObj = {};
+
+    if (obj != null) {
+      for (var key in obj) {
+        if (Object.prototype.hasOwnProperty.call(obj, key)) {
+          var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {};
+
+          if (desc.get || desc.set) {
+            Object.defineProperty(newObj, key, desc);
+          } else {
+            newObj[key] = obj[key];
+          }
+        }
+      }
+    }
+
+    newObj.default = obj;
+    return newObj;
+  }
+}
+
+module.exports = _interopRequireWildcard;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/iterableToArray.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/iterableToArray.js ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _iterableToArray(iter) {
+  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
+}
+
+module.exports = _iterableToArray;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/nonIterableSpread.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/nonIterableSpread.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance");
+}
+
+module.exports = _nonIterableSpread;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/objectSpread.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/objectSpread.js ***!
+  \*************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var defineProperty = __webpack_require__(/*! ./defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js");
+
+function _objectSpread(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+    var ownKeys = Object.keys(source);
+
+    if (typeof Object.getOwnPropertySymbols === 'function') {
+      ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(source, sym).enumerable;
+      }));
+    }
+
+    ownKeys.forEach(function (key) {
+      defineProperty(target, key, source[key]);
+    });
+  }
+
+  return target;
+}
+
+module.exports = _objectSpread;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js ***!
+  \**************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _typeof = __webpack_require__(/*! ../helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js");
+
+var assertThisInitialized = __webpack_require__(/*! ./assertThisInitialized */ "./node_modules/@babel/runtime/helpers/assertThisInitialized.js");
+
+function _possibleConstructorReturn(self, call) {
+  if (call && (_typeof(call) === "object" || typeof call === "function")) {
+    return call;
+  }
+
+  return assertThisInitialized(self);
+}
+
+module.exports = _possibleConstructorReturn;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/setPrototypeOf.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/setPrototypeOf.js ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _setPrototypeOf(o, p) {
+  module.exports = _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
+}
+
+module.exports = _setPrototypeOf;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/toConsumableArray.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/toConsumableArray.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayWithoutHoles = __webpack_require__(/*! ./arrayWithoutHoles */ "./node_modules/@babel/runtime/helpers/arrayWithoutHoles.js");
+
+var iterableToArray = __webpack_require__(/*! ./iterableToArray */ "./node_modules/@babel/runtime/helpers/iterableToArray.js");
+
+var nonIterableSpread = __webpack_require__(/*! ./nonIterableSpread */ "./node_modules/@babel/runtime/helpers/nonIterableSpread.js");
+
+function _toConsumableArray(arr) {
+  return arrayWithoutHoles(arr) || iterableToArray(arr) || nonIterableSpread();
+}
+
+module.exports = _toConsumableArray;
+
+/***/ }),
+
+/***/ "./node_modules/@babel/runtime/helpers/typeof.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/@babel/runtime/helpers/typeof.js ***!
+  \*******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof2 = function _typeof2(obj) { return typeof obj; }; } else { _typeof2 = function _typeof2(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof2(obj); }
+
+function _typeof(obj) {
+  if (typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol") {
+    module.exports = _typeof = function _typeof(obj) {
+      return _typeof2(obj);
+    };
+  } else {
+    module.exports = _typeof = function _typeof(obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : _typeof2(obj);
+    };
+  }
+
+  return _typeof(obj);
+}
+
+module.exports = _typeof;
+
+/***/ }),
+
 /***/ "./node_modules/@babel/runtime/regenerator/index.js":
 /*!**********************************************************!*\
   !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
@@ -4102,7 +4464,7 @@ __webpack_require__.r(__webpack_exports__);
         label: this.$i18n.t('commercial.value'),
         sortable: true
       }, {
-        key: 'action',
+        key: 'actions',
         label: '',
         sortable: false
       }];
@@ -4534,10 +4896,14 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _buttonClose = __webpack_require__(/*! ../button/button-close */ "./node_modules/bootstrap-vue/es/components/button/button-close.js");
+var _buttonClose = _interopRequireDefault(__webpack_require__(/*! ../button/button-close */ "./node_modules/bootstrap-vue/es/components/button/button-close.js"));
 
 // @vue/component
 var _default = {
@@ -4701,10 +5067,14 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _alert = __webpack_require__(/*! ./alert */ "./node_modules/bootstrap-vue/es/components/alert/alert.js");
+var _alert = _interopRequireDefault(__webpack_require__(/*! ./alert */ "./node_modules/bootstrap-vue/es/components/alert/alert.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -4730,24 +5100,27 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
 
-var _pluckProps = __webpack_require__(/*! ../../utils/pluck-props */ "./node_modules/bootstrap-vue/es/utils/pluck-props.js");
+var _pluckProps = _interopRequireDefault(__webpack_require__(/*! ../../utils/pluck-props */ "./node_modules/bootstrap-vue/es/utils/pluck-props.js"));
 
-var _link = __webpack_require__(/*! ../link/link */ "./node_modules/bootstrap-vue/es/components/link/link.js");
+var _object = __webpack_require__(/*! ../../utils/object */ "./node_modules/bootstrap-vue/es/utils/object.js");
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+var _link = _interopRequireWildcard(__webpack_require__(/*! ../link/link */ "./node_modules/bootstrap-vue/es/components/link/link.js"));
 
 var linkProps = (0, _link.propsFactory)();
 delete linkProps.href.default;
 delete linkProps.to.default;
-
-var props = _objectSpread({}, linkProps, {
+var props = (0, _object.assign)(linkProps, {
   tag: {
     type: String,
     default: 'span'
@@ -4759,9 +5132,8 @@ var props = _objectSpread({}, linkProps, {
   pill: {
     type: Boolean,
     default: false
-  } // @vue/component
-
-});
+  }
+}); // @vue/component
 
 exports.props = props;
 var _default = {
@@ -4799,10 +5171,14 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _badge = __webpack_require__(/*! ./badge */ "./node_modules/bootstrap-vue/es/components/badge/badge.js");
+var _badge = _interopRequireDefault(__webpack_require__(/*! ./badge */ "./node_modules/bootstrap-vue/es/components/badge/badge.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -4828,18 +5204,35 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
-exports.default = void 0;
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.props = void 0;
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
 
-var _breadcrumbLink = __webpack_require__(/*! ./breadcrumb-link */ "./node_modules/bootstrap-vue/es/components/breadcrumb/breadcrumb-link.js");
+var _object = __webpack_require__(/*! ../../utils/object */ "./node_modules/bootstrap-vue/es/utils/object.js");
 
-// @vue/component
+var _breadcrumbLink = _interopRequireWildcard(__webpack_require__(/*! ./breadcrumb-link */ "./node_modules/bootstrap-vue/es/components/breadcrumb/breadcrumb-link.js"));
+
+var props = (0, _object.assign)({}, _breadcrumbLink.props, {
+  text: {
+    type: String,
+    default: null
+  },
+  href: {
+    type: String,
+    default: null
+  }
+}); // @vue/component
+
+exports.props = props;
 var _default = {
   name: 'BBreadcrumbItem',
   functional: true,
-  props: _breadcrumbLink.props,
+  props: props,
   render: function render(h, _ref) {
     var props = _ref.props,
         data = _ref.data,
@@ -4871,22 +5264,26 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
 
-var _pluckProps = __webpack_require__(/*! ../../utils/pluck-props */ "./node_modules/bootstrap-vue/es/utils/pluck-props.js");
+var _pluckProps = _interopRequireDefault(__webpack_require__(/*! ../../utils/pluck-props */ "./node_modules/bootstrap-vue/es/utils/pluck-props.js"));
 
-var _link = __webpack_require__(/*! ../link/link */ "./node_modules/bootstrap-vue/es/components/link/link.js");
+var _object = __webpack_require__(/*! ../../utils/object */ "./node_modules/bootstrap-vue/es/utils/object.js");
+
+var _link = _interopRequireWildcard(__webpack_require__(/*! ../link/link */ "./node_modules/bootstrap-vue/es/components/link/link.js"));
 
 var _html = __webpack_require__(/*! ../../utils/html */ "./node_modules/bootstrap-vue/es/utils/html.js");
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var props = _objectSpread({}, (0, _link.propsFactory)(), {
+var props = (0, _object.assign)((0, _link.propsFactory)(), {
   text: {
     type: String,
     default: null
@@ -4895,12 +5292,19 @@ var props = _objectSpread({}, (0, _link.propsFactory)(), {
     type: String,
     default: null
   },
+  active: {
+    type: Boolean,
+    default: false
+  },
+  href: {
+    type: String,
+    default: '#'
+  },
   ariaCurrent: {
     type: String,
     default: 'location'
-  } // @vue/component
-
-});
+  }
+}); // @vue/component
 
 exports.props = props;
 var _default = {
@@ -4919,6 +5323,10 @@ var _default = {
     if (suppliedProps.active) {
       componentData.attrs = {
         'aria-current': suppliedProps.ariaCurrent
+      };
+    } else {
+      componentData.attrs = {
+        href: suppliedProps.href
       };
     }
 
@@ -4943,20 +5351,22 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
+
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js"));
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
 
 var _array = __webpack_require__(/*! ../../utils/array */ "./node_modules/bootstrap-vue/es/utils/array.js");
 
-var _breadcrumbItem = __webpack_require__(/*! ./breadcrumb-item */ "./node_modules/bootstrap-vue/es/components/breadcrumb/breadcrumb-item.js");
+var _object = __webpack_require__(/*! ../../utils/object */ "./node_modules/bootstrap-vue/es/utils/object.js");
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+var _breadcrumbItem = _interopRequireDefault(__webpack_require__(/*! ./breadcrumb-item */ "./node_modules/bootstrap-vue/es/components/breadcrumb/breadcrumb-item.js"));
 
 var props = {
   items: {
@@ -4979,7 +5389,7 @@ var _default = {
     if ((0, _array.isArray)(props.items)) {
       var activeDefined = false;
       childNodes = props.items.map(function (item, idx) {
-        if (_typeof(item) !== 'object') {
+        if ((0, _typeof2.default)(item) !== 'object') {
           item = {
             text: item
           };
@@ -4998,7 +5408,7 @@ var _default = {
         }
 
         return h(_breadcrumbItem.default, {
-          props: _objectSpread({}, item, {
+          props: (0, _object.assign)({}, item, {
             active: active
           })
         });
@@ -5024,14 +5434,18 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _breadcrumb = __webpack_require__(/*! ./breadcrumb */ "./node_modules/bootstrap-vue/es/components/breadcrumb/breadcrumb.js");
+var _breadcrumb = _interopRequireDefault(__webpack_require__(/*! ./breadcrumb */ "./node_modules/bootstrap-vue/es/components/breadcrumb/breadcrumb.js"));
 
-var _breadcrumbItem = __webpack_require__(/*! ./breadcrumb-item */ "./node_modules/bootstrap-vue/es/components/breadcrumb/breadcrumb-item.js");
+var _breadcrumbItem = _interopRequireDefault(__webpack_require__(/*! ./breadcrumb-item */ "./node_modules/bootstrap-vue/es/components/breadcrumb/breadcrumb-item.js"));
 
-var _breadcrumbLink = __webpack_require__(/*! ./breadcrumb-link */ "./node_modules/bootstrap-vue/es/components/breadcrumb/breadcrumb-link.js");
+var _breadcrumbLink = _interopRequireDefault(__webpack_require__(/*! ./breadcrumb-link */ "./node_modules/bootstrap-vue/es/components/breadcrumb/breadcrumb-link.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -5059,12 +5473,16 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
 
-var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
 
 var props = {
   vertical: {
@@ -5095,7 +5513,7 @@ var _default = {
         data = _ref.data,
         children = _ref.children;
     return h(props.tag, (0, _vueFunctionalDataMerge.mergeData)(data, {
-      class: _defineProperty({
+      class: (0, _defineProperty2.default)({
         'btn-group': !props.vertical,
         'btn-group-vertical': props.vertical
       }, "btn-group-".concat(props.size), Boolean(props.size)),
@@ -5119,10 +5537,14 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _buttonGroup = __webpack_require__(/*! ./button-group */ "./node_modules/bootstrap-vue/es/components/button-group/button-group.js");
+var _buttonGroup = _interopRequireDefault(__webpack_require__(/*! ./button-group */ "./node_modules/bootstrap-vue/es/components/button-group/button-group.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -5149,12 +5571,16 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
 var _dom = __webpack_require__(/*! ../../utils/dom */ "./node_modules/bootstrap-vue/es/utils/dom.js");
 
-var _keyCodes = __webpack_require__(/*! ../../utils/key-codes */ "./node_modules/bootstrap-vue/es/utils/key-codes.js");
+var _keyCodes = _interopRequireDefault(__webpack_require__(/*! ../../utils/key-codes */ "./node_modules/bootstrap-vue/es/utils/key-codes.js"));
 
 var ITEM_SELECTOR = ['.btn:not(.disabled):not([disabled]):not(.dropdown-item)', '.form-control:not(.disabled):not([disabled])', 'select:not(.disabled):not([disabled])', 'input[type="checkbox"]:not(.disabled)', 'input[type="radio"]:not(.disabled)'].join(','); // @vue/component
 
@@ -5296,10 +5722,14 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _buttonToolbar = __webpack_require__(/*! ./button-toolbar */ "./node_modules/bootstrap-vue/es/components/button-toolbar/button-toolbar.js");
+var _buttonToolbar = _interopRequireDefault(__webpack_require__(/*! ./button-toolbar */ "./node_modules/bootstrap-vue/es/components/button-toolbar/button-toolbar.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -5326,12 +5756,16 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
 
 var props = {
   disabled: {
@@ -5359,7 +5793,7 @@ var _default = {
         slots = _ref.slots;
     var componentData = {
       staticClass: 'close',
-      class: _defineProperty({}, "text-".concat(props.textVariant), props.textVariant),
+      class: (0, _defineProperty2.default)({}, "text-".concat(props.textVariant), props.textVariant),
       attrs: {
         type: 'button',
         disabled: props.disabled,
@@ -5400,12 +5834,20 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
 
-var _pluckProps = __webpack_require__(/*! ../../utils/pluck-props */ "./node_modules/bootstrap-vue/es/utils/pluck-props.js");
+var _pluckProps = _interopRequireDefault(__webpack_require__(/*! ../../utils/pluck-props */ "./node_modules/bootstrap-vue/es/utils/pluck-props.js"));
 
 var _array = __webpack_require__(/*! ../../utils/array */ "./node_modules/bootstrap-vue/es/utils/array.js");
 
@@ -5413,11 +5855,7 @@ var _object = __webpack_require__(/*! ../../utils/object */ "./node_modules/boot
 
 var _dom = __webpack_require__(/*! ../../utils/dom */ "./node_modules/bootstrap-vue/es/utils/dom.js");
 
-var _link = __webpack_require__(/*! ../link/link */ "./node_modules/bootstrap-vue/es/components/link/link.js");
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+var _link = _interopRequireWildcard(__webpack_require__(/*! ../link/link */ "./node_modules/bootstrap-vue/es/components/link/link.js"));
 
 var btnProps = {
   block: {
@@ -5455,9 +5893,7 @@ var linkProps = (0, _link.propsFactory)();
 delete linkProps.href.default;
 delete linkProps.to.default;
 var linkPropKeys = (0, _object.keys)(linkProps);
-
-var props = _objectSpread({}, linkProps, btnProps); // Focus handler for toggle buttons.  Needs class of 'focus' when focused.
-
+var props = (0, _object.assign)(linkProps, btnProps); // Focus handler for toggle buttons.  Needs class of 'focus' when focused.
 
 exports.props = props;
 
@@ -5501,7 +5937,7 @@ function isNonStandardTag(props) {
 function computeClass(props) {
   var _ref;
 
-  return [props.variant ? "btn-".concat(props.variant) : "btn-secondary", (_ref = {}, _defineProperty(_ref, "btn-".concat(props.size), Boolean(props.size)), _defineProperty(_ref, 'btn-block', props.block), _defineProperty(_ref, "disabled", props.disabled), _defineProperty(_ref, "active", props.pressed), _ref)];
+  return [props.variant ? "btn-".concat(props.variant) : "btn-secondary", (_ref = {}, (0, _defineProperty2.default)(_ref, "btn-".concat(props.size), Boolean(props.size)), (0, _defineProperty2.default)(_ref, 'btn-block', props.block), (0, _defineProperty2.default)(_ref, "disabled", props.disabled), (0, _defineProperty2.default)(_ref, "active", props.pressed), _ref)];
 } // Compute the link props to pass to b-link (if required)
 
 
@@ -5538,8 +5974,8 @@ function computeAttrs(props, data) {
     // remembering the previous setting when using the back button.
     autocomplete: toggle ? 'off' : null,
     // Tab index is used when the component is not a button.
-    // Links are tabbable, but don't allow disabled, while non buttons or links
-    // are not tabbable, so we mimic that functionality by disabling tabbing
+    // Links are tabable, but don't allow disabled, while non buttons or links
+    // are not tabable, so we mimic that functionality by disabling tabbing
     // when disabled, and adding a tabindex of '0' to non buttons or non links.
     tabindex: props.disabled && !button ? '-1' : tabindex
   };
@@ -5604,12 +6040,16 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _button = __webpack_require__(/*! ./button */ "./node_modules/bootstrap-vue/es/components/button/button.js");
+var _button = _interopRequireDefault(__webpack_require__(/*! ./button */ "./node_modules/bootstrap-vue/es/components/button/button.js"));
 
-var _buttonClose = __webpack_require__(/*! ./button-close */ "./node_modules/bootstrap-vue/es/components/button/button-close.js");
+var _buttonClose = _interopRequireDefault(__webpack_require__(/*! ./button-close */ "./node_modules/bootstrap-vue/es/components/button/button-close.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -5638,36 +6078,37 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
+
+var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/toConsumableArray.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
 
-var _prefixPropName = __webpack_require__(/*! ../../utils/prefix-prop-name */ "./node_modules/bootstrap-vue/es/utils/prefix-prop-name.js");
+var _prefixPropName = _interopRequireDefault(__webpack_require__(/*! ../../utils/prefix-prop-name */ "./node_modules/bootstrap-vue/es/utils/prefix-prop-name.js"));
 
-var _copyProps = __webpack_require__(/*! ../../utils/copyProps */ "./node_modules/bootstrap-vue/es/utils/copyProps.js");
+var _copyProps = _interopRequireDefault(__webpack_require__(/*! ../../utils/copyProps */ "./node_modules/bootstrap-vue/es/utils/copyProps.js"));
 
-var _pluckProps = __webpack_require__(/*! ../../utils/pluck-props */ "./node_modules/bootstrap-vue/es/utils/pluck-props.js");
+var _pluckProps = _interopRequireDefault(__webpack_require__(/*! ../../utils/pluck-props */ "./node_modules/bootstrap-vue/es/utils/pluck-props.js"));
 
-var _cardMixin = __webpack_require__(/*! ../../mixins/card-mixin */ "./node_modules/bootstrap-vue/es/mixins/card-mixin.js");
+var _object = __webpack_require__(/*! ../../utils/object */ "./node_modules/bootstrap-vue/es/utils/object.js");
 
-var _cardTitle = __webpack_require__(/*! ./card-title */ "./node_modules/bootstrap-vue/es/components/card/card-title.js");
+var _cardMixin = _interopRequireDefault(__webpack_require__(/*! ../../mixins/card-mixin */ "./node_modules/bootstrap-vue/es/mixins/card-mixin.js"));
 
-var _cardSubTitle = __webpack_require__(/*! ./card-sub-title */ "./node_modules/bootstrap-vue/es/components/card/card-sub-title.js");
+var _cardTitle = _interopRequireWildcard(__webpack_require__(/*! ./card-title */ "./node_modules/bootstrap-vue/es/components/card/card-title.js"));
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+var _cardSubTitle = _interopRequireWildcard(__webpack_require__(/*! ./card-sub-title */ "./node_modules/bootstrap-vue/es/components/card/card-sub-title.js"));
 
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
-
-function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var props = _objectSpread({}, (0, _copyProps.default)(_cardMixin.default.props, _prefixPropName.default.bind(null, 'body')), {
+var props = (0, _object.assign)({}, // Import common card props and prefix them with `body-`
+(0, _copyProps.default)(_cardMixin.default.props, _prefixPropName.default.bind(null, 'body')), {
   bodyClass: {
     type: [String, Object, Array],
     default: null
@@ -5676,9 +6117,8 @@ var props = _objectSpread({}, (0, _copyProps.default)(_cardMixin.default.props, 
   overlay: {
     type: Boolean,
     default: false
-  } // @vue/component
-
-});
+  }
+}); // @vue/component
 
 exports.props = props;
 var _default = {
@@ -5712,8 +6152,8 @@ var _default = {
       staticClass: 'card-body',
       class: [(_ref2 = {
         'card-img-overlay': props.overlay
-      }, _defineProperty(_ref2, "bg-".concat(props.bodyBgVariant), Boolean(props.bodyBgVariant)), _defineProperty(_ref2, "border-".concat(props.bodyBorderVariant), Boolean(props.bodyBorderVariant)), _defineProperty(_ref2, "text-".concat(props.bodyTextVariant), Boolean(props.bodyTextVariant)), _ref2), props.bodyClass || {}]
-    }), [cardTitle, cardSubTitle].concat(_toConsumableArray(cardContent)));
+      }, (0, _defineProperty2.default)(_ref2, "bg-".concat(props.bodyBgVariant), Boolean(props.bodyBgVariant)), (0, _defineProperty2.default)(_ref2, "border-".concat(props.bodyBorderVariant), Boolean(props.bodyBorderVariant)), (0, _defineProperty2.default)(_ref2, "text-".concat(props.bodyTextVariant), Boolean(props.bodyTextVariant)), _ref2), props.bodyClass || {}]
+    }), [cardTitle, cardSubTitle].concat((0, _toConsumableArray2.default)(cardContent)));
   }
 };
 exports.default = _default;
@@ -5730,38 +6170,41 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
 
-var _prefixPropName = __webpack_require__(/*! ../../utils/prefix-prop-name */ "./node_modules/bootstrap-vue/es/utils/prefix-prop-name.js");
+var _prefixPropName = _interopRequireDefault(__webpack_require__(/*! ../../utils/prefix-prop-name */ "./node_modules/bootstrap-vue/es/utils/prefix-prop-name.js"));
 
-var _copyProps = __webpack_require__(/*! ../../utils/copyProps */ "./node_modules/bootstrap-vue/es/utils/copyProps.js");
+var _copyProps = _interopRequireDefault(__webpack_require__(/*! ../../utils/copyProps */ "./node_modules/bootstrap-vue/es/utils/copyProps.js"));
+
+var _object = __webpack_require__(/*! ../../utils/object */ "./node_modules/bootstrap-vue/es/utils/object.js");
 
 var _html = __webpack_require__(/*! ../../utils/html */ "./node_modules/bootstrap-vue/es/utils/html.js");
 
-var _cardMixin = __webpack_require__(/*! ../../mixins/card-mixin */ "./node_modules/bootstrap-vue/es/mixins/card-mixin.js");
+var _cardMixin = _interopRequireDefault(__webpack_require__(/*! ../../mixins/card-mixin */ "./node_modules/bootstrap-vue/es/mixins/card-mixin.js"));
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var props = _objectSpread({}, (0, _copyProps.default)(_cardMixin.default.props, _prefixPropName.default.bind(null, 'footer')), {
+var props = (0, _object.assign)({}, (0, _copyProps.default)(_cardMixin.default.props, _prefixPropName.default.bind(null, 'footer')), {
   footer: {
     type: String,
     default: null
   },
-  footerHtml: {
+  footerHTML: {
     type: String,
     default: null
   },
   footerClass: {
     type: [String, Object, Array],
     default: null
-  } // @vue/component
-
-});
+  }
+}); // @vue/component
 
 exports.props = props;
 var _default = {
@@ -5776,9 +6219,9 @@ var _default = {
         children = _ref.children;
     return h(props.footerTag, (0, _vueFunctionalDataMerge.mergeData)(data, {
       staticClass: 'card-footer',
-      class: [props.footerClass, (_ref2 = {}, _defineProperty(_ref2, "bg-".concat(props.footerBgVariant), Boolean(props.footerBgVariant)), _defineProperty(_ref2, "border-".concat(props.footerBorderVariant), Boolean(props.footerBorderVariant)), _defineProperty(_ref2, "text-".concat(props.footerTextVariant), Boolean(props.footerTextVariant)), _ref2)]
+      class: [props.footerClass, (_ref2 = {}, (0, _defineProperty2.default)(_ref2, "bg-".concat(props.footerBgVariant), Boolean(props.footerBgVariant)), (0, _defineProperty2.default)(_ref2, "border-".concat(props.footerBorderVariant), Boolean(props.footerBorderVariant)), (0, _defineProperty2.default)(_ref2, "text-".concat(props.footerTextVariant), Boolean(props.footerTextVariant)), _ref2)]
     }), children || [h('div', {
-      domProps: (0, _html.htmlOrText)(props.footerHtml, props.footer)
+      domProps: (0, _html.htmlOrText)(props.footerHTML, props.footer)
     })]);
   }
 };
@@ -5796,7 +6239,9 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
@@ -5852,38 +6297,41 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
 
-var _prefixPropName = __webpack_require__(/*! ../../utils/prefix-prop-name */ "./node_modules/bootstrap-vue/es/utils/prefix-prop-name.js");
+var _prefixPropName = _interopRequireDefault(__webpack_require__(/*! ../../utils/prefix-prop-name */ "./node_modules/bootstrap-vue/es/utils/prefix-prop-name.js"));
 
-var _copyProps = __webpack_require__(/*! ../../utils/copyProps */ "./node_modules/bootstrap-vue/es/utils/copyProps.js");
+var _copyProps = _interopRequireDefault(__webpack_require__(/*! ../../utils/copyProps */ "./node_modules/bootstrap-vue/es/utils/copyProps.js"));
+
+var _object = __webpack_require__(/*! ../../utils/object */ "./node_modules/bootstrap-vue/es/utils/object.js");
 
 var _html = __webpack_require__(/*! ../../utils/html */ "./node_modules/bootstrap-vue/es/utils/html.js");
 
-var _cardMixin = __webpack_require__(/*! ../../mixins/card-mixin */ "./node_modules/bootstrap-vue/es/mixins/card-mixin.js");
+var _cardMixin = _interopRequireDefault(__webpack_require__(/*! ../../mixins/card-mixin */ "./node_modules/bootstrap-vue/es/mixins/card-mixin.js"));
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var props = _objectSpread({}, (0, _copyProps.default)(_cardMixin.default.props, _prefixPropName.default.bind(null, 'header')), {
+var props = (0, _object.assign)({}, (0, _copyProps.default)(_cardMixin.default.props, _prefixPropName.default.bind(null, 'header')), {
   header: {
     type: String,
     default: null
   },
-  headerHtml: {
+  headerHTML: {
     type: String,
     default: null
   },
   headerClass: {
     type: [String, Object, Array],
     default: null
-  } // @vue/component
-
-});
+  }
+}); // @vue/component
 
 exports.props = props;
 var _default = {
@@ -5898,9 +6346,9 @@ var _default = {
         children = _ref.children;
     return h(props.headerTag, (0, _vueFunctionalDataMerge.mergeData)(data, {
       staticClass: 'card-header',
-      class: [props.headerClass, (_ref2 = {}, _defineProperty(_ref2, "bg-".concat(props.headerBgVariant), Boolean(props.headerBgVariant)), _defineProperty(_ref2, "border-".concat(props.headerBorderVariant), Boolean(props.headerBorderVariant)), _defineProperty(_ref2, "text-".concat(props.headerTextVariant), Boolean(props.headerTextVariant)), _ref2)]
+      class: [props.headerClass, (_ref2 = {}, (0, _defineProperty2.default)(_ref2, "bg-".concat(props.headerBgVariant), Boolean(props.headerBgVariant)), (0, _defineProperty2.default)(_ref2, "border-".concat(props.headerBorderVariant), Boolean(props.headerBorderVariant)), (0, _defineProperty2.default)(_ref2, "text-".concat(props.headerTextVariant), Boolean(props.headerTextVariant)), _ref2)]
     }), children || [h('div', {
-      domProps: (0, _html.htmlOrText)(props.headerHtml, props.header)
+      domProps: (0, _html.htmlOrText)(props.headerHTML, props.header)
     })]);
   }
 };
@@ -5918,7 +6366,9 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
@@ -6014,7 +6464,9 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
@@ -6063,7 +6515,9 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
@@ -6103,7 +6557,9 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
@@ -6147,45 +6603,44 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
+
+var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/toConsumableArray.js"));
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
 
-var _prefixPropName = __webpack_require__(/*! ../../utils/prefix-prop-name */ "./node_modules/bootstrap-vue/es/utils/prefix-prop-name.js");
+var _prefixPropName = _interopRequireDefault(__webpack_require__(/*! ../../utils/prefix-prop-name */ "./node_modules/bootstrap-vue/es/utils/prefix-prop-name.js"));
 
-var _unprefixPropName = __webpack_require__(/*! ../../utils/unprefix-prop-name */ "./node_modules/bootstrap-vue/es/utils/unprefix-prop-name.js");
+var _unprefixPropName = _interopRequireDefault(__webpack_require__(/*! ../../utils/unprefix-prop-name */ "./node_modules/bootstrap-vue/es/utils/unprefix-prop-name.js"));
 
-var _copyProps = __webpack_require__(/*! ../../utils/copyProps */ "./node_modules/bootstrap-vue/es/utils/copyProps.js");
+var _copyProps = _interopRequireDefault(__webpack_require__(/*! ../../utils/copyProps */ "./node_modules/bootstrap-vue/es/utils/copyProps.js"));
 
-var _pluckProps = __webpack_require__(/*! ../../utils/pluck-props */ "./node_modules/bootstrap-vue/es/utils/pluck-props.js");
+var _pluckProps = _interopRequireDefault(__webpack_require__(/*! ../../utils/pluck-props */ "./node_modules/bootstrap-vue/es/utils/pluck-props.js"));
 
-var _cardMixin = __webpack_require__(/*! ../../mixins/card-mixin */ "./node_modules/bootstrap-vue/es/mixins/card-mixin.js");
+var _object = __webpack_require__(/*! ../../utils/object */ "./node_modules/bootstrap-vue/es/utils/object.js");
 
-var _cardBody = __webpack_require__(/*! ./card-body */ "./node_modules/bootstrap-vue/es/components/card/card-body.js");
+var _cardMixin = _interopRequireDefault(__webpack_require__(/*! ../../mixins/card-mixin */ "./node_modules/bootstrap-vue/es/mixins/card-mixin.js"));
 
-var _cardHeader = __webpack_require__(/*! ./card-header */ "./node_modules/bootstrap-vue/es/components/card/card-header.js");
+var _cardBody = _interopRequireWildcard(__webpack_require__(/*! ./card-body */ "./node_modules/bootstrap-vue/es/components/card/card-body.js"));
 
-var _cardFooter = __webpack_require__(/*! ./card-footer */ "./node_modules/bootstrap-vue/es/components/card/card-footer.js");
+var _cardHeader = _interopRequireWildcard(__webpack_require__(/*! ./card-header */ "./node_modules/bootstrap-vue/es/components/card/card-header.js"));
 
-var _cardImg = __webpack_require__(/*! ./card-img */ "./node_modules/bootstrap-vue/es/components/card/card-img.js");
+var _cardFooter = _interopRequireWildcard(__webpack_require__(/*! ./card-footer */ "./node_modules/bootstrap-vue/es/components/card/card-footer.js"));
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
-
-function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+var _cardImg = _interopRequireWildcard(__webpack_require__(/*! ./card-img */ "./node_modules/bootstrap-vue/es/components/card/card-img.js"));
 
 var cardImgProps = (0, _copyProps.default)(_cardImg.props, _prefixPropName.default.bind(null, 'img'));
 cardImgProps.imgSrc.required = false;
-
-var props = _objectSpread({}, _cardBody.props, _cardHeader.props, _cardFooter.props, cardImgProps, (0, _copyProps.default)(_cardMixin.default.props), {
+var props = (0, _object.assign)({}, _cardBody.props, _cardHeader.props, _cardFooter.props, cardImgProps, (0, _copyProps.default)(_cardMixin.default.props), {
   align: {
     type: String,
     default: null
@@ -6193,9 +6648,8 @@ var props = _objectSpread({}, _cardBody.props, _cardHeader.props, _cardFooter.pr
   noBody: {
     type: Boolean,
     default: false
-  } // @vue/component
-
-});
+  }
+}); // @vue/component
 
 exports.props = props;
 var _default = {
@@ -6235,7 +6689,7 @@ var _default = {
     }
 
     if (props.noBody) {
-      content = $slots.default || [];
+      content = $slots.default;
     } else {
       // Wrap content in card-body
       content = [h(_cardBody.default, {
@@ -6254,8 +6708,8 @@ var _default = {
       class: (_class = {
         'flex-row': props.imgLeft || props.imgStart,
         'flex-row-reverse': (props.imgRight || props.imgEnd) && !(props.imgLeft || props.imgStart)
-      }, _defineProperty(_class, "text-".concat(props.align), Boolean(props.align)), _defineProperty(_class, "bg-".concat(props.bgVariant), Boolean(props.bgVariant)), _defineProperty(_class, "border-".concat(props.borderVariant), Boolean(props.borderVariant)), _defineProperty(_class, "text-".concat(props.textVariant), Boolean(props.textVariant)), _class)
-    }), [imgFirst, header].concat(_toConsumableArray(content), [footer, imgLast]));
+      }, (0, _defineProperty2.default)(_class, "text-".concat(props.align), Boolean(props.align)), (0, _defineProperty2.default)(_class, "bg-".concat(props.bgVariant), Boolean(props.bgVariant)), (0, _defineProperty2.default)(_class, "border-".concat(props.borderVariant), Boolean(props.borderVariant)), (0, _defineProperty2.default)(_class, "text-".concat(props.textVariant), Boolean(props.textVariant)), _class)
+    }), [imgFirst, header].concat((0, _toConsumableArray2.default)(content), [footer, imgLast]));
   }
 };
 exports.default = _default;
@@ -6272,26 +6726,30 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _card = __webpack_require__(/*! ./card */ "./node_modules/bootstrap-vue/es/components/card/card.js");
+var _card = _interopRequireDefault(__webpack_require__(/*! ./card */ "./node_modules/bootstrap-vue/es/components/card/card.js"));
 
-var _cardHeader = __webpack_require__(/*! ./card-header */ "./node_modules/bootstrap-vue/es/components/card/card-header.js");
+var _cardHeader = _interopRequireDefault(__webpack_require__(/*! ./card-header */ "./node_modules/bootstrap-vue/es/components/card/card-header.js"));
 
-var _cardBody = __webpack_require__(/*! ./card-body */ "./node_modules/bootstrap-vue/es/components/card/card-body.js");
+var _cardBody = _interopRequireDefault(__webpack_require__(/*! ./card-body */ "./node_modules/bootstrap-vue/es/components/card/card-body.js"));
 
-var _cardTitle = __webpack_require__(/*! ./card-title */ "./node_modules/bootstrap-vue/es/components/card/card-title.js");
+var _cardTitle = _interopRequireDefault(__webpack_require__(/*! ./card-title */ "./node_modules/bootstrap-vue/es/components/card/card-title.js"));
 
-var _cardSubTitle = __webpack_require__(/*! ./card-sub-title */ "./node_modules/bootstrap-vue/es/components/card/card-sub-title.js");
+var _cardSubTitle = _interopRequireDefault(__webpack_require__(/*! ./card-sub-title */ "./node_modules/bootstrap-vue/es/components/card/card-sub-title.js"));
 
-var _cardFooter = __webpack_require__(/*! ./card-footer */ "./node_modules/bootstrap-vue/es/components/card/card-footer.js");
+var _cardFooter = _interopRequireDefault(__webpack_require__(/*! ./card-footer */ "./node_modules/bootstrap-vue/es/components/card/card-footer.js"));
 
-var _cardImg = __webpack_require__(/*! ./card-img */ "./node_modules/bootstrap-vue/es/components/card/card-img.js");
+var _cardImg = _interopRequireDefault(__webpack_require__(/*! ./card-img */ "./node_modules/bootstrap-vue/es/components/card/card-img.js"));
 
-var _cardText = __webpack_require__(/*! ./card-text */ "./node_modules/bootstrap-vue/es/components/card/card-text.js");
+var _cardText = _interopRequireDefault(__webpack_require__(/*! ./card-text */ "./node_modules/bootstrap-vue/es/components/card/card-text.js"));
 
-var _cardGroup = __webpack_require__(/*! ./card-group */ "./node_modules/bootstrap-vue/es/components/card/card-group.js");
+var _cardGroup = _interopRequireDefault(__webpack_require__(/*! ./card-group */ "./node_modules/bootstrap-vue/es/components/card/card-group.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -6325,12 +6783,16 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _img = __webpack_require__(/*! ../image/img */ "./node_modules/bootstrap-vue/es/components/image/img.js");
+var _img = _interopRequireDefault(__webpack_require__(/*! ../image/img */ "./node_modules/bootstrap-vue/es/components/image/img.js"));
 
-var _id = __webpack_require__(/*! ../../mixins/id */ "./node_modules/bootstrap-vue/es/mixins/id.js");
+var _id = _interopRequireDefault(__webpack_require__(/*! ../../mixins/id */ "./node_modules/bootstrap-vue/es/mixins/id.js"));
 
 var _env = __webpack_require__(/*! ../../utils/env */ "./node_modules/bootstrap-vue/es/utils/env.js");
 
@@ -6389,7 +6851,7 @@ var _default2 = {
     caption: {
       type: String
     },
-    captionHtml: {
+    captionHTML: {
       type: String
     },
     captionTag: {
@@ -6399,7 +6861,7 @@ var _default2 = {
     text: {
       type: String
     },
-    textHtml: {
+    textHTML: {
       type: String
     },
     textTag: {
@@ -6459,10 +6921,10 @@ var _default2 = {
     var content = h(this.contentTag, {
       staticClass: 'carousel-caption',
       class: this.contentClasses
-    }, [this.caption || this.captionHtml ? h(this.captionTag, {
-      domProps: (0, _html.htmlOrText)(this.captionHtml, this.caption)
-    }) : h(false), this.text || this.textHtml ? h(this.textTag, {
-      domProps: (0, _html.htmlOrText)(this.textHtml, this.text)
+    }, [this.caption || this.captionHTML ? h(this.captionTag, {
+      domProps: (0, _html.htmlOrText)(this.captionHTML, this.caption)
+    }) : h(false), this.text || this.textHTML ? h(this.textTag, {
+      domProps: (0, _html.htmlOrText)(this.textHTML, this.text)
     }) : h(false), $slots.default]);
     return h('div', {
       staticClass: 'carousel-item',
@@ -6490,18 +6952,22 @@ exports.default = _default2;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _observeDom = __webpack_require__(/*! ../../utils/observe-dom */ "./node_modules/bootstrap-vue/es/utils/observe-dom.js");
+var _observeDom = _interopRequireDefault(__webpack_require__(/*! ../../utils/observe-dom */ "./node_modules/bootstrap-vue/es/utils/observe-dom.js"));
 
-var _keyCodes = __webpack_require__(/*! ../../utils/key-codes */ "./node_modules/bootstrap-vue/es/utils/key-codes.js");
+var _keyCodes = _interopRequireDefault(__webpack_require__(/*! ../../utils/key-codes */ "./node_modules/bootstrap-vue/es/utils/key-codes.js"));
 
 var _dom = __webpack_require__(/*! ../../utils/dom */ "./node_modules/bootstrap-vue/es/utils/dom.js");
 
 var _env = __webpack_require__(/*! ../../utils/env */ "./node_modules/bootstrap-vue/es/utils/env.js");
 
-var _id = __webpack_require__(/*! ../../mixins/id */ "./node_modules/bootstrap-vue/es/mixins/id.js");
+var _id = _interopRequireDefault(__webpack_require__(/*! ../../mixins/id */ "./node_modules/bootstrap-vue/es/mixins/id.js"));
 
 // Slide directional classes
 var DIRECTION = {
@@ -7156,12 +7622,16 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _carousel = __webpack_require__(/*! ./carousel */ "./node_modules/bootstrap-vue/es/components/carousel/carousel.js");
+var _carousel = _interopRequireDefault(__webpack_require__(/*! ./carousel */ "./node_modules/bootstrap-vue/es/components/carousel/carousel.js"));
 
-var _carouselSlide = __webpack_require__(/*! ./carousel-slide */ "./node_modules/bootstrap-vue/es/components/carousel/carousel-slide.js");
+var _carouselSlide = _interopRequireDefault(__webpack_require__(/*! ./carousel-slide */ "./node_modules/bootstrap-vue/es/components/carousel/carousel-slide.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -7188,10 +7658,14 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _listenOnRoot = __webpack_require__(/*! ../../mixins/listen-on-root */ "./node_modules/bootstrap-vue/es/mixins/listen-on-root.js");
+var _listenOnRoot = _interopRequireDefault(__webpack_require__(/*! ../../mixins/listen-on-root */ "./node_modules/bootstrap-vue/es/mixins/listen-on-root.js"));
 
 var _dom = __webpack_require__(/*! ../../utils/dom */ "./node_modules/bootstrap-vue/es/utils/dom.js");
 
@@ -7264,7 +7738,7 @@ var _default = {
   },
   created: function created() {
     // Listen for toggle events to open/close us
-    this.listenOnRoot(EVENT_TOGGLE, this.handleToggleEvt); // Listen to other collapses for accordion events
+    this.listenOnRoot(EVENT_TOGGLE, this.handleToggleEvt); // Listen to otehr collapses for accordion events
 
     this.listenOnRoot(EVENT_ACCORDION, this.handleAccordionEvt);
   },
@@ -7418,12 +7892,16 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _collapse = __webpack_require__(/*! ./collapse */ "./node_modules/bootstrap-vue/es/components/collapse/collapse.js");
+var _collapse = _interopRequireDefault(__webpack_require__(/*! ./collapse */ "./node_modules/bootstrap-vue/es/components/collapse/collapse.js"));
 
-var _toggle = __webpack_require__(/*! ../../directives/toggle */ "./node_modules/bootstrap-vue/es/directives/toggle/index.js");
+var _toggle = _interopRequireDefault(__webpack_require__(/*! ../../directives/toggle */ "./node_modules/bootstrap-vue/es/directives/toggle/index.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -7450,7 +7928,9 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
@@ -7492,21 +7972,25 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _form = __webpack_require__(/*! ../form/form */ "./node_modules/bootstrap-vue/es/components/form/form.js");
+var _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js"));
+
+var _form = _interopRequireWildcard(__webpack_require__(/*! ../form/form */ "./node_modules/bootstrap-vue/es/components/form/form.js"));
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var _default = {
   name: 'BDropdownForm',
   functional: true,
-  props: _objectSpread({}, _form.props),
+  props: (0, _objectSpread2.default)({}, _form.props),
   render: function render(h, _ref) {
     var props = _ref.props,
         data = _ref.data,
@@ -7531,7 +8015,9 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
@@ -7578,10 +8064,14 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
 
 var props = {
   active: {
@@ -7622,7 +8112,7 @@ var _default = {
   render: function render(h) {
     return h('button', {
       staticClass: 'dropdown-item',
-      class: _defineProperty({}, this.activeClass, this.active),
+      class: (0, _defineProperty2.default)({}, this.activeClass, this.active),
       attrs: {
         role: 'menuitem',
         type: 'button',
@@ -7648,10 +8138,14 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
 
-var _link = __webpack_require__(/*! ../link/link */ "./node_modules/bootstrap-vue/es/components/link/link.js");
+var _link = _interopRequireWildcard(__webpack_require__(/*! ../link/link */ "./node_modules/bootstrap-vue/es/components/link/link.js"));
 
 var props = (0, _link.propsFactory)(); // @vue/component
 
@@ -7703,7 +8197,9 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
@@ -7741,16 +8237,20 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
 var _html = __webpack_require__(/*! ../../utils/html */ "./node_modules/bootstrap-vue/es/utils/html.js");
 
-var _id = __webpack_require__(/*! ../../mixins/id */ "./node_modules/bootstrap-vue/es/mixins/id.js");
+var _id = _interopRequireDefault(__webpack_require__(/*! ../../mixins/id */ "./node_modules/bootstrap-vue/es/mixins/id.js"));
 
-var _dropdown = __webpack_require__(/*! ../../mixins/dropdown */ "./node_modules/bootstrap-vue/es/mixins/dropdown.js");
+var _dropdown = _interopRequireDefault(__webpack_require__(/*! ../../mixins/dropdown */ "./node_modules/bootstrap-vue/es/mixins/dropdown.js"));
 
-var _button = __webpack_require__(/*! ../button/button */ "./node_modules/bootstrap-vue/es/components/button/button.js");
+var _button = _interopRequireDefault(__webpack_require__(/*! ../button/button */ "./node_modules/bootstrap-vue/es/components/button/button.js"));
 
 // @vue/component
 var _default = {
@@ -7939,22 +8439,26 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _dropdown = __webpack_require__(/*! ./dropdown */ "./node_modules/bootstrap-vue/es/components/dropdown/dropdown.js");
+var _dropdown = _interopRequireDefault(__webpack_require__(/*! ./dropdown */ "./node_modules/bootstrap-vue/es/components/dropdown/dropdown.js"));
 
-var _dropdownItem = __webpack_require__(/*! ./dropdown-item */ "./node_modules/bootstrap-vue/es/components/dropdown/dropdown-item.js");
+var _dropdownItem = _interopRequireDefault(__webpack_require__(/*! ./dropdown-item */ "./node_modules/bootstrap-vue/es/components/dropdown/dropdown-item.js"));
 
-var _dropdownItemButton = __webpack_require__(/*! ./dropdown-item-button */ "./node_modules/bootstrap-vue/es/components/dropdown/dropdown-item-button.js");
+var _dropdownItemButton = _interopRequireDefault(__webpack_require__(/*! ./dropdown-item-button */ "./node_modules/bootstrap-vue/es/components/dropdown/dropdown-item-button.js"));
 
-var _dropdownHeader = __webpack_require__(/*! ./dropdown-header */ "./node_modules/bootstrap-vue/es/components/dropdown/dropdown-header.js");
+var _dropdownHeader = _interopRequireDefault(__webpack_require__(/*! ./dropdown-header */ "./node_modules/bootstrap-vue/es/components/dropdown/dropdown-header.js"));
 
-var _dropdownDivider = __webpack_require__(/*! ./dropdown-divider */ "./node_modules/bootstrap-vue/es/components/dropdown/dropdown-divider.js");
+var _dropdownDivider = _interopRequireDefault(__webpack_require__(/*! ./dropdown-divider */ "./node_modules/bootstrap-vue/es/components/dropdown/dropdown-divider.js"));
 
-var _dropdownForm = __webpack_require__(/*! ./dropdown-form */ "./node_modules/bootstrap-vue/es/components/dropdown/dropdown-form.js");
+var _dropdownForm = _interopRequireDefault(__webpack_require__(/*! ./dropdown-form */ "./node_modules/bootstrap-vue/es/components/dropdown/dropdown-form.js"));
 
-var _dropdownText = __webpack_require__(/*! ./dropdown-text */ "./node_modules/bootstrap-vue/es/components/dropdown/dropdown-text.js");
+var _dropdownText = _interopRequireDefault(__webpack_require__(/*! ./dropdown-text */ "./node_modules/bootstrap-vue/es/components/dropdown/dropdown-text.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -7995,14 +8499,18 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
 
 var _array = __webpack_require__(/*! ../../utils/array */ "./node_modules/bootstrap-vue/es/utils/array.js");
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var props = {
   type: {
@@ -8034,7 +8542,7 @@ var _default = {
     return h(props.tag, {
       ref: data.ref,
       staticClass: 'embed-responsive',
-      class: _defineProperty({}, "embed-responsive-".concat(props.aspect), Boolean(props.aspect))
+      class: (0, _defineProperty2.default)({}, "embed-responsive-".concat(props.aspect), Boolean(props.aspect))
     }, [h(props.type, (0, _vueFunctionalDataMerge.mergeData)(data, {
       ref: '',
       staticClass: 'embed-responsive-item'
@@ -8055,10 +8563,14 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _embed = __webpack_require__(/*! ./embed */ "./node_modules/bootstrap-vue/es/components/embed/embed.js");
+var _embed = _interopRequireDefault(__webpack_require__(/*! ./embed */ "./node_modules/bootstrap-vue/es/components/embed/embed.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -8084,22 +8596,26 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _id = __webpack_require__(/*! ../../mixins/id */ "./node_modules/bootstrap-vue/es/mixins/id.js");
+var _id = _interopRequireDefault(__webpack_require__(/*! ../../mixins/id */ "./node_modules/bootstrap-vue/es/mixins/id.js"));
 
-var _form = __webpack_require__(/*! ../../mixins/form */ "./node_modules/bootstrap-vue/es/mixins/form.js");
+var _form = _interopRequireDefault(__webpack_require__(/*! ../../mixins/form */ "./node_modules/bootstrap-vue/es/mixins/form.js"));
 
-var _formOptions = __webpack_require__(/*! ../../mixins/form-options */ "./node_modules/bootstrap-vue/es/mixins/form-options.js");
+var _formOptions = _interopRequireDefault(__webpack_require__(/*! ../../mixins/form-options */ "./node_modules/bootstrap-vue/es/mixins/form-options.js"));
 
-var _formRadioCheckGroup = __webpack_require__(/*! ../../mixins/form-radio-check-group */ "./node_modules/bootstrap-vue/es/mixins/form-radio-check-group.js");
+var _formRadioCheckGroup = _interopRequireDefault(__webpack_require__(/*! ../../mixins/form-radio-check-group */ "./node_modules/bootstrap-vue/es/mixins/form-radio-check-group.js"));
 
-var _formSize = __webpack_require__(/*! ../../mixins/form-size */ "./node_modules/bootstrap-vue/es/mixins/form-size.js");
+var _formSize = _interopRequireDefault(__webpack_require__(/*! ../../mixins/form-size */ "./node_modules/bootstrap-vue/es/mixins/form-size.js"));
 
-var _formState = __webpack_require__(/*! ../../mixins/form-state */ "./node_modules/bootstrap-vue/es/mixins/form-state.js");
+var _formState = _interopRequireDefault(__webpack_require__(/*! ../../mixins/form-state */ "./node_modules/bootstrap-vue/es/mixins/form-state.js"));
 
-var _formCheckbox = __webpack_require__(/*! ./form-checkbox */ "./node_modules/bootstrap-vue/es/components/form-checkbox/form-checkbox.js");
+var _formCheckbox = _interopRequireDefault(__webpack_require__(/*! ./form-checkbox */ "./node_modules/bootstrap-vue/es/components/form-checkbox/form-checkbox.js"));
 
 // @vue/component
 var _default = {
@@ -8150,24 +8666,28 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _id = __webpack_require__(/*! ../../mixins/id */ "./node_modules/bootstrap-vue/es/mixins/id.js");
+var _id = _interopRequireDefault(__webpack_require__(/*! ../../mixins/id */ "./node_modules/bootstrap-vue/es/mixins/id.js"));
 
-var _formRadioCheck = __webpack_require__(/*! ../../mixins/form-radio-check */ "./node_modules/bootstrap-vue/es/mixins/form-radio-check.js");
+var _formRadioCheck = _interopRequireDefault(__webpack_require__(/*! ../../mixins/form-radio-check */ "./node_modules/bootstrap-vue/es/mixins/form-radio-check.js"));
 
-var _form = __webpack_require__(/*! ../../mixins/form */ "./node_modules/bootstrap-vue/es/mixins/form.js");
+var _form = _interopRequireDefault(__webpack_require__(/*! ../../mixins/form */ "./node_modules/bootstrap-vue/es/mixins/form.js"));
 
-var _formSize = __webpack_require__(/*! ../../mixins/form-size */ "./node_modules/bootstrap-vue/es/mixins/form-size.js");
+var _formSize = _interopRequireDefault(__webpack_require__(/*! ../../mixins/form-size */ "./node_modules/bootstrap-vue/es/mixins/form-size.js"));
 
-var _formState = __webpack_require__(/*! ../../mixins/form-state */ "./node_modules/bootstrap-vue/es/mixins/form-state.js");
+var _formState = _interopRequireDefault(__webpack_require__(/*! ../../mixins/form-state */ "./node_modules/bootstrap-vue/es/mixins/form-state.js"));
 
 var _array = __webpack_require__(/*! ../../utils/array */ "./node_modules/bootstrap-vue/es/utils/array.js");
 
-var _looseEqual = __webpack_require__(/*! ../../utils/loose-equal */ "./node_modules/bootstrap-vue/es/utils/loose-equal.js");
+var _looseEqual = _interopRequireDefault(__webpack_require__(/*! ../../utils/loose-equal */ "./node_modules/bootstrap-vue/es/utils/loose-equal.js"));
 
-var _looseIndexOf = __webpack_require__(/*! ../../utils/loose-index-of */ "./node_modules/bootstrap-vue/es/utils/loose-index-of.js");
+var _looseIndexOf = _interopRequireDefault(__webpack_require__(/*! ../../utils/loose-index-of */ "./node_modules/bootstrap-vue/es/utils/loose-index-of.js"));
 
 // @vue/component
 var _default2 = {
@@ -8304,12 +8824,16 @@ exports.default = _default2;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _formCheckbox = __webpack_require__(/*! ./form-checkbox */ "./node_modules/bootstrap-vue/es/components/form-checkbox/form-checkbox.js");
+var _formCheckbox = _interopRequireDefault(__webpack_require__(/*! ./form-checkbox */ "./node_modules/bootstrap-vue/es/components/form-checkbox/form-checkbox.js"));
 
-var _formCheckboxGroup = __webpack_require__(/*! ./form-checkbox-group */ "./node_modules/bootstrap-vue/es/components/form-checkbox/form-checkbox-group.js");
+var _formCheckboxGroup = _interopRequireDefault(__webpack_require__(/*! ./form-checkbox-group */ "./node_modules/bootstrap-vue/es/components/form-checkbox/form-checkbox-group.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -8340,20 +8864,24 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _id = __webpack_require__(/*! ../../mixins/id */ "./node_modules/bootstrap-vue/es/mixins/id.js");
+var _id = _interopRequireDefault(__webpack_require__(/*! ../../mixins/id */ "./node_modules/bootstrap-vue/es/mixins/id.js"));
 
-var _form = __webpack_require__(/*! ../../mixins/form */ "./node_modules/bootstrap-vue/es/mixins/form.js");
+var _form = _interopRequireDefault(__webpack_require__(/*! ../../mixins/form */ "./node_modules/bootstrap-vue/es/mixins/form.js"));
 
-var _formState = __webpack_require__(/*! ../../mixins/form-state */ "./node_modules/bootstrap-vue/es/mixins/form-state.js");
+var _formState = _interopRequireDefault(__webpack_require__(/*! ../../mixins/form-state */ "./node_modules/bootstrap-vue/es/mixins/form-state.js"));
 
-var _formCustom = __webpack_require__(/*! ../../mixins/form-custom */ "./node_modules/bootstrap-vue/es/mixins/form-custom.js");
+var _formCustom = _interopRequireDefault(__webpack_require__(/*! ../../mixins/form-custom */ "./node_modules/bootstrap-vue/es/mixins/form-custom.js"));
 
 var _array = __webpack_require__(/*! ../../utils/array */ "./node_modules/bootstrap-vue/es/utils/array.js");
 
-var _looseEqual = __webpack_require__(/*! ../../utils/loose-equal */ "./node_modules/bootstrap-vue/es/utils/loose-equal.js");
+var _looseEqual = _interopRequireDefault(__webpack_require__(/*! ../../utils/loose-equal */ "./node_modules/bootstrap-vue/es/utils/loose-equal.js"));
 
 // @vue/component
 var _default = {
@@ -8457,7 +8985,7 @@ var _default = {
   },
   methods: {
     focusHandler: function focusHandler(evt) {
-      // Bootstrap v4.beta doesn't have focus styling for custom file input
+      // Boostrap v4.beta doesn't have focus styling for custom file input
       // Firefox has a borked '[type=file]:focus ~ sibling' selector issue,
       // So we add a 'focus' class to get around these "bugs"
       if (this.plain || evt.type === 'focusout') {
@@ -8662,10 +9190,14 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _formFile = __webpack_require__(/*! ./form-file */ "./node_modules/bootstrap-vue/es/components/form-file/form-file.js");
+var _formFile = _interopRequireDefault(__webpack_require__(/*! ./form-file */ "./node_modules/bootstrap-vue/es/components/form-file/form-file.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -8692,18 +9224,24 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _id = __webpack_require__(/*! ../../mixins/id */ "./node_modules/bootstrap-vue/es/mixins/id.js");
+var _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js"));
 
-var _formState = __webpack_require__(/*! ../../mixins/form-state */ "./node_modules/bootstrap-vue/es/mixins/form-state.js");
+var _id = _interopRequireDefault(__webpack_require__(/*! ../../mixins/id */ "./node_modules/bootstrap-vue/es/mixins/id.js"));
 
-var _upperFirst = __webpack_require__(/*! ../../utils/upper-first */ "./node_modules/bootstrap-vue/es/utils/upper-first.js");
+var _formState = _interopRequireDefault(__webpack_require__(/*! ../../mixins/form-state */ "./node_modules/bootstrap-vue/es/mixins/form-state.js"));
 
-var _memoize = __webpack_require__(/*! ../../utils/memoize */ "./node_modules/bootstrap-vue/es/utils/memoize.js");
+var _upperFirst = _interopRequireDefault(__webpack_require__(/*! ../../utils/upper-first */ "./node_modules/bootstrap-vue/es/utils/upper-first.js"));
 
-var _warn = __webpack_require__(/*! ../../utils/warn */ "./node_modules/bootstrap-vue/es/utils/warn.js");
+var _memoize = _interopRequireDefault(__webpack_require__(/*! ../../utils/memoize */ "./node_modules/bootstrap-vue/es/utils/memoize.js"));
+
+var _warn = _interopRequireDefault(__webpack_require__(/*! ../../utils/warn */ "./node_modules/bootstrap-vue/es/utils/warn.js"));
 
 var _dom = __webpack_require__(/*! ../../utils/dom */ "./node_modules/bootstrap-vue/es/utils/dom.js");
 
@@ -8711,20 +9249,19 @@ var _array = __webpack_require__(/*! ../../utils/array */ "./node_modules/bootst
 
 var _object = __webpack_require__(/*! ../../utils/object */ "./node_modules/bootstrap-vue/es/utils/object.js");
 
-var _formRow = __webpack_require__(/*! ../layout/form-row */ "./node_modules/bootstrap-vue/es/components/layout/form-row.js");
+var _formRow = _interopRequireDefault(__webpack_require__(/*! ../layout/form-row */ "./node_modules/bootstrap-vue/es/components/layout/form-row.js"));
 
-var _col = __webpack_require__(/*! ../layout/col */ "./node_modules/bootstrap-vue/es/components/layout/col.js");
+var _col = _interopRequireDefault(__webpack_require__(/*! ../layout/col */ "./node_modules/bootstrap-vue/es/components/layout/col.js"));
 
-var _formText = __webpack_require__(/*! ../form/form-text */ "./node_modules/bootstrap-vue/es/components/form/form-text.js");
+var _formText = _interopRequireDefault(__webpack_require__(/*! ../form/form-text */ "./node_modules/bootstrap-vue/es/components/form/form-text.js"));
 
-var _formInvalidFeedback = __webpack_require__(/*! ../form/form-invalid-feedback */ "./node_modules/bootstrap-vue/es/components/form/form-invalid-feedback.js");
+var _formInvalidFeedback = _interopRequireDefault(__webpack_require__(/*! ../form/form-invalid-feedback */ "./node_modules/bootstrap-vue/es/components/form/form-invalid-feedback.js"));
 
-var _formValidFeedback = __webpack_require__(/*! ../form/form-valid-feedback */ "./node_modules/bootstrap-vue/es/components/form/form-valid-feedback.js");
+var _formValidFeedback = _interopRequireDefault(__webpack_require__(/*! ../form/form-valid-feedback */ "./node_modules/bootstrap-vue/es/components/form/form-valid-feedback.js"));
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+// Mixins
+// Utils
+// Sub components
 // Selector for finding first input in the form-group
 var SELECTOR = 'input:not(:disabled),textarea:not(:disabled),select:not(:disabled)'; // Breakpoint names for label-cols and label-align props
 
@@ -8764,7 +9301,7 @@ function renderInvalidFeedback(h, ctx) {
       props: {
         id: ctx.invalidFeedbackId,
         // If state is explicitly false, always show the feedback
-        state: ctx.computedState,
+        forceShow: ctx.computedState === false,
         tooltip: ctx.tooltip
       },
       attrs: {
@@ -8788,7 +9325,7 @@ function renderValidFeedback(h, ctx) {
       props: {
         id: ctx.validFeedbackId,
         // If state is explicitly true, always show the feedback
-        state: ctx.computedState,
+        forceShow: ctx.computedState === true,
         tooltip: ctx.tooltip
       },
       attrs: {
@@ -8851,7 +9388,7 @@ function renderLabel(h, ctx) {
       on: isLegend ? {
         click: ctx.legendClick
       } : {},
-      props: isHorizontal ? _objectSpread({
+      props: isHorizontal ? (0, _objectSpread2.default)({
         tag: labelTag
       }, ctx.labelColProps) : {},
       attrs: {
@@ -8861,7 +9398,7 @@ function renderLabel(h, ctx) {
         tabindex: isLegend ? '-1' : null
       },
       class: [// When horizontal or if a legend is rendered, add col-form-label for correct sizing
-      // as Bootstrap has inconsitent font styling for legend in non-horiontal form-groups.
+      // as Boostrap has inconsitent font styling for legend in non-horiontal form-groups.
       // See: https://github.com/twbs/bootstrap/issues/27805
       isHorizontal || isLegend ? 'col-form-label' : '', // Emulate label padding top of 0 on legend when not horizontal
       !isHorizontal && isLegend ? 'pt-0' : '', // If not horizontal and not a legend, we add d-block to label so that label-align works
@@ -8882,7 +9419,7 @@ var _default = {
     BFormText: _formText.default
   },
   mixins: [_id.default, _formState.default],
-  props: _objectSpread({
+  props: (0, _objectSpread2.default)({
     label: {
       type: String,
       default: null
@@ -9143,10 +9680,14 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _formGroup = __webpack_require__(/*! ./form-group */ "./node_modules/bootstrap-vue/es/components/form-group/form-group.js");
+var _formGroup = _interopRequireDefault(__webpack_require__(/*! ./form-group */ "./node_modules/bootstrap-vue/es/components/form-group/form-group.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -9173,30 +9714,32 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _id = __webpack_require__(/*! ../../mixins/id */ "./node_modules/bootstrap-vue/es/mixins/id.js");
+var _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js"));
 
-var _form = __webpack_require__(/*! ../../mixins/form */ "./node_modules/bootstrap-vue/es/mixins/form.js");
+var _id = _interopRequireDefault(__webpack_require__(/*! ../../mixins/id */ "./node_modules/bootstrap-vue/es/mixins/id.js"));
 
-var _formSize = __webpack_require__(/*! ../../mixins/form-size */ "./node_modules/bootstrap-vue/es/mixins/form-size.js");
+var _form = _interopRequireDefault(__webpack_require__(/*! ../../mixins/form */ "./node_modules/bootstrap-vue/es/mixins/form.js"));
 
-var _formState = __webpack_require__(/*! ../../mixins/form-state */ "./node_modules/bootstrap-vue/es/mixins/form-state.js");
+var _formSize = _interopRequireDefault(__webpack_require__(/*! ../../mixins/form-size */ "./node_modules/bootstrap-vue/es/mixins/form-size.js"));
 
-var _formText = __webpack_require__(/*! ../../mixins/form-text */ "./node_modules/bootstrap-vue/es/mixins/form-text.js");
+var _formState = _interopRequireDefault(__webpack_require__(/*! ../../mixins/form-state */ "./node_modules/bootstrap-vue/es/mixins/form-state.js"));
 
-var _formSelection = __webpack_require__(/*! ../../mixins/form-selection */ "./node_modules/bootstrap-vue/es/mixins/form-selection.js");
+var _formText = _interopRequireDefault(__webpack_require__(/*! ../../mixins/form-text */ "./node_modules/bootstrap-vue/es/mixins/form-text.js"));
 
-var _formValidity = __webpack_require__(/*! ../../mixins/form-validity */ "./node_modules/bootstrap-vue/es/mixins/form-validity.js");
+var _formSelection = _interopRequireDefault(__webpack_require__(/*! ../../mixins/form-selection */ "./node_modules/bootstrap-vue/es/mixins/form-selection.js"));
+
+var _formValidity = _interopRequireDefault(__webpack_require__(/*! ../../mixins/form-validity */ "./node_modules/bootstrap-vue/es/mixins/form-validity.js"));
 
 var _array = __webpack_require__(/*! ../../utils/array */ "./node_modules/bootstrap-vue/es/utils/array.js");
 
 var _dom = __webpack_require__(/*! ../../utils/dom */ "./node_modules/bootstrap-vue/es/utils/dom.js");
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 // Valid supported input types
 var TYPES = ['text', 'password', 'email', 'number', 'url', 'tel', 'search', 'range', 'color', 'date', 'time', 'datetime', 'datetime-local', 'month', 'week']; // @vue/component
@@ -9205,10 +9748,6 @@ var _default = {
   name: 'BFormInput',
   mixins: [_id.default, _form.default, _formSize.default, _formState.default, _formText.default, _formSelection.default, _formValidity.default],
   props: {
-    value: {
-      type: [String, Number],
-      default: null
-    },
     type: {
       type: String,
       default: 'text',
@@ -9318,7 +9857,7 @@ var _default = {
       domProps: {
         value: self.localValue
       },
-      on: _objectSpread({}, self.$listeners, {
+      on: (0, _objectSpread2.default)({}, self.$listeners, {
         input: self.onInput,
         change: self.onChange,
         blur: self.onBlur
@@ -9340,10 +9879,14 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _formInput = __webpack_require__(/*! ./form-input */ "./node_modules/bootstrap-vue/es/components/form-input/form-input.js");
+var _formInput = _interopRequireDefault(__webpack_require__(/*! ./form-input */ "./node_modules/bootstrap-vue/es/components/form-input/form-input.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -9370,22 +9913,26 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _id = __webpack_require__(/*! ../../mixins/id */ "./node_modules/bootstrap-vue/es/mixins/id.js");
+var _id = _interopRequireDefault(__webpack_require__(/*! ../../mixins/id */ "./node_modules/bootstrap-vue/es/mixins/id.js"));
 
-var _form = __webpack_require__(/*! ../../mixins/form */ "./node_modules/bootstrap-vue/es/mixins/form.js");
+var _form = _interopRequireDefault(__webpack_require__(/*! ../../mixins/form */ "./node_modules/bootstrap-vue/es/mixins/form.js"));
 
-var _formOptions = __webpack_require__(/*! ../../mixins/form-options */ "./node_modules/bootstrap-vue/es/mixins/form-options.js");
+var _formOptions = _interopRequireDefault(__webpack_require__(/*! ../../mixins/form-options */ "./node_modules/bootstrap-vue/es/mixins/form-options.js"));
 
-var _formRadioCheckGroup = __webpack_require__(/*! ../../mixins/form-radio-check-group */ "./node_modules/bootstrap-vue/es/mixins/form-radio-check-group.js");
+var _formRadioCheckGroup = _interopRequireDefault(__webpack_require__(/*! ../../mixins/form-radio-check-group */ "./node_modules/bootstrap-vue/es/mixins/form-radio-check-group.js"));
 
-var _formSize = __webpack_require__(/*! ../../mixins/form-size */ "./node_modules/bootstrap-vue/es/mixins/form-size.js");
+var _formSize = _interopRequireDefault(__webpack_require__(/*! ../../mixins/form-size */ "./node_modules/bootstrap-vue/es/mixins/form-size.js"));
 
-var _formState = __webpack_require__(/*! ../../mixins/form-state */ "./node_modules/bootstrap-vue/es/mixins/form-state.js");
+var _formState = _interopRequireDefault(__webpack_require__(/*! ../../mixins/form-state */ "./node_modules/bootstrap-vue/es/mixins/form-state.js"));
 
-var _formRadio = __webpack_require__(/*! ./form-radio */ "./node_modules/bootstrap-vue/es/components/form-radio/form-radio.js");
+var _formRadio = _interopRequireDefault(__webpack_require__(/*! ./form-radio */ "./node_modules/bootstrap-vue/es/components/form-radio/form-radio.js"));
 
 // @vue/component
 var _default = {
@@ -9431,20 +9978,24 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _id = __webpack_require__(/*! ../../mixins/id */ "./node_modules/bootstrap-vue/es/mixins/id.js");
+var _id = _interopRequireDefault(__webpack_require__(/*! ../../mixins/id */ "./node_modules/bootstrap-vue/es/mixins/id.js"));
 
-var _form = __webpack_require__(/*! ../../mixins/form */ "./node_modules/bootstrap-vue/es/mixins/form.js");
+var _form = _interopRequireDefault(__webpack_require__(/*! ../../mixins/form */ "./node_modules/bootstrap-vue/es/mixins/form.js"));
 
-var _formState = __webpack_require__(/*! ../../mixins/form-state */ "./node_modules/bootstrap-vue/es/mixins/form-state.js");
+var _formState = _interopRequireDefault(__webpack_require__(/*! ../../mixins/form-state */ "./node_modules/bootstrap-vue/es/mixins/form-state.js"));
 
-var _formSize = __webpack_require__(/*! ../../mixins/form-size */ "./node_modules/bootstrap-vue/es/mixins/form-size.js");
+var _formSize = _interopRequireDefault(__webpack_require__(/*! ../../mixins/form-size */ "./node_modules/bootstrap-vue/es/mixins/form-size.js"));
 
-var _formRadioCheck = __webpack_require__(/*! ../../mixins/form-radio-check */ "./node_modules/bootstrap-vue/es/mixins/form-radio-check.js");
+var _formRadioCheck = _interopRequireDefault(__webpack_require__(/*! ../../mixins/form-radio-check */ "./node_modules/bootstrap-vue/es/mixins/form-radio-check.js"));
 
-var _looseEqual = __webpack_require__(/*! ../../utils/loose-equal */ "./node_modules/bootstrap-vue/es/utils/loose-equal.js");
+var _looseEqual = _interopRequireDefault(__webpack_require__(/*! ../../utils/loose-equal */ "./node_modules/bootstrap-vue/es/utils/loose-equal.js"));
 
 // @vue/component
 var _default2 = {
@@ -9512,12 +10063,16 @@ exports.default = _default2;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _formRadio = __webpack_require__(/*! ./form-radio */ "./node_modules/bootstrap-vue/es/components/form-radio/form-radio.js");
+var _formRadio = _interopRequireDefault(__webpack_require__(/*! ./form-radio */ "./node_modules/bootstrap-vue/es/components/form-radio/form-radio.js"));
 
-var _formRadioGroup = __webpack_require__(/*! ./form-radio-group */ "./node_modules/bootstrap-vue/es/components/form-radio/form-radio-group.js");
+var _formRadioGroup = _interopRequireDefault(__webpack_require__(/*! ./form-radio-group */ "./node_modules/bootstrap-vue/es/components/form-radio/form-radio-group.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -9546,28 +10101,30 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _id = __webpack_require__(/*! ../../mixins/id */ "./node_modules/bootstrap-vue/es/mixins/id.js");
+var _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js"));
 
-var _formOptions = __webpack_require__(/*! ../../mixins/form-options */ "./node_modules/bootstrap-vue/es/mixins/form-options.js");
+var _id = _interopRequireDefault(__webpack_require__(/*! ../../mixins/id */ "./node_modules/bootstrap-vue/es/mixins/id.js"));
 
-var _form = __webpack_require__(/*! ../../mixins/form */ "./node_modules/bootstrap-vue/es/mixins/form.js");
+var _formOptions = _interopRequireDefault(__webpack_require__(/*! ../../mixins/form-options */ "./node_modules/bootstrap-vue/es/mixins/form-options.js"));
 
-var _formSize = __webpack_require__(/*! ../../mixins/form-size */ "./node_modules/bootstrap-vue/es/mixins/form-size.js");
+var _form = _interopRequireDefault(__webpack_require__(/*! ../../mixins/form */ "./node_modules/bootstrap-vue/es/mixins/form.js"));
 
-var _formState = __webpack_require__(/*! ../../mixins/form-state */ "./node_modules/bootstrap-vue/es/mixins/form-state.js");
+var _formSize = _interopRequireDefault(__webpack_require__(/*! ../../mixins/form-size */ "./node_modules/bootstrap-vue/es/mixins/form-size.js"));
 
-var _formCustom = __webpack_require__(/*! ../../mixins/form-custom */ "./node_modules/bootstrap-vue/es/mixins/form-custom.js");
+var _formState = _interopRequireDefault(__webpack_require__(/*! ../../mixins/form-state */ "./node_modules/bootstrap-vue/es/mixins/form-state.js"));
+
+var _formCustom = _interopRequireDefault(__webpack_require__(/*! ../../mixins/form-custom */ "./node_modules/bootstrap-vue/es/mixins/form-custom.js"));
 
 var _array = __webpack_require__(/*! ../../utils/array */ "./node_modules/bootstrap-vue/es/utils/array.js");
 
 var _html = __webpack_require__(/*! ../../utils/html */ "./node_modules/bootstrap-vue/es/utils/html.js");
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 // @vue/component
 var _default = {
@@ -9583,7 +10140,7 @@ var _default = {
     },
     selectSize: {
       // Browsers default size to 0, which shows 4 rows in most browsers in multiple mode
-      // Size of 1 can bork out Firefox
+      // Size of 1 can bork out firefox
       type: Number,
       default: 0
     },
@@ -9640,7 +10197,7 @@ var _default = {
         attrs: {
           disabled: Boolean(option.disabled)
         },
-        domProps: _objectSpread({}, (0, _html.htmlOrText)(option.html, option.text), {
+        domProps: (0, _objectSpread2.default)({}, (0, _html.htmlOrText)(option.html, option.text), {
           value: option.value
         })
       });
@@ -9697,10 +10254,14 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _formSelect = __webpack_require__(/*! ./form-select */ "./node_modules/bootstrap-vue/es/components/form-select/form-select.js");
+var _formSelect = _interopRequireDefault(__webpack_require__(/*! ./form-select */ "./node_modules/bootstrap-vue/es/components/form-select/form-select.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -9727,28 +10288,30 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _id = __webpack_require__(/*! ../../mixins/id */ "./node_modules/bootstrap-vue/es/mixins/id.js");
+var _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js"));
 
-var _form = __webpack_require__(/*! ../../mixins/form */ "./node_modules/bootstrap-vue/es/mixins/form.js");
+var _id = _interopRequireDefault(__webpack_require__(/*! ../../mixins/id */ "./node_modules/bootstrap-vue/es/mixins/id.js"));
 
-var _formSize = __webpack_require__(/*! ../../mixins/form-size */ "./node_modules/bootstrap-vue/es/mixins/form-size.js");
+var _form = _interopRequireDefault(__webpack_require__(/*! ../../mixins/form */ "./node_modules/bootstrap-vue/es/mixins/form.js"));
 
-var _formState = __webpack_require__(/*! ../../mixins/form-state */ "./node_modules/bootstrap-vue/es/mixins/form-state.js");
+var _formSize = _interopRequireDefault(__webpack_require__(/*! ../../mixins/form-size */ "./node_modules/bootstrap-vue/es/mixins/form-size.js"));
 
-var _formText = __webpack_require__(/*! ../../mixins/form-text */ "./node_modules/bootstrap-vue/es/mixins/form-text.js");
+var _formState = _interopRequireDefault(__webpack_require__(/*! ../../mixins/form-state */ "./node_modules/bootstrap-vue/es/mixins/form-state.js"));
 
-var _formSelection = __webpack_require__(/*! ../../mixins/form-selection */ "./node_modules/bootstrap-vue/es/mixins/form-selection.js");
+var _formText = _interopRequireDefault(__webpack_require__(/*! ../../mixins/form-text */ "./node_modules/bootstrap-vue/es/mixins/form-text.js"));
 
-var _formValidity = __webpack_require__(/*! ../../mixins/form-validity */ "./node_modules/bootstrap-vue/es/mixins/form-validity.js");
+var _formSelection = _interopRequireDefault(__webpack_require__(/*! ../../mixins/form-selection */ "./node_modules/bootstrap-vue/es/mixins/form-selection.js"));
+
+var _formValidity = _interopRequireDefault(__webpack_require__(/*! ../../mixins/form-validity */ "./node_modules/bootstrap-vue/es/mixins/form-validity.js"));
 
 var _dom = __webpack_require__(/*! ../../utils/dom */ "./node_modules/bootstrap-vue/es/utils/dom.js");
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 // @vue/component
 var _default = {
@@ -9895,7 +10458,7 @@ var _default = {
       domProps: {
         value: self.localValue
       },
-      on: _objectSpread({}, self.$listeners, {
+      on: (0, _objectSpread2.default)({}, self.$listeners, {
         input: self.onInput,
         change: self.onChange,
         blur: self.onBlur
@@ -9917,10 +10480,14 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _formTextarea = __webpack_require__(/*! ./form-textarea */ "./node_modules/bootstrap-vue/es/components/form-textarea/form-textarea.js");
+var _formTextarea = _interopRequireDefault(__webpack_require__(/*! ./form-textarea */ "./node_modules/bootstrap-vue/es/components/form-textarea/form-textarea.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -9947,7 +10514,9 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
@@ -9968,10 +10537,6 @@ var props = {
   forceShow: {
     type: Boolean,
     default: false
-  },
-  state: {
-    type: [Boolean, String],
-    default: null
   } // @vue/component
 
 };
@@ -9984,12 +10549,11 @@ var _default = {
     var props = _ref.props,
         data = _ref.data,
         children = _ref.children;
-    var show = props.forceShow === true || props.state === false || props.state === 'invalid';
     return h(props.tag, (0, _vueFunctionalDataMerge.mergeData)(data, {
       class: {
         'invalid-feedback': !props.tooltip,
         'invalid-tooltip': props.tooltip,
-        'd-block': show
+        'd-block': props.forceShow
       },
       attrs: {
         id: props.id
@@ -10011,10 +10575,14 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _formRow = __webpack_require__(/*! ../layout/form-row */ "./node_modules/bootstrap-vue/es/components/layout/form-row.js");
+var _formRow = _interopRequireDefault(__webpack_require__(/*! ../layout/form-row */ "./node_modules/bootstrap-vue/es/components/layout/form-row.js"));
 
 var _default = _formRow.default;
 exports.default = _default;
@@ -10031,12 +10599,16 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
 
-var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
 
 var props = {
   id: {
@@ -10067,7 +10639,7 @@ var _default = {
         data = _ref.data,
         children = _ref.children;
     return h(props.tag, (0, _vueFunctionalDataMerge.mergeData)(data, {
-      class: _defineProperty({
+      class: (0, _defineProperty2.default)({
         'form-text': !props.inline
       }, "text-".concat(props.textVariant), Boolean(props.textVariant)),
       attrs: {
@@ -10090,7 +10662,9 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
@@ -10111,10 +10685,6 @@ var props = {
   forceShow: {
     type: Boolean,
     default: false
-  },
-  state: {
-    type: [Boolean, String],
-    default: null
   } // @vue/component
 
 };
@@ -10127,12 +10697,11 @@ var _default = {
     var props = _ref.props,
         data = _ref.data,
         children = _ref.children;
-    var show = props.forceShow === true || props.state === true || props.state === 'valid';
     return h(props.tag, (0, _vueFunctionalDataMerge.mergeData)(data, {
       class: {
         'valid-feedback': !props.tooltip,
         'valid-tooltip': props.tooltip,
-        'd-block': show
+        'd-block': props.forceShow
       },
       attrs: {
         id: props.id
@@ -10154,7 +10723,9 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
@@ -10213,18 +10784,22 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _form = __webpack_require__(/*! ./form */ "./node_modules/bootstrap-vue/es/components/form/form.js");
+var _form = _interopRequireDefault(__webpack_require__(/*! ./form */ "./node_modules/bootstrap-vue/es/components/form/form.js"));
 
-var _formRow = __webpack_require__(/*! ./form-row */ "./node_modules/bootstrap-vue/es/components/form/form-row.js");
+var _formRow = _interopRequireDefault(__webpack_require__(/*! ./form-row */ "./node_modules/bootstrap-vue/es/components/form/form-row.js"));
 
-var _formText = __webpack_require__(/*! ./form-text */ "./node_modules/bootstrap-vue/es/components/form/form-text.js");
+var _formText = _interopRequireDefault(__webpack_require__(/*! ./form-text */ "./node_modules/bootstrap-vue/es/components/form/form-text.js"));
 
-var _formInvalidFeedback = __webpack_require__(/*! ./form-invalid-feedback */ "./node_modules/bootstrap-vue/es/components/form/form-invalid-feedback.js");
+var _formInvalidFeedback = _interopRequireDefault(__webpack_require__(/*! ./form-invalid-feedback */ "./node_modules/bootstrap-vue/es/components/form/form-invalid-feedback.js"));
 
-var _formValidFeedback = __webpack_require__(/*! ./form-valid-feedback */ "./node_modules/bootstrap-vue/es/components/form/form-valid-feedback.js");
+var _formValidFeedback = _interopRequireDefault(__webpack_require__(/*! ./form-valid-feedback */ "./node_modules/bootstrap-vue/es/components/form/form-valid-feedback.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -10255,10 +10830,14 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _img = __webpack_require__(/*! ./img */ "./node_modules/bootstrap-vue/es/components/image/img.js");
+var _img = _interopRequireDefault(__webpack_require__(/*! ./img */ "./node_modules/bootstrap-vue/es/components/image/img.js"));
 
 var _dom = __webpack_require__(/*! ../../utils/dom */ "./node_modules/bootstrap-vue/es/utils/dom.js");
 
@@ -10509,12 +11088,16 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
 
-var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
 
 // Blank image with fill template
 var BLANK_TEMPLATE = '<svg width="%{w}" height="%{h}" ' + 'xmlns="http://www.w3.org/2000/svg" ' + 'viewBox="0 0 %{w} %{h}" preserveAspectRatio="none">' + '<rect width="100%" height="100%" style="fill:%{f};"></rect>' + '</svg>';
@@ -10646,7 +11229,7 @@ var _default = {
         'img-fluid': props.fluid || props.fluidGrow,
         'w-100': props.fluidGrow,
         rounded: props.rounded === '' || props.rounded === true
-      }, _defineProperty(_class, "rounded-".concat(props.rounded), typeof props.rounded === 'string' && props.rounded !== ''), _defineProperty(_class, align, Boolean(align)), _defineProperty(_class, 'd-block', block), _class)
+      }, (0, _defineProperty2.default)(_class, "rounded-".concat(props.rounded), typeof props.rounded === 'string' && props.rounded !== ''), (0, _defineProperty2.default)(_class, align, Boolean(align)), (0, _defineProperty2.default)(_class, 'd-block', block), _class)
     }));
   }
 };
@@ -10664,12 +11247,16 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _img = __webpack_require__(/*! ./img */ "./node_modules/bootstrap-vue/es/components/image/img.js");
+var _img = _interopRequireDefault(__webpack_require__(/*! ./img */ "./node_modules/bootstrap-vue/es/components/image/img.js"));
 
-var _imgLazy = __webpack_require__(/*! ./img-lazy */ "./node_modules/bootstrap-vue/es/components/image/img-lazy.js");
+var _imgLazy = _interopRequireDefault(__webpack_require__(/*! ./img-lazy */ "./node_modules/bootstrap-vue/es/components/image/img-lazy.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -10696,155 +11283,307 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
-
-var _alert = __webpack_require__(/*! ./alert */ "./node_modules/bootstrap-vue/es/components/alert/index.js");
-
-exports.Alert = _alert.default;
-
-var _badge = __webpack_require__(/*! ./badge */ "./node_modules/bootstrap-vue/es/components/badge/index.js");
-
-exports.Badge = _badge.default;
-
-var _breadcrumb = __webpack_require__(/*! ./breadcrumb */ "./node_modules/bootstrap-vue/es/components/breadcrumb/index.js");
-
-exports.Breadcrumb = _breadcrumb.default;
-
-var _button = __webpack_require__(/*! ./button */ "./node_modules/bootstrap-vue/es/components/button/index.js");
-
-exports.Button = _button.default;
-
-var _buttonGroup = __webpack_require__(/*! ./button-group */ "./node_modules/bootstrap-vue/es/components/button-group/index.js");
-
-exports.ButtonGroup = _buttonGroup.default;
-
-var _buttonToolbar = __webpack_require__(/*! ./button-toolbar */ "./node_modules/bootstrap-vue/es/components/button-toolbar/index.js");
-
-exports.ButtonToolbar = _buttonToolbar.default;
-
-var _inputGroup = __webpack_require__(/*! ./input-group */ "./node_modules/bootstrap-vue/es/components/input-group/index.js");
-
-exports.InputGroup = _inputGroup.default;
-
-var _card = __webpack_require__(/*! ./card */ "./node_modules/bootstrap-vue/es/components/card/index.js");
-
-exports.Card = _card.default;
-
-var _carousel = __webpack_require__(/*! ./carousel */ "./node_modules/bootstrap-vue/es/components/carousel/index.js");
-
-exports.Carousel = _carousel.default;
-
-var _layout = __webpack_require__(/*! ./layout */ "./node_modules/bootstrap-vue/es/components/layout/index.js");
-
-exports.Layout = _layout.default;
-
-var _collapse = __webpack_require__(/*! ./collapse */ "./node_modules/bootstrap-vue/es/components/collapse/index.js");
-
-exports.Collapse = _collapse.default;
-
-var _dropdown = __webpack_require__(/*! ./dropdown */ "./node_modules/bootstrap-vue/es/components/dropdown/index.js");
-
-exports.Dropdown = _dropdown.default;
-
-var _embed = __webpack_require__(/*! ./embed */ "./node_modules/bootstrap-vue/es/components/embed/index.js");
-
-exports.Embed = _embed.default;
-
-var _form = __webpack_require__(/*! ./form */ "./node_modules/bootstrap-vue/es/components/form/index.js");
-
-exports.Form = _form.default;
-
-var _formGroup = __webpack_require__(/*! ./form-group */ "./node_modules/bootstrap-vue/es/components/form-group/index.js");
-
-exports.FormGroup = _formGroup.default;
-
-var _formCheckbox = __webpack_require__(/*! ./form-checkbox */ "./node_modules/bootstrap-vue/es/components/form-checkbox/index.js");
-
-exports.FormCheckbox = _formCheckbox.default;
-
-var _formRadio = __webpack_require__(/*! ./form-radio */ "./node_modules/bootstrap-vue/es/components/form-radio/index.js");
-
-exports.FormRadio = _formRadio.default;
-
-var _formInput = __webpack_require__(/*! ./form-input */ "./node_modules/bootstrap-vue/es/components/form-input/index.js");
-
-exports.FormInput = _formInput.default;
-
-var _formTextarea = __webpack_require__(/*! ./form-textarea */ "./node_modules/bootstrap-vue/es/components/form-textarea/index.js");
-
-exports.FormTextarea = _formTextarea.default;
-
-var _formFile = __webpack_require__(/*! ./form-file */ "./node_modules/bootstrap-vue/es/components/form-file/index.js");
-
-exports.FormFile = _formFile.default;
-
-var _formSelect = __webpack_require__(/*! ./form-select */ "./node_modules/bootstrap-vue/es/components/form-select/index.js");
-
-exports.FormSelect = _formSelect.default;
-
-var _image = __webpack_require__(/*! ./image */ "./node_modules/bootstrap-vue/es/components/image/index.js");
-
-exports.Image = _image.default;
-
-var _jumbotron = __webpack_require__(/*! ./jumbotron */ "./node_modules/bootstrap-vue/es/components/jumbotron/index.js");
-
-exports.Jumbotron = _jumbotron.default;
-
-var _link = __webpack_require__(/*! ./link */ "./node_modules/bootstrap-vue/es/components/link/index.js");
-
-exports.Link = _link.default;
-
-var _listGroup = __webpack_require__(/*! ./list-group */ "./node_modules/bootstrap-vue/es/components/list-group/index.js");
-
-exports.ListGroup = _listGroup.default;
-
-var _media = __webpack_require__(/*! ./media */ "./node_modules/bootstrap-vue/es/components/media/index.js");
-
-exports.Media = _media.default;
-
-var _modal = __webpack_require__(/*! ./modal */ "./node_modules/bootstrap-vue/es/components/modal/index.js");
-
-exports.Modal = _modal.default;
-
-var _nav = __webpack_require__(/*! ./nav */ "./node_modules/bootstrap-vue/es/components/nav/index.js");
-
-exports.Nav = _nav.default;
-
-var _navbar = __webpack_require__(/*! ./navbar */ "./node_modules/bootstrap-vue/es/components/navbar/index.js");
-
-exports.Navbar = _navbar.default;
-
-var _pagination = __webpack_require__(/*! ./pagination */ "./node_modules/bootstrap-vue/es/components/pagination/index.js");
-
-exports.Pagination = _pagination.default;
-
-var _paginationNav = __webpack_require__(/*! ./pagination-nav */ "./node_modules/bootstrap-vue/es/components/pagination-nav/index.js");
-
-exports.PaginationNav = _paginationNav.default;
-
-var _popover = __webpack_require__(/*! ./popover */ "./node_modules/bootstrap-vue/es/components/popover/index.js");
-
-exports.Popover = _popover.default;
-
-var _progress = __webpack_require__(/*! ./progress */ "./node_modules/bootstrap-vue/es/components/progress/index.js");
-
-exports.Progress = _progress.default;
-
-var _spinner = __webpack_require__(/*! ./spinner */ "./node_modules/bootstrap-vue/es/components/spinner/index.js");
-
-exports.Spinner = _spinner.default;
-
-var _table = __webpack_require__(/*! ./table */ "./node_modules/bootstrap-vue/es/components/table/index.js");
-
-exports.Table = _table.default;
-
-var _tabs = __webpack_require__(/*! ./tabs */ "./node_modules/bootstrap-vue/es/components/tabs/index.js");
-
-exports.Tabs = _tabs.default;
-
-var _tooltip = __webpack_require__(/*! ./tooltip */ "./node_modules/bootstrap-vue/es/components/tooltip/index.js");
-
-exports.Tooltip = _tooltip.default;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "Alert", {
+  enumerable: true,
+  get: function get() {
+    return _alert.default;
+  }
+});
+Object.defineProperty(exports, "Badge", {
+  enumerable: true,
+  get: function get() {
+    return _badge.default;
+  }
+});
+Object.defineProperty(exports, "Breadcrumb", {
+  enumerable: true,
+  get: function get() {
+    return _breadcrumb.default;
+  }
+});
+Object.defineProperty(exports, "Button", {
+  enumerable: true,
+  get: function get() {
+    return _button.default;
+  }
+});
+Object.defineProperty(exports, "ButtonGroup", {
+  enumerable: true,
+  get: function get() {
+    return _buttonGroup.default;
+  }
+});
+Object.defineProperty(exports, "ButtonToolbar", {
+  enumerable: true,
+  get: function get() {
+    return _buttonToolbar.default;
+  }
+});
+Object.defineProperty(exports, "InputGroup", {
+  enumerable: true,
+  get: function get() {
+    return _inputGroup.default;
+  }
+});
+Object.defineProperty(exports, "Card", {
+  enumerable: true,
+  get: function get() {
+    return _card.default;
+  }
+});
+Object.defineProperty(exports, "Carousel", {
+  enumerable: true,
+  get: function get() {
+    return _carousel.default;
+  }
+});
+Object.defineProperty(exports, "Layout", {
+  enumerable: true,
+  get: function get() {
+    return _layout.default;
+  }
+});
+Object.defineProperty(exports, "Collapse", {
+  enumerable: true,
+  get: function get() {
+    return _collapse.default;
+  }
+});
+Object.defineProperty(exports, "Dropdown", {
+  enumerable: true,
+  get: function get() {
+    return _dropdown.default;
+  }
+});
+Object.defineProperty(exports, "Embed", {
+  enumerable: true,
+  get: function get() {
+    return _embed.default;
+  }
+});
+Object.defineProperty(exports, "Form", {
+  enumerable: true,
+  get: function get() {
+    return _form.default;
+  }
+});
+Object.defineProperty(exports, "FormGroup", {
+  enumerable: true,
+  get: function get() {
+    return _formGroup.default;
+  }
+});
+Object.defineProperty(exports, "FormCheckbox", {
+  enumerable: true,
+  get: function get() {
+    return _formCheckbox.default;
+  }
+});
+Object.defineProperty(exports, "FormRadio", {
+  enumerable: true,
+  get: function get() {
+    return _formRadio.default;
+  }
+});
+Object.defineProperty(exports, "FormInput", {
+  enumerable: true,
+  get: function get() {
+    return _formInput.default;
+  }
+});
+Object.defineProperty(exports, "FormTextarea", {
+  enumerable: true,
+  get: function get() {
+    return _formTextarea.default;
+  }
+});
+Object.defineProperty(exports, "FormFile", {
+  enumerable: true,
+  get: function get() {
+    return _formFile.default;
+  }
+});
+Object.defineProperty(exports, "FormSelect", {
+  enumerable: true,
+  get: function get() {
+    return _formSelect.default;
+  }
+});
+Object.defineProperty(exports, "Image", {
+  enumerable: true,
+  get: function get() {
+    return _image.default;
+  }
+});
+Object.defineProperty(exports, "Jumbotron", {
+  enumerable: true,
+  get: function get() {
+    return _jumbotron.default;
+  }
+});
+Object.defineProperty(exports, "Link", {
+  enumerable: true,
+  get: function get() {
+    return _link.default;
+  }
+});
+Object.defineProperty(exports, "ListGroup", {
+  enumerable: true,
+  get: function get() {
+    return _listGroup.default;
+  }
+});
+Object.defineProperty(exports, "Media", {
+  enumerable: true,
+  get: function get() {
+    return _media.default;
+  }
+});
+Object.defineProperty(exports, "Modal", {
+  enumerable: true,
+  get: function get() {
+    return _modal.default;
+  }
+});
+Object.defineProperty(exports, "Nav", {
+  enumerable: true,
+  get: function get() {
+    return _nav.default;
+  }
+});
+Object.defineProperty(exports, "Navbar", {
+  enumerable: true,
+  get: function get() {
+    return _navbar.default;
+  }
+});
+Object.defineProperty(exports, "Pagination", {
+  enumerable: true,
+  get: function get() {
+    return _pagination.default;
+  }
+});
+Object.defineProperty(exports, "PaginationNav", {
+  enumerable: true,
+  get: function get() {
+    return _paginationNav.default;
+  }
+});
+Object.defineProperty(exports, "Popover", {
+  enumerable: true,
+  get: function get() {
+    return _popover.default;
+  }
+});
+Object.defineProperty(exports, "Progress", {
+  enumerable: true,
+  get: function get() {
+    return _progress.default;
+  }
+});
+Object.defineProperty(exports, "Spinner", {
+  enumerable: true,
+  get: function get() {
+    return _spinner.default;
+  }
+});
+Object.defineProperty(exports, "Table", {
+  enumerable: true,
+  get: function get() {
+    return _table.default;
+  }
+});
+Object.defineProperty(exports, "Tabs", {
+  enumerable: true,
+  get: function get() {
+    return _tabs.default;
+  }
+});
+Object.defineProperty(exports, "Tooltip", {
+  enumerable: true,
+  get: function get() {
+    return _tooltip.default;
+  }
+});
+
+var _alert = _interopRequireDefault(__webpack_require__(/*! ./alert */ "./node_modules/bootstrap-vue/es/components/alert/index.js"));
+
+var _badge = _interopRequireDefault(__webpack_require__(/*! ./badge */ "./node_modules/bootstrap-vue/es/components/badge/index.js"));
+
+var _breadcrumb = _interopRequireDefault(__webpack_require__(/*! ./breadcrumb */ "./node_modules/bootstrap-vue/es/components/breadcrumb/index.js"));
+
+var _button = _interopRequireDefault(__webpack_require__(/*! ./button */ "./node_modules/bootstrap-vue/es/components/button/index.js"));
+
+var _buttonGroup = _interopRequireDefault(__webpack_require__(/*! ./button-group */ "./node_modules/bootstrap-vue/es/components/button-group/index.js"));
+
+var _buttonToolbar = _interopRequireDefault(__webpack_require__(/*! ./button-toolbar */ "./node_modules/bootstrap-vue/es/components/button-toolbar/index.js"));
+
+var _inputGroup = _interopRequireDefault(__webpack_require__(/*! ./input-group */ "./node_modules/bootstrap-vue/es/components/input-group/index.js"));
+
+var _card = _interopRequireDefault(__webpack_require__(/*! ./card */ "./node_modules/bootstrap-vue/es/components/card/index.js"));
+
+var _carousel = _interopRequireDefault(__webpack_require__(/*! ./carousel */ "./node_modules/bootstrap-vue/es/components/carousel/index.js"));
+
+var _layout = _interopRequireDefault(__webpack_require__(/*! ./layout */ "./node_modules/bootstrap-vue/es/components/layout/index.js"));
+
+var _collapse = _interopRequireDefault(__webpack_require__(/*! ./collapse */ "./node_modules/bootstrap-vue/es/components/collapse/index.js"));
+
+var _dropdown = _interopRequireDefault(__webpack_require__(/*! ./dropdown */ "./node_modules/bootstrap-vue/es/components/dropdown/index.js"));
+
+var _embed = _interopRequireDefault(__webpack_require__(/*! ./embed */ "./node_modules/bootstrap-vue/es/components/embed/index.js"));
+
+var _form = _interopRequireDefault(__webpack_require__(/*! ./form */ "./node_modules/bootstrap-vue/es/components/form/index.js"));
+
+var _formGroup = _interopRequireDefault(__webpack_require__(/*! ./form-group */ "./node_modules/bootstrap-vue/es/components/form-group/index.js"));
+
+var _formCheckbox = _interopRequireDefault(__webpack_require__(/*! ./form-checkbox */ "./node_modules/bootstrap-vue/es/components/form-checkbox/index.js"));
+
+var _formRadio = _interopRequireDefault(__webpack_require__(/*! ./form-radio */ "./node_modules/bootstrap-vue/es/components/form-radio/index.js"));
+
+var _formInput = _interopRequireDefault(__webpack_require__(/*! ./form-input */ "./node_modules/bootstrap-vue/es/components/form-input/index.js"));
+
+var _formTextarea = _interopRequireDefault(__webpack_require__(/*! ./form-textarea */ "./node_modules/bootstrap-vue/es/components/form-textarea/index.js"));
+
+var _formFile = _interopRequireDefault(__webpack_require__(/*! ./form-file */ "./node_modules/bootstrap-vue/es/components/form-file/index.js"));
+
+var _formSelect = _interopRequireDefault(__webpack_require__(/*! ./form-select */ "./node_modules/bootstrap-vue/es/components/form-select/index.js"));
+
+var _image = _interopRequireDefault(__webpack_require__(/*! ./image */ "./node_modules/bootstrap-vue/es/components/image/index.js"));
+
+var _jumbotron = _interopRequireDefault(__webpack_require__(/*! ./jumbotron */ "./node_modules/bootstrap-vue/es/components/jumbotron/index.js"));
+
+var _link = _interopRequireDefault(__webpack_require__(/*! ./link */ "./node_modules/bootstrap-vue/es/components/link/index.js"));
+
+var _listGroup = _interopRequireDefault(__webpack_require__(/*! ./list-group */ "./node_modules/bootstrap-vue/es/components/list-group/index.js"));
+
+var _media = _interopRequireDefault(__webpack_require__(/*! ./media */ "./node_modules/bootstrap-vue/es/components/media/index.js"));
+
+var _modal = _interopRequireDefault(__webpack_require__(/*! ./modal */ "./node_modules/bootstrap-vue/es/components/modal/index.js"));
+
+var _nav = _interopRequireDefault(__webpack_require__(/*! ./nav */ "./node_modules/bootstrap-vue/es/components/nav/index.js"));
+
+var _navbar = _interopRequireDefault(__webpack_require__(/*! ./navbar */ "./node_modules/bootstrap-vue/es/components/navbar/index.js"));
+
+var _pagination = _interopRequireDefault(__webpack_require__(/*! ./pagination */ "./node_modules/bootstrap-vue/es/components/pagination/index.js"));
+
+var _paginationNav = _interopRequireDefault(__webpack_require__(/*! ./pagination-nav */ "./node_modules/bootstrap-vue/es/components/pagination-nav/index.js"));
+
+var _popover = _interopRequireDefault(__webpack_require__(/*! ./popover */ "./node_modules/bootstrap-vue/es/components/popover/index.js"));
+
+var _progress = _interopRequireDefault(__webpack_require__(/*! ./progress */ "./node_modules/bootstrap-vue/es/components/progress/index.js"));
+
+var _spinner = _interopRequireDefault(__webpack_require__(/*! ./spinner */ "./node_modules/bootstrap-vue/es/components/spinner/index.js"));
+
+var _table = _interopRequireDefault(__webpack_require__(/*! ./table */ "./node_modules/bootstrap-vue/es/components/table/index.js"));
+
+var _tabs = _interopRequireDefault(__webpack_require__(/*! ./tabs */ "./node_modules/bootstrap-vue/es/components/tabs/index.js"));
+
+var _tooltip = _interopRequireDefault(__webpack_require__(/*! ./tooltip */ "./node_modules/bootstrap-vue/es/components/tooltip/index.js"));
 
 /***/ }),
 
@@ -10858,20 +11597,24 @@ exports.Tooltip = _tooltip.default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
-var _inputGroup = __webpack_require__(/*! ./input-group */ "./node_modules/bootstrap-vue/es/components/input-group/input-group.js");
+var _inputGroup = _interopRequireDefault(__webpack_require__(/*! ./input-group */ "./node_modules/bootstrap-vue/es/components/input-group/input-group.js"));
 
-var _inputGroupAddon = __webpack_require__(/*! ./input-group-addon */ "./node_modules/bootstrap-vue/es/components/input-group/input-group-addon.js");
+var _inputGroupAddon = _interopRequireDefault(__webpack_require__(/*! ./input-group-addon */ "./node_modules/bootstrap-vue/es/components/input-group/input-group-addon.js"));
 
-var _inputGroupPrepend = __webpack_require__(/*! ./input-group-prepend */ "./node_modules/bootstrap-vue/es/components/input-group/input-group-prepend.js");
+var _inputGroupPrepend = _interopRequireDefault(__webpack_require__(/*! ./input-group-prepend */ "./node_modules/bootstrap-vue/es/components/input-group/input-group-prepend.js"));
 
-var _inputGroupAppend = __webpack_require__(/*! ./input-group-append */ "./node_modules/bootstrap-vue/es/components/input-group/input-group-append.js");
+var _inputGroupAppend = _interopRequireDefault(__webpack_require__(/*! ./input-group-append */ "./node_modules/bootstrap-vue/es/components/input-group/input-group-append.js"));
 
-var _inputGroupText = __webpack_require__(/*! ./input-group-text */ "./node_modules/bootstrap-vue/es/components/input-group/input-group-text.js");
+var _inputGroupText = _interopRequireDefault(__webpack_require__(/*! ./input-group-text */ "./node_modules/bootstrap-vue/es/components/input-group/input-group-text.js"));
 
 var components = {
   BInputGroup: _inputGroup.default,
@@ -10899,16 +11642,18 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.commonProps = void 0;
+
+var _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js"));
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
 
-var _inputGroupText = __webpack_require__(/*! ./input-group-text */ "./node_modules/bootstrap-vue/es/components/input-group/input-group-text.js");
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+var _inputGroupText = _interopRequireDefault(__webpack_require__(/*! ./input-group-text */ "./node_modules/bootstrap-vue/es/components/input-group/input-group-text.js"));
 
 var commonProps = {
   id: {
@@ -10929,7 +11674,7 @@ exports.commonProps = commonProps;
 var _default = {
   name: 'BInputGroupAddon',
   functional: true,
-  props: _objectSpread({}, commonProps, {
+  props: (0, _objectSpread2.default)({}, commonProps, {
     append: {
       type: Boolean,
       default: false
@@ -10964,16 +11709,20 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
+
+var _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js"));
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
 
-var _inputGroupAddon = __webpack_require__(/*! ./input-group-addon */ "./node_modules/bootstrap-vue/es/components/input-group/input-group-addon.js");
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+var _inputGroupAddon = _interopRequireWildcard(__webpack_require__(/*! ./input-group-addon */ "./node_modules/bootstrap-vue/es/components/input-group/input-group-addon.js"));
 
 // @vue/component
 var _default = {
@@ -10986,7 +11735,7 @@ var _default = {
         children = _ref.children;
     // pass all our props/attrs down to child, and set`append` to true
     return h(_inputGroupAddon.default, (0, _vueFunctionalDataMerge.mergeData)(data, {
-      props: _objectSpread({}, props, {
+      props: (0, _objectSpread2.default)({}, props, {
         append: true
       })
     }), children);
@@ -11006,16 +11755,20 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
+
+var _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js"));
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
 
-var _inputGroupAddon = __webpack_require__(/*! ./input-group-addon */ "./node_modules/bootstrap-vue/es/components/input-group/input-group-addon.js");
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+var _inputGroupAddon = _interopRequireWildcard(__webpack_require__(/*! ./input-group-addon */ "./node_modules/bootstrap-vue/es/components/input-group/input-group-addon.js"));
 
 // @vue/component
 var _default = {
@@ -11028,7 +11781,7 @@ var _default = {
         children = _ref.children;
     // pass all our props/attrs down to child, and set`append` to false
     return h(_inputGroupAddon.default, (0, _vueFunctionalDataMerge.mergeData)(data, {
-      props: _objectSpread({}, props, {
+      props: (0, _objectSpread2.default)({}, props, {
         append: false
       })
     }), children);
@@ -11048,7 +11801,9 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
@@ -11088,28 +11843,26 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
+
+var _toConsumableArray2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/toConsumableArray.js"));
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
 
-var _inputGroupPrepend = __webpack_require__(/*! ./input-group-prepend */ "./node_modules/bootstrap-vue/es/components/input-group/input-group-prepend.js");
+var _inputGroupPrepend = _interopRequireDefault(__webpack_require__(/*! ./input-group-prepend */ "./node_modules/bootstrap-vue/es/components/input-group/input-group-prepend.js"));
 
-var _inputGroupAppend = __webpack_require__(/*! ./input-group-append */ "./node_modules/bootstrap-vue/es/components/input-group/input-group-append.js");
+var _inputGroupAppend = _interopRequireDefault(__webpack_require__(/*! ./input-group-append */ "./node_modules/bootstrap-vue/es/components/input-group/input-group-append.js"));
 
-var _inputGroupText = __webpack_require__(/*! ./input-group-text */ "./node_modules/bootstrap-vue/es/components/input-group/input-group-text.js");
+var _inputGroupText = _interopRequireDefault(__webpack_require__(/*! ./input-group-text */ "./node_modules/bootstrap-vue/es/components/input-group/input-group-text.js"));
 
 var _html = __webpack_require__(/*! ../../utils/html */ "./node_modules/bootstrap-vue/es/utils/html.js");
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
-
-function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
 
 var props = {
   id: {
@@ -11165,7 +11918,7 @@ var _default = {
 
 
     if ($slots.default) {
-      childNodes.push.apply(childNodes, _toConsumableArray($slots.default));
+      childNodes.push.apply(childNodes, (0, _toConsumableArray2.default)($slots.default));
     } else {
       childNodes.push(h(false));
     } // Append prop
@@ -11188,7 +11941,7 @@ var _default = {
 
     return h(props.tag, (0, _vueFunctionalDataMerge.mergeData)(data, {
       staticClass: 'input-group',
-      class: _defineProperty({}, "input-group-".concat(props.size), Boolean(props.size)),
+      class: (0, _defineProperty2.default)({}, "input-group-".concat(props.size), Boolean(props.size)),
       attrs: {
         id: props.id || null,
         role: 'group'
@@ -11210,10 +11963,14 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _jumbotron = __webpack_require__(/*! ./jumbotron */ "./node_modules/bootstrap-vue/es/components/jumbotron/jumbotron.js");
+var _jumbotron = _interopRequireDefault(__webpack_require__(/*! ./jumbotron */ "./node_modules/bootstrap-vue/es/components/jumbotron/jumbotron.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -11239,16 +11996,20 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
 
 var _html = __webpack_require__(/*! ../../utils/html */ "./node_modules/bootstrap-vue/es/utils/html.js");
 
-var _container = __webpack_require__(/*! ../layout/container */ "./node_modules/bootstrap-vue/es/components/layout/container.js");
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+var _container = _interopRequireDefault(__webpack_require__(/*! ../layout/container */ "./node_modules/bootstrap-vue/es/components/layout/container.js"));
 
 var props = {
   fluid: {
@@ -11263,7 +12024,7 @@ var props = {
     type: String,
     default: null
   },
-  headerHtml: {
+  headerHTML: {
     type: String,
     default: null
   },
@@ -11279,7 +12040,7 @@ var props = {
     type: String,
     default: null
   },
-  leadHtml: {
+  leadHTML: {
     type: String,
     default: null
   },
@@ -11321,17 +12082,17 @@ var _default = {
     var childNodes = [];
     var $slots = slots(); // Header
 
-    if (props.header || $slots.header || props.headerHtml) {
+    if (props.header || $slots.header || props.headerHTML) {
       childNodes.push(h(props.headerTag, {
-        class: _defineProperty({}, "display-".concat(props.headerLevel), Boolean(props.headerLevel))
-      }, $slots.header || props.headerHtml || (0, _html.stripTags)(props.header)));
+        class: (0, _defineProperty2.default)({}, "display-".concat(props.headerLevel), Boolean(props.headerLevel))
+      }, $slots.header || props.headerHTML || (0, _html.stripTags)(props.header)));
     } // Lead
 
 
-    if (props.lead || $slots.lead || props.leadHtml) {
+    if (props.lead || $slots.lead || props.leadHTML) {
       childNodes.push(h(props.leadTag, {
         staticClass: 'lead'
-      }, $slots.lead || props.leadHtml || (0, _html.stripTags)(props.lead)));
+      }, $slots.lead || props.leadHTML || (0, _html.stripTags)(props.lead)));
     } // Default slot
 
 
@@ -11354,7 +12115,7 @@ var _default = {
       staticClass: 'jumbotron',
       class: (_class2 = {
         'jumbotron-fluid': props.fluid
-      }, _defineProperty(_class2, "text-".concat(props.textVariant), Boolean(props.textVariant)), _defineProperty(_class2, "bg-".concat(props.bgVariant), Boolean(props.bgVariant)), _defineProperty(_class2, "border-".concat(props.borderVariant), Boolean(props.borderVariant)), _defineProperty(_class2, "border", Boolean(props.borderVariant)), _class2)
+      }, (0, _defineProperty2.default)(_class2, "text-".concat(props.textVariant), Boolean(props.textVariant)), (0, _defineProperty2.default)(_class2, "bg-".concat(props.bgVariant), Boolean(props.bgVariant)), (0, _defineProperty2.default)(_class2, "border-".concat(props.borderVariant), Boolean(props.borderVariant)), (0, _defineProperty2.default)(_class2, "border", Boolean(props.borderVariant)), _class2)
     }), childNodes);
   }
 };
@@ -11372,22 +12133,24 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = exports.computeBkPtClass = void 0;
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
 
-var _memoize = __webpack_require__(/*! ../../utils/memoize */ "./node_modules/bootstrap-vue/es/utils/memoize.js");
+var _memoize = _interopRequireDefault(__webpack_require__(/*! ../../utils/memoize */ "./node_modules/bootstrap-vue/es/utils/memoize.js"));
 
-var _suffixPropName = __webpack_require__(/*! ../../utils/suffix-prop-name */ "./node_modules/bootstrap-vue/es/utils/suffix-prop-name.js");
+var _suffixPropName = _interopRequireDefault(__webpack_require__(/*! ../../utils/suffix-prop-name */ "./node_modules/bootstrap-vue/es/utils/suffix-prop-name.js"));
 
 var _object = __webpack_require__(/*! ../../utils/object */ "./node_modules/bootstrap-vue/es/utils/object.js");
 
 var _array = __webpack_require__(/*! ../../utils/array */ "./node_modules/bootstrap-vue/es/utils/array.js");
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 /**
  * Generates a prop object with a type of
@@ -11459,8 +12222,7 @@ var breakpointPropMap = (0, _object.assign)((0, _object.create)(null), {
   offset: (0, _object.keys)(breakpointOffset),
   order: (0, _object.keys)(breakpointOrder)
 });
-
-var props = _objectSpread({}, breakpointCol, breakpointOffset, breakpointOrder, {
+var props = (0, _object.assign)({}, breakpointCol, breakpointOffset, breakpointOrder, {
   tag: {
     type: String,
     default: 'div'
@@ -11483,13 +12245,12 @@ var props = _objectSpread({}, breakpointCol, breakpointOffset, breakpointOrder, 
       return (0, _array.arrayIncludes)(['auto', 'start', 'end', 'center', 'baseline', 'stretch'], str);
     }
   }
-  /**
-   * We need ".col" to default in when no other props are passed,
-   * but always render when col=true.
-   */
-  // @vue/component
-
 });
+/**
+ * We need ".col" to default in when no other props are passed,
+ * but always render when col=true.
+ */
+// @vue/component
 
 exports.props = props;
 var _default = {
@@ -11521,7 +12282,7 @@ var _default = {
     classList.push((_classList$push = {
       // Default to .col if no other classes generated nor `cols` specified.
       col: props.col || classList.length === 0 && !props.cols
-    }, _defineProperty(_classList$push, "col-".concat(props.cols), props.cols), _defineProperty(_classList$push, "offset-".concat(props.offset), props.offset), _defineProperty(_classList$push, "order-".concat(props.order), props.order), _defineProperty(_classList$push, "align-self-".concat(props.alignSelf), props.alignSelf), _classList$push));
+    }, (0, _defineProperty2.default)(_classList$push, "col-".concat(props.cols), props.cols), (0, _defineProperty2.default)(_classList$push, "offset-".concat(props.offset), props.offset), (0, _defineProperty2.default)(_classList$push, "order-".concat(props.order), props.order), (0, _defineProperty2.default)(_classList$push, "align-self-".concat(props.alignSelf), props.alignSelf), _classList$push));
     return h(props.tag, (0, _vueFunctionalDataMerge.mergeData)(data, {
       class: classList
     }), children);
@@ -11541,7 +12302,9 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
@@ -11588,7 +12351,9 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
@@ -11628,16 +12393,20 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _container = __webpack_require__(/*! ./container */ "./node_modules/bootstrap-vue/es/components/layout/container.js");
+var _container = _interopRequireDefault(__webpack_require__(/*! ./container */ "./node_modules/bootstrap-vue/es/components/layout/container.js"));
 
-var _row = __webpack_require__(/*! ./row */ "./node_modules/bootstrap-vue/es/components/layout/row.js");
+var _row = _interopRequireDefault(__webpack_require__(/*! ./row */ "./node_modules/bootstrap-vue/es/components/layout/row.js"));
 
-var _col = __webpack_require__(/*! ./col */ "./node_modules/bootstrap-vue/es/components/layout/col.js");
+var _col = _interopRequireDefault(__webpack_require__(/*! ./col */ "./node_modules/bootstrap-vue/es/components/layout/col.js"));
 
-var _formRow = __webpack_require__(/*! ./form-row */ "./node_modules/bootstrap-vue/es/components/layout/form-row.js");
+var _formRow = _interopRequireDefault(__webpack_require__(/*! ./form-row */ "./node_modules/bootstrap-vue/es/components/layout/form-row.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -11666,14 +12435,18 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
 
 var _array = __webpack_require__(/*! ../../utils/array */ "./node_modules/bootstrap-vue/es/utils/array.js");
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var COMMON_ALIGNMENT = ['start', 'end', 'center'];
 var props = {
@@ -11723,7 +12496,7 @@ var _default = {
       staticClass: 'row',
       class: (_class = {
         'no-gutters': props.noGutters
-      }, _defineProperty(_class, "align-items-".concat(props.alignV), props.alignV), _defineProperty(_class, "justify-content-".concat(props.alignH), props.alignH), _defineProperty(_class, "align-content-".concat(props.alignContent), props.alignContent), _class)
+      }, (0, _defineProperty2.default)(_class, "align-items-".concat(props.alignV), props.alignV), (0, _defineProperty2.default)(_class, "justify-content-".concat(props.alignH), props.alignH), (0, _defineProperty2.default)(_class, "align-content-".concat(props.alignContent), props.alignContent), _class)
     }), children);
   }
 };
@@ -11741,10 +12514,14 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _link = __webpack_require__(/*! ./link */ "./node_modules/bootstrap-vue/es/components/link/link.js");
+var _link = _interopRequireDefault(__webpack_require__(/*! ./link */ "./node_modules/bootstrap-vue/es/components/link/link.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -11770,23 +12547,23 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.propsFactory = propsFactory;
 exports.pickLinkProps = pickLinkProps;
 exports.omitLinkProps = omitLinkProps;
 exports.default = exports.computed = exports.props = void 0;
+
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js"));
 
 var _object = __webpack_require__(/*! ../../utils/object */ "./node_modules/bootstrap-vue/es/utils/object.js");
 
 var _array = __webpack_require__(/*! ../../utils/array */ "./node_modules/bootstrap-vue/es/utils/array.js");
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 /**
  * The Link component is used in many other BV components.
@@ -11940,7 +12717,7 @@ function computeHref(_ref, tag) {
     } // Fallback to `to.path` prop (if `to` is an object)
 
 
-    if (_typeof(to) === 'object' && typeof to.path === 'string') {
+    if ((0, _typeof2.default)(to) === 'object' && typeof to.path === 'string') {
       return to.path;
     }
   } // If nothing is provided use '#' as a fallback
@@ -12026,7 +12803,7 @@ var _default = {
         tabindex: props.disabled ? '-1' : data.attrs ? data.attrs.tabindex : null,
         'aria-disabled': props.disabled ? 'true' : null
       },
-      props: _objectSpread({}, props, {
+      props: (0, _object.assign)(props, {
         tag: props.routerTag
       })
     }); // If href attribute exists on router-link (even undefined or null) it fails working on SSR
@@ -12038,7 +12815,7 @@ var _default = {
     // will invoke the user supplied handler if !props.disabled
 
 
-    componentData[eventType] = _objectSpread({}, componentData[eventType] || {}, handlers);
+    componentData[eventType] = (0, _object.assign)(componentData[eventType] || {}, handlers);
     return h(tag, componentData, children);
   }
 };
@@ -12056,12 +12833,16 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _listGroup = __webpack_require__(/*! ./list-group */ "./node_modules/bootstrap-vue/es/components/list-group/list-group.js");
+var _listGroup = _interopRequireDefault(__webpack_require__(/*! ./list-group */ "./node_modules/bootstrap-vue/es/components/list-group/list-group.js"));
 
-var _listGroupItem = __webpack_require__(/*! ./list-group-item */ "./node_modules/bootstrap-vue/es/components/list-group/list-group-item.js");
+var _listGroupItem = _interopRequireDefault(__webpack_require__(/*! ./list-group-item */ "./node_modules/bootstrap-vue/es/components/list-group/list-group-item.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -12088,27 +12869,32 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
+
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
 
-var _pluckProps = __webpack_require__(/*! ../../utils/pluck-props */ "./node_modules/bootstrap-vue/es/utils/pluck-props.js");
+var _pluckProps = _interopRequireDefault(__webpack_require__(/*! ../../utils/pluck-props */ "./node_modules/bootstrap-vue/es/utils/pluck-props.js"));
+
+var _object = __webpack_require__(/*! ../../utils/object */ "./node_modules/bootstrap-vue/es/utils/object.js");
 
 var _array = __webpack_require__(/*! ../../utils/array */ "./node_modules/bootstrap-vue/es/utils/array.js");
 
-var _link = __webpack_require__(/*! ../link/link */ "./node_modules/bootstrap-vue/es/components/link/link.js");
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+var _link = _interopRequireWildcard(__webpack_require__(/*! ../link/link */ "./node_modules/bootstrap-vue/es/components/link/link.js"));
 
 var actionTags = ['a', 'router-link', 'button', 'b-link'];
 var linkProps = (0, _link.propsFactory)();
 delete linkProps.href.default;
 delete linkProps.to.default;
-
-var props = _objectSpread({
+var props = (0, _object.assign)({
   tag: {
     type: String,
     default: 'div'
@@ -12126,7 +12912,6 @@ var props = _objectSpread({
     default: null
   }
 }, linkProps); // @vue/component
-
 
 exports.props = props;
 var _default = {
@@ -12162,7 +12947,7 @@ var _default = {
       attrs: attrs,
       props: itemProps,
       staticClass: 'list-group-item',
-      class: (_class = {}, _defineProperty(_class, "list-group-item-".concat(props.variant), Boolean(props.variant)), _defineProperty(_class, 'list-group-item-action', isAction), _defineProperty(_class, "active", props.active), _defineProperty(_class, "disabled", props.disabled), _class)
+      class: (_class = {}, (0, _defineProperty2.default)(_class, "list-group-item-".concat(props.variant), Boolean(props.variant)), (0, _defineProperty2.default)(_class, 'list-group-item-action', isAction), (0, _defineProperty2.default)(_class, "active", props.active), (0, _defineProperty2.default)(_class, "disabled", props.disabled), _class)
     };
     return h(tag, (0, _vueFunctionalDataMerge.mergeData)(data, componentData), children);
   }
@@ -12181,12 +12966,16 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
 
-var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
 
 var props = {
   tag: {
@@ -12216,7 +13005,7 @@ var _default = {
     horizontal = props.flush ? false : horizontal;
     var componentData = {
       staticClass: 'list-group',
-      class: _defineProperty({
+      class: (0, _defineProperty2.default)({
         'list-group-flush': props.flush,
         'list-group-horizontal': horizontal === true
       }, "list-group-horizontal-".concat(horizontal), typeof horizontal === 'string')
@@ -12238,14 +13027,18 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _media = __webpack_require__(/*! ./media */ "./node_modules/bootstrap-vue/es/components/media/media.js");
+var _media = _interopRequireDefault(__webpack_require__(/*! ./media */ "./node_modules/bootstrap-vue/es/components/media/media.js"));
 
-var _mediaAside = __webpack_require__(/*! ./media-aside */ "./node_modules/bootstrap-vue/es/components/media/media-aside.js");
+var _mediaAside = _interopRequireDefault(__webpack_require__(/*! ./media-aside */ "./node_modules/bootstrap-vue/es/components/media/media-aside.js"));
 
-var _mediaBody = __webpack_require__(/*! ./media-body */ "./node_modules/bootstrap-vue/es/components/media/media-body.js");
+var _mediaBody = _interopRequireDefault(__webpack_require__(/*! ./media-body */ "./node_modules/bootstrap-vue/es/components/media/media-body.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -12273,12 +13066,16 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
 
-var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
 
 var props = {
   tag: {
@@ -12302,7 +13099,7 @@ var _default = {
         children = _ref.children;
     return h(props.tag, (0, _vueFunctionalDataMerge.mergeData)(data, {
       staticClass: 'd-flex',
-      class: _defineProperty({}, "align-self-".concat(props.verticalAlign), props.verticalAlign)
+      class: (0, _defineProperty2.default)({}, "align-self-".concat(props.verticalAlign), props.verticalAlign)
     }), children);
   }
 };
@@ -12320,7 +13117,9 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
@@ -12359,14 +13158,18 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
 
-var _mediaBody = __webpack_require__(/*! ./media-body */ "./node_modules/bootstrap-vue/es/components/media/media-body.js");
+var _mediaBody = _interopRequireDefault(__webpack_require__(/*! ./media-body */ "./node_modules/bootstrap-vue/es/components/media/media-body.js"));
 
-var _mediaAside = __webpack_require__(/*! ./media-aside */ "./node_modules/bootstrap-vue/es/components/media/media-aside.js");
+var _mediaAside = _interopRequireDefault(__webpack_require__(/*! ./media-aside */ "./node_modules/bootstrap-vue/es/components/media/media-aside.js"));
 
 var props = {
   tag: {
@@ -12441,12 +13244,16 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _modal = __webpack_require__(/*! ./modal */ "./node_modules/bootstrap-vue/es/components/modal/modal.js");
+var _modal = _interopRequireDefault(__webpack_require__(/*! ./modal */ "./node_modules/bootstrap-vue/es/components/modal/modal.js"));
 
-var _modal2 = __webpack_require__(/*! ../../directives/modal */ "./node_modules/bootstrap-vue/es/directives/modal/index.js");
+var _modal2 = _interopRequireDefault(__webpack_require__(/*! ../../directives/modal */ "./node_modules/bootstrap-vue/es/directives/modal/index.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -12473,30 +13280,34 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _button = __webpack_require__(/*! ../button/button */ "./node_modules/bootstrap-vue/es/components/button/button.js");
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
 
-var _buttonClose = __webpack_require__(/*! ../button/button-close */ "./node_modules/bootstrap-vue/es/components/button/button-close.js");
+var _button = _interopRequireDefault(__webpack_require__(/*! ../button/button */ "./node_modules/bootstrap-vue/es/components/button/button.js"));
 
-var _id = __webpack_require__(/*! ../../mixins/id */ "./node_modules/bootstrap-vue/es/mixins/id.js");
+var _buttonClose = _interopRequireDefault(__webpack_require__(/*! ../button/button-close */ "./node_modules/bootstrap-vue/es/components/button/button-close.js"));
 
-var _listenOnRoot = __webpack_require__(/*! ../../mixins/listen-on-root */ "./node_modules/bootstrap-vue/es/mixins/listen-on-root.js");
+var _id = _interopRequireDefault(__webpack_require__(/*! ../../mixins/id */ "./node_modules/bootstrap-vue/es/mixins/id.js"));
 
-var _observeDom = __webpack_require__(/*! ../../utils/observe-dom */ "./node_modules/bootstrap-vue/es/utils/observe-dom.js");
+var _listenOnRoot = _interopRequireDefault(__webpack_require__(/*! ../../mixins/listen-on-root */ "./node_modules/bootstrap-vue/es/mixins/listen-on-root.js"));
 
-var _warn = __webpack_require__(/*! ../../utils/warn */ "./node_modules/bootstrap-vue/es/utils/warn.js");
+var _observeDom = _interopRequireDefault(__webpack_require__(/*! ../../utils/observe-dom */ "./node_modules/bootstrap-vue/es/utils/observe-dom.js"));
 
-var _keyCodes = __webpack_require__(/*! ../../utils/key-codes */ "./node_modules/bootstrap-vue/es/utils/key-codes.js");
+var _warn = _interopRequireDefault(__webpack_require__(/*! ../../utils/warn */ "./node_modules/bootstrap-vue/es/utils/warn.js"));
 
-var _bvEvent = __webpack_require__(/*! ../../utils/bv-event.class */ "./node_modules/bootstrap-vue/es/utils/bv-event.class.js");
+var _keyCodes = _interopRequireDefault(__webpack_require__(/*! ../../utils/key-codes */ "./node_modules/bootstrap-vue/es/utils/key-codes.js"));
+
+var _bvEvent = _interopRequireDefault(__webpack_require__(/*! ../../utils/bv-event.class */ "./node_modules/bootstrap-vue/es/utils/bv-event.class.js"));
 
 var _html = __webpack_require__(/*! ../../utils/html */ "./node_modules/bootstrap-vue/es/utils/html.js");
 
 var _dom = __webpack_require__(/*! ../../utils/dom */ "./node_modules/bootstrap-vue/es/utils/dom.js");
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 // Selectors for padding/margin adjustments
 var Selector = {
@@ -12571,7 +13382,7 @@ var _default = {
       type: String,
       default: ''
     },
-    titleHtml: {
+    titleHTML: {
       type: String
     },
     titleTag: {
@@ -12714,14 +13525,14 @@ var _default = {
       type: String,
       default: 'Cancel'
     },
-    cancelTitleHtml: {
+    cancelTitleHTML: {
       type: String
     },
     okTitle: {
       type: String,
       default: 'OK'
     },
-    okTitleHtml: {
+    okTitleHTML: {
       type: String
     },
     cancelVariant: {
@@ -12780,7 +13591,7 @@ var _default = {
     dialogClasses: function dialogClasses() {
       var _ref;
 
-      return [(_ref = {}, _defineProperty(_ref, "modal-".concat(this.size), Boolean(this.size)), _defineProperty(_ref, 'modal-dialog-centered', this.centered), _defineProperty(_ref, 'modal-dialog-scrollable', this.scrollable), _ref), this.dialogClass];
+      return [(_ref = {}, (0, _defineProperty2.default)(_ref, "modal-".concat(this.size), Boolean(this.size)), (0, _defineProperty2.default)(_ref, 'modal-dialog-centered', this.centered), (0, _defineProperty2.default)(_ref, 'modal-dialog-scrollable', this.scrollable), _ref), this.dialogClass];
     },
     backdropClasses: function backdropClasses() {
       return {
@@ -12791,17 +13602,17 @@ var _default = {
     headerClasses: function headerClasses() {
       var _ref2;
 
-      return [(_ref2 = {}, _defineProperty(_ref2, "bg-".concat(this.headerBgVariant), Boolean(this.headerBgVariant)), _defineProperty(_ref2, "text-".concat(this.headerTextVariant), Boolean(this.headerTextVariant)), _defineProperty(_ref2, "border-".concat(this.headerBorderVariant), Boolean(this.headerBorderVariant)), _ref2), this.headerClass];
+      return [(_ref2 = {}, (0, _defineProperty2.default)(_ref2, "bg-".concat(this.headerBgVariant), Boolean(this.headerBgVariant)), (0, _defineProperty2.default)(_ref2, "text-".concat(this.headerTextVariant), Boolean(this.headerTextVariant)), (0, _defineProperty2.default)(_ref2, "border-".concat(this.headerBorderVariant), Boolean(this.headerBorderVariant)), _ref2), this.headerClass];
     },
     bodyClasses: function bodyClasses() {
       var _ref3;
 
-      return [(_ref3 = {}, _defineProperty(_ref3, "bg-".concat(this.bodyBgVariant), Boolean(this.bodyBgVariant)), _defineProperty(_ref3, "text-".concat(this.bodyTextVariant), Boolean(this.bodyTextVariant)), _ref3), this.bodyClass];
+      return [(_ref3 = {}, (0, _defineProperty2.default)(_ref3, "bg-".concat(this.bodyBgVariant), Boolean(this.bodyBgVariant)), (0, _defineProperty2.default)(_ref3, "text-".concat(this.bodyTextVariant), Boolean(this.bodyTextVariant)), _ref3), this.bodyClass];
     },
     footerClasses: function footerClasses() {
       var _ref4;
 
-      return [(_ref4 = {}, _defineProperty(_ref4, "bg-".concat(this.footerBgVariant), Boolean(this.footerBgVariant)), _defineProperty(_ref4, "text-".concat(this.footerTextVariant), Boolean(this.footerTextVariant)), _defineProperty(_ref4, "border-".concat(this.footerBorderVariant), Boolean(this.footerBorderVariant)), _ref4), this.footerClass];
+      return [(_ref4 = {}, (0, _defineProperty2.default)(_ref4, "bg-".concat(this.footerBgVariant), Boolean(this.footerBgVariant)), (0, _defineProperty2.default)(_ref4, "text-".concat(this.footerTextVariant), Boolean(this.footerTextVariant)), (0, _defineProperty2.default)(_ref4, "border-".concat(this.footerBorderVariant), Boolean(this.footerBorderVariant)), _ref4), this.footerClass];
     },
     modalOuterStyle: function modalOuterStyle() {
       return {
@@ -13062,14 +13873,8 @@ var _default = {
     },
     // UI Event Handlers
     onClickOut: function onClickOut(evt) {
-      // Do nothing if not visible, backdrop click disabled, or element that generated
-      // click event is no longer in document
-      if (!this.is_visible || this.noCloseOnBackdrop || !(0, _dom.contains)(document, evt.target)) {
-        return;
-      } // If backdrop clicked, hide modal
-
-
-      if (!(0, _dom.contains)(this.$refs.content, evt.target)) {
+      // If backdrop clicked, hide modal
+      if (this.is_visible && !this.noCloseOnBackdrop && !(0, _dom.contains)(this.$refs.content, evt.target)) {
         this.hide('backdrop');
       }
     },
@@ -13351,7 +14156,7 @@ var _default = {
 
         modalHeader = [h(this.titleTag, {
           class: ['modal-title']
-        }, [$slots['modal-title'] || this.titleHtml || (0, _html.stripTags)(this.title)]), closeButton];
+        }, [$slots['modal-title'] || this.titleHTML || (0, _html.stripTags)(this.title)]), closeButton];
       }
 
       header = h('header', {
@@ -13394,7 +14199,7 @@ var _default = {
                 _this5.hide('cancel');
               }
             }
-          }, [$slots['modal-cancel'] || this.cancelTitleHtml || (0, _html.stripTags)(this.cancelTitle)]);
+          }, [$slots['modal-cancel'] || this.cancelTitleHTML || (0, _html.stripTags)(this.cancelTitle)]);
         }
 
         var okButton = h('b-button', {
@@ -13408,7 +14213,7 @@ var _default = {
               _this5.hide('ok');
             }
           }
-        }, [$slots['modal-ok'] || this.okTitleHtml || (0, _html.stripTags)(this.okTitle)]);
+        }, [$slots['modal-ok'] || this.okTitleHTML || (0, _html.stripTags)(this.okTitle)]);
         modalFooter = [cancelButton, okButton];
       }
 
@@ -13457,8 +14262,8 @@ var _default = {
         'aria-modal': this.is_visible ? 'true' : null
       },
       on: {
-        keydown: this.onEsc,
-        click: this.onClickOut
+        click: this.onClickOut,
+        keydown: this.onEsc
       }
     }, [modalDialog]); // Wrap modal in transition
 
@@ -13535,20 +14340,24 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _nav = __webpack_require__(/*! ./nav */ "./node_modules/bootstrap-vue/es/components/nav/nav.js");
+var _nav = _interopRequireDefault(__webpack_require__(/*! ./nav */ "./node_modules/bootstrap-vue/es/components/nav/nav.js"));
 
-var _navItem = __webpack_require__(/*! ./nav-item */ "./node_modules/bootstrap-vue/es/components/nav/nav-item.js");
+var _navItem = _interopRequireDefault(__webpack_require__(/*! ./nav-item */ "./node_modules/bootstrap-vue/es/components/nav/nav-item.js"));
 
-var _navText = __webpack_require__(/*! ./nav-text */ "./node_modules/bootstrap-vue/es/components/nav/nav-text.js");
+var _navText = _interopRequireDefault(__webpack_require__(/*! ./nav-text */ "./node_modules/bootstrap-vue/es/components/nav/nav-text.js"));
 
-var _navForm = __webpack_require__(/*! ./nav-form */ "./node_modules/bootstrap-vue/es/components/nav/nav-form.js");
+var _navForm = _interopRequireDefault(__webpack_require__(/*! ./nav-form */ "./node_modules/bootstrap-vue/es/components/nav/nav-form.js"));
 
-var _navItemDropdown = __webpack_require__(/*! ./nav-item-dropdown */ "./node_modules/bootstrap-vue/es/components/nav/nav-item-dropdown.js");
+var _navItemDropdown = _interopRequireDefault(__webpack_require__(/*! ./nav-item-dropdown */ "./node_modules/bootstrap-vue/es/components/nav/nav-item-dropdown.js"));
 
-var _dropdown = __webpack_require__(/*! ../dropdown */ "./node_modules/bootstrap-vue/es/components/dropdown/index.js");
+var _dropdown = _interopRequireDefault(__webpack_require__(/*! ../dropdown */ "./node_modules/bootstrap-vue/es/components/dropdown/index.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -13582,10 +14391,14 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _form = __webpack_require__(/*! ../form/form */ "./node_modules/bootstrap-vue/es/components/form/form.js");
+var _form = _interopRequireDefault(__webpack_require__(/*! ../form/form */ "./node_modules/bootstrap-vue/es/components/form/form.js"));
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
 
@@ -13627,12 +14440,16 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _id = __webpack_require__(/*! ../../mixins/id */ "./node_modules/bootstrap-vue/es/mixins/id.js");
+var _id = _interopRequireDefault(__webpack_require__(/*! ../../mixins/id */ "./node_modules/bootstrap-vue/es/mixins/id.js"));
 
-var _dropdown = __webpack_require__(/*! ../../mixins/dropdown */ "./node_modules/bootstrap-vue/es/mixins/dropdown.js");
+var _dropdown = _interopRequireDefault(__webpack_require__(/*! ../../mixins/dropdown */ "./node_modules/bootstrap-vue/es/mixins/dropdown.js"));
 
 var _html = __webpack_require__(/*! ../../utils/html */ "./node_modules/bootstrap-vue/es/utils/html.js");
 
@@ -13729,12 +14546,16 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
 
-var _link = __webpack_require__(/*! ../link/link */ "./node_modules/bootstrap-vue/es/components/link/link.js");
+var _link = _interopRequireWildcard(__webpack_require__(/*! ../link/link */ "./node_modules/bootstrap-vue/es/components/link/link.js"));
 
 var props = (0, _link.propsFactory)(); // @vue/component
 
@@ -13769,7 +14590,9 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
@@ -13809,12 +14632,16 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
 
-var _warn = __webpack_require__(/*! ../../utils/warn */ "./node_modules/bootstrap-vue/es/utils/warn.js");
+var _warn = _interopRequireDefault(__webpack_require__(/*! ../../utils/warn */ "./node_modules/bootstrap-vue/es/utils/warn.js"));
 
 var props = {
   tag: {
@@ -13888,22 +14715,26 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _navbar = __webpack_require__(/*! ./navbar */ "./node_modules/bootstrap-vue/es/components/navbar/navbar.js");
+var _navbar = _interopRequireDefault(__webpack_require__(/*! ./navbar */ "./node_modules/bootstrap-vue/es/components/navbar/navbar.js"));
 
-var _navbarNav = __webpack_require__(/*! ./navbar-nav */ "./node_modules/bootstrap-vue/es/components/navbar/navbar-nav.js");
+var _navbarNav = _interopRequireDefault(__webpack_require__(/*! ./navbar-nav */ "./node_modules/bootstrap-vue/es/components/navbar/navbar-nav.js"));
 
-var _navbarBrand = __webpack_require__(/*! ./navbar-brand */ "./node_modules/bootstrap-vue/es/components/navbar/navbar-brand.js");
+var _navbarBrand = _interopRequireDefault(__webpack_require__(/*! ./navbar-brand */ "./node_modules/bootstrap-vue/es/components/navbar/navbar-brand.js"));
 
-var _navbarToggle = __webpack_require__(/*! ./navbar-toggle */ "./node_modules/bootstrap-vue/es/components/navbar/navbar-toggle.js");
+var _navbarToggle = _interopRequireDefault(__webpack_require__(/*! ./navbar-toggle */ "./node_modules/bootstrap-vue/es/components/navbar/navbar-toggle.js"));
 
-var _nav = __webpack_require__(/*! ../nav */ "./node_modules/bootstrap-vue/es/components/nav/index.js");
+var _nav = _interopRequireDefault(__webpack_require__(/*! ../nav */ "./node_modules/bootstrap-vue/es/components/nav/index.js"));
 
-var _collapse = __webpack_require__(/*! ../collapse */ "./node_modules/bootstrap-vue/es/components/collapse/index.js");
+var _collapse = _interopRequireDefault(__webpack_require__(/*! ../collapse */ "./node_modules/bootstrap-vue/es/components/collapse/index.js"));
 
-var _dropdown = __webpack_require__(/*! ../dropdown */ "./node_modules/bootstrap-vue/es/components/dropdown/index.js");
+var _dropdown = _interopRequireDefault(__webpack_require__(/*! ../dropdown */ "./node_modules/bootstrap-vue/es/components/dropdown/index.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -13936,30 +14767,32 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
 
-var _link = __webpack_require__(/*! ../link/link */ "./node_modules/bootstrap-vue/es/components/link/link.js");
+var _link = _interopRequireWildcard(__webpack_require__(/*! ../link/link */ "./node_modules/bootstrap-vue/es/components/link/link.js"));
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
 
-var _pluckProps = __webpack_require__(/*! ../../utils/pluck-props */ "./node_modules/bootstrap-vue/es/utils/pluck-props.js");
+var _pluckProps = _interopRequireDefault(__webpack_require__(/*! ../../utils/pluck-props */ "./node_modules/bootstrap-vue/es/utils/pluck-props.js"));
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+var _object = __webpack_require__(/*! ../../utils/object */ "./node_modules/bootstrap-vue/es/utils/object.js");
 
 var linkProps = (0, _link.propsFactory)();
 linkProps.href.default = undefined;
 linkProps.to.default = undefined;
-
-var props = _objectSpread({}, linkProps, {
+var props = (0, _object.assign)(linkProps, {
   tag: {
     type: String,
     default: 'div'
-  } // @vue/component
-
-});
+  }
+}); // @vue/component
 
 exports.props = props;
 var _default = {
@@ -13992,7 +14825,9 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
 
 var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
@@ -14044,10 +14879,14 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _listenOnRoot = __webpack_require__(/*! ../../mixins/listen-on-root */ "./node_modules/bootstrap-vue/es/mixins/listen-on-root.js");
+var _listenOnRoot = _interopRequireDefault(__webpack_require__(/*! ../../mixins/listen-on-root */ "./node_modules/bootstrap-vue/es/mixins/listen-on-root.js"));
 
 // @vue/component
 var _default = {
@@ -14117,12 +14956,16 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.props = void 0;
 
-var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
 
 var props = {
   tag: {
@@ -14177,7 +15020,7 @@ var _default = {
       class: (_class = {
         'd-print': props.print,
         'sticky-top': props.sticky
-      }, _defineProperty(_class, "navbar-".concat(props.type), Boolean(props.type)), _defineProperty(_class, "bg-".concat(props.variant), Boolean(props.variant)), _defineProperty(_class, "fixed-".concat(props.fixed), Boolean(props.fixed)), _defineProperty(_class, "".concat(breakpoint), Boolean(breakpoint)), _class),
+      }, (0, _defineProperty2.default)(_class, "navbar-".concat(props.type), Boolean(props.type)), (0, _defineProperty2.default)(_class, "bg-".concat(props.variant), Boolean(props.variant)), (0, _defineProperty2.default)(_class, "fixed-".concat(props.fixed), Boolean(props.fixed)), (0, _defineProperty2.default)(_class, "".concat(breakpoint), Boolean(breakpoint)), _class),
       attrs: {
         role: props.tag === 'nav' ? null : 'navigation'
       }
@@ -14198,10 +15041,14 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _paginationNav = __webpack_require__(/*! ./pagination-nav */ "./node_modules/bootstrap-vue/es/components/pagination-nav/pagination-nav.js");
+var _paginationNav = _interopRequireDefault(__webpack_require__(/*! ./pagination-nav */ "./node_modules/bootstrap-vue/es/components/pagination-nav/pagination-nav.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -14227,25 +15074,27 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _warn = __webpack_require__(/*! ../../utils/warn */ "./node_modules/bootstrap-vue/es/utils/warn.js");
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js"));
 
-var _pagination = __webpack_require__(/*! ../../mixins/pagination */ "./node_modules/bootstrap-vue/es/mixins/pagination.js");
+var _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js"));
+
+var _warn = _interopRequireDefault(__webpack_require__(/*! ../../utils/warn */ "./node_modules/bootstrap-vue/es/utils/warn.js"));
+
+var _pagination = _interopRequireDefault(__webpack_require__(/*! ../../mixins/pagination */ "./node_modules/bootstrap-vue/es/mixins/pagination.js"));
 
 var _link = __webpack_require__(/*! ../link/link */ "./node_modules/bootstrap-vue/es/components/link/link.js");
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 // Props needed for router links
 var routerProps = (0, _link.pickLinkProps)('activeClass', 'exactActiveClass', 'append', 'exact', 'replace', 'target', 'rel'); // Props object
 
-var props = _objectSpread({
+var props = (0, _objectSpread2.default)({
   // pagination-nav specific props
   numberOfPages: {
     type: [Number, String],
@@ -14281,7 +15130,6 @@ var props = _objectSpread({
 }, routerProps); // Our render function is brought in via the pagination mixin
 // @vue/component
 
-
 var _default = {
   name: 'BPaginatonNav',
   mixins: [_pagination.default],
@@ -14298,7 +15146,7 @@ var _default = {
       this.currentPage = pageNum;
       this.$nextTick(function () {
         try {
-          // Emulate native link click page reloading behaviour by  blurring the
+          // Emulate native link click page reloading behaviour by bluring the
           // paginator and returing focus to the document
           var target = evt.currentTarget || evt.target;
           target.blur();
@@ -14331,8 +15179,8 @@ var _default = {
         disabled: this.disabled
       };
 
-      if (this.useRouter || _typeof(link) === 'object') {
-        props = _objectSpread({}, props, {
+      if (this.useRouter || (0, _typeof2.default)(link) === 'object') {
+        props = (0, _objectSpread2.default)({}, props, {
           to: link,
           exact: this.exact,
           activeClass: this.activeClass,
@@ -14360,10 +15208,14 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _pagination = __webpack_require__(/*! ./pagination */ "./node_modules/bootstrap-vue/es/components/pagination/pagination.js");
+var _pagination = _interopRequireDefault(__webpack_require__(/*! ./pagination */ "./node_modules/bootstrap-vue/es/components/pagination/pagination.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -14389,10 +15241,14 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _pagination = __webpack_require__(/*! ../../mixins/pagination */ "./node_modules/bootstrap-vue/es/mixins/pagination.js");
+var _pagination = _interopRequireDefault(__webpack_require__(/*! ../../mixins/pagination */ "./node_modules/bootstrap-vue/es/mixins/pagination.js"));
 
 var _dom = __webpack_require__(/*! ../../utils/dom */ "./node_modules/bootstrap-vue/es/utils/dom.js");
 
@@ -14448,7 +15304,7 @@ var _default = {
       } // Update the v-model
 
 
-      this.currentPage = num; // Emit event triggered by user interaction
+      this.currentPage = num; // Emit event triggerd by user interaction
 
       this.$emit('change', this.currentPage);
       this.$nextTick(function () {
@@ -14487,12 +15343,16 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _popover = __webpack_require__(/*! ./popover */ "./node_modules/bootstrap-vue/es/components/popover/popover.js");
+var _popover = _interopRequireDefault(__webpack_require__(/*! ./popover */ "./node_modules/bootstrap-vue/es/components/popover/popover.js"));
 
-var _popover2 = __webpack_require__(/*! ../../directives/popover */ "./node_modules/bootstrap-vue/es/directives/popover/index.js");
+var _popover2 = _interopRequireDefault(__webpack_require__(/*! ../../directives/popover */ "./node_modules/bootstrap-vue/es/directives/popover/index.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -14519,14 +15379,18 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _popover = __webpack_require__(/*! ../../utils/popover.class */ "./node_modules/bootstrap-vue/es/utils/popover.class.js");
+var _popover = _interopRequireDefault(__webpack_require__(/*! ../../utils/popover.class */ "./node_modules/bootstrap-vue/es/utils/popover.class.js"));
 
-var _warn = __webpack_require__(/*! ../../utils/warn */ "./node_modules/bootstrap-vue/es/utils/warn.js");
+var _warn = _interopRequireDefault(__webpack_require__(/*! ../../utils/warn */ "./node_modules/bootstrap-vue/es/utils/warn.js"));
 
-var _toolpop = __webpack_require__(/*! ../../mixins/toolpop */ "./node_modules/bootstrap-vue/es/mixins/toolpop.js");
+var _toolpop = _interopRequireDefault(__webpack_require__(/*! ../../mixins/toolpop */ "./node_modules/bootstrap-vue/es/mixins/toolpop.js"));
 
 // @vue/component
 var _default = {
@@ -14598,12 +15462,16 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _progress = __webpack_require__(/*! ./progress */ "./node_modules/bootstrap-vue/es/components/progress/progress.js");
+var _progress = _interopRequireDefault(__webpack_require__(/*! ./progress */ "./node_modules/bootstrap-vue/es/components/progress/progress.js"));
 
-var _progressBar = __webpack_require__(/*! ./progress-bar */ "./node_modules/bootstrap-vue/es/components/progress/progress-bar.js");
+var _progressBar = _interopRequireDefault(__webpack_require__(/*! ./progress-bar */ "./node_modules/bootstrap-vue/es/components/progress/progress-bar.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -14630,7 +15498,9 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
 var _html = __webpack_require__(/*! ../../utils/html */ "./node_modules/bootstrap-vue/es/utils/html.js");
@@ -14655,7 +15525,7 @@ var _default2 = {
       type: String,
       default: null
     },
-    labelHtml: {
+    labelHTML: {
       type: String
     },
     // $parent prop values take precedence over the following props
@@ -14736,9 +15606,9 @@ var _default2 = {
 
     if (this.$slots.default) {
       childNodes = this.$slots.default;
-    } else if (this.label || this.labelHtml) {
+    } else if (this.label || this.labelHTML) {
       childNodes = h('span', {
-        domProps: (0, _html.htmlOrText)(this.labelHtml, this.label)
+        domProps: (0, _html.htmlOrText)(this.labelHTML, this.label)
       });
     } else if (this.computedShowProgress) {
       childNodes = this.computedProgress.toFixed(this.computedPrecision);
@@ -14773,10 +15643,14 @@ exports.default = _default2;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _progressBar = __webpack_require__(/*! ./progress-bar */ "./node_modules/bootstrap-vue/es/components/progress/progress-bar.js");
+var _progressBar = _interopRequireDefault(__webpack_require__(/*! ./progress-bar */ "./node_modules/bootstrap-vue/es/components/progress/progress-bar.js"));
 
 // @vue/component
 var _default = {
@@ -14874,10 +15748,14 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _spinner = __webpack_require__(/*! ./spinner */ "./node_modules/bootstrap-vue/es/components/spinner/spinner.js");
+var _spinner = _interopRequireDefault(__webpack_require__(/*! ./spinner */ "./node_modules/bootstrap-vue/es/components/spinner/spinner.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -14903,12 +15781,16 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+var _vueFunctionalDataMerge = __webpack_require__(/*! vue-functional-data-merge */ "./node_modules/vue-functional-data-merge/dist/lib.esm.js");
 
 // @vue/component
 var _default = {
@@ -14961,7 +15843,7 @@ var _default = {
         role: hasLabel ? props.role || 'status' : null,
         'aria-hidden': hasLabel ? null : 'true'
       },
-      class: (_class = {}, _defineProperty(_class, "spinner-".concat(props.type), Boolean(props.type)), _defineProperty(_class, "spinner-".concat(props.type, "-sm"), props.small), _defineProperty(_class, "text-".concat(props.variant), Boolean(props.variant)), _class)
+      class: (_class = {}, (0, _defineProperty2.default)(_class, "spinner-".concat(props.type), Boolean(props.type)), (0, _defineProperty2.default)(_class, "spinner-".concat(props.type, "-sm"), props.small), (0, _defineProperty2.default)(_class, "text-".concat(props.variant), Boolean(props.variant)), _class)
     }), [label]);
   }
 };
@@ -14979,10 +15861,14 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _table = __webpack_require__(/*! ./table */ "./node_modules/bootstrap-vue/es/components/table/table.js");
+var _table = _interopRequireDefault(__webpack_require__(/*! ./table */ "./node_modules/bootstrap-vue/es/components/table/table.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -15008,20 +15894,30 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _startcase = __webpack_require__(/*! ../../utils/startcase */ "./node_modules/bootstrap-vue/es/utils/startcase.js");
+var _objectSpread2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/objectSpread */ "./node_modules/@babel/runtime/helpers/objectSpread.js"));
 
-var _get = __webpack_require__(/*! ../../utils/get */ "./node_modules/bootstrap-vue/es/utils/get.js");
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
 
-var _looseEqual = __webpack_require__(/*! ../../utils/loose-equal */ "./node_modules/bootstrap-vue/es/utils/loose-equal.js");
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js"));
 
-var _stableSort = __webpack_require__(/*! ../../utils/stable-sort */ "./node_modules/bootstrap-vue/es/utils/stable-sort.js");
+var _startcase = _interopRequireDefault(__webpack_require__(/*! ../../utils/startcase */ "./node_modules/bootstrap-vue/es/utils/startcase.js"));
 
-var _keyCodes = __webpack_require__(/*! ../../utils/key-codes */ "./node_modules/bootstrap-vue/es/utils/key-codes.js");
+var _get = _interopRequireDefault(__webpack_require__(/*! ../../utils/get */ "./node_modules/bootstrap-vue/es/utils/get.js"));
 
-var _warn = __webpack_require__(/*! ../../utils/warn */ "./node_modules/bootstrap-vue/es/utils/warn.js");
+var _looseEqual = _interopRequireDefault(__webpack_require__(/*! ../../utils/loose-equal */ "./node_modules/bootstrap-vue/es/utils/loose-equal.js"));
+
+var _stableSort = _interopRequireDefault(__webpack_require__(/*! ../../utils/stable-sort */ "./node_modules/bootstrap-vue/es/utils/stable-sort.js"));
+
+var _keyCodes = _interopRequireDefault(__webpack_require__(/*! ../../utils/key-codes */ "./node_modules/bootstrap-vue/es/utils/key-codes.js"));
+
+var _warn = _interopRequireDefault(__webpack_require__(/*! ../../utils/warn */ "./node_modules/bootstrap-vue/es/utils/warn.js"));
 
 var _object = __webpack_require__(/*! ../../utils/object */ "./node_modules/bootstrap-vue/es/utils/object.js");
 
@@ -15031,15 +15927,9 @@ var _html = __webpack_require__(/*! ../../utils/html */ "./node_modules/bootstra
 
 var _dom = __webpack_require__(/*! ../../utils/dom */ "./node_modules/bootstrap-vue/es/utils/dom.js");
 
-var _id = __webpack_require__(/*! ../../mixins/id */ "./node_modules/bootstrap-vue/es/mixins/id.js");
+var _id = _interopRequireDefault(__webpack_require__(/*! ../../mixins/id */ "./node_modules/bootstrap-vue/es/mixins/id.js"));
 
-var _listenOnRoot = __webpack_require__(/*! ../../mixins/listen-on-root */ "./node_modules/bootstrap-vue/es/mixins/listen-on-root.js");
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+var _listenOnRoot = _interopRequireDefault(__webpack_require__(/*! ../../mixins/listen-on-root */ "./node_modules/bootstrap-vue/es/mixins/listen-on-root.js"));
 
 // Object of item keys that should be ignored for headers and stringification and filter events
 var IGNORED_FIELD_KEYS = {
@@ -15127,8 +16017,8 @@ function processField(key, value) {
       key: key,
       formatter: value
     };
-  } else if (_typeof(value) === 'object') {
-    field = _objectSpread({}, value);
+  } else if ((0, _typeof2.default)(value) === 'object') {
+    field = (0, _object.assign)({}, value);
     field.key = field.key || key;
   } else if (value !== false) {
     // Fallback to just key
@@ -15217,7 +16107,7 @@ var _default2 = {
       type: String,
       default: null
     },
-    captionHtml: {
+    captionHTML: {
       type: String
     },
     captionTop: {
@@ -15393,14 +16283,14 @@ var _default2 = {
       type: String,
       default: 'There are no records to show'
     },
-    emptyHtml: {
+    emptyHTML: {
       type: String
     },
     emptyFilteredText: {
       type: String,
       default: 'There are no records matching your request'
     },
-    emptyFilteredHtml: {
+    emptyFilteredHTML: {
       type: String
     },
     apiUrl: {
@@ -15456,7 +16346,7 @@ var _default2 = {
         // The following are b-table custom styles
         'b-table-fixed': this.fixed,
         'b-table-stacked': this.stacked === true || this.stacked === ''
-      }, _defineProperty(_ref, "b-table-stacked-".concat(this.stacked), this.stacked !== true && this.stacked), _defineProperty(_ref, 'b-table-selectable', this.selectable), _ref;
+      }, (0, _defineProperty2.default)(_ref, "b-table-stacked-".concat(this.stacked), this.stacked !== true && this.stacked), (0, _defineProperty2.default)(_ref, 'b-table-selectable', this.selectable), _ref;
     },
     headClasses: function headClasses() {
       return [this.headVariant ? 'thead-' + this.headVariant : '', this.theadClass];
@@ -15543,10 +16433,10 @@ var _default2 = {
               key: f,
               label: (0, _startcase.default)(f)
             });
-          } else if (_typeof(f) === 'object' && f.key && typeof f.key === 'string') {
+          } else if ((0, _typeof2.default)(f) === 'object' && f.key && typeof f.key === 'string') {
             // Full object definition. We use assign so that we don't mutate the original
-            fields.push(_objectSpread({}, f));
-          } else if (_typeof(f) === 'object' && (0, _object.keys)(f).length === 1) {
+            fields.push((0, _object.assign)({}, f));
+          } else if ((0, _typeof2.default)(f) === 'object' && (0, _object.keys)(f).length === 1) {
             // Shortcut object (i.e. { 'foo_bar': 'This is Foo Bar' }
             var key = (0, _object.keys)(f)[0];
             var field = processField(key, f[key]);
@@ -15556,7 +16446,7 @@ var _default2 = {
             }
           }
         });
-      } else if (this.fields && _typeof(this.fields) === 'object' && (0, _object.keys)(this.fields).length > 0) {
+      } else if (this.fields && (0, _typeof2.default)(this.fields) === 'object' && (0, _object.keys)(this.fields).length > 0) {
         // Normalize object Form
         (0, _object.keys)(this.fields).forEach(function (key) {
           var field = processField(key, _this.fields[key]);
@@ -15871,7 +16761,7 @@ var _default2 = {
         }
       }
 
-      return _objectSpread({}, attrs, this.getTdValues(item, field.key, field.tdAttr, {}));
+      return (0, _object.assign)({}, attrs, this.getTdValues(item, field.key, field.tdAttr, {}));
     },
     rowClasses: function rowClasses(item) {
       return [item._rowVariant ? "".concat(this.dark ? 'bg' : 'table', "-").concat(item._rowVariant) : '', typeof this.tbodyTrClass === 'function' ? this.tbodyTrClass(item, 'row') : this.tbodyTrClass];
@@ -16238,7 +17128,7 @@ var _default2 = {
     var caption = h(false);
     var captionId = null;
 
-    if (this.caption || this.captionHtml || $slots['table-caption']) {
+    if (this.caption || this.captionHTML || $slots['table-caption']) {
       captionId = this.isStacked ? this.safeId('_caption_') : null;
       var data = {
         key: 'caption',
@@ -16247,7 +17137,7 @@ var _default2 = {
       };
 
       if (!$slots['table-caption']) {
-        data.domProps = (0, _html.htmlOrText)(this.captionHtml, this.caption);
+        data.domProps = (0, _html.htmlOrText)(this.captionHTML, this.caption);
       }
 
       caption = h('caption', data, $slots['table-caption']);
@@ -16256,14 +17146,7 @@ var _default2 = {
 
     var colgroup = $slots['table-colgroup'] ? h('colgroup', {
       key: 'colgroup'
-    }, $slots['table-colgroup']) : h(false); // Support scoped and unscoped slots when needed
-
-    var normalizeSlot = function normalizeSlot(slotName) {
-      var slotScope = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-      var slot = $scoped[slotName] || $slots[slotName];
-      return typeof slot === 'function' ? slot(slotScope) : slot;
-    }; // factory function for thead and tfoot cells (th's)
-
+    }, $slots['table-colgroup']) : h(false); // factory function for thead and tfoot cells (th's)
 
     var makeHeadCells = function makeHeadCells() {
       var isFoot = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
@@ -16317,7 +17200,7 @@ var _default2 = {
             field: field
           })];
         } else {
-          data.domProps = (0, _html.htmlOrText)(field.labelHtml, field.label);
+          data.domProps = (0, _html.htmlOrText)(field.labelHTML, field.label);
         }
 
         return h('th', data, slot);
@@ -16457,7 +17340,7 @@ var _default2 = {
 
         rows.push(h('tr', {
           key: "__b-table-row-".concat(rowKey, "__"),
-          class: [_this6.rowClasses(item), _defineProperty({
+          class: [_this6.rowClasses(item), (0, _defineProperty2.default)({
             'b-table-has-details': rowShowDetails,
             'b-row-selected': rowSelected
           }, "".concat(_this6.dark ? 'bg' : 'table', "-").concat(_this6.selectedVariant), rowSelected && _this6.selectedVariant)],
@@ -16556,20 +17439,13 @@ var _default2 = {
     } // Empty Items / Empty Filtered Row slot
 
 
-    if (this.showEmpty && (!items || items.length === 0) && !($slots['table-busy'] && this.computedBusy)) {
-      var empty = normalizeSlot(this.isFiltered ? 'emptyfiltered' : 'empty', {
-        emptyFilteredHtml: this.emptyFilteredHtml,
-        emptyFilteredText: this.emptyFilteredText,
-        emptyHtml: this.emptyHtml,
-        emptyText: this.emptyText,
-        fields: fields,
-        items: items
-      });
+    if (this.showEmpty && (!items || items.length === 0)) {
+      var empty = this.isFiltered ? $slots['emptyfiltered'] : $slots['empty'];
 
       if (!empty) {
         empty = h('div', {
           class: ['text-center', 'my-2'],
-          domProps: this.isFiltered ? (0, _html.htmlOrText)(this.emptyFilteredHtml, this.emptyFilteredText) : (0, _html.htmlOrText)(this.emptyHtml, this.emptyText)
+          domProps: this.isFiltered ? (0, _html.htmlOrText)(this.emptyFilteredHTML, this.emptyFilteredText) : (0, _html.htmlOrText)(this.emptyHTML, this.emptyText)
         });
       }
 
@@ -16618,7 +17494,8 @@ var _default2 = {
 
     if (isTransGroup) {
       tbodyOn = this.tbodyTransitionHandlers || {};
-      tbodyProps = _objectSpread({}, this.tbodyTransitionProps || {}, {
+      tbodyProps = (0, _object.assign)({}, this.tbodyTransitionProps || {}, // Always use tbody element as tag. Users can't override this.
+      {
         tag: 'tbody'
       });
     } // Assemble the rows into the tbody
@@ -16637,7 +17514,7 @@ var _default2 = {
       key: 'b-table',
       staticClass: 'table b-table',
       class: this.tableClasses,
-      attrs: _objectSpread({
+      attrs: (0, _objectSpread2.default)({
         // We set aria-rowcount before merging in $attrs, in case user has supplied their own
         'aria-rowcount': this.filteredItems.length > items.length ? String(this.filteredItems.length) : null
       }, this.$attrs, {
@@ -16674,12 +17551,16 @@ exports.default = _default2;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _tabs = __webpack_require__(/*! ./tabs */ "./node_modules/bootstrap-vue/es/components/tabs/tabs.js");
+var _tabs = _interopRequireDefault(__webpack_require__(/*! ./tabs */ "./node_modules/bootstrap-vue/es/components/tabs/tabs.js"));
 
-var _tab = __webpack_require__(/*! ./tab */ "./node_modules/bootstrap-vue/es/components/tabs/tab.js");
+var _tab = _interopRequireDefault(__webpack_require__(/*! ./tab */ "./node_modules/bootstrap-vue/es/components/tabs/tab.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -16706,10 +17587,14 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _id = __webpack_require__(/*! ../../mixins/id */ "./node_modules/bootstrap-vue/es/mixins/id.js");
+var _id = _interopRequireDefault(__webpack_require__(/*! ../../mixins/id */ "./node_modules/bootstrap-vue/es/mixins/id.js"));
 
 // @vue/component
 var _default2 = {
@@ -16928,18 +17813,22 @@ exports.default = _default2;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _link = __webpack_require__(/*! ../link/link */ "./node_modules/bootstrap-vue/es/components/link/link.js");
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
 
-var _keyCodes = __webpack_require__(/*! ../../utils/key-codes */ "./node_modules/bootstrap-vue/es/utils/key-codes.js");
+var _link = _interopRequireDefault(__webpack_require__(/*! ../link/link */ "./node_modules/bootstrap-vue/es/components/link/link.js"));
 
-var _observeDom = __webpack_require__(/*! ../../utils/observe-dom */ "./node_modules/bootstrap-vue/es/utils/observe-dom.js");
+var _keyCodes = _interopRequireDefault(__webpack_require__(/*! ../../utils/key-codes */ "./node_modules/bootstrap-vue/es/utils/key-codes.js"));
 
-var _id = __webpack_require__(/*! ../../mixins/id */ "./node_modules/bootstrap-vue/es/mixins/id.js");
+var _observeDom = _interopRequireDefault(__webpack_require__(/*! ../../utils/observe-dom */ "./node_modules/bootstrap-vue/es/utils/observe-dom.js"));
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+var _id = _interopRequireDefault(__webpack_require__(/*! ../../mixins/id */ "./node_modules/bootstrap-vue/es/mixins/id.js"));
 
 // Private Helper component
 var BTabButtonHelper = {
@@ -17366,7 +18255,7 @@ var _default = {
 
     var fallbackTab = tabs.find(function (tab) {
       return !tab.disabled;
-    }); // For each b-tab found create the tab buttons
+    }); // For each b-tab found create teh tab buttons
 
     var buttons = tabs.map(function (tab, index) {
       var buttonId = tab.controlledBy || _this2.safeId("_BV_tab_".concat(index + 1, "_"));
@@ -17410,7 +18299,7 @@ var _default = {
     }); // Nav 'button' wrapper
 
     var navs = h('ul', {
-      class: ['nav', (_ref = {}, _defineProperty(_ref, "nav-".concat(this.navStyle), !this.noNavStyle), _defineProperty(_ref, "card-header-".concat(this.navStyle), this.card && !this.vertical), _defineProperty(_ref, 'card-header', this.card && this.vertical), _defineProperty(_ref, 'h-100', this.card && this.vertical), _defineProperty(_ref, 'flex-column', this.vertical), _defineProperty(_ref, 'border-bottom-0', this.vertical), _defineProperty(_ref, 'rounded-0', this.vertical), _defineProperty(_ref, "small", this.small), _ref), this.navClass],
+      class: ['nav', (_ref = {}, (0, _defineProperty2.default)(_ref, "nav-".concat(this.navStyle), !this.noNavStyle), (0, _defineProperty2.default)(_ref, "card-header-".concat(this.navStyle), this.card && !this.vertical), (0, _defineProperty2.default)(_ref, 'card-header', this.card && this.vertical), (0, _defineProperty2.default)(_ref, 'h-100', this.card && this.vertical), (0, _defineProperty2.default)(_ref, 'flex-column', this.vertical), (0, _defineProperty2.default)(_ref, 'border-bottom-0', this.vertical), (0, _defineProperty2.default)(_ref, 'rounded-0', this.vertical), (0, _defineProperty2.default)(_ref, "small", this.small), _ref), this.navClass],
       attrs: {
         role: 'tablist',
         id: this.safeId('_BV_tab_controls_')
@@ -17474,12 +18363,16 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _tooltip = __webpack_require__(/*! ./tooltip */ "./node_modules/bootstrap-vue/es/components/tooltip/tooltip.js");
+var _tooltip = _interopRequireDefault(__webpack_require__(/*! ./tooltip */ "./node_modules/bootstrap-vue/es/components/tooltip/tooltip.js"));
 
-var _tooltip2 = __webpack_require__(/*! ../../directives/tooltip */ "./node_modules/bootstrap-vue/es/directives/tooltip/index.js");
+var _tooltip2 = _interopRequireDefault(__webpack_require__(/*! ../../directives/tooltip */ "./node_modules/bootstrap-vue/es/directives/tooltip/index.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -17506,14 +18399,18 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _tooltip = __webpack_require__(/*! ../../utils/tooltip.class */ "./node_modules/bootstrap-vue/es/utils/tooltip.class.js");
+var _tooltip = _interopRequireDefault(__webpack_require__(/*! ../../utils/tooltip.class */ "./node_modules/bootstrap-vue/es/utils/tooltip.class.js"));
 
-var _warn = __webpack_require__(/*! ../../utils/warn */ "./node_modules/bootstrap-vue/es/utils/warn.js");
+var _warn = _interopRequireDefault(__webpack_require__(/*! ../../utils/warn */ "./node_modules/bootstrap-vue/es/utils/warn.js"));
 
-var _toolpop = __webpack_require__(/*! ../../mixins/toolpop */ "./node_modules/bootstrap-vue/es/mixins/toolpop.js");
+var _toolpop = _interopRequireDefault(__webpack_require__(/*! ../../mixins/toolpop */ "./node_modules/bootstrap-vue/es/mixins/toolpop.js"));
 
 // @vue/component
 var _default = {
@@ -17579,27 +18476,51 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
-var _toggle = __webpack_require__(/*! ./toggle */ "./node_modules/bootstrap-vue/es/directives/toggle/index.js");
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+Object.defineProperty(exports, "Toggle", {
+  enumerable: true,
+  get: function get() {
+    return _toggle.default;
+  }
+});
+Object.defineProperty(exports, "Modal", {
+  enumerable: true,
+  get: function get() {
+    return _modal.default;
+  }
+});
+Object.defineProperty(exports, "Scrollspy", {
+  enumerable: true,
+  get: function get() {
+    return _scrollspy.default;
+  }
+});
+Object.defineProperty(exports, "Tooltip", {
+  enumerable: true,
+  get: function get() {
+    return _tooltip.default;
+  }
+});
+Object.defineProperty(exports, "Popover", {
+  enumerable: true,
+  get: function get() {
+    return _popover.default;
+  }
+});
 
-exports.Toggle = _toggle.default;
+var _toggle = _interopRequireDefault(__webpack_require__(/*! ./toggle */ "./node_modules/bootstrap-vue/es/directives/toggle/index.js"));
 
-var _modal = __webpack_require__(/*! ./modal */ "./node_modules/bootstrap-vue/es/directives/modal/index.js");
+var _modal = _interopRequireDefault(__webpack_require__(/*! ./modal */ "./node_modules/bootstrap-vue/es/directives/modal/index.js"));
 
-exports.Modal = _modal.default;
+var _scrollspy = _interopRequireDefault(__webpack_require__(/*! ./scrollspy */ "./node_modules/bootstrap-vue/es/directives/scrollspy/index.js"));
 
-var _scrollspy = __webpack_require__(/*! ./scrollspy */ "./node_modules/bootstrap-vue/es/directives/scrollspy/index.js");
+var _tooltip = _interopRequireDefault(__webpack_require__(/*! ./tooltip */ "./node_modules/bootstrap-vue/es/directives/tooltip/index.js"));
 
-exports.Scrollspy = _scrollspy.default;
-
-var _tooltip = __webpack_require__(/*! ./tooltip */ "./node_modules/bootstrap-vue/es/directives/tooltip/index.js");
-
-exports.Tooltip = _tooltip.default;
-
-var _popover = __webpack_require__(/*! ./popover */ "./node_modules/bootstrap-vue/es/directives/popover/index.js");
-
-exports.Popover = _popover.default;
+var _popover = _interopRequireDefault(__webpack_require__(/*! ./popover */ "./node_modules/bootstrap-vue/es/directives/popover/index.js"));
 
 /***/ }),
 
@@ -17613,10 +18534,14 @@ exports.Popover = _popover.default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _modal = __webpack_require__(/*! ./modal */ "./node_modules/bootstrap-vue/es/directives/modal/modal.js");
+var _modal = _interopRequireDefault(__webpack_require__(/*! ./modal */ "./node_modules/bootstrap-vue/es/directives/modal/modal.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -17642,7 +18567,9 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
 var _target = __webpack_require__(/*! ../../utils/target */ "./node_modules/bootstrap-vue/es/utils/target.js");
@@ -17691,10 +18618,14 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _popover = __webpack_require__(/*! ./popover */ "./node_modules/bootstrap-vue/es/directives/popover/popover.js");
+var _popover = _interopRequireDefault(__webpack_require__(/*! ./popover */ "./node_modules/bootstrap-vue/es/directives/popover/popover.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -17720,22 +18651,22 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js");
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js"));
 
-var _popover = __webpack_require__(/*! ../../utils/popover.class */ "./node_modules/bootstrap-vue/es/utils/popover.class.js");
+var _popper = _interopRequireDefault(__webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js"));
+
+var _popover = _interopRequireDefault(__webpack_require__(/*! ../../utils/popover.class */ "./node_modules/bootstrap-vue/es/utils/popover.class.js"));
 
 var _object = __webpack_require__(/*! ../../utils/object */ "./node_modules/bootstrap-vue/es/utils/object.js");
 
-var _warn = __webpack_require__(/*! ../../utils/warn */ "./node_modules/bootstrap-vue/es/utils/warn.js");
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+var _warn = _interopRequireDefault(__webpack_require__(/*! ../../utils/warn */ "./node_modules/bootstrap-vue/es/utils/warn.js"));
 
 var inBrowser = typeof window !== 'undefined' && typeof document !== 'undefined'; // Key which we use to store tooltip object on element
 
@@ -17762,9 +18693,9 @@ function parseBindings(bindings) {
   } else if (typeof bindings.value === 'function') {
     // Content generator function
     config.content = bindings.value;
-  } else if (_typeof(bindings.value) === 'object') {
+  } else if ((0, _typeof2.default)(bindings.value) === 'object') {
     // Value is config object, so merge
-    config = _objectSpread({}, config, bindings.value);
+    config = (0, _object.assign)(bindings.value);
   } // If Argument, assume element ID of container element
 
 
@@ -17915,10 +18846,14 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _scrollspy = __webpack_require__(/*! ./scrollspy */ "./node_modules/bootstrap-vue/es/directives/scrollspy/scrollspy.js");
+var _scrollspy = _interopRequireDefault(__webpack_require__(/*! ./scrollspy */ "./node_modules/bootstrap-vue/es/directives/scrollspy/scrollspy.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -17944,24 +18879,28 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _observeDom = __webpack_require__(/*! ../../utils/observe-dom */ "./node_modules/bootstrap-vue/es/utils/observe-dom.js");
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js"));
 
-var _warn = __webpack_require__(/*! ../../utils/warn */ "./node_modules/bootstrap-vue/es/utils/warn.js");
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _object = __webpack_require__(/*! ../../utils/object */ "./node_modules/bootstrap-vue/es/utils/object.js");
+
+var _observeDom = _interopRequireDefault(__webpack_require__(/*! ../../utils/observe-dom */ "./node_modules/bootstrap-vue/es/utils/observe-dom.js"));
+
+var _warn = _interopRequireDefault(__webpack_require__(/*! ../../utils/warn */ "./node_modules/bootstrap-vue/es/utils/warn.js"));
 
 var _dom = __webpack_require__(/*! ../../utils/dom */ "./node_modules/bootstrap-vue/es/utils/dom.js");
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+/*
+ * ScrollSpy class definition
+ */
 
 /*
  * Constants / Defaults
@@ -18052,8 +18991,7 @@ var ScrollSpy
 /*#__PURE__*/
 function () {
   function ScrollSpy(element, config, $root) {
-    _classCallCheck(this, ScrollSpy);
-
+    (0, _classCallCheck2.default)(this, ScrollSpy);
     // The element we activate links in
     this.$el = element;
     this.$scroller = null;
@@ -18070,7 +19008,7 @@ function () {
     this.updateConfig(config);
   }
 
-  _createClass(ScrollSpy, [{
+  (0, _createClass2.default)(ScrollSpy, [{
     key: "updateConfig",
     value: function updateConfig(config, $root) {
       if (this.$scroller) {
@@ -18079,7 +19017,7 @@ function () {
         this.$scroller = null;
       }
 
-      var cfg = _objectSpread({}, this.constructor.Default, config);
+      var cfg = (0, _object.assign)({}, this.constructor.Default, config);
 
       if ($root) {
         this.$root = $root;
@@ -18446,7 +19384,6 @@ function () {
       return DefaultType;
     }
   }]);
-
   return ScrollSpy;
 }();
 
@@ -18465,17 +19402,24 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _scrollspy = __webpack_require__(/*! ./scrollspy.class */ "./node_modules/bootstrap-vue/es/directives/scrollspy/scrollspy.class.js");
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js"));
+
+var _scrollspy = _interopRequireDefault(__webpack_require__(/*! ./scrollspy.class */ "./node_modules/bootstrap-vue/es/directives/scrollspy/scrollspy.class.js"));
 
 var _object = __webpack_require__(/*! ../../utils/object */ "./node_modules/bootstrap-vue/es/utils/object.js");
 
 var _env = __webpack_require__(/*! ../../utils/env */ "./node_modules/bootstrap-vue/es/utils/env.js");
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
+/*
+ * ScrollSpy directive v-b-scrollspy
+ */
 // Key we use to store our Instance
 var BVSS = '__BV_ScrollSpy__'; // Generate config from bindings
 
@@ -18506,7 +19450,7 @@ function makeConfig(binding)
   } else if (typeof binding.value === 'number') {
     // Value is offset
     config.offset = Math.round(binding.value);
-  } else if (_typeof(binding.value) === 'object') {
+  } else if ((0, _typeof2.default)(binding.value) === 'object') {
     // Value is config object
     // Filter the object based on our supported config options
     (0, _object.keys)(binding.value).filter(function (k) {
@@ -18596,10 +19540,14 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _toggle = __webpack_require__(/*! ./toggle */ "./node_modules/bootstrap-vue/es/directives/toggle/toggle.js");
+var _toggle = _interopRequireDefault(__webpack_require__(/*! ./toggle */ "./node_modules/bootstrap-vue/es/directives/toggle/toggle.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -18625,10 +19573,14 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _target = __webpack_require__(/*! ../../utils/target */ "./node_modules/bootstrap-vue/es/utils/target.js");
+var _target = _interopRequireDefault(__webpack_require__(/*! ../../utils/target */ "./node_modules/bootstrap-vue/es/utils/target.js"));
 
 var _dom = __webpack_require__(/*! ../../utils/dom */ "./node_modules/bootstrap-vue/es/utils/dom.js");
 
@@ -18704,10 +19656,14 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _tooltip = __webpack_require__(/*! ./tooltip */ "./node_modules/bootstrap-vue/es/directives/tooltip/tooltip.js");
+var _tooltip = _interopRequireDefault(__webpack_require__(/*! ./tooltip */ "./node_modules/bootstrap-vue/es/directives/tooltip/tooltip.js"));
 
 var _plugins = __webpack_require__(/*! ../../utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -18733,22 +19689,22 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js");
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js"));
 
-var _tooltip = __webpack_require__(/*! ../../utils/tooltip.class */ "./node_modules/bootstrap-vue/es/utils/tooltip.class.js");
+var _popper = _interopRequireDefault(__webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js"));
+
+var _tooltip = _interopRequireDefault(__webpack_require__(/*! ../../utils/tooltip.class */ "./node_modules/bootstrap-vue/es/utils/tooltip.class.js"));
 
 var _object = __webpack_require__(/*! ../../utils/object */ "./node_modules/bootstrap-vue/es/utils/object.js");
 
-var _warn = __webpack_require__(/*! ../../utils/warn */ "./node_modules/bootstrap-vue/es/utils/warn.js");
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+var _warn = _interopRequireDefault(__webpack_require__(/*! ../../utils/warn */ "./node_modules/bootstrap-vue/es/utils/warn.js"));
 
 var inBrowser = typeof window !== 'undefined' && typeof document !== 'undefined'; // Key which we use to store tooltip object on element
 
@@ -18775,9 +19731,9 @@ function parseBindings(bindings) {
   } else if (typeof bindings.value === 'function') {
     // Title generator function
     config.title = bindings.value;
-  } else if (_typeof(bindings.value) === 'object') {
+  } else if ((0, _typeof2.default)(bindings.value) === 'object') {
     // Value is config object, so merge
-    config = _objectSpread({}, config, bindings.value);
+    config = (0, _object.assign)(bindings.value);
   } // If Argument, assume element ID of container element
 
 
@@ -18928,12 +19884,16 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireWildcard = __webpack_require__(/*! @babel/runtime/helpers/interopRequireWildcard */ "./node_modules/@babel/runtime/helpers/interopRequireWildcard.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var componentPlugins = __webpack_require__(/*! ./components */ "./node_modules/bootstrap-vue/es/components/index.js");
+var componentPlugins = _interopRequireWildcard(__webpack_require__(/*! ./components */ "./node_modules/bootstrap-vue/es/components/index.js"));
 
-var directivePlugins = __webpack_require__(/*! ./directives */ "./node_modules/bootstrap-vue/es/directives/index.js");
+var directivePlugins = _interopRequireWildcard(__webpack_require__(/*! ./directives */ "./node_modules/bootstrap-vue/es/directives/index.js"));
 
 var _plugins = __webpack_require__(/*! ./utils/plugins */ "./node_modules/bootstrap-vue/es/utils/plugins.js");
 
@@ -18971,7 +19931,9 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 // @vue/component
 var _default = {
@@ -19008,7 +19970,9 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
 var _dom = __webpack_require__(/*! ../utils/dom */ "./node_modules/bootstrap-vue/es/utils/dom.js");
@@ -19077,26 +20041,28 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js");
+var _popper = _interopRequireDefault(__webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js"));
 
-var _clickOut = __webpack_require__(/*! ./click-out */ "./node_modules/bootstrap-vue/es/mixins/click-out.js");
+var _clickOut = _interopRequireDefault(__webpack_require__(/*! ./click-out */ "./node_modules/bootstrap-vue/es/mixins/click-out.js"));
 
-var _focusIn = __webpack_require__(/*! ./focus-in */ "./node_modules/bootstrap-vue/es/mixins/focus-in.js");
+var _focusIn = _interopRequireDefault(__webpack_require__(/*! ./focus-in */ "./node_modules/bootstrap-vue/es/mixins/focus-in.js"));
 
-var _keyCodes = __webpack_require__(/*! ../utils/key-codes */ "./node_modules/bootstrap-vue/es/utils/key-codes.js");
+var _object = __webpack_require__(/*! ../utils/object */ "./node_modules/bootstrap-vue/es/utils/object.js");
 
-var _bvEvent = __webpack_require__(/*! ../utils/bv-event.class */ "./node_modules/bootstrap-vue/es/utils/bv-event.class.js");
+var _keyCodes = _interopRequireDefault(__webpack_require__(/*! ../utils/key-codes */ "./node_modules/bootstrap-vue/es/utils/key-codes.js"));
 
-var _warn = __webpack_require__(/*! ../utils/warn */ "./node_modules/bootstrap-vue/es/utils/warn.js");
+var _bvEvent = _interopRequireDefault(__webpack_require__(/*! ../utils/bv-event.class */ "./node_modules/bootstrap-vue/es/utils/bv-event.class.js"));
+
+var _warn = _interopRequireDefault(__webpack_require__(/*! ../utils/warn */ "./node_modules/bootstrap-vue/es/utils/warn.js"));
 
 var _dom = __webpack_require__(/*! ../utils/dom */ "./node_modules/bootstrap-vue/es/utils/dom.js");
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 // Return an Array of visible items
 function filterVisible(els) {
@@ -19219,7 +20185,7 @@ var _default2 = {
         if (bvEvt.defaultPrevented) {
           // Reset value and exit if canceled
           this.visibleChangePrevented = true;
-          this.visible = oldValue; // Just in case a child element triggereded this.hide(true)
+          this.visible = oldValue; // Just in case a child element triggerded this.hide(true)
 
           this.$off('hidden', this.focusToggler);
           return;
@@ -19360,7 +20326,7 @@ var _default2 = {
         };
       }
 
-      return _objectSpread({}, popperConfig, this.popperOpts || {});
+      return (0, _object.assign)(popperConfig, this.popperOpts || {});
     },
     whileOpenListen: function whileOpenListen(open) {
       // turn listeners on/off while open
@@ -19567,7 +20533,9 @@ exports.default = _default2;
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
 var _dom = __webpack_require__(/*! ../utils/dom */ "./node_modules/bootstrap-vue/es/utils/dom.js");
@@ -19628,7 +20596,9 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 // @vue/component
 var _default = {
@@ -19658,7 +20628,9 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
 var _array = __webpack_require__(/*! ../utils/array */ "./node_modules/bootstrap-vue/es/utils/array.js");
@@ -19764,7 +20736,9 @@ exports.default = _default2;
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
 var _html = __webpack_require__(/*! ../utils/html */ "./node_modules/bootstrap-vue/es/utils/html.js");
@@ -19886,10 +20860,14 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/defineProperty */ "./node_modules/@babel/runtime/helpers/defineProperty.js"));
 
 // @vue/component
 var _default = {
@@ -20092,7 +21070,7 @@ var _default = {
       }, defaultSlot); // Wrap it in a div
 
       return h('div', {
-        class: _defineProperty({
+        class: (0, _defineProperty2.default)({
           'form-check': this.is_Plain,
           'form-check-inline': this.is_Plain && this.is_Inline,
           'custom-control': this.is_Custom,
@@ -20119,7 +21097,9 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 // @vue/component
 var _default = {
@@ -20200,7 +21180,9 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 // @vue/component
 var _default = {
@@ -20233,7 +21215,9 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
 /* Form control contextual state class computation
@@ -20295,7 +21279,9 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 // @vue/component
 var _default = {
@@ -20499,7 +21485,9 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 // @vue/component
 var _default = {
@@ -20571,7 +21559,9 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 // @vue/component
 var _default = {
@@ -20611,7 +21601,9 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
 /*
@@ -20676,7 +21668,9 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
 var _array = __webpack_require__(/*! ../utils/array */ "./node_modules/bootstrap-vue/es/utils/array.js");
@@ -20762,20 +21756,24 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _warn = __webpack_require__(/*! ../utils/warn */ "./node_modules/bootstrap-vue/es/utils/warn.js");
+var _warn = _interopRequireDefault(__webpack_require__(/*! ../utils/warn */ "./node_modules/bootstrap-vue/es/utils/warn.js"));
 
-var _range = __webpack_require__(/*! ../utils/range */ "./node_modules/bootstrap-vue/es/utils/range.js");
+var _range = _interopRequireDefault(__webpack_require__(/*! ../utils/range */ "./node_modules/bootstrap-vue/es/utils/range.js"));
 
-var _keyCodes = __webpack_require__(/*! ../utils/key-codes */ "./node_modules/bootstrap-vue/es/utils/key-codes.js");
+var _keyCodes = _interopRequireDefault(__webpack_require__(/*! ../utils/key-codes */ "./node_modules/bootstrap-vue/es/utils/key-codes.js"));
 
 var _dom = __webpack_require__(/*! ../utils/dom */ "./node_modules/bootstrap-vue/es/utils/dom.js");
 
 var _html = __webpack_require__(/*! ../utils/html */ "./node_modules/bootstrap-vue/es/utils/html.js");
 
-var _link = __webpack_require__(/*! ../components/link/link */ "./node_modules/bootstrap-vue/es/components/link/link.js");
+var _link = _interopRequireDefault(__webpack_require__(/*! ../components/link/link */ "./node_modules/bootstrap-vue/es/components/link/link.js"));
 
 /*
  * Comon props, computed, data, render function, and methods for b-pagination and b-pagination-nav
@@ -21347,23 +22345,29 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js"));
+
 var _array = __webpack_require__(/*! ../utils/array */ "./node_modules/bootstrap-vue/es/utils/array.js");
+
+var _object = __webpack_require__(/*! ../utils/object */ "./node_modules/bootstrap-vue/es/utils/object.js");
 
 var _dom = __webpack_require__(/*! ../utils/dom */ "./node_modules/bootstrap-vue/es/utils/dom.js");
 
 var _ssr = __webpack_require__(/*! ../utils/ssr */ "./node_modules/bootstrap-vue/es/utils/ssr.js");
 
-var _observeDom = __webpack_require__(/*! ../utils/observe-dom */ "./node_modules/bootstrap-vue/es/utils/observe-dom.js");
+var _observeDom = _interopRequireDefault(__webpack_require__(/*! ../utils/observe-dom */ "./node_modules/bootstrap-vue/es/utils/observe-dom.js"));
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
+/*
+ * Tooltip/Popover component mixin
+ * Common props
+ */
 var PLACEMENTS = {
   top: 'top',
   topleft: 'topleft',
@@ -21433,7 +22437,7 @@ var _default = {
   computed: {
     baseConfig: function baseConfig() {
       var cont = this.container;
-      var delay = _typeof(this.delay) === 'object' ? this.delay : parseInt(this.delay, 10) || 0;
+      var delay = (0, _typeof2.default)(this.delay) === 'object' ? this.delay : parseInt(this.delay, 10) || 0;
       return {
         // Title prop
         title: (this.title || '').trim() || '',
@@ -21568,7 +22572,7 @@ var _default = {
   },
   methods: {
     getConfig: function getConfig() {
-      var cfg = _objectSpread({}, this.baseConfig);
+      var cfg = (0, _object.assign)({}, this.baseConfig);
 
       if (this.$refs.title && this.$refs.title.innerHTML.trim()) {
         // If slot has content, it overrides 'title' prop
@@ -21627,10 +22631,10 @@ var _default = {
       if (typeof target === 'string') {
         // Assume ID of element
         return (0, _dom.getById)(target);
-      } else if (_typeof(target) === 'object' && (0, _dom.isElement)(target.$el)) {
+      } else if ((0, _typeof2.default)(target) === 'object' && (0, _dom.isElement)(target.$el)) {
         // Component reference
         return target.$el;
-      } else if (_typeof(target) === 'object' && (0, _dom.isElement)(target)) {
+      } else if ((0, _typeof2.default)(target) === 'object' && (0, _dom.isElement)(target)) {
         // Element reference
         return target;
       }
@@ -21725,7 +22729,9 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.concat = concat;
 exports.arrayIncludes = exports.isArray = exports.from = void 0;
 
@@ -21908,24 +22914,25 @@ function concat() {
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js"));
+
 var _object = __webpack_require__(/*! ../utils/object */ "./node_modules/bootstrap-vue/es/utils/object.js");
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 var BvEvent =
 /*#__PURE__*/
 function () {
   function BvEvent(type) {
     var eventInit = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-
-    _classCallCheck(this, BvEvent);
+    (0, _classCallCheck2.default)(this, BvEvent);
 
     // Start by emulating native Event constructor.
     if (!type) {
@@ -21965,7 +22972,7 @@ function () {
     });
   }
 
-  _createClass(BvEvent, null, [{
+  (0, _createClass2.default)(BvEvent, null, [{
     key: "defaults",
     value: function defaults() {
       return {
@@ -21978,7 +22985,6 @@ function () {
       };
     }
   }]);
-
   return BvEvent;
 }();
 
@@ -21996,18 +23002,20 @@ exports.default = BvEvent;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = copyProps;
+
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js"));
 
 var _array = __webpack_require__(/*! ./array */ "./node_modules/bootstrap-vue/es/utils/array.js");
 
-var _identity = __webpack_require__(/*! ./identity */ "./node_modules/bootstrap-vue/es/utils/identity.js");
+var _object = __webpack_require__(/*! ./object */ "./node_modules/bootstrap-vue/es/utils/object.js");
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+var _identity = _interopRequireDefault(__webpack_require__(/*! ./identity */ "./node_modules/bootstrap-vue/es/utils/identity.js"));
 
 /**
  * @param {[]|{}} props
@@ -22025,8 +23033,8 @@ function copyProps(props) {
 
   for (var prop in props) {
     if (props.hasOwnProperty(prop)) {
-      if (_typeof(prop) === 'object') {
-        copied[transformFn(prop)] = _objectSpread({}, props[prop]);
+      if ((0, _typeof2.default)(prop) === 'object') {
+        copied[transformFn(prop)] = (0, _object.assign)({}, props[prop]);
       } else {
         copied[transformFn(prop)] = props[prop];
       }
@@ -22048,14 +23056,18 @@ function copyProps(props) {
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.position = exports.offset = exports.getCS = exports.getBCR = exports.hasAttr = exports.getAttr = exports.removeAttr = exports.setAttr = exports.hasClass = exports.removeClass = exports.addClass = exports.getById = exports.contains = exports.closest = exports.matches = exports.select = exports.selectAll = exports.reflow = exports.isDisabled = exports.isVisible = exports.isElement = exports.eventOff = exports.eventOn = void 0;
+
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js"));
 
 var _array = __webpack_require__(/*! ./array */ "./node_modules/bootstrap-vue/es/utils/array.js");
 
 var _env = __webpack_require__(/*! ./env */ "./node_modules/bootstrap-vue/es/utils/env.js");
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 // Determine if the browser supports the option passive for events
 var passiveEventSupported = false;
@@ -22083,7 +23095,7 @@ function parseEventOptions(options) {
   var useCapture = false;
 
   if (options) {
-    if (_typeof(options) === 'object') {
+    if ((0, _typeof2.default)(options) === 'object') {
       // eslint-disable-next-line no-unneeded-ternary
       useCapture = options.useCapture ? true : false;
     } else {
@@ -22414,7 +23426,9 @@ exports.position = position;
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.hasPointerEvent = exports.hasTouchSupport = exports.isServer = exports.inBrowser = void 0;
 // Info about the current environment
 var inBrowser = typeof document !== 'undefined' && typeof window !== 'undefined';
@@ -22438,7 +23452,9 @@ exports.hasPointerEvent = hasPointerEvent;
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = get;
 
 /**
@@ -22460,8 +23476,7 @@ function get(holder, propName) {
   var result = holder;
   var lastPropName;
 
-  while ((lastPropName = propParts.shift()) !== undefined && // Fix for https://github.com/bootstrap-vue/bootstrap-vue/issues/2623
-  result !== undefined && result !== null) {
+  while ((lastPropName = propParts.shift()) !== undefined) {
     if (result[lastPropName] === undefined) return undefined;
     result = result[lastPropName];
   }
@@ -22481,7 +23496,9 @@ function get(holder, propName) {
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.stripTags = stripTags;
 exports.htmlOrText = htmlOrText;
 var stripTagsRegex = /(<([^>]+)>)/gi;
@@ -22511,7 +23528,9 @@ function htmlOrText(innerHTML, textContent) {
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = identity;
 
 function identity(x) {
@@ -22530,7 +23549,9 @@ function identity(x) {
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
 /*
@@ -22573,32 +23594,26 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
+
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js"));
 
 var _array = __webpack_require__(/*! ./array */ "./node_modules/bootstrap-vue/es/utils/array.js");
 
 var _object = __webpack_require__(/*! ./object */ "./node_modules/bootstrap-vue/es/utils/object.js");
 
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function isDate(obj) {
-  return obj instanceof Date;
-}
-
-function isFile(obj) {
-  return obj instanceof File;
-}
 /**
  * Quick object check - this is primarily used to tell
  * Objects from primitive values when we know the value
  * is a JSON-compliant type.
- * Note object could be a complex type like array, date, etc.
  */
-
-
 function isObject(obj) {
-  return obj !== null && _typeof(obj) === 'object';
+  return obj !== null && (0, _typeof2.default)(obj) === 'object';
 }
 /**
  * Check if two values are loosely equal - that is,
@@ -22608,65 +23623,40 @@ function isObject(obj) {
 
 
 function looseEqual(a, b) {
-  if (a === b) {
-    return true;
-  }
+  if (a === b) return true;
+  var isObjectA = isObject(a);
+  var isObjectB = isObject(b);
 
-  if (_typeof(a) !== _typeof(b)) {
-    return false;
-  }
+  if (isObjectA && isObjectB) {
+    try {
+      var isArrayA = (0, _array.isArray)(a);
+      var isArrayB = (0, _array.isArray)(b);
 
-  var validTypesCount = [isDate(a), isDate(b)].filter(Boolean).length;
-
-  if (validTypesCount > 0) {
-    return validTypesCount === 2 ? a.getTime() === b.getTime() : false;
-  }
-
-  validTypesCount = [isFile(a), isFile(b)].filter(Boolean).length;
-
-  if (validTypesCount > 0) {
-    return validTypesCount === 2 ? a === b : false;
-  }
-
-  validTypesCount = [(0, _array.isArray)(a), (0, _array.isArray)(b)].filter(Boolean).length;
-
-  if (validTypesCount > 0) {
-    return validTypesCount === 2 ? a.length === b.length && a.every(function (e, i) {
-      return looseEqual(e, b[i]);
-    }) : false;
-  }
-
-  validTypesCount = [isObject(a), isObject(b)].filter(Boolean).length;
-
-  if (validTypesCount > 0) {
-    /* istanbul ignore if: this if will probably never be called */
-    if (validTypesCount === 1) {
-      return false;
-    }
-
-    var aKeysCount = (0, _object.keys)(a).length;
-    var bKeysCount = (0, _object.keys)(b).length;
-
-    if (aKeysCount !== bKeysCount) {
-      return false;
-    }
-
-    if (aKeysCount === 0 && bKeysCount === 0) {
-      return String(a) === String(b);
-    } // Using for loop over `Object.keys()` here since some class
-    // keys are not handled correctly otherwise
-
-
-    for (var key in a) {
-      if ([a.hasOwnProperty(key), b.hasOwnProperty(key)].filter(Boolean).length === 1 || !looseEqual(a[key], b[key])) {
+      if (isArrayA && isArrayB) {
+        return a.length === b.length && a.every(function (e, i) {
+          return looseEqual(e, b[i]);
+        });
+      } else if (a instanceof Date && b instanceof Date) {
+        return a.getTime() === b.getTime();
+      } else if (!isArrayA && !isArrayB) {
+        var keysA = (0, _object.keys)(a);
+        var keysB = (0, _object.keys)(b);
+        return keysA.length === keysB.length && keysA.every(function (key) {
+          return looseEqual(a[key], b[key]);
+        });
+      } else {
+        /* istanbul ignore next */
         return false;
       }
+    } catch (e) {
+      /* istanbul ignore next */
+      return false;
     }
-
-    return true;
+  } else if (!isObjectA && !isObjectB) {
+    return String(a) === String(b);
+  } else {
+    return false;
   }
-
-  return false;
 }
 
 var _default = looseEqual;
@@ -22684,10 +23674,14 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = _default;
 
-var _looseEqual = __webpack_require__(/*! ./loose-equal */ "./node_modules/bootstrap-vue/es/utils/loose-equal.js");
+var _looseEqual = _interopRequireDefault(__webpack_require__(/*! ./loose-equal */ "./node_modules/bootstrap-vue/es/utils/loose-equal.js"));
 
 function _default(arr, val) {
   // Assumes that the first argument is an array
@@ -22712,7 +23706,9 @@ function _default(arr, val) {
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = lowerFirst;
 
 /**
@@ -22738,7 +23734,9 @@ function lowerFirst(str) {
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = memoize;
 
 var _object = __webpack_require__(/*! ./object */ "./node_modules/bootstrap-vue/es/utils/object.js");
@@ -22763,7 +23761,9 @@ function memoize(fn) {
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.readonlyDescriptor = readonlyDescriptor;
 exports.is = exports.isFrozen = exports.create = exports.getPrototypeOf = exports.getOwnPropertySymbols = exports.getOwnPropertyDescriptor = exports.freeze = exports.defineProperty = exports.defineProperties = exports.keys = exports.getOwnPropertyNames = exports.assign = void 0;
 
@@ -22868,14 +23868,14 @@ function readonlyDescriptor() {
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = observeDOM;
 
+var _object = __webpack_require__(/*! ./object */ "./node_modules/bootstrap-vue/es/utils/object.js");
+
 var _dom = __webpack_require__(/*! ./dom */ "./node_modules/bootstrap-vue/es/utils/dom.js");
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 // Falback observation for legacy broswers
 // Emulate observer disconnect() method so that we can detach the events later
@@ -22947,7 +23947,7 @@ function observeDOM(el, callback, opts)
       }
     }); // Have the observer observe foo for changes in children, etc
 
-    obs.observe(el, _objectSpread({
+    obs.observe(el, (0, _object.assign)({
       childList: true,
       subtree: true
     }, opts));
@@ -22973,14 +23973,18 @@ function observeDOM(el, callback, opts)
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = pluckProps;
 
 var _object = __webpack_require__(/*! ./object */ "./node_modules/bootstrap-vue/es/utils/object.js");
 
 var _array = __webpack_require__(/*! ./array */ "./node_modules/bootstrap-vue/es/utils/array.js");
 
-var _identity = __webpack_require__(/*! ./identity */ "./node_modules/bootstrap-vue/es/utils/identity.js");
+var _identity = _interopRequireDefault(__webpack_require__(/*! ./identity */ "./node_modules/bootstrap-vue/es/utils/identity.js"));
 
 /**
  * Given an array of properties or an object of property keys,
@@ -23010,7 +24014,9 @@ function pluckProps(keysToPluck, objToPluck) {
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.registerComponent = registerComponent;
 exports.registerComponents = registerComponents;
 exports.registerDirective = registerDirective;
@@ -23101,46 +24107,40 @@ function vueUse(VuePlugin) {
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _tooltip = __webpack_require__(/*! ./tooltip.class */ "./node_modules/bootstrap-vue/es/utils/tooltip.class.js");
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js"));
+
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _possibleConstructorReturn2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/possibleConstructorReturn */ "./node_modules/@babel/runtime/helpers/possibleConstructorReturn.js"));
+
+var _getPrototypeOf2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/getPrototypeOf */ "./node_modules/@babel/runtime/helpers/getPrototypeOf.js"));
+
+var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/inherits */ "./node_modules/@babel/runtime/helpers/inherits.js"));
+
+var _tooltip = _interopRequireDefault(__webpack_require__(/*! ./tooltip.class */ "./node_modules/bootstrap-vue/es/utils/tooltip.class.js"));
+
+var _object = __webpack_require__(/*! ./object */ "./node_modules/bootstrap-vue/es/utils/object.js");
 
 var _dom = __webpack_require__(/*! ./dom */ "./node_modules/bootstrap-vue/es/utils/dom.js");
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 var NAME = 'popover';
 var CLASS_PREFIX = 'bs-popover';
 var BSCLS_PREFIX_REGEX = new RegExp("\\b".concat(CLASS_PREFIX, "\\S+"), 'g');
-
-var Defaults = _objectSpread({}, _tooltip.default.Default, {
+var Defaults = (0, _object.assign)({}, _tooltip.default.Default, {
   placement: 'right',
   trigger: 'click',
   content: '',
   template: '<div class="popover" role="tooltip">' + '<div class="arrow"></div>' + '<h3 class="popover-header"></h3>' + '<div class="popover-body"></div></div>'
 });
-
 var ClassName = {
   FADE: 'fade',
   SHOW: 'show'
@@ -23155,15 +24155,14 @@ var Selector = {
 var PopOver =
 /*#__PURE__*/
 function (_ToolTip) {
-  _inherits(PopOver, _ToolTip);
+  (0, _inherits2.default)(PopOver, _ToolTip);
 
   function PopOver() {
-    _classCallCheck(this, PopOver);
-
-    return _possibleConstructorReturn(this, _getPrototypeOf(PopOver).apply(this, arguments));
+    (0, _classCallCheck2.default)(this, PopOver);
+    return (0, _possibleConstructorReturn2.default)(this, (0, _getPrototypeOf2.default)(PopOver).apply(this, arguments));
   }
 
-  _createClass(PopOver, [{
+  (0, _createClass2.default)(PopOver, [{
     key: "isWithContent",
     // Method overrides
     value: function isWithContent(tip) {
@@ -23213,7 +24212,7 @@ function (_ToolTip) {
         title = title(this.$element);
       }
 
-      if (_typeof(title) === 'object' && title.nodeType && !title.innerHTML.trim()) {
+      if ((0, _typeof2.default)(title) === 'object' && title.nodeType && !title.innerHTML.trim()) {
         // We have a dom node, but without inner content, so just return an empty string
         title = '';
       }
@@ -23240,7 +24239,7 @@ function (_ToolTip) {
         content = content(this.$element);
       }
 
-      if (_typeof(content) === 'object' && content.nodeType && !content.innerHTML.trim()) {
+      if ((0, _typeof2.default)(content) === 'object' && content.nodeType && !content.innerHTML.trim()) {
         // We have a dom node, but without inner content, so just return an empty string
         content = '';
       }
@@ -23263,7 +24262,6 @@ function (_ToolTip) {
       return NAME;
     }
   }]);
-
   return PopOver;
 }(_tooltip.default);
 
@@ -23282,10 +24280,14 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = prefixPropName;
 
-var _upperFirst = __webpack_require__(/*! ./upper-first */ "./node_modules/bootstrap-vue/es/utils/upper-first.js");
+var _upperFirst = _interopRequireDefault(__webpack_require__(/*! ./upper-first */ "./node_modules/bootstrap-vue/es/utils/upper-first.js"));
 
 /**
  * @param {string} prefix
@@ -23307,7 +24309,9 @@ function prefixPropName(prefix, value) {
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
 /**
@@ -23334,7 +24338,9 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.HTMLElement = void 0;
 // Polyfills for SSR
 var isSSR = typeof window === 'undefined';
@@ -23353,15 +24359,17 @@ exports.HTMLElement = HTMLElement;
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = stableSort;
 
 /*
  * Consitant and stable sort function across JavsaScript platforms
  *
- * Inconsistent sorts can cause SSR problems between client and server
+ * Inconsistant sorts can cause SSR problems between client and server
  * such as in <b-table> if sortBy is applied to the data on server side render.
- * Chrome and V8 native sorts are inconsistent/unstable
+ * Chrome and V8 native sorts are inconsistant/unstable
  *
  * This function uses native sort with fallback to index compare when the a and b
  * compare returns 0
@@ -23399,7 +24407,9 @@ function stableSort(array, compareFn) {
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = toStartCaseStr;
 
 /**
@@ -23441,10 +24451,14 @@ function toStartCaseStr(str) {
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = suffixPropName;
 
-var _upperFirst = __webpack_require__(/*! ./upper-first */ "./node_modules/bootstrap-vue/es/utils/upper-first.js");
+var _upperFirst = _interopRequireDefault(__webpack_require__(/*! ./upper-first */ "./node_modules/bootstrap-vue/es/utils/upper-first.js"));
 
 /**
  * Suffix can be a falsey value so nothing is appended to string.
@@ -23469,7 +24483,9 @@ function suffixPropName(suffix, str) {
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = exports.unbindTargets = exports.bindTargets = void 0;
 
 var _object = __webpack_require__(/*! ./object */ "./node_modules/bootstrap-vue/es/utils/object.js");
@@ -23545,28 +24561,28 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
-var _popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js");
+var _typeof2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/typeof */ "./node_modules/@babel/runtime/helpers/typeof.js"));
 
-var _bvEvent = __webpack_require__(/*! ./bv-event.class */ "./node_modules/bootstrap-vue/es/utils/bv-event.class.js");
+var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/classCallCheck */ "./node_modules/@babel/runtime/helpers/classCallCheck.js"));
+
+var _createClass2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime/helpers/createClass */ "./node_modules/@babel/runtime/helpers/createClass.js"));
+
+var _popper = _interopRequireDefault(__webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js"));
+
+var _bvEvent = _interopRequireDefault(__webpack_require__(/*! ./bv-event.class */ "./node_modules/bootstrap-vue/es/utils/bv-event.class.js"));
+
+var _object = __webpack_require__(/*! ./object */ "./node_modules/bootstrap-vue/es/utils/object.js");
 
 var _array = __webpack_require__(/*! ./array */ "./node_modules/bootstrap-vue/es/utils/array.js");
 
 var _dom = __webpack_require__(/*! ./dom */ "./node_modules/bootstrap-vue/es/utils/dom.js");
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 var NAME = 'tooltip';
 var CLASS_PREFIX = 'bs-tooltip';
@@ -23670,8 +24686,7 @@ var ToolTip =
 function () {
   // Main constructor
   function ToolTip(element, config, $root) {
-    _classCallCheck(this, ToolTip);
-
+    (0, _classCallCheck2.default)(this, ToolTip);
     // New tooltip object
     this.$isEnabled = true;
     this.$fadeTimeout = null;
@@ -23696,13 +24711,12 @@ function () {
   } // NOTE: Overridden by PopOver class
 
 
-  _createClass(ToolTip, [{
+  (0, _createClass2.default)(ToolTip, [{
     key: "updateConfig",
     // Update config
     value: function updateConfig(config) {
       // Merge config into defaults. We use "this" here because PopOver overrides Default
-      var updatedConfig = _objectSpread({}, this.constructor.Default, config); // Sanitize delay
-
+      var updatedConfig = (0, _object.assign)({}, this.constructor.Default, config); // Sanitize delay
 
       if (config.delay && typeof config.delay === 'number') {
         updatedConfig.delay = {
@@ -24210,7 +25224,7 @@ function () {
 
       var allowHtml = this.$config.html;
 
-      if (_typeof(content) === 'object' && content.nodeType) {
+      if ((0, _typeof2.default)(content) === 'object' && content.nodeType) {
         // content is a DOM node
         if (allowHtml) {
           if (content.parentElement !== container) {
@@ -24236,7 +25250,7 @@ function () {
         title = title(this.$element);
       }
 
-      if (_typeof(title) === 'object' && title.nodeType && !title.innerHTML.trim()) {
+      if ((0, _typeof2.default)(title) === 'object' && title.nodeType && !title.innerHTML.trim()) {
         // We have a DOM node, but without inner content, so just return empty string
         title = '';
       }
@@ -24246,7 +25260,7 @@ function () {
       }
 
       if (!title) {
-        // If an explicit title is not given, try element's title attributes
+        // If an explicit title is not given, try element's title atributes
         title = (0, _dom.getAttr)(this.$element, 'title') || (0, _dom.getAttr)(this.$element, 'data-original-title') || '';
         title = title.trim();
       }
@@ -24368,7 +25382,7 @@ function () {
         }
       } else {
         if (this.$routeWatcher) {
-          // cancel the route watcher by calling the stored reference
+          // cancel the route watcher by calling hte stored reference
           this.$routeWatcher();
           this.$routeWatcher = null;
         }
@@ -24483,8 +25497,7 @@ function () {
     key: "fixTitle",
     value: function fixTitle() {
       var el = this.$element;
-
-      var titleType = _typeof((0, _dom.getAttr)(el, 'data-original-title'));
+      var titleType = (0, _typeof2.default)((0, _dom.getAttr)(el, 'data-original-title'));
 
       if ((0, _dom.getAttr)(el, 'title') || titleType !== 'string') {
         (0, _dom.setAttr)(el, 'data-original-title', (0, _dom.getAttr)(el, 'title') || '');
@@ -24686,7 +25699,6 @@ function () {
       return NAME;
     }
   }]);
-
   return ToolTip;
 }();
 
@@ -24705,10 +25717,14 @@ exports.default = _default;
 "use strict";
 
 
-exports.__esModule = true;
+var _interopRequireDefault = __webpack_require__(/*! @babel/runtime/helpers/interopRequireDefault */ "./node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = unPrefixPropName;
 
-var _lowerFirst = __webpack_require__(/*! ./lower-first */ "./node_modules/bootstrap-vue/es/utils/lower-first.js");
+var _lowerFirst = _interopRequireDefault(__webpack_require__(/*! ./lower-first */ "./node_modules/bootstrap-vue/es/utils/lower-first.js"));
 
 /**
  * @param {string} prefix
@@ -24730,7 +25746,9 @@ function unPrefixPropName(prefix, value) {
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = upperFirst;
 
 /**
@@ -24756,7 +25774,9 @@ function upperFirst(str) {
 "use strict";
 
 
-exports.__esModule = true;
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports.default = void 0;
 
 /**
@@ -83221,7 +84241,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /*!
- * vue-i18n v8.8.2 
+ * vue-i18n v8.8.1 
  * (c) 2019 kazuya kawaguchi
  * Released under the MIT License.
  */
@@ -83495,7 +84515,6 @@ var mixin = {
 
       if (self._i18nWatcher) {
         self._i18nWatcher();
-        self._i18n.destroyVM();
         delete self._i18nWatcher;
       }
 
@@ -84238,10 +85257,6 @@ VueI18n.prototype._initVM = function _initVM (data) {
   Vue.config.silent = silent;
 };
 
-VueI18n.prototype.destroyVM = function destroyVM () {
-  this._vm.$destroy();
-};
-
 VueI18n.prototype.subscribeDataChanging = function subscribeDataChanging (vm) {
   this._dataListeners.push(vm);
 };
@@ -84885,7 +85900,7 @@ Object.defineProperty(VueI18n, 'availabilities', {
 });
 
 VueI18n.install = install;
-VueI18n.version = '8.8.2';
+VueI18n.version = '8.8.1';
 
 /* harmony default export */ __webpack_exports__["default"] = (VueI18n);
 
@@ -88820,11 +89835,11 @@ var render = function() {
                             _c("b-form-input", {
                               attrs: { type: "number", placeholder: "Value" },
                               model: {
-                                value: data.item.value,
+                                value: data.item.value.toString(),
                                 callback: function($$v) {
-                                  _vm.$set(data.item, "value", $$v)
+                                  _vm.$set(data.item.value, "toString()", $$v)
                                 },
-                                expression: "data.item.value"
+                                expression: "data.item.value.toString()"
                               }
                             })
                           ]
@@ -112647,9 +113662,9 @@ __webpack_require__(/*! ./forms/bootstrap */ "./spark/resources/assets/js/forms/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\SMART\Documents\GitHub\DebeHaber7\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\Users\SMART\Documents\GitHub\DebeHaber7\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\Users\SMART\Documents\GitHub\DebeHaber7\resources\sass\app-rtl.scss */"./resources/sass/app-rtl.scss");
+__webpack_require__(/*! /Users/ashah/Projects/debehaber7/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/ashah/Projects/debehaber7/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /Users/ashah/Projects/debehaber7/resources/sass/app-rtl.scss */"./resources/sass/app-rtl.scss");
 
 
 /***/ })
