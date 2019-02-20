@@ -1,15 +1,15 @@
 {
-    "customer": "Customer",
-    "supplier": "Supplier",
+    "customer": "Customer | Customers",
+    "supplier": "Supplier | Suppliers",
 
-    "income": "Income",
+    "income": "Income | Incomes",
     "salesBook": "Sales Book",
     "salesInvoice": "Sales Invoice",
     "creditBook": "Credit Book",
     "creditNote": "Credit Note",
     "accountReceivables": "Account Receivables",
 
-    "expense": "Expense",
+    "expense": "Expense | Expenses",
     "purchaseBook": "Purchase Book",
     "purchaseInvoice": "Purchase Invoice",
     "debitBook": "Debit Book",

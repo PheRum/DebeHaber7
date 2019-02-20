@@ -1,3 +1,10 @@
 {
-    "welcomeMsg": "Welcome to Your Vue.js App"
+    "ledger": "Diario",
+    "cycle": "Fiscal",
+    "journal": "Asiento",
+    "accountingCycle": "Periodo Fiscal",
+    "openingBalance": "Balance de Apertura",
+    "closingBalance": "Balance de Cierre",
+    "cycleBudget": "Presupuesto Anual",
+    "chartOfAccounts": "Plan de Cuentas"
 }

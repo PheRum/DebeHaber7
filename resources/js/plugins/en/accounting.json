@@ -1,3 +1,10 @@
 {
-    "welcomeMsg": "Welcome to Your Vue.js App"
+    "ledger": "Ledger",
+    "cycle": "Cycle | Cycles",
+    "journal": "Journal",
+    "accountingCycle": "Accounting Cycle",
+    "openingBalance": "Opening Balance",
+    "closingBalance": "Closing Balance",
+    "cycleBudget": "Cycle Budget",
+    "chartOfAccounts": "Chart of Accounts"
 }

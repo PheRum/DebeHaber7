@@ -155,37 +155,37 @@
         <b-nav vertical>
             <b-nav-item class="sub-menu" :to="{ name: 'journalList'}">
                 <i class="material-icons md-18 ml-10 mr-10">notes</i>
-                Journals
+                @{{ $t('accounting.journal') }}
             </b-nav-item>
         </b-nav>
         <h3 class="nav-heading sub">
-            Cycles
+            @{{ $t('accounting.cycle', 5) }}
         </h3>
         <b-nav vertical>
             <b-nav-item class="sub-menu" :to="{ name: 'cycleList'}">
                 <i class="material-icons md-18 ml-10 mr-10">calendar_today</i>
-                Accounting Cycles
+                @{{ $t('accounting.accountingCycle') }}
             </b-nav-item>
             <b-nav-item class="sub-menu" :to="{ name: 'openingBalanceForm'}">
                 <i class="material-icons md-18 ml-10 mr-10">play_circle_outline</i>
-                Opening Balance
+                @{{ $t('accounting.openingBalance') }}
             </b-nav-item>
             <b-nav-item class="sub-menu" :to="{ name: 'closingBalanceForm'}">
                 <i class="material-icons md-18 ml-10 mr-10">pause_circle_outline</i>
-                Closing Balance
+                @{{ $t('accounting.closingBalance') }}
             </b-nav-item>
             <b-nav-item class="sub-menu" :to="{ name: 'budgetForm'}">
                 <i class="material-icons md-18 ml-10 mr-10">playlist_add_check</i>
-                Cycle Budgets
+                @{{ $t('accounting.cycleBudget') }}
             </b-nav-item>
         </b-nav>
         <h3 class="nav-heading sub">
-            Configuration
+            @{{ $t('general.configuration') }}
         </h3>
         <b-nav vertical>
             <b-nav-item class="sub-menu" :to="{ name: 'purchaseList'}">
                 <i class="material-icons md-18 ml-10 mr-10">settings</i>
-                Chart of Accounts
+                @{{ $t('accounting.chartOfAccounts') }}
             </b-nav-item>
         </b-nav>
     </b-collapse>

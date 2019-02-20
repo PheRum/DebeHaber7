@@ -3787,18 +3787,267 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    'crud': _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   data: function data() {
-    return {};
+    return {
+      data: {
+        chart_account_id: 0,
+        code: 0,
+        code_expiry: '',
+        comment: '',
+        currency_id: 0,
+        customer_id: 0,
+        customer: [],
+        date: '',
+        details: [],
+        document_id: '',
+        document_type: 1,
+        id: 0,
+        is_deductible: 0,
+        journal_id: null,
+        number: '',
+        payment_condition: 0,
+        rate: 1,
+        type: 4
+      },
+      documents: [],
+      currencies: [],
+      accountCharts: [],
+      vatCharts: [],
+      itemCharts: [],
+      lastDeletedRow: [],
+      columns: [{
+        key: 'chart_id',
+        label: 'Item'
+      }, {
+        key: 'chart_vat_id',
+        label: 'Vat'
+      }, {
+        key: 'value',
+        label: 'Value'
+      }, {
+        key: 'actions',
+        label: ''
+      }]
+    };
   },
   methods: {
     onSave: function onSave() {
-      _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"].onSave(1);
+      var app = this;
+      var baseUrl = '/api/' + app.$route.params.taxPayer + '/' + app.$route.params.cycle + '/commercial/credit-notes';
+      _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"].methods.onUpdate(baseUrl, app.data).then(function (response) {
+        app.$snack.success({
+          text: 'Invoice Nr. ' + app.data.number + ', Saved!'
+        });
+        app.$router.go(-1);
+      }).catch(function (error) {
+        app.$snack.danger({
+          text: 'Error OMG!'
+        });
+      });
+    },
+    onSaveNew: function onSaveNew() {
+      var app = this;
+      var baseUrl = '/api/' + app.$route.params.taxPayer + '/' + app.$route.params.cycle + '/commercial/credit-notes';
+      _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"].methods.onUpdate(baseUrl, app.data).then(function (response) {
+        app.$snack.success({
+          text: 'Invoice Nr. ' + app.data.number + ', Saved!'
+        });
+        app.$router.push({
+          name: 'salesForm',
+          params: {
+            id: '0'
+          }
+        });
+        app.data.customer_id = 0;
+        app.data.customer = [];
+      }).catch(function (error) {
+        app.$snack.danger({
+          text: 'Error OMG!'
+        });
+      });
+    },
+    onCancel: function onCancel() {
+      var _this = this;
+
+      this.$swal.fire({
+        title: 'Cancel?',
+        text: "Canceling will not save changes made to this form.",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, cancel changes!',
+        cancelButtonText: 'No, Keep working'
+      }).then(function (result) {
+        if (result.value) {
+          _this.$router.go(-1);
+        }
+      });
+    },
+    addDetailRow: function addDetailRow() {
+      this.data.details.push({
+        // index: this.data.details.length + 1,
+        chart_id: this.itemCharts[0].id,
+        chart_vat_id: this.vatCharts[0].id,
+        value: '0'
+      });
+    },
+    deleteRow: function deleteRow(item) {
+      if (item.id > 0) {
+        var app = this;
+        var baseUrl = '/api/' + app.$route.params.taxPayer + '/' + app.$route.params.cycle + '/commercial/credit-notes';
+        _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"].methods.onDelete(baseUrl, item.id).then(function (response) {});
+      }
+
+      this.lastDeletedRow = item;
+      this.$snack.success({
+        text: 'Record Deleted',
+        button: 'Undo',
+        action: this.undoDeletedRow
+      });
+      this.data.details.splice(this.data.details.indexOf(item), 1);
+    },
+    undoDeletedRow: function undoDeletedRow() {
+      if (this.lastDeletedRow.id > 0) {//axios code to delete the transaction detail.
+      }
+
+      this.data.details.push(this.lastDeletedRow);
     }
   },
-  mounted: function mounted() {//do something after mounting vue instance
-    //crud.onSave(1);
+  mounted: function mounted() {
+    var app = this;
+    var baseUrl = '/api/' + app.$route.params.taxPayer + '/' + app.$route.params.cycle;
+    _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"].methods.onRead('/api/' + app.$route.params.taxPayer + '/currencies').then(function (response) {
+      app.currencies = response.data.data;
+    });
+
+    if (app.$route.params.id > 0) {
+      _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"].methods.onRead(baseUrl + "/commercial/sales/" + app.$route.params.id).then(function (response) {
+        app.data = response.data.data;
+      });
+    } else {
+      app.data.date = new Date(Date.now()).toISOString().split("T")[0];
+      app.data.chart_account_id = app.accountCharts[0] != null ? app.accountCharts[0].id : null;
+      app.data.payment_condition = 0;
+      app.data.currency_id = 1;
+      app.data.rate = 1;
+    }
+
+    _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"].methods.onRead(baseUrl + "/accounting/charts/for/money/").then(function (response) {
+      app.accountCharts = response.data.data;
+    });
+    _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"].methods.onRead(baseUrl + "/accounting/charts/for/vats-debit").then(function (response) {
+      app.vatCharts = response.data.data;
+    });
+    _components_crud_vue__WEBPACK_IMPORTED_MODULE_0__["default"].methods.onRead(baseUrl + "/accounting/charts/for/income").then(function (response) {
+      app.itemCharts = response.data.data;
+    });
   }
 });
 
@@ -3867,10 +4116,23 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       columns: [{
+        key: 'date',
+        sortable: true
+      }, {
+        key: 'customer.name',
+        label: 'Customer',
+        sortable: true
+      }, {
         key: 'number',
+        label: 'Credit Number',
+        sortable: true
+      }, {
+        key: 'total',
+        label: 'Invoice Total',
         sortable: true
       }, {
         key: 'action',
+        label: '',
         sortable: false
       }]
     };
@@ -87458,8 +87720,282 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {},
     [
+      _c(
+        "b-row",
+        { staticClass: "mb-5" },
+        [
+          _c(
+            "b-col",
+            [
+              _c(
+                "b-btn",
+                {
+                  directives: [
+                    {
+                      name: "shortkey",
+                      rawName: "v-shortkey",
+                      value: ["esc"],
+                      expression: "['esc']"
+                    }
+                  ],
+                  staticClass: "d-none d-md-block float-left",
+                  on: {
+                    shortkey: function($event) {
+                      return _vm.onCancel()
+                    },
+                    click: function($event) {
+                      return _vm.onCancel()
+                    }
+                  }
+                },
+                [
+                  _c("i", { staticClass: "material-icons" }, [
+                    _vm._v("keyboard_backspace")
+                  ]),
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.$t("general.return")) +
+                      "\n                "
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("h3", { staticClass: "upper-case" }, [
+                _c("img", {
+                  staticClass: "mr-10",
+                  attrs: { src: _vm.$route.meta.img, alt: "", width: "32" }
+                }),
+                _vm._v(
+                  "\n                " +
+                    _vm._s(_vm.$route.meta.title) +
+                    "\n            "
+                )
+              ])
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "b-col",
+            [
+              _c(
+                "b-button-toolbar",
+                { staticClass: "float-right d-none d-md-block" },
+                [
+                  _c(
+                    "b-btn",
+                    {
+                      directives: [
+                        {
+                          name: "shortkey",
+                          rawName: "v-shortkey",
+                          value: ["ctrl", "d"],
+                          expression: "['ctrl', 'd']"
+                        }
+                      ],
+                      staticClass: "ml-15",
+                      on: {
+                        shortkey: function($event) {
+                          return _vm.addDetailRow()
+                        },
+                        click: function($event) {
+                          return _vm.addDetailRow()
+                        }
+                      }
+                    },
+                    [
+                      _c("i", { staticClass: "material-icons" }, [
+                        _vm._v("playlist_add")
+                      ]),
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(_vm.$t("general.addRowDetail")) +
+                          "\n                "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-button-group",
+                    { staticClass: "ml-15" },
+                    [
+                      _c(
+                        "b-btn",
+                        {
+                          directives: [
+                            {
+                              name: "shortkey",
+                              rawName: "v-shortkey",
+                              value: ["ctrl", "n"],
+                              expression: "['ctrl', 'n']"
+                            }
+                          ],
+                          attrs: { variant: "primary" },
+                          on: {
+                            shortkey: function($event) {
+                              return _vm.onSaveNew()
+                            },
+                            click: function($event) {
+                              return _vm.onSaveNew()
+                            }
+                          }
+                        },
+                        [
+                          _c("i", { staticClass: "material-icons" }, [
+                            _vm._v("save")
+                          ]),
+                          _vm._v(
+                            "\n                        " +
+                              _vm._s(_vm.$t("general.save")) +
+                              "\n                    "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-btn",
+                        {
+                          directives: [
+                            {
+                              name: "shortkey",
+                              rawName: "v-shortkey",
+                              value: ["esc"],
+                              expression: "['esc']"
+                            }
+                          ],
+                          attrs: { variant: "danger" },
+                          on: {
+                            shortkey: function($event) {
+                              return _vm.onCancel()
+                            },
+                            click: function($event) {
+                              return _vm.onCancel()
+                            }
+                          }
+                        },
+                        [
+                          _c("i", { staticClass: "material-icons" }, [
+                            _vm._v("cancel")
+                          ]),
+                          _vm._v(
+                            "\n                        " +
+                              _vm._s(_vm.$t("general.cancel")) +
+                              "\n                    "
+                          )
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-button-toolbar",
+                { staticClass: "float-right d-md-none" },
+                [
+                  _c(
+                    "b-btn",
+                    {
+                      directives: [
+                        {
+                          name: "shortkey",
+                          rawName: "v-shortkey",
+                          value: ["ctrl", "d"],
+                          expression: "['ctrl', 'd']"
+                        }
+                      ],
+                      staticClass: "ml-15",
+                      on: {
+                        shortkey: function($event) {
+                          return _vm.addDetailRow()
+                        },
+                        click: function($event) {
+                          return _vm.addDetailRow()
+                        }
+                      }
+                    },
+                    [
+                      _c("i", { staticClass: "material-icons" }, [
+                        _vm._v("playlist_add")
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "b-button-group",
+                    { staticClass: "ml-15" },
+                    [
+                      _c(
+                        "b-btn",
+                        {
+                          directives: [
+                            {
+                              name: "shortkey",
+                              rawName: "v-shortkey",
+                              value: ["ctrl", "n"],
+                              expression: "['ctrl', 'n']"
+                            }
+                          ],
+                          attrs: { variant: "primary" },
+                          on: {
+                            shortkey: function($event) {
+                              return _vm.onSaveNew()
+                            },
+                            click: function($event) {
+                              return _vm.onSaveNew()
+                            }
+                          }
+                        },
+                        [
+                          _c("i", { staticClass: "material-icons" }, [
+                            _vm._v("save")
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "b-btn",
+                        {
+                          directives: [
+                            {
+                              name: "shortkey",
+                              rawName: "v-shortkey",
+                              value: ["esc"],
+                              expression: "['esc']"
+                            }
+                          ],
+                          attrs: { variant: "danger" },
+                          on: {
+                            shortkey: function($event) {
+                              return _vm.onCancel()
+                            },
+                            click: function($event) {
+                              return _vm.onCancel()
+                            }
+                          }
+                        },
+                        [
+                          _c("i", { staticClass: "material-icons" }, [
+                            _vm._v("cancel")
+                          ])
+                        ]
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
       _c(
         "b-row",
         [
@@ -87468,12 +88004,6 @@ var render = function() {
             [
               _c(
                 "b-card",
-                {
-                  attrs: {
-                    title: _vm.$parent.$route.meta.title,
-                    "sub-title": _vm.$parent.$route.meta.description
-                  }
-                },
                 [
                   _c(
                     "b-container",
@@ -87486,13 +88016,20 @@ var render = function() {
                             [
                               _c(
                                 "b-form-group",
-                                { attrs: { label: "Invoice Date" } },
+                                { attrs: { label: _vm.$t("commercial.date") } },
                                 [
                                   _c("b-input", {
                                     attrs: {
                                       type: "date",
                                       required: "",
                                       placeholder: "Missing Information"
+                                    },
+                                    model: {
+                                      value: _vm.data.date,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.data, "date", $$v)
+                                      },
+                                      expression: "data.date"
                                     }
                                   })
                                 ],
@@ -87501,17 +88038,57 @@ var render = function() {
                               _vm._v(" "),
                               _c(
                                 "b-form-group",
-                                { attrs: { label: "Customer" } },
-                                [
-                                  _c("b-input", {
-                                    attrs: {
-                                      type: "text",
-                                      placeholder: "Search for Customer"
-                                    }
-                                  })
-                                ],
+                                {
+                                  attrs: {
+                                    label: _vm.$t("commercial.customer")
+                                  }
+                                },
+                                [_c("search-taxpayer")],
                                 1
-                              )
+                              ),
+                              _vm._v(" "),
+                              _vm.data.customer != null
+                                ? _c(
+                                    "b-container",
+                                    [
+                                      _vm._v(
+                                        "\n                                Based on your past transactions, we can quickly recomend the same items again.\n                                "
+                                      ),
+                                      _c(
+                                        "b-row",
+                                        [
+                                          _c(
+                                            "b-col",
+                                            [
+                                              _c(
+                                                "b-button",
+                                                { attrs: { href: "" } },
+                                                [
+                                                  _vm._v(
+                                                    "\n                                            Favorite Detail 1\n                                        "
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "b-button",
+                                                { attrs: { href: "" } },
+                                                [
+                                                  _vm._v(
+                                                    "\n                                            Favorite Detail 2\n                                        "
+                                                  )
+                                                ]
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                : _vm._e()
                             ],
                             1
                           ),
@@ -87519,28 +88096,135 @@ var render = function() {
                           _c(
                             "b-col",
                             [
-                              _c(
-                                "b-form-group",
-                                { attrs: { label: "Document" } },
-                                [
-                                  _c("b-form-select", {
-                                    attrs: {
-                                      placeholder:
-                                        "Documents can simplfy manually loading data"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
+                              _vm.documents.length > 0
+                                ? _c(
+                                    "b-form-group",
+                                    {
+                                      attrs: {
+                                        label: _vm.$t("commercial.document")
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "b-form-select",
+                                        {
+                                          model: {
+                                            value: _vm.data.document_id,
+                                            callback: function($$v) {
+                                              _vm.$set(
+                                                _vm.data,
+                                                "document_id",
+                                                $$v
+                                              )
+                                            },
+                                            expression: "data.document_id"
+                                          }
+                                        },
+                                        _vm._l(_vm.documents, function(doc) {
+                                          return _c(
+                                            "option",
+                                            {
+                                              key: doc.key,
+                                              domProps: { value: doc.id }
+                                            },
+                                            [_vm._v(_vm._s(doc.name))]
+                                          )
+                                        }),
+                                        0
+                                      )
+                                    ],
+                                    1
+                                  )
+                                : _vm._e(),
+                              _vm._v(" "),
+                              _vm.spark.taxPayerConfig.document_code != ""
+                                ? _c(
+                                    "b-form-group",
+                                    {
+                                      attrs: {
+                                        label:
+                                          _vm.spark.taxPayerConfig.document_code
+                                      }
+                                    },
+                                    [
+                                      _c(
+                                        "b-input-group",
+                                        [
+                                          _c("b-input", {
+                                            attrs: {
+                                              type: "text",
+                                              placeholder:
+                                                "$t('commercial.code')"
+                                            },
+                                            model: {
+                                              value: _vm.data.code,
+                                              callback: function($$v) {
+                                                _vm.$set(_vm.data, "code", $$v)
+                                              },
+                                              expression: "data.code"
+                                            }
+                                          }),
+                                          _vm._v(" "),
+                                          _c(
+                                            "b-input-group-append",
+                                            [
+                                              _c("b-input", {
+                                                attrs: {
+                                                  type: "date",
+                                                  placeholder:
+                                                    "$t('commercial.expiryDate')"
+                                                },
+                                                model: {
+                                                  value: _vm.data.code_expiry,
+                                                  callback: function($$v) {
+                                                    _vm.$set(
+                                                      _vm.data,
+                                                      "code_expiry",
+                                                      $$v
+                                                    )
+                                                  },
+                                                  expression: "data.code_expiry"
+                                                }
+                                              })
+                                            ],
+                                            1
+                                          )
+                                        ],
+                                        1
+                                      )
+                                    ],
+                                    1
+                                  )
+                                : _vm._e(),
                               _vm._v(" "),
                               _c(
                                 "b-form-group",
-                                { attrs: { label: "Invoice Number" } },
+                                {
+                                  attrs: { label: _vm.$t("commercial.number") }
+                                },
                                 [
                                   _c("b-input", {
+                                    directives: [
+                                      {
+                                        name: "mask",
+                                        rawName: "v-mask",
+                                        value:
+                                          _vm.spark.taxPayerConfig
+                                            .document_mask,
+                                        expression:
+                                          "spark.taxPayerConfig.document_mask"
+                                      }
+                                    ],
                                     attrs: {
                                       type: "text",
-                                      placeholder: "Missing Information"
+                                      placeholder: "Invoice Number"
+                                    },
+                                    model: {
+                                      value: _vm.data.number,
+                                      callback: function($$v) {
+                                        _vm.$set(_vm.data, "number", $$v)
+                                      },
+                                      expression: "data.number"
                                     }
                                   })
                                 ],
@@ -87549,30 +88233,155 @@ var render = function() {
                               _vm._v(" "),
                               _c(
                                 "b-form-group",
-                                { attrs: { label: "Invoice Code" } },
+                                {
+                                  attrs: {
+                                    label: _vm.$t("commercial.paymentCondition")
+                                  }
+                                },
                                 [
                                   _c(
                                     "b-input-group",
                                     [
                                       _c("b-input", {
                                         attrs: {
-                                          type: "text",
-                                          placeholder: "Invoice Code"
+                                          type: "number",
+                                          placeholder:
+                                            "$t('commercial.paymentCondition')"
+                                        },
+                                        model: {
+                                          value: _vm.data.payment_condition,
+                                          callback: function($$v) {
+                                            _vm.$set(
+                                              _vm.data,
+                                              "payment_condition",
+                                              $$v
+                                            )
+                                          },
+                                          expression: "data.payment_condition"
                                         }
                                       }),
                                       _vm._v(" "),
+                                      _vm.data.payment_condition == 0
+                                        ? _c(
+                                            "b-input-group-append",
+                                            [
+                                              _c(
+                                                "b-form-select",
+                                                {
+                                                  model: {
+                                                    value:
+                                                      _vm.data.chart_account_id,
+                                                    callback: function($$v) {
+                                                      _vm.$set(
+                                                        _vm.data,
+                                                        "chart_account_id",
+                                                        $$v
+                                                      )
+                                                    },
+                                                    expression:
+                                                      "data.chart_account_id"
+                                                  }
+                                                },
+                                                _vm._l(
+                                                  _vm.accountCharts,
+                                                  function(account) {
+                                                    return _c(
+                                                      "option",
+                                                      {
+                                                        key: account.key,
+                                                        domProps: {
+                                                          value: account.id
+                                                        }
+                                                      },
+                                                      [
+                                                        _vm._v(
+                                                          _vm._s(account.name)
+                                                        )
+                                                      ]
+                                                    )
+                                                  }
+                                                ),
+                                                0
+                                              )
+                                            ],
+                                            1
+                                          )
+                                        : _vm._e()
+                                    ],
+                                    1
+                                  ),
+                                  _vm._v(" "),
+                                  _c("b-form-text", [
+                                    _vm._v(
+                                      "Specify days between invoice and payment dates. Ex: use 0 for cash, and 30 for thrity days payment terms."
+                                    )
+                                  ])
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "b-form-group",
+                                {
+                                  attrs: {
+                                    label: _vm.$t("commercial.exchangeRate")
+                                  }
+                                },
+                                [
+                                  _c(
+                                    "b-input-group",
+                                    [
                                       _c(
-                                        "b-input-group-append",
+                                        "b-input-group-prepend",
                                         [
-                                          _c("b-input", {
-                                            attrs: {
-                                              type: "date",
-                                              placeholder: "Code Expiry Date"
-                                            }
-                                          })
+                                          _c(
+                                            "b-form-select",
+                                            {
+                                              model: {
+                                                value: _vm.data.currency_id,
+                                                callback: function($$v) {
+                                                  _vm.$set(
+                                                    _vm.data,
+                                                    "currency_id",
+                                                    $$v
+                                                  )
+                                                },
+                                                expression: "data.currency_id"
+                                              }
+                                            },
+                                            _vm._l(_vm.currencies, function(
+                                              currency
+                                            ) {
+                                              return _c(
+                                                "option",
+                                                {
+                                                  key: currency.key,
+                                                  domProps: {
+                                                    value: currency.id
+                                                  }
+                                                },
+                                                [_vm._v(_vm._s(currency.name))]
+                                              )
+                                            }),
+                                            0
+                                          )
                                         ],
                                         1
-                                      )
+                                      ),
+                                      _vm._v(" "),
+                                      _c("b-input", {
+                                        attrs: {
+                                          type: "number",
+                                          placeholder: "Payment"
+                                        },
+                                        model: {
+                                          value: _vm.data.rate,
+                                          callback: function($$v) {
+                                            _vm.$set(_vm.data, "rate", $$v)
+                                          },
+                                          expression: "data.rate"
+                                        }
+                                      })
                                     ],
                                     1
                                   )
@@ -87604,9 +88413,118 @@ var render = function() {
           _c(
             "b-col",
             [
-              _c("b-card", {
-                attrs: { header: "Details", "header-tag": "header" }
-              })
+              _c(
+                "b-card",
+                { attrs: { "no-body": "" } },
+                [
+                  _c("b-table", {
+                    attrs: {
+                      hover: "",
+                      items: _vm.data.details,
+                      fields: _vm.columns
+                    },
+                    scopedSlots: _vm._u([
+                      {
+                        key: "chart_id",
+                        fn: function(data) {
+                          return [
+                            _c(
+                              "b-form-select",
+                              {
+                                model: {
+                                  value: data.item.chart_id,
+                                  callback: function($$v) {
+                                    _vm.$set(data.item, "chart_id", $$v)
+                                  },
+                                  expression: "data.item.chart_id"
+                                }
+                              },
+                              _vm._l(_vm.itemCharts, function(item) {
+                                return _c(
+                                  "option",
+                                  {
+                                    key: item.key,
+                                    domProps: { value: item.id }
+                                  },
+                                  [_vm._v(_vm._s(item.name))]
+                                )
+                              }),
+                              0
+                            )
+                          ]
+                        }
+                      },
+                      {
+                        key: "chart_vat_id",
+                        fn: function(data) {
+                          return [
+                            _c(
+                              "b-form-select",
+                              {
+                                model: {
+                                  value: data.item.chart_vat_id,
+                                  callback: function($$v) {
+                                    _vm.$set(data.item, "chart_vat_id", $$v)
+                                  },
+                                  expression: "data.item.chart_vat_id"
+                                }
+                              },
+                              _vm._l(_vm.vatCharts, function(vat) {
+                                return _c(
+                                  "option",
+                                  { key: vat.key, domProps: { value: vat.id } },
+                                  [_vm._v(_vm._s(vat.name))]
+                                )
+                              }),
+                              0
+                            )
+                          ]
+                        }
+                      },
+                      {
+                        key: "value",
+                        fn: function(data) {
+                          return [
+                            _c("b-form-input", {
+                              attrs: {
+                                value: data.item.value,
+                                type: "number",
+                                placeholder: "Value"
+                              }
+                            })
+                          ]
+                        }
+                      },
+                      {
+                        key: "actions",
+                        fn: function(data) {
+                          return [
+                            _c(
+                              "b-button",
+                              {
+                                attrs: { variant: "link" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.deleteRow(data.item)
+                                  }
+                                }
+                              },
+                              [
+                                _c(
+                                  "i",
+                                  { staticClass: "material-icons text-danger" },
+                                  [_vm._v("delete_outline")]
+                                )
+                              ]
+                            )
+                          ]
+                        }
+                      }
+                    ])
+                  })
+                ],
+                1
+              )
             ],
             1
           )
@@ -87642,104 +88560,140 @@ var render = function() {
   return _c(
     "div",
     [
-      _c(
-        "b-row",
-        [
-          _c(
-            "b-col",
+      _vm.$route.name.includes("List")
+        ? _c(
+            "b-row",
             [
               _c(
-                "b-card-group",
-                { attrs: { deck: "" } },
+                "b-col",
                 [
-                  _c("b-card", [
-                    _c("h4", { staticClass: "upper-case" }, [
-                      _c("img", {
-                        staticClass: "ml-5 mr-5",
-                        attrs: {
-                          src: _vm.$route.meta.img,
-                          alt: "",
-                          width: "26"
-                        }
-                      }),
-                      _vm._v(
-                        "\n                        " +
-                          _vm._s(_vm.$route.meta.title) +
-                          "\n                    "
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "p",
-                      { staticClass: "lead" },
-                      [
-                        _vm._v(
-                          "\n                        " +
-                            _vm._s(_vm.$route.meta.description) +
-                            ", "
-                        ),
-                        _c(
-                          "router-link",
-                          {
-                            attrs: {
-                              to: "{ name: 'creditForm', params: { id: 0}}"
-                            }
-                          },
-                          [_vm._v("Create")]
-                        )
-                      ],
-                      1
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("invoices-this-month-kpi"),
-                  _vm._v(" "),
                   _c(
-                    "b-card",
-                    { attrs: { "no-body": "" } },
+                    "b-card-group",
+                    { attrs: { deck: "" } },
                     [
                       _c(
-                        "b-list-group",
-                        { attrs: { flush: "" } },
+                        "b-card",
+                        {
+                          attrs: {
+                            "bg-variant": "dark",
+                            "text-variant": "white"
+                          }
+                        },
                         [
-                          _c("b-list-group-item", { attrs: { href: "#" } }, [
-                            _c("i", { staticClass: "material-icons" }, [
-                              _vm._v("insert_chart")
-                            ]),
+                          _c("h4", { staticClass: "upper-case" }, [
+                            _c("img", {
+                              staticClass: "ml-5 mr-5",
+                              attrs: {
+                                src: _vm.$route.meta.img,
+                                alt: "",
+                                width: "26"
+                              }
+                            }),
                             _vm._v(
-                              "\n                            Report " +
+                              "\n                        " +
                                 _vm._s(_vm.$route.meta.title) +
-                                "\n                        "
+                                "\n                    "
                             )
                           ]),
                           _vm._v(" "),
-                          _c(
-                            "b-list-group-item",
-                            { attrs: { href: "#", disabled: "" } },
-                            [
-                              _c("i", { staticClass: "material-icons" }, [
-                                _vm._v("cloud_upload")
-                              ]),
-                              _vm._v(
-                                "\n                            Upload " +
-                                  _vm._s(_vm.$route.meta.title) +
-                                  "\n                        "
+                          _vm.$route.name.includes("List")
+                            ? _c(
+                                "p",
+                                { staticClass: "lead" },
+                                [
+                                  _vm._v(
+                                    "\n                        " +
+                                      _vm._s(_vm.$route.meta.description) +
+                                      ", "
+                                  ),
+                                  _c(
+                                    "router-link",
+                                    {
+                                      attrs: {
+                                        to:
+                                          "{ name: 'creditForm', params: { id: 0}}"
+                                      }
+                                    },
+                                    [_vm._v("Create")]
+                                  )
+                                ],
+                                1
                               )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c("b-list-group-item", { attrs: { href: "#" } }, [
-                            _c(
-                              "i",
-                              { staticClass: "material-icons md-light" },
-                              [_vm._v("add_box")]
-                            ),
-                            _vm._v(
-                              "\n                            Create new " +
-                                _vm._s(_vm.$route.meta.title) +
-                                "\n                        "
-                            )
-                          ])
+                            : _vm._e()
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("invoices-this-month-kpi", {
+                        staticClass: "d-none d-xl-block"
+                      }),
+                      _vm._v(" "),
+                      _c("invoices-this-month-kpi", {
+                        staticClass: "d-none d-xl-block"
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "b-card",
+                        { attrs: { "no-body": "" } },
+                        [
+                          _c(
+                            "b-list-group",
+                            { attrs: { flush: "" } },
+                            [
+                              _c(
+                                "b-list-group-item",
+                                { attrs: { href: "#" } },
+                                [
+                                  _c("i", { staticClass: "material-icons" }, [
+                                    _vm._v("insert_chart")
+                                  ]),
+                                  _vm._v(
+                                    "\n                            " +
+                                      _vm._s(_vm.$t("general.report", 2)) +
+                                      " " +
+                                      _vm._s(_vm.$route.meta.title) +
+                                      "\n                        "
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "b-list-group-item",
+                                { attrs: { href: "#", disabled: "" } },
+                                [
+                                  _c("i", { staticClass: "material-icons" }, [
+                                    _vm._v("cloud_upload")
+                                  ]),
+                                  _vm._v(
+                                    "\n                            " +
+                                      _vm._s(_vm.$t("general.upload")) +
+                                      " " +
+                                      _vm._s(_vm.$route.meta.title) +
+                                      "\n                        "
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "b-list-group-item",
+                                { attrs: { href: "0" } },
+                                [
+                                  _c(
+                                    "i",
+                                    { staticClass: "material-icons md-light" },
+                                    [_vm._v("add_box")]
+                                  ),
+                                  _vm._v(
+                                    "\n                            " +
+                                      _vm._s(_vm.$t("general.create")) +
+                                      " " +
+                                      _vm._s(_vm.$route.meta.title) +
+                                      "\n                        "
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          )
                         ],
                         1
                       )
@@ -87752,9 +88706,7 @@ var render = function() {
             ],
             1
           )
-        ],
-        1
-      ),
+        : _vm._e(),
       _vm._v(" "),
       _c(
         "b-row",
@@ -105137,10 +106089,10 @@ __webpack_require__.r(__webpack_exports__);
 /*!*************************************************!*\
   !*** ./resources/js/plugins/en/accounting.json ***!
   \*************************************************/
-/*! exports provided: welcomeMsg, default */
+/*! exports provided: ledger, cycle, journal, accountingCycle, openingBalance, closingBalance, cycleBudget, chartOfAccounts, default */
 /***/ (function(module) {
 
-module.exports = {"welcomeMsg":"Welcome to Your Vue.js App"};
+module.exports = {"ledger":"Ledger","cycle":"Cycle | Cycles","journal":"Journal","accountingCycle":"Accounting Cycle","openingBalance":"Opening Balance","closingBalance":"Closing Balance","cycleBudget":"Cycle Budget","chartOfAccounts":"Chart of Accounts"};
 
 /***/ }),
 
@@ -105151,7 +106103,7 @@ module.exports = {"welcomeMsg":"Welcome to Your Vue.js App"};
 /*! exports provided: customer, supplier, income, salesBook, salesInvoice, creditBook, creditNote, accountReceivables, expense, purchaseBook, purchaseInvoice, debitBook, debitNote, accountPayables, fixedAssets, inventories, productions, moneyMovements, date, expiryDate, dueDate, number, code, document, documents, currency, exchangeRate, exchangeRates, paymentCondition, account, concept, vat, value, startingValue, currentRange, endingRange, default */
 /***/ (function(module) {
 
-module.exports = {"customer":"Customer","supplier":"Supplier","income":"Income","salesBook":"Sales Book","salesInvoice":"Sales Invoice","creditBook":"Credit Book","creditNote":"Credit Note","accountReceivables":"Account Receivables","expense":"Expense","purchaseBook":"Purchase Book","purchaseInvoice":"Purchase Invoice","debitBook":"Debit Book","debitNote":"Debit Note","accountPayables":"Account Payables","fixedAssets":"Fixed Assets","inventories":"Inventories","productions":"Productions","moneyMovements":"Money Movements","date":"Date","expiryDate":"Expiry Date","dueDate":"Due Date","number":"Number","code":"Code","document":"Document","documents":"Documents","currency":"Currency","exchangeRate":"Exchange Rate","exchangeRates":"Exchange Rates","paymentCondition":"Payment Condition","account":"Account","concept":"Concept","vat":"Vat","value":"Value","startingValue":"Starting Value","currentRange":"Valor Actual","endingRange":"Valor Final"};
+module.exports = {"customer":"Customer | Customers","supplier":"Supplier | Suppliers","income":"Income | Incomes","salesBook":"Sales Book","salesInvoice":"Sales Invoice","creditBook":"Credit Book","creditNote":"Credit Note","accountReceivables":"Account Receivables","expense":"Expense | Expenses","purchaseBook":"Purchase Book","purchaseInvoice":"Purchase Invoice","debitBook":"Debit Book","debitNote":"Debit Note","accountPayables":"Account Payables","fixedAssets":"Fixed Assets","inventories":"Inventories","productions":"Productions","moneyMovements":"Money Movements","date":"Date","expiryDate":"Expiry Date","dueDate":"Due Date","number":"Number","code":"Code","document":"Document","documents":"Documents","currency":"Currency","exchangeRate":"Exchange Rate","exchangeRates":"Exchange Rates","paymentCondition":"Payment Condition","account":"Account","concept":"Concept","vat":"Vat","value":"Value","startingValue":"Starting Value","currentRange":"Valor Actual","endingRange":"Valor Final"};
 
 /***/ }),
 
@@ -105170,10 +106122,10 @@ module.exports = {"taxPayer":"Taxpayer","documentation":"Documentation","askForH
 /*!*************************************************!*\
   !*** ./resources/js/plugins/es/accounting.json ***!
   \*************************************************/
-/*! exports provided: welcomeMsg, default */
+/*! exports provided: ledger, cycle, journal, accountingCycle, openingBalance, closingBalance, cycleBudget, chartOfAccounts, default */
 /***/ (function(module) {
 
-module.exports = {"welcomeMsg":"Welcome to Your Vue.js App"};
+module.exports = {"ledger":"Diario","cycle":"Fiscal","journal":"Asiento","accountingCycle":"Periodo Fiscal","openingBalance":"Balance de Apertura","closingBalance":"Balance de Cierre","cycleBudget":"Presupuesto Anual","chartOfAccounts":"Plan de Cuentas"};
 
 /***/ }),
 
@@ -105184,7 +106136,7 @@ module.exports = {"welcomeMsg":"Welcome to Your Vue.js App"};
 /*! exports provided: customer, supplier, income, salesBook, salesInvoice, creditBook, creditNote, accountReceivables, expense, purchaseBook, purchaseInvoice, debitBook, debitNote, accountPayables, fixedAssets, inventories, productions, moneyMovements, date, expiryDate, dueDate, number, code, document, documents, currency, exchangeRate, exchangeRates, paymentCondition, account, concept, vat, value, startingValue, currentRange, endingRange, default */
 /***/ (function(module) {
 
-module.exports = {"customer":"Cliente","supplier":"Proveedor","income":"Ingreso | Ingresos","salesBook":"Libro de Ventas","salesInvoice":"Factura de Ventas","creditBook":"Notas de Credito","creditNote":"Nota de Credito","accountReceivables":"Cuentas por Cobrar","expense":"Egreso | Ingresos","purchaseBook":"Libro de Compras","purchaseInvoice":"Factura de Compra","debitBook":"Notas de Debito","debitNote":"Nota de Debito","accountPayables":"Cuentas por Pagar","fixedAssets":"Activos Fijos","inventories":"Inventario","productions":"Producción","moneyMovements":"Movimiento de Dinero","date":"Fecha","expiryDate":"Caducidad","dueDate":"Vencimiento","number":"Número","code":"Código","document":"Documento","documents":"Documentos","currency":"Moneda","exchangeRate":"Cotización","exchangeRates":"Cotizaciones","paymentCondition":"Condición de Pago","account":"Cuenta","concept":"Concepto","vat":"IVA","value":"Valor","startingValue":"Valor Inicial","currentRange":"Valor Actual","endingRange":"Valor Final"};
+module.exports = {"customer":"Cliente","supplier":"Proveedor","income":"Ingreso | Ingresos","salesBook":"Libro de Ventas","salesInvoice":"Factura de Ventas","creditBook":"Notas de Credito","creditNote":"Nota de Credito","accountReceivables":"Cuentas por Cobrar","expense":"Egreso | Egresos","purchaseBook":"Libro de Compras","purchaseInvoice":"Factura de Compra","debitBook":"Notas de Debito","debitNote":"Nota de Debito","accountPayables":"Cuentas por Pagar","fixedAssets":"Activos Fijos","inventories":"Inventario","productions":"Producción","moneyMovements":"Movimiento de Dinero","date":"Fecha","expiryDate":"Caducidad","dueDate":"Vencimiento","number":"Número","code":"Código","document":"Documento","documents":"Documentos","currency":"Moneda","exchangeRate":"Cotización","exchangeRates":"Cotizaciones","paymentCondition":"Condición de Pago","account":"Cuenta","concept":"Concepto","vat":"IVA","value":"Valor","startingValue":"Valor Inicial","currentRange":"Valor Actual","endingRange":"Valor Final"};
 
 /***/ }),
 
