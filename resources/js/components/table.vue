@@ -33,25 +33,24 @@
                     </span>
                 </template>
 
-                <template slot="show_details" slot-scope="row">
-  <b-button size="sm" @click="row.toggleDetails" class="mr-2">
-    {{ row.detailsShowing ? 'Hide' : 'Show'}} Details
-  </b-button>
-</template>
+
                 <template slot="row-details" slot-scope="row">
-                  <b-card>
-                    <b-row class="mb-2">
-                      <b-col sm="3" class="text-sm-right"><b>Age:</b></b-col>
-                      <b-col>{{ row.item.age }}</b-col>
-                    </b-row>
+                    <b-card>
+                        <b-row v-for="detail in row.item.details" :key="detail.key">
+                            <b-col sm="3" class="text-sm-right"><b>debit:</b></b-col>
+                            <b-col>{{ new Number(detail.debit).toLocaleString() }}</b-col>
+                            <b-col sm="3" class="text-sm-right"><b>credit:</b></b-col>
+                            <b-col>{{ new Number(detail.credit).toLocaleString() }}</b-col>
+                        </b-row>
 
-                    <b-row class="mb-2">
-                      <b-col sm="3" class="text-sm-right"><b>Is Active:</b></b-col>
-                      <b-col>{{ row.item.isActive }}</b-col>
-                    </b-row>
+                        <b-button size="sm" @click="row.toggleDetails">Hide Details</b-button>
+                    </b-card>
+                </template>
 
-                    <b-button size="sm" @click="row.toggleDetails">Hide Details</b-button>
-                  </b-card>
+                <template slot="hasDetails" slot-scope="row">
+                    <b-button-group size="sm" class="show-when-hovered">
+                        <b-button @click="row.toggleDetails"><i class="material-icons md-19">remove_red_eye</i></b-button>
+                    </b-button-group>
                 </template>
 
                 <template slot="action" slot-scope="data">
@@ -59,7 +58,6 @@
                         <b-button :to="{ name: formURL, params: { id: data.item.id }}"><i class="material-icons md-18">edit</i></b-button>
                         <b-button @click="onDelete(data.item)"><i class="material-icons md-19">delete_outline</i></b-button>
                     </b-button-group>
-
                 </template>
             </b-table>
         </b-card>

@@ -22,136 +22,82 @@ use Laravel\Spark\Contracts\Repositories\NotificationRepository;
 
 class JournalController extends Controller
 {
-  /**
-  * Display a listing of the resource.
-  *
-  * @return \Illuminate\Http\Response
-  */
-  public function index(Taxpayer $taxPayer, Cycle $cycle)
-  {
-    return GeneralResource::collection(
-      Journal::with(['details:journal_id,chart_id,debit,credit',
-      'details.chart:id,name,code,type'])
-      ->orderBy('date', 'desc')
-      ->paginate(50)
-    );
-  }
-
-
-
-
-  /**
-  * Show the form for creating a new resource.
-  *
-  * @return \Illuminate\Http\Response
-  */
-  public function create()
-  {
-    //
-  }
-
-  /**
-  * Store a newly created resource in storage.
-  *
-  * @param  \Illuminate\Http\Request  $request
-  * @return \Illuminate\Http\Response
-  */
-  public function store(Request $request,Taxpayer $taxPayer,Cycle $cycle)
-  {
-
-    $journal = $request->id == 0 ? new Journal() : Journal::where('id', $request->id)->first();
-
-    $journal->date = $request->date;
-    $journal->number = $request->number ;
-    $journal->comment = $request->comment;
-    $journal->cycle_id = $cycle->id;
-
-    $journal->save();
-
-    foreach ($request->details as $detail)
+    /**
+    * Display a listing of the resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
+    public function index(Taxpayer $taxPayer, Cycle $cycle)
     {
-      $journalDetail = JournalDetail::firstOrNew(['id' => $detail['id']]);;
-      $journalDetail->journal_id = $journal->id;
-      $journalDetail->chart_id = $detail['chart_id'];
-      $journalDetail->debit = $detail['debit'];
-      $journalDetail->credit = $detail['credit'];
-      $journalDetail->save();
+        return GeneralResource::collection(
+            Journal::with(['details:journal_id,chart_id,debit,credit',
+            'details.chart:id,name,code,type'])
+            ->orderBy('date', 'desc')
+            ->paginate(50)
+        );
     }
 
-    return response()->json('Ok', 200);
-  }
+    /**
+    * Store a newly created resource in storage.
+    *
+    * @param  \Illuminate\Http\Request  $request
+    * @return \Illuminate\Http\Response
+    */
+    public function store(Request $request,Taxpayer $taxPayer,Cycle $cycle)
+    {
+        $journal = $request->id == 0 ? new Journal() : Journal::where('id', $request->id)->first();
 
-  public function getJournalsByCycleID(Request $request, Taxpayer $taxPayer, Cycle $cycle, $id)
-  {
-    $journals = Journal::where('is_first', 1)->where('cycle_id',$cycle->id)
-    ->join('journal_details', 'journals.id', 'journal_details.journal_id')
-    ->join('charts', 'journal_details.chart_id','charts.id')
-    ->select('journal_details.id as id',
-    'journal_details.chart_id',
-    'charts.is_accountable',
-    'charts.code',
-    'charts.name',
-    'debit',
-    'credit')
-    ->get();
+        $journal->date = $request->date;
+        $journal->number = $request->number ;
+        $journal->comment = $request->comment;
+        $journal->cycle_id = $cycle->id;
 
-    return response()->json($journals);
-  }
+        $journal->save();
 
-  /**
-  * Display the specified resource.
-  *
-  * @param  \App\Journal  $journal
-  * @return \Illuminate\Http\Response
-  */
-  public function show(Taxpayer $taxPayer, Cycle $cycle, $journalId)
-  {
-    return new GeneralResource(
-      Journal::with(['details:journal_id,chart_id,debit,credit',
-      'details.chart:id,name,code,type'])
-      ->where('id', $journalId)
-      ->orderBy('date', 'desc')
-      ->first()
-    );
-  }
+        foreach ($request->details as $detail)
+        {
+            $journalDetail = JournalDetail::firstOrNew(['id' => $detail['id']]);;
+            $journalDetail->journal_id = $journal->id;
+            $journalDetail->chart_id = $detail['chart_id'];
+            $journalDetail->debit = $detail['debit'];
+            $journalDetail->credit = $detail['credit'];
+            $journalDetail->save();
+        }
 
-  /**
-  * Show the form for editing the specified resource.
-  *
-  * @param  \App\Journal  $journal
-  * @return \Illuminate\Http\Response
-  */
-  public function edit(Journal $journal)
-  {
-    //
-  }
+        return response()->json('Ok', 200);
+    }
 
-  /**
-  * Update the specified resource in storage.
-  *
-  * @param  \Illuminate\Http\Request  $request
-  * @param  \App\Journal  $journal
-  * @return \Illuminate\Http\Response
-  */
-  public function update(Request $request, Journal $journal)
-  {
-    //
-  }
+    /**
+    * Display the specified resource.
+    *
+    * @param  \App\Journal  $journal
+    * @return \Illuminate\Http\Response
+    */
+    public function show(Taxpayer $taxPayer, Cycle $cycle, $journalId)
+    {
+        return new GeneralResource(
+            Journal::with(['details',
+            'details.chart:id,name,code,type'])
+            ->where('id', $journalId)
+            ->orderBy('date', 'desc')
+            ->first()
+        );
+    }
 
-  /**
-  * Remove the specified resource from storage.
-  *
-  * @param  \App\Journal  $journal
-  * @return \Illuminate\Http\Response
-  */
-  public function destroy(Journal $journal)
-  {
-    //
-  }
+    /**
+    * Remove the specified resource from storage.
+    *
+    * @param  \App\Journal  $journal
+    * @return \Illuminate\Http\Response
+    */
+    public function destroy(Journal $journal)
+    {
+        //clean up use of journal in transactions and other places
+    }
 
-  public function generateJournalsByRange(Taxpayer $taxPayer, Cycle $cycle, $startDate, $endDate)
-  {
-    GenerateJournal::dispatch($taxPayer, $cycle, $startDate, $endDate);
-    return back();
-  }
+    public function generateJournalsByRange(Taxpayer $taxPayer, Cycle $cycle, $startDate, $endDate)
+    {
+        GenerateJournal::dispatch($taxPayer, $cycle, $startDate, $endDate);
+        return back();
+    }
 }

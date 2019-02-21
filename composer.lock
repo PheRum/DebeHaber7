@@ -2145,7 +2145,7 @@
             "dist": {
                 "type": "path",
                 "url": "./nova",
-                "reference": "3f3e9f1b67293b957f5c96da00a8da56f7e263ff",
+                "reference": "6b34fd3882e3cff2dc99d288393e92025bc93094",
                 "shasum": null
             },
             "require": {
@@ -2400,7 +2400,7 @@
             "dist": {
                 "type": "path",
                 "url": "./spark",
-                "reference": "0975fe6e202d89e8f54fc14ca7b48b698ff07d33",
+                "reference": "94676e574eba34c957215b986490e257adf6e0c4",
                 "shasum": null
             },
             "require": {
@@ -6966,16 +6966,16 @@
         },
         {
             "name": "phpunit/php-timer",
-            "version": "2.0.0",
+            "version": "2.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-timer.git",
-                "reference": "8b8454ea6958c3dee38453d3bd571e023108c91f"
+                "reference": "8b389aebe1b8b0578430bda0c7c95a829608e059"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/8b8454ea6958c3dee38453d3bd571e023108c91f",
-                "reference": "8b8454ea6958c3dee38453d3bd571e023108c91f",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-timer/zipball/8b389aebe1b8b0578430bda0c7c95a829608e059",
+                "reference": "8b389aebe1b8b0578430bda0c7c95a829608e059",
                 "shasum": ""
             },
             "require": {
@@ -6987,7 +6987,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0-dev"
+                    "dev-master": "2.1-dev"
                 }
             },
             "autoload": {
@@ -7011,7 +7011,7 @@
             "keywords": [
                 "timer"
             ],
-            "time": "2018-02-01T13:07:23+00:00"
+            "time": "2019-02-20T10:12:59+00:00"
         },
         {
             "name": "phpunit/php-token-stream",

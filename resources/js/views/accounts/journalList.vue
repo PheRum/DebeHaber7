@@ -63,20 +63,26 @@ export default {
             },
 
             {
-                key: 'number',
-                label: this.$i18n.t('commercial.number'),
+                key: 'comment',
+                label: this.$i18n.t('general.comment'),
                 sortable: true
             },
             {
                 key: 'debit',
-                label: this.$i18n.t('commercial.total'),
+                label: this.$i18n.t('commercial.value'),
                 sortable: true
+            },
+            {
+                key: 'hasDetails',
+                label: '',
+                sortable: false
             },
             {
                 key: 'action',
                 label: '',
                 sortable: false
-            }];
+            }
+        ];
         }
     }
 }

@@ -3654,8 +3654,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -4195,13 +4193,17 @@ __webpack_require__.r(__webpack_exports__);
         key: 'date',
         sortable: true
       }, {
-        key: 'number',
-        label: this.$i18n.t('commercial.number'),
+        key: 'comment',
+        label: this.$i18n.t('general.comment'),
         sortable: true
       }, {
         key: 'debit',
-        label: this.$i18n.t('commercial.total'),
+        label: this.$i18n.t('commercial.value'),
         sortable: true
+      }, {
+        key: 'hasDetails',
+        label: '',
+        sortable: false
       }, {
         key: 'action',
         label: '',
@@ -87988,11 +87990,11 @@ var render = function() {
                     fn: function(data) {
                       return [
                         _vm._v(
-                          "\n                    " +
+                          "\n                " +
                             _vm._s(
                               new Date(data.item.date).toLocaleDateString()
                             ) +
-                            "\n                "
+                            "\n            "
                         )
                       ]
                     }
@@ -88004,13 +88006,13 @@ var render = function() {
                         data.item.expiry >= new Date()
                           ? _c("div", [
                               _vm._v(
-                                "\n                        " +
+                                "\n                    " +
                                   _vm._s(
                                     new Date(
                                       data.item.expiry
                                     ).toLocaleDateString()
                                   ) +
-                                  "\n                    "
+                                  "\n                "
                               )
                             ])
                           : _c("div", [
@@ -88033,13 +88035,13 @@ var render = function() {
                       return [
                         _c("span", { staticClass: "float-right" }, [
                           _vm._v(
-                            "\n                        " +
+                            "\n                    " +
                               _vm._s(
                                 new Number(
                                   _vm.sumValue(data.item.details)
                                 ).toLocaleString()
                               ) +
-                              "\n                        "
+                              "\n                    "
                           ),
                           data.item.currency != null
                             ? _c(
@@ -88058,13 +88060,13 @@ var render = function() {
                       return [
                         _c("span", { staticClass: "float-right" }, [
                           _vm._v(
-                            "\n                        " +
+                            "\n                    " +
                               _vm._s(
                                 new Number(
                                   _vm.sumDebit(data.item.details)
                                 ).toLocaleString()
                               ) +
-                              "\n                        "
+                              "\n                    "
                           ),
                           data.item.currency != null
                             ? _c(
@@ -88083,11 +88085,11 @@ var render = function() {
                       return [
                         _c("span", { staticClass: "float-right" }, [
                           _vm._v(
-                            "\n                        " +
+                            "\n                    " +
                               _vm._s(
                                 new Number(data.item.balance).toLocaleString()
                               ) +
-                              "\n                        "
+                              "\n                    "
                           ),
                           data.item.currency != null
                             ? _c(
@@ -88101,69 +88103,58 @@ var render = function() {
                     }
                   },
                   {
-                    key: "show_details",
-                    fn: function(row) {
-                      return [
-                        _c(
-                          "b-button",
-                          {
-                            staticClass: "mr-2",
-                            attrs: { size: "sm" },
-                            on: { click: row.toggleDetails }
-                          },
-                          [
-                            _vm._v(
-                              "\n    " +
-                                _vm._s(row.detailsShowing ? "Hide" : "Show") +
-                                " Details\n  "
-                            )
-                          ]
-                        )
-                      ]
-                    }
-                  },
-                  {
                     key: "row-details",
                     fn: function(row) {
                       return [
                         _c(
                           "b-card",
                           [
-                            _c(
-                              "b-row",
-                              { staticClass: "mb-2" },
-                              [
-                                _c(
-                                  "b-col",
-                                  {
-                                    staticClass: "text-sm-right",
-                                    attrs: { sm: "3" }
-                                  },
-                                  [_c("b", [_vm._v("Age:")])]
-                                ),
-                                _vm._v(" "),
-                                _c("b-col", [_vm._v(_vm._s(row.item.age))])
-                              ],
-                              1
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "b-row",
-                              { staticClass: "mb-2" },
-                              [
-                                _c(
-                                  "b-col",
-                                  {
-                                    staticClass: "text-sm-right",
-                                    attrs: { sm: "3" }
-                                  },
-                                  [_c("b", [_vm._v("Is Active:")])]
-                                ),
-                                _vm._v(" "),
-                                _c("b-col", [_vm._v(_vm._s(row.item.isActive))])
-                              ],
-                              1
-                            ),
+                            _vm._l(row.item.details, function(detail) {
+                              return _c(
+                                "b-row",
+                                { key: detail.key },
+                                [
+                                  _c(
+                                    "b-col",
+                                    {
+                                      staticClass: "text-sm-right",
+                                      attrs: { sm: "3" }
+                                    },
+                                    [_c("b", [_vm._v("debit:")])]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("b-col", [
+                                    _vm._v(
+                                      _vm._s(
+                                        new Number(
+                                          detail.debit
+                                        ).toLocaleString()
+                                      )
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "b-col",
+                                    {
+                                      staticClass: "text-sm-right",
+                                      attrs: { sm: "3" }
+                                    },
+                                    [_c("b", [_vm._v("credit:")])]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("b-col", [
+                                    _vm._v(
+                                      _vm._s(
+                                        new Number(
+                                          detail.credit
+                                        ).toLocaleString()
+                                      )
+                                    )
+                                  ])
+                                ],
+                                1
+                              )
+                            }),
                             _vm._v(" "),
                             _c(
                               "b-button",
@@ -88172,6 +88163,34 @@ var render = function() {
                                 on: { click: row.toggleDetails }
                               },
                               [_vm._v("Hide Details")]
+                            )
+                          ],
+                          2
+                        )
+                      ]
+                    }
+                  },
+                  {
+                    key: "hasDetails",
+                    fn: function(row) {
+                      return [
+                        _c(
+                          "b-button-group",
+                          {
+                            staticClass: "show-when-hovered",
+                            attrs: { size: "sm" }
+                          },
+                          [
+                            _c(
+                              "b-button",
+                              { on: { click: row.toggleDetails } },
+                              [
+                                _c(
+                                  "i",
+                                  { staticClass: "material-icons md-19" },
+                                  [_vm._v("remove_red_eye")]
+                                )
+                              ]
                             )
                           ],
                           1
@@ -117624,9 +117643,9 @@ __webpack_require__(/*! ./forms/bootstrap */ "./spark/resources/assets/js/forms/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\SMART\Documents\GitHub\DebeHaber7\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\Users\SMART\Documents\GitHub\DebeHaber7\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\Users\SMART\Documents\GitHub\DebeHaber7\resources\sass\app-rtl.scss */"./resources/sass/app-rtl.scss");
+__webpack_require__(/*! /Users/ashah/Projects/debehaber7/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/ashah/Projects/debehaber7/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /Users/ashah/Projects/debehaber7/resources/sass/app-rtl.scss */"./resources/sass/app-rtl.scss");
 
 
 /***/ })
