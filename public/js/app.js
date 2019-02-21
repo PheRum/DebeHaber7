@@ -3786,6 +3786,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "",
   data: function data() {
@@ -87825,43 +87841,172 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "b-container",
-    [
-      _c(
-        "b-row",
+  return _vm.$route.name == "accountingMenu"
+    ? _c(
+        "b-container",
         [
           _c(
-            "b-col",
+            "b-row",
             [
               _c(
-                "b-card",
-                { attrs: { "no-body": "", header: "Cycles" } },
+                "b-col",
                 [
-                  _c("b-card-body", [
-                    _vm._v(
-                      "\n                    Quis magna Lorem anim amet ipsum do mollit sit cillum voluptate ex\n                    nulla tempor.\n                "
-                    )
-                  ]),
-                  _vm._v(" "),
                   _c(
-                    "b-list-group",
-                    { attrs: { flush: "" } },
+                    "b-card",
+                    {
+                      attrs: {
+                        "no-body": "",
+                        header: "Expenses",
+                        "header-tag": "header"
+                      }
+                    },
                     [
-                      _c("b-list-group-item", { attrs: { href: "#" } }, [
-                        _c("div", {}, [
-                          _c("img", {
-                            attrs: {
-                              src: "/img/icons/credit-note.svg",
-                              width: "32",
-                              alt: ""
-                            }
-                          }),
-                          _vm._v(
-                            "\n                            Opening Balance\n                        "
-                          )
-                        ])
-                      ])
+                      _c(
+                        "b-list-group",
+                        { attrs: { flush: "" } },
+                        [
+                          _c(
+                            "b-list-group-item",
+                            { attrs: { href: "#" } },
+                            [
+                              _c(
+                                "b-row",
+                                [
+                                  _c("b-col", [
+                                    _c("img", {
+                                      attrs: {
+                                        src: "/img/icons/purchase.svg",
+                                        width: "32",
+                                        alt: ""
+                                      }
+                                    }),
+                                    _vm._v(
+                                      "\n                                Purchase Book\n                            "
+                                    )
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("b-col")
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c("div")
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("b-list-group-item", { attrs: { href: "#" } }, [
+                            _c("div", {}, [
+                              _c("img", {
+                                attrs: {
+                                  src: "/img/icons/credit-note.svg",
+                                  width: "32",
+                                  alt: ""
+                                }
+                              }),
+                              _vm._v(
+                                "\n                            Debit Notes\n                        "
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("b-list-group-item", { attrs: { href: "#" } }, [
+                            _c("div", [
+                              _c("img", {
+                                attrs: {
+                                  src: "/img/icons/account-payable.svg",
+                                  width: "32",
+                                  alt: ""
+                                }
+                              }),
+                              _vm._v(
+                                "\n                            Accounts Payables\n                        "
+                              )
+                            ])
+                          ])
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-col",
+                [
+                  _c(
+                    "b-card",
+                    {
+                      attrs: {
+                        "no-body": "",
+                        header: "Revenue",
+                        "header-tag": "header"
+                      }
+                    },
+                    [
+                      _c(
+                        "b-list-group",
+                        { attrs: { flush: "" } },
+                        [
+                          _c("b-list-group-item", { attrs: { href: "#" } }, [
+                            _c("div", [
+                              _c("img", {
+                                attrs: {
+                                  src: "/img/icons/sales.svg",
+                                  width: "32",
+                                  alt: ""
+                                }
+                              }),
+                              _vm._v(
+                                "\n                            Sales Book\n                        "
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "b-list-group-item",
+                            { attrs: { href: "#" } },
+                            [
+                              _c(
+                                "router-link",
+                                { attrs: { to: { name: "creditList" } } },
+                                [
+                                  _c("img", {
+                                    attrs: {
+                                      src: "/img/icons/credit-note.svg",
+                                      width: "32",
+                                      alt: ""
+                                    }
+                                  }),
+                                  _vm._v(
+                                    "\n                            Credit Notes\n                        "
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("b-list-group-item", { attrs: { href: "#" } }, [
+                            _c("div", [
+                              _c("img", {
+                                attrs: {
+                                  src: "/img/icons/account-receivable.svg",
+                                  width: "32",
+                                  alt: ""
+                                }
+                              }),
+                              _vm._v(
+                                "\n                            Accounts Receivables\n                        "
+                              )
+                            ])
+                          ])
+                        ],
+                        1
+                      )
                     ],
                     1
                   )
@@ -87873,127 +88018,79 @@ var render = function() {
           ),
           _vm._v(" "),
           _c(
-            "b-col",
+            "b-row",
             [
               _c(
-                "b-card",
-                { attrs: { "no-body": "", header: "Accounts" } },
+                "b-col",
                 [
-                  _c("b-card-body", [
-                    _vm._v(
-                      "\n                    Quis magna Lorem anim amet ipsum do mollit sit cillum voluptate ex\n                    nulla tempor.\n                "
-                    )
-                  ]),
-                  _vm._v(" "),
                   _c(
-                    "b-list-group",
-                    { attrs: { flush: "" } },
+                    "b-card",
+                    {
+                      attrs: {
+                        title: "Configuration",
+                        "sub-title": "Configuration"
+                      }
+                    },
                     [
-                      _c("b-list-group-item", { attrs: { href: "#" } }, [
-                        _c("div", [
-                          _c("img", {
-                            attrs: {
-                              src: "/img/icons/sales.svg",
-                              width: "32",
-                              alt: ""
-                            }
-                          }),
-                          _vm._v(
-                            "\n                            Charts\n                        "
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("b-list-group-item", { attrs: { href: "#" } }, [
-                        _c("div", [
-                          _c("img", {
-                            attrs: {
-                              src: "/img/icons/credit-note.svg",
-                              width: "32",
-                              alt: ""
-                            }
-                          }),
-                          _vm._v(
-                            "\n                            Journals\n                        "
-                          )
-                        ])
-                      ])
-                    ],
-                    1
-                  )
-                ],
-                1
-              )
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "b-row",
-        [
-          _c(
-            "b-col",
-            [
-              _c(
-                "b-card",
-                { attrs: { "no-body": "", header: "Configuration" } },
-                [
-                  _c("b-card-body", [
-                    _vm._v(
-                      "\n                    Quis magna Lorem anim amet ipsum do mollit sit cillum voluptate ex\n                    nulla tempor.\n                "
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "b-list-group",
-                    [
-                      _c("b-list-group-item", { attrs: { href: "#" } }, [
-                        _c("div", [
-                          _c("img", {
-                            attrs: {
-                              src: "/img/icons/sales.svg",
-                              width: "32",
-                              alt: ""
-                            }
-                          }),
-                          _vm._v(
-                            "\n                            Sales Book\n                        "
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("b-list-group-item", { attrs: { href: "#" } }, [
-                        _c("div", [
-                          _c("img", {
-                            attrs: {
-                              src: "/img/icons/credit-note.svg",
-                              width: "32",
-                              alt: ""
-                            }
-                          }),
-                          _vm._v(
-                            "\n                            Credit Notes\n                        "
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("b-list-group-item", { attrs: { href: "#" } }, [
-                        _c("div", [
-                          _c("img", {
-                            attrs: {
-                              src: "/img/icons/account-receivable.svg",
-                              width: "32",
-                              alt: ""
-                            }
-                          }),
-                          _vm._v(
-                            "\n                            Accounts Receivables\n                        "
-                          )
-                        ])
-                      ])
+                      _c(
+                        "b-list-group",
+                        [
+                          _c("b-list-group-item", { attrs: { href: "#" } }, [
+                            _c("div", [
+                              _c("img", {
+                                attrs: {
+                                  src: "/img/icons/sales.svg",
+                                  width: "32",
+                                  alt: ""
+                                }
+                              }),
+                              _vm._v(
+                                "\n                            Sales Book\n                        "
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c(
+                            "b-list-group-item",
+                            { attrs: { href: "#" } },
+                            [
+                              _c(
+                                "router-link",
+                                { attrs: { to: { name: "creditList" } } },
+                                [
+                                  _c("img", {
+                                    attrs: {
+                                      src: "/img/icons/credit-note.svg",
+                                      width: "32",
+                                      alt: ""
+                                    }
+                                  }),
+                                  _vm._v(
+                                    "\n                            Credit Notes\n                        "
+                                  )
+                                ]
+                              )
+                            ],
+                            1
+                          ),
+                          _vm._v(" "),
+                          _c("b-list-group-item", { attrs: { href: "#" } }, [
+                            _c("div", [
+                              _c("img", {
+                                attrs: {
+                                  src: "/img/icons/account-receivable.svg",
+                                  width: "32",
+                                  alt: ""
+                                }
+                              }),
+                              _vm._v(
+                                "\n                            Accounts Receivables\n                        "
+                              )
+                            ])
+                          ])
+                        ],
+                        1
+                      )
                     ],
                     1
                   )
@@ -88006,9 +88103,7 @@ var render = function() {
         ],
         1
       )
-    ],
-    1
-  )
+    : _c("router-view")
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -116171,9 +116266,9 @@ __webpack_require__(/*! ./forms/bootstrap */ "./spark/resources/assets/js/forms/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\SMART\Documents\GitHub\DebeHaber7\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\Users\SMART\Documents\GitHub\DebeHaber7\resources\sass\app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! C:\Users\SMART\Documents\GitHub\DebeHaber7\resources\sass\app-rtl.scss */"./resources/sass/app-rtl.scss");
+__webpack_require__(/*! /Users/ashah/Projects/debehaber7/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/ashah/Projects/debehaber7/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /Users/ashah/Projects/debehaber7/resources/sass/app-rtl.scss */"./resources/sass/app-rtl.scss");
 
 
 /***/ })
