@@ -3633,6 +3633,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -87965,11 +87988,11 @@ var render = function() {
                     fn: function(data) {
                       return [
                         _vm._v(
-                          "\n                " +
+                          "\n                    " +
                             _vm._s(
                               new Date(data.item.date).toLocaleDateString()
                             ) +
-                            "\n            "
+                            "\n                "
                         )
                       ]
                     }
@@ -87981,13 +88004,13 @@ var render = function() {
                         data.item.expiry >= new Date()
                           ? _c("div", [
                               _vm._v(
-                                "\n                    " +
+                                "\n                        " +
                                   _vm._s(
                                     new Date(
                                       data.item.expiry
                                     ).toLocaleDateString()
                                   ) +
-                                  "\n                "
+                                  "\n                    "
                               )
                             ])
                           : _c("div", [
@@ -88010,13 +88033,13 @@ var render = function() {
                       return [
                         _c("span", { staticClass: "float-right" }, [
                           _vm._v(
-                            "\n                    " +
+                            "\n                        " +
                               _vm._s(
                                 new Number(
                                   _vm.sumValue(data.item.details)
                                 ).toLocaleString()
                               ) +
-                              "\n                    "
+                              "\n                        "
                           ),
                           data.item.currency != null
                             ? _c(
@@ -88035,13 +88058,13 @@ var render = function() {
                       return [
                         _c("span", { staticClass: "float-right" }, [
                           _vm._v(
-                            "\n                    " +
+                            "\n                        " +
                               _vm._s(
                                 new Number(
                                   _vm.sumDebit(data.item.details)
                                 ).toLocaleString()
                               ) +
-                              "\n                    "
+                              "\n                        "
                           ),
                           data.item.currency != null
                             ? _c(
@@ -88060,11 +88083,11 @@ var render = function() {
                       return [
                         _c("span", { staticClass: "float-right" }, [
                           _vm._v(
-                            "\n                    " +
+                            "\n                        " +
                               _vm._s(
                                 new Number(data.item.balance).toLocaleString()
                               ) +
-                              "\n                    "
+                              "\n                        "
                           ),
                           data.item.currency != null
                             ? _c(
@@ -88074,6 +88097,85 @@ var render = function() {
                               )
                             : _vm._e()
                         ])
+                      ]
+                    }
+                  },
+                  {
+                    key: "show_details",
+                    fn: function(row) {
+                      return [
+                        _c(
+                          "b-button",
+                          {
+                            staticClass: "mr-2",
+                            attrs: { size: "sm" },
+                            on: { click: row.toggleDetails }
+                          },
+                          [
+                            _vm._v(
+                              "\n    " +
+                                _vm._s(row.detailsShowing ? "Hide" : "Show") +
+                                " Details\n  "
+                            )
+                          ]
+                        )
+                      ]
+                    }
+                  },
+                  {
+                    key: "row-details",
+                    fn: function(row) {
+                      return [
+                        _c(
+                          "b-card",
+                          [
+                            _c(
+                              "b-row",
+                              { staticClass: "mb-2" },
+                              [
+                                _c(
+                                  "b-col",
+                                  {
+                                    staticClass: "text-sm-right",
+                                    attrs: { sm: "3" }
+                                  },
+                                  [_c("b", [_vm._v("Age:")])]
+                                ),
+                                _vm._v(" "),
+                                _c("b-col", [_vm._v(_vm._s(row.item.age))])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-row",
+                              { staticClass: "mb-2" },
+                              [
+                                _c(
+                                  "b-col",
+                                  {
+                                    staticClass: "text-sm-right",
+                                    attrs: { sm: "3" }
+                                  },
+                                  [_c("b", [_vm._v("Is Active:")])]
+                                ),
+                                _vm._v(" "),
+                                _c("b-col", [_vm._v(_vm._s(row.item.isActive))])
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "b-button",
+                              {
+                                attrs: { size: "sm" },
+                                on: { click: row.toggleDetails }
+                              },
+                              [_vm._v("Hide Details")]
+                            )
+                          ],
+                          1
+                        )
                       ]
                     }
                   },

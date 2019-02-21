@@ -32,11 +32,34 @@
                         <small class="text-success text-uppercase" v-if="data.item.currency != null">{{ data.item.currency.code }}</small>
                     </span>
                 </template>
+
+                <template slot="show_details" slot-scope="row">
+  <b-button size="sm" @click="row.toggleDetails" class="mr-2">
+    {{ row.detailsShowing ? 'Hide' : 'Show'}} Details
+  </b-button>
+</template>
+                <template slot="row-details" slot-scope="row">
+                  <b-card>
+                    <b-row class="mb-2">
+                      <b-col sm="3" class="text-sm-right"><b>Age:</b></b-col>
+                      <b-col>{{ row.item.age }}</b-col>
+                    </b-row>
+
+                    <b-row class="mb-2">
+                      <b-col sm="3" class="text-sm-right"><b>Is Active:</b></b-col>
+                      <b-col>{{ row.item.isActive }}</b-col>
+                    </b-row>
+
+                    <b-button size="sm" @click="row.toggleDetails">Hide Details</b-button>
+                  </b-card>
+                </template>
+
                 <template slot="action" slot-scope="data">
                     <b-button-group size="sm" class="show-when-hovered">
                         <b-button :to="{ name: formURL, params: { id: data.item.id }}"><i class="material-icons md-18">edit</i></b-button>
                         <b-button @click="onDelete(data.item)"><i class="material-icons md-19">delete_outline</i></b-button>
                     </b-button-group>
+
                 </template>
             </b-table>
         </b-card>
