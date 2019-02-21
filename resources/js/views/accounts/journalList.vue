@@ -61,14 +61,14 @@ export default {
                 key: 'date',
                 sortable: true
             },
-            
+
             {
                 key: 'number',
                 label: this.$i18n.t('commercial.number'),
                 sortable: true
             },
             {
-                key: 'total',
+                key: 'debit',
                 label: this.$i18n.t('commercial.total'),
                 sortable: true
             },

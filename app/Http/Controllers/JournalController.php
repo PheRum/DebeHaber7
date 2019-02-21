@@ -38,14 +38,7 @@ class JournalController extends Controller
   }
 
 
-  public function getJournalsByID($taxPayerID, Cycle $cycle, $id)
-  {
-    $journals = Journal::with('details:id,journal_uuid,chart_id,debit,credit')
-    ->withUuid($id)
-    ->get();
 
-    return response()->json($journals);
-  }
 
   /**
   * Show the form for creating a new resource.

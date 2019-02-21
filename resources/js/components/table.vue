@@ -20,6 +20,12 @@
                         <small class="text-success text-uppercase" v-if="data.item.currency != null">{{ data.item.currency.code }}</small>
                     </span>
                 </template>
+                <template slot="debit" slot-scope="data">
+                    <span class="float-right">
+                        {{ new Number(sumDebit(data.item.details)).toLocaleString() }}
+                        <small class="text-success text-uppercase" v-if="data.item.currency != null">{{ data.item.currency.code }}</small>
+                    </span>
+                </template>
                 <template slot="balance" slot-scope="data">
                     <span class="float-right">
                         {{ new Number(data.item.balance).toLocaleString() }}
@@ -111,6 +117,18 @@
             sumValue(details) {
                 return details.reduce(function(sum, row) {
                     return sum + new Number(row.default_currency);
+                }, 0);
+            },
+
+            sumDebit(details) {
+                return details.reduce(function(sum, row) {
+                    return sum + new Number(row.debit);
+                }, 0);
+            },
+
+            sumCredit(details) {
+                return details.reduce(function(sum, row) {
+                    return sum + new Number(row.credit);
                 }, 0);
             }
         },

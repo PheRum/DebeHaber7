@@ -3627,6 +3627,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3692,6 +3698,16 @@ __webpack_require__.r(__webpack_exports__);
     sumValue: function sumValue(details) {
       return details.reduce(function (sum, row) {
         return sum + new Number(row.default_currency);
+      }, 0);
+    },
+    sumDebit: function sumDebit(details) {
+      return details.reduce(function (sum, row) {
+        return sum + new Number(row.debit);
+      }, 0);
+    },
+    sumCredit: function sumCredit(details) {
+      return details.reduce(function (sum, row) {
+        return sum + new Number(row.credit);
       }, 0);
     }
   },
@@ -4160,7 +4176,7 @@ __webpack_require__.r(__webpack_exports__);
         label: this.$i18n.t('commercial.number'),
         sortable: true
       }, {
-        key: 'total',
+        key: 'debit',
         label: this.$i18n.t('commercial.total'),
         sortable: true
       }, {
@@ -87998,6 +88014,31 @@ var render = function() {
                               _vm._s(
                                 new Number(
                                   _vm.sumValue(data.item.details)
+                                ).toLocaleString()
+                              ) +
+                              "\n                    "
+                          ),
+                          data.item.currency != null
+                            ? _c(
+                                "small",
+                                { staticClass: "text-success text-uppercase" },
+                                [_vm._v(_vm._s(data.item.currency.code))]
+                              )
+                            : _vm._e()
+                        ])
+                      ]
+                    }
+                  },
+                  {
+                    key: "debit",
+                    fn: function(data) {
+                      return [
+                        _c("span", { staticClass: "float-right" }, [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(
+                                new Number(
+                                  _vm.sumDebit(data.item.details)
                                 ).toLocaleString()
                               ) +
                               "\n                    "
