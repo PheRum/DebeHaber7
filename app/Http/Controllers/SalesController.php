@@ -54,9 +54,9 @@ class SalesController extends Controller
     {
 
         $transaction = Transaction::firstOrNew(['id' => $request->id]);
-
-        if ($request->customer_id > 0) {
-        $transaction->customer_id = $request->customer_id;
+    
+        if ($request->customer['id'] > 0) {
+            $transaction->customer_id = $request->customer['id'] ;
         }
 
         if ($request->document_id > 0) {

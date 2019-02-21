@@ -9,7 +9,7 @@ use App\Taxpayer;
 use App\Cycle;
 use App\Journal;
 use App\JournalDetail;
-use App\Http\Resources\JournalResource;
+use App\Http\Resources\GeneralResource;
 use App\Jobs\GenerateJournal;
 
 use DB;
@@ -65,17 +65,19 @@ class JournalController extends Controller
   */
   public function store(Request $request,Taxpayer $taxPayer,Cycle $cycle)
   {
+
     $journal = $request->id == 0 ? new Journal() : Journal::where('id', $request->id)->first();
 
     $journal->date = $request->date;
     $journal->number = $request->number ;
     $journal->comment = $request->comment;
     $journal->cycle_id = $cycle->id;
+
     $journal->save();
 
     foreach ($request->details as $detail)
     {
-      $journalDetail = $detail['id'] == 0 ? new JournalDetail() : JournalDetail::where('id', $detail['id'])->first();
+      $journalDetail = JournalDetail::firstOrNew(['id' => $detail['id']]);;
       $journalDetail->journal_id = $journal->id;
       $journalDetail->chart_id = $detail['chart_id'];
       $journalDetail->debit = $detail['debit'];

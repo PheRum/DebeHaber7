@@ -168,7 +168,7 @@ export default {
                 customer_id: 0,
                 customer: [],
                 date: '',
-                details: [],
+                details: [{id: 0}],
                 document_id: '',
                 document_type: 1,
                 id: 0,
