@@ -6,10 +6,10 @@
                     <b-card bg-variant="dark" text-variant="white">
                         <h4 class="upper-case">
                             <img :src="$route.meta.img" alt="" class="ml-5 mr-5" width="26">
-                            {{ $route.meta.title }}
+                            {{ $t($route.meta.title) }}
                         </h4>
                         <p class="lead" v-if="$route.name.includes('List')">
-                            {{ $route.meta.description }}, <router-link to="{ name: 'creditForm', params: { id: 0}}">Create</router-link>
+                            {{ $t($route.meta.description) }}, <router-link to="{ name: $route.name, params: { id: 0}}">Create</router-link>
                         </p>
                     </b-card>
 

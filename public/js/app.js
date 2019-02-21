@@ -4723,6 +4723,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -88450,7 +88465,7 @@ var render = function() {
                             }),
                             _vm._v(
                               "\n                        " +
-                                _vm._s(_vm.$route.meta.title) +
+                                _vm._s(_vm.$t(_vm.$route.meta.title)) +
                                 "\n                    "
                             )
                           ]),
@@ -88462,7 +88477,9 @@ var render = function() {
                                 [
                                   _vm._v(
                                     "\n                        " +
-                                      _vm._s(_vm.$route.meta.description) +
+                                      _vm._s(
+                                        _vm.$t(_vm.$route.meta.description)
+                                      ) +
                                       ", "
                                   ),
                                   _c(
@@ -88470,7 +88487,7 @@ var render = function() {
                                     {
                                       attrs: {
                                         to:
-                                          "{ name: 'creditForm', params: { id: 0}}"
+                                          "{ name: $route.name, params: { id: 0}}"
                                       }
                                     },
                                     [_vm._v("Create")]
@@ -89476,7 +89493,7 @@ var render = function() {
                             }),
                             _vm._v(
                               "\n                        " +
-                                _vm._s(_vm.$route.meta.title) +
+                                _vm._s(_vm.$t(_vm.$route.meta.title)) +
                                 "\n                    "
                             )
                           ]),
@@ -89488,7 +89505,9 @@ var render = function() {
                                 [
                                   _vm._v(
                                     "\n                        " +
-                                      _vm._s(_vm.$route.meta.description) +
+                                      _vm._s(
+                                        _vm.$t(_vm.$route.meta.description)
+                                      ) +
                                       ", "
                                   ),
                                   _c(
@@ -89496,7 +89515,7 @@ var render = function() {
                                     {
                                       attrs: {
                                         to:
-                                          "{ name: 'creditForm', params: { id: 0}}"
+                                          "{ name: $route.name, params: { id: 0}}"
                                       }
                                     },
                                     [_vm._v("Create")]
@@ -90771,58 +90790,79 @@ var render = function() {
                       _c(
                         "b-card",
                         {
-                          attrs: {
-                            "bg-variant": "dark",
-                            "text-variant": "white"
-                          }
+                          staticClass: "overflow-hidden",
+                          attrs: { "no-body": "" }
                         },
                         [
-                          _c("h4", { staticClass: "upper-case" }, [
-                            _c("img", {
-                              staticClass: "ml-5 mr-5",
-                              attrs: {
-                                src: _vm.$route.meta.img,
-                                alt: "",
-                                width: "26"
-                              }
-                            }),
-                            _vm._v(
-                              "\n                        " +
-                                _vm._s(_vm.$route.meta.title) +
-                                "\n                    "
-                            )
-                          ]),
-                          _vm._v(" "),
-                          _vm.$route.name.includes("List")
-                            ? _c(
-                                "p",
-                                { staticClass: "lead" },
+                          _c(
+                            "b-row",
+                            [
+                              _c(
+                                "b-col",
+                                { attrs: { cols: "4" } },
                                 [
-                                  _vm._v(
-                                    "\n                        " +
-                                      _vm._s(_vm.$route.meta.description) +
-                                      ", "
-                                  ),
+                                  _c("b-card-img", {
+                                    attrs: { src: _vm.$route.meta.img }
+                                  })
+                                ],
+                                1
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "b-col",
+                                { attrs: { cols: "8" } },
+                                [
                                   _c(
-                                    "router-link",
+                                    "b-card-body",
                                     {
                                       attrs: {
-                                        to:
-                                          "{ name: 'creditForm', params: { id: 0}}"
+                                        title: _vm.$t(_vm.$route.meta.title)
                                       }
                                     },
-                                    [_vm._v("Create")]
+                                    [
+                                      _c("b-card-text", [
+                                        _vm.$route.name.includes("List")
+                                          ? _c(
+                                              "p",
+                                              { staticClass: "lead" },
+                                              [
+                                                _vm._v(
+                                                  "\n                                        " +
+                                                    _vm._s(
+                                                      _vm.$t(
+                                                        _vm.$route.meta
+                                                          .description
+                                                      )
+                                                    ) +
+                                                    ", "
+                                                ),
+                                                _c(
+                                                  "router-link",
+                                                  {
+                                                    attrs: {
+                                                      to:
+                                                        "{ name: $route.name, params: { id: 0}}"
+                                                    }
+                                                  },
+                                                  [_vm._v("Create")]
+                                                )
+                                              ],
+                                              1
+                                            )
+                                          : _vm._e()
+                                      ])
+                                    ],
+                                    1
                                   )
                                 ],
                                 1
                               )
-                            : _vm._e()
-                        ]
+                            ],
+                            1
+                          )
+                        ],
+                        1
                       ),
-                      _vm._v(" "),
-                      _c("invoices-this-month-kpi", {
-                        staticClass: "d-none d-xl-block"
-                      }),
                       _vm._v(" "),
                       _c("invoices-this-month-kpi", {
                         staticClass: "d-none d-xl-block"
@@ -90847,7 +90887,7 @@ var render = function() {
                                     "\n                            " +
                                       _vm._s(_vm.$t("general.report", 2)) +
                                       " " +
-                                      _vm._s(_vm.$route.meta.title) +
+                                      _vm._s(_vm.$t(_vm.$route.meta.title)) +
                                       "\n                        "
                                   )
                                 ]
@@ -90864,7 +90904,7 @@ var render = function() {
                                     "\n                            " +
                                       _vm._s(_vm.$t("general.upload")) +
                                       " " +
-                                      _vm._s(_vm.$route.meta.title) +
+                                      _vm._s(_vm.$t(_vm.$route.meta.title)) +
                                       "\n                        "
                                   )
                                 ]
@@ -90882,8 +90922,6 @@ var render = function() {
                                   _vm._v(
                                     "\n                            " +
                                       _vm._s(_vm.$t("general.create")) +
-                                      " " +
-                                      _vm._s(_vm.$route.meta.title) +
                                       "\n                        "
                                   )
                                 ]
@@ -91814,7 +91852,7 @@ var render = function() {
                             }),
                             _vm._v(
                               "\n                        " +
-                                _vm._s(_vm.$route.meta.title) +
+                                _vm._s(_vm.$t(_vm.$route.meta.title)) +
                                 "\n                    "
                             )
                           ]),
@@ -91826,7 +91864,9 @@ var render = function() {
                                 [
                                   _vm._v(
                                     "\n                        " +
-                                      _vm._s(_vm.$route.meta.description) +
+                                      _vm._s(
+                                        _vm.$t(_vm.$route.meta.description)
+                                      ) +
                                       ", "
                                   ),
                                   _c(
@@ -91834,7 +91874,7 @@ var render = function() {
                                     {
                                       attrs: {
                                         to:
-                                          "{ name: 'creditForm', params: { id: 0}}"
+                                          "{ name: $route.name, params: { id: 0}}"
                                       }
                                     },
                                     [_vm._v("Create")]
@@ -108202,7 +108242,7 @@ __webpack_require__.r(__webpack_exports__);
     name: 'salesList',
     meta: {
       apiUrl: 'sales',
-      title: 'Sales Book',
+      title: 'commercial.salesBook',
       description: 'Some description',
       img: '/img/apps/sales.svg'
     },
@@ -108211,7 +108251,7 @@ __webpack_require__.r(__webpack_exports__);
       component: _views_commercials_salesForm__WEBPACK_IMPORTED_MODULE_5__["default"],
       name: 'salesForm',
       meta: {
-        title: 'Sales Invoice',
+        title: 'commercial.salesInvoice',
         img: '/img/apps/sales.svg'
       }
     }]
@@ -108220,7 +108260,7 @@ __webpack_require__.r(__webpack_exports__);
     component: _views_commercials_creditList__WEBPACK_IMPORTED_MODULE_8__["default"],
     name: 'creditList',
     meta: {
-      title: 'Credit Book',
+      title: 'commercial.creditBook',
       description: 'Some description',
       img: '/img/apps/credit-note.svg'
     },
@@ -108229,7 +108269,7 @@ __webpack_require__.r(__webpack_exports__);
       component: _views_commercials_creditForm__WEBPACK_IMPORTED_MODULE_9__["default"],
       name: 'creditForm',
       meta: {
-        title: 'Credit Note'
+        title: 'commercial.creditNote'
       }
     }]
   }, {
@@ -108237,18 +108277,18 @@ __webpack_require__.r(__webpack_exports__);
     component: _views_commercials_purchaseList__WEBPACK_IMPORTED_MODULE_6__["default"],
     name: 'purchaseList',
     meta: {
-      title: 'Purchase Book',
+      title: 'commercial.purchaseBook',
       description: 'Some description',
-      img: '/img/apps/sales.svg'
+      img: '/img/apps/purchase-v1.svg'
     },
     children: [{
       path: ':id',
       component: _views_commercials_purchaseForm__WEBPACK_IMPORTED_MODULE_7__["default"],
       name: 'purchaseForm',
       meta: {
-        title: 'Purchase Invoice',
+        title: 'commercial.purchaseInvoice',
         description: 'Some description',
-        img: '/img/apps/sales.svg'
+        img: '/img/apps/purchase-v1.svg'
       }
     }]
   }, {
@@ -108256,7 +108296,7 @@ __webpack_require__.r(__webpack_exports__);
     component: _views_commercials_debitList__WEBPACK_IMPORTED_MODULE_10__["default"],
     name: 'debitList',
     meta: {
-      title: 'Debit Book',
+      title: 'commercial.debitBook',
       description: 'Some description',
       img: '/img/apps/sales.svg'
     },
@@ -108265,7 +108305,7 @@ __webpack_require__.r(__webpack_exports__);
       component: _views_commercials_debitForm__WEBPACK_IMPORTED_MODULE_11__["default"],
       name: 'debitForm',
       meta: {
-        title: 'Debit Note',
+        title: 'commercial.debitNote',
         description: 'Some description',
         img: '/img/apps/sales.svg'
       }
@@ -108285,7 +108325,7 @@ __webpack_require__.r(__webpack_exports__);
     component: _views_accounts_journalList__WEBPACK_IMPORTED_MODULE_13__["default"],
     name: 'journalList',
     meta: {
-      title: 'Journal',
+      title: 'accounting.journals',
       description: 'Some description',
       img: '/img/apps/sales.svg'
     },
@@ -108294,7 +108334,7 @@ __webpack_require__.r(__webpack_exports__);
       component: _views_accounts_journalForm__WEBPACK_IMPORTED_MODULE_14__["default"],
       name: 'journalForm',
       meta: {
-        title: 'Journal Form'
+        title: 'accounting.journal'
       }
     }]
   }, {
@@ -108302,7 +108342,7 @@ __webpack_require__.r(__webpack_exports__);
     component: _views_accounts_cycleList__WEBPACK_IMPORTED_MODULE_15__["default"],
     name: 'cycleList',
     meta: {
-      title: 'Accounting Cycles',
+      title: 'accounting.fiscalYear',
       description: 'Some description',
       img: '/img/apps/sales.svg'
     },

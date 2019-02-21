@@ -71,7 +71,7 @@ export default
                 name: 'salesList',
                 meta: {
                     apiUrl: 'sales',
-                    title: 'Sales Book',
+                    title: 'commercial.salesBook',
                     description: 'Some description',
                     img: '/img/apps/sales.svg',
                 },
@@ -82,7 +82,7 @@ export default
                         component: SalesForm,
                         name: 'salesForm',
                         meta: {
-                            title: 'Sales Invoice',
+                            title: 'commercial.salesInvoice',
                             img: '/img/apps/sales.svg',
                         },
 
@@ -94,7 +94,7 @@ export default
                 component: CreditList,
                 name: 'creditList',
                 meta: {
-                    title: 'Credit Book',
+                    title: 'commercial.creditBook',
                     description: 'Some description',
                     img: '/img/apps/credit-note.svg',
                 },
@@ -105,7 +105,7 @@ export default
                         component: CreditForm,
                         name: 'creditForm',
                         meta: {
-                            title: 'Credit Note',
+                            title: 'commercial.creditNote',
                         },
 
                     }
@@ -116,9 +116,9 @@ export default
                 component: PurchaseList,
                 name: 'purchaseList',
                 meta: {
-                    title: 'Purchase Book',
+                    title: 'commercial.purchaseBook',
                     description: 'Some description',
-                    img: '/img/apps/sales.svg',
+                    img: '/img/apps/purchase-v1.svg',
                 },
                 children:
                 [
@@ -127,9 +127,9 @@ export default
                         component: PurchaseForm,
                         name: 'purchaseForm',
                         meta: {
-                            title: 'Purchase Invoice',
+                            title: 'commercial.purchaseInvoice',
                             description: 'Some description',
-                            img: '/img/apps/sales.svg',
+                            img: '/img/apps/purchase-v1.svg',
                         },
 
                     }
@@ -140,7 +140,7 @@ export default
                 component: DebitList,
                 name: 'debitList',
                 meta: {
-                    title: 'Debit Book',
+                    title: 'commercial.debitBook',
                     description: 'Some description',
                     img: '/img/apps/sales.svg',
                 },
@@ -151,7 +151,7 @@ export default
                         component: DebitForm,
                         name: 'debitForm',
                         meta: {
-                            title: 'Debit Note',
+                            title: 'commercial.debitNote',
                             description: 'Some description',
                             img: '/img/apps/sales.svg',
                         },
@@ -177,7 +177,7 @@ export default
                 component: JournalList,
                 name: 'journalList',
                 meta: {
-                    title: 'Journal',
+                    title: 'accounting.journals',
                     description: 'Some description',
                     img: '/img/apps/sales.svg',
                 },
@@ -188,7 +188,7 @@ export default
                         component: JournalForm,
                         name: 'journalForm',
                         meta: {
-                            title: 'Journal Form',
+                            title: 'accounting.journal',
                         },
                     }
                 ]
@@ -198,7 +198,7 @@ export default
                 component: CycleList,
                 name: 'cycleList',
                 meta: {
-                    title: 'Accounting Cycles',
+                    title: 'accounting.fiscalYear',
                     description: 'Some description',
                     img: '/img/apps/sales.svg',
                 },
