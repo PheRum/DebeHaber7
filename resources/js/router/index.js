@@ -177,9 +177,9 @@ export default
                 component: JournalList,
                 name: 'journalList',
                 meta: {
-                    title: 'accounting.journals',
+                    title: 'accounting.journal',
                     description: 'Some description',
-                    img: '/img/apps/sales.svg',
+                    img: '/img/apps/journals.svg',
                 },
                 children:
                 [
