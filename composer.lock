@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ee24d5d3039c572c0c85b7a66097a3ca",
+    "content-hash": "d320fb8373e05d7ff1c7a7f4c3ed8fb3",
     "packages": [
         {
             "name": "anahkiasen/underscore-php",
@@ -3212,6 +3212,57 @@
                 "time"
             ],
             "time": "2018-12-28T10:07:33+00:00"
+        },
+        {
+            "name": "netojose/laravel-api-explorer",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/netojose/laravel-api-explorer.git",
+                "reference": "ef5c44df5d3585e504eaf84ab0bb9715fef1e085"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/netojose/laravel-api-explorer/zipball/ef5c44df5d3585e504eaf84ab0bb9715fef1e085",
+                "reference": "ef5c44df5d3585e504eaf84ab0bb9715fef1e085",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "NetoJose\\LaravelApiExplorer\\LaravelApiExplorerServiceProvider"
+                    ],
+                    "aliases": {
+                        "LaravelApiExplorer": "NetoJose\\LaravelApiExplorer\\Facades\\LaravelApiExplorer"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "NetoJose\\LaravelApiExplorer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "José Neto",
+                    "email": "sputinykster@gmail.com",
+                    "homepage": "https://netojose.github.io/"
+                }
+            ],
+            "description": "API explorer for laravel application",
+            "homepage": "https://github.com/netojose/laravel-api-explorer",
+            "keywords": [
+                "LaravelApiExplorer",
+                "api",
+                "laravel",
+                "rest"
+            ],
+            "time": "2018-07-29T10:24:59+00:00"
         },
         {
             "name": "nexmo/client",

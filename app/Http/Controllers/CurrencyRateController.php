@@ -10,6 +10,7 @@ use App\CurrencyRate;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Swap\Laravel\Facades\Swap;
+use App\Http\Resources\GeneralResource;
 use DB;
 
 class CurrencyRateController extends Controller
@@ -21,7 +22,11 @@ class CurrencyRateController extends Controller
     */
     public function index(Taxpayer $taxPayer, Cycle $cycle)
     {
-        return view('/configs/currencies/list');
+        return GeneralResource::collection(
+            CurrencyRate::with('currency')
+            ->orderBy('date', 'desc')
+            ->paginate(50)
+        );
     }
 
     /**
@@ -83,34 +88,16 @@ class CurrencyRateController extends Controller
         return response()->json($currencyRate);
     }
 
-    public function get_Allrate()
-    {
-        $currencyRate = CurrencyRate::with('currency')
-        ->get();
-
-        return response()->json($currencyRate);
-    }
-
-    /**
-    * Show the form for creating a new resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-    public function create()
-    {
-        //
-    }
-
     /**
     * Store a newly created resource in storage.
     *
     * @param  \Illuminate\Http\Request  $request
     * @return \Illuminate\Http\Response
     */
-    public function store(Request $request)
+    public function store(Request $request, Taxpayer $taxPayer, $cycle)
     {
         $currencyrate = $request->id == 0 ? $currencyrate = new CurrencyRate() : CurrencyRate::where('id', $request->id)->first();
-
+        $currencyrate->taxpayer_id = $taxPayer->id;
         $currencyrate->currency_id = $request->currency_id;
         $currencyrate->buy_rate = $request->buy_rate;
         $currencyrate->sell_rate = $request->sell_rate;
@@ -119,38 +106,13 @@ class CurrencyRateController extends Controller
         return response()->json('Ok', 200);
     }
 
-    /**
-    * Display the specified resource.
-    *
-    * @param  \App\CurrencyRate  $currencyRate
-    * @return \Illuminate\Http\Response
-    */
-    public function show(CurrencyRate $currencyRate)
+    public function show($taxPayer, $cycle, $rateId)
     {
-        //
-    }
-
-    /**
-    * Show the form for editing the specified resource.
-    *
-    * @param  \App\CurrencyRate  $currencyRate
-    * @return \Illuminate\Http\Response
-    */
-    public function edit(CurrencyRate $currencyRate)
-    {
-        //
-    }
-
-    /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  \App\CurrencyRate  $currencyRate
-    * @return \Illuminate\Http\Response
-    */
-    public function update(Request $request, CurrencyRate $currencyRate)
-    {
-        //
+        return new GeneralResource(
+            CurrencyRate::with('currency')
+            ->where('id', $rateId)
+            ->first()
+        );
     }
 
     /**

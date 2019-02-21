@@ -6,6 +6,7 @@ use App\Taxpayer;
 use App\Cycle;
 use App\Document;
 use Illuminate\Http\Request;
+use App\Http\Resources\GeneralResource;
 
 class DocumentController extends Controller
 {
@@ -16,20 +17,11 @@ class DocumentController extends Controller
     */
     public function index(Taxpayer $taxPayer, Cycle $cycle)
     {
-        $document = Document::where('type',$type)->where('taxpayer_id',$taxPayer->id)->get();
-        return response()->json($document);
-    }
-
-    public function get_Alldocument(Taxpayer $taxPayer)
-    {
-        $document = Document::where('taxpayer_id',$taxPayer->id)->get();
-        return response()->json($document);
-    }
-
-    public function get_documentByID(Taxpayer $taxPayer, $id)
-    {
-        $document = Document::where('id',$id)->first();
-        return response()->json($document);
+        return GeneralResource::collection(
+            Document::where('taxpayer_id', $taxPayer->id)
+            ->orderBy('date', 'desc')
+            ->paginate(50)
+        );
     }
 
     /**
@@ -53,7 +45,17 @@ class DocumentController extends Controller
         $document->code_expiry = $request->code_expiry;
         $document->save();
 
-        return response()->json('ok');
+        return response()->json('ok', 200);
+    }
+
+    public function show(Taxpayer $taxPayer, Cycle $cycle, $transactionId)
+    {
+        return new GeneralResource(
+            Document::where('taxpayer_id', $taxPayer->id)
+            ->where('id', $transactionId)
+            ->orderBy('date', 'desc')
+            ->first()
+        );
     }
 
     /**

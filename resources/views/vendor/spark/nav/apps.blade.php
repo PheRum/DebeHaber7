@@ -33,11 +33,11 @@
                 <i class="material-icons md-18 ml-10 mr-10">settings</i>
                 @{{ $t('general.settingsTaxPayer') }}
             </b-nav-item>
-            <b-nav-item class="sub-menu" :to="{ name: 'documentsList'}">
+            <b-nav-item class="sub-menu" :to="{ name: 'documentList'}">
                 <i class="material-icons md-18 ml-10 mr-10">file_copy</i>
                 @{{ $t('commercial.documents') }}
             </b-nav-item>
-            <b-nav-item class="sub-menu" :to="{ name: 'creditList'}">
+            <b-nav-item class="sub-menu" :to="{ name: 'rateList'}">
                 <i class="material-icons md-18 ml-10 mr-10">public</i>
                 @{{ $t('commercial.exchangeRates') }}
             </b-nav-item>

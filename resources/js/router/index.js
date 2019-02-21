@@ -27,6 +27,8 @@ import ChartForm from '../views/accounts/chartForm';
 
 import Config from '../views/accounts/index';
 import DocumentList from '../views/configs/documentList';
+import DocumentForm from '../views/configs/documentForm';
+import RateList from '../views/configs/rateList';
 
 import Report from '../views/reports/index';
 
@@ -274,7 +276,7 @@ export default
         ]
     },
     {
-        path: '/:taxPayer/:cycle/configs/',
+        path: '/:taxPayer/:cycle/config/',
         component: Config,
         name: 'configMenu',
         meta: {
@@ -287,16 +289,31 @@ export default
             {
                 path: 'documents',
                 component: DocumentList,
-                name: 'documentsList',
+                name: 'documentList',
                 meta: {
-                    apiUrl: 'documents',
-                    title: 'commercial.document',
+                    title: 'commercial.documents',
+                    description: 'Some description',
+                    img: '/img/apps/sales.svg',
+                },
+                children: [{
+                    path: ':id',
+                    component: DocumentForm,
+                    name: 'documentForm',
+                    meta: {
+                        title: 'commercial.document',
+                    }
+                }]
+            },
+            {
+                path: 'rates',
+                component: RateList,
+                name: 'rateList',
+                meta: {
+                    title: 'commercial.exchangeRates',
                     description: 'Some description',
                     img: '/img/apps/sales.svg',
                 }
-
-            }
-
+            },
         ]
     },
     {

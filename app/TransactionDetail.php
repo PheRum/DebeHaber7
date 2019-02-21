@@ -19,6 +19,7 @@ class TransactionDetail extends Model
 
     public function scopeVAT($query)
     {
+
     }
 
     /**
@@ -49,5 +50,15 @@ class TransactionDetail extends Model
     public function chart()
     {
         return $this->belongsTo(Chart::class, 'id', 'chart_id');
+    }
+
+    /**
+     * Get the impexExpense that owns the model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function impexExpense()
+    {
+        return $this->belongsTo(ImpexExpense::class);
     }
 }

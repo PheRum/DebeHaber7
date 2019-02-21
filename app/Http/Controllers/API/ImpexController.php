@@ -10,7 +10,6 @@ use App\CurrencyRate;
 use App\Cycle;
 use App\ChartAlias;
 use App\Impex;
-use App\ImpexInvoice;
 use App\ImpexExpense;
 use App\Transaction;
 use App\TransactionDetail;
@@ -62,7 +61,7 @@ class ImpexController extends Controller
                         $impexData[$i] = $data;
                         $i = $i + 1;
                     } catch (\Exception $e) {
-                        $data["Message"] = "Error loading transaction: " .$e ;
+                        $data["Message"] = "Error loading Impex: " .$e ;
                         $impexData[$i] = $data;
                     }
                 }
@@ -73,6 +72,74 @@ class ImpexController extends Controller
     }
 
     public function processImpex($data, Taxpayer $taxPayer, Cycle $cycle) {
+
+        $impex = Impex::where('code', $data['Code'])
+        ->where('taxpayer_id', $taxPayer->id)
+        ->first() ?? new Impex();
+
+        $impex->taxpayer = $taxPayer->id;
+        $impex->code = $data['Code'];
+        $impex->impex_id = $data['IsImpex'];
+        $impex->type = substr($data['Incoterm'], 0, 4);
+        $impex->currency_id = $this->checkCurrency($data['CurrencyCode'], $taxPayer);
+
+        if ($data['CurrencyRate'] ==  '' | $data['CurrencyRate'] == 0) {
+            $impex->rate = $this->checkCurrencyRate($impex->currency_id, $taxPayer, $data['Date']) ?? 1;
+        } else {
+            $impex->rate = $data['CurrencyRate'];
+        }
+
+        $impex->save();
+
+        //Assign invoices . . .
+        $invoices = collect($data['Invoices']);
+
+        foreach ($invoice as $invoices) {
+            $transaction = $this->processInvoice($invoice, $impex, $taxPayer, $cycle);
+            $invoice['cloud_id'] = $transaction->id;
+        }
+
+        //Assign expenses . . .
+        $expenses = collect($data['Expenses']);
+
+        foreach ($expense as $expenses) {
+            $impexExpense = ImpexExpense::where('id', $invoice)->first() ?? new ImpexExpense();
+
+            if($expense[0]['Value'] > 0)
+            {
+                //Code for Row Level Discounts in certain transactions
+                $discountOnRow = 0;
+                if ($totalDiscount > 0)
+                {
+                    $percentage = $value / $totalValue;
+                    $discountOnRow = $percentage * $totalDiscount;
+                }
+
+                $chart_id = $this->checkChart($groupedRowsByType[0]['Type'], $groupedRowsByType[0]['Name'], $taxPayer, $cycle, $type);
+
+                $detail = TransactionDetail::firstOrNew(['chart_id' => $chart_id]);
+
+                $detail->transaction_id = $transaction_id;
+                $detail->chart_id =$chart_id;
+
+                if ($type == 1 || $type == 5)
+                { $detail->chart_vat_id = $this->checkCreditVAT($groupedRowsByType[0]['VATPercentage'], $taxPayer, $cycle); }
+                elseif ($type == 3 || $type == 4)
+                { $detail->chart_vat_id = $this->checkDebitVAT($groupedRowsByType[0]['VATPercentage'], $taxPayer, $cycle); }
+
+                $detail->value = $groupedRowsByType->sum('Value') - $discountOnRow;
+                $detail->save();
+            }
+        }
+
+        return $data;
+    }
+
+    public function processInvoice($data, Impex $impex, Taxpayer $taxPayer, Cycle $cycle) {
+
+        //TODO if countries like Paraguay, the customer or supplier (partner) will enter.
+        // be careful not to add partners as they are not used by companies.
+        //Maybe set taxpayerID assigned to make ownership.
 
         // 4 & 5, then is Sales or Credit Note. So Customer is our client, and current Taxpayer is Supplier
         if ($data['Type'] == 4 || $data['Type'] == 5) {
@@ -85,26 +152,16 @@ class ImpexController extends Controller
             $supplier = $this->checkTaxPayer($data['SupplierTaxID'], $data['SupplierName']);
         }
 
-        $impex = Impex::where('name', 'test')->first() ?? new Impex();
-        $impex->taxpayer = $taxPayer->id;
-        $impex->is_impex = $data['IsImpex'];
-        $impex->save();
-
-        $impexInvoice = ImpexInvoice::where('id', $invoice) ?? new ImpexInvoice();
-
-        $impexExpense = ImpexExpense::where('id', $invoice) ?? new ImpexExpense();
-
-        $transaction = Transaction::
-        where('number', $data['Number'])
-        //->whereDate('date', $this->convert_date($data['Date']))
+        $transaction = Transaction::where('number', $invoice['Number'])
+        ->where('type', $data['Type'])
         ->where('customer_id', $customer->id)
         ->where('supplier_id', $supplier->id)
         ->first() ?? new Transaction();
 
         $transaction->type = $data['Type'];
-        //$transaction->is_impex = $data['IsImpex'] ? 1 : 0;
         $transaction->customer_id = $customer->id;
         $transaction->supplier_id = $supplier->id;
+        $transaction->impex_id = $impex->id;
 
         //TODO, this is not enough. Remove Cycle, and exchange that for Invoice Date. Since this will tell you better the exchange rate for that day.
         $transaction->currency_id = $this->checkCurrency($data['CurrencyCode'], $taxPayer);
@@ -116,15 +173,6 @@ class ImpexController extends Controller
         }
 
         $transaction->payment_condition = $data['PaymentCondition'];
-
-        // //TODO, do not ask if chart account id is null.
-        // if ($data['AccountName'] != null && $transaction->payment_condition == 0)
-        // {
-        //     $transaction->chart_account_id = $this->checkChartAccount($data['AccountName'], $taxPayer, $cycle);
-        // }
-
-        //You may need to update the code to a Carbon nuetral. Check this, I may be wrong.
-
         $transaction->date = $this->convert_date($data['Date']);
         $transaction->number = $data['Number'];
         $transaction->code = $data['Code'] != '' ? $data['Code'] : null;
@@ -137,22 +185,18 @@ class ImpexController extends Controller
             collect($data['Details']), $transaction->id, $taxPayer, $cycle, $data['Type']
         );
 
-        $data['cloud_id'] = $transaction->id;
-
-        return $data;
+        return $transaction;
     }
 
     public function processDetail($details, $transaction_id, Taxpayer $taxPayer, Cycle $cycle, $type) {
-        //???
+        //In case negative values find their way to DH, process negatives as discount and reduce from positive values.
         $totalDiscount = $details->where('Value', '<', 0)->sum('Value');
-        $totalValue = $details->where('Value', '>', 0)->sum('Value') != 0 ?
-        $details->where('Value', '>', 0)->sum('Value') : 1;
+        $totalValue = $details->where('Value', '>', 0)->sum('Value') >= 0 ? $details->where('Value', '>', 0)->sum('Value') : 1;
 
         //TODO to reduce data stored, group by VAT and Chart Type.
         //If 5 rows can be converted into 1 row it is better for our system's health and reduce server load.
         foreach ($details->groupBy('VATPercentage') as $groupedRowsByVat)
         {
-
             foreach ($groupedRowsByVat->groupBy('Type') as $groupedRowsByType)
             {
                 if($groupedRowsByType[0]['Value'] > 0)

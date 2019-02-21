@@ -15,8 +15,8 @@
 
 Route::prefix('{country}')->group(function ()
 {
-  Route::get('/get_owner/{taxPayerID}', 'TaxpayerController@get_owner');
-  Route::get('/get_taxpayers/{searchBy}', 'TaxpayerController@get_taxpayer');
+    Route::get('/get_owner/{taxPayerID}', 'TaxpayerController@get_owner');
+    Route::get('/get_taxpayers/{searchBy}', 'TaxpayerController@get_taxpayer');
 });
 
 //Used for accepting or rejecting a team from accesing your taxpayer's data.
@@ -38,22 +38,49 @@ Route::prefix('{taxPayer}')->group(function ()
         'cycles' => 'CycleController',
         'chart-versions' => 'ChartVersionController',
         'currencies' => 'CurrencyController',
-        'rates' => 'CurrencyRateController',
-        'documents' => 'DocumentController'
     ]);
 
     Route::prefix('{cycle}')->group(function ()
     {
         Route::prefix('search')->group(function ()
         {
-            // Route::get('purchases/{q}', 'SearchController@searchPurchases');
-            // Route::get('debits/{q}', 'SearchController@searchDebits');
-            // Route::get('sales/{q}', 'SearchController@searchSales');
-            // Route::get('credits/{q}', 'SearchController@searchCredits');
-
             Route::get('transactions/{q}', 'SearchController@searchTransactions');
             Route::get('taxpayers/{q}', 'SearchController@searchTaxPayers');
             Route::get('charts/{q}', 'SearchController@searchCharts');
+        });
+
+        Route::prefix('config')->group(function ()
+        {
+            Route::resources([
+                'rates' => 'CurrencyRateController',
+                'documents' => 'DocumentController'
+            ]);
+        });
+
+        Route::prefix('commercial')->group(function ()
+        {
+            Route::resources([
+                'sales' => 'SalesController',
+                'credit-notes' => 'CreditNoteController',
+                'account-receivables' => 'AccountReceivableController',
+
+                'purchases' => 'PurchaseController',
+                'debit-notes' => 'DebitNoteController',
+                'account-payables' => 'AccountPayableController',
+
+                'money-movements' => 'AccountMovementController',
+                'inventories' => 'InventoryController',
+                'fixed-assets' => 'FixedAssetController',
+            ]);
+
+            // Route::get('sales/by-id/{id}', 'SalesController@get_salesByID');
+            Route::get('sales/default/{partnerID}', 'SalesController@getLastSale');
+            Route::get('sales/last', 'SalesController@get_lastDate');
+            Route::get('purchases/default/{partnerID}', 'PurchaseController@getLastPurchase');
+
+            Route::post('inventories/get_InventoryChartType', 'InventoryController@get_InventoryChartType');
+            Route::post('inventories/calc-revenue', 'InventoryController@Calulate_sales');
+            Route::post('inventories/calc-inventory', 'InventoryController@Calulate_InvenotryValue');
         });
 
         Route::prefix('accounting')->group(function ()
@@ -93,32 +120,6 @@ Route::prefix('{taxPayer}')->group(function ()
                 Route::post('merge/{fromChartId}/{toChartId}', 'ChartController@mergeCharts');
                 Route::post('merge-check/{fromChartId}', 'ChartController@checkMergeCharts');
             });
-        });
-
-        Route::prefix('commercial')->group(function ()
-        {
-            Route::resources([
-                'sales' => 'SalesController',
-                'credit-notes' => 'CreditNoteController',
-                'account-receivables' => 'AccountReceivableController',
-
-                'purchases' => 'PurchaseController',
-                'debit-notes' => 'DebitNoteController',
-                'account-payables' => 'AccountPayableController',
-
-                'money-movements' => 'AccountMovementController',
-                'inventories' => 'InventoryController',
-                'fixed-assets' => 'FixedAssetController',
-            ]);
-
-            // Route::get('sales/by-id/{id}', 'SalesController@get_salesByID');
-            Route::get('sales/default/{partnerID}', 'SalesController@getLastSale');
-            Route::get('sales/last', 'SalesController@get_lastDate');
-            Route::get('purchases/default/{partnerID}', 'PurchaseController@getLastPurchase');
-
-            Route::post('inventories/get_InventoryChartType', 'InventoryController@get_InventoryChartType');
-            Route::post('inventories/calc-revenue', 'InventoryController@Calulate_sales');
-            Route::post('inventories/calc-inventory', 'InventoryController@Calulate_InvenotryValue');
         });
     });
 

@@ -192,6 +192,15 @@ class Transaction extends Model
         return $this->belongsTo(Currency::class, 'currency_id', 'id');
     }
 
+    /**
+     * Get the impex that owns the model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function impex()
+    {
+        return $this->belongsTo(Impex::class);
+    }
 
     /**
     * Get the accountMovements for the model.

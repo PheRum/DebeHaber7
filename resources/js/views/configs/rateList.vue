@@ -52,35 +52,30 @@ export default {
     computed: {
         columns()
         {
-            return  [ {
-                key: 'prefix',
-                label: this.$i18n.t('commercial.prefix'),
+            return [{
+                key: 'date',
+                label: this.$i18n.t('general.date'),
                 sortable: true
             },
             {
-                key: 'mask',
-                label: this.$i18n.t('commercial.mask'),
+                key: 'currency.name',
+                label: this.$i18n.t('general.currencyName'),
                 sortable: true
             },
             {
-                key: 'start_range',
-                label: this.$i18n.t('commercial.start'),
+                key: 'currency.code',
+                label: this.$i18n.t('commercial.currencyCode'),
                 sortable: true
             },
             {
-                key: 'current_range',
-                label: this.$i18n.t('commercial.current'),
+                key: 'buy_rate',
+                label: this.$i18n.t('general.buyRate'),
                 sortable: true
             },
             {
-                key: 'end_range',
-                label: this.$i18n.t('commercial.end'),
+                key: 'sell_rate',
+                label: this.$i18n.t('general.sellRate'),
                 sortable: true
-            },
-            {
-                key: 'action',
-                label: '',
-                sortable: false
             }];
         }
     }
