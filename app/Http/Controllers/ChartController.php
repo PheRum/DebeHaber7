@@ -87,7 +87,7 @@ class ChartController extends Controller
     * @param  \App\Chart  $chart
     * @return \Illuminate\Http\Response
     */
-    public function edit(Chart $chart) {
+    public function show(Chart $chart) {
         return new GeneralResource(
             Chart::where('id', $chart->id)
             ->first()

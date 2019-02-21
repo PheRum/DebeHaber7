@@ -69,7 +69,7 @@ class AccountMovementController extends Controller
         return response()->json('Ok', 200);
     }
 
-    public function edit(AccountMovement $movement)
+    public function show(AccountMovement $movement)
     {
         return new GeneralResource(
             AccountMovement::with('chart')

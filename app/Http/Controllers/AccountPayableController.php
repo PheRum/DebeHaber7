@@ -87,7 +87,7 @@ class AccountPayableController extends Controller
     * @param  \App\AccountMovement  $accountMovement
     * @return \Illuminate\Http\Response
     */
-    public function edit($taxPayerId, $cycleId, $transactionId)
+    public function show($taxPayerId, $cycleId, $transactionId)
     {
         $accountMovement = Transaction::MyPurchases()
         ->join('taxpayers', 'taxpayers.id', 'transactions.supplier_id')
@@ -113,7 +113,7 @@ class AccountPayableController extends Controller
         where transactions.id = account_movements.transaction_id))
         as Balance')
         )
-        ->get();
+        ->first();
 
         return response()->json($accountMovement);
     }

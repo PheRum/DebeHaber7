@@ -136,7 +136,9 @@
                         </template>
                         <template slot="value" slot-scope="data">
                             <!-- mask?? -->
-                            <vue-numeric separator="," :value="data.item.value"></vue-numeric>
+                            <b-form-input :value="new Number(data.item.value).toLocaleString()" type="text" placeholder="Value"/>
+
+                            <!-- <vue-numeric separator="," :value="data.item.value"></vue-numeric> -->
                         </template>
                         <template slot="actions" slot-scope="data">
                             <b-button variant="link" @click="deleteRow(data.item)">
@@ -152,8 +154,9 @@
 
 <script>
 import crud from '../../components/crud.vue';
+import VueNumeric from 'vue-numeric'
 export default {
-    components: { 'crud': crud },
+    components: { 'crud': crud,VueNumeric },
     data() {
         return {
             data: {
