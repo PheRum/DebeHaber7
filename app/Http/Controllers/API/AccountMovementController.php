@@ -35,6 +35,7 @@ class AccountMovementController extends Controller
             $data = collect($chunkedData);
             $groupData = $data->groupBy(function($q) { return Carbon::parse($q["Date"])->format('Y'); });
             $i = 0;
+
             //groupby function group by year.
             foreach ($groupData as $groupedRow)
             {
@@ -44,34 +45,14 @@ class AccountMovementController extends Controller
                 { $taxPayer = $this->checkTaxPayer($groupedRow->first()['CustomerTaxID'], $groupedRow->first()['CustomerName']); }
 
                 $firstDate = Carbon::parse($groupedRow->first()["Date"]);
+
                 //No need to run this query for each invoice, just check if the date is in between.
                 $cycle = Cycle::where('start_date', '<=', $firstDate)
                 ->where('end_date', '>=', $firstDate)
                 ->where('taxpayer_id', $taxPayer->id)
                 ->first();
 
-                if (!isset($cycle))
-                {
-                    $version = ChartVersion::where('country', $taxPayer->country)
-                    ->orWhere('taxpayer_id', $taxPayer->id)
-                    ->first();
-
-                    if (!isset($version))
-                    {
-                        $version = new ChartVersion();
-                        $version->taxpayer_id = $taxPayer->id;
-                        $version->name = 'Version Automatica';
-                        $version->save();
-                    }
-
-                    $cycle = new Cycle();
-                    $cycle->chart_version_id = $version->id;
-                    $cycle->year = $firstDate->year;
-                    $cycle->start_date = new Carbon('first day of January');
-                    $cycle->end_date = new Carbon('last day of December');
-                    $cycle->taxpayer_id = $taxPayer->id;
-                    $cycle->save();
-                }
+                $cycle = $this->checkCycle($cycle);
 
                 foreach ($groupedRow as $data)
                 {

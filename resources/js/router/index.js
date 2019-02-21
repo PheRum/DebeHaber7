@@ -22,7 +22,11 @@ import OpeningBalance from '../views/accounts/openingBalanceForm';
 import ClosingBalance from '../views/accounts/closingBalanceForm';
 import AnualBudget from '../views/accounts/budgetForm';
 import TemplateForm from '../views/commercials/index';
-import ChartForm from '../views/commercials/index';
+import ChartList from '../views/accounts/chartList';
+import ChartForm from '../views/accounts/chartForm';
+
+import Config from '../views/accounts/index';
+import DocumentList from '../views/configs/documentList';
 
 import Report from '../views/reports/index';
 
@@ -245,6 +249,54 @@ export default
                     img: '/img/apps/sales.svg',
                 },
             },
+            {
+                path: 'charts',
+                component: ChartList,
+                name: 'chartList',
+                meta: {
+                    title: 'accounting.chart',
+                    description: 'Some description',
+                    img: '/img/apps/chart.svg',
+                },
+                children:
+                [
+                    {
+                        path: ':id',
+                        component: ChartForm,
+                        name: 'chartForm',
+                        meta: {
+                            title: 'Chart Form',
+                        },
+
+                    }
+                ]
+            },
+        ]
+    },
+    {
+        path: '/:taxPayer/:cycle/configs/',
+        component: Config,
+        name: 'configMenu',
+        meta: {
+            title: 'Dashboard',
+            description: 'Some description',
+            img: '/img/apps/sales.svg',
+        },
+        children:
+        [
+            {
+                path: 'documents',
+                component: DocumentList,
+                name: 'documentsList',
+                meta: {
+                    apiUrl: 'documents',
+                    title: 'commercial.document',
+                    description: 'Some description',
+                    img: '/img/apps/sales.svg',
+                }
+
+            }
+
         ]
     },
     {

@@ -20,8 +20,7 @@ use Auth;
 
 class TransactionController extends Controller
 {
-    public function start(Request $request)
-    {
+    public function start(Request $request) {
         $transactionData = array();
         $cycle = null;
 
@@ -49,42 +48,17 @@ class TransactionController extends Controller
                 ->where('taxpayer_id', $taxPayer->id)
                 ->first();
 
-                if (!isset($cycle))
-                {
-                    $version = ChartVersion::where('country', $taxPayer->country)
-                    ->orWhere('taxpayer_id', $taxPayer->id)
-                    ->first();
-
-                    if (!isset($version))
-                    {
-                        $version = new ChartVersion();
-                        $version->taxpayer_id = $taxPayer->id;
-                        $version->name = 'Version Automatica';
-                        $version->save();
-                    }
-
-                    $cycle = new Cycle();
-                    $cycle->chart_version_id = $version->id;
-                    $cycle->year = $firstDate->year;
-                    $cycle->start_date = new Carbon('first day of January ' . $firstDate->year);
-                    $cycle->end_date = new Carbon('last day of December ' . $firstDate->year);
-                    $cycle->taxpayer_id = $taxPayer->id;
-                    $cycle->save();
-                }
+                $cycle = $this->checkCycle($cycle);
 
                 $i = 0;
                 foreach ($groupedRow as $data)
                 {
-                    try
-                    {
+                    try {
                         $data = $this->processTransaction($data, $taxPayer, $cycle);
                         $data["Message"] = "Success";
                         $transactionData[$i] = $data;
                         $i = $i + 1;
-                    }
-                    catch (\Exception $e)
-                    {
-
+                    } catch (\Exception $e) {
                         $data["Message"] = "Error loading transaction: " .$e ;
                         $transactionData[$i] = $data;
                     }
@@ -95,18 +69,15 @@ class TransactionController extends Controller
         return response()->json($transactionData);
     }
 
-    public function processTransaction($data, Taxpayer $taxPayer, Cycle $cycle)
-    {
+    public function processTransaction($data, Taxpayer $taxPayer, Cycle $cycle) {
 
         // 4 & 5, then is Sales or Credit Note. So Customer is our client, and current Taxpayer is Supplier
-        if ($data['Type'] == 4 || $data['Type'] == 5)
-        {
+        if ($data['Type'] == 4 || $data['Type'] == 5) {
             $customer = $this->checkTaxPayer($data['CustomerTaxID'], $data['CustomerName']);
             $supplier = $taxPayer;
         }
         //If type 1 & 3, then it is Purchase or Debit Note. So we should bring our supplier and current Taxpayer is Customer
-        else if($data['Type'] == 1 || $data['Type'] == 3)
-        {
+        else if($data['Type'] == 1 || $data['Type'] == 3) {
             $customer = $taxPayer;
             $supplier = $this->checkTaxPayer($data['SupplierTaxID'], $data['SupplierName']);
         }
@@ -116,7 +87,7 @@ class TransactionController extends Controller
 
         $transaction = Transaction::
         where('number', $data['Number'])
-        //->whereDate('date', $this->convert_date($data['Date']))
+        ->where('type', $data['Type'])
         ->where('customer_id', $customer->id)
         ->where('supplier_id', $supplier->id)
         ->first() ?? new Transaction();
@@ -129,12 +100,9 @@ class TransactionController extends Controller
         //TODO, this is not enough. Remove Cycle, and exchange that for Invoice Date. Since this will tell you better the exchange rate for that day.
         $transaction->currency_id = $this->checkCurrency($data['CurrencyCode'], $taxPayer);
 
-        if ($data['CurrencyRate'] ==  '')
-        {
+        if ($data['CurrencyRate'] ==  '') {
             $transaction->rate = $this->checkCurrencyRate($transaction->currency_id, $taxPayer, $data['Date']) ?? 1;
-        }
-        else
-        {
+        } else {
             $transaction->rate = $data['CurrencyRate'];
         }
 
@@ -165,8 +133,7 @@ class TransactionController extends Controller
         return $data;
     }
 
-    public function processDetail($details, $transaction_id, Taxpayer $taxPayer, Cycle $cycle, $type)
-    {
+    public function processDetail($details, $transaction_id, Taxpayer $taxPayer, Cycle $cycle, $type) {
         //???
         $totalDiscount = $details->where('Value', '<', 0)->sum('Value');
         $totalValue = $details->where('Value', '>', 0)->sum('Value') != 0 ?

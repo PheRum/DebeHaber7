@@ -25,7 +25,6 @@ class FixedAssetController extends Controller
 
         $cycle = null;
 
-
         //Process Transaction by 100 to speed up but not overload.
         for ($i = 0; $i < 100 ; $i++)
         {
@@ -40,43 +39,15 @@ class FixedAssetController extends Controller
                 ->where('taxpayer_id', $taxPayer->id)
                 ->first();
 
-                if (!isset($cycle))
-                {
-                    $current_date = Carbon::now();
-                    $version = ChartVersion::where('country', $taxPayer->country)
-                    ->orWhere('taxpayer_id', $taxPayer->id)
-                    ->first();
-                    
-                    if (!isset($version))
-                    {
-                        $version = new ChartVersion();
-                        $version->taxpayer_id = $taxPayer->id;
-                        $version->name = 'Version Automatica';
-                        $version->save();
-                    }
+                $cycle = $this->checkCycle($cycle);
 
-                    $cycle = new Cycle();
-                    $cycle->chart_version_id = $version->id;
-                    $cycle->year = $current_date->year;
-                    $cycle->start_date = new Carbon('first day of January');
-                    $cycle->end_date = new Carbon('last day of December');
-                    $cycle->taxpayer_id = $taxPayer->id;
-                    $cycle->save();
-                }
-                else
-                {
-                    $startDate = $cycle->start_date;
-                    $endDate = $cycle->end_date;
-                }
+                $startDate = $cycle->start_date;
+                $endDate = $cycle->end_date;
 
-
-                try
-                {
+                try {
                     $fixedAsset = $this->insertFixedAsset($chunkedData, $taxPayer,$cycle);
                     $movementData[$i] = $fixedAsset->id;
-                }
-                catch (\Exception $e)
-                {
+                } catch (\Exception $e) {
                     //Write items that don't insert into a variable and send back to ERP.
                     //Do Nothing
                 }

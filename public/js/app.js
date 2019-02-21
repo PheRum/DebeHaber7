@@ -111807,7 +111807,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _views_accounts_openingBalanceForm__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../views/accounts/openingBalanceForm */ "./resources/js/views/accounts/openingBalanceForm.vue");
 /* harmony import */ var _views_accounts_closingBalanceForm__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../views/accounts/closingBalanceForm */ "./resources/js/views/accounts/closingBalanceForm.vue");
 /* harmony import */ var _views_accounts_budgetForm__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../views/accounts/budgetForm */ "./resources/js/views/accounts/budgetForm.vue");
-/* harmony import */ var _views_reports_index__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../views/reports/index */ "./resources/js/views/reports/index.vue");
+/* harmony import */ var _views_accounts_chartList__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../views/accounts/chartList */ "./resources/js/views/accounts/chartList.vue");
+/* harmony import */ var _views_accounts_chartForm__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../views/accounts/chartForm */ "./resources/js/views/accounts/chartForm.vue");
+/* harmony import */ var _views_configs_documentList__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../views/configs/documentList */ "./resources/js/views/configs/documentList.vue");
+/* harmony import */ var _views_reports_index__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../views/reports/index */ "./resources/js/views/reports/index.vue");
+
+
+
 
 
 
@@ -112009,10 +112015,47 @@ __webpack_require__.r(__webpack_exports__);
       description: 'Some description',
       img: '/img/apps/sales.svg'
     }
+  }, {
+    path: 'charts',
+    component: _views_accounts_chartList__WEBPACK_IMPORTED_MODULE_20__["default"],
+    name: 'chartList',
+    meta: {
+      title: 'accounting.chart',
+      description: 'Some description',
+      img: '/img/apps/chart.svg'
+    },
+    children: [{
+      path: ':id',
+      component: _views_accounts_chartForm__WEBPACK_IMPORTED_MODULE_21__["default"],
+      name: 'chartForm',
+      meta: {
+        title: 'Chart Form'
+      }
+    }]
+  }]
+}, {
+  path: '/:taxPayer/:cycle/configs/',
+  component: _views_accounts_index__WEBPACK_IMPORTED_MODULE_12__["default"],
+  name: 'configMenu',
+  meta: {
+    title: 'Dashboard',
+    description: 'Some description',
+    img: '/img/apps/sales.svg'
+  },
+  children: [{
+    path: 'documents',
+    component: _views_configs_documentList__WEBPACK_IMPORTED_MODULE_22__["default"],
+    name: 'documentsList',
+    meta: {
+      apiUrl: 'documents',
+      title: 'commercial.document',
+      description: 'Some description',
+      img: '/img/apps/sales.svg'
+    }
   }]
 }, {
   path: '/:taxPayer/:cycle/reports/',
-  component: _views_reports_index__WEBPACK_IMPORTED_MODULE_20__["default"],
+  component: _views_reports_index__WEBPACK_IMPORTED_MODULE_23__["default"],
   name: 'reportingMenu',
   meta: {
     title: 'Reports',
@@ -113010,6 +113053,49 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_budgetForm_vue_vue_type_template_id_34c8e543___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/views/accounts/chartForm.vue":
+/*!***************************************************!*\
+  !*** ./resources/js/views/accounts/chartForm.vue ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+var script = {}
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_0__["default"])(
+  script,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "resources/js/views/accounts/chartForm.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/views/accounts/chartList.vue":
+/*!***************************************************!*\
+  !*** ./resources/js/views/accounts/chartList.vue ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/vue-loader/lib/index.js):\nError: ENOENT: no such file or directory, open 'C:\\Users\\SMART\\Documents\\GitHub\\DebeHaber7\\resources\\js\\views\\accounts\\chartList.vue'");
 
 /***/ }),
 
@@ -114040,6 +114126,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_salesList_vue_vue_type_template_id_154a6396___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/views/configs/documentList.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/views/configs/documentList.vue ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, exports) {
+
+throw new Error("Module build failed (from ./node_modules/vue-loader/lib/index.js):\nError: ENOENT: no such file or directory, open 'C:\\Users\\SMART\\Documents\\GitHub\\DebeHaber7\\resources\\js\\views\\configs\\documentList.vue'");
 
 /***/ }),
 
