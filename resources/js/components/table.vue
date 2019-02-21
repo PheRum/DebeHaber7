@@ -37,6 +37,8 @@
                 <template slot="row-details" slot-scope="row">
                     <b-card>
                         <b-row v-for="detail in row.item.details" :key="detail.key">
+                          <b-col sm="1" class="text-sm-right"><b>chart:</b></b-col>
+                          <b-col>{{ detail.chart.name }}</b-col>
                             <b-col sm="3" class="text-sm-right"><b>debit:</b></b-col>
                             <b-col>{{ new Number(detail.debit).toLocaleString() }}</b-col>
                             <b-col sm="3" class="text-sm-right"><b>credit:</b></b-col>

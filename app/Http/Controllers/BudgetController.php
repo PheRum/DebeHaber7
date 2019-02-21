@@ -63,7 +63,7 @@ class BudgetController extends Controller
     public function store(Request $request,Taxpayer $taxPayer, Cycle $cycle)
     {
         $details = collect($request)->where('is_accountable', '=', 1);
-
+         
         foreach ($details as $detail)
         {
             $cycleBudget = CycleBudget::where('cycle_id',$cycle->id)->first() ?? new CycleBudget();;
