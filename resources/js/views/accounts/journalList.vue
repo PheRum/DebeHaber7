@@ -54,34 +54,30 @@ export default {
 
     }),
     computed: {
-        // columns()
-        // {
-        //
-        //     return  [ {
-        //         key: 'date',
-        //         sortable: true
-        //     },
-        //     {
-        //         key: 'customer.name',
-        //         label: this.$i18n.t('commercial.customer'),
-        //         sortable: true
-        //     },
-        //     {
-        //         key: 'number',
-        //         label: this.$i18n.t('commercial.number'),
-        //         sortable: true
-        //     },
-        //     {
-        //         key: 'total',
-        //         label: this.$i18n.t('commercial.total'),
-        //         sortable: true
-        //     },
-        //     {
-        //         key: 'action',
-        //         label: '',
-        //         sortable: false
-        //     }];
-        // }
+        columns()
+        {
+
+            return  [ {
+                key: 'date',
+                sortable: true
+            },
+            
+            {
+                key: 'number',
+                label: this.$i18n.t('commercial.number'),
+                sortable: true
+            },
+            {
+                key: 'total',
+                label: this.$i18n.t('commercial.total'),
+                sortable: true
+            },
+            {
+                key: 'action',
+                label: '',
+                sortable: false
+            }];
+        }
     }
 }
 </script>
