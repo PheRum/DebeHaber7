@@ -32,13 +32,23 @@
                         <small class="text-success text-uppercase" v-if="data.item.currency != null">{{ data.item.currency.code }}</small>
                     </span>
                 </template>
+                <template slot="buy_rate" slot-scope="data">
+                    <span class="float-right">
+                        {{ new Number(data.item.buy_rate).toLocaleString() }}
+                    </span>
+                </template>
+                <template slot="sell_rate" slot-scope="data">
+                    <span class="float-right">
+                        {{ new Number(data.item.sell_rate).toLocaleString() }}
+                    </span>
+                </template>
 
 
                 <template slot="row-details" slot-scope="row">
                     <b-card>
                         <b-row v-for="detail in row.item.details" :key="detail.key">
-                          <b-col sm="1" class="text-sm-right"><b>chart:</b></b-col>
-                          <b-col>{{ detail.chart.name }}</b-col>
+                            <b-col sm="1" class="text-sm-right"><b>chart:</b></b-col>
+                            <b-col>{{ detail.chart.name }}</b-col>
                             <b-col sm="3" class="text-sm-right"><b>debit:</b></b-col>
                             <b-col>{{ new Number(detail.debit).toLocaleString() }}</b-col>
                             <b-col sm="3" class="text-sm-right"><b>credit:</b></b-col>
@@ -103,10 +113,10 @@
         {
             list() {
                 var app = this;
-                this.$refs.topProgress.start();
                 var page = 1;
+                this.$refs.topProgress.start();
 
-                if (app.$children[2]!=null) {
+                if (app.$children[2] != null) {
                     page = app.$children[2].currentPage;
                 }
 
@@ -119,22 +129,22 @@
                     app.is_loaded = true;
                     //finishes the top progress bar
                     this.$refs.topProgress.done()
+                }).catch(function (error) {
+                    this.$refs.topProgress.fail();
+                    app.$snack.danger({ text: error.message });
                 });
-
-                //todo add fail function in topProgress
             },
 
             onDelete(row) {
                 var app = this;
 
                 crud.methods.onDelete('/api' + app.$route.path,row.id).then(function (response) {
-                    console.log(app);
                     app.lists.splice(app.lists.indexOf(row), 1);
                     app.$snack.success({text:'Deleted'});
                 }).catch(function (error) {
                     console.log(error);
-                    app.$snack.danger({ text: 'Error OMG!' });
-                });;
+                    app.$snack.danger({ text: error.message });
+                });
             },
 
             sumValue(details) {

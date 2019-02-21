@@ -16,8 +16,6 @@ import DebitForm from '../views/commercials/debitForm';
 import Accounting from '../views/accounts/index';
 import JournalList from '../views/accounts/journalList';
 import JournalForm from '../views/accounts/journalForm';
-import CycleList from '../views/accounts/cycleList';
-import CycleForm from '../views/accounts/cycleForm';
 import OpeningBalance from '../views/accounts/openingBalanceForm';
 import ClosingBalance from '../views/accounts/closingBalanceForm';
 import AnualBudget from '../views/accounts/budgetForm';
@@ -25,10 +23,14 @@ import TemplateForm from '../views/commercials/index';
 import ChartList from '../views/accounts/chartList';
 import ChartForm from '../views/accounts/chartForm';
 
-import Config from '../views/accounts/index';
+import Config from '../views/configs/index';
 import DocumentList from '../views/configs/documentList';
 import DocumentForm from '../views/configs/documentForm';
 import RateList from '../views/configs/rateList';
+import VersionList from '../views/configs/versionList';
+import VersionForm from '../views/configs/versionForm';
+import CycleList from '../views/configs/cycleList';
+import CycleForm from '../views/configs/cycleForm';
 
 import Report from '../views/reports/index';
 
@@ -142,7 +144,7 @@ export default
                 ]
             },
             {
-                path: 'debits',
+                path: 'debit-notes',
                 component: DebitList,
                 name: 'debitList',
                 meta: {
@@ -196,28 +198,6 @@ export default
                         meta: {
                             title: 'accounting.journal',
                         },
-                    }
-                ]
-            },
-            {
-                path: 'cycles',
-                component: CycleList,
-                name: 'cycleList',
-                meta: {
-                    title: 'accounting.fiscalYear',
-                    description: 'Some description',
-                    img: '/img/apps/sales.svg',
-                },
-                children:
-                [
-                    {
-                        path: ':id',
-                        component: CycleForm,
-                        name: 'cycleForm',
-                        meta: {
-                            title: 'Cycle Form',
-                        },
-
                     }
                 ]
             },
@@ -276,7 +256,7 @@ export default
         ]
     },
     {
-        path: '/:taxPayer/:cycle/config/',
+        path: '/:taxPayer/config/',
         component: Config,
         name: 'configMenu',
         meta: {
@@ -286,6 +266,50 @@ export default
         },
         children:
         [
+            {
+                path: 'chart-versions',
+                component: VersionList,
+                name: 'versionList',
+                meta: {
+                    title: 'accounting.chartVersion',
+                    description: 'Some description',
+                    img: '/img/apps/sales.svg',
+                },
+                children:
+                [
+                    {
+                        path: ':id',
+                        component: VersionForm,
+                        name: 'versionForm',
+                        meta: {
+                            title: 'Version Form',
+                        },
+
+                    }
+                ]
+            },
+            {
+                path: 'cycles',
+                component: CycleList,
+                name: 'cycleList',
+                meta: {
+                    title: 'accounting.fiscalYear',
+                    description: 'Some description',
+                    img: '/img/apps/sales.svg',
+                },
+                children:
+                [
+                    {
+                        path: ':id',
+                        component: CycleForm,
+                        name: 'cycleForm',
+                        meta: {
+                            title: 'Cycle Form',
+                        },
+
+                    }
+                ]
+            },
             {
                 path: 'documents',
                 component: DocumentList,

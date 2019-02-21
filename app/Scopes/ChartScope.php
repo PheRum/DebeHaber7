@@ -23,6 +23,7 @@ class ChartScope implements Scope
     {
         $taxPayer = request()->route('taxPayer');
         $cycle = request()->route('cycle');
+
         if (isset($taxPayer) && isset($cycle))
         {
             //Get Specific for current version.

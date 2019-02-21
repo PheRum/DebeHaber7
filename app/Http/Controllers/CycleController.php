@@ -9,6 +9,7 @@ use App\Chart;
 use App\CycleBudget;
 use App\JournalDetail;
 use Illuminate\Http\Request;
+use App\Http\Resources\GeneralResource;
 use DB;
 
 class CycleController extends Controller
@@ -18,25 +19,13 @@ class CycleController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function index(Taxpayer $taxPayer, Cycle $cycle)
+    public function index(Taxpayer $taxPayer)
     {
-        $cycles = Cycle::where('cycles.taxpayer_id', $taxPayer->id)
-        ->join('chart_versions', 'cycles.chart_version_id', 'chart_versions.id')
-        ->select('cycles.id',
-        'cycles.year',
-        'cycles.start_date',
-        'cycles.end_date',
-        'chart_versions.name as chart_version_name',
-        'chart_versions.id as chart_version_id')
-        ->get();
-
-        $versions = ChartVersion::My($taxPayer)->get();
-
-        $budgets = CycleBudget::where('cycle_id', $cycle->id)->get();
-
-        return view('accounting/cycles')
-        ->with('cycles', $cycles)
-        ->with('versions', $versions);
+        return GeneralResource::collection(
+            Cycle::with('chartVersion:name')
+            ->orderBy('year', 'desc')
+            ->paginate(50)
+        );
     }
 
     public function get_cycle($taxPayerID)
@@ -61,20 +50,13 @@ class CycleController extends Controller
     * @param  \Illuminate\Http\Request  $request
     * @return \Illuminate\Http\Response
     */
-    public function store(Request $request,Taxpayer $taxPayer, Cycle $cycle)
+    public function store(Request $request,Taxpayer $taxPayer)
     {
-        if ($request->id == 0)
-        {
-            $cycle = new Cycle();
-            $cycle->taxpayer_id = $taxPayer->id;
-        }
-        else
-        {
-            $cycle = Cycle::find($request->id) ?? null;
-        }
+        $cycle = $request->id != 0 ? Cycle::find($request->id) : $cycle = new Cycle();
 
         if ($cycle != null)
         {
+            $cycle->taxpayer_id = $taxPayer->id;
             $cycle->chart_version_id = $request->chart_version_id;
             $cycle->year = $request->year;
             $cycle->start_date = $request->start_date;
@@ -88,12 +70,14 @@ class CycleController extends Controller
     /**
     * Show the form for editing the specified resource.
     *
-    * @param  \App\Cycle  $cycle
+    * @param  \App\Cycle  $cycleId
     * @return \Illuminate\Http\Response
     */
-    public function edit(Cycle $cycle)
+    public function show(Taxpayer $taxPayer, $cycleId)
     {
-        //
+        return new GeneralResource(
+            Cycle::where('id', $cycleId)->first()
+        );
     }
 
     /**

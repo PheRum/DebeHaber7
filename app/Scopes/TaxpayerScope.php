@@ -18,6 +18,7 @@ class TaxpayerScope implements Scope
     */
     public function apply(Builder $builder, Model $model)
     {
-        $builder->where('taxpayer_id', request()->route('taxPayer')->id);
+        $taxPayerId = is_object(request()->route('taxPayer')) ? request()->route('taxPayer')->id : request()->route('taxPayer');
+        $builder->where('taxpayer_id', $taxPayerId);
     }
 }

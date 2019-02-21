@@ -9,7 +9,7 @@ use App\TransactionDetail;
 use App\AccountMovement;
 use App\JournalTransaction;
 use App\Chart;
-use App\Http\Resources\TransactionResource;
+use App\Http\Resources\GeneralResource;
 use Illuminate\Http\Request;
 use DB;
 
@@ -22,7 +22,7 @@ class DebitNoteController extends Controller
     */
     public function index(Taxpayer $taxPayer, Cycle $cycle)
     {
-        return TransactionResource::collection(
+        return GeneralResource::collection(
             Transaction::MyDebitNotes()
             ->with('supplier:name,id')
             ->with('currency')
@@ -45,21 +45,20 @@ class DebitNoteController extends Controller
     {
         $transaction = $request->id == 0 ? new Transaction() : Transaction::where('id', $request->id)->first();
         $transaction->customer_id = $taxPayer->id;
-        if ($request->supplier_id > 0)
-        {
+
+        if ($request->supplier_id > 0) {
             $transaction->supplier_id = $request->supplier_id;
         }
 
-        if ($request->document_id > 0)
-        {
+        if ($request->document_id > 0) {
             $transaction->document_id = $request->document_id;
         }
 
         $transaction->currency_id = $request->currency_id;
-        $transaction->rate = $request->rate??1;
+        $transaction->rate = $request->rate ?? 1;
         $transaction->payment_condition = $request->payment_condition;
-        if ($request->chart_account_id > 0)
-        {
+
+        if ($request->chart_account_id > 0) {
             $transaction->chart_account_id = $request->chart_account_id;
         }
 
@@ -68,29 +67,27 @@ class DebitNoteController extends Controller
         $transaction->code = $request->code;
         $transaction->code_expiry = $request->code_expiry;
         $transaction->comment = $request->comment;
-
         $transaction->type = $request->type ?? 3;
 
         $transaction->save();
 
-        foreach ($request->details as $detail)
-        {
-            if ($detail['id'] == 0)
-            {
-                $TransactionDetail = new TransactionDetail();
+        foreach ($request->details as $detail) {
+
+            if ($detail['id'] == 0) {
+                $detail = new TransactionDetail();
             }
-            else
-            {
-                $TransactionDetail = TransactionDetail::where('id',$detail['id'])->first();
+            else {
+                $detail = TransactionDetail::where('id', $detail['id'])->first();
             }
 
-            $TransactionDetail->transaction_id = $transaction->id;
-            $TransactionDetail->chart_id = $detail['chart_id'];
-            $TransactionDetail->chart_vat_id = $detail['chart_vat_id'];
-            $TransactionDetail->value = $detail['value'];
-            $TransactionDetail->save();
+            $detail->transaction_id = $transaction->id;
+            $detail->chart_id = $detail['chart_id'];
+            $detail->chart_vat_id = $detail['chart_vat_id'];
+            $detail->value = $detail['value'];
+            $detail->save();
         }
-        return response()->json('ok');
+
+        return response()->json('ok', 200);
     }
 
     /**

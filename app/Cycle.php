@@ -2,11 +2,19 @@
 
 namespace App;
 
+use App\Taxpayer;
+use App\ChartVersion;
 use Illuminate\Database\Eloquent\Model;
+use App\Scopes\TaxpayerScope;
 
 class Cycle extends Model
 {
 
+    protected static function boot()
+    {
+        parent::boot();
+        static::addGlobalScope(new TaxpayerScope);
+    }
     /**
      * Get the taxPayer that owns the model.
      *
