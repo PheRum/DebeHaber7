@@ -20,21 +20,46 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function checkServer(Request $request)
-    {
+    public function checkCycle(Cycle $cycle) {
+
+        if (!isset($cycle))
+        {
+            $version = ChartVersion::where('country', $taxPayer->country)
+            ->orWhere('taxpayer_id', $taxPayer->id)
+            ->first();
+
+            if (!isset($version))
+            {
+                $version = new ChartVersion();
+                $version->taxpayer_id = $taxPayer->id;
+                $version->name = 'Version Automatica';
+                $version->save();
+            }
+
+            $cycle = new Cycle();
+            $cycle->chart_version_id = $version->id;
+            $cycle->year = $firstDate->year;
+            $cycle->start_date = new Carbon('first day of January ' . $firstDate->year);
+            $cycle->end_date = new Carbon('last day of December ' . $firstDate->year);
+            $cycle->taxpayer_id = $taxPayer->id;
+            $cycle->save();
+        }
+
+        return $cycle;
+    }
+
+    public function checkServer(Request $request) {
         return response()->json('Ready to rock ... your accounting data', 200);
     }
 
-    public function checkAPI(Request $request)
-    {
+    public function checkAPI(Request $request) {
         if (Auth::user() != null)
         { return response()->json(Auth::user()->name, 200); }
         else
         { return response()->json('Forbidden Access', 403); }
     }
 
-    public function checkTaxPayer($taxID, $name)
-    {
+    public function checkTaxPayer($taxID, $name) {
         $cleanTaxID = strtok($taxID , '-');
         $cleanDV = substr($taxID , -1);
 
@@ -66,8 +91,7 @@ class Controller extends BaseController
         return $taxPayer;
     }
 
-    public function checkCurrency($currencyCode, Taxpayer $taxPayer)
-    {
+    public function checkCurrency($currencyCode, Taxpayer $taxPayer) {
         //Check if Chart Exists
         if ($currencyCode != '')
         {
@@ -90,8 +114,7 @@ class Controller extends BaseController
         return null;
     }
 
-    public function checkCurrencyRate($id, Taxpayer $taxPayer, $date)
-    {
+    public function checkCurrencyRate($id, Taxpayer $taxPayer, $date) {
         $currencyRate = CurrencyRate::where('currency_id',$id)
         ->where('created_at', $this->convert_date($date))
         ->first();
@@ -102,16 +125,14 @@ class Controller extends BaseController
         return null;
     }
 
-    public function checkChart($costcenter, $name, Taxpayer $taxPayer, Cycle $cycle, $type)
-    {
+    public function checkChart($costcenter, $name, Taxpayer $taxPayer, Cycle $cycle, $type) {
         $chartController= new ChartController();
         //Check if Chart Exists
         if (isset($costcenter))
         {
             $chart = null;
             //Type 1 = Service
-            if ($costcenter == 1)
-            {
+            if ($costcenter == 1) {
                 //Sales
                 if ($type == 4 || $type == 5)
                 {
@@ -123,8 +144,7 @@ class Controller extends BaseController
                 }
             }
             //Type 2 = Products
-            elseif ($costcenter == 2)
-            {
+            elseif ($costcenter == 2) {
                 //Sales
                 if ($type == 4 || $type == 5)
                 {
@@ -137,8 +157,7 @@ class Controller extends BaseController
                 }
             }
             //Type 3 = FixedAsset
-            elseif ($costcenter == 3)
-            {
+            elseif ($costcenter == 3) {
                 $chart = Chart::My($taxPayer, $cycle)
                 ->where('type', 1)
                 ->where('sub_type', 9)
@@ -146,8 +165,7 @@ class Controller extends BaseController
                 ->where('name', $costcenter->Name)
                 ->first();
 
-                if (!isset($chart))
-                {
+                if (!isset($chart)) {
                     //if not, create specific.
                     $chart = new Chart();
                     $chart->taxpayer_id = $taxPayer->id;

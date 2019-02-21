@@ -8,7 +8,10 @@ use App\ChartVersion;
 use App\Currency;
 use App\CurrencyRate;
 use App\Cycle;
-use App\ChartAlias ;
+use App\ChartAlias;
+use App\Impex;
+use App\ImpexInvoice;
+use App\ImpexExpense;
 use App\Transaction;
 use App\TransactionDetail;
 use Illuminate\Http\Request;
@@ -18,10 +21,10 @@ use Carbon\Carbon;
 use DB;
 use Auth;
 
-class TransactionController extends Controller
+class ImpexController extends Controller
 {
     public function start(Request $request) {
-        $transactionData = array();
+        $impexData = array();
         $cycle = null;
 
         $chunkedData = $request;
@@ -54,22 +57,22 @@ class TransactionController extends Controller
                 foreach ($groupedRow as $data)
                 {
                     try {
-                        $data = $this->processTransaction($data, $taxPayer, $cycle);
+                        $data = $this->processImpex($data, $taxPayer, $cycle);
                         $data["Message"] = "Success";
-                        $transactionData[$i] = $data;
+                        $impexData[$i] = $data;
                         $i = $i + 1;
                     } catch (\Exception $e) {
                         $data["Message"] = "Error loading transaction: " .$e ;
-                        $transactionData[$i] = $data;
+                        $impexData[$i] = $data;
                     }
                 }
             }
         }
 
-        return response()->json($transactionData);
+        return response()->json($impexData);
     }
 
-    public function processTransaction($data, Taxpayer $taxPayer, Cycle $cycle) {
+    public function processImpex($data, Taxpayer $taxPayer, Cycle $cycle) {
 
         // 4 & 5, then is Sales or Credit Note. So Customer is our client, and current Taxpayer is Supplier
         if ($data['Type'] == 4 || $data['Type'] == 5) {
@@ -81,13 +84,19 @@ class TransactionController extends Controller
             $customer = $taxPayer;
             $supplier = $this->checkTaxPayer($data['SupplierTaxID'], $data['SupplierName']);
         }
-        //TODO. There should be logic that checks if RefID for this Taxpayer is already int the system. If so, then only update, or else create.
-        //Im not too happy with this code since it will call db every time there is a new invoice. Maybe there is a better way, or simply remove this part and insert it again.
 
+        $impex = Impex::where('name', 'test')->first() ?? new Impex();
+        $impex->taxpayer = $taxPayer->id;
+        $impex->is_impex = $data['IsImpex'];
+        $impex->save();
+
+        $impexInvoice = ImpexInvoice::where('id', $invoice) ?? new ImpexInvoice();
+
+        $impexExpense = ImpexExpense::where('id', $invoice) ?? new ImpexExpense();
 
         $transaction = Transaction::
         where('number', $data['Number'])
-        ->where('type', $data['Type'])
+        //->whereDate('date', $this->convert_date($data['Date']))
         ->where('customer_id', $customer->id)
         ->where('supplier_id', $supplier->id)
         ->first() ?? new Transaction();

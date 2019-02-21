@@ -47,12 +47,12 @@
         </h3>
         <b-nav vertical>
             @foreach ($cycleData as $cycle)
-                <b-nav-item class="sub-menu">
+                <b-nav-item class="sub-menu" href="/{{ $taxPayerData->id }}/{{ $cycle->id }}/">
                     <i class="material-icons md-18 ml-10 mr-10">calendar_today</i>
                     {{ $cycle->year }}
                 </b-nav-item>
             @endforeach
-            <b-nav-item class="sub-menu">
+            <b-nav-item class="sub-menu" :to="{ name: 'cycleList'}">
                 <i class="material-icons md-18 ml-10 mr-10">more_horiz</i>
                 @{{ $t('general.showMore') }}
             </b-nav-item>
