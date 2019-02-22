@@ -68,7 +68,7 @@ class FixedAssetController extends Controller
     $ChartController = new ChartController();
 
     $fixedAsset->ref_id = $data['id'];
-    $fixedAsset->chart_id = $ChartController->createIfNotExists_FixedAsset($taxPayer, $cycle, $data['AssetGroup'], $data['LifeSpan'])->id;
+    $fixedAsset->chart_id = $ChartController->createIfNotExists_FixedAsset($taxPayer, $cycle, $data['LifeSpan'], $data['AssetGroup'])->id;
     $fixedAsset->taxpayer_id = $taxPayer->id;
     $fixedAsset->currency_id = $this->checkCurrency($data['CurrencyCode'], $taxPayer);
 

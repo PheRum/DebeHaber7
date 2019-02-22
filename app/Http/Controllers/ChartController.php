@@ -233,15 +233,24 @@ class ChartController extends Controller
         return response()->json($charts);
     }
 
-    public function createIfNotExists_FixedAsset(Taxpayer $taxPayer, Cycle $cycle, $assetGroup, $lifeSpan)
+    public function createIfNotExists_FixedAsset(Taxpayer $taxPayer, Cycle $cycle, $lifeSpan, $assetGroup = '')
     {
-        $chart = Chart::My($taxPayer, $cycle)
+        $query = Chart::My($taxPayer, $cycle)
         ->where('type', 1)
         ->where('sub_type', 9)
         ->where('is_accountable', true)
-        ->where('name', $assetGroup)
-        ->where('asset_years', $lifeSpan)
-        ->first();
+        ->where('asset_years', $lifeSpan);
+
+        if ($assetGroup != '') {
+            $query->where(function ($q) use ($assetGroup){
+                $q->where('name', $assetGroup)
+                ->orWhereHas('aliases', function($subQ) use($assetGroup) {
+                    $subQ->where('name', 'like', '%' . $assetGroup . '%');
+                });
+            });
+        }
+
+        $chart = $query->first();
 
         if (!isset($chart))
         {
@@ -454,6 +463,12 @@ class ChartController extends Controller
         ->where('type', 4)
         ->where('sub_type', 4)
         ->where('is_accountable', true);
+        // ->where(function ($q) use ($chartName) {
+        //     $q->where('name', $chartName)
+        //     ->orWhereHas('aliases', function($subQ) use ($chartName) {
+        //         $subQ->where('name', 'like', '%' . $chartName . '%');
+        //     });
+        // });
 
         if ($chartName != '') {
             $query->where(function ($q) use ($chartName){
