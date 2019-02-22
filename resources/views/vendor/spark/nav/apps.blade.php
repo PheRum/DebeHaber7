@@ -10,15 +10,18 @@
     <b-button variant="light" class="mb-10" v-b-toggle.collapse-taxpayer>
         <i class="material-icons float-left">expand_more</i>
         <span class="nav-heading"> @{{ spark.taxPayerData.alias }} </span>
-        {{-- @if (spark.taxPayerData->where('id', request()->route('cycle'))->first()->year == \Carbon\Carbon::now()->year)
+        <b-badge variant="primary">
+            {{-- {{ spark.taxPayerData->where('id', request()->route('cycle'))->first()->year }} --}}
+        </b-badge>
+        @if ($cycleData->where('id', request()->route('cycle'))->first()->year == \Carbon\Carbon::now()->year)
             <b-badge variant="primary">
-                {{ spark.taxPayerData->where('id', request()->route('cycle'))->first()->year }}
+                {{ $cycleData->where('id', request()->route('cycle'))->first()->year }}
             </b-badge>
         @else
             <b-badge variant="danger">
-                {{ spark.taxPayerData->where('id', request()->route('cycle'))->first()->year }}
+                {{ $cycleData->where('id', request()->route('cycle'))->first()->year }}
             </b-badge>
-        @endif --}}
+        @endif
     </b-button>
 
     <b-collapse id="collapse-taxpayer" accordion="sub-menu">
@@ -34,7 +37,8 @@
             @{{ $t('general.configuration') }}
         </h3>
         <b-nav vertical>
-            <b-nav-item class="sub-menu" :to="{ name: 'creditList'}">
+            {{-- :href="/taxpayer/' + spark.taxPayerData.id" --}}
+            <b-nav-item class="sub-menu">
                 <i class="material-icons md-18 ml-10 mr-10">settings</i>
                 @{{ $t('general.settingsTaxPayer') }}
             </b-nav-item>

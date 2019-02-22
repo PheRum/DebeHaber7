@@ -51,16 +51,11 @@ Route::prefix('{taxPayer}')->group(function ()
         Route::prefix('config')->group(function ()
         {
             Route::get('cycles', 'CycleController@index');
-
-            // Route::resource('cycles', 'CycleController',
-            // [
-            //     'parameters' =>
-            //     [ 'cycle' => 'myCycle']
-            // ]);
+            Route::post('cycles', 'CycleController@store');
+            Route::delete('cycles', 'CycleController@destroy');
 
             Route::resources([
                 'chart-versions' => 'ChartVersionController',
-            //     'cycles' => 'CycleController',
                 'currencies' => 'CurrencyController',
                 'rates' => 'CurrencyRateController',
                 'documents' => 'DocumentController',

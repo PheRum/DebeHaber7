@@ -18,6 +18,12 @@ Route::group(['middleware' => 'auth'], function ()
 {
     Route::get('selectTaxPayer/{taxPayer}', 'TaxpayerController@selectTaxpayer')->name('selectTaxPayer');
 
+    //New
+    //Edit
+    Route::get('taxpayer', 'TaxpayerController@configuration')->name('configTaxPayer');
+    Route::get('taxpayer/{id}', 'TaxpayerController@edit')->name('editTaxPayer');
+    Route::post('taxpayer', 'TaxpayerController@store')->name('postTaxPayer');
+
     Route::prefix('{taxPayer}/{cycle}')->middleware('accessTaxPayer')->group(function ()
     {
         Route::get('', 'TaxpayerController@showDashboard')->name('taxpayer.dashboard');
