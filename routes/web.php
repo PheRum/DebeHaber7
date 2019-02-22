@@ -21,7 +21,7 @@ Route::group(['middleware' => 'auth'], function ()
     //New
     //Edit
     Route::get('taxpayer', 'TaxpayerController@configuration')->name('configTaxPayer');
-    Route::get('taxpayer/{id}', 'TaxpayerController@edit')->name('editTaxPayer');
+    Route::get('taxpayer/{id}', 'TaxpayerController@show')->name('editTaxPayer');
     Route::post('taxpayer', 'TaxpayerController@store')->name('postTaxPayer');
 
     Route::prefix('{taxPayer}/{cycle}')->middleware('accessTaxPayer')->group(function ()

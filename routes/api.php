@@ -51,8 +51,9 @@ Route::prefix('{taxPayer}')->group(function ()
         Route::prefix('config')->group(function ()
         {
             Route::get('cycles', 'CycleController@index');
-            Route::post('cycles', 'CycleController@store');
-            Route::delete('cycles', 'CycleController@destroy');
+            Route::post('cycles/store', 'CycleController@store');
+            Route::get('cycles/{cycleId}', 'CycleController@show');
+            Route::delete('cycles/{cycleId}', 'CycleController@destroy');
 
             Route::resources([
                 'chart-versions' => 'ChartVersionController',

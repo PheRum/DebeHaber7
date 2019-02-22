@@ -13,7 +13,7 @@
         <b-badge variant="primary">
             {{-- {{ spark.taxPayerData->where('id', request()->route('cycle'))->first()->year }} --}}
         </b-badge>
-        @if ($cycleData->where('id', request()->route('cycle'))->first()->year == \Carbon\Carbon::now()->year)
+        {{-- @if ($cycleData->where('id', request()->route('cycle'))->first()->year == \Carbon\Carbon::now()->year)
             <b-badge variant="primary">
                 {{ $cycleData->where('id', request()->route('cycle'))->first()->year }}
             </b-badge>
@@ -21,7 +21,7 @@
             <b-badge variant="danger">
                 {{ $cycleData->where('id', request()->route('cycle'))->first()->year }}
             </b-badge>
-        @endif
+        @endif --}}
     </b-button>
 
     <b-collapse id="collapse-taxpayer" accordion="sub-menu">
@@ -38,7 +38,7 @@
         </h3>
         <b-nav vertical>
             {{-- :href="/taxpayer/' + spark.taxPayerData.id" --}}
-            <b-nav-item class="sub-menu">
+            <b-nav-item class="sub-menu" href="/taxpayer/{{ $taxPayerData->id }}">
                 <i class="material-icons md-18 ml-10 mr-10">settings</i>
                 @{{ $t('general.settingsTaxPayer') }}
             </b-nav-item>

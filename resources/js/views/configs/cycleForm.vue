@@ -78,7 +78,7 @@
             </b-col>
         </b-row>
 
-        
+
     </div>
 </template>
 
@@ -118,7 +118,7 @@ export default {
 
 
             crud.methods
-            .onUpdate(app.baseUrl + app.pageUrl, app.data)
+            .onUpdate(app.baseUrl + app.pageUrl + "/store", app.data)
             .then(function (response) {
                 app.$snack.success({ text: this.$i18n.t('commercial.invoiceSaved', app.data.number) });
                 app.$router.go(-1);
@@ -131,7 +131,7 @@ export default {
             var app = this;
 
             crud.methods
-            .onUpdate(app.baseUrl + app.pageUrl, app.data)
+            .onUpdate(app.baseUrl + app.pageUrl + "/store", app.data)
             .then(function (response) {
                 app.$snack.success({ text: this.$i18n.t('commercial.invoiceSaved', app.data.number) });
                 app.$router.push({ name: app.$route.name, params: { id: '0' }})

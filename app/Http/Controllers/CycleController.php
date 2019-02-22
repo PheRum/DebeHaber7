@@ -59,7 +59,7 @@ class CycleController extends Controller
     * @param  \App\Cycle  $cycleId
     * @return \Illuminate\Http\Response
     */
-    public function show(Taxpayer $taxPayer, Cycle $cycle)
+    public function show(Taxpayer $taxPayer,Cycle $cycle, $cycleId)
     {
         return new GeneralResource(
             Cycle::where('id', $cycleId)->first()

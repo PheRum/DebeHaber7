@@ -2,6 +2,6 @@
 
 @section('content')
     <b-container>
-        {{  }}
+        {{$taxPayer}}
     </b-container>
 @endsection

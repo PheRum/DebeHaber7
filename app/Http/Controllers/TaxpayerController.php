@@ -218,12 +218,13 @@ class TaxpayerController extends Controller
     */
     public function show($taxPayer)
     {
+        
         $taxPayer = Taxpayer::where('taxpayers.id',$taxPayer)
         ->with('setting')
         ->with('integrations')
         ->get();
 
-        return view('taxpayer/profile')->with('taxPayer', $taxPayer);
+        return view('taxpayer')->with('taxPayer', $taxPayer);
     }
 
     /**
@@ -240,7 +241,7 @@ class TaxpayerController extends Controller
         ->where('taxpayer_integrations.id',$taxPayerintegration)
         ->get();
 
-        return view('taxpayer/profile')->with('taxPayer', $taxPayer);
+        return view('taxpayer')->with('taxPayer', $taxPayer);
     }
 
     /**
