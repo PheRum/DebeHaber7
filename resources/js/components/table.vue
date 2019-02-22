@@ -20,12 +20,12 @@
                         <small class="text-success text-uppercase" v-if="data.item.currency != null">{{ data.item.currency.code }}</small>
                     </span>
                 </template>
-                <template slot="debit" slot-scope="data">
+                <!-- <template slot="debit" slot-scope="data">
                     <span class="float-right">
-                        {{ new Number(sumDebit(data.item.details)).toLocaleString() }}
+                        {{ new Number(sumDebit(data.item)).toLocaleString() }}
                         <small class="text-success text-uppercase" v-if="data.item.currency != null">{{ data.item.currency.code }}</small>
                     </span>
-                </template>
+                </template> -->
                 <template slot="balance" slot-scope="data">
                     <span class="float-right">
                         {{ new Number(data.item.balance).toLocaleString() }}
@@ -82,9 +82,9 @@
             <p class="lead">How about <router-link :to="{ name: formURL, params: { id: 0}}">creating</router-link> some data</p>
             <b-img thumbnail fluid width="256" src="/img/apps/no-data.svg" alt="Thumbnail" />
         </b-card>
-        <b-pagination v-if="lists.length > 0"
-            size="md" align="center" :total-rows="meta.total"
-            :per-page="meta.per_page"  @change="list()"></b-pagination>
+        <b-pagination v-if="lists.length > 0" size="md" align="center" :total-rows="meta.total"
+            :per-page="meta.per_page" @change="list()">
+        </b-pagination>
         </div>
     </template>
 
@@ -137,7 +137,6 @@
 
             onDelete(row) {
                 var app = this;
-
                 crud.methods.onDelete('/api' + app.$route.path,row.id).then(function (response) {
                     app.lists.splice(app.lists.indexOf(row), 1);
                     app.$snack.success({text:'Deleted'});

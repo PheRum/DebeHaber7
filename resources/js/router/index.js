@@ -13,6 +13,12 @@ import CreditList from '../views/commercials/creditList';
 import CreditForm from '../views/commercials/creditForm';
 import DebitList from '../views/commercials/debitList';
 import DebitForm from '../views/commercials/debitForm';
+import FixedAssetList from '../views/commercials/fixedAssetList';
+import FixedAssetForm from '../views/commercials/fixedAssetForm';
+import MoneyMovementList from '../views/commercials/moneyMovementList';
+import MoneyMovementForm from '../views/commercials/moneyMovementForm';
+import InventoryList from '../views/commercials/inventoryList';
+import InventoryForm from '../views/commercials/inventoryForm';
 
 import Accounting from '../views/accounts/index';
 import JournalList from '../views/accounts/journalList';
@@ -170,6 +176,78 @@ export default
                         name: 'debitForm',
                         meta: {
                             title: 'commercial.debitNote',
+                            description: 'Some description',
+                            img: '/img/apps/sales.svg',
+                        },
+
+                    }
+                ]
+            },
+            {
+                path: 'fixed-assets',
+                component: FixedAssetList,
+                name: 'fixedAssetList',
+                meta: {
+                    title: 'commercial.fixedAssets',
+                    description: 'Some description',
+                    img: '/img/apps/sales.svg',
+                },
+                children:
+                [
+                    {
+                        path: ':id',
+                        component: FixedAssetForm,
+                        name: 'fixedAssetForm',
+                        meta: {
+                            title: 'commercial.fixedAsset',
+                            description: 'Some description',
+                            img: '/img/apps/sales.svg',
+                        },
+
+                    }
+                ]
+            },
+            {
+                path: 'money-movements',
+                component: MoneyMovementList,
+                name: 'moneyMovementList',
+                meta: {
+                    title: 'commercial.moneyMovements',
+                    description: 'Some description',
+                    img: '/img/apps/sales.svg',
+                },
+                children:
+                [
+                    {
+                        path: ':id',
+                        component: MoneyMovementForm,
+                        name: 'moneyMovementForm',
+                        meta: {
+                            title: 'commercial.moneyMovement',
+                            description: 'Some description',
+                            img: '/img/apps/sales.svg',
+                        },
+
+                    }
+                ]
+            },
+            {
+                path: 'inventories',
+                component: InventoryList,
+                name: 'inventoryList',
+                meta: {
+                    title: 'commercial.inventories',
+                    description: 'Some description',
+                    img: '/img/apps/sales.svg',
+                },
+                children:
+                [
+                    {
+                        path: ':id',
+                        component: InventoryForm,
+                        name: 'inventoryForm',
+                        meta: {
+                            title: 'commercial.inventory',
                             description: 'Some description',
                             img: '/img/apps/sales.svg',
                         },

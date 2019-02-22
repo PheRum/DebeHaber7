@@ -57,16 +57,6 @@ class Journal extends Model
     }
 
     /**
-    * Get the journalSimulations for the model.
-    *
-    * @return \Illuminate\Database\Eloquent\Relations\HasMany
-    */
-    public function journalSimulations()
-    {
-        return $this->hasMany(JournalSim::class);
-    }
-
-    /**
     * Get the cycle that owns the model.
     *
     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

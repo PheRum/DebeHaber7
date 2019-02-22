@@ -19,9 +19,8 @@ class AccountMovementController extends Controller
     {
         return GeneralResource::collection(
             AccountMovement::
-            orderBy('date', 'DESC')
+            orderBy('date', 'des')
             ->with('chart')
-            //->with('contact')
             ->with('transaction:id,number,comment')
             ->with('currency')
             ->paginate(50)
@@ -69,7 +68,7 @@ class AccountMovementController extends Controller
         return response()->json('Ok', 200);
     }
 
-    public function show(AccountMovement $movement)
+    public function show(Taxpayer $taxPayer, Cycle $cycle, AccountMovement $movement)
     {
         return new GeneralResource(
             AccountMovement::with('chart')

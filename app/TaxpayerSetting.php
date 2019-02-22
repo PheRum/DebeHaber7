@@ -20,7 +20,7 @@ class TaxpayerSetting extends Model
 
     public $timestamps  = false;
 
-    public function taxpayer()
+    public function taxPayer()
     {
         return $this->belongsTo(\App\Taxpayer::class, 'taxpayer_id');
     }

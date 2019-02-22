@@ -10,7 +10,7 @@ use Laravel\Scout\Searchable;
 class Transaction extends Model
 {
     use SoftDeletes, Searchable;
-    use  Timezoned;
+    use Timezoned;
 
     protected $timezoned = ['date', 'created_at', 'updated_at', 'deleted_at'];
     protected $softDelete = true;

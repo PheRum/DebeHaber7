@@ -26,4 +26,14 @@ class ImpexExpense extends Model
     {
         return $this->belongsTo(TransactionDetail::class);
     }
+
+    /**
+     * Get the chart that owns the model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function chart()
+    {
+        return $this->belongsTo(Chart::class);
+    }
 }

@@ -18,11 +18,10 @@ Route::group(['middleware' => 'auth'], function ()
 {
     Route::get('selectTaxPayer/{taxPayer}', 'TaxpayerController@selectTaxpayer')->name('selectTaxPayer');
 
-    //New
-    //Edit
-    Route::get('taxpayer', 'TaxpayerController@configuration')->name('configTaxPayer');
+    //Taxpayer Setting Routes
     Route::get('taxpayer/{id}', 'TaxpayerController@show')->name('editTaxPayer');
     Route::post('taxpayer', 'TaxpayerController@store')->name('postTaxPayer');
+    Route::delete('taxpayer', 'TaxpayerController@destroy')->name('deleteTaxPayer');
 
     Route::prefix('{taxPayer}/{cycle}')->middleware('accessTaxPayer')->group(function ()
     {

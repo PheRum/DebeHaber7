@@ -36,7 +36,6 @@ class JournalDetail extends Model
         return $this->belongsTo(Journal::class, 'journal_id', 'id');
     }
 
-
     /**
     * Get the chart that owns the model.
     *

@@ -8,8 +8,10 @@ use App\Chart;
 use App\Inventory;
 use App\Transaction;
 use App\Journal;
+use App\Http\Resources\GeneralResource;
 use Illuminate\Http\Request;
 use DB;
+
 class InventoryController extends Controller
 {
     /**
@@ -19,21 +21,27 @@ class InventoryController extends Controller
     */
     public function index(Taxpayer $taxPayer, Cycle $cycle)
     {
-        $inventory = Inventory::skip($skip)
-        ->take(100)
-        ->get();
-        return response()->json($inventory);
+        // $inventory = Inventory::skip($skip)
+        // ->take(100)
+        // ->get();
+        // return response()->json($inventory);
+
+        return GeneralResource::collection(
+            Transaction::whereBetween('date', [$cycle->start_date, $cycle->end_date])
+            ->orderBy('date', 'desc')
+            ->paginate(50)
+        );
     }
 
-    public function get_inventoryChartType(Taxpayer $taxPayer, Cycle $cycle)
-    {
-        $transaction = Chart::where('chart_version_id', $cycle->chart_version_id)
-        ->where('type', 4)
-        ->where('sub_type', 4)
-        ->get();
-
-        return response()->json($transaction);
-    }
+    // public function get_inventoryChartType(Taxpayer $taxPayer, Cycle $cycle)
+    // {
+    //     $transaction = Chart::where('chart_version_id', $cycle->chart_version_id)
+    //     ->where('type', 4)
+    //     ->where('sub_type', 4)
+    //     ->get();
+    //
+    //     return response()->json($transaction);
+    // }
 
     //TODO pass start and end date to calculate sales.
     public function calc_sales(Request $request, Taxpayer $taxPayer, Cycle $cycle)
@@ -98,12 +106,15 @@ class InventoryController extends Controller
     /**
     * Show the form for editing the specified resource.
     *
-    * @param  \App\Inventory  $inventory
+    * @param  \App\Inventory  $transaction
     * @return \Illuminate\Http\Response
     */
-    public function edit(Inventory $inventory)
+    public function show(Taxpayer $taxPayer, Cycle $cycle, $inventoryId)
     {
-        //
+        return new GeneralResource(
+            Inventory::where('id', $inventoryId)
+            ->first()
+        );
     }
 
     /**

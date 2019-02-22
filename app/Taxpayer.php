@@ -46,6 +46,16 @@ class Taxpayer extends Model
     }
 
     /**
+    * Get the integrations for the model.
+    *
+    * @return \Illuminate\Database\Eloquent\Relations\HasMany
+    */
+    public function currencies()
+    {
+        return $this->hasMany(TaxpayerCurrency::class);
+    }
+
+    /**
     * Get the journalSims for the model.
     *
     * @return \Illuminate\Database\Eloquent\Relations\HasMany

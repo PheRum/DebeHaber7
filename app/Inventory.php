@@ -3,10 +3,26 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Spatie\ModelStatus\HasStatuses;
 
 class Inventory extends Model
 {
-    //
-    use HasStatuses;
+    /**
+     * Get the taxPayer that owns the model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function taxPayer()
+    {
+        return $this->belongsTo(Taxpayer::class);
+    }
+
+    /**
+     * Get the chart that owns the model.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function chart()
+    {
+        return $this->belongsTo(Chart::class);
+    }
 }

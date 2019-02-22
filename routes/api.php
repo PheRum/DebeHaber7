@@ -13,43 +13,36 @@
 
 // Route::group([ 'middleware' => 'auth:api' ], function () {
 Route::post('/transactions', 'API\TransactionController@start');
-Route::post('/transactions', 'API\TransactionController@start');
 Route::post('/payment', 'API\PaymentController@start');
 Route::post('/movement', 'API\AccountMovementController@start');
 Route::post('/fixedasset', 'API\FixedAssetController@start');
 
-Route::prefix('{country}')->group(function ()
-{
+Route::prefix('{country}')->group(function () {
     Route::get('/get_owner/{taxPayerID}', 'TaxpayerController@get_owner');
     Route::get('/get_taxpayers/{searchBy}', 'TaxpayerController@get_taxpayer');
 });
 
 //Used for accepting or rejecting a team from accesing your taxpayer's data.
-Route::prefix('teams')->group(function ()
-{
+Route::prefix('teams')->group(function () {
     Route::post('/accpet-invite/{id}/{type}', 'HomeController@teamAccept')->name('team.accept');
     Route::post('/reject-invite/{id}', 'HomeController@teamReject')->name('team.reject');
 });
 
-Route::prefix('{taxPayer}')->group(function ()
-{
+Route::prefix('{taxPayer}')->group(function () {
     // This creates taxpayers to be used only in Sales and Purchases.
     // Not Taxpayers that will be used for accounting.
     Route::post('store-taxpayer', 'TaxpayerController@createTaxPayer');
     Route::get('get-rates/by/{currencyID}/{date?}', 'CurrencyRateController@get_ratesByCurrency');
     Route::get('documents/by/{type}', 'DocumentController@get_document');
 
-    Route::prefix('{cycle}')->group(function ()
-    {
-        Route::prefix('search')->group(function ()
-        {
+    Route::prefix('{cycle}')->group(function () {
+        Route::prefix('search')->group(function () {
             Route::get('transactions/{q}', 'SearchController@searchTransactions');
             Route::get('taxpayers/{q}', 'SearchController@searchTaxPayers');
             Route::get('charts/{q}', 'SearchController@searchCharts');
         });
 
-        Route::prefix('config')->group(function ()
-        {
+        Route::prefix('config')->group(function () {
             Route::get('cycles', 'CycleController@index');
             Route::post('cycles/store', 'CycleController@store');
             Route::get('cycles/{cycleId}', 'CycleController@show');
@@ -63,8 +56,7 @@ Route::prefix('{taxPayer}')->group(function ()
             ]);
         });
 
-        Route::prefix('commercial')->group(function ()
-        {
+        Route::prefix('commercial')->group(function () {
             Route::resources([
                 'sales' => 'SalesController',
                 'credit-notes' => 'CreditNoteController',

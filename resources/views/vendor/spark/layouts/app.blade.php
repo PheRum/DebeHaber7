@@ -34,9 +34,11 @@
 
             $cycleData = App\Cycle::where('taxpayer_id', request()->route('taxPayer'))
             ->select('id', 'year')
-            ->orderBy('id', 'desc')
+            ->orderBy('year', 'desc')
             ->take(3)
             ->get();
+
+            $currentCycle = App\Cycle::where('id', request()->route('cycle'))->first();
 
             $integrationType = App\TaxpayerIntegration::where('team_id', $currentTeam->id)
             ->where('taxpayer_id', request()->route('taxPayer'))

@@ -18,42 +18,42 @@ class Production extends Model
     ];
 
     /**
-     * Get the taxPayer that owns the model.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
+    * Get the taxPayer that owns the model.
+    *
+    * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+    */
     public function taxPayer()
     {
         return $this->belongsTo(Taxpayer::class);
     }
 
     /**
-     * Get the currency that owns the model.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
+    * Get the currency that owns the model.
+    *
+    * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+    */
     public function currency()
     {
         return $this->belongsTo(Currency::class);
     }
 
     /**
-     * Get the details for the model.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
+    * Get the details for the model.
+    *
+    * @return \Illuminate\Database\Eloquent\Relations\HasMany
+    */
     public function details()
     {
         return $this->hasMany(ProductionDetail::class);
     }
 
     /**
-     * Get the journals for the model.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function journals()
+    * Get the journal that owns the model.
+    *
+    * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+    */
+    public function journal()
     {
-        return $this->hasMany(Journal::class);
+        return $this->belongsTo(Journal::class);
     }
 }

@@ -23,7 +23,7 @@ class ProductionDetail extends Model
     */
     public function production()
     {
-        return $this->belongsTo(Production::class, 'foreign_key', 'local_key');
+        return $this->belongsTo(Production::class);
     }
 
     /**
@@ -33,6 +33,6 @@ class ProductionDetail extends Model
     */
     public function chart()
     {
-        return $this->belongsTo(Chart::class, 'foreign_key', 'local_key');
+        return $this->belongsTo(Chart::class);
     }
 }

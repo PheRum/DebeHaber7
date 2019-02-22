@@ -44,17 +44,7 @@ class Cycle extends Model
     {
         return $this->hasMany(Journal::class);
     }
-
-    /**
-     * Get the journalSimulation for the model.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function journalSimulation()
-    {
-        return $this->hasMany(JournalSim::class);
-    }
-
+    
     /**
      * Get the cycleBudgets for the model.
      *

@@ -40,7 +40,8 @@ class AccountMovement extends Model
     */
     public function chart()
     {
-        return $this->belongsTo(Chart::class, 'chart_id')->withoutGlobalScopes();
+        return $this->belongsTo(Chart::class);
+        //->withoutGlobalScopes();
     }
 
     /**

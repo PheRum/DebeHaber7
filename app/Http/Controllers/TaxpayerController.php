@@ -62,17 +62,6 @@ class TaxpayerController extends Controller
         return response()->json(null, 204);
     }
 
-
-    /**
-    * Show the form for creating a new resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-    public function create()
-    {
-        return view('taxpayer/form');
-    }
-
     /**
     * Store a newly created resource in storage.
     *
@@ -218,28 +207,11 @@ class TaxpayerController extends Controller
     */
     public function show($taxPayer)
     {
-        
-        $taxPayer = Taxpayer::where('taxpayers.id',$taxPayer)
+        $taxPayer = Taxpayer::where('id', $taxPayer)
         ->with('setting')
         ->with('integrations')
-        ->get();
-
-        return view('taxpayer')->with('taxPayer', $taxPayer);
-    }
-
-    /**
-    * Show the form for editing the specified resource.
-    *
-    * @param  \App\Taxpayer  $taxpayer
-    * @return \Illuminate\Http\Response
-    */
-    public function edit($taxPayerintegration)
-    {
-
-        $taxPayer = Taxpayer::join('taxpayer_integrations', 'taxpayers.id', 'taxpayer_integrations.taxpayer_id')
-        ->join('taxpayer_settings', 'taxpayers.id', 'taxpayer_settings.taxpayer_id')
-        ->where('taxpayer_integrations.id',$taxPayerintegration)
-        ->get();
+        ->with('currencies')
+        ->first();
 
         return view('taxpayer')->with('taxPayer', $taxPayer);
     }
@@ -262,8 +234,7 @@ class TaxpayerController extends Controller
             $taxPayer->save();
 
             //this code is wrong. you need to get specific taxpayer setting
-            $taxPayer_Setting = TaxpayerSetting::where('taxpayer_id', $taxPayer->id)->first()
-            ?? new TaxpayerSetting();
+            $taxPayer_Setting = TaxpayerSetting::where('taxpayer_id', $taxPayer->id)->first() ?? new TaxpayerSetting();
             $taxPayer_Setting->taxpayer_id = $taxPayer->id;
             $taxPayer_Setting->agent_taxid = $request->agent_taxid;
             $taxPayer_Setting->agent_name = $request->agent_name;
@@ -271,8 +242,7 @@ class TaxpayerController extends Controller
 
             $taxpayertypes = TaxpayerType::where('taxpayer_id', $taxPayer->id)->get();
 
-            if (isset($taxpayertypes))
-            {
+            if (isset($taxpayertypes)) {
                 foreach ($taxpayertypes as $taxpayertype)
                 {
                     $taxpayertype->delete();

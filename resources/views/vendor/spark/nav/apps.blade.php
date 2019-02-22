@@ -13,15 +13,15 @@
         <b-badge variant="primary">
             {{-- {{ spark.taxPayerData->where('id', request()->route('cycle'))->first()->year }} --}}
         </b-badge>
-        {{-- @if ($cycleData->where('id', request()->route('cycle'))->first()->year == \Carbon\Carbon::now()->year)
+        @if ($currentCycle->year == \Carbon\Carbon::now()->year)
             <b-badge variant="primary">
-                {{ $cycleData->where('id', request()->route('cycle'))->first()->year }}
+                {{ $currentCycle->year }}
             </b-badge>
         @else
             <b-badge variant="danger">
-                {{ $cycleData->where('id', request()->route('cycle'))->first()->year }}
+                {{ $currentCycle->year }}
             </b-badge>
-        @endif --}}
+        @endif
     </b-button>
 
     <b-collapse id="collapse-taxpayer" accordion="sub-menu">
@@ -133,11 +133,11 @@
             Internal
         </h3>
         <b-nav vertical>
-            <b-nav-item class="sub-menu" :to="{ name: 'purchaseList'}">
+            <b-nav-item class="sub-menu" :to="{ name: 'fixedAssetList'}">
                 <i class="material-icons md-18 ml-10 mr-10">vpn_key</i>
                 @{{ $t('commercial.fixedAssets') }}
             </b-nav-item>
-            <b-nav-item class="sub-menu" :to="{ name: 'debitList'}">
+            <b-nav-item class="sub-menu" :to="{ name: 'inventoryList'}">
                 <i class="material-icons md-18 ml-10 mr-10">unarchive</i>
                 @{{ $t('commercial.inventories') }}
             </b-nav-item>
@@ -145,7 +145,7 @@
                 <i class="material-icons md-18 ml-10 mr-10">settings_applications</i>
                 @{{ $t('commercial.productions') }}
             </b-nav-item>
-            <b-nav-item class="sub-menu">
+            <b-nav-item class="sub-menu":to="{ name: 'moneyMovementList'}">
                 <i class="material-icons md-18 ml-10 mr-10">attach_money</i>
                 @{{ $t('commercial.moneyMovements') }}
             </b-nav-item>
