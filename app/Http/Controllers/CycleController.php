@@ -28,21 +28,7 @@ class CycleController extends Controller
         );
     }
 
-    public function get_cycle($taxPayerID)
-    {
-        $cycle = Cycle::where('cycles.taxpayer_id', $taxPayerID)
-        ->join('chart_versions', 'cycles.chart_version_id', 'chart_versions.id')
-        ->select('cycles.id',
-        'cycles.year',
-        'cycles.start_date',
-        'cycles.end_date',
-        'chart_versions.name as chart_version_name',
-        'chart_versions.id as chart_version_id')
-        ->take(5)
-        ->get();
 
-        return response()->json($cycle);
-    }
 
     /**
     * Store a newly created resource in storage.

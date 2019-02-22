@@ -12,6 +12,11 @@
 */
 
 // Route::group([ 'middleware' => 'auth:api' ], function () {
+Route::post('/transactions', 'API\TransactionController@start');
+Route::post('/transactions', 'API\TransactionController@start');
+Route::post('/payment', 'API\PaymentController@start');
+Route::post('/movement', 'API\AccountMovementController@start');
+Route::post('/fixedasset', 'API\FixedAssetController@start');
 
 Route::prefix('{country}')->group(function ()
 {
@@ -55,7 +60,7 @@ Route::prefix('{taxPayer}')->group(function ()
 
             Route::resources([
                 'chart-versions' => 'ChartVersionController',
-                // 'cycles' => 'CycleController',
+            //     'cycles' => 'CycleController',
                 'currencies' => 'CurrencyController',
                 'rates' => 'CurrencyRateController',
                 'documents' => 'DocumentController',

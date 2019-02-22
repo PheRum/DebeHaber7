@@ -19,7 +19,6 @@ class DocumentController extends Controller
     {
         return GeneralResource::collection(
             Document::where('taxpayer_id', $taxPayer->id)
-            ->orderBy('date', 'desc')
             ->paginate(50)
         );
     }
@@ -48,12 +47,11 @@ class DocumentController extends Controller
         return response()->json('ok', 200);
     }
 
-    public function show(Taxpayer $taxPayer, Cycle $cycle, $transactionId)
+    public function show(Taxpayer $taxPayer, Cycle $cycle, $documentId)
     {
         return new GeneralResource(
             Document::where('taxpayer_id', $taxPayer->id)
-            ->where('id', $transactionId)
-            ->orderBy('date', 'desc')
+            ->where('id', $documentId)
             ->first()
         );
     }
@@ -77,6 +75,7 @@ class DocumentController extends Controller
     */
     public function destroy(Document $document)
     {
-        //
+
     }
+
 }

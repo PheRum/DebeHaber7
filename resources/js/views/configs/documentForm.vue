@@ -45,38 +45,47 @@
             </b-col>
         </b-row>
 
+
         <b-row>
             <b-col>
                 <b-card>
                     <b-container>
                         <b-row>
+                            <b-form-group :label="$t('commercial.type')" >
+                                <b-form-select v-model="data.type" >
+                                    <option value="1">Invoice</option>
+                                    <option value="2">DebitNote</option>
+                                    <option value="3">CreditNote</option>
+                                    <option value="4">CustomsClearence</option>
+                                    <option value="5">SelfInvoice</option>
+                                    <option value="6">Ticket</option>
+                                    <option value="7">AirTicket</option>
+                                    <option value="8">InvoiceFromAbroad</option>
+                                    <option value="9">AbsorbedRetention</option>
+                                    <option value="10">ElectronicAirTicket</option>
+                                </b-form-select>
+                            </b-form-group>
+                        </b-row>
+                        <b-row>
                             <b-col>
-                                <b-form-group :label="$t('commercial.date')">
-                                    <b-input type="date" required placeholder="Missing Information" v-model="data.date"/>
+                                <b-form-group :label="$t('commercial.prefix')">
+                                    <b-input type="text" required placeholder="Missing Information" v-model="data.prefix"/>
                                 </b-form-group>
-                                <b-form-group :label="$t('commercial.customer')">
-                                    <search-taxpayer v-model="data.customer"></search-taxpayer>
+                                <b-form-group :label="$t('commercial.current')">
+                                    <b-input type="text" required placeholder="Missing Information" v-model="data.current_range"/>
+                                </b-form-group>
+                                <b-form-group :label="$t('commercial.end')">
+                                    <b-input type="text" required placeholder="Missing Information" v-model="data.end_range"/>
                                 </b-form-group>
 
-                                <b-container v-if="data.customer != null">
-                                    Based on your past transactions, we can quickly recomend the same items again.
-                                    <b-row>
-                                        <b-col>
-                                            <b-button href="">
-                                                Favorite Detail 1
-                                            </b-button>
-                                            <b-button href="">
-                                                Favorite Detail 2
-                                            </b-button>
-                                        </b-col>
-                                    </b-row>
-                                </b-container>
                             </b-col>
                             <b-col>
-                                <b-form-group :label="$t('commercial.document')" v-if="documents.length > 0">
-                                    <b-form-select v-model="data.document_id">
-                                        <option v-for="doc in documents" :key="doc.key" :value="doc.id">{{ doc.name }}</option>
-                                    </b-form-select>
+                                <b-form-group :label="$t('commercial.mask')">
+                                    <b-input type="text" required placeholder="Missing Information" v-model="data.mask"/>
+                                </b-form-group>
+
+                                <b-form-group :label="$t('commercial.start')">
+                                    <b-input type="text" required placeholder="Missing Information" v-model="data.start_range"/>
                                 </b-form-group>
 
                                 <b-form-group :label="spark.taxPayerConfig.document_code" v-if="spark.taxPayerConfig.document_code != ''">
@@ -88,31 +97,6 @@
                                     </b-input-group>
                                 </b-form-group>
 
-                                <b-form-group :label="$t('commercial.number')">
-                                    <b-input type="text" placeholder="Invoice Number" v-mask="spark.taxPayerConfig.document_mask" v-model="data.number"/>
-                                </b-form-group>
-
-                                <b-form-group :label="$t('commercial.paymentCondition')">
-                                    <b-input-group>
-                                        <b-input type="number" placeholder="$t('commercial.paymentCondition')" :value="data.payment_condition.toString()"/>
-                                        <b-input-group-append v-if="data.payment_condition == 0">
-                                            <b-form-select v-model="data.chart_account_id">
-                                                <option v-for="account in accountCharts" :key="account.key" :value="account.id">{{ account.name }}</option>
-                                            </b-form-select>
-                                        </b-input-group-append>
-                                    </b-input-group>
-                                    <b-form-text>Specify days between invoice and payment dates. Ex: use 0 for cash, and 30 for thrity days payment terms.</b-form-text>
-                                </b-form-group>
-                                <b-form-group :label="$t('commercial.exchangeRate')">
-                                    <b-input-group>
-                                        <b-input-group-prepend>
-                                            <b-form-select v-model="data.currency_id">
-                                                <option v-for="currency in currencies" :key="currency.key" :value="currency.id">{{ currency.name }}</option>
-                                            </b-form-select>
-                                        </b-input-group-prepend>
-                                        <b-input type="number" placeholder="$t('commercial.payment')" :value="data.rate.toString()"/>
-                                    </b-input-group>
-                                </b-form-group>
                             </b-col>
                         </b-row>
                     </b-container>
@@ -120,35 +104,7 @@
             </b-col>
         </b-row>
 
-        <b-row>
-            <b-col>
-                <b-card no-body>
-                    <b-table hover :items="data.details" :fields="columns">
-                        <template slot="chart_id" slot-scope="data">
-                            <b-form-select v-model="data.item.chart_id">
-                                <option v-for="item in itemCharts" :key="item.key" :value="item.id">{{ item.name }}</option>
-                            </b-form-select>
-                        </template>
-                        <template slot="chart_vat_id" slot-scope="data">
-                            <b-form-select v-model="data.item.chart_vat_id">
-                                <option v-for="vat in vatCharts" :key="vat.key" :value="vat.id">{{ vat.name }}</option>
-                            </b-form-select>
-                        </template>
-                        <template slot="value" slot-scope="data">
-                            <!-- mask?? -->
-                            <b-form-input :value="new Number(data.item.value).toLocaleString()" type="text" placeholder="Value"/>
 
-                            <!-- <vue-numeric separator="," :value="data.item.value"></vue-numeric> -->
-                        </template>
-                        <template slot="actions" slot-scope="data">
-                            <b-button variant="link" @click="deleteRow(data.item)">
-                                <i class="material-icons text-danger">delete_outline</i>
-                            </b-button>
-                        </template>
-                    </b-table>
-                </b-card>
-            </b-col>
-        </b-row>
     </div>
 </template>
 
@@ -160,61 +116,21 @@ export default {
     data() {
         return {
             data: {
-                chart_account_id: 0,
                 code: '',
                 code_expiry: '',
-                comment: '',
-                currency_id: 0,
-                customer_id: 0,
-                customer: [],
-                date: '',
-                details: [{id: 0}],
-                document_id: '',
-                document_type: 1,
-                id: 0,
-                is_deductible: 0,
-                journal_id: null,
-                number: '',
-                payment_condition: 0,
-                rate: 1,
-                type: 4
+                prefix: '',
+                mask: '',
+                start_date: '',
+                current_date: '',
+                end_date: '',
             },
-            pageUrl: '/commercial/sales',
+            pageUrl: '/config/documents',
 
-            documents: [],
-            currencies: [],
-
-            accountCharts: [],
-            vatCharts: [],
-            itemCharts: [],
 
             lastDeletedRow: [],
         };
     },
     computed: {
-        columns()
-        {
-            return  [ {
-                key: 'chart_id',
-                label: this.$i18n.t('commercial.item'),
-                sortable: true
-            },
-            {
-                key: 'chart_vat_id',
-                label: this.$i18n.t('commercial.vat'),
-                sortable: true
-            },
-            {
-                key: 'value',
-                label: this.$i18n.t('commercial.value'),
-                sortable: true
-            },
-            {
-                key: 'actions',
-                label: '',
-                sortable: false
-            }];
-        },
 
         baseUrl() {
             return '/api/' + this.$route.params.taxPayer + '/' + this.$route.params.cycle;
@@ -241,10 +157,9 @@ export default {
             crud.methods
             .onUpdate(app.baseUrl + app.pageUrl, app.data)
             .then(function (response) {
-                app.$snack.success({ text: this.$i18n.t('commercial.invoiceSaved', app.data.number) });
+                app.$snack.success({ text: this.$i18n.t('commercial.docuemntSaved') });
                 app.$router.push({ name: app.$route.name, params: { id: '0' }})
-                app.data.customer_id = 0;
-                app.data.customer = [];
+
 
             }).catch(function (error) {
                 app.$snack.danger({
@@ -268,56 +183,11 @@ export default {
             })
         },
 
-        addDetailRow() {
-            this.data.details.push({
-                // index: this.data.details.length + 1,
-                chart_id: this.itemCharts[0].id,
-                chart_vat_id: this.vatCharts[0].id,
-                value: '0',
-            })
-        },
-
-        deleteRow(item) {
-
-            if (item.id > 0) {
-                var app = this;
-
-                crud.methods
-                .onDelete(app.baseUrl + app.pageUrl + '/details', item.id)
-                .then(function (response) { });
-            }
-
-            this.lastDeletedRow = item;
-
-            this.$snack.success({
-                text: this.$i18n.t('general.rowDeleted'),
-                button: this.$i18n.t('general.undo'),
-                action: this.undoDeletedRow
-            });
-
-            this.data.details.splice(this.data.details.indexOf(item), 1);
-        },
-
-        undoDeletedRow() {
-            if (this.lastDeletedRow.id > 0) {
-                crud.methods
-                .onUpdate(app.baseUrl + app.pageUrl + '/details', this.lastDeletedRow)
-                .then(function (response) { });
-                //axios code to insert detail again??? or let save do it.
-            }
-
-            this.data.details.push(this.lastDeletedRow);
-        },
     },
 
     mounted() {
         var app = this;
 
-        crud.methods
-        .onRead('/api/' + app.$route.params.taxPayer + '/currencies')
-        .then(function (response) {
-            app.currencies = response.data.data;
-        });
 
         if (app.$route.params.id > 0) {
             crud.methods
@@ -326,30 +196,11 @@ export default {
                 app.data = response.data.data;
             });
         } else {
-            app.data.date = new Date(Date.now()).toISOString().split("T")[0];
-            app.data.chart_account_id = app.accountCharts[0] != null ? app.accountCharts[0].id : null;
-            app.data.payment_condition = 0;
-            app.data.currency_id = 1;
-            app.data.rate = 1;
+            app.data.prefix = 1;
+
         }
 
-        crud.methods
-        .onRead(app.baseUrl + "/accounting/charts/for/money/")
-        .then(function (response) {
-            app.accountCharts = response.data.data;
-        });
 
-        crud.methods
-        .onRead(app.baseUrl + "/accounting/charts/for/vats-debit")
-        .then(function (response) {
-            app.vatCharts = response.data.data;
-        });
-
-        crud.methods
-        .onRead(app.baseUrl + "/accounting/charts/for/income")
-        .then(function (response) {
-            app.itemCharts = response.data.data;
-        });
     }
 }
 </script>

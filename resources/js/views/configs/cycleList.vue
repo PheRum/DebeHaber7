@@ -53,7 +53,7 @@ export default {
         columns()
         {
             return  [ {
-                key: 'chartVersion.name',
+                key: 'chart_version.name',
                 label: this.$i18n.t('accounting.chartVersion'),
                 sortable: true
             },

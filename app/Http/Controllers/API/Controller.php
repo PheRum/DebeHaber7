@@ -7,6 +7,8 @@ use App\CurrencyRate;
 use App\Taxpayer;
 use App\Chart;
 use App\Cycle;
+use App\ChartVersion;
+use App\Http\Controllers\ChartController;
 use DateTime;
 use Auth;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -20,30 +22,29 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function checkCycle(Cycle $cycle) {
+    public function checkCycle(Taxpayer $taxPayer,$firstDate) {
 
-        if (!isset($cycle))
+
+        $version = ChartVersion::where('country', $taxPayer->country)
+        ->orWhere('taxpayer_id', $taxPayer->id)
+        ->first();
+
+        if (!isset($version))
         {
-            $version = ChartVersion::where('country', $taxPayer->country)
-            ->orWhere('taxpayer_id', $taxPayer->id)
-            ->first();
-
-            if (!isset($version))
-            {
-                $version = new ChartVersion();
-                $version->taxpayer_id = $taxPayer->id;
-                $version->name = 'Version Automatica';
-                $version->save();
-            }
-
-            $cycle = new Cycle();
-            $cycle->chart_version_id = $version->id;
-            $cycle->year = $firstDate->year;
-            $cycle->start_date = new Carbon('first day of January ' . $firstDate->year);
-            $cycle->end_date = new Carbon('last day of December ' . $firstDate->year);
-            $cycle->taxpayer_id = $taxPayer->id;
-            $cycle->save();
+            $version = new ChartVersion();
+            $version->taxpayer_id = $taxPayer->id;
+            $version->name = 'Version Automatica';
+            $version->save();
         }
+
+        $cycle = new Cycle();
+        $cycle->chart_version_id = $version->id;
+        $cycle->year = $firstDate->year;
+        $cycle->start_date = new Carbon('first day of January ' . $firstDate->year);
+        $cycle->end_date = new Carbon('last day of December ' . $firstDate->year);
+        $cycle->taxpayer_id = $taxPayer->id;
+        $cycle->save();
+
 
         return $cycle;
     }
@@ -140,7 +141,7 @@ class Controller extends BaseController
                 }
                 else //Purchase
                 {
-                    $chart=$chartController->createIfNotExists_Expenses($taxPayer,$cycle,$costcenter->Name);
+                    $chart=$chartController->createIfNotExists_Expenses($taxPayer,$cycle,$costcenter->Name??'');
                 }
             }
             //Type 2 = Products
@@ -148,12 +149,11 @@ class Controller extends BaseController
                 //Sales
                 if ($type == 4 || $type == 5)
                 {
-                    $chart = $chartController->createIfNotExists_IncomeFromInventory($taxPayer,$cycle,$costcenter->Name);
-
+                    $chart = $chartController->createIfNotExists_IncomeFromInventory($taxPayer,$cycle,$costcenter->Name??'');
                 }
                 else //Purchase
                 {
-                    $chart = $chartController->createIfNotExists_Inventory($taxPayer,$cycle,$costcenter->Name);
+                    $chart = $chartController->createIfNotExists_Inventory($taxPayer,$cycle,$costcenter->Name??'');
                 }
             }
             //Type 3 = FixedAsset

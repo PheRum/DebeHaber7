@@ -48,7 +48,10 @@ class TransactionController extends Controller
                 ->where('taxpayer_id', $taxPayer->id)
                 ->first();
 
-                $cycle = $this->checkCycle($cycle);
+                if (!isset($cycle))  {
+                    $cycle = $this->checkCycle($taxPayer,$firstDate);
+                }
+
 
                 $i = 0;
                 foreach ($groupedRow as $data)
@@ -146,6 +149,7 @@ class TransactionController extends Controller
 
             foreach ($groupedRowsByVat->groupBy('Type') as $groupedRowsByType)
             {
+
                 if($groupedRowsByType[0]['Value'] > 0)
                 {
                     //Code for Row Level Discounts in certain transactions
@@ -158,8 +162,8 @@ class TransactionController extends Controller
 
                     $chart_id = $this->checkChart($groupedRowsByType[0]['Type'], $groupedRowsByType[0]['Name'], $taxPayer, $cycle, $type);
 
-                    $detail = TransactionDetail::firstOrNew(['chart_id' => $chart_id]);
-
+                    $detail = TransactionDetail::where('chart_id' ,$chart_id)->where('transaction_id' ,$transaction_id)->first()?? new TransactionDetail();
+                    
                     $detail->transaction_id = $transaction_id;
                     $detail->chart_id =$chart_id;
 

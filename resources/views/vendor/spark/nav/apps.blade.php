@@ -10,16 +10,15 @@
     <b-button variant="light" class="mb-10" v-b-toggle.collapse-taxpayer>
         <i class="material-icons float-left">expand_more</i>
         <span class="nav-heading"> @{{ spark.taxPayerData.alias }} </span>
-
-        @if ($cycleData->where('id', request()->route('cycle'))->first()->year == \Carbon\Carbon::now()->year)
+        {{-- @if (spark.taxPayerData->where('id', request()->route('cycle'))->first()->year == \Carbon\Carbon::now()->year)
             <b-badge variant="primary">
-                {{ $cycleData->where('id', request()->route('cycle'))->first()->year }}
+                {{ spark.taxPayerData->where('id', request()->route('cycle'))->first()->year }}
             </b-badge>
         @else
             <b-badge variant="danger">
-                {{ $cycleData->where('id', request()->route('cycle'))->first()->year }}
+                {{ spark.taxPayerData->where('id', request()->route('cycle'))->first()->year }}
             </b-badge>
-        @endif
+        @endif --}}
     </b-button>
 
     <b-collapse id="collapse-taxpayer" accordion="sub-menu">

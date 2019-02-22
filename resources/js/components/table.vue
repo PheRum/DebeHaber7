@@ -149,7 +149,7 @@
 
             sumValue(details) {
                 return details.reduce(function(sum, row) {
-                    return sum + new Number(row.default_currency);
+                    return sum + new Number(row.value);
                 }, 0);
             },
 

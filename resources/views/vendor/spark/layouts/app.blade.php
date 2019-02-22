@@ -38,6 +38,7 @@
             ->take(3)
             ->get();
 
+
             $integrationType = App\TaxpayerIntegration::where('team_id', $currentTeam->id)
             ->where('taxpayer_id', request()->route('taxPayer'))
             ->whereIn('status', [1, 2])

@@ -48,7 +48,10 @@ class PaymentController extends Controller
                 ->where('taxpayer_id', $taxPayer->id)
                 ->first();
 
-                $cycle = $this->checkCycle($cycle);
+                if (!isset($cycle)) {
+                $cycle = $this->checkCycle($taxPayer,$firstDate);
+                }
+
 
                 $startDate = $cycle->start_date;
                 $endDate = $cycle->end_date;
