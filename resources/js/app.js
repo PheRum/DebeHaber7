@@ -63,7 +63,9 @@ import VueMask from 'v-mask';
 import VueSnackbar from 'vue-snack';
 import 'vue-snack/dist/vue-snack.min.css';
 import vueTopProgress from 'vue-top-progress';
+import XlsCsvParser from 'vue-xls-csv-parser';
 
+Vue.use(XlsCsvParser);
 Vue.use(vueTopProgress);
 Vue.use(VueSnackbar);
 Vue.use(VueMask);

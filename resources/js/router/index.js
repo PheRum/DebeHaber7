@@ -6,6 +6,7 @@ import SearchResult from '../views/searchResult';
 import Commercial from '../views/commercials/index';
 import SalesList from '../views/commercials/salesList';
 import SalesForm from '../views/commercials/salesForm';
+import SalesUpload from '../views/commercials/salesUpload';
 import PurchaseList from '../views/commercials/purchaseList';
 import PurchaseForm from '../views/commercials/purchaseForm';
 import CreditList from '../views/commercials/creditList';
@@ -37,9 +38,9 @@ import Report from '../views/reports/index';
 export default
 [
     //This will cause 404 Errors to be redirected to proper site.
-    // {
-    //     path: '', component: FourZeroFour,
-    // },
+    {
+        path: '', component: FourZeroFour,
+    },
     {
         path: '/:taxPayer/:cycle/',
         component: DashBoard,
@@ -85,6 +86,15 @@ export default
                 },
                 children:
                 [
+                    {
+                        path: 'upload',
+                        component: SalesUpload,
+                        name: 'salesUpload',
+                        meta: {
+                            title: 'commercial.salesInvoice',
+                            img: '/img/apps/sales.svg',
+                        },
+                    },
                     {
                         path: ':id',
                         component: SalesForm,
@@ -256,7 +266,7 @@ export default
         ]
     },
     {
-        path: '/:taxPayer/config/',
+        path: '/:taxPayer/:cycle/config/',
         component: Config,
         name: 'configMenu',
         meta: {

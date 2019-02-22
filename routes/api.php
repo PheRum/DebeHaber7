@@ -34,17 +34,6 @@ Route::prefix('{taxPayer}')->group(function ()
     Route::get('get-rates/by/{currencyID}/{date?}', 'CurrencyRateController@get_ratesByCurrency');
     Route::get('documents/by/{type}', 'DocumentController@get_document');
 
-    Route::prefix('config')->group(function ()
-    {
-        Route::resources([
-            'chart-versions' => 'ChartVersionController',
-            'cycles' => 'CycleController',
-            'currencies' => 'CurrencyController',
-            'rates' => 'CurrencyRateController',
-            'documents' => 'DocumentController',
-        ]);
-    });
-
     Route::prefix('{cycle}')->group(function ()
     {
         Route::prefix('search')->group(function ()
@@ -52,6 +41,25 @@ Route::prefix('{taxPayer}')->group(function ()
             Route::get('transactions/{q}', 'SearchController@searchTransactions');
             Route::get('taxpayers/{q}', 'SearchController@searchTaxPayers');
             Route::get('charts/{q}', 'SearchController@searchCharts');
+        });
+
+        Route::prefix('config')->group(function ()
+        {
+            Route::get('cycles', 'CycleController@index');
+
+            // Route::resource('cycles', 'CycleController',
+            // [
+            //     'parameters' =>
+            //     [ 'cycle' => 'myCycle']
+            // ]);
+
+            Route::resources([
+                'chart-versions' => 'ChartVersionController',
+                // 'cycles' => 'CycleController',
+                'currencies' => 'CurrencyController',
+                'rates' => 'CurrencyRateController',
+                'documents' => 'DocumentController',
+            ]);
         });
 
         Route::prefix('commercial')->group(function ()

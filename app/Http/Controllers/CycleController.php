@@ -19,10 +19,10 @@ class CycleController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function index(Taxpayer $taxPayer)
+    public function index(Taxpayer $taxPayer, Cycle $cycle)
     {
         return GeneralResource::collection(
-            Cycle::with('chartVersion:name')
+            Cycle::with('chartVersion')
             ->orderBy('year', 'desc')
             ->paginate(50)
         );
@@ -50,7 +50,7 @@ class CycleController extends Controller
     * @param  \Illuminate\Http\Request  $request
     * @return \Illuminate\Http\Response
     */
-    public function store(Request $request,Taxpayer $taxPayer)
+    public function store(Request $request, Taxpayer $taxPayer, Cycle $cycle)
     {
         $cycle = $request->id != 0 ? Cycle::find($request->id) : $cycle = new Cycle();
 
@@ -73,7 +73,7 @@ class CycleController extends Controller
     * @param  \App\Cycle  $cycleId
     * @return \Illuminate\Http\Response
     */
-    public function show(Taxpayer $taxPayer, $cycleId)
+    public function show(Taxpayer $taxPayer, Cycle $cycle)
     {
         return new GeneralResource(
             Cycle::where('id', $cycleId)->first()
