@@ -13,6 +13,8 @@
     "axios": "^0.18",
     "bootstrap": "^4.3.1",
     "bootstrap-vue": "^2.0.0-rc.13",
+    "buefy": "^0.7.2",
+    "cleave.js": "^1.4.7",
     "cross-env": "^5.1",
     "imagemin": "^6.1.0",
     "jquery": "^3.2",
@@ -42,6 +44,7 @@
     "vue-sweetalert2": "^1.6.4",
     "vue-toasted": "^1.1.26",
     "vue-top-progress": "^0.7.0",
+    "vue-tour": "^1.1.0",
     "vue-xls-csv-parser": "0.0.21",
     "vue-zondicons": "^0.1.10"
   },

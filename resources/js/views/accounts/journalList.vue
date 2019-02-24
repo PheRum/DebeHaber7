@@ -37,9 +37,10 @@
         </b-row>
         <b-row>
             <b-col>
-
                 <div v-if="$route.name.includes('List')">
-                    <table-template :columns="columns"></table-template>
+                    <list-view :columns="columns">
+
+                    </list-view>
                 </div>
                 <router-view v-else></router-view>
             </b-col>
@@ -56,12 +57,10 @@ export default {
     computed: {
         columns()
         {
-
             return  [ {
                 key: 'date',
                 sortable: true
             },
-
             {
                 key: 'comment',
                 label: this.$i18n.t('general.comment'),
@@ -78,12 +77,11 @@ export default {
                 sortable: false
             },
             {
-                key: 'action',
+                key: 'actions',
                 label: '',
                 sortable: false
-            }
-        ];
-        }
+            }];
+        },
     }
 }
 </script>

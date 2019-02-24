@@ -10,5 +10,3 @@
  */
 
 require('./../spark-components/bootstrap');
-require('./CycleComponent');
-require('./ListComponent');
