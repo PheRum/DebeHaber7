@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\AccountMovement;
-use App\JournalTransaction;
 use App\Transaction;
 use App\Taxpayer;
 use App\Cycle;
 use App\Chart;
-use App\Http\Resources\ModelResource;
+use App\Http\Resources\GeneralResource;
 use Illuminate\Http\Request;
 use DB;
 
@@ -21,35 +20,15 @@ class AccountPayableController extends Controller
     */
     public function index(Taxpayer $taxPayer, Cycle $cycle)
     {
-        $transactions = Transaction::MyPurchases()
-        ->join('taxpayers', 'taxpayers.id', 'transactions.supplier_id')
-        ->join('currencies', 'transactions.currency_id','currencies.id')
-        ->join('transaction_details as td', 'td.transaction_id', 'transactions.id')
-        ->where('transactions.customer_id', $taxPayer->id)
-        ->where('transactions.payment_condition', '>', 0)
-        ->groupBy('transactions.id')
-        ->select(DB::raw('max(transactions.id) as id'),
-        DB::raw('max(taxpayers.name) as Supplier'),
-        DB::raw('max(taxpayers.taxid) as SupplierTaxID'),
-        DB::raw('max(currencies.code) as Currency'),
-        DB::raw('max(transactions.payment_condition) as PaymentCondition'),
-        DB::raw('max(transactions.date) as Date'),
-        DB::raw('DATE_ADD(max(transactions.date), INTERVAL max(transactions.payment_condition) DAY) as Expiry'),
-        DB::raw('max(transactions.number) as Number'),
-        DB::raw('(select ifnull(sum(account_movements.debit * account_movements.rate), 0)  from account_movements where `transactions`.`id` = `account_movements`.`transaction_id`) as Paid'),
-        DB::raw('sum(td.value * transactions.rate) as Value'),
-        DB::raw('(sum(td.value * transactions.rate)
-        - (select
-        ifnull(sum(account_movements.debit * account_movements.rate), 0)
-        from account_movements
-        where transactions.id = account_movements.transaction_id))
-        as Balance')
-        )
-        ->orderByRaw('DATE_ADD(max(transactions.date), INTERVAL max(transactions.payment_condition) DAY)', 'desc')
-        ->orderByRaw('max(transactions.number)', 'desc')
-        ->paginate(100);
-
-        return ModelResource::collection($transactions);
+        return GeneralResource::collection(
+            Transaction::MyPurchases()
+            ->with('currency:code')
+            ->with('details:value')
+            ->with('customer:name,taxid,id')
+            // ->with('accountMovements:credit,debit,rate')
+            ->where('payment_condition', '>', 0)
+            ->paginate(50)
+        );
     }
 
     /**
@@ -87,36 +66,17 @@ class AccountPayableController extends Controller
     * @param  \App\AccountMovement  $accountMovement
     * @return \Illuminate\Http\Response
     */
-    public function show($taxPayerId, $cycleId, $transactionId)
+    public function show($transactionId)
     {
-        $accountMovement = Transaction::MyPurchases()
-        ->join('taxpayers', 'taxpayers.id', 'transactions.supplier_id')
-        ->join('currencies', 'transactions.currency_id','currencies.id')
-        ->join('transaction_details as td', 'td.transaction_id', 'transactions.id')
-        ->where('transactions.customer_id', $taxPayerId)
-        ->where('transactions.id', $transactionId)
-        ->where('transactions.payment_condition', '>', 0)
-        ->groupBy('transactions.id')
-        ->select(DB::raw('max(transactions.id) as id'),
-        DB::raw('max(taxpayers.name) as Supplier'),
-        DB::raw('max(taxpayers.taxid) as SupplierTaxID'),
-        DB::raw('max(currencies.code) as currency_code'),
-        DB::raw('max(transactions.payment_condition) as payment_condition'),
-        DB::raw('max(transactions.date) as date'),
-        DB::raw('DATE_ADD(max(transactions.date), INTERVAL max(transactions.payment_condition) DAY) as code_expiry'),
-        DB::raw('max(transactions.number) as number'),
-        DB::raw('(select ifnull(sum(account_movements.debit * account_movements.rate), 0)  from account_movements where `transactions`.`id` = `account_movements`.`transaction_id`) as Paid'),
-        DB::raw('sum(td.value * transactions.rate) as Value'),
-        DB::raw('(sum(td.value * transactions.rate) - (select
-        ifnull(sum(account_movements.debit * account_movements.rate), 0)
-        from account_movements
-        where transactions.id = account_movements.transaction_id))
-        as Balance')
-        )
-        ->first();
-
-        return response()->json($accountMovement);
+        return new GeneralResource(
+            Transaction::MySales()
+            ->where('id', $transactionId)
+            ->with('customer:name,taxid,id')
+            ->with('details')
+            ->first()
+        );
     }
+
 
     /**
     * Remove the specified resource from storage.

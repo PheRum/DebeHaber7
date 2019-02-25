@@ -5,14 +5,9 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\BinaryUuid\HasBinaryUuid;
 use App\Scopes\JournalScope;
-
 use App\Cycle;
 use App\JournalDetail;
 use App\Taxpayer;
-use App\JournalProduction;
-use App\JournalTransaction;
-use App\JournalAccountMovement;
-use App\JournalSim;
 use Carbon\Carbon;
 
 class Journal extends Model

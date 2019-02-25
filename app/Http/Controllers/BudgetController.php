@@ -6,9 +6,9 @@ use App\Taxpayer;
 use App\Cycle;
 use App\CycleBudget;
 use App\Chart;
-use App\Http\Resources\BalanceResource;
-use DB;
+use App\Http\Resources\GeneralResource;
 use Illuminate\Http\Request;
+use DB;
 
 class BudgetController extends Controller
 {
@@ -51,7 +51,7 @@ class BudgetController extends Controller
          }
 
          $budget = $charts->sortBy('type')->sortBy('code');
-         return response()->json(BalanceResource::collection($budget));
+         return response()->json(GeneralResource::collection($budget));
      }
 
     /**
@@ -63,20 +63,18 @@ class BudgetController extends Controller
     public function store(Request $request,Taxpayer $taxPayer, Cycle $cycle)
     {
         $details = collect($request)->where('is_accountable', '=', 1);
-         
+
         foreach ($details as $detail)
         {
-            $cycleBudget = CycleBudget::where('cycle_id',$cycle->id)->first() ?? new CycleBudget();;
-
+            $cycleBudget = CycleBudget::firstOrNew(['cycle_id' => $cycle->id]);
             $cycleBudget->cycle_id = $cycle->id;
             $cycleBudget->chart_id = $detail['id'];
             $cycleBudget->debit = $detail['debit'] ?? 0;
             $cycleBudget->credit = $detail['credit'] ?? 0;
-            $cycleBudget->comment = $detail['comment']??'';
+            $cycleBudget->comment = $detail['comment'] ?? '';
 
             //Save only if there are values ot be saved. avoid saving blank values.
-            if ($cycleBudget->debit > 0 || $cycleBudget->credit > 0)
-            {
+            if ($cycleBudget->debit > 0 || $cycleBudget->credit > 0) {
                 $cycleBudget->save();
             }
         }

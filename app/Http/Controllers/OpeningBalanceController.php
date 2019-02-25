@@ -8,8 +8,8 @@ use App\Journal;
 use App\JournalDetail;
 use App\Chart;
 use App\Http\Resources\BalanceResource;
-use DB;
 use Illuminate\Http\Request;
+use DB;
 
 class OpeningBalanceController extends Controller
 {
@@ -64,7 +64,8 @@ class OpeningBalanceController extends Controller
     */
     public function store(Request $request,Taxpayer $taxPayer, Cycle $cycle)
     {
-        $journal =  Journal::where('is_first', true)->where('cycle_id', $cycle->id)->first() ?? new Journal();
+        // $journal = Journal::where('is_first', true)->where('cycle_id', $cycle->id)->first() ?? new Journal();
+        $journal = Journal::firstOrNew(['cycle_id' => $cycle->id, 'is_first' => true]);
 
         $journal->date = $cycle->start_date;
         $journal->comment = $cycle->year . ' - ' . __('accounting.OpeningBalance');

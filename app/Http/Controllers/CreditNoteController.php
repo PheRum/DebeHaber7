@@ -7,10 +7,9 @@ use App\Cycle;
 use App\Transaction;
 use App\AccountMovement;
 use App\TransactionDetail;
-use App\JournalTransaction;
-use App\Chart;
 use App\Http\Resources\GeneralResource;
 use Illuminate\Http\Request;
+use App\Chart;
 use DB;
 
 class CreditNoteController extends Controller

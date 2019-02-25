@@ -7,7 +7,6 @@ use App\Cycle;
 use App\Transaction;
 use App\TransactionDetail;
 use App\AccountMovement;
-use App\JournalTransaction;
 use App\Chart;
 use App\Http\Resources\GeneralResource;
 use Illuminate\Http\Request;

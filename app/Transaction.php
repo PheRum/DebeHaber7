@@ -3,8 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use RyanWeber\Mutators\Timezoned;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use RyanWeber\Mutators\Timezoned;
 use Laravel\Scout\Searchable;
 
 class Transaction extends Model
@@ -50,22 +50,22 @@ class Transaction extends Model
         ];
     }
 
-    protected $appends = ['total', 'paid_balance', 'received_balance'];
+    // protected $appends = ['total', 'paid_balance', 'received_balance'];
 
-    public function getTotalAttribute()
-    {
-        return $this->details->sum('value');
-    }
-
-    public function getReceivedBalanceAttribute()
-    {
-        return $this->whenLoaded('accountMovements')->sum('credit' * 'rate');
-    }
-
-    public function getPaidBalanceAttribute()
-    {
-        return $this->whenLoaded('accountMovements')->sum('credit' * 'rate');
-    }
+    // public function getTotalAttribute()
+    // {
+    //     return $this->details->sum('value');
+    // }
+    //
+    // public function getReceivedBalanceAttribute()
+    // {
+    //     return $this->whenLoaded('accountMovements')->sum('credit' * 'rate');
+    // }
+    //
+    // public function getPaidBalanceAttribute()
+    // {
+    //     return $this->whenLoaded('accountMovements')->sum('credit' * 'rate');
+    // }
 
     public function scopeMy($query)
     {
@@ -85,7 +85,7 @@ class Transaction extends Model
     {
         $taxPayerID = request()->route('taxPayer')->id ?? request()->route('taxPayer');
 
-        return $query->where('transactions.type', 4)
+        return $query->where('type', 4)
         ->where('supplier_id', $taxPayerID);
     }
 
@@ -93,8 +93,7 @@ class Transaction extends Model
     {
         return $query
         ->whereBetween('date', [$startDate, $endDate])
-        ->otherCurrentStatus(['Annuled'])
-        ->where('transactions.type', 4)
+        ->where('type', 4)
         ->where('supplier_id', $taxPayerID);
     }
 
@@ -102,7 +101,7 @@ class Transaction extends Model
     {
         $taxPayerID = request()->route('taxPayer')->id ?? request()->route('taxPayer');
 
-        return $query->where('transactions.type', 5)
+        return $query->where('type', 5)
         ->where('supplier_id', $taxPayerID);
     }
 
@@ -110,8 +109,7 @@ class Transaction extends Model
     {
         return $query
         ->whereBetween('date', [$startDate, $endDate])
-        ->otherCurrentStatus(['Annuled'])
-        ->where('transactions.type', 5)
+        ->where('type', 5)
         ->where('supplier_id', $taxPayerID);
     }
 
@@ -119,7 +117,7 @@ class Transaction extends Model
     {
         $taxPayerID = request()->route('taxPayer')->id ?? request()->route('taxPayer');
 
-        return $query->whereIn('transactions.type', [1, 2])
+        return $query->whereIn('type', [1, 2])
         ->where('customer_id', $taxPayerID);
     }
 
@@ -127,8 +125,7 @@ class Transaction extends Model
     {
         return $query
         ->whereBetween('date', [$startDate, $endDate])
-        ->otherCurrentStatus(['Annuled'])
-        ->whereIn('transactions.type', [1, 2])
+        ->whereIn('type', [1, 2])
         ->where('customer_id', $taxPayerID);
     }
 
@@ -136,7 +133,7 @@ class Transaction extends Model
     {
         $taxPayerID = request()->route('taxPayer')->id ?? request()->route('taxPayer');
 
-        return $query->where('transactions.type', 3)
+        return $query->where('type', 3)
         ->where('customer_id', $taxPayerID);
     }
 
@@ -144,8 +141,7 @@ class Transaction extends Model
     {
         return $query
         ->whereBetween('date', [$startDate, $endDate])
-        ->otherCurrentStatus(['Annuled'])
-        ->where('transactions.type', 3)
+        ->where('type', 3)
         ->where('customer_id', $taxPayerID);
     }
 
@@ -237,27 +233,5 @@ class Transaction extends Model
     public function details()
     {
         return $this->hasMany(TransactionDetail::class);
-    }
-
-    public function items()
-    {
-        return $this->belongsToMany(\App\Chart::class, 'transaction_details');
-    }
-
-    /**
-    * Get only the total value from details.
-    *
-    * @return \Illuminate\Database\Eloquent\Relations\HasMany
-    */
-    public function total()
-    {
-        return $this->hasMany(TransactionDetail::class)
-        ->selectRaw('sum(value) as total');
-    }
-
-    public function balance()
-    {
-        return $this->hasMany(AccountMovement::class)
-        ->selectRaw('sum(credit - debit)');
     }
 }

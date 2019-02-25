@@ -18,6 +18,7 @@ class JournalScope implements Scope
     */
     public function apply(Builder $builder, Model $model)
     {
-        $builder->where('cycle_id', request()->route('cycle')->id);
+        $cycleId = request()->route('cycle')->id ?? request()->route('cycle');
+        $builder->where('cycle_id', $cycleId);
     }
 }

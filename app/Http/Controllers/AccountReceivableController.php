@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\AccountMovement;
-use App\JournalTransaction;
 use App\Transaction;
 use App\Taxpayer;
 use App\Cycle;
@@ -23,11 +22,11 @@ class AccountReceivableController extends Controller
     {
         return GeneralResource::collection(
             Transaction::MySales()
+            // ->where('payment_condition', '>', 0)
             ->with('currency:code')
             ->with('details:value')
             ->with('customer:name,taxid,id')
-            ->with('accountMovements')
-            ->where('transactions.payment_condition', '>', 0)
+            ->with('accountMovements:credit,debit,rate')
             ->paginate(50)
         );
     }
@@ -49,7 +48,7 @@ class AccountReceivableController extends Controller
 
             $accountMovement->transaction_id = $request->id != '' ? $request->id : null;
             $accountMovement->currency_id = $request->currency_id;
-            $accountMovement->rate = $request->rate;
+            $accountMovement->rate = $request->rate ?? 1;
             $accountMovement->credit = $request->payment_value != '' ? $request->payment_value : 0;
             $accountMovement->comment = $request->comment;
 

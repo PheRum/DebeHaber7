@@ -20,9 +20,9 @@ class AccountMovementController extends Controller
         return GeneralResource::collection(
             AccountMovement::
             orderBy('date', 'des')
-            ->with('chart')
+            ->with('chart:name,code')
             ->with('transaction:id,number,comment')
-            ->with('currency')
+            ->with('currency:code')
             ->paginate(50)
         );
     }
@@ -73,7 +73,7 @@ class AccountMovementController extends Controller
         return new GeneralResource(
             AccountMovement::with('chart')
             ->with('transaction:id,number,comment')
-            ->with('currency')
+            ->with('currency:code')
             ->where('id', $movement->id)
             ->first()
         );
