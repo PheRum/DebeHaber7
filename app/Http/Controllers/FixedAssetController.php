@@ -20,8 +20,8 @@ class FixedAssetController extends Controller
     {
         return GeneralResource::collection(
             FixedAsset::where('taxpayer_id', $taxPayer->id)
-            ->with('chart')
-            ->paginate(50)
+                ->with('chart')
+                ->paginate(50)
         );
     }
 
@@ -33,7 +33,7 @@ class FixedAssetController extends Controller
     */
     public function store(Request $request, Taxpayer $taxPayer, Cycle $cycle)
     {
-        $fixedAsset = $request->id == 0 ? new FixedAsset() : FixedAsset::where('id', $request->id)->first();
+        $fixedAsset = FixedAsset::firstOrNew('id', $request->id);
         $fixedAsset->chart_id = $request->chart_id;
         $fixedAsset->taxpayer_id = $taxPayer->id;
         $fixedAsset->currency_id = $request->currency_id;
@@ -59,9 +59,9 @@ class FixedAssetController extends Controller
     {
         return new GeneralResource(
             FixedAsset::where('id', $fixedAssetId)
-            ->where('taxpayer_id', $taxPayer->id)
-            ->with('chart')
-            ->first()
+                ->where('taxpayer_id', $taxPayer->id)
+                ->with('chart')
+                ->first()
         );
     }
 
@@ -73,6 +73,21 @@ class FixedAssetController extends Controller
     */
     public function destroy(FixedAsset $fixedAsset)
     {
-        //
+        $fixedAsset->delete();
+    }
+
+    public function depreciate(FixedAsset $fixedAsset)
+    {
+        $fixedAssetGroup = Chart::find($fixedAsset->chart_id);
+
+        if (isset($fixedAssetGroup)) {
+            //get the difference in date between now and the purchase date.
+            $diffInDays = Carbon::now() - $fixedAsset->purchase_date;
+            //calculate in days.
+            $dailyDepreciation = $fixedAsset->purchase_value / ($fixedAssetGroup->asset_years * 365);
+            //use the difference in time to calculate percentage reduction from purchase value.
+            $fixedAsset->currentValue = $fixedAsset->purchase_value - ($dailyDepreciation * $diffInDays);
+            $fixedAsset->save();
+        }
     }
 }

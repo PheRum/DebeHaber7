@@ -25,10 +25,10 @@ class ChartController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function index(Taxpayer $taxPayer, Cycle $cycle) {
+    public function index(Taxpayer $taxPayer, Cycle $cycle)
+    {
         return GeneralResource::collection(
             Chart::orderBy('code')
-            ->paginate(50)
         );
     }
 
@@ -38,8 +38,8 @@ class ChartController extends Controller
     * @param  \Illuminate\Http\Request  $request
     * @return \Illuminate\Http\Response
     */
-    public function store(Request $request, Taxpayer $taxPayer, Cycle $cycle) {
-
+    public function store(Request $request, Taxpayer $taxPayer, Cycle $cycle)
+    {
         $chart = Chart::firstOrNew('id', $request->id);
         $chart->chart_version_id = $cycle->chart_version_id;
         $chart->country = $taxPayer->country;
@@ -54,7 +54,7 @@ class ChartController extends Controller
             $chart->sub_type = $request->sub_type;
         } else {
             $chart->is_accountable = 0;
-            $chart->sub_type = 0;
+            $chart->sub_type = null;
         }
 
         if ($request->type > 0) {
@@ -77,7 +77,6 @@ class ChartController extends Controller
         }
 
         $chart->save();
-
         return response()->json(200);
     }
 
@@ -87,10 +86,11 @@ class ChartController extends Controller
     * @param  \App\Chart  $chart
     * @return \Illuminate\Http\Response
     */
-    public function show(Chart $chart) {
+    public function show(Chart $chart)
+    {
         return new GeneralResource(
             Chart::where('id', $chart->id)
-            ->first()
+                ->first()
         );
     }
 
@@ -102,21 +102,21 @@ class ChartController extends Controller
     */
     public function destroy(Chart $chart)
     {
-        try
-        {
-            Transaction::where('id', $transactionId)->delete();
-            return response()->json('Ok', 200);
-        }
-        catch (\Exception $e)
-        {
-            return response()->json($e, 500);
-        }
+        // Do not simply destroy charts. FK everywhere, better merge and delete.
+        // try {
+        //     $chart->delete();
+        //     return response()->json('Ok', 200);
+        // } catch (\Exception $e) {
+        //     return response()->json($e, 500);
+        // }
     }
 
     public function getAccountableCharts(Taxpayer $taxPayer, Cycle $cycle)
     {
         return GeneralResource::collection(
-            Chart::where('is_accountable', true)->orderBy('code')->get()
+            Chart::where('is_accountable', true)
+                ->orderBy('code')
+                ->get()
         );
     }
 
@@ -124,9 +124,9 @@ class ChartController extends Controller
     {
         return GeneralResource::collection(
             Chart::SalesAccounts()
-            ->orderBy('name')
-            ->select('name', 'id', 'sub_type')
-            ->get()
+                ->orderBy('name')
+                ->select('name', 'id', 'sub_type')
+                ->get()
         );
     }
 
@@ -134,9 +134,9 @@ class ChartController extends Controller
     {
         return GeneralResource::collection(
             Chart::FixedAssetGroups()
-            ->orderBy('name')
-            ->select('name', 'id', 'sub_type')
-            ->get()
+                ->orderBy('name')
+                ->select('name', 'id', 'sub_type')
+                ->get()
         );
     }
 
@@ -145,9 +145,9 @@ class ChartController extends Controller
     {
         return GeneralResource::collection(
             Chart::PurchaseAccounts()
-            ->orderBy('name')
-            ->select('name', 'id', 'sub_type')
-            ->get()
+                ->orderBy('name')
+                ->select('name', 'id', 'sub_type')
+                ->get()
         );
     }
 
@@ -156,8 +156,8 @@ class ChartController extends Controller
     {
         return GeneralResource::collection(
             Chart::MoneyAccounts()->orderBy('name')
-            ->select('name', 'id', 'sub_type')
-            ->get()
+                ->select('name', 'id', 'sub_type')
+                ->get()
         );
     }
 
@@ -166,8 +166,8 @@ class ChartController extends Controller
     {
         return GeneralResource::collection(
             Chart::VATDebitAccounts()
-            ->select('name', 'code', 'id', 'coefficient', 'type')
-            ->get()
+                ->select('name', 'code', 'id', 'coefficient', 'type')
+                ->get()
         );
     }
 
@@ -176,8 +176,8 @@ class ChartController extends Controller
     {
         return GeneralResource::collection(
             Chart::VATCreditAccounts()
-            ->select('name', 'code', 'id', 'coefficient', 'type')
-            ->get()
+                ->select('name', 'code', 'id', 'coefficient', 'type')
+                ->get()
         );
     }
 
@@ -185,16 +185,15 @@ class ChartController extends Controller
     public function getParentAccount(Taxpayer $taxPayer, Cycle $cycle, $query)
     {
         $charts = Chart::where('is_accountable', false)
-        ->where(function ($q) use ($query)
-        {
-            $q->where('name', 'like', '%' . $query . '%')
-            ->orWhere('code', 'like', '%' . $query . '%')
-            ->orWhereHas('aliases', function($subQ) use($query) {
-                $subQ->where('name', 'like', '%' . $query . '%');
-            });
-        })
-        ->with('children:name')
-        ->get();
+            ->where(function ($q) use ($query) {
+                $q->where('name', 'like', '%' . $query . '%')
+                    ->orWhere('code', 'like', '%' . $query . '%')
+                    ->orWhereHas('aliases', function ($subQ) use ($query) {
+                        $subQ->where('name', 'like', '%' . $query . '%');
+                    });
+            })
+            ->with('children:name')
+            ->get();
 
         return response()->json($charts);
     }
@@ -202,16 +201,15 @@ class ChartController extends Controller
     public function searchAccountableCharts(Taxpayer $taxPayer, Cycle $cycle, $query)
     {
         $charts = Chart::where('is_accountable', true)
-        ->where(function ($q) use ($query)
-        {
-            $q->where('name', 'like', '%' . $query . '%')
-            ->orWhere('code', 'like', '%' . $query . '%')
-            ->orWhereHas('aliases', function($subQ) use($query) {
-                $subQ->where('name', 'like', '%' . $query . '%');
-            });
-        })
-        ->with('children:name')
-        ->get();
+            ->where(function ($q) use ($query) {
+                $q->where('name', 'like', '%' . $query . '%')
+                    ->orWhere('code', 'like', '%' . $query . '%')
+                    ->orWhereHas('aliases', function ($subQ) use ($query) {
+                        $subQ->where('name', 'like', '%' . $query . '%');
+                    });
+            })
+            ->with('children:name')
+            ->get();
 
         return response()->json($charts);
     }
@@ -219,16 +217,15 @@ class ChartController extends Controller
     public function searchFixedAssetsCharts(Taxpayer $taxPayer, Cycle $cycle, $query)
     {
         $charts = Chart::FixedAssetGroups()
-        ->where(function ($q) use ($query)
-        {
-            $q->where('name', 'like', '%' . $query . '%')
-            ->orWhere('code', 'like', '%' . $query . '%')
-            ->orWhereHas('aliases', function($subQ) use($query) {
-                $subQ->where('name', 'like', '%' . $query . '%');
-            });
-        })
-        ->with('children:name')
-        ->get();
+            ->where(function ($q) use ($query) {
+                $q->where('name', 'like', '%' . $query . '%')
+                    ->orWhere('code', 'like', '%' . $query . '%')
+                    ->orWhereHas('aliases', function ($subQ) use ($query) {
+                        $subQ->where('name', 'like', '%' . $query . '%');
+                    });
+            })
+            ->with('children:name')
+            ->get();
 
         return response()->json($charts);
     }
@@ -236,24 +233,23 @@ class ChartController extends Controller
     public function createIfNotExists_FixedAsset(Taxpayer $taxPayer, Cycle $cycle, $lifeSpan, $assetGroup = '')
     {
         $query = Chart::My($taxPayer, $cycle)
-        ->where('type', 1)
-        ->where('sub_type', 9)
-        ->where('is_accountable', true)
-        ->where('asset_years', $lifeSpan);
+            ->where('type', 1)
+            ->where('sub_type', 9)
+            ->where('is_accountable', true)
+            ->where('asset_years', $lifeSpan);
 
         if ($assetGroup != '') {
-            $query->where(function ($q) use ($assetGroup){
+            $query->where(function ($q) use ($assetGroup) {
                 $q->where('name', $assetGroup)
-                ->orWhereHas('aliases', function($subQ) use($assetGroup) {
-                    $subQ->where('name', 'like', '%' . $assetGroup . '%');
-                });
+                    ->orWhereHas('aliases', function ($subQ) use ($assetGroup) {
+                        $subQ->where('name', 'like', '%' . $assetGroup . '%');
+                    });
             });
         }
 
         $chart = $query->first();
 
-        if (!isset($chart))
-        {
+        if (!isset($chart)) {
             //if not, create specific.
             $chart = new Chart();
             $chart->taxpayer_id = $taxPayer->id;
@@ -273,23 +269,22 @@ class ChartController extends Controller
     public function createIfNotExists_Inventory(Taxpayer $taxPayer, Cycle $cycle, $chartName = '')
     {
         $query = Chart::My($taxPayer, $cycle)
-        ->where('type', 1)
-        ->where('sub_type', 8)
-        ->where('is_accountable', true);
+            ->where('type', 1)
+            ->where('sub_type', 8)
+            ->where('is_accountable', true);
 
         if ($chartName != '') {
-            $query->where(function ($q) use ($chartName){
+            $query->where(function ($q) use ($chartName) {
                 $q->where('name', $chartName)
-                ->orWhereHas('aliases', function($subQ) use($chartName) {
-                    $subQ->where('name', 'like', '%' . $chartName . '%');
-                });
+                    ->orWhereHas('aliases', function ($subQ) use ($chartName) {
+                        $subQ->where('name', 'like', '%' . $chartName . '%');
+                    });
             });
         }
 
         $chart = $query->first();
 
-        if (!isset($chart))
-        {
+        if (!isset($chart)) {
             //if not, create specific.
             $chart = new Chart();
             $chart->taxpayer_id = $taxPayer->id;
@@ -308,27 +303,25 @@ class ChartController extends Controller
     public function createIfNotExists_CashAccounts(Taxpayer $taxPayer, Cycle $cycle, $chartName = '')
     {
         $query = Chart::My($taxPayer, $cycle)
-        ->where('type', 1)
-        ->where(function($subQ) use ($taxPayer, $cycle)
-        {
-            $subQ->where('sub_type', 1)
-            ->orWhere('sub_type', 3);
-        })
-        ->where('is_accountable', true);
+            ->where('type', 1)
+            ->where(function ($subQ) use ($taxPayer, $cycle) {
+                $subQ->where('sub_type', 1)
+                    ->orWhere('sub_type', 3);
+            })
+            ->where('is_accountable', true);
 
         if ($chartName != '') {
-            $query->where(function ($q) use ($chartName){
+            $query->where(function ($q) use ($chartName) {
                 $q->where('name', $chartName)
-                ->orWhereHas('aliases', function($subQ) use($chartName) {
-                    $subQ->where('name', 'like', '%' . $chartName . '%');
-                });
+                    ->orWhereHas('aliases', function ($subQ) use ($chartName) {
+                        $subQ->where('name', 'like', '%' . $chartName . '%');
+                    });
             });
         }
 
         $chart = $query->first();
 
-        if (!isset($chart))
-        {
+        if (!isset($chart)) {
             //if not, create generic.
             $chart = new Chart();
             $chart->taxpayer_id = $taxPayer->id;
@@ -348,23 +341,21 @@ class ChartController extends Controller
     {
         //Check if CustomerID exists in Chart.
         $chart = Chart::My($taxPayer, $cycle)
-        ->where('type', 1)
-        ->where('sub_type', 5)
-        ->where('partner_id', $partnerID)
-        ->first();
-
-        if (!isset($chart))
-        {
-            //if not, then look for generic.
-            $chart = Chart::My($taxPayer, $cycle)
             ->where('type', 1)
             ->where('sub_type', 5)
-            ->where('is_accountable', true)
-            ->whereNull('partner_id')
+            ->where('partner_id', $partnerID)
             ->first();
 
-            if (!isset($chart))
-            {
+        if (!isset($chart)) {
+            //if not, then look for generic.
+            $chart = Chart::My($taxPayer, $cycle)
+                ->where('type', 1)
+                ->where('sub_type', 5)
+                ->where('is_accountable', true)
+                ->whereNull('partner_id')
+                ->first();
+
+            if (!isset($chart)) {
                 //if not, create specific.
                 $chart = new Chart();
                 $chart->taxpayer_id = $taxPayer->id;
@@ -386,23 +377,21 @@ class ChartController extends Controller
     {
         //Check if CustomerID exists in Chart.
         $chart = Chart::My($taxPayer, $cycle)
-        ->where('type', 2)
-        ->where('sub_type', 1)
-        ->where('partner_id', $partnerID)
-        ->first();
-
-        if (!isset($chart))
-        {
-            //if not, then look for generic.
-            $chart = Chart::My($taxPayer, $cycle)
             ->where('type', 2)
             ->where('sub_type', 1)
-            ->where('is_accountable', true)
-            ->whereNull('partner_id')
+            ->where('partner_id', $partnerID)
             ->first();
 
-            if (!isset($chart))
-            {
+        if (!isset($chart)) {
+            //if not, then look for generic.
+            $chart = Chart::My($taxPayer, $cycle)
+                ->where('type', 2)
+                ->where('sub_type', 1)
+                ->where('is_accountable', true)
+                ->whereNull('partner_id')
+                ->first();
+
+            if (!isset($chart)) {
                 //if not, create specific.
                 $chart = new Chart();
                 $chart->taxpayer_id = $taxPayer->id;
@@ -424,23 +413,22 @@ class ChartController extends Controller
     public function createIfNotExists_Incomes(Taxpayer $taxPayer, Cycle $cycle, $chartName = '')
     {
         $query = Chart::My($taxPayer, $cycle)
-        ->where('type', 4)
-        ->where('sub_type', 1)
-        ->where('is_accountable', true);
+            ->where('type', 4)
+            ->where('sub_type', 1)
+            ->where('is_accountable', true);
 
         if ($chartName != '') {
-            $query->where(function ($q) use ($chartName){
+            $query->where(function ($q) use ($chartName) {
                 $q->where('name', $chartName)
-                ->orWhereHas('aliases', function($subQ) use($chartName) {
-                    $subQ->where('name', 'like', '%' . $chartName . '%');
-                });
+                    ->orWhereHas('aliases', function ($subQ) use ($chartName) {
+                        $subQ->where('name', 'like', '%' . $chartName . '%');
+                    });
             });
         }
 
         $chart = $query->first();
 
-        if (!isset($chart))
-        {
+        if (!isset($chart)) {
             //if not, create specific.
             $chart = new Chart();
             $chart->taxpayer_id = $taxPayer->id;
@@ -460,9 +448,9 @@ class ChartController extends Controller
     public function createIfNotExists_IncomeFromInventory(Taxpayer $taxPayer, Cycle $cycle, $chartName = '')
     {
         $query = Chart::My($taxPayer, $cycle)
-        ->where('type', 4)
-        ->where('sub_type', 4)
-        ->where('is_accountable', true);
+            ->where('type', 4)
+            ->where('sub_type', 4)
+            ->where('is_accountable', true);
         // ->where(function ($q) use ($chartName) {
         //     $q->where('name', $chartName)
         //     ->orWhereHas('aliases', function($subQ) use ($chartName) {
@@ -471,18 +459,17 @@ class ChartController extends Controller
         // });
 
         if ($chartName != '') {
-            $query->where(function ($q) use ($chartName){
+            $query->where(function ($q) use ($chartName) {
                 $q->where('name', $chartName)
-                ->orWhereHas('aliases', function($subQ) use($chartName) {
-                    $subQ->where('name', 'like', '%' . $chartName . '%');
-                });
+                    ->orWhereHas('aliases', function ($subQ) use ($chartName) {
+                        $subQ->where('name', 'like', '%' . $chartName . '%');
+                    });
             });
         }
 
         $chart = $query->first();
 
-        if (!isset($chart))
-        {
+        if (!isset($chart)) {
             //if not, create specific.
             $chart = new Chart();
             $chart->taxpayer_id = $taxPayer->id;
@@ -502,13 +489,12 @@ class ChartController extends Controller
     public function createIfNotExists_IncomeFromFX(Taxpayer $taxPayer, Cycle $cycle)
     {
         $chart = Chart::My($taxPayer, $cycle)
-        ->where('type', 4)
-        ->where('sub_type', 3)
-        ->where('is_accountable', true)
-        ->first();
+            ->where('type', 4)
+            ->where('sub_type', 3)
+            ->where('is_accountable', true)
+            ->first();
 
-        if (!isset($chart))
-        {
+        if (!isset($chart)) {
             //if not, create specific.
             $chart = new Chart();
             $chart->taxpayer_id = $taxPayer->id;
@@ -528,23 +514,22 @@ class ChartController extends Controller
     public function createIfNotExists_Expenses(Taxpayer $taxPayer, Cycle $cycle, $chartName = '')
     {
         $query = Chart::My($taxPayer, $cycle)
-        ->where('type', 5)
-        ->where('sub_type', 10)
-        ->where('is_accountable', true);
+            ->where('type', 5)
+            ->where('sub_type', 10)
+            ->where('is_accountable', true);
 
         if ($chartName != '') {
-            $query->where(function ($q) use ($chartName){
+            $query->where(function ($q) use ($chartName) {
                 $q->where('name', $chartName)
-                ->orWhereHas('aliases', function($subQ) use($chartName) {
-                    $subQ->where('name', 'like', '%' . $chartName . '%');
-                });
+                    ->orWhereHas('aliases', function ($subQ) use ($chartName) {
+                        $subQ->where('name', 'like', '%' . $chartName . '%');
+                    });
             });
         }
 
         $chart = $query->first();
 
-        if (!isset($chart))
-        {
+        if (!isset($chart)) {
             //if not, create specific.
             $chart = new Chart();
             $chart->taxpayer_id = $taxPayer->id;
@@ -564,13 +549,12 @@ class ChartController extends Controller
     public function createIfNotExists_ExpenseFromFX(Taxpayer $taxPayer, Cycle $cycle)
     {
         $chart = Chart::My($taxPayer, $cycle)
-        ->where('type', 5)
-        ->where('sub_type', 11)
-        ->where('is_accountable', true)
-        ->first();
+            ->where('type', 5)
+            ->where('sub_type', 11)
+            ->where('is_accountable', true)
+            ->first();
 
-        if (!isset($chart))
-        {
+        if (!isset($chart)) {
             //if not, create specific.
             $chart = new Chart();
             $chart->taxpayer_id = $taxPayer->id;
@@ -589,13 +573,12 @@ class ChartController extends Controller
     public function createIfNotExists_VATWithholdingReceivables(Taxpayer $taxPayer, Cycle $cycle)
     {
         $chart = Chart::My($taxPayer, $cycle)
-        ->where('type', 1)
-        ->where('sub_type', 13)
-        ->where('is_accountable', true)
-        ->first();
+            ->where('type', 1)
+            ->where('sub_type', 13)
+            ->where('is_accountable', true)
+            ->first();
 
-        if (!isset($chart))
-        {
+        if (!isset($chart)) {
             //if not, create specific.
             $chart = new Chart();
             $chart->taxpayer_id = $taxPayer->id;
@@ -614,13 +597,12 @@ class ChartController extends Controller
     public function createIfNotExists_VATWithholdingPayables(Taxpayer $taxPayer, Cycle $cycle)
     {
         $chart = Chart::My($taxPayer, $cycle)
-        ->where('type', 2)
-        ->where('sub_type', 7)
-        ->where('is_accountable', true)
-        ->first();
+            ->where('type', 2)
+            ->where('sub_type', 7)
+            ->where('is_accountable', true)
+            ->first();
 
-        if (!isset($chart))
-        {
+        if (!isset($chart)) {
             //if not, create specific.
             $chart = new Chart();
             $chart->taxpayer_id = $taxPayer->id;
@@ -641,8 +623,7 @@ class ChartController extends Controller
         //run validation on chart types and make sure a transfer can take place.
         $fromChart = Chart::My($taxPayer, $cycle)->where('id', $fromChartId)->first();
 
-        if (isset($fromChart))
-        {
+        if (isset($fromChart)) {
             $count = 0;
 
             $count += CycleBudget::where('chart_id', $fromChartId)->count();
@@ -656,12 +637,9 @@ class ChartController extends Controller
             $count += AccountMovement::where('chart_id', $fromChartId)->count();
             $count += JournalDetail::where('chart_id', $fromChartId)->count();
 
-            if ($count > 0)
-            {
+            if ($count > 0) {
                 return response()->json('Unable to Delete. Total of ' . $count . ' relationships exists, try Merge.', 500);
-            }
-            else
-            {
+            } else {
                 $fromChart->forceDelete();
                 return response()->json('Ok', 200);
             }
@@ -676,8 +654,7 @@ class ChartController extends Controller
         $fromChart = Chart::My($taxPayer, $cycle)->where('id', $fromChartId);
         $toChart = Chart::My($taxPayer, $cycle)->where('id', $toChartId);
 
-        if (isset($fromChart) && isset($toChart))
-        {
+        if (isset($fromChart) && isset($toChart)) {
             CycleBudget::where('chart_id', $fromChartId)->update(['chart_id' => $toChartId]);
             FixedAsset::where('chart_id', $fromChartId)->update(['chart_id' => $toChartId]);
             ProductionDetail::where('chart_id', $fromChartId)->update(['chart_id' => $toChartId]);
@@ -711,7 +688,5 @@ class ChartController extends Controller
     }
 
     public function organizeChartCode(Taxpayer $taxPayer, Cycle $cycle)
-    {
-
-    }
+    { }
 }
