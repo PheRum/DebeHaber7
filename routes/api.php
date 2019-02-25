@@ -60,11 +60,11 @@ Route::prefix('{taxPayer}')->group(function () {
             Route::resources([
                 'sales' => 'SalesController',
                 'credit-notes' => 'CreditNoteController',
-                'account-receivables' => 'AccountReceivableController',
+                'accounts-receivable' => 'AccountReceivableController',
 
                 'purchases' => 'PurchaseController',
                 'debit-notes' => 'DebitNoteController',
-                'account-payables' => 'AccountPayableController',
+                'accounts-payable' => 'AccountPayableController',
 
                 'money-movements' => 'AccountMovementController',
                 'inventories' => 'InventoryController',

@@ -15,10 +15,14 @@ import DebitList from '../views/commercials/debitList';
 import DebitForm from '../views/commercials/debitForm';
 import FixedAssetList from '../views/commercials/fixedAssetList';
 import FixedAssetForm from '../views/commercials/fixedAssetForm';
-import MoneyMovementList from '../views/commercials/moneyMovementList';
-import MoneyMovementForm from '../views/commercials/moneyMovementForm';
 import InventoryList from '../views/commercials/inventoryList';
 import InventoryForm from '../views/commercials/inventoryForm';
+
+import ReceivableList from '../views/commercials/receivableList';
+import PayableList from '../views/commercials/payableList';
+import PaymentForm from '../views/commercials/paymentForm';
+import MoneyMovementList from '../views/commercials/moneyMovementList';
+import MoneyMovementForm from '../views/commercials/moneyMovementForm';
 
 import Accounting from '../views/accounts/index';
 import JournalList from '../views/accounts/journalList';
@@ -254,7 +258,55 @@ export default
 
                     }
                 ]
-            }
+            },
+            {
+                path: 'accounts-receivable',
+                component: ReceivableList,
+                name: 'receivableList',
+                meta: {
+                    title: 'commercial.accountsReceivable',
+                    description: 'Some description',
+                    img: '/img/apps/sales.svg',
+                },
+                children:
+                [
+                    {
+                        path: ':id',
+                        component: PaymentForm,
+                        name: 'receivableForm',
+                        meta: {
+                            title: 'commercial.payment',
+                            description: 'Some description',
+                            img: '/img/apps/sales.svg',
+                        },
+
+                    }
+                ]
+            },
+            {
+                path: 'accounts-payable',
+                component: PayableList,
+                name: 'payableList',
+                meta: {
+                    title: 'commercial.accountsPayable',
+                    description: 'Some description',
+                    img: '/img/apps/sales.svg',
+                },
+                children:
+                [
+                    {
+                        path: ':id',
+                        component: PaymentForm,
+                        name: 'paymentForm',
+                        meta: {
+                            title: 'commercial.payment',
+                            description: 'Some description',
+                            img: '/img/apps/sales.svg',
+                        },
+
+                    }
+                ]
+            },
         ]
     },
     {

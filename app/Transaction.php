@@ -50,6 +50,23 @@ class Transaction extends Model
         ];
     }
 
+    protected $appends = ['total', 'paid_balance', 'received_balance'];
+
+    public function getTotalAttribute()
+    {
+        return $this->details->sum('value');
+    }
+
+    public function getReceivedBalanceAttribute()
+    {
+        return $this->whenLoaded('accountMovements')->sum('credit' * 'rate');
+    }
+
+    public function getPaidBalanceAttribute()
+    {
+        return $this->whenLoaded('accountMovements')->sum('credit' * 'rate');
+    }
+
     public function scopeMy($query)
     {
         $taxPayerID = request()->route('taxPayer')->id ?? request()->route('taxPayer');
@@ -193,10 +210,10 @@ class Transaction extends Model
     }
 
     /**
-     * Get the impex that owns the model.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
+    * Get the impex that owns the model.
+    *
+    * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+    */
     public function impex()
     {
         return $this->belongsTo(Impex::class);
@@ -211,7 +228,6 @@ class Transaction extends Model
     {
         return $this->hasMany(AccountMovement::class);
     }
-
 
     /**
     * Get the details for the model.

@@ -8,7 +8,7 @@ use App\Transaction;
 use App\Taxpayer;
 use App\Cycle;
 use App\Chart;
-use App\Http\Resources\ModelResource;
+use App\Http\Resources\GeneralResource;
 use Illuminate\Http\Request;
 use DB;
 
@@ -21,73 +21,15 @@ class AccountReceivableController extends Controller
     */
     public function index(Taxpayer $taxPayer, Cycle $cycle)
     {
-        return ModelResource::collection(Transaction::MySales()
-        ->join('taxpayers', 'taxpayers.id', 'transactions.customer_id')
-        ->join('currencies', 'transactions.currency_id','currencies.id')
-        ->join('transaction_details as td', 'td.transaction_id', 'transactions.id')
-        ->where('transactions.supplier_id', $taxPayer->id)
-        ->where('transactions.payment_condition', '>', 0)
-        ->groupBy('transactions.id')
-        ->select(DB::raw('max(transactions.id) as id'),
-        DB::raw('max(taxpayers.name) as Customer'),
-        DB::raw('max(taxpayers.taxid) as CutomerTaxID'),
-        DB::raw('max(currencies.code) as Currency'),
-        DB::raw('max(transactions.payment_condition) as PaymentCondition'),
-        DB::raw('max(transactions.date) as Date'),
-        DB::raw('DATE_ADD(max(transactions.date), INTERVAL max(transactions.payment_condition) DAY) as Expiry'),
-        DB::raw('max(transactions.number) as Number'),
-        DB::raw('(select ifnull(sum(account_movements.credit * account_movements.rate), 0)  from account_movements where `transactions`.`id` = `account_movements`.`transaction_id`) as Paid'),
-        DB::raw('sum(td.value * transactions.rate) as Value'),
-        DB::raw('(sum(td.value * transactions.rate)
-        - (select
-        ifnull(sum(account_movements.credit * account_movements.rate), 0)
-        from account_movements
-        where transactions.id = account_movements.transaction_id))
-        as Balance')
-        )
-        ->orderByRaw('DATE_ADD(max(transactions.date), INTERVAL max(transactions.payment_condition) DAY)', 'desc')
-        ->orderByRaw('max(transactions.number)', 'desc')
-        ->paginate(100));
-    }
-
-    public function get_account_receivableByID(Taxpayer $taxPayer, Cycle $cycle, $id)
-    {
-        $accountMovement = $transactions = Transaction::MySales()
-        ->join('taxpayers', 'taxpayers.id', 'transactions.customer_id')
-        ->join('currencies', 'transactions.currency_id','currencies.id')
-        ->join('transaction_details as td', 'td.transaction_id', 'transactions.id')
-        ->where('transactions.supplier_id', $taxPayer->id)
-        ->where('transactions.payment_condition', '>', 0)
-        ->where('transactions.id', $id)
-        ->groupBy('transactions.id')
-        ->select(DB::raw('max(transactions.id) as id'),
-        DB::raw('max(taxpayers.name) as Customer'),
-        DB::raw('max(taxpayers.taxid) as CutomerTaxID'),
-        DB::raw('max(currencies.code) as currency_code'),
-        DB::raw('max(transactions.payment_condition) as payment_condition'),
-        DB::raw('max(transactions.date) as date'),
-        DB::raw('DATE_ADD(max(transactions.date), INTERVAL max(transactions.payment_condition) DAY) as code_expiry'),
-        DB::raw('max(transactions.number) as number'),
-        DB::raw('(select ifnull(sum(account_movements.credit * account_movements.rate), 0)  from account_movements where `transactions`.`id` = `account_movements`.`transaction_id`) as Paid'),
-        DB::raw('sum(td.value * transactions.rate) as Value'),
-        DB::raw('(sum(td.value * transactions.rate)
-        - (select
-        ifnull(sum(account_movements.credit * account_movements.rate), 0)
-        from account_movements
-        where transactions.id = account_movements.transaction_id))
-        as Balance')
-        )
-        ->get();
-        return response()->json($accountMovement);
-    }
-    /**
-    * Show the form for creating a new resource.
-    *
-    * @return \Illuminate\Http\Response
-    */
-    public function create()
-    {
-        //
+        return GeneralResource::collection(
+            Transaction::MySales()
+            ->with('currency:code')
+            ->with('details:value')
+            ->with('customer:name,taxid,id')
+            ->with('accountMovements')
+            ->where('transactions.payment_condition', '>', 0)
+            ->paginate(50)
+        );
     }
 
     /**
@@ -96,7 +38,7 @@ class AccountReceivableController extends Controller
     * @param  \Illuminate\Http\Request  $request
     * @return \Illuminate\Http\Response
     */
-    public function store(Request $request)
+    public function store(Request $request, Taxpayer $taxPayer, Cycle $cycle)
     {
         if ($request->payment_value > 0)
         {
@@ -125,32 +67,15 @@ class AccountReceivableController extends Controller
     * @param  \App\AccountMovement  $accountMovement
     * @return \Illuminate\Http\Response
     */
-    public function show(AccountMovement $accountMovement)
+    public function show($transactionId)
     {
-        //
-    }
-
-    /**
-    * Show the form for editing the specified resource.
-    *
-    * @param  \App\AccountMovement  $accountMovement
-    * @return \Illuminate\Http\Response
-    */
-    public function edit(AccountMovement $accountMovement)
-    {
-        //
-    }
-
-    /**
-    * Update the specified resource in storage.
-    *
-    * @param  \Illuminate\Http\Request  $request
-    * @param  \App\AccountMovement  $accountMovement
-    * @return \Illuminate\Http\Response
-    */
-    public function update(Request $request, AccountMovement $accountMovement)
-    {
-        //
+        return new GeneralResource(
+            Transaction::MySales()
+            ->where('id', $transactionId)
+            ->with('customer:name,taxid,id')
+            ->with('details')
+            ->first()
+        );
     }
 
     /**
@@ -159,7 +84,7 @@ class AccountReceivableController extends Controller
     * @param  \App\AccountMovement  $accountMovement
     * @return \Illuminate\Http\Response
     */
-    public function destroy(Taxpayer $taxPayer, Cycle $cycle,$transactionID)
+    public function destroy(Taxpayer $taxPayer, Cycle $cycle, $transactionID)
     {
         // try
         // {

@@ -18,7 +18,7 @@ export default {
     },
     methods:
     {
-        onList(path) {
+        onList() {
             var app = this;
             var page = 1;
 
@@ -26,7 +26,7 @@ export default {
             // this.$refs.topProgress.start();
             app.loading = true;
 
-            axios.get('/api' + path + '?page=' + page )
+            axios.get('/api' + this.$route.path + '?page=' + page )
             .then(({ data }) => {
 
                 app.items = data.data;
@@ -105,23 +105,12 @@ export default {
                 app.$snack.danger({ text: error.message });
             });
         },
-        sumValue(details) {
+
+        sum(details, id_prop) {
             return details.reduce(function(sum, row) {
-                return sum + new Number(row.value);
+                return sum + new Number(row[id_prop]);
             }, 0);
         },
-
-        sumDebit(details) {
-            return details.reduce(function(sum, row) {
-                return sum + new Number(row.debit);
-            }, 0);
-        },
-
-        sumCredit(details) {
-            return details.reduce(function(sum, row) {
-                return sum + new Number(row.credit);
-            }, 0);
-        }
     },
     mounted() {
         var app = this;

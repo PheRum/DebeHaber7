@@ -105,7 +105,7 @@
                 <i class="material-icons md-18 ml-10 mr-10">redo</i>
                 @{{ $t('commercial.creditBook') }}
             </b-nav-item>
-            <b-nav-item class="sub-menu" disabled>
+            <b-nav-item class="sub-menu" :to="{ name: 'receivableList'}">
                 <i class="material-icons md-18 ml-10 mr-10">attach_money</i>
                 @{{ $t('commercial.accountReceivables') }}
             </b-nav-item>
@@ -123,7 +123,7 @@
                 <i class="material-icons md-18 ml-10 mr-10">undo</i>
                 @{{ $t('commercial.debitBook') }}
             </b-nav-item>
-            <b-nav-item class="sub-menu" disabled>
+            <b-nav-item class="sub-menu" :to="{ name: 'payableList'}">
                 <i class="material-icons md-18 ml-10 mr-10">attach_money</i>
                 @{{ $t('commercial.accountPayables') }}
             </b-nav-item>

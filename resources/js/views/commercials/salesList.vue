@@ -40,7 +40,7 @@
                 <div v-if="$route.name.includes('List')">
                     <crud :columns="columns" inline-template>
                         <b-card no-body>
-                            <b-table hover responsive :items="items" :fields="columns" :current-page="current_page">
+                            <b-table hover responsive :items="items" :fields="columns" :current-page="current_page" show-empty>
 
                                 <template slot="date" slot-scope="data">
                                     {{ new Date(data.item.date).toLocaleDateString() }}
@@ -48,13 +48,13 @@
 
                                 <template slot="total" slot-scope="data">
                                     <span class="float-right">
-                                        {{ new Number(sumValue(data.item.details)).toLocaleString() }}
+                                        {{ new Number(sum(data.item.details, 'value')).toLocaleString() }}
                                         <small class="text-success text-uppercase" v-if="data.item.currency != null">{{ data.item.currency.code }}</small>
                                     </span>
                                 </template>
 
-                                <template slot="action" slot-scope="data">
-                                    <table-actions :editItem="data.item"></table-actions>
+                                <template slot="actions" slot-scope="data">
+                                    <table-actions :id="data.item.id"></table-actions>
                                 </template>
 
                                 <div slot="table-busy">
@@ -65,6 +65,8 @@
                                     <table-empty></table-empty>
                                 </template>
                             </b-table>
+
+                            <b-pagination align="center" :total-rows="meta.total" :per-page="meta.per_page" @change="onList()"></b-pagination>
                         </b-card>
                     </crud>
                 </div>
@@ -87,7 +89,6 @@ export default {
         },
         columns()
         {
-
             return  [ {
                 key: 'date',
                 sortable: true
@@ -108,7 +109,7 @@ export default {
                 sortable: true
             },
             {
-                key: 'action',
+                key: 'actions',
                 label: '',
                 sortable: false
             }];

@@ -9,6 +9,11 @@
 export default {
   data: () => ({
 
-  })
+  }),
+  computed: {
+        formURL: function () {
+            return this.$route.name.replace('List', 'Form');
+        }
+    },
 }
 </script>
