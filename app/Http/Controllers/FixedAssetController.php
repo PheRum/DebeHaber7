@@ -80,12 +80,12 @@ class FixedAssetController extends Controller
     {
         $fixedAssetGroup = Chart::find($fixedAsset->chart_id);
 
-        if (isset($fixedAssetGroup)) {
-            //get the difference in date between now and the purchase date.
-            $diffInDays = Carbon::now() - $fixedAsset->purchase_date;
-            //calculate in days.
+        if (isset($fixedAssetGroup) && ($fixedAsset->purchase_value > 0) && ($fixedAssetGroup->asset_years > 0)) {
+            // get the difference in date between now and the purchase date.
+            $diffInDays = Carbon::now()->diffInDays($fixedAsset->purchase_date);
+            // calculate in days.
             $dailyDepreciation = $fixedAsset->purchase_value / ($fixedAssetGroup->asset_years * 365);
-            //use the difference in time to calculate percentage reduction from purchase value.
+            // use the difference in time to calculate percentage reduction from purchase value.
             $fixedAsset->currentValue = $fixedAsset->purchase_value - ($dailyDepreciation * $diffInDays);
             $fixedAsset->save();
         }

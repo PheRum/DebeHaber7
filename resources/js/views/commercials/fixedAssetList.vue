@@ -44,12 +44,12 @@
                             <b-table hover responsive :items="items" :fields="columns" :current-page="current_page">
 
                                 <template slot="date" slot-scope="data">
-                                    {{ new Date(data.item.date).toLocaleDateString() }}
+                                    {{ new Date(data.item.purchase_date).toLocaleDateString() }}
                                 </template>
 
                                 <template slot="total" slot-scope="data">
                                     <span class="float-right">
-                                        {{ new Number(sumValue(data.item.details)).toLocaleString() }}
+                                        {{ new Number(data.item.current_value).toLocaleString() }}
                                         <small class="text-success text-uppercase" v-if="data.item.currency != null">{{ data.item.currency.code }}</small>
                                     </span>
                                 </template>
@@ -90,22 +90,23 @@ export default {
         {
 
             return  [ {
-                key: 'date',
+                key: 'purchase_date',
+                label: this.$i18n.t('commercial.purchaseDate'),
                 sortable: true
             },
             {
-                key: 'customer.name',
-                label: this.$i18n.t('commercial.customer'),
+                key: 'chart.name',
+                label: this.$i18n.t('commercial.fixedAssetGroup'),
                 sortable: true
             },
             {
-                key: 'number',
-                label: this.$i18n.t('commercial.number'),
+                key: 'serial',
+                label: this.$i18n.t('commercial.serialNumber'),
                 sortable: true
             },
             {
-                key: 'total',
-                label: this.$i18n.t('commercial.total'),
+                key: 'current_value',
+                label: this.$i18n.t('commercial.currentValue'),
                 sortable: true
             },
             {
