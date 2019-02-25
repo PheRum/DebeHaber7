@@ -37,62 +37,35 @@
         </b-row>
         <b-row>
             <b-col>
-
                 <div v-if="$route.name.includes('List')">
                     <crud :columns="columns" inline-template>
-                        <div>
+                        <b-card no-body>
                             <b-table hover responsive :items="items" :fields="columns" :current-page="current_page">
+
                                 <template slot="date" slot-scope="data">
                                     {{ new Date(data.item.date).toLocaleDateString() }}
                                 </template>
-                                <template slot="expiry" slot-scope="data">
-                                    <div v-if="data.item.expiry >= new Date()">
-                                        {{ new Date(data.item.expiry).toLocaleDateString() }}
-                                    </div>
-                                    <div v-else>
-                                        <span class="text-danger">{{ new Date(data.item.expiry).toLocaleDateString() }}</span>
-                                    </div>
-                                </template>
+
                                 <template slot="total" slot-scope="data">
                                     <span class="float-right">
                                         {{ new Number(sumValue(data.item.details)).toLocaleString() }}
                                         <small class="text-success text-uppercase" v-if="data.item.currency != null">{{ data.item.currency.code }}</small>
                                     </span>
                                 </template>
-                                <template slot="debit" slot-scope="data">
-                                    <span class="float-right">
-                                        {{ new Number(sumDebit(data.item.details)).toLocaleString() }}
-                                        <small class="text-success text-uppercase" v-if="data.item.currency != null">{{ data.item.currency.code }}</small>
-                                    </span>
-                                </template>
-                                <template slot="balance" slot-scope="data">
-                                    <span class="float-right">
-                                        {{ new Number(data.item.balance).toLocaleString() }}
-                                        <small class="text-success text-uppercase" v-if="data.item.currency != null">{{ data.item.currency.code }}</small>
-                                    </span>
-                                </template>
-                                <template slot="buy_rate" slot-scope="data">
-                                    <span class="float-right">
-                                        {{ new Number(data.item.buy_rate).toLocaleString() }}
-                                    </span>
-                                </template>
-                                <template slot="sell_rate" slot-scope="data">
-                                    <span class="float-right">
-                                        {{ new Number(data.item.sell_rate).toLocaleString() }}
-                                    </span>
-                                </template>
 
                                 <template slot="action" slot-scope="data">
                                     <table-actions :editItem="data.item"></table-actions>
                                 </template>
+
                                 <div slot="table-busy">
                                     <table-loading></table-loading>
                                 </div>
+
                                 <template slot="empty" slot-scope="scope">
                                     <table-empty></table-empty>
                                 </template>
                             </b-table>
-                        </div>
+                        </b-card>
                     </crud>
                 </div>
                 <router-view v-else></router-view>

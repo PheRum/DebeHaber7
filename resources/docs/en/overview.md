@@ -8,7 +8,7 @@
 - [Creating a Taxpayer](#taxpayer)
 - [Configuration](#configuration)
 
-DebeHaber is an accounting platform aimed at integrating and sharing data within your teams. You can share your transactional data with your accountant, auditor, or even a CFO. DebeHaber also includes a robust set of API's to help integrate data generated on your existing ERP or PointOfSales software.
+DebeHaber is an accounting platform aimed at integrating and sharing data within your teams. You can share your transactional data with your accountant, auditor, or even the CFO. If you are already using an ERP or PointOfSales software in your company, DebeHaber comes with integration codes (API's) that allows you to easily share data to and from the site.
 
 
 DebeHaber is a team oriented software, meaning that your'e required to either create a team or be invited into one to be able to access any data.
@@ -16,9 +16,9 @@ DebeHaber is a team oriented software, meaning that your'e required to either cr
 <a name="registration"></a>
 ## Registration
 
-Registering a new account, will also create a new team. You will automatically be assigned as the owner of this team. As such it's important that the person in charge of the team create the account first and then invite the remaining members.
+Registering a new account, will automatically create a new team. You will be assigned as the owner of this team. As such it's important that the person in charge of the team create the account first and then invite the remaining members.
 
-To register a new account as the owner of a team, click here.
+To register a new account as the owner of a team, simply access the site: www.debehaber.com/register. You will be required to specify the team name along with your basic information (such as name, email, and select a password).
 
 ### Inviting other Members
 

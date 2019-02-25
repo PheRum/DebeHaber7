@@ -1,5 +1,7 @@
 <template>
     <b-container v-if="$route.name == 'commercialMenu'">
+        <vue-topprogress ref="topProgress"></vue-topprogress>
+
         <b-row>
             <b-col>
                 <b-card no-body header="Expenses" header-tag="header">
