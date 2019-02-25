@@ -39,7 +39,35 @@
             <b-col>
 
                 <div v-if="$route.name.includes('List')">
-                    <table-template :columns="columns"></table-template>
+                    <crud :columns="columns" inline-template>
+                        <b-card no-body>
+                            <b-table hover responsive :items="items" :fields="columns" :current-page="current_page">
+
+                                <template slot="date" slot-scope="data">
+                                    {{ new Date(data.item.date).toLocaleDateString() }}
+                                </template>
+
+                                <template slot="total" slot-scope="data">
+                                    <span class="float-right">
+                                        {{ new Number(sumValue(data.item.details)).toLocaleString() }}
+                                        <small class="text-success text-uppercase" v-if="data.item.currency != null">{{ data.item.currency.code }}</small>
+                                    </span>
+                                </template>
+
+                                <template slot="action" slot-scope="data">
+                                    <table-actions :editItem="data.item"></table-actions>
+                                </template>
+
+                                <div slot="table-busy">
+                                    <table-loading></table-loading>
+                                </div>
+
+                                <template slot="empty" slot-scope="scope">
+                                    <table-empty></table-empty>
+                                </template>
+                            </b-table>
+                        </b-card>
+                    </crud>
                 </div>
                 <router-view v-else></router-view>
             </b-col>
@@ -50,6 +78,7 @@
 <script>
 import crud from '../../components/crud.vue'
 export default {
+    components: { crud },
     data: () => ({
 
     }),
