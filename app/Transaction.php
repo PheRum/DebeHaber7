@@ -50,51 +50,32 @@ class Transaction extends Model
         ];
     }
 
-    // protected $appends = ['total', 'paid_balance', 'received_balance'];
-
-    // public function getTotalAttribute()
-    // {
-    //     return $this->details->sum('value');
-    // }
-    //
-    // public function getReceivedBalanceAttribute()
-    // {
-    //     return $this->whenLoaded('accountMovements')->sum('credit' * 'rate');
-    // }
-    //
-    // public function getPaidBalanceAttribute()
-    // {
-    //     return $this->whenLoaded('accountMovements')->sum('credit' * 'rate');
-    // }
-
     public function scopeMy($query)
     {
         $taxPayerID = request()->route('taxPayer')->id ?? request()->route('taxPayer');
 
-        return $query
-        ->where(function($subQuery) use ($taxPayer, $cycle) {
+        return $query->where(function ($subQuery) use ($taxPayerID) {
             $subQuery->whereIn('transactions.type', [4, 5])
-            ->where('supplier_id', $taxPayerID);
-        })->where(function($subQuery) use ($taxPayer, $cycle) {
+                ->where('supplier_id', $taxPayerID);
+        })->where(function ($subQuery) use ($taxPayerID) {
             $subQuery->whereIn('transactions.type', [1, 2, 3])
-            ->where('customer_id', $taxPayerID);
+                ->where('customer_id', $taxPayerID);
         });
     }
 
     public function scopeMySales($query)
     {
         $taxPayerID = request()->route('taxPayer')->id ?? request()->route('taxPayer');
-
         return $query->where('type', 4)
-        ->where('supplier_id', $taxPayerID);
+            ->where('supplier_id', $taxPayerID);
     }
 
     public function scopeMySalesForJournals($query, $startDate, $endDate, $taxPayerID)
     {
         return $query
-        ->whereBetween('date', [$startDate, $endDate])
-        ->where('type', 4)
-        ->where('supplier_id', $taxPayerID);
+            ->whereBetween('date', [$startDate, $endDate])
+            ->where('type', 4)
+            ->where('supplier_id', $taxPayerID);
     }
 
     public function scopeMyCreditNotes($query)
@@ -102,15 +83,15 @@ class Transaction extends Model
         $taxPayerID = request()->route('taxPayer')->id ?? request()->route('taxPayer');
 
         return $query->where('type', 5)
-        ->where('supplier_id', $taxPayerID);
+            ->where('supplier_id', $taxPayerID);
     }
 
     public function scopeMyCreditNotesForJournals($query, $startDate, $endDate, $taxPayerID)
     {
         return $query
-        ->whereBetween('date', [$startDate, $endDate])
-        ->where('type', 5)
-        ->where('supplier_id', $taxPayerID);
+            ->whereBetween('date', [$startDate, $endDate])
+            ->where('type', 5)
+            ->where('supplier_id', $taxPayerID);
     }
 
     public function scopeMyPurchases($query)
@@ -118,15 +99,15 @@ class Transaction extends Model
         $taxPayerID = request()->route('taxPayer')->id ?? request()->route('taxPayer');
 
         return $query->whereIn('type', [1, 2])
-        ->where('customer_id', $taxPayerID);
+            ->where('customer_id', $taxPayerID);
     }
 
     public function scopeMyPurchasesForJournals($query, $startDate, $endDate, $taxPayerID)
     {
         return $query
-        ->whereBetween('date', [$startDate, $endDate])
-        ->whereIn('type', [1, 2])
-        ->where('customer_id', $taxPayerID);
+            ->whereBetween('date', [$startDate, $endDate])
+            ->whereIn('type', [1, 2])
+            ->where('customer_id', $taxPayerID);
     }
 
     public function scopeMyDebitNotes($query)
@@ -134,15 +115,15 @@ class Transaction extends Model
         $taxPayerID = request()->route('taxPayer')->id ?? request()->route('taxPayer');
 
         return $query->where('type', 3)
-        ->where('customer_id', $taxPayerID);
+            ->where('customer_id', $taxPayerID);
     }
 
     public function scopeMyDebitNotesForJournals($query, $startDate, $endDate, $taxPayerID)
     {
         return $query
-        ->whereBetween('date', [$startDate, $endDate])
-        ->where('type', 3)
-        ->where('customer_id', $taxPayerID);
+            ->whereBetween('date', [$startDate, $endDate])
+            ->where('type', 3)
+            ->where('customer_id', $taxPayerID);
     }
 
     /**

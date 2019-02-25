@@ -13,9 +13,9 @@ class SearchController extends Controller
     public function searchPurchases($taxPayer, $cycle, $q)
     {
         $results = Transaction::search($q)
-        ->where('customer_id', $taxPayer->id)
-        ->where('type', 2)
-        ->paginate(25);
+            ->where('customer_id', $taxPayer->id)
+            ->where('type', 2)
+            ->paginate(25);
 
         return ModelResource::collection($results->load('supplier'));
     }
@@ -23,9 +23,9 @@ class SearchController extends Controller
     public function searchDebits($taxPayer, $cycle, $q)
     {
         $results = Transaction::search($q)
-        ->where('customer_id', $taxPayer->id)
-        ->where('type', 3)
-        ->paginate(25);
+            ->where('customer_id', $taxPayer->id)
+            ->where('type', 3)
+            ->paginate(25);
 
         return ModelResource::collection($results->load('supplier'));
     }
@@ -33,9 +33,9 @@ class SearchController extends Controller
     public function searchSales($taxPayer, $cycle, $q)
     {
         $results = Transaction::search($q)
-        ->where('supplier_id', $taxPayer->id)
-        ->where('type', 4)
-        ->paginate(25);
+            ->where('supplier_id', $taxPayer->id)
+            ->where('type', 4)
+            ->paginate(25);
 
         return ModelResource::collection($results->load('customer'));
     }
@@ -43,9 +43,9 @@ class SearchController extends Controller
     public function searchCredits($taxPayer, $cycle, $q)
     {
         $results = Transaction::search($q)
-        ->where('supplier_id', $taxPayer->id)
-        ->where('type', 4)
-        ->paginate(25);
+            ->where('supplier_id', $taxPayer->id)
+            ->where('type', 4)
+            ->paginate(25);
 
         return ModelResource::collection($results->load('customer'));
     }
@@ -55,35 +55,34 @@ class SearchController extends Controller
         $taxPayerID = $taxPayer->id ?? $taxPayer;
 
         return GeneralResource::collection(
-            Transaction::where(function($query) use ($taxPayer, $q)
-            {
+            Transaction::where(function ($query) use ($taxPayer, $q) {
                 $query
-                ->where(function($subQuery) use ($taxPayer, $q) {
-                    $subQuery->whereIn('type', [4, 5])
-                    ->where('supplier_id', $taxPayerID)
-                    ->where('number', 'like', '%' . $q . '%')
-                    ->where('code', 'like', '%' . $q . '%')
-                    ->whereHas('customer', function($subSubQuery) use ($q) {
-                        $subSubQuery->where('name', 'like', '%' . $q . '%')
-                        ->where('taxid', 'like', '%' . $q . '%');
-                    });
-                })
-                ->orWhere(function($subQuery) use ($taxPayer, $q) {
-                    $subQuery->whereIn('type', [1, 2, 3])
-                    ->where('customer_id', $taxPayerID)
-                    ->where(function($subSubQuery) use ($q) {
-                        $subSubQuery->where('number', 'like', '%' . $q . '%')
-                        ->orWhere('code', 'like', '%' . $q . '%');
+                    ->where(function ($subQuery) use ($taxPayer, $q) {
+                        $subQuery->whereIn('type', [4, 5])
+                            ->where('supplier_id', $taxPayer->id)
+                            ->where('number', 'like', '%' . $q . '%')
+                            ->where('code', 'like', '%' . $q . '%')
+                            ->whereHas('customer', function ($subSubQuery) use ($q) {
+                                $subSubQuery->where('name', 'like', '%' . $q . '%')
+                                    ->where('taxid', 'like', '%' . $q . '%');
+                            });
                     })
-                    ->whereHas('supplier', function($subSubQuery) use ($q) {
-                        $subSubQuery->where('name', 'like', '%' . $q . '%')
-                        ->where('taxid', 'like', '%' . $q . '%');
+                    ->orWhere(function ($subQuery) use ($taxPayer, $q) {
+                        $subQuery->whereIn('type', [1, 2, 3])
+                            ->where('customer_id', $$taxPayer->id)
+                            ->where(function ($subSubQuery) use ($q) {
+                                $subSubQuery->where('number', 'like', '%' . $q . '%')
+                                    ->orWhere('code', 'like', '%' . $q . '%');
+                            })
+                            ->whereHas('supplier', function ($subSubQuery) use ($q) {
+                                $subSubQuery->where('name', 'like', '%' . $q . '%')
+                                    ->where('taxid', 'like', '%' . $q . '%');
+                            });
                     });
-                });
             })
-            ->with('details')
-            ->with('customer')
-            ->with('supplier')
+                ->with('details')
+                ->with('customer')
+                ->with('supplier')
         );
     }
 

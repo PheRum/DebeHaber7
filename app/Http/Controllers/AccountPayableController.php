@@ -22,12 +22,12 @@ class AccountPayableController extends Controller
     {
         return GeneralResource::collection(
             Transaction::MyPurchases()
-            ->with('currency:code')
-            ->with('details:value')
-            ->with('customer:name,taxid,id')
-            // ->with('accountMovements:credit,debit,rate')
-            ->where('payment_condition', '>', 0)
-            ->paginate(50)
+                ->with('currency')
+                ->with('details')
+                ->with('customer')
+                ->with('accountMovements')
+                // ->where('payment_condition', '>', 0)
+                ->paginate(50)
         );
     }
 
@@ -39,11 +39,10 @@ class AccountPayableController extends Controller
     */
     public function store(Request $request)
     {
-        if ($request->payment_value > 0)
-        {
+        if ($request->payment_value > 0) {
             $accountMovement = new AccountMovement();
             $accountMovement->taxpayer_id = $request->taxpayer_id;
-            $accountMovement->chart_id = $request->chart_account_id ;
+            $accountMovement->chart_id = $request->chart_account_id;
             $accountMovement->date = $request->date;
 
             $accountMovement->transaction_id = $request->id != '' ? $request->id : null;
@@ -70,10 +69,10 @@ class AccountPayableController extends Controller
     {
         return new GeneralResource(
             Transaction::MySales()
-            ->where('id', $transactionId)
-            ->with('customer:name,taxid,id')
-            ->with('details')
-            ->first()
+                ->where('id', $transactionId)
+                ->with('customer:name,taxid,id')
+                ->with('details')
+                ->first()
         );
     }
 
@@ -85,9 +84,7 @@ class AccountPayableController extends Controller
     * @return \Illuminate\Http\Response
     */
     public function destroy(Taxpayer $taxPayer, Cycle $cycle, $transactionID)
-    {
-
-    }
+    { }
 
     public function generate_Journals($startDate, $endDate, $taxPayer, $cycle)
     {
@@ -95,20 +92,19 @@ class AccountPayableController extends Controller
 
         $queryAccountMovements = AccountMovement::My($startDate, $endDate, $taxPayer->id);
 
-        if ($queryAccountMovements->where('journal_id', '!=', null)->count() > 0)
-        {
+        if ($queryAccountMovements->where('journal_id', '!=', null)->count() > 0) {
             $arrJournalIDs = $queryAccountMovements->where('journal_id', '!=', null)->pluck('journal_id')->get();
 
             //## Important! Null all references of Journal in Transactions.
             AccountMovement::whereIn('journal_id', [$arrJournalIDs])
-            ->update(['journal_id' => null]);
+                ->update(['journal_id' => null]);
 
             //Delete the journals & details with id
             \App\JournalDetail::whereIn('journal_id', [$arrJournalIDs])
-            ->forceDelete();
+                ->forceDelete();
 
             \App\Journal::whereIn('id', [$arrJournalIDs])
-            ->forceDelete();
+                ->forceDelete();
         }
 
         $journal = new \App\Journal();
@@ -124,18 +120,16 @@ class AccountPayableController extends Controller
 
         //2nd Query: Movements related to Credit Purchases. Cash Purchases are ignored.
         $listOfPayables = AccountMovement::My($startDate, $endDate, $taxPayer->id)
-        ->whereHas('transaction', function($q) use($taxPayer) {
-            $q->where('customer_id', '=', $taxPayer->id)
-            ->where('payment_condition', '>', 0);
-        })->get();
+            ->whereHas('transaction', function ($q) use ($taxPayer) {
+                $q->where('customer_id', '=', $taxPayer->id)
+                    ->where('payment_condition', '>', 0);
+            })->get();
 
         //run code for credit purchase (insert detail into journal)
-        foreach($listOfPayables as $row)
-        {
+        foreach ($listOfPayables as $row) {
             $value = $row->debit * $row->rate;
 
-            if ($value == 0)
-            {
+            if ($value == 0) {
                 continue;
             }
 
@@ -162,26 +156,24 @@ class AccountPayableController extends Controller
                 $detail = new \App\JournalDetail();
                 $detail->credit = $row->credit * $rateDifference;
                 $detail->debit = 0;
-                $detail->chart_id = $ChartController->createIfNotExists_IncomeFromFX($taxPayer, $cycle)->id;
+                $detail->chart_id = $chartController->createIfNotExists_IncomeFromFX($taxPayer, $cycle)->id;
                 $journal->details()->save($detail);
-            }
-            else if($paymentRate > $invoiceRate) //Loss by Exchange Rante Difference
+            } else if ($paymentRate > $invoiceRate) //Loss by Exchange Rante Difference
             {
                 $detail = new \App\JournalDetail();
                 $detail->credit = 0;
                 $detail->debit = $row->credit * $rateDifference;
-                $detail->chart_id = $ChartController->createIfNotExists_ExpenseFromFX($taxPayer, $cycle)->id;
+                $detail->chart_id = $chartController->createIfNotExists_ExpenseFromFX($taxPayer, $cycle)->id;
                 $journal->details()->save($detail);
             }
         }
 
-        if ($journal->details()->count() == 0)
-        {
+        if ($journal->details()->count() == 0) {
             $journal->details()->delete();
             $journal->delete();
         }
 
         AccountMovement::whereIn('id', $queryAccountMovements->pluck('id'))
-        ->update(['journal_id' => $journal->id]);
+            ->update(['journal_id' => $journal->id]);
     }
 }

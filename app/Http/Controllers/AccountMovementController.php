@@ -6,34 +6,28 @@ use App\AccountMovement;
 use App\Taxpayer;
 use App\Cycle;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use Illuminate\Support\Collection;
 use App\Http\Resources\GeneralResource;
 use Carbon\Carbon;
-use DB;
-use Auth;
 
 class AccountMovementController extends Controller
 {
     public function index(Taxpayer $taxPayer, Cycle $cycle)
     {
         return GeneralResource::collection(
-            AccountMovement::
-            orderBy('date', 'des')
-            ->with('chart:name,code')
-            ->with('transaction:id,number,comment')
-            ->with('currency:code')
-            ->paginate(50)
+            AccountMovement::orderBy('date', 'des')
+                ->with('chart:name,code')
+                ->with('transaction:id,number,comment')
+                ->with('currency:code')
+                ->paginate(50)
         );
     }
 
     public function store(Request $request, Taxpayer $taxPayer, Cycle $cycle)
     {
-        if ($request->type != 2)
-        {
+        if ($request->type != 2) {
             $accountMovement = AccountMovement::firstOrNew('id', $request->id);
             $accountMovement->taxpayer_id = $request->taxpayer_id;
-            $accountMovement->chart_id = $request->from_chart_id ;
+            $accountMovement->chart_id = $request->from_chart_id;
             $accountMovement->date =  Carbon::now();
             $accountMovement->debit = $request->debit ?? 0;
             $accountMovement->credit = $request->credit ?? 0;
@@ -41,12 +35,10 @@ class AccountMovementController extends Controller
             $accountMovement->rate = $request->rate ?? 1;
             $accountMovement->comment = $request->comment;
             $accountMovement->save();
-        }
-        else
-        {
+        } else {
             $fromAccountMovement = AccountMovement::firstOrNew('id', $request->fromId);
             $fromAccountMovement->taxpayer_id = $request->taxpayer_id;
-            $fromAccountMovement->chart_id = $request->from_chart_id ;
+            $fromAccountMovement->chart_id = $request->from_chart_id;
             $fromAccountMovement->date =  Carbon::now();
             $fromAccountMovement->debit = $request->debit ?? 0;
             $fromAccountMovement->currency_id = $request->currency_id;
@@ -56,7 +48,7 @@ class AccountMovementController extends Controller
 
             $toAccountMovement = AccountMovement::firstOrNew('id', $request->toId);
             $toAccountMovement->taxpayer_id = $request->taxpayer_id;
-            $toAccountMovement->chart_id = $request->to_chart_id ;
+            $toAccountMovement->chart_id = $request->to_chart_id;
             $toAccountMovement->date =  Carbon::now();
             $toAccountMovement->credit = $request->credit ?? 0;
             $toAccountMovement->currency_id = $request->currency_id;
@@ -72,10 +64,10 @@ class AccountMovementController extends Controller
     {
         return new GeneralResource(
             AccountMovement::with('chart')
-            ->with('transaction:id,number,comment')
-            ->with('currency:code')
-            ->where('id', $movement->id)
-            ->first()
+                ->with('transaction:id,number,comment')
+                ->with('currency:code')
+                ->where('id', $movement->id)
+                ->first()
         );
     }
 
@@ -86,20 +78,19 @@ class AccountMovementController extends Controller
 
         $queryAccountMovements = AccountMovement::My($startDate, $endDate, $taxPayer->id);
 
-        if ($queryAccountMovements->where('journal_id', '!=', null)->count() > 0)
-        {
+        if ($queryAccountMovements->where('journal_id', '!=', null)->count() > 0) {
             $arrJournalIDs = $queryAccountMovements->where('journal_id', '!=', null)->pluck('journal_id')->get();
 
             //## Important! Null all references of Journal in Transactions.
             AccountMovement::whereIn('journal_id', [$arrJournalIDs])
-            ->update(['journal_id' => null]);
+                ->update(['journal_id' => null]);
 
             //Delete the journals & details with id
             \App\JournalDetail::whereIn('journal_id', [$arrJournalIDs])
-            ->forceDelete();
+                ->forceDelete();
 
             \App\Journal::whereIn('id', [$arrJournalIDs])
-            ->forceDelete();
+                ->forceDelete();
         }
 
         $journal = new \App\Journal();
@@ -115,18 +106,16 @@ class AccountMovementController extends Controller
 
         //1st Query: Movements related to Credit Sales. Cash Sales are ignored.
         $listOfReceivables = AccountMovement::My($startDate, $endDate, $taxPayer->id)
-        ->whereHas('transaction', function($q) use($taxPayer) {
-            $q->where('supplier_id', '=', $taxPayer->id)
-            ->where('payment_condition', '>', 0);
-        })
-        ->get();
+            ->whereHas('transaction', function ($q) use ($taxPayer) {
+                $q->where('supplier_id', '=', $taxPayer->id)
+                    ->where('payment_condition', '>', 0);
+            })
+            ->get();
 
-        foreach($listOfReceivables as $row)
-        {
+        foreach ($listOfReceivables as $row) {
             $value = $row->credit * $row->rate;
 
-            if ($value == 0)
-            {
+            if ($value == 0) {
                 continue;
             }
 
@@ -153,33 +142,30 @@ class AccountMovementController extends Controller
                 $detail = new \App\JournalDetail();
                 $detail->credit = $row->credit * $rateDifference;
                 $detail->debit = 0;
-                $detail->chart_id = $ChartController->createIfNotExists_IncomeFromFX($taxPayer, $cycle)->id;
+                $detail->chart_id = $chartController->createIfNotExists_IncomeFromFX($taxPayer, $cycle)->id;
                 $journal->details()->save($detail);
-            }
-            else if($paymentRate < $invoiceRate) //Loss by Exchange Rante Difference
+            } else if ($paymentRate < $invoiceRate) //Loss by Exchange Rante Difference
             {
                 $detail = new \App\JournalDetail();
                 $detail->credit = 0;
                 $detail->debit = $row->credit * $rateDifference;
-                $detail->chart_id = $ChartController->createIfNotExists_ExpenseFromFX($taxPayer, $cycle)->id;
+                $detail->chart_id = $chartController->createIfNotExists_ExpenseFromFX($taxPayer, $cycle)->id;
                 $journal->details()->save($detail);
             }
         }
 
         //2nd Query: Movements related to Credit Purchases. Cash Purchases are ignored.
         $listOfPayables = AccountMovement::My($startDate, $endDate, $taxPayer->id)
-        ->whereHas('transaction', function($q) use($taxPayer) {
-            $q->where('customer_id', '=', $taxPayer->id)
-            ->where('payment_condition', '>', 0);
-        })->get();
+            ->whereHas('transaction', function ($q) use ($taxPayer) {
+                $q->where('customer_id', '=', $taxPayer->id)
+                    ->where('payment_condition', '>', 0);
+            })->get();
 
         //run code for credit purchase (insert detail into journal)
-        foreach($listOfPayables as $row)
-        {
+        foreach ($listOfPayables as $row) {
             $value = $row->debit * $row->rate;
 
-            if ($value == 0)
-            {
+            if ($value == 0) {
                 continue;
             }
 
@@ -206,66 +192,56 @@ class AccountMovementController extends Controller
                 $detail = new \App\JournalDetail();
                 $detail->credit = $row->credit * $rateDifference;
                 $detail->debit = 0;
-                $detail->chart_id = $ChartController->createIfNotExists_IncomeFromFX($taxPayer, $cycle)->id;
+                $detail->chart_id = $chartController->createIfNotExists_IncomeFromFX($taxPayer, $cycle)->id;
                 $journal->details()->save($detail);
-            }
-            else if($paymentRate > $invoiceRate) //Loss by Exchange Rante Difference
+            } else if ($paymentRate > $invoiceRate) //Loss by Exchange Rante Difference
             {
                 $detail = new \App\JournalDetail();
                 $detail->credit = 0;
                 $detail->debit = $row->credit * $rateDifference;
-                $detail->chart_id = $ChartController->createIfNotExists_ExpenseFromFX($taxPayer, $cycle)->id;
+                $detail->chart_id = $chartController->createIfNotExists_ExpenseFromFX($taxPayer, $cycle)->id;
                 $journal->details()->save($detail);
             }
         }
 
         //3rd Query: Movements that have no transactions. Example bank transfers and deposits
         $listOfMovements = AccountMovement::My($startDate, $endDate, $taxPayer->id)
-        ->doesntHave('transaction')
-        ->get();
+            ->doesntHave('transaction')
+            ->get();
 
         //run code for credit purchase (insert detail into journal)
-        foreach($listOfMovements->groupBy('chart_id') as $groupedRow)
-        {
+        foreach ($listOfMovements->groupBy('chart_id') as $groupedRow) {
             //Create the account
             $detail = $journal->details()->where('chart_id', $groupedRow->first()->chart_id)->first() ?? new \App\JournalDetail();
             $detail->chart_id = $groupedRow->first()->chart_id;
 
-            foreach ($groupedRow->groupBy('rate') as $groupedByRate)
-            {
+            foreach ($groupedRow->groupBy('rate') as $groupedByRate) {
                 $detail->credit += $groupedByRate->sum('credit') * $groupedRow->first()->rate;
                 $detail->debit += $groupedByRate->sum('debit') * $groupedRow->first()->rate;
             }
 
-            if ($detail->credit > 0 || $detail->debit > 0)
-            {
+            if ($detail->credit > 0 || $detail->debit > 0) {
                 $journal->details()->save($detail);
             }
         }
 
-        if ($journal->details()->count() == 0)
-        {
+        if ($journal->details()->count() == 0) {
             $journal->details()->delete();
             $journal->delete();
         }
 
         AccountMovement::whereIn('id', $queryAccountMovements->pluck('id'))
-        ->update(['journal_id' => $journal->id]);
+            ->update(['journal_id' => $journal->id]);
     }
 
-    public function destroy(Taxpayer $taxPayer, Cycle $cycle,$ID)
+    public function destroy(Taxpayer $taxPayer, Cycle $cycle, $ID)
     {
-        try
-        {
+        try {
             //TODO: Run Tests to make sure it deletes all journals related to transaction
             AccountMovement::where('id', $ID)->forceDelete();
             return response()->json('Ok', 200);
-        }
-        catch (\Exception $e)
-        {
+        } catch (\Exception $e) {
             return response()->json($e, 500);
         }
     }
-
-
 }

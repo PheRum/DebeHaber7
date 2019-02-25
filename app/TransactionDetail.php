@@ -6,21 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class TransactionDetail extends Model
 {
-    //
-
     protected $fillable = [
         'type',
         'transaction_id',
         'chart_id',
         'chart_vat_id',
         'value',
-        'rate',
+        'rate'
     ];
 
     public function scopeVAT($query)
-    {
-
-    }
+    { }
 
     /**
     * Get the transaction that owns the model.

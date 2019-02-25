@@ -22,12 +22,12 @@ class AccountReceivableController extends Controller
     {
         return GeneralResource::collection(
             Transaction::MySales()
-            // ->where('payment_condition', '>', 0)
-            ->with('currency:code')
-            ->with('details:value')
-            ->with('customer:name,taxid,id')
-            ->with('accountMovements:credit,debit,rate')
-            ->paginate(50)
+                // ->where('payment_condition', '>', 0)
+                ->with('currency:code')
+                ->with('details:value')
+                ->with('customer:name,taxid,id')
+                ->with('accountMovements:credit,debit,rate')
+                ->paginate(50)
         );
     }
 
@@ -39,11 +39,10 @@ class AccountReceivableController extends Controller
     */
     public function store(Request $request, Taxpayer $taxPayer, Cycle $cycle)
     {
-        if ($request->payment_value > 0)
-        {
+        if ($request->payment_value > 0) {
             $accountMovement = new AccountMovement();
             $accountMovement->taxpayer_id = $request->taxpayer_id;
-            $accountMovement->chart_id =$request->chart_account_id ;
+            $accountMovement->chart_id = $request->chart_account_id;
             $accountMovement->date = $request->date;
 
             $accountMovement->transaction_id = $request->id != '' ? $request->id : null;
@@ -70,10 +69,10 @@ class AccountReceivableController extends Controller
     {
         return new GeneralResource(
             Transaction::MySales()
-            ->where('id', $transactionId)
-            ->with('customer:name,taxid,id')
-            ->with('details')
-            ->first()
+                ->where('id', $transactionId)
+                ->with('customer:name,taxid,id')
+                ->with('details')
+                ->first()
         );
     }
 
@@ -108,23 +107,24 @@ class AccountReceivableController extends Controller
         //get sum of all transactions divided by exchange rate.
         $journal = new Journal();
         $journal->cycle_id = $this->cycle->id; //TODO: Change this for specific cycle that is in range with transactions
-        $journal->date = $accMovements->last()->date; //
-        $journal->comment = $comment;
+        $journal->date = $endDate; //
+        $journal->comment = __('accounting.AccountReceivableComment');
         $journal->save();
 
+        $accMovements = AccountMovement::whereBetween('date', [$startDate, $endDate])
+            ->with('transaction')
+            ->get();
+
         //Affect all Cash Sales and uses Cash Accounts
-        foreach ($accMovements->groupBy('chart_id') as $groupedByAccount)
-        {
+        foreach ($accMovements->groupBy('chart_id') as $groupedByAccount) {
             $value = 0;
 
             //calculate value by currency. fx. TODO, Include Rounding depending on Main Curreny from Taxpayer Country.
-            foreach ($groupedByAccount->groupBy('rate') as $groupedByRate)
-            {
+            foreach ($groupedByAccount->groupBy('rate') as $groupedByRate) {
                 $value += $groupedByRate->sum('credit') * $groupedByRate->first()->rate;
             }
 
-            if ($value > 0)
-            {
+            if ($value > 0) {
                 //Check for Cash Account used.
                 $chart = $ChartController->createIfNotExists_CashAccounts($this->taxPayer, $this->cycle, $groupedByAccount->first()->chart_id);
 
@@ -137,19 +137,16 @@ class AccountReceivableController extends Controller
             }
         }
 
-        //Affect all Cash Sales and uses Cash Accounts
-        foreach ($accMovements->transaction->groupBy('customer_id') as $groupedByInvoice)
-        {
+        //Affect all Credit Sales and uses Credit Accounts
+        foreach ($accMovements->transaction->groupBy('customer_id') as $groupedByInvoice) {
             $value = 0;
 
             //calculate value by currency. fx. TODO, Include Rounding depending on Main Curreny from Taxpayer Country.
-            foreach ($groupedByInvoice->groupBy('rate') as $groupedByRate)
-            {
+            foreach ($groupedByInvoice->groupBy('rate') as $groupedByRate) {
                 $value += $groupedByRate->sum('credit') * $groupedByRate->first()->rate;
             }
 
-            if ($value > 0)
-            {
+            if ($value > 0) {
                 //Check for Account Receivables used.
                 $chart = $ChartController->createIfNotExists_AccountsReceivables($this->taxPayer, $this->cycle, $groupedByInvoice->first()->customer_id);
 
@@ -162,8 +159,7 @@ class AccountReceivableController extends Controller
             }
         }
 
-        foreach ($accMovements as $mov)
-        {
+        foreach ($accMovements as $mov) {
             $mov->setStatus('Accounted');
 
             $journalAccountMovement = new JournalAccountMovement();

@@ -19,7 +19,7 @@ class DocumentController extends Controller
     {
         return GeneralResource::collection(
             Document::where('taxpayer_id', $taxPayer->id)
-            ->paginate(50)
+                ->paginate(50)
         );
     }
 
@@ -29,7 +29,7 @@ class DocumentController extends Controller
     * @param  \Illuminate\Http\Request  $request
     * @return \Illuminate\Http\Response
     */
-    public function store(Request $request,Taxpayer $taxPayer)
+    public function store(Request $request, Taxpayer $taxPayer)
     {
         $document = $request->id == 0 ? $document = new Document() : Document::where('id', $request->id)->first();
 
@@ -51,8 +51,8 @@ class DocumentController extends Controller
     {
         return new GeneralResource(
             Document::where('taxpayer_id', $taxPayer->id)
-            ->where('id', $documentId)
-            ->first()
+                ->where('id', $documentId)
+                ->first()
         );
     }
 
@@ -74,8 +74,5 @@ class DocumentController extends Controller
     * @return \Illuminate\Http\Response
     */
     public function destroy(Document $document)
-    {
-
-    }
-
+    { }
 }

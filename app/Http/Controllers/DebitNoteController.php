@@ -23,15 +23,13 @@ class DebitNoteController extends Controller
     {
         return GeneralResource::collection(
             Transaction::MyDebitNotes()
-            ->with('supplier:name,id')
-            ->with('currency')
-            ->with('details')
-            ->whereBetween('date', [$cycle->start_date, $cycle->end_date])
-            ->orderBy('transactions.date', 'desc')
-            ->paginate(50)
+                ->with('supplier:name,id')
+                ->with('currency')
+                ->with('details')
+                ->whereBetween('date', [$cycle->start_date, $cycle->end_date])
+                ->orderBy('transactions.date', 'desc')
+                ->paginate(50)
         );
-
-        return response()->json($transactions);
     }
 
     /**
@@ -40,7 +38,7 @@ class DebitNoteController extends Controller
     * @param  \Illuminate\Http\Request  $request
     * @return \Illuminate\Http\Response
     */
-    public function store(Request $request,Taxpayer $taxPayer,Cycle $cycle)
+    public function store(Request $request, Taxpayer $taxPayer, Cycle $cycle)
     {
         $transaction = $request->id == 0 ? new Transaction() : Transaction::where('id', $request->id)->first();
         $transaction->customer_id = $taxPayer->id;
@@ -74,8 +72,7 @@ class DebitNoteController extends Controller
 
             if ($detail['id'] == 0) {
                 $detail = new TransactionDetail();
-            }
-            else {
+            } else {
                 $detail = TransactionDetail::where('id', $detail['id'])->first();
             }
 
@@ -99,9 +96,9 @@ class DebitNoteController extends Controller
     {
         return new GeneralResource(
             Transaction::MyDebitNotes()->with('supplier:name,taxid,id')
-            ->where('id', $transactionId)
-            ->with('details')
-            ->first()
+                ->where('id', $transactionId)
+                ->with('details')
+                ->first()
         );
     }
 
@@ -122,20 +119,19 @@ class DebitNoteController extends Controller
         \DB::connection()->disableQueryLog();
 
         $queryPurchases = Transaction::MyDebitNotesForJournals($startDate, $endDate, $taxPayer->id)
-        ->get();
+            ->get();
 
-        if ($queryPurchases->where('journal_id', '!=', null)->count() > 0)
-        {
+        if ($queryPurchases->where('journal_id', '!=', null)->count() > 0) {
             $arrJournalIDs = $queryPurchases->where('journal_id', '!=', null)->pluck('journal_id');
             //## Important! Null all references of Journal in Transactions.
             Transaction::whereIn('journal_id', [$arrJournalIDs])
-            ->update(['journal_id' => null]);
+                ->update(['journal_id' => null]);
 
             //Delete the journals & details with id
             \App\JournalDetail::whereIn('journal_id', [$arrJournalIDs])
-            ->forceDelete();
+                ->forceDelete();
             \App\Journal::whereIn('id', [$arrJournalIDs])
-            ->forceDelete();
+                ->forceDelete();
         }
 
         $journal = new \App\Journal();
@@ -150,23 +146,24 @@ class DebitNoteController extends Controller
         //Assign all transactions the new journal_id.
         //No need for If Count > 0, because if it was 0, it would not have gone in this function.
         Transaction::whereIn('id', $queryPurchases->pluck('id'))
-        ->update(['journal_id' => $journal->id]);
+            ->update(['journal_id' => $journal->id]);
 
-        $ChartController= new ChartController();
+        $ChartController = new ChartController();
 
         //1st Query: Sales Transactions done in Credit. Must affect customer credit account.
         $listOfDebitNotes = Transaction::MyDebitNotesForJournals($startDate, $endDate, $taxPayer->id)
-        ->join('transaction_details', 'transactions.id', '=', 'transaction_details.transaction_id')
-        ->groupBy('rate', 'supplier_id')
-        //->where('payment_condition', '>', 0) TODO, do not apply payment condition to debit note.
-        ->select(DB::raw('max(rate) as rate'),
-        DB::raw('max(supplier_id) as supplier_id'),
-        DB::raw('sum(transaction_details.value) as total'))
-        ->get();
+            ->join('transaction_details', 'transactions.id', '=', 'transaction_details.transaction_id')
+            ->groupBy('rate', 'supplier_id')
+            //->where('payment_condition', '>', 0) TODO, do not apply payment condition to debit note.
+            ->select(
+                DB::raw('max(rate) as rate'),
+                DB::raw('max(supplier_id) as supplier_id'),
+                DB::raw('sum(transaction_details.value) as total')
+            )
+            ->get();
 
         //run code for credit purchase (insert detail into journal)
-        foreach($listOfDebitNotes as $row)
-        {
+        foreach ($listOfDebitNotes as $row) {
             $supplierChartID = $ChartController->createIfNotExists_AccountsPayable($taxPayer, $cycle, $row->supplier_id)->id;
 
             $value = $row->total * $row->rate;
@@ -181,19 +178,20 @@ class DebitNoteController extends Controller
 
         //one detail query, to avoid being heavy for db. Group by fx rate, vat, and item type.
         $detailAccounts = Transaction::MyDebitNotesForJournals($startDate, $endDate, $taxPayer->id)
-        ->join('transaction_details', 'transactions.id', '=', 'transaction_details.transaction_id')
-        ->join('charts', 'charts.id', '=', 'transaction_details.chart_vat_id')
-        ->groupBy('rate', 'transaction_details.chart_id', 'transaction_details.chart_vat_id')
-        ->select(DB::raw('max(rate) as rate'),
-        DB::raw('max(charts.coefficient) as coefficient'),
-        DB::raw('max(transaction_details.chart_vat_id) as chart_vat_id'),
-        DB::raw('max(transaction_details.chart_id) as chart_id'),
-        DB::raw('sum(transaction_details.value) as total'))
-        ->get();
+            ->join('transaction_details', 'transactions.id', '=', 'transaction_details.transaction_id')
+            ->join('charts', 'charts.id', '=', 'transaction_details.chart_vat_id')
+            ->groupBy('rate', 'transaction_details.chart_id', 'transaction_details.chart_vat_id')
+            ->select(
+                DB::raw('max(rate) as rate'),
+                DB::raw('max(charts.coefficient) as coefficient'),
+                DB::raw('max(transaction_details.chart_vat_id) as chart_vat_id'),
+                DB::raw('max(transaction_details.chart_id) as chart_id'),
+                DB::raw('sum(transaction_details.value) as total')
+            )
+            ->get();
 
         //run code for credit purchase (insert detail into journal)
-        foreach($detailAccounts->where('coefficient', '>', 0)->groupBy('chart_vat_id') as $groupedRow)
-        {
+        foreach ($detailAccounts->where('coefficient', '>', 0)->groupBy('chart_vat_id') as $groupedRow) {
             $groupTotal = $groupedRow->sum('total');
             $value = ($groupTotal - ($groupTotal / (1 + $groupedRow->first()->coefficient))) * $groupedRow->first()->rate;
             $detail = $journal->details()->firstOrNew(['chart_id' => $groupedRow->first()->chart_vat_id]);
@@ -206,13 +204,11 @@ class DebitNoteController extends Controller
         }
 
         //run code for credit purchase (insert detail into journal)
-        foreach($detailAccounts->groupBy('chart_id') as $groupedRow)
-        {
+        foreach ($detailAccounts->groupBy('chart_id') as $groupedRow) {
             $value = 0;
 
             //Discount Vat Value for these items.
-            foreach($groupedRow->groupBy('coefficient') as $row)
-            {
+            foreach ($groupedRow->groupBy('coefficient') as $row) {
                 $value += ($row->sum('total') / (1 + $row->first()->coefficient)) * $row->first()->rate;
             }
             $detail = $journal->details()->firstOrNew(['chart_id' => $groupedRow->first()->chart_id]);

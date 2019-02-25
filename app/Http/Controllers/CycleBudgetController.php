@@ -30,11 +30,9 @@ class CycleBudgetController extends Controller
     {
         $charts = collect($request);
 
-        foreach ($charts->where('is_accountable', true) as $detail)
-        {
+        foreach ($charts->where('is_accountable', true) as $detail) {
             //Make sure that atleast Debit OR Credit is more than zero to avoid
-            if ($detail['debit'] > 0 || $detail['credit'] > 0)
-            {
+            if ($detail['debit'] > 0 || $detail['credit'] > 0) {
                 $cyclebudget = CycleBudget::where('chart_id', $detail['chart_id'])->where('cycle_id', $cycle->id)->first() ?? new CycleBudget();
 
                 $cyclebudget->cycle_id = $cycle->id;
@@ -58,14 +56,16 @@ class CycleBudgetController extends Controller
     public function edit($taxPayerId, $cycleId, $cycleBudgetId)
     {
         $cycleBudget = CycleBudget::join('charts', 'cycle_budgets.chart_id', 'charts.id')
-        ->where('cycle_id', $cycleBudgetId)
-        ->select(DB::raw('cycle_budgets.id as id'),
-        DB::raw('cycle_budgets.chart_id'),
-        DB::raw('charts.is_accountable'),
-        DB::raw('charts.code'),
-        DB::raw('charts.name'),
-        DB::raw('debit'),
-        DB::raw('credit'))->get();
+            ->where('cycle_id', $cycleBudgetId)
+            ->select(
+                DB::raw('cycle_budgets.id as id'),
+                DB::raw('cycle_budgets.chart_id'),
+                DB::raw('charts.is_accountable'),
+                DB::raw('charts.code'),
+                DB::raw('charts.name'),
+                DB::raw('debit'),
+                DB::raw('credit')
+            )->get();
 
         return response()->json($cycleBudget);
     }
