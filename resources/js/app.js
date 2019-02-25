@@ -64,24 +64,24 @@ Vue.component(
     require('./components/passport/PersonalAccessTokens.vue').default
 );
 Vue.component(
-    'menu-buttons',
-    require('./components/menu-button.vue').default
-);
-// Vue.component(
-//     'list-view',
-//     require('./components/list-view.vue').default
-// );
-Vue.component(
-    'crud',
-    require('./components/crud.vue').default
-);
-Vue.component(
     'search-site',
     require('./components/search-site.vue').default
 );
 Vue.component(
     'search-taxpayer',
     require('./components/search-taxpayer.vue').default
+);
+Vue.component(
+    'table-actions',
+    require('./components/table/actions.vue').default
+);
+Vue.component(
+    'table-loading',
+    require('./components/table/loading.vue').default
+);
+Vue.component(
+    'table-empty',
+    require('./components/table/empty.vue').default
 );
 Vue.component(
     'invoices-this-month-kpi',

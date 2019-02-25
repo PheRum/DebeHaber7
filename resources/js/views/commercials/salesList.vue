@@ -47,12 +47,14 @@
                                     {{ new Date(data.item.date).toLocaleDateString() }}
                                 </template>
 
-
                                 <template slot="action" slot-scope="data">
-                                    <b-button-group size="sm" class="show-when-hovered">
-                                        <b-button :to="{ name: formURL, params: { id: data.item.id }}"><i class="material-icons md-18">edit</i></b-button>
-                                        <b-button @click="onDelete(data.item)"><i class="material-icons md-19">delete_outline</i></b-button>
-                                    </b-button-group>
+                                    <table-actions></table-actions>
+                                </template>
+                                <div slot="table-busy">
+                                    <table-loading></table-loading>
+                                </div>
+                                <template slot="empty" slot-scope="scope">
+                                    <table-empty></table-empty>
                                 </template>
                             </b-table>
                         </div>
