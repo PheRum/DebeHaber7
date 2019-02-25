@@ -39,7 +39,24 @@
             <b-col>
 
                 <div v-if="$route.name.includes('List')">
-                    <table-template :columns="columns"></table-template>
+                    <crud inline-template>
+                        <div>
+                            <vue-topprogress ref="topProgress"></vue-topprogress>
+                            <b-table hover responsive :items="items" :fields="$parent.columns" :current-page="current_page">
+                                <template slot="date" slot-scope="data">
+                                    {{ new Date(data.item.date).toLocaleDateString() }}
+                                </template>
+
+
+                                <template slot="action" slot-scope="data">
+                                    <b-button-group size="sm" class="show-when-hovered">
+                                        <b-button :to="{ name: formURL, params: { id: data.item.id }}"><i class="material-icons md-18">edit</i></b-button>
+                                        <b-button @click="onDelete(data.item)"><i class="material-icons md-19">delete_outline</i></b-button>
+                                    </b-button-group>
+                                </template>
+                            </b-table>
+                        </div>
+                    </crud>
                 </div>
                 <router-view v-else></router-view>
             </b-col>
@@ -50,6 +67,7 @@
 <script>
 import crud from '../../components/crud.vue'
 export default {
+    components: { crud },
     data: () => ({
 
     }),
@@ -86,5 +104,6 @@ export default {
             }];
         }
     }
+
 }
 </script>

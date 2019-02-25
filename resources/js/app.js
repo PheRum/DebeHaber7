@@ -67,9 +67,13 @@ Vue.component(
     'menu-buttons',
     require('./components/menu-button.vue').default
 );
+// Vue.component(
+//     'list-view',
+//     require('./components/list-view.vue').default
+// );
 Vue.component(
-    'list-view',
-    require('./components/list-view.vue').default
+    'crud',
+    require('./components/crud.vue').default
 );
 Vue.component(
     'search-site',

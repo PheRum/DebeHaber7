@@ -1,46 +1,51 @@
 <template>
     <div>
-        <vue-topprogress ref="topProgress"></vue-topprogress>
-        <b-card no-body>
+        <crud inline-template>
+            <div>
+                <vue-topprogress ref="topProgress"></vue-topprogress>
+                <b-card no-body>
 
-            <b-table hover responsive :busy="crud.loading" :items="crud.items" :fields="columns" show-empty>
+                    <b-table hover responsive :busy="loading" :items="items" :fields="columns" show-empty>
 
-                <!-- <slot v-bind:row="row.item"></slot> -->
+                        <!-- <slot v-bind:row="row.item"></slot> -->
 
-                <template slot="row-details" slot-scope="row">
-                    <!-- <slot name="details" v-bind:row="row"></slot> -->
-                </template>
+                        <template slot="row-details" slot-scope="row">
+                            <!-- <slot name="details" v-bind:row="row"></slot> -->
+                        </template>
 
-                <template slot="has-details" slot-scope="row">
-                    <b-button-group size="sm" class="show-when-hovered">
-                        <b-button @click="row.toggleDetails"><i class="material-icons md-19">remove_red_eye</i></b-button>
-                    </b-button-group>
-                </template>
+                        <template slot="has-details" slot-scope="row">
+                            <b-button-group size="sm" class="show-when-hovered">
+                                <b-button @click="row.toggleDetails"><i class="material-icons md-19">remove_red_eye</i></b-button>
+                            </b-button-group>
+                        </template>
 
-                <template slot="actions" slot-scope="data">
-                    <b-button-group size="sm" class="show-when-hovered">
-                        <b-button :to="{ name: formURL, params: { id: data.item.id }}"><i class="material-icons md-18">edit</i></b-button>
-                        <b-button @click="onDelete(data.item)"><i class="material-icons md-19">delete_outline</i></b-button>
-                    </b-button-group>
-                </template>
-                <div slot="table-busy" class="text-center text-danger my-2">
-                    <strong>Loading...</strong>
-                </div>
-                <template slot="empty" slot-scope="scope">
-                    <h4>You're running on empty!</h4>
-                    <p class="lead">How about <router-link :to="{ name: formURL, params: { id: 0}}">creating</router-link> some data</p>
-                    <b-img thumbnail fluid width="256" src="/img/apps/no-data.svg" alt="Thumbnail" />
-                </template>
-            </b-table>
-        </b-card>
-        <b-pagination align="center" :total-rows="meta.total" :per-page="meta.per_page" @change="list()"></b-pagination>
+                        <template slot="actions" slot-scope="data">
+                            <b-button-group size="sm" class="show-when-hovered">
+                                <b-button :to="{ name: formURL, params: { id: data.item.id }}"><i class="material-icons md-18">edit</i></b-button>
+                                <b-button @click="onDelete(data.item)"><i class="material-icons md-19">delete_outline</i></b-button>
+                            </b-button-group>
+                        </template>
+                        <div slot="table-busy" class="text-center text-danger my-2">
+                            <strong>Loading...</strong>
+                        </div>
+                        <template slot="empty" slot-scope="scope">
+                            <h4>You're running on empty!</h4>
+                            <p class="lead">How about <router-link :to="{ name: formURL, params: { id: 0}}">creating</router-link> some data</p>
+                            <b-img thumbnail fluid width="256" src="/img/apps/no-data.svg" alt="Thumbnail" />
+                        </template>
+                    </b-table>
+
+                </b-card>
+                <b-pagination align="center" :total-rows="meta.total" :per-page="meta.per_page" @change="list()"></b-pagination>
+            </div>
+        </crud>
     </div>
 </template>
 
 <script>
 import crud from './crud.vue';
 export default {
-    components: { 'crud': crud },
+    components: { crud },
     props: ['columns'],
     data: () => ({
 
@@ -97,7 +102,7 @@ export default {
 
     mounted() {
         var app = this;
-        this.list();
+        crud.methods.onList(app.$route.path);
     }
 }
 </script>

@@ -17,27 +17,29 @@ export default {
     },
     methods:
     {
-        onList() {
+        onList(path) {
             var app = this;
             var page = 1;
 
             //Loading indicators
-            this.$refs.topProgress.start();
+            //  this.$refs.topProgress.start();
             app.loading = true;
 
-            axios.get('/api' + app.$route.path + '?page=' + page )
+            axios.get('/api' + path + '?page=' + page )
             .then(({ data }) => {
+
                 app.items = data.data;
                 app.meta = data.meta;
                 app.skip += app.pageSize;
+                console.log(app.items);
                 //finishes the top progress bar
             }).catch(function (error) {
-                this.$refs.topProgress.fail();
+                //    this.$refs.topProgress.fail();
                 app.$snack.danger({ text: error.message });
             });
 
             app.loading = false;
-            this.$refs.topProgress.done()
+            //  this.$refs.topProgress.done()
         },
 
         onCreate() {
@@ -103,6 +105,29 @@ export default {
                 app.$snack.danger({ text: error.message });
             });
         },
+        sumValue(details) {
+            return details.reduce(function(sum, row) {
+                return sum + new Number(row.value);
+            }, 0);
+        },
+
+        sumDebit(details) {
+            return details.reduce(function(sum, row) {
+                return sum + new Number(row.debit);
+            }, 0);
+        },
+
+        sumCredit(details) {
+            return details.reduce(function(sum, row) {
+                return sum + new Number(row.credit);
+            }, 0);
+        }
+    },
+    mounted() {
+        var app = this;
+        app.onList(app.$route.path);
     }
+
+
 }
 </script>

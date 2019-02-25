@@ -8,8 +8,8 @@
   },
   "dependencies": {
     "@fortawesome/vue-fontawesome": "^0.1.5",
-    "ajv": "^6.9.1",
-    "apexcharts": "^3.4.1",
+    "ajv": "^6.9.2",
+    "apexcharts": "^3.5.0",
     "axios": "^0.18",
     "bootstrap": "^4.3.1",
     "bootstrap-vue": "^2.0.0-rc.13",
@@ -51,7 +51,7 @@
   "devDependencies": {
     "purgecss-webpack-plugin": "^1.4.0",
     "resolve-url-loader": "^2.3.2",
-    "sass": "^1.17.1",
+    "sass": "^1.17.2",
     "sass-loader": "^7.1.0",
     "vue-template-compiler": "^2.6.6"
   }
