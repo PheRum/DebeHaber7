@@ -1,5 +1,6 @@
 <script>
 export default {
+      props: ['columns'],
     data: () => ({
         skip: 1,
         items: [],
@@ -22,7 +23,7 @@ export default {
             var page = 1;
 
             //Loading indicators
-            //  this.$refs.topProgress.start();
+            //this.$refs.topProgress.start();
             app.loading = true;
 
             axios.get('/api' + path + '?page=' + page )
@@ -31,15 +32,14 @@ export default {
                 app.items = data.data;
                 app.meta = data.meta;
                 app.skip += app.pageSize;
-                console.log(app.items);
                 //finishes the top progress bar
             }).catch(function (error) {
-                //    this.$refs.topProgress.fail();
+                //this.$refs.topProgress.fail();
                 app.$snack.danger({ text: error.message });
             });
 
             app.loading = false;
-            //  this.$refs.topProgress.done()
+            //this.$refs.topProgress.done()
         },
 
         onCreate() {
