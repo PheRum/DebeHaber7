@@ -47,27 +47,34 @@
 
         <b-row>
             <b-col>
+                <!-- <crud :columns="columns" inline-template> -->
                 <b-card no-body>
-                    <b-table hover :items="data" :fields="columns">
+                    <b-table hover responsive :items="data.data" :fields="columns" show-empty>
                         <template slot="code" slot-scope="data">
-                            {{data.item.code}}
+                            <span v-if="data.item.is_accountable">
+                                {{ data.item.code }}
+                            </span>
+                            <b v-else>
+                                {{ data.item.code }}
+                            </b>
                         </template>
                         <template slot="name" slot-scope="data">
-                            {{data.item.name}}
+                            <span v-if="data.item.is_accountable">
+                                {{ data.item.name }}
+                            </span>
+                            <b v-else>
+                                {{ data.item.name }}
+                            </b>
                         </template>
                         <template slot="debit" slot-scope="data" v-if="data.item.is_accountable">
-                            <!-- mask?? -->
                             <b-input type="text" v-model="data.item.debit"  placeholder="Debit"/>
-
                         </template>
                         <template slot="credit" slot-scope="data" v-if="data.item.is_accountable">
-                            <!-- mask?? -->
                             <b-input type="text" v-model="data.item.credit"  placeholder="credit"/>
-
                         </template>
-
                     </b-table>
                 </b-card>
+                <!-- <curd> -->
             </b-col>
         </b-row>
     </div>
@@ -77,7 +84,7 @@
 import crud from '../../components/crud.vue';
 import VueNumeric from 'vue-numeric'
 export default {
-    components: { 'crud': crud,VueNumeric },
+    components: { 'crud': crud, VueNumeric },
     data() {
         return {
             pageUrl: '/accounting/closing-balance',
@@ -178,7 +185,6 @@ export default {
         .then(function (response) {
             app.data = response.data;
         });
-
     }
 }
 </script>
