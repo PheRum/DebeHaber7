@@ -21,7 +21,7 @@
           <b-card-body :title="$t($route.meta.title)">
             <b-card-text>
               <p class="lead" v-if="$route.name.includes('List')">
-                {{ $t($route.meta.description) }}, <router-link to="{ name: $route.name, params: { id: 0}}">Create</router-link>
+                {{ $t($route.meta.description) }}, <router-link :to="{ name: formURL, params: { id: 0}}">Create</router-link>
               </p>
             </b-card-text>
           </b-card-body>
@@ -98,6 +98,9 @@ export default {
 
   }),
   computed: {
+    formURL: function () {
+        return this.$route.name.replace('List', 'Form');
+    },
     columns()
     {
 

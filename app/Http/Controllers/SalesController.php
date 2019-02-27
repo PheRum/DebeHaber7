@@ -80,6 +80,7 @@ class SalesController extends Controller
 
         foreach ($request->details as $detail)
         {
+            
             $transactionDetail = TransactionDetail::firstOrNew(['id' => $detail['id']]);
             $transactionDetail->transaction_id = $transaction->id;
             $transactionDetail->chart_id = $detail['chart_id'];
@@ -88,7 +89,7 @@ class SalesController extends Controller
             $transactionDetail->save();
         }
 
-        return response()->json('ok', 200);
+
     }
 
     /**

@@ -136,7 +136,7 @@
                         </template>
                         <template slot="value" slot-scope="data">
                             <!-- mask?? -->
-                            <b-form-input :value="new Number(data.item.value).toLocaleString()" type="text" placeholder="Value"/>
+                            <b-input type="number" v-model="data.item.value"  placeholder="Value"/>
 
                             <!-- <vue-numeric separator="," :value="data.item.value"></vue-numeric> -->
                         </template>
@@ -237,7 +237,7 @@ export default {
 
         onSaveNew() {
             var app = this;
-
+            console.log(app.data);
             crud.methods
             .onUpdate(app.baseUrl + app.pageUrl, app.data)
             .then(function (response) {
@@ -271,6 +271,7 @@ export default {
         addDetailRow() {
             this.data.details.push({
                 // index: this.data.details.length + 1,
+                id:0,
                 chart_id: this.itemCharts[0].id,
                 chart_vat_id: this.vatCharts[0].id,
                 value: '0',
@@ -314,7 +315,7 @@ export default {
         var app = this;
 
         crud.methods
-        .onRead('/api/' + app.$route.params.taxPayer + '/currencies')
+        .onRead(app.baseUrl + '/config/currencies')
         .then(function (response) {
             app.currencies = response.data.data;
         });

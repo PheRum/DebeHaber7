@@ -40,7 +40,7 @@ class FixedAssetController extends Controller
         ->first();
 
         if (!isset($cycle)) {
-          $cycle = $this->checkCycle($taxPayer,$firstDate);
+          $cycle = $this->checkCycle($taxPayer,Carbon::now());
         }
 
         $startDate = $cycle->start_date;
@@ -83,7 +83,7 @@ class FixedAssetController extends Controller
 
     $fixedAsset->purchase_date = $this->convert_date($data['PurchaseDate']);
     $fixedAsset->purchase_value = $data['PurchaseValue'];
-
+    $fixedAsset->current_value = $data['PurchaseValue'];
     $fixedAsset->quantity = $data['Quantity'];
 
     //Take todays date to keep track of how new data really is.

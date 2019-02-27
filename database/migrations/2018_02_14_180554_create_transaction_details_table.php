@@ -22,7 +22,7 @@ class CreateTransactionDetailsTable extends Migration
             $table->unsignedInteger('chart_id');
             $table->foreign('chart_id')->references('id')->on('charts')->onDelete('cascade');
 
-            $table->unsignedInteger('chart_vat_id');
+            $table->unsignedInteger('chart_vat_id')->nullable();
             $table->foreign('chart_vat_id')->references('id')->on('charts')->onDelete('cascade');
 
             $table->unsignedDecimal('value', 18, 2);

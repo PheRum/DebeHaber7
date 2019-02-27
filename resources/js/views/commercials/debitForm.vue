@@ -135,8 +135,7 @@
                             </b-form-select>
                         </template>
                         <template slot="value" slot-scope="data">
-                            <!-- mask?? -->
-                            <vue-numeric separator="," :value="data.item.value"></vue-numeric>
+                          <b-input type="number" v-model="data.item.value"  placeholder="Value"/>
                         </template>
                         <template slot="actions" slot-scope="data">
                             <b-button variant="link" @click="deleteRow(data.item)">
@@ -165,7 +164,7 @@ export default {
                 supplier_id: 0,
                 supplier: [],
                 date: '',
-                details: [],
+                details: [{id:0}],
                 document_id: '',
                 document_type: 1,
                 id: 0,
@@ -174,9 +173,9 @@ export default {
                 number: '',
                 payment_condition: 0,
                 rate: 1,
-                type: 4
+                type: 3
             },
-            pageUrl: '/commercial/debit-note',
+            pageUrl: '/commercial/debit-notes',
 
             documents: [],
             currencies: [],
@@ -268,8 +267,9 @@ export default {
         addDetailRow() {
             this.data.details.push({
                 // index: this.data.details.length + 1,
+                id:0,
                 chart_id: this.itemCharts[0].id,
-                chart_vat_id: this.vatCharts[0].id,
+                  chart_vat_id: this.vatCharts[0]!=null?this.vatCharts[0].id:0,
                 value: '0',
             })
         },
@@ -311,7 +311,7 @@ export default {
         var app = this;
 
         crud.methods
-        .onRead('/api/' + app.$route.params.taxPayer + '/currencies')
+        .onRead(app.baseUrl + '/config/currencies')
         .then(function (response) {
             app.currencies = response.data.data;
         });

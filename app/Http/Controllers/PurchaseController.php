@@ -53,12 +53,12 @@ class PurchaseController extends Controller
     */
     public function store(Request $request,Taxpayer $taxPayer,Cycle $cycle)
     {
-        $transaction = Transaction::firstOrNew('id', $request->id);
+        $transaction = Transaction::firstOrNew(['id' => $request->id]);
         $transaction->customer_id = $taxPayer->id;
 
-        if ($request->supplier_id > 0)
+        if ($request->supplier['id'] > 0)
         {
-            $transaction->supplier_id = $request->supplier_id;
+            $transaction->supplier_id = $request->supplier['id'];
         }
 
         $transaction->document_id = $request->document_id > 0 ? $request->document_id : null;
@@ -81,10 +81,10 @@ class PurchaseController extends Controller
 
         foreach ($request->details as $detail)
         {
-            $transactionDetail = $detail['id'] == 0 ? new TransactionDetail() : TransactionDetail::where('id', $detail['id'])->first();
+            $transactionDetail = TransactionDetail::firstOrNew(['id' => $detail['id']]);
             $transactionDetail->transaction_id = $transaction->id;
             $transactionDetail->chart_id = $detail['chart_id'];
-            $transactionDetail->chart_vat_id = $detail['chart_vat_id'];
+            $transactionDetail->chart_vat_id = $detail['chart_vat_id']>0?$detail['chart_vat_id']:null;
             $transactionDetail->value = $detail['value'];
             $transactionDetail->save();
         }
