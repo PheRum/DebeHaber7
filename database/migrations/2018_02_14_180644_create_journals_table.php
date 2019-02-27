@@ -14,12 +14,12 @@ class CreateJournalsTable extends Migration
     public function up()
     {
         Schema::create('journals', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->increments('id');
 
             $table->unsignedInteger('cycle_id');
             $table->foreign('cycle_id')->references('id')->on('cycles')->onDelete('cascade');
 
-            $table->unsignedMediumInteger('number')->nullable();
+            $table->unsignedInteger('number')->nullable();
 
             $table->date('date');
 

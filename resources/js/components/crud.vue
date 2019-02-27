@@ -92,7 +92,7 @@ export default {
 
         onDestroy(item) {
             var app = this;
-            app.onDelete('/api' + app.$route.path, item.uuid)
+            app.onDelete('/api' + app.$route.path, item.id)
             .then(function (response) {
                 app.$snack.success({
                     text: app.$i18n.t('general.rowDeleted'),

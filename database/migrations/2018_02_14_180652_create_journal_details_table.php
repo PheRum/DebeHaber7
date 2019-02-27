@@ -14,9 +14,9 @@ class CreateJournalDetailsTable extends Migration
     public function up()
     {
         Schema::create('journal_details', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->increments('id');
 
-            $table->uuid('journal_id');
+            $table->unsignedInteger('journal_id');
             $table->foreign('journal_id')->references('id')->on('journals')->onDelete('cascade');
 
             $table->unsignedInteger('chart_id');
@@ -29,15 +29,15 @@ class CreateJournalDetailsTable extends Migration
         });
 
         Schema::table('transactions', function (Blueprint $table) {
-            $table->uuid('journal_id')->nullable()->after('type');
+            $table->unsignedInteger('journal_id')->nullable()->after('type');
         });
 
         Schema::table('productions', function (Blueprint $table) {
-            $table->uuid('journal_id')->nullable()->after('taxpayer_id');
+            $table->unsignedInteger('journal_id')->nullable()->after('taxpayer_id');
         });
 
         Schema::table('account_movements', function (Blueprint $table) {
-            $table->uuid('journal_id')->nullable()->after('taxpayer_id');
+            $table->unsignedInteger('journal_id')->nullable()->after('taxpayer_id');
         });
     }
 
@@ -48,6 +48,18 @@ class CreateJournalDetailsTable extends Migration
      */
     public function down()
     {
+        Schema::table('transactions', function (Blueprint $table) {
+            $table->dropColumn('journal_id');
+        });
+
+        Schema::table('productions', function (Blueprint $table) {
+            $table->dropColumn('journal_id');
+        });
+
+        Schema::table('account_movements', function (Blueprint $table) {
+            $table->dropColumn('journal_id');
+        });
+
         Schema::dropIfExists('journal_details');
     }
 }

@@ -62,8 +62,7 @@ class OpeningBalanceController extends Controller
     * @param  \Illuminate\Http\Request  $request
     * @return \Illuminate\Http\Response
     */
-    public function store(Request $request,Taxpayer $taxPayer, Cycle $cycle)
-    {
+    public function store(Request $request,Taxpayer $taxPayer, Cycle $cycle) {
         // $journal = Journal::where('is_first', true)->where('cycle_id', $cycle->id)->first() ?? new Journal();
         $journal = Journal::firstOrNew(['cycle_id' => $cycle->id, 'is_first' => true]);
 
@@ -75,19 +74,16 @@ class OpeningBalanceController extends Controller
 
         $details = collect($request)->where('is_accountable', '=', 1);
 
-        foreach ($details as $detail)
-        {
-            if ($detail['id'] > 0)
-            {
-                $journalDetail = JournalDetail::withUuid($detail['detail_id'])->first() ?? new JournalDetail();
+        foreach ($details as $detail) {
+            if ($detail['id'] > 0) {
+                $journalDetail = JournalDetail::firstOrNew([ 'id' => $detail['id'], 'journal_id' => $journal->id]);
                 $journalDetail->journal_id = $journal->id;
                 $journalDetail->chart_id = $detail['id'];
                 $journalDetail->debit = $detail['debit'] ?? 0;
                 $journalDetail->credit = $detail['credit'] ?? 0;
 
                 //Save only if there are values ot be saved. avoid saving blank values.
-                if ($journalDetail->debit > 0 || $journalDetail->credit > 0)
-                {
+                if ($journalDetail->debit > 0 || $journalDetail->credit > 0) {
                     $journalDetail->save();
                 }
             }

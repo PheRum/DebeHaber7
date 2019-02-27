@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Spatie\BinaryUuid\HasBinaryUuid;
 use App\Scopes\JournalScope;
 use App\Cycle;
 use App\JournalDetail;
@@ -12,7 +11,6 @@ use Carbon\Carbon;
 
 class Journal extends Model
 {
-    use HasBinaryUuid;
 
     protected static function boot()
     {

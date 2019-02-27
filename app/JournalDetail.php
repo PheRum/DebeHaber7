@@ -3,17 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Spatie\BinaryUuid\HasBinaryUuid;
 
-class JournalDetail extends Model
-{
-    use HasBinaryUuid;
-
-    protected $uuids = [
-        'id',
-        'journal_id'
-    ];
-
+class JournalDetail extends Model {
     protected $fillable = [
         'type',
         'journal_id',
@@ -22,8 +13,7 @@ class JournalDetail extends Model
         'credit',
     ];
 
-    public function getKeyName()
-    {
+    public function getKeyName() {
         return 'id';
     }
     /**
@@ -31,8 +21,7 @@ class JournalDetail extends Model
     *
     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
     */
-    public function journal()
-    {
+    public function journal() {
         return $this->belongsTo(Journal::class, 'journal_id', 'id');
     }
 
@@ -41,8 +30,7 @@ class JournalDetail extends Model
     *
     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
     */
-    public function chart()
-    {
+    public function chart() {
         return $this->belongsTo(Chart::class,'chart_id','id');
     }
 }
