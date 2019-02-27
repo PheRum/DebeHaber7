@@ -22,8 +22,8 @@ class CreateCurrencyRatesTable extends Migration
             $table->foreign('taxpayer_id')->references('id')->on('taxpayers')->onDelete('cascade');
 
             $table->date('date');
-            $table->decimal('buy_rate', 10, 4)->default(1);
-            $table->decimal('sell_rate', 10, 4)->default(1);
+            $table->unsignedDecimal('buy_rate', 10, 4)->default(1);
+            $table->unsignedDecimal('sell_rate', 10, 4)->default(1);
 
             $table->timestamps();
         });

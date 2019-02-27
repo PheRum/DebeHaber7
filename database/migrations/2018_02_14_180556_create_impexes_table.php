@@ -76,6 +76,7 @@ class CreateImpexesTable extends Migration
         Schema::dropIfExists('impex_expenses');
 
         Schema::table('transactions', function (Blueprint $table) {
+            $table->dropForeign('transactions_impex_id_foreign');
             $table->dropColumn('impex_id');
         });
 
