@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ChartVersion;
 use Illuminate\Http\Request;
+use App\Http\Resources\GeneralResource;
 
 class ChartVersionController extends Controller
 {
@@ -12,17 +13,15 @@ class ChartVersionController extends Controller
     *
     * @return \Illuminate\Http\Response
     */
-    public function index($teamID)
+    public function index(Taxpayer $taxPayer)
     {
-        $chartVersion = ChartVersion::where('taxpayer_id', $teamID)
-        ->leftJoin('taxpayers', 'chart_versions.taxpayer_id', 'taxpayers.id')
-        ->select('chart_versions.id',
-        'chart_versions.name',
-        'chart_versions.taxpayer_id',
-        'taxpayers.name as taxpayer')
-        ->get();
-
-        return response()->json($chartVersion);
+        return GeneralResource::collection(
+            ChartVersion::where(function($q) use ($taxPayer) {
+                return $q->where('taxpayer_id', $taxPayer->id)
+                ->orWhereNull('taxpayer_id')
+                ->where('country', $taxPayer->country);
+            })->paginate(50)
+        );
     }
 
     /**

@@ -17,12 +17,12 @@ class CreateImpexesTable extends Migration
             $table->increments('id');
 
             $table->unsignedInteger('taxpayer_id');
-
             $table->foreign('taxpayer_id')->references('id')->on('taxpayers')->onDelete('cascade');
 
-            $table->unsignedInteger('currency_id');
-            $table->foreign('currency_id')->references('id')->on('currencies')->onDelete('cascade');
+            $table->string('partner_taxid')->nullable();
+            $table->string('partner_name')->nullable();
 
+            $table->string('currency', 3)->default('USD');
             $table->unsignedDecimal('rate', 10, 4)->default(1);
 
             $table->boolean('is_import')->default(true)->comment('determines if impex is import or export related');
@@ -39,7 +39,7 @@ class CreateImpexesTable extends Migration
         });
 
         Schema::table('transactions', function (Blueprint $table) {
-            $table->unsignedInteger('impex_id')->nullable()->after('supplier_id');
+            $table->unsignedInteger('impex_id')->nullable()->after('document_id');
             $table->foreign('impex_id')->references('id')->on('impexes')->onDelete('cascade');
         });
 
@@ -55,9 +55,7 @@ class CreateImpexesTable extends Migration
             $table->unsignedInteger('chart_id')->nullable();
             $table->foreign('chart_id')->references('id')->on('charts')->onDelete('cascade');
 
-            $table->unsignedInteger('currency_id');
-            $table->foreign('currency_id')->references('id')->on('currencies')->onDelete('cascade');
-
+            $table->string('currency', 3)->default('USD');
             $table->unsignedDecimal('rate', 10, 4)->default(1);
 
             $table->unsignedDecimal('value', 10, 4)->default(0);

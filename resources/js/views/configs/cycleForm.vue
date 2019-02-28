@@ -158,8 +158,6 @@ export default {
                 }
             })
         },
-
-
     },
 
     mounted() {
@@ -169,7 +167,7 @@ export default {
         .then(function (response) {
             app.versions = response.data;
         });
-
+        
         if (app.$route.params.id > 0) {
             crud.methods
             .onRead(app.baseUrl + app.pageUrl + '/' + app.$route.params.id)
@@ -180,9 +178,6 @@ export default {
             app.data.start_date = new Date(Date.now()).toISOString().split("T")[0];
             app.data.end_date = new Date(Date.now()).toISOString().split("T")[0];
         }
-
-
-
     }
 }
 </script>

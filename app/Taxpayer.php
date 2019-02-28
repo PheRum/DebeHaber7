@@ -8,7 +8,8 @@ use Laravel\Scout\Searchable;
 class Taxpayer extends Model
 {
     use Searchable;
-
+    protected $incrementing = false;
+    
     protected $fillable = [
         'name',
         'country',

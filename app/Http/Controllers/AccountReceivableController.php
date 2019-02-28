@@ -22,12 +22,12 @@ class AccountReceivableController extends Controller
     {
         return GeneralResource::collection(
             Transaction::MySales()
-                // ->where('payment_condition', '>', 0)
-                ->with('currency:code')
-                ->with('details:value')
-                ->with('customer:name,taxid,id')
-                ->with('accountMovements:credit,debit,rate')
-                ->paginate(50)
+            // ->where('payment_condition', '>', 0)
+            ->with('currency:code')
+            ->with('details:value')
+            ->with('customer:name,taxid,id')
+            ->with('accountMovements:credit,debit,rate')
+            ->paginate(50)
         );
     }
 
@@ -69,10 +69,10 @@ class AccountReceivableController extends Controller
     {
         return new GeneralResource(
             Transaction::MySales()
-                ->where('id', $transactionId)
-                ->with('customer:name,taxid,id')
-                ->with('details')
-                ->first()
+            ->where('id', $transactionId)
+            ->with('customer:name,taxid,id')
+            ->with('accountMovements:credit,debit,rate,date')
+            ->first()
         );
     }
 
@@ -112,8 +112,8 @@ class AccountReceivableController extends Controller
         $journal->save();
 
         $accMovements = AccountMovement::whereBetween('date', [$startDate, $endDate])
-            ->with('transaction')
-            ->get();
+        ->with('transaction')
+        ->get();
 
         //Affect all Cash Sales and uses Cash Accounts
         foreach ($accMovements->groupBy('chart_id') as $groupedByAccount) {

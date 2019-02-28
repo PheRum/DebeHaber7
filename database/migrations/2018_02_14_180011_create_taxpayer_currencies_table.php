@@ -17,8 +17,8 @@ class CreateTaxpayerCurrenciesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('taxpayer_id')->comment('Taxpayer to use this Currency for Transactions');
             $table->foreign('taxpayer_id')->references('id')->on('taxpayers')->onDelete('cascade');
-            $table->unsignedInteger('currency_id');
-            $table->foreign('currency_id')->references('id')->on('currencies')->onDelete('cascade');
+            
+            $table->string('currency', 3)->default('USD');
             $table->timestamps();
         });
     }

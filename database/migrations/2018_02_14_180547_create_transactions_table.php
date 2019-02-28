@@ -20,20 +20,18 @@ class CreateTransactionsTable extends Migration
             $table->unsignedTinyInteger('type')->default(1)
             ->comment('1  = Purchases, 2 = Self-Invoice (Purchases), 3 = Debit Note (Purchase), 4 = Sales Invoice, 5 = Credit Note (Sales)');
 
-            $table->unsignedInteger('customer_id');
-            $table->foreign('customer_id')->references('id')->on('taxpayers')->onDelete('cascade');
+            $table->unsignedInteger('taxpayer_id');
+            $table->foreign('taxpayer_id')->references('id')->on('taxpayers')->onDelete('cascade');
 
-            $table->unsignedInteger('supplier_id');
-            $table->foreign('supplier_id')->references('id')->on('taxpayers')->onDelete('cascade');
+            $table->string('partner_taxid')->nullable();
+            $table->string('partner_name')->nullable();
 
-            $table->unsignedTinyInteger('document_type')->default(1)->nullable()
-            ->comment('Use Document Enum');
+            $table->unsignedTinyInteger('document_type')->default(1)->nullable()->comment('Use Document Enum');
 
             $table->unsignedInteger('document_id')->nullable();
             $table->foreign('document_id')->references('id')->on('documents')->onDelete('cascade');
 
-            $table->unsignedInteger('currency_id');
-            $table->foreign('currency_id')->references('id')->on('currencies')->onDelete('cascade');
+            $table->string('currency', 3)->default('USD');
             $table->unsignedDecimal('rate', 10, 4)->default(1);
 
             $table->unsignedInteger('payment_condition')->default(0);

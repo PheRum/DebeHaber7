@@ -29,7 +29,6 @@ class JournalController extends Controller
     */
     public function index(Taxpayer $taxPayer, Cycle $cycle)
     {
-        
         return GeneralResource::collection(
             Journal::with(['details:journal_id,chart_id,debit,credit',
             'details.chart:id,name,code,type'])

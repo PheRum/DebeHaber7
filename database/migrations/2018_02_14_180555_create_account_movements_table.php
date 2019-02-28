@@ -27,8 +27,7 @@ class CreateAccountMovementsTable extends Migration
             $table->unsignedInteger('transaction_id')->nullable();
             $table->foreign('transaction_id')->references('id')->on('transactions')->onDelete('cascade');
 
-            $table->unsignedInteger('currency_id');
-            $table->foreign('currency_id')->references('id')->on('currencies')->onDelete('cascade');
+            $table->string('currency', 3)->default('USD');
             $table->unsignedDecimal('rate', 10, 4)->default(1);
 
             $table->date('date');

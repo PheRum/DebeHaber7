@@ -21,9 +21,8 @@ class CreateFixedAssetsTable extends Migration
 
             $table->unsignedInteger('taxpayer_id');
             $table->foreign('taxpayer_id')->references('id')->on('taxpayers')->onDelete('cascade');
-
-            $table->unsignedInteger('currency_id');
-            $table->foreign('currency_id')->references('id')->on('currencies')->onDelete('cascade');
+            
+            $table->string('currency', 3)->default('USD');
             $table->unsignedDecimal('rate', 10, 4)->default(1);
 
             $table->string('serial')->nullable();
