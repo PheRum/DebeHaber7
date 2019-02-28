@@ -22,6 +22,6 @@ class TaxpayerSetting extends Model
 
     public function taxPayer()
     {
-        return $this->belongsTo(\App\Taxpayer::class, 'taxpayer_id');
+        return $this->belongsTo(Taxpayer::class, 'taxpayer_id');
     }
 }

@@ -31,6 +31,6 @@ class JournalDetail extends Model {
     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
     */
     public function chart() {
-        return $this->belongsTo(Chart::class,'chart_id','id');
+        return $this->belongsTo(Chart::class, 'chart_id', 'id');
     }
 }

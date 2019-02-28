@@ -29,7 +29,7 @@ class PurchaseController extends Controller
             ->with('currency')
             ->with('details')
             ->whereBetween('date', [$cycle->start_date, $cycle->end_date])
-            ->orderBy('transactions.date', 'desc')
+            ->orderBy('date', 'desc')
             ->paginate(50)
         );
     }

@@ -58,6 +58,8 @@ class SparkServiceProvider extends ServiceProvider
         //Do not let Users switch Teams
         // Spark::identifyTeamsByPath();
 
+        Spark::ensureEmailIsVerified();
+
         Spark::useRoles([
             'admin' => 'Administrator',
             'data-entry' => 'Data Entry',
