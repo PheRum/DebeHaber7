@@ -70,6 +70,7 @@ class TaxpayerController extends Controller
     */
     public function store(Request $request)
     {
+
         //Used below for date and year.
         $current_date = Carbon::now();
 
@@ -144,7 +145,7 @@ class TaxpayerController extends Controller
         $taxPayer_Integration->type = $request->type ?? 1; //Default to 1 if nothing is selected
         $taxPayer_Integration->save();
 
-        $team = App\Team::find(Auth::user()->current_team_id);
+        $team = Team::find(Auth::user()->current_team_id);
         $team->addSeat();
 
         //Only create settings if they don't already exists. Make sure not to over write another users information.
@@ -169,9 +170,9 @@ class TaxpayerController extends Controller
         }
 
         //Send an email to user or team members.
-
+    return view('taxpayer')->with('taxPayer', $taxPayer);
         //TODO Check if Default Version is available for Country.
-        return response()->json('ok', 200);
+        //return response()->json('ok', 200);
     }
 
     //This is for Customers or Suppliers that are also Taxpayers.
