@@ -15,8 +15,7 @@ class CreateTaxpayersTable extends Migration
     {
         Schema::create('taxpayers', function (Blueprint $table) {
 
-            // $table->increments('id');
-            $table->uuid('id')->primary();
+            $table->increments('id');
 
             $table->string('country', 3)->default('PRY');
             $table->string('currency', 3)->default('PYG')->nullable();

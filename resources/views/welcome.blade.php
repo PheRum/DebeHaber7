@@ -40,6 +40,8 @@
                 <img src="/img/color-logo.png" alt="{{__('Logo')}}" />
             </h1>
         </div>
+        
+        @include('cookieConsent::index')
     </div>
 </body>
 </html>
