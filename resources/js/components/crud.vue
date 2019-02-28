@@ -25,7 +25,10 @@ export default {
             //Loading indicators
             // this.$refs.topProgress.start();
             app.loading = true;
-            axios.get('/api' + this.$route.path + '?page=' + app.$children[1].currentPage )
+
+            var page=app.$children[1]!=null?app.$children[1].currentPage :1
+
+            axios.get('/api' + this.$route.path + '?page=' + page )
             .then(({ data }) => {
 
                 app.items = data.data;
@@ -114,7 +117,7 @@ export default {
     },
     mounted() {
         var app = this;
-        app.onList(1);
+        app.onList();
     }
 }
 </script>

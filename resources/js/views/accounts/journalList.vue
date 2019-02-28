@@ -74,7 +74,7 @@
                   </b-button-group>
                 </template>
                 <template slot="actions" slot-scope="data">
-                    <table-actions :id="data.item.id"></table-actions>
+                    <table-actions :row="data.item"></table-actions>
                 </template>
 
                 <div slot="table-busy">
@@ -85,6 +85,7 @@
                     <table-empty></table-empty>
                 </template>
               </b-table>
+                  <b-pagination align="center" :total-rows="meta.total" :per-page="meta.per_page"  @change="onList()"></b-pagination>
             </b-card>
           </crud>
         </div>
@@ -102,7 +103,7 @@ export default {
 
   }),
   computed: {
-    
+
     formURL: function () {
       return this.$route.name.replace('List', 'Form');
     },

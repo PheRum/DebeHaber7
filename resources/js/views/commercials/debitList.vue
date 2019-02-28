@@ -54,8 +54,8 @@
                                     </span>
                                 </template>
 
-                                <template slot="action" slot-scope="data">
-                                    <table-actions :editItem="data.item"></table-actions>
+                                <template slot="actions" slot-scope="data">
+                                    <table-actions :row="data.item"></table-actions>
                                 </template>
 
                                 <div slot="table-busy">

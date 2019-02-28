@@ -188,8 +188,6 @@ export default {
             .then(function (response) {
                 app.$snack.success({ text: this.$i18n.t('commercial.JournalSaved', app.data.number) });
                 app.$router.push({ name: app.$route.name, params: { id: '0' }})
-                app.data.customer_id = 0;
-                app.data.customer = [];
 
             }).catch(function (error) {
                 app.$snack.danger({

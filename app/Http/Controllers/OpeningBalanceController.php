@@ -7,7 +7,7 @@ use App\Cycle;
 use App\Journal;
 use App\JournalDetail;
 use App\Chart;
-use App\Http\Resources\BalanceResource;
+use App\Http\Resources\GeneralResource;
 use Illuminate\Http\Request;
 use DB;
 
@@ -53,7 +53,7 @@ class OpeningBalanceController extends Controller
         }
 
         $openingBalance = $charts->sortBy('type')->sortBy('code');
-        return response()->json(BalanceResource::collection($openingBalance));
+        return response()->json(GeneralResource::collection($openingBalance));
     }
 
     /**
