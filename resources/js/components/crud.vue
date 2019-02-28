@@ -20,13 +20,12 @@ export default {
     {
         onList() {
             var app = this;
-            var page = 1;
+
 
             //Loading indicators
             // this.$refs.topProgress.start();
             app.loading = true;
-
-            axios.get('/api' + this.$route.path + '?page=' + page )
+            axios.get('/api' + this.$route.path + '?page=' + app.$children[1].currentPage )
             .then(({ data }) => {
 
                 app.items = data.data;
@@ -94,13 +93,14 @@ export default {
             var app = this;
             app.onDelete('/api' + app.$route.path, item.id)
             .then(function (response) {
+                app.items.splice(app.items.indexOf(item), 1);
                 app.$snack.success({
                     text: app.$i18n.t('general.rowDeleted'),
                     button: app.$i18n.t('general.undo'),
                     action: app.undoDeletedRow
                 });
                 app.lastDeletedItem = item;
-                app.items.splice(app.items.indexOf(item), 1);
+
             }).catch(function (error) {
                 app.$snack.danger({ text: error.message });
             });
@@ -114,7 +114,7 @@ export default {
     },
     mounted() {
         var app = this;
-        app.onList(app.$route.path);
+        app.onList(1);
     }
 }
 </script>

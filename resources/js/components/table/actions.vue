@@ -1,10 +1,10 @@
 <template>
     <div>
         <b-button-group size="sm" class="show-when-hovered">
-            <b-button :to="{ name: formURL, params: { id: row[property_id] }}">
+            <b-button :to="{ name: formURL, params: { id: row.id }}">
                 <i class="material-icons md-18">edit</i>
             </b-button>
-            <b-button @click="onDelete(row)">
+            <b-button @click="$parent.$parent.onDestroy(row)">
                 <i class="material-icons md-19">delete_outline</i>
             </b-button>
         </b-button-group>

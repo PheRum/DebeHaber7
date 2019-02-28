@@ -216,6 +216,7 @@ export default {
         addDetailRow() {
             this.data.details.push({
                 // index: this.data.details.length + 1,
+                id:0,
                 chart_id: this.accountCharts[0].id,
                 debit: '0',
                 credit: '0',
