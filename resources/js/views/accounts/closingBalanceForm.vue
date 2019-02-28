@@ -49,7 +49,7 @@
             <b-col>
                 <!-- <crud :columns="columns" inline-template> -->
                 <b-card no-body>
-                    <b-table hover responsive :items="data.data" :fields="columns" show-empty>
+                    <b-table hover responsive :items="data" :fields="columns" show-empty>
                         <template slot="code" slot-scope="data">
                             <span v-if="data.item.is_accountable">
                                 {{ data.item.code }}

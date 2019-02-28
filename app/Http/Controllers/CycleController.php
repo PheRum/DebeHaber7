@@ -62,7 +62,7 @@ class CycleController extends Controller
     public function show(Taxpayer $taxPayer,Cycle $cycle, $cycleId)
     {
         return new GeneralResource(
-            Cycle::where('id', $cycleId)->first()
+            Cycle::with('chartVersion')->where('id', $cycleId)->first()
         );
     }
 

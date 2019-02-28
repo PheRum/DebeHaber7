@@ -57,7 +57,7 @@ class ClosingBalanceController extends Controller
         }
 
         $closingBalance = $charts->sortBy('type')->sortBy('code');
-        return GeneralResource::collection($closingBalance);
+        return response()->json(GeneralResource::collection($closingBalance));
     }
 
     /**
@@ -68,6 +68,7 @@ class ClosingBalanceController extends Controller
     */
     public function store(Request $request,Taxpayer $taxPayer, Cycle $cycle)
     {
+
         $journal =  Journal::where('is_last', true)->where('cycle_id',$cycle->id)->first() ?? new Journal();
 
         $journal->date = $cycle->end_date;
@@ -76,10 +77,10 @@ class ClosingBalanceController extends Controller
         $journal->cycle_id = $cycle->id;
         $journal->save();
 
-        $details = collect($request)->where('is_accountable', '=', 1);
-
+        $details = collect($request)->where('is_accountable',  1);
         foreach ($details as $detail)
         {
+
             // JournalDetail::where('id', $detail->journal_id)->first() ??
             $journalDetail = new JournalDetail();
 
