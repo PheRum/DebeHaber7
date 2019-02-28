@@ -16,7 +16,7 @@
                         <b-list-group flush>
                             @foreach ($taxPayerIntegrations->sortBy('taxpayer.name') as $integration)
                                 <b-list-group-item href="{{ url('selectTaxPayer', $integration->taxpayer) }}">
-                                    @if ($integration->taxpayer->setting->is_company == 1)
+                                    @if ($integration->taxpayer->is_company == 1)
                                         <i class="material-icons">work_outline</i>
                                     @else
                                         <i class="material-icons">person_outline</i>

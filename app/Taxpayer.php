@@ -8,8 +8,7 @@ use Laravel\Scout\Searchable;
 class Taxpayer extends Model
 {
     use Searchable;
-    protected $incrementing = false;
-    
+
     protected $fillable = [
         'name',
         'country',
@@ -29,11 +28,6 @@ class Taxpayer extends Model
             'alias' => $this->alias,
             'email' => $this->email
         ];
-    }
-
-    public function setting()
-    {
-        return $this->hasOne(TaxpayerSetting::class, 'taxpayer_id');
     }
 
     /**

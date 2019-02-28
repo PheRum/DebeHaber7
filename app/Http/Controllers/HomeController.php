@@ -37,7 +37,6 @@ class HomeController extends Controller
         $taxPayerIntegrations = TaxpayerIntegration::MyTaxPayers($user->current_team->id)
         ->whereIn('status', [1, 2])
         ->with('taxpayer')
-        ->with('taxpayer.setting')
         ->paginate(10);
 
         $integrationInvites = TaxpayerIntegration::

@@ -15,12 +15,9 @@ class CreateCurrencyRatesTable extends Migration
     {
         Schema::create('currency_rates', function (Blueprint $table) {
             $table->increments('id');
-            
+
             $table->unsignedInteger('currency_id');
             $table->foreign('currency_id')->references('id')->on('currencies')->onDelete('cascade');
-
-            $table->unsignedInteger('taxpayer_id')->nullable();
-            $table->foreign('taxpayer_id')->references('id')->on('taxpayers')->onDelete('cascade');
 
             $table->date('date');
             $table->unsignedDecimal('buy_rate', 10, 4)->default(1);

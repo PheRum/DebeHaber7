@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Transaction;
 use App\Taxpayer;
 use App\TaxpayerIntegration;
-use App\TaxpayerSetting;
 use App\TaxpayerType;
 use App\ChartVersion;
 use App\Cycle;
@@ -97,6 +96,18 @@ class TaxpayerController extends Controller
         $taxPayer->address = $taxPayer->address ?? $request->address;
         $taxPayer->telephone = $taxPayer->telephone ?? $request->telephone;
         $taxPayer->email = $taxPayer->email ?? $request->email;
+
+        $taxPayer->agent_name = $request->setting_agent = true ? 1 : 0;
+        $taxPayer->agent_taxid = $request->setting_agenttaxid = true ? 1 : 0;
+
+        $taxPayer->show_inventory = $request->setting_inventory = true ? 1 : 0;
+        $taxPayer->show_production = $request->setting_production = true ? 1 : 0;
+        $taxPayer->show_fixedasset = $request->setting_fixedasset = true ? 1 : 0;
+
+        // $taxPayer->does_export = $request->setting_export = true ? 1 : 0;
+        // $taxPayer->does_import = $request->setting_import = true ? 1 : 0;
+
+        $taxPayer->is_company = $request->setting_is_company = true ? 1 : 0 ;
         $taxPayer->save();
 
         $chartVersion = ChartVersion::where('country', $taxPayer->country)
@@ -148,31 +159,8 @@ class TaxpayerController extends Controller
         $team = Team::find(Auth::user()->current_team_id);
         $team->addSeat();
 
-        //Only create settings if they don't already exists. Make sure not to over write another users information.
-        $taxPayer_Setting = TaxpayerSetting::where('taxpayer_id', $taxPayer->id)->first() ?? new TaxpayerSetting();
-
-        if ($taxPayer_Setting->taxpayer_id == 0)
-        {
-            $taxPayer_Setting->taxpayer_id = $taxPayer->id;
-
-            $taxPayer_Setting->agent_name = $request->setting_agent = true ? 1 : 0;
-            $taxPayer_Setting->agent_taxid = $request->setting_agenttaxid = true ? 1 : 0;
-
-            $taxPayer_Setting->show_inventory = $request->setting_inventory = true ? 1 : 0;
-            $taxPayer_Setting->show_production = $request->setting_production = true ? 1 : 0;
-            $taxPayer_Setting->show_fixedasset = $request->setting_fixedasset = true ? 1 : 0;
-
-            // $taxPayer_Setting->does_export = $request->setting_export = true ? 1 : 0;
-            // $taxPayer_Setting->does_import = $request->setting_import = true ? 1 : 0;
-
-            $taxPayer_Setting->is_company =$request->setting_is_company = true ? 1 : 0 ;
-            $taxPayer_Setting->save();
-        }
-
         //Send an email to user or team members.
-    return view('taxpayer')->with('taxPayer', $taxPayer);
-        //TODO Check if Default Version is available for Country.
-        //return response()->json('ok', 200);
+        return view('taxpayer')->with('taxPayer', $taxPayer);
     }
 
     //This is for Customers or Suppliers that are also Taxpayers.
@@ -209,7 +197,6 @@ class TaxpayerController extends Controller
     public function show($taxPayer)
     {
         $taxPayer = Taxpayer::where('id', $taxPayer)
-        ->with('setting')
         ->with('integrations')
         ->with('currencies')
         ->first();
@@ -232,14 +219,12 @@ class TaxpayerController extends Controller
             $taxPayer->address = $request->address;
             $taxPayer->telephone = $request->telephone;
             $taxPayer->email = $request->email;
-            $taxPayer->save();
 
-            //this code is wrong. you need to get specific taxpayer setting
-            $taxPayer_Setting = TaxpayerSetting::where('taxpayer_id', $taxPayer->id)->first() ?? new TaxpayerSetting();
-            $taxPayer_Setting->taxpayer_id = $taxPayer->id;
-            $taxPayer_Setting->agent_taxid = $request->agent_taxid;
-            $taxPayer_Setting->agent_name = $request->agent_name;
-            $taxPayer_Setting->save();
+            $taxPayer->taxpayer_id = $taxPayer->id;
+            $taxPayer->agent_taxid = $request->agent_taxid;
+            $taxPayer->agent_name = $request->agent_name;
+
+            $taxPayer->save();
 
             $taxpayertypes = TaxpayerType::where('taxpayer_id', $taxPayer->id)->get();
 
@@ -328,13 +313,6 @@ class TaxpayerController extends Controller
             $cycle->end_date = new Carbon('last day of December ' . $workingYear);
             $cycle->taxpayer_id = $taxPayer->id;
             $cycle->save();
-        }
-
-        $setting = $taxPayer->setting ?? new TaxpayerSetting();
-        if ($setting->id != null || $setting->id == 0)
-        {
-            $setting->taxpayer_id = $taxPayer->id;
-            $setting->save();
         }
 
         //run code to check for fiscal year selection and create if not.
