@@ -56,9 +56,9 @@
                                 </b-form-group>
                                 <b-form-group :label="$t('commercial.customer')">
                                     <b-input-group>
-                                        <b-input type="number" :placeholder="$t('general.name')" :value="data.partner_name"/>
+                                        <b-input type="text" :placeholder="$t('general.name')" v-model="data.partner_name"/>
                                         <b-input-group-append>
-                                            <b-input type="number" :placeholder="spark.taxPayerConfig.taxid_name" :value="data.partner_taxid"/>
+                                            <b-input type="text" :placeholder="spark.taxPayerConfig.taxid_name" v-model="data.partner_taxid"/>
                                         </b-input-group-append>
                                     </b-input-group>
                                     <!-- <search-taxpayer v-model="data.customer"></search-taxpayer> -->
@@ -336,7 +336,7 @@ export default {
             app.data.date = new Date(Date.now()).toISOString().split("T")[0];
             app.data.chart_account_id = app.accountCharts[0] != null ? app.accountCharts[0].id : null;
             app.data.payment_condition = 0;
-            app.data.currency = spark.taxPayerData.currency;
+            app.data.currency = app.spark.taxPayerData.currency;
             app.data.rate = 1;
         }
 

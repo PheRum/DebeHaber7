@@ -63,14 +63,14 @@ class FixedAssetController extends Controller
   public function insertFixedAsset($data, Taxpayer $taxPayer,Cycle $cycle)
   {
 
-    $fixedAsset = FixedAsset::where('ref_id', $data['id'])->where('taxpayer_id', $taxPayer->id)->first() ?? new FixedAsset();
+    $fixedAsset = FixedAsset::where('id', $data['id'])->where('taxpayer_id', $taxPayer->id)->first() ?? new FixedAsset();
 
     $ChartController = new ChartController();
 
-    $fixedAsset->ref_id = $data['id'];
+    $fixedAsset->id = $data['id'];
     $fixedAsset->chart_id = $ChartController->createIfNotExists_FixedAsset($taxPayer, $cycle, $data['LifeSpan'], $data['AssetGroup'])->id;
     $fixedAsset->taxpayer_id = $taxPayer->id;
-    $fixedAsset->currency_id = $this->checkCurrency($data['CurrencyCode'], $taxPayer);
+    $fixedAsset->currency = $this->checkCurrency($data['CurrencyCode'], $taxPayer);
 
     // if ($data['CurrencyRate'] ==  '' )
     // { $fixedAsset->rate = $this->checkCurrencyRate($fixedAsset->currency_id, $taxPayer, $data['PurchaseDate']) ?? 1; }
@@ -88,8 +88,13 @@ class FixedAssetController extends Controller
 
     //Take todays date to keep track of how new data really is.
     $fixedAsset->sync_date = Carbon::now();
+    try {
+      $fixedAsset->save();
+    } catch (\Exception $e) {
+      dd($e);
+    }
 
-    $fixedAsset->save();
+
 
     //Return account movement if not null.
     return $fixedAsset;

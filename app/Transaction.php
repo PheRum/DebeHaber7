@@ -33,13 +33,14 @@ class Transaction extends Model
 
     public function toSearchableArray()
     {
+
         return [
             'type' => $this->type,
             'taxpayer_id' => $this->taxpayer_id,
             'partner_name' => $this->partner_name,
             'partner_taxid' => $this->partner_taxid,
             'currency' => $this->currency,
-            'items' => $this->items->flatMap->name,
+            //'items' => $this->items->flatMap->name,
             'payment_condition' => $this->payment_condition,
             'date' => $this->date,
             'number' => $this->number,
