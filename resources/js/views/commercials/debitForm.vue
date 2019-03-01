@@ -55,7 +55,13 @@
                                     <b-input type="date" required placeholder="Missing Information" v-model="data.date"/>
                                 </b-form-group>
                                 <b-form-group :label="$t('commercial.supplier')">
-                                    <search-taxpayer v-model="data.supplier"></search-taxpayer>
+                                    <b-input-group>
+                                        <b-input type="number" :placeholder="$t('general.name')" :value="data.partner_name"/>
+                                        <b-input-group-append>
+                                            <b-input type="number" :placeholder="spark.taxPayerConfig.taxid_name" :value="data.partner_taxid"/>
+                                        </b-input-group-append>
+                                    </b-input-group>
+                                    <!-- <search-taxpayer v-model="data.supplier"></search-taxpayer> -->
                                 </b-form-group>
 
                                 <b-container v-if="data.supplier != null">
@@ -106,8 +112,8 @@
                                 <b-form-group :label="$t('commercial.exchangeRate')">
                                     <b-input-group>
                                         <b-input-group-prepend>
-                                            <b-form-select v-model="data.currency_id">
-                                                <option v-for="currency in currencies" :key="currency.key" :value="currency.id">{{ currency.name }}</option>
+                                            <b-form-select v-model="data.currency">
+                                                <option v-for="currency in currencies" :key="currency.key" :value="currency.code">{{ currency.name }}</option>
                                             </b-form-select>
                                         </b-input-group-prepend>
                                         <b-input type="number" placeholder="$t('commercial.payment')" :value="data.rate.toString()"/>
