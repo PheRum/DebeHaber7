@@ -93,7 +93,7 @@ export default {
                 sortable: true
             },
             {
-                key: 'customer.name',
+                key: 'partner_name',
                 label: this.$i18n.t('commercial.customer'),
                 sortable: true
             },

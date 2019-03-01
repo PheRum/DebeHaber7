@@ -64,7 +64,7 @@
 
             <template slot="total" slot-scope="data">
               <span class="float-right">
-                {{ new Number(sumValue(data.item.details)).toLocaleString() }}
+                {{ new Number(sum(data.item.details, 'value')).toLocaleString() }}
                 <small class="text-success text-uppercase" v-if="data.item.currency != null">{{ data.item.currency.code }}</small>
               </span>
             </template>
@@ -109,7 +109,7 @@ export default {
         sortable: true
       },
       {
-        key: 'supplier.name',
+        key: 'partner_name',
         label: this.$i18n.t('commercial.supplier'),
         sortable: true
       },
