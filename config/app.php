@@ -182,6 +182,7 @@ return [
         RyanWeber\Mutators\TimezonedServiceProvider::class,
         Kordy\Ticketit\TicketitServiceProvider::class,
         ScoutEngines\Elasticsearch\ElasticsearchProvider::class,
+        Nasyrov\Laravel\Enums\EnumServiceProvider::class,
     ],
 
     /*

@@ -22,6 +22,7 @@
         "laravel/spark-aurelius": "*@dev",
         "laravel/tinker": "^1.0",
         "napp/nova-bugsnag": "^1.0",
+        "nasyrov/laravel-enums": "^1.1",
         "netojose/laravel-api-explorer": "^1.0",
         "php-junior/nova-logs": "^1.0",
         "rweber7912/timezoned": "dev-master",

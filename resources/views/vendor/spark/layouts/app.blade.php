@@ -68,7 +68,15 @@
             'taxPayerData' => $taxPayerData ?? [],
             'taxPayerConfig' => $taxPayerConfig ?? [],
             'teamRole' => $teamRole ?? '',
-            'language' => Auth::user()!=null?Auth::user()->language : 'en'
+
+            'language' => Auth::user() != null ? Auth::user()->language : 'en',
+
+            'enumChartType' => App\Enums\ChartTypeEnum::labels(),
+            'enumAsset' => App\Enums\ChartAssetTypeEnum::labels(),
+            'enumEquity' => App\Enums\ChartEquityTypeEnum::labels(),
+            'enumExpense' => App\Enums\ChartExpenseTypeEnum::labels(),
+            'enumLiability' => App\Enums\ChartLiabilityTypeEnum::labels(),
+            'enumRevenue' => App\Enums\ChartRevenueTypeEnum::labels(),
         ]
     )); ?>
     </script>
