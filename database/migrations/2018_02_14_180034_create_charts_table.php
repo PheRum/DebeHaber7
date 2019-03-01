@@ -59,7 +59,7 @@ class CreateChartsTable extends Migration
             ... More to come.
             ');
 
-            $table->string('partner_taxid')->nullable();
+            $table->string('partner_taxid', 15)->nullable();
             $table->string('partner_name')->nullable();
 
             $table->unsignedDecimal('coefficient', 4, 4)->nullable();

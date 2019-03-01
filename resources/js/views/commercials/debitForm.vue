@@ -173,7 +173,7 @@ export default {
                 number: '',
                 payment_condition: 0,
                 rate: 1,
-                type: 3
+                type: 2
             },
             pageUrl: '/commercial/debit-notes',
 

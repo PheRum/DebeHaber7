@@ -148,7 +148,7 @@ class AccountReceivableController extends Controller
 
             if ($value > 0) {
                 //Check for Account Receivables used.
-                $chart = $ChartController->createIfNotExists_AccountsReceivables($this->taxPayer, $this->cycle, $groupedByInvoice->first()->customer_id);
+                $chart = $ChartController->createIfNotExists_AccountsReceivables($this->taxPayer, $this->cycle, $groupedByInvoice->first()->partner_taxid);
 
                 $detail = new JournalDetail();
                 $detail->debit = $value;

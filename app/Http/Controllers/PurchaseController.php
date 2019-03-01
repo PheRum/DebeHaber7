@@ -25,8 +25,6 @@ class PurchaseController extends Controller
         //TODO improve query using sum of deatils instead of inner join.
         return GeneralResource::collection(
             Transaction::MyPurchases()
-            ->with('supplier:name,id')
-            ->with('currency')
             ->with('details')
             ->whereBetween('date', [$cycle->start_date, $cycle->end_date])
             ->orderBy('date', 'desc')
@@ -34,11 +32,10 @@ class PurchaseController extends Controller
         );
     }
 
-    public function getLastSale($partnerId)
+    public function getLastPurchase($partner_taxid)
     {
         $transaction = Transaction::MyPurchases()
-        ->where('customer_id', $partnerId)
-        ->with('customer:name,id')
+        ->where('partner_taxid', $partner_taxid)
         ->with('details')
         ->last();
 
@@ -51,44 +48,9 @@ class PurchaseController extends Controller
     * @param  \Illuminate\Http\Request  $request
     * @return \Illuminate\Http\Response
     */
-    public function store(Request $request,Taxpayer $taxPayer,Cycle $cycle)
+    public function store(Request $request, Taxpayer $taxPayer, $cycle)
     {
-        $transaction = Transaction::firstOrNew(['id' => $request->id]);
-        $transaction->customer_id = $taxPayer->id;
-
-        if ($request->supplier['id'] > 0)
-        {
-            $transaction->supplier_id = $request->supplier['id'];
-        }
-
-        $transaction->document_id = $request->document_id > 0 ? $request->document_id : null;
-        $transaction->currency_id = $request->currency_id;
-        $transaction->rate = $request->rate;
-        $transaction->payment_condition = $request->payment_condition;
-
-        if ($request->chart_account_id > 0)
-        {
-            $transaction->chart_account_id = $request->chart_account_id;
-        }
-
-        $transaction->date = $request->date;
-        $transaction->number = $request->number;
-        $transaction->code = $request->code;
-        $transaction->code_expiry = $request->code_expiry;
-        $transaction->comment = $request->comment;
-        $transaction->type = $request->type ?? 1;
-        $transaction->save();
-
-        foreach ($request->details as $detail)
-        {
-            $transactionDetail = TransactionDetail::firstOrNew(['id' => $detail['id']]);
-            $transactionDetail->transaction_id = $transaction->id;
-            $transactionDetail->chart_id = $detail['chart_id'];
-            $transactionDetail->chart_vat_id = $detail['chart_vat_id']>0?$detail['chart_vat_id']:null;
-            $transactionDetail->value = $detail['value'];
-            $transactionDetail->save();
-        }
-
+        (new TransactionController())->store($request, $taxPayer);
         return response()->json('Ok', 200);
     }
 
@@ -101,7 +63,7 @@ class PurchaseController extends Controller
     public function show(Taxpayer $taxPayer, Cycle $cycle, $transactionId)
     {
         return new GeneralResource(
-            Transaction::MyPurchases()->with('supplier:name,taxid,id')
+            Transaction::MyPurchases()
             ->where('id', $transactionId)
             ->with('details')
             ->first()
@@ -222,17 +184,17 @@ class PurchaseController extends Controller
         //2nd Query: Sales Transactions done in Credit. Must affect customer credit account.
         $creditPurchases = Transaction::MyPurchasesForJournals($startDate, $endDate, $taxPayer->id)
         ->join('transaction_details', 'transactions.id', '=', 'transaction_details.transaction_id')
-        ->groupBy('rate', 'supplier_id')
+        ->groupBy('rate', 'partner_taxid')
         ->where('payment_condition', '>', 0)
         ->select(DB::raw('max(rate) as rate'),
-        DB::raw('max(supplier_id) as supplier_id'),
+        DB::raw('max(partner_taxid) as partner_taxid'),
         DB::raw('sum(transaction_details.value) as total'))
         ->get();
 
         //run code for credit purchase (insert detail into journal)
         foreach($creditPurchases as $row)
         {
-            $supplierChartID = $ChartController->createIfNotExists_AccountsPayable($taxPayer, $cycle, $row->supplier_id)->id;
+            $supplierChartID = $ChartController->createIfNotExists_AccountsPayable($taxPayer, $cycle, $row->partner_taxid)->id;
             $value = $row->total * $row->rate;
 
             $detail = $journal->details()->firstOrNew(['chart_id' => $supplierChartID]);

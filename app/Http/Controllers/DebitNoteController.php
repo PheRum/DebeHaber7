@@ -23,11 +23,9 @@ class DebitNoteController extends Controller
     {
         return GeneralResource::collection(
             Transaction::MyDebitNotes()
-                ->with('supplier:name,id')
-                ->with('currency')
                 ->with('details')
                 ->whereBetween('date', [$cycle->start_date, $cycle->end_date])
-                ->orderBy('transactions.date', 'desc')
+                ->orderBy('date', 'desc')
                 ->paginate(50)
         );
     }
@@ -40,50 +38,8 @@ class DebitNoteController extends Controller
     */
     public function store(Request $request, Taxpayer $taxPayer, Cycle $cycle)
     {
-        $transaction = $request->id == 0 ? new Transaction() : Transaction::where('id', $request->id)->first();
-        $transaction->customer_id = $taxPayer->id;
-
-        if ($request->supplier_id > 0) {
-            $transaction->supplier_id = $request->supplier_id;
-        }
-
-        if ($request->document_id > 0) {
-            $transaction->document_id = $request->document_id;
-        }
-
-        $transaction->currency_id = $request->currency_id;
-        $transaction->rate = $request->rate ?? 1;
-        $transaction->payment_condition = $request->payment_condition;
-
-        if ($request->chart_account_id > 0) {
-            $transaction->chart_account_id = $request->chart_account_id;
-        }
-
-        $transaction->date = $request->date;
-        $transaction->number = $request->number;
-        $transaction->code = $request->code;
-        $transaction->code_expiry = $request->code_expiry;
-        $transaction->comment = $request->comment;
-        $transaction->type = $request->type ?? 3;
-
-        $transaction->save();
-
-        foreach ($request->details as $detail) {
-
-            if ($detail['id'] == 0) {
-                $detail = new TransactionDetail();
-            } else {
-                $detail = TransactionDetail::where('id', $detail['id'])->first();
-            }
-
-            $detail->transaction_id = $transaction->id;
-            $detail->chart_id = $detail['chart_id'];
-            $detail->chart_vat_id = $detail['chart_vat_id'];
-            $detail->value = $detail['value'];
-            $detail->save();
-        }
-
-        return response()->json('ok', 200);
+        (new TransactionController())->store($request, $taxPayer);
+        return response()->json('Ok', 200);
     }
 
     /**

@@ -19,7 +19,7 @@ class CreateImpexesTable extends Migration
             $table->unsignedInteger('taxpayer_id');
             $table->foreign('taxpayer_id')->references('id')->on('taxpayers')->onDelete('cascade');
 
-            $table->string('partner_taxid')->nullable();
+            $table->string('partner_taxid', 15)->nullable();
             $table->string('partner_name')->nullable();
 
             $table->string('currency', 3)->default('USD');

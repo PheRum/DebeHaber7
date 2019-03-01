@@ -173,7 +173,7 @@ export default {
                 number: '',
                 payment_condition: 0,
                 rate: 1,
-                type: 5
+                type: 4
             },
             pageUrl: '/commercial/credit-notes',
 

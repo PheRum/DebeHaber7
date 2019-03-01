@@ -120,7 +120,7 @@ class AccountMovementController extends Controller
             }
 
             //First clean Accounts Receivables with localized currency value.
-            $partnerChartID = $chartController->createIfNotExists_AccountsReceivables($taxPayer, $cycle, $row->transaction->customer_id)->id;
+            $partnerChartID = $chartController->createIfNotExists_AccountsReceivables($taxPayer, $cycle, $row->transaction->partner_taxid)->id;
             $detail = $journal->details()->firstOrNew(['chart_id' => $partnerChartID]);
             $detail->debit += $value;
             $detail->chart_id = $partnerChartID;

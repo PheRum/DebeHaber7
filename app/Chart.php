@@ -195,16 +195,6 @@ class Chart extends Model
     }
 
     /**
-    * Get the partner that owns the model.
-    *
-    * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-    */
-    public function partner()
-    {
-        return $this->belongsTo(Taxpayer::class, 'partner_id', 'id');
-    }
-
-    /**
     * Get the fixedAssets for the model.
     *
     * @return \Illuminate\Database\Eloquent\Relations\HasMany

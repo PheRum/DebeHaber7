@@ -177,7 +177,7 @@ export default {
                 number: '',
                 payment_condition: 0,
                 rate: 1,
-                type: 4
+                type: 3
             },
             pageUrl: '/commercial/sales',
 

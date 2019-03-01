@@ -24,8 +24,6 @@ class SalesController extends Controller
     {
         return GeneralResource::collection(
             Transaction::MySales()
-            ->with('customer:name,id')
-            ->with('currency')
             ->with('details')
             ->whereBetween('date', [$cycle->start_date, $cycle->end_date])
             ->orderBy('date', 'desc')
@@ -36,7 +34,7 @@ class SalesController extends Controller
     public function getLastSale($partnerId)
     {
         $transaction = Transaction::MySales()
-        ->where('customer_id', $partnerId)
+        ->where('partner_taxid', $partnerId)
         ->with('customer:name,id')
         ->with('details')
         ->last();
@@ -52,44 +50,8 @@ class SalesController extends Controller
     */
     public function store(Request $request, Taxpayer $taxPayer, Cycle $cycle)
     {
-        $transaction = Transaction::firstOrNew(['id' => $request->id]);
-
-        if ($request->customer['id'] > 0) {
-            $transaction->customer_id = $request->customer['id'] ;
-        }
-
-        if ($request->document_id > 0) {
-            $transaction->document_id = $request->document_id;
-        }
-
-        if ($request->chart_account_id > 0) {
-            $transaction->chart_account_id = $request->chart_account_id;
-        }
-
-        $transaction->supplier_id = $taxPayer->id;
-        $transaction->currency_id = $request->currency_id;
-        $transaction->rate = $request->rate ?? 1;
-        $transaction->payment_condition = $request->payment_condition;
-        $transaction->date = $request->date;
-        $transaction->number = $request->number;
-        $transaction->code = $request->code;
-        $transaction->code_expiry = $request->code_expiry;
-        $transaction->comment = $request->comment;
-        $transaction->type = $request->type ?? 4;
-        $transaction->save();
-
-        foreach ($request->details as $detail)
-        {
-            
-            $transactionDetail = TransactionDetail::firstOrNew(['id' => $detail['id']]);
-            $transactionDetail->transaction_id = $transaction->id;
-            $transactionDetail->chart_id = $detail['chart_id'];
-            $transactionDetail->chart_vat_id = $detail['chart_vat_id'];
-            $transactionDetail->value = $detail['value'];
-            $transactionDetail->save();
-        }
-
-
+        (new TransactionController())->store($request, $taxPayer);
+        return response()->json('Ok', 200);
     }
 
     /**
@@ -103,7 +65,6 @@ class SalesController extends Controller
         return new GeneralResource(
             Transaction::MySales()
             ->where('id', $transactionId)
-            ->with('customer:name,taxid,id')
             ->with('details')
             ->first()
         );
@@ -219,10 +180,10 @@ class SalesController extends Controller
         $creditSales = Transaction::MySalesForJournals($startDate, $endDate, $taxPayer->id)
         ->join('transaction_details', 'transactions.id', '=', 'transaction_details.transaction_id')
         ->groupBy('rate')
-        ->groupBy('customer_id')
+        ->groupBy('partner_taxid')
         ->where('payment_condition', '>', 0)
         ->select(DB::raw('max(rate) as rate'),
-        DB::raw('max(customer_id) as customer_id'),
+        DB::raw('max(partner_taxid) as partner_taxid'),
         DB::raw('sum(transaction_details.value) as total'))
         ->get();
 
@@ -230,7 +191,7 @@ class SalesController extends Controller
         foreach($creditSales as $row)
         {
             $ChartController = new ChartController();
-            $customerChartID = $ChartController->createIfNotExists_AccountsReceivables($taxPayer, $cycle, $row->customer_id)->id;
+            $customerChartID = $ChartController->createIfNotExists_AccountsReceivables($taxPayer, $cycle, $row->partner_taxid)->id;
 
             $detail = $journal->details()->firstOrNew(['chart_id' => $customerChartID]);
             $detail->credit += $row->total * $row->rate;

@@ -23,8 +23,6 @@ class CreditNoteController extends Controller
     {
         return GeneralResource::collection(
             Transaction::MyCreditNotes()
-            ->with('customer:name,id')
-            ->with('currency')
             ->with('details')
             ->whereBetween('date', [$cycle->start_date, $cycle->end_date])
             ->orderBy('transactions.date', 'desc')
@@ -40,43 +38,7 @@ class CreditNoteController extends Controller
     */
     public function store(Request $request, Taxpayer $taxPayer, $cycle)
     {
-        $transaction = Transaction::firstOrNew('id', $request->id);
-        $transaction->customer_id = $request->customer_id;
-        $transaction->supplier_id = $taxPayer->id;
-
-        if ($request->document_id > 0)
-        {
-            $transaction->document_id = $request->document_id;
-        }
-
-        $transaction->currency_id = $request->currency_id;
-        $transaction->rate = $request->rate ?? 1;
-        $transaction->payment_condition = $request->payment_condition;
-
-        if ($request->chart_account_id > 0)
-        {
-            $transaction->chart_account_id = $request->chart_account_id;
-        }
-
-        $transaction->date = $request->date;
-        $transaction->number = $request->number;
-        $transaction->code = $request->code;
-        $transaction->code_expiry = $request->code_expiry;
-        $transaction->comment = $request->comment;
-        $transaction->type = $request->type ?? 5;
-
-        $transaction->save();
-
-        foreach ($request->details as $detail)
-        {
-            $transactionDetail = TransactionDetail::firstOrNew('id', $request->id);
-            $transactionDetail->transaction_id = $transaction->id;
-            $transactionDetail->chart_id = $detail['chart_id'];
-            $transactionDetail->chart_vat_id = $detail['chart_vat_id'];
-            $transactionDetail->value = $detail['value'];
-            $transactionDetail->save();
-        }
-
+        (new TransactionController())->store($request, $taxPayer);
         return response()->json('Ok', 200);
     }
 
@@ -168,7 +130,7 @@ class CreditNoteController extends Controller
         //run code for credit purchase (insert detail into journal)
         foreach($listOfCreditNotes as $row)
         {
-            $customerChartID = $ChartController->createIfNotExists_AccountsReceivables($taxPayer, $cycle, $row->customer_id)->id;
+            $customerChartID = $ChartController->createIfNotExists_AccountsReceivables($taxPayer, $cycle, $row->partner_taxid)->id;
             $value = $row->total * $row->rate;
             $detail = $journal->details()->firstOrNew(['chart_id' => $customerChartID]);
             //$detail = $journal->details->where('chart_id', $customerChartID)->first() ?? new \App\JournalDetail();

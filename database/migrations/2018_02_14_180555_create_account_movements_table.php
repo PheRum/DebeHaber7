@@ -22,7 +22,8 @@ class CreateAccountMovementsTable extends Migration
             $table->unsignedInteger('taxpayer_id');
             $table->foreign('taxpayer_id')->references('id')->on('taxpayers')->onDelete('cascade');
 
-            $table->unsignedInteger('partner_id')->nullable();
+            $table->string('partner_taxid', 15)->nullable();
+            $table->string('partner_name')->nullable();
 
             $table->unsignedInteger('transaction_id')->nullable();
             $table->foreign('transaction_id')->references('id')->on('transactions')->onDelete('cascade');

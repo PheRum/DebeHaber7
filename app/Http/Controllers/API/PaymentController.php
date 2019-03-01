@@ -143,12 +143,12 @@ class PaymentController extends Controller
         return $data;
     }
 
-    public function processPayments($data, $taxPayer, $invoice, $cycle,$partner)
+    public function processPayments($data, $taxPayer, $invoice, $cycle)
     {
-        $accMovement = AccountMovement::where('taxpaer_id',$taxPayer->id)
-        ->where('transaction_id',$invoice->id)
-        ->where('date',$this->convert_date($data['Date']))
-        ->where('comment',$data['Comment'])
+        $accMovement = AccountMovement::where('taxpaer_id', $taxPayer->id)
+        ->where('transaction_id', $invoice->id)
+        ->where('date', $this->convert_date($data['Date']))
+        ->where('comment', $data['Comment'])
         ->first() ?? new AccountMovement();
 
         //Get Payment Type. 0=Normal, 1=CreditNote, 2=VATWitholding
@@ -162,46 +162,41 @@ class PaymentController extends Controller
         {
             $chartController = new ChartController();
             //get accounts pending for customers and suppliers
-            if ($data['Type'] == 1)
-            {
-                $chartID = $chartController->createIfNotExists_AccountsReceivables($taxPayer, $cycle, $invoice->customer_id);
-            }
-            else
-            {
-                $chartID = $chartController->createIfNotExists_AccountsPayable($taxPayer, $cycle, $invoice->supplier_id);
+            if ($data['Type'] == 1) {
+                $chartID = $chartController->createIfNotExists_AccountsReceivables($taxPayer, $cycle, $invoice->partner_taxid);
+            } else {
+                $chartID = $chartController->createIfNotExists_AccountsPayable($taxPayer, $cycle, $invoice->partner_taxid);
             }
         }
         else if ($payentType == 2)
         {
             $chartController = new ChartController();
             //get accounts pending for customers and suppliers
-            if ($data['Type'] == 1)
-            {
+            if ($data['Type'] == 1) {
                 $chartID = $chartController->createIfNotExists_VATWithholdingReceivables($taxPayer, $cycle);
-            }
-            else
-            {
+            } else {
                 $chartID = $chartController->createIfNotExists_VATWithholdingPayables($taxPayer, $cycle);
             }
         }
 
         $accMovement->chart_id = $chartID;
-        $accMovement->partner_id = $partner->id;
+        $accMovement->partner_name = $data['PartnerName'];
+        $accMovement->partner_taxid = $data['PartnerTaxId'];
         $accMovement->taxpayer_id = $taxPayer->id;
         $accMovement->transaction_id = $invoice->id;
         $accMovement->currency_id = $this->checkCurrency($data['CurrencyCode'], $taxPayer);
 
         //Check currency rate based on date. if nothing found use default from api. TODO this should be updated to buy and sell rates.
-        if ($data['CurrencyRate'] ==  '' )
-        { $accMovement->rate = $this->checkCurrencyRate($accMovement->currency_id, $taxPayer, $data['Date']) ?? 1; }
-        else
-        { $accMovement->rate = $data['CurrencyRate'] ?? 1; }
+        if ($data['CurrencyRate'] ==  '' ) {
+            $accMovement->rate = $this->checkCurrencyRate($accMovement->currency_id, $taxPayer, $data['Date']) ?? 1;
+        } else {
+            $accMovement->rate = $data['CurrencyRate'] ?? 1;
+        }
 
         $accMovement->date = $this->convert_date($data['Date']);
         //based on invoice type choose if its credit or debit.
         $accMovement->credit = $invoice->type == 4 ?  $data['Credit'] : 0;
-        $accMovement->debit = ($invoice->type == 1 || $invoice->type == 2) ?  $data['Debit'] : 0;
-
+        $accMovement->debit = $invoice->type == 1 ? $data['Debit'] : 0;
         $accMovement->comment = $data['Comment'];
 
         $accMovement->save();
@@ -209,7 +204,7 @@ class PaymentController extends Controller
         return $accMovement;
     }
 
-    public function processPaymentsWithoutTransaction($data, $taxPayer,$partner, $cycle)
+    public function processPaymentsWithoutTransaction($data, $taxPayer, $cycle)
     {
 
         $accMovement = new AccountMovement();
@@ -225,40 +220,36 @@ class PaymentController extends Controller
         {
             $chartController = new ChartController();
             //get accounts pending for customers and suppliers
-            if ($data['Type'] == 1)
-            {
-                $chartID = $chartController->createIfNotExists_AccountsReceivables($taxPayer, $cycle, $invoice->customer_id);
-            }
-            else
-            {
-                $chartID = $chartController->createIfNotExists_AccountsPayable($taxPayer, $cycle, $invoice->supplier_id);
+            if ($data['Type'] == 1) {
+                $chartID = $chartController->createIfNotExists_AccountsReceivables($taxPayer, $cycle, $invoice->partner_taxid);
+            } else {
+                $chartID = $chartController->createIfNotExists_AccountsPayable($taxPayer, $cycle, $invoice->partner_taxid);
             }
         }
         else if ($payentType == 2)
         {
             $chartController = new ChartController();
             //get accounts pending for customers and suppliers
-            if ($data['Type'] == 1)
-            {
+            if ($data['Type'] == 1) {
                 $chartID = $chartController->createIfNotExists_VATWithholdingReceivables($taxPayer, $cycle);
-            }
-            else
-            {
+            } else {
                 $chartID = $chartController->createIfNotExists_VATWithholdingPayables($taxPayer, $cycle);
             }
         }
 
         $accMovement->chart_id = $chartID;
-
         $accMovement->taxpayer_id = $taxPayer->id;
-        $accMovement->partner_id = $partner->id;
-        $accMovement->currency_id = $this->checkCurrency($data['CurrencyCode'], $taxPayer);
+        $accMovement->partner_name = $data['PartnerName'];
+        $accMovement->partner_taxid = $data['PartnerTaxId'];
+        $accMovement->currency = $this->checkCurrency($data['CurrencyCode'], $taxPayer);
 
         //Check currency rate based on date. if nothing found use default from api. TODO this should be updated to buy and sell rates.
-        if ($data['CurrencyRate'] ==  '' )
-        { $accMovement->rate = $this->checkCurrencyRate($accMovement->currency_id, $taxPayer, $data['Date']) ?? 1; }
-        else
-        { $accMovement->rate = $data['CurrencyRate'] ?? 1; }
+        if ($data['CurrencyRate'] ==  '' ) {
+            $currency_id = $this->checkCurrency($data['CurrencyCode'], $taxPayer);
+            $accMovement->rate = $this->checkCurrencyRate($currency_id, $taxPayer, $data['Date']) ?? 1;
+        } else {
+            $accMovement->rate = $data['CurrencyRate'] ?? 1;
+        }
 
         $accMovement->date = $this->convert_date($data['Date']);
         //based on invoice type choose if its credit or debit.
