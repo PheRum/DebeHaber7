@@ -43,10 +43,7 @@ class PaymentController extends Controller
 
                 $firstDate = Carbon::parse($groupedRow->first()["Date"]);
                 //No need to run this query for each invoice, just check if the date is in between.
-                $cycle = Cycle::where('start_date', '<=', $firstDate)
-                ->where('end_date', '>=',$firstDate)
-                ->where('taxpayer_id', $taxPayer->id)
-                ->first();
+                $cycle = Cycle::My($taxPayer, $firstDate)->first();
 
                 if (!isset($cycle)) {
                     $cycle = $this->checkCycle($taxPayer,$firstDate);
@@ -103,7 +100,7 @@ class PaymentController extends Controller
             }
             else
             {
-            
+
                 $accMovement = $this->processPaymentsWithoutTransaction($data, $taxPayer, $supplier, $cycle);
             }
         }
@@ -203,7 +200,7 @@ class PaymentController extends Controller
         return $accMovement;
     }
 
-    public function processPaymentsWithoutTransaction($data, $taxPayer,$partner, $cycle)
+    public function processPaymentsWithoutTransaction($data, $taxPayer, $cycle)
     {
 
         $accMovement = new AccountMovement();

@@ -47,13 +47,10 @@ class AccountMovementController extends Controller
                 $firstDate = Carbon::parse($groupedRow->first()["Date"]);
 
                 //No need to run this query for each invoice, just check if the date is in between.
-                $cycle = Cycle::where('start_date', '<=', $firstDate)
-                ->where('end_date', '>=', $firstDate)
-                ->where('taxpayer_id', $taxPayer->id)
-                ->first();
+                $cycle = Cycle::My($taxPayer, $firstDate)->first();
 
                 if (!isset($cycle)) {
-                $cycle = $this->checkCycle($taxPayer,$firstDate);
+                    $cycle = $this->checkCycle($taxPayer,$firstDate);
                 }
 
                 foreach ($groupedRow as $data)

@@ -34,10 +34,7 @@ class FixedAssetController extends Controller
       {
         $taxPayer = $this->checkTaxPayer($chunkedData['TaxpayerTaxID'], $chunkedData['TaxpayerName']);
 
-        $cycle = Cycle::where('start_date', '<=',  Carbon::now())
-        ->where('end_date', '>=',  Carbon::now())
-        ->where('taxpayer_id', $taxPayer->id)
-        ->first();
+        $cycle = Cycle::My($taxPayer, $firstDate)->first();
 
         if (!isset($cycle)) {
           $cycle = $this->checkCycle($taxPayer,Carbon::now());

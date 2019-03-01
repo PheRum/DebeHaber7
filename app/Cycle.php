@@ -15,6 +15,17 @@ class Cycle extends Model
         parent::boot();
         static::addGlobalScope(new TaxpayerScope);
     }
+
+    public function scopeMy($query, Taxpayer $taxPayer, $date)
+    {
+    
+        $query->withoutGlobalScopes()
+        ->where('taxpayer_id', $taxPayer->id)
+        ->where('start_date', '<=', $date)
+        ->where('end_date', '>=', $date);
+
+      }
+
     /**
      * Get the taxPayer that owns the model.
      *
@@ -44,7 +55,7 @@ class Cycle extends Model
     {
         return $this->hasMany(Journal::class);
     }
-    
+
     /**
      * Get the cycleBudgets for the model.
      *

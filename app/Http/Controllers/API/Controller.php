@@ -22,7 +22,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function checkCycle(Taxpayer $taxPayer,$firstDate) {
+    public function checkCycle(Taxpayer $taxPayer, $firstDate) {
 
 
         $version = ChartVersion::where('country', $taxPayer->country)

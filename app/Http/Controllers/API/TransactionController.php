@@ -35,6 +35,8 @@ class TransactionController extends Controller
 
             //groupby function group by year.
             foreach ($groupData as $groupedRow) {
+
+
                 if ($groupedRow->first()['Type'] == 4 || $groupedRow->first()['Type'] == 5) {
                     $taxPayer = $this->checkTaxPayer($groupedRow->first()['SupplierTaxID'], $groupedRow->first()['SupplierName']);
                 } else if ($groupedRow->first()['Type'] == 1 || $groupedRow->first()['Type'] == 3) {
@@ -43,12 +45,9 @@ class TransactionController extends Controller
 
                 //check and create cycle
                 $firstDate = Carbon::parse($groupedRow->first()["Date"]);
-
                 //No need to run this query for each invoice, just check if the date is in between.
-                $cycle = Cycle::where('start_date', '<=', $firstDate)
-                ->where('end_date', '>=', $firstDate)
-                ->where('taxpayer_id', $taxPayer->id)
-                ->first();
+
+                $cycle = Cycle::My($taxPayer, $firstDate)->first();
 
                 if (!isset($cycle)) {
                     $cycle = $this->checkCycle($taxPayer, $firstDate);
