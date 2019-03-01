@@ -26,7 +26,7 @@
         "php-junior/nova-logs": "^1.0",
         "rweber7912/timezoned": "dev-master",
         "spatie/laravel-activitylog": "^3.2",
-        "spatie/laravel-cookie-consent": "^2.7",
+        "spatie/laravel-cookie-consent": "^2.6",
         "spatie/laravel-query-builder": "^1.13",
         "tamayo/laravel-scout-elastic": "*@dev"
     },

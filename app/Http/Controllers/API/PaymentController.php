@@ -49,7 +49,7 @@ class PaymentController extends Controller
                 ->first();
 
                 if (!isset($cycle)) {
-                $cycle = $this->checkCycle($taxPayer,$firstDate);
+                    $cycle = $this->checkCycle($taxPayer,$firstDate);
                 }
 
 
@@ -58,35 +58,32 @@ class PaymentController extends Controller
 
                 foreach ($groupedRow as $data)
                 {
-                    try
-                    {
-                        $accMovement = $this->processTransaction($data, $taxPayer, $cycle);
-                        $accMovement["Message"] = "Success";
-                        $request[$i] = $accMovement;
-                        $i = $i + 1;
-                    }
-                    catch (\Exception $e)
-                    {
-                        $data["Message"] = "Error loading transaction: " ;
-                        $request[$i] = $data;
-                        $i=$i+1;
-                    }
+                    $accMovement = $this->processTransaction($data, $taxPayer, $cycle);
+                    $accMovement["Message"] = "Success";
+                    $request[$i] = $accMovement;
+                    $i = $i + 1;
+
                 }
             }
 
         }
+
         return response()->json($request);
     }
 
     public function processTransaction($data, Taxpayer $taxPayer, Cycle $cycle)
     {
+
         if ($data['Type'] == 1) //Payment Made (Account Payable)
         {
+
             $customer = $taxPayer;
+
             $supplier = $this->checkTaxPayer($data['SupplierTaxID'], $data['SupplierName']);
 
-            $transaction = Transaction::where('supplier_id', $supplier->id)
-            ->where('customer_id', $customer->id)
+
+            $transaction = Transaction::where('partner_taxid', $supplier->taxid)
+            ->where('taxpayer_id', $customer->id)
             ->whereDate('date', $this->convert_date($data['InvoiceDate']))
             ->where('number', $data['InvoiceNumber'])
             ->whereIn('type', [1, 2])
@@ -106,6 +103,7 @@ class PaymentController extends Controller
             }
             else
             {
+            
                 $accMovement = $this->processPaymentsWithoutTransaction($data, $taxPayer, $supplier, $cycle);
             }
         }
@@ -114,8 +112,8 @@ class PaymentController extends Controller
             $customer = $this->checkTaxPayer($data['CustomerTaxID'], $data['CustomerName']);
             $supplier = $taxPayer;
 
-            $transaction = Transaction::where('supplier_id', $supplier->id)
-            ->where('customer_id', $customer->id)
+            $transaction = Transaction::where('taxpayer_id', $supplier->id)
+            ->where('partner_taxid', $customer->taxid)
             ->whereDate('date', $this->convert_date($data['InvoiceDate']))
             ->where('number', $data['InvoiceNumber'])
             ->where('type', 4)
@@ -134,6 +132,7 @@ class PaymentController extends Controller
             }
             else
             {
+
                 $accMovement = $this->processPaymentsWithoutTransaction($data, $taxPayer, $customer, $cycle);
             }
         }
@@ -143,7 +142,7 @@ class PaymentController extends Controller
         return $data;
     }
 
-    public function processPayments($data, $taxPayer, $invoice, $cycle)
+    public function processPayments($data, $taxPayer, $invoice, $cycle,$partner)
     {
         $accMovement = AccountMovement::where('taxpaer_id', $taxPayer->id)
         ->where('transaction_id', $invoice->id)
@@ -204,7 +203,7 @@ class PaymentController extends Controller
         return $accMovement;
     }
 
-    public function processPaymentsWithoutTransaction($data, $taxPayer, $cycle)
+    public function processPaymentsWithoutTransaction($data, $taxPayer,$partner, $cycle)
     {
 
         $accMovement = new AccountMovement();
@@ -221,9 +220,9 @@ class PaymentController extends Controller
             $chartController = new ChartController();
             //get accounts pending for customers and suppliers
             if ($data['Type'] == 1) {
-                $chartID = $chartController->createIfNotExists_AccountsReceivables($taxPayer, $cycle, $invoice->partner_taxid);
+                $chartID = $chartController->createIfNotExists_AccountsReceivables($taxPayer, $cycle, $partner->id);
             } else {
-                $chartID = $chartController->createIfNotExists_AccountsPayable($taxPayer, $cycle, $invoice->partner_taxid);
+                $chartID = $chartController->createIfNotExists_AccountsPayable($taxPayer, $cycle, $partner->id);
             }
         }
         else if ($payentType == 2)
@@ -235,12 +234,13 @@ class PaymentController extends Controller
             } else {
                 $chartID = $chartController->createIfNotExists_VATWithholdingPayables($taxPayer, $cycle);
             }
+
         }
 
-        $accMovement->chart_id = $chartID;
+        $accMovement->chart_id = $chartID->id;
         $accMovement->taxpayer_id = $taxPayer->id;
-        $accMovement->partner_name = $data['PartnerName'];
-        $accMovement->partner_taxid = $data['PartnerTaxId'];
+        $accMovement->partner_name = $partner->name;
+        $accMovement->partner_taxid = $partner->taxid;
         $accMovement->currency = $this->checkCurrency($data['CurrencyCode'], $taxPayer);
 
         //Check currency rate based on date. if nothing found use default from api. TODO this should be updated to buy and sell rates.

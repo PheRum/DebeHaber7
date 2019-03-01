@@ -35,9 +35,9 @@ class TransactionController extends Controller
 
             //groupby function group by year.
             foreach ($groupData as $groupedRow) {
-                if ($groupedRow->first()['Type'] == 3 || $groupedRow->first()['Type'] == 4) {
+                if ($groupedRow->first()['Type'] == 4 || $groupedRow->first()['Type'] == 5) {
                     $taxPayer = $this->checkTaxPayer($groupedRow->first()['SupplierTaxID'], $groupedRow->first()['SupplierName']);
-                } else if ($groupedRow->first()['Type'] == 2 || $groupedRow->first()['Type'] == 1) {
+                } else if ($groupedRow->first()['Type'] == 1 || $groupedRow->first()['Type'] == 3) {
                     $taxPayer = $this->checkTaxPayer($groupedRow->first()['CustomerTaxID'], $groupedRow->first()['CustomerName']);
                 }
 
@@ -46,9 +46,9 @@ class TransactionController extends Controller
 
                 //No need to run this query for each invoice, just check if the date is in between.
                 $cycle = Cycle::where('start_date', '<=', $firstDate)
-                    ->where('end_date', '>=', $firstDate)
-                    ->where('taxpayer_id', $taxPayer->id)
-                    ->first();
+                ->where('end_date', '>=', $firstDate)
+                ->where('taxpayer_id', $taxPayer->id)
+                ->first();
 
                 if (!isset($cycle)) {
                     $cycle = $this->checkCycle($taxPayer, $firstDate);
@@ -92,10 +92,10 @@ class TransactionController extends Controller
         //Im not too happy with this code since it will call db every time there is a new invoice. Maybe there is a better way, or simply remove this part and insert it again.
 
         $transaction = Transaction::where('number', $data['Number'])
-            ->where('type', $data['Type'])
-            ->where('taxpayer_id', $taxPayer->id)
-            ->where('supplier_id', $partner_taxid)
-            ->first() ?? new Transaction();
+        ->where('type', $data['Type'])
+        ->where('taxpayer_id', $taxPayer->id)
+        ->where('partner_taxid', $partner_taxid)
+        ->first() ?? new Transaction();
 
         $transaction->type = $data['Type'];
         $transaction->taxpayer_id = $taxPayer->id;
@@ -149,7 +149,7 @@ class TransactionController extends Controller
         //???
         $totalDiscount = $details->where('Value', '<', 0)->sum('Value');
         $totalValue = $details->where('Value', '>', 0)->sum('Value') != 0 ?
-            $details->where('Value', '>', 0)->sum('Value') : 1;
+        $details->where('Value', '>', 0)->sum('Value') : 1;
 
         //TODO to reduce data stored, group by VAT and Chart Type.
         //If 5 rows can be converted into 1 row it is better for our system's health and reduce server load.

@@ -39,13 +39,13 @@ class AccountReceivableController extends Controller
     */
     public function store(Request $request, Taxpayer $taxPayer, Cycle $cycle)
     {
-        if ($request->payment_value > 0) {
-            $accountMovement = new AccountMovement();
+        if ($request->payment_value > 0 &&  $request->id != '') {
+            $accountMovement = AccountMovement::where('transaction_id',$request->id)->first();
             $accountMovement->taxpayer_id = $request->taxpayer_id;
             $accountMovement->chart_id = $request->chart_account_id;
             $accountMovement->date = $request->date;
 
-            $accountMovement->transaction_id = $request->id != '' ? $request->id : null;
+            $accountMovement->transaction_id = $request->id;
             $accountMovement->currency_id = $request->currency_id;
             $accountMovement->rate = $request->rate ?? 1;
             $accountMovement->credit = $request->payment_value != '' ? $request->payment_value : 0;
@@ -65,13 +65,11 @@ class AccountReceivableController extends Controller
     * @param  \App\AccountMovement  $accountMovement
     * @return \Illuminate\Http\Response
     */
-    public function show($transactionId)
+    public function show(Taxpayer $taxPayer, Cycle $cycle,$transactionId)
     {
+        
         return new GeneralResource(
-            Transaction::MySales()
-            ->where('id', $transactionId)
-            ->with('customer:name,taxid,id')
-            ->with('accountMovements:credit,debit,rate,date')
+            AccountMovement::where('transaction_id', $transactionId)
             ->first()
         );
     }

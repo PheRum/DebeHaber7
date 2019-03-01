@@ -19,6 +19,8 @@ import InventoryList from '../views/commercials/inventoryList';
 import InventoryForm from '../views/commercials/inventoryForm';
 
 import ReceivableList from '../views/commercials/receivableList';
+import ReceivableForm from '../views/commercials/receivableForm';
+
 import PayableList from '../views/commercials/payableList';
 import PaymentForm from '../views/commercials/paymentForm';
 import MoneyMovementList from '../views/commercials/moneyMovementList';
@@ -272,7 +274,7 @@ export default
                 [
                     {
                         path: ':id',
-                        component: PaymentForm,
+                        component: ReceivableForm,
                         name: 'receivableForm',
                         meta: {
                             title: 'commercial.payment',

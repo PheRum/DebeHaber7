@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Taxpayer;
+use App\Transaction;
+use App\TransactionDetail;
 
 class TransactionController extends Controller
 {
@@ -47,6 +50,7 @@ class TransactionController extends Controller
         $transaction->code_expiry = $request->code_expiry;
         $transaction->comment = $request->comment;
         $transaction->type = $request->type ?? 1;
+
         $transaction->save();
 
         foreach ($request->details as $detail)
@@ -58,6 +62,7 @@ class TransactionController extends Controller
             $transactionDetail->value = $detail['value'];
             $transactionDetail->save();
         }
+
     }
 
     /**

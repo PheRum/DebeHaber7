@@ -42,15 +42,15 @@
                                     {{ new Date(data.item.date).toLocaleDateString() }}
                                 </template>
 
-                                <template slot="balance" slot-scope="data">
+                                <template slot="total" slot-scope="data">
                                     <span class="float-right">
                                         {{ new Number(sum(data.item.details, 'value')).toLocaleString() }}
                                         <small class="text-success text-uppercase">{{ data.item.currency }}</small>
                                     </span>
                                 </template>
 
-                                <template slot="action" slot-scope="data">
-                                    <!-- <table-actions :id="data.item.id"></table-actions> -->
+                                <template slot="actions" slot-scope="data">
+                                    <table-actions :row="data.item"></table-actions>
                                 </template>
 
                                 <div slot="table-busy">
