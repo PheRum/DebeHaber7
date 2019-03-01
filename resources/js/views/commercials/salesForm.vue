@@ -56,9 +56,9 @@
                                 </b-form-group>
                                 <b-form-group :label="$t('commercial.customer')">
                                     <b-input-group>
-                                        <b-input type="text" :placeholder="$t('general.name')" v-model="data.partner_name"/>
+                                        <b-input type="text" :placeholder="$t('general.name')" v-model.trim="data.partner_name"/>
                                         <b-input-group-append>
-                                            <b-input type="text" :placeholder="spark.taxPayerConfig.taxid_name" v-model="data.partner_taxid"/>
+                                            <b-input type="text" :placeholder="spark.taxPayerConfig.taxid_name" v-model.trim="data.partner_taxid"/>
                                         </b-input-group-append>
                                     </b-input-group>
                                     <!-- <search-taxpayer v-model="data.customer"></search-taxpayer> -->
@@ -238,24 +238,19 @@ export default {
                 app.$snack.success({ text: this.$i18n.t('commercial.invoiceSaved', app.data.number) });
                 app.$router.go(-1);
             }).catch(function (error) {
-                app.$snack.danger({ text: 'Error OMG!' });
+                app.$snack.danger({ text: this.$i18n.t('general.errorMessage') });
             });
         },
 
         onSaveNew() {
             var app = this;
-            console.log(app.data);
             crud.methods
             .onUpdate(app.baseUrl + app.pageUrl, app.data)
             .then(function (response) {
                 app.$snack.success({ text: this.$i18n.t('commercial.invoiceSaved', app.data.number) });
                 app.$router.push({ name: app.$route.name, params: { id: '0' }})
-                // app.data.customer_id = 0;
-                // app.data.customer = [];
             }).catch(function (error) {
-                app.$snack.danger({
-                    text: this.$i18n.t('general.errorMessage'),
-                });
+                app.$snack.danger({ text: this.$i18n.t('general.errorMessage') });
             });
         },
 

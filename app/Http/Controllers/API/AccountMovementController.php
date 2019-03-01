@@ -4,11 +4,9 @@ namespace App\Http\Controllers\API;
 
 use App\Taxpayer;
 use App\Chart;
-use App\ChartVersion;
 use App\Currency;
 use App\CurrencyRate;
 use App\Cycle;
-use App\ChartAlias ;
 use App\Transaction;
 use App\AccountMovement;
 use App\TransactionDetail;

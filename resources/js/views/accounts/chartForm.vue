@@ -2,7 +2,7 @@
     <div>
         <b-row class="mb-5">
             <b-col >
-                <b-btn class="d-none d-md-block float-left" v-shortkey="['esc']" @shortkey="onCancel()" @click="onCancel()">
+                <b-btn class="d-none d-md-block float-left mr-10" v-shortkey="['esc']" @shortkey="onCancel()" @click="onCancel()">
                     <i class="material-icons">keyboard_backspace</i>
                     {{ $t('general.return') }}
                 </b-btn>
@@ -41,20 +41,57 @@
             <b-col>
                 <b-card>
                     <b-container>
-                        <b-row>
-                            <b-col>
-                                <b-form-group :label="$t('commercial.date')">
-                                    <b-input type="date" required placeholder="Missing Information" v-model="data.date"/>
-                                </b-form-group>
-                            </b-col>
-                            <b-col>
+                        <b-form-group :label="$t('commercial.code')">
+                            <b-input required placeholder="Missing Information" v-model.trim="data.code"/>
+                        </b-form-group>
+                        <b-form-group :label="$t('commercial.name')">
+                            <b-input required placeholder="Missing Information" v-model.trim="data.name"/>
+                        </b-form-group>
 
-                                <b-form-group :label="$t('commercial.number')">
-                                    <b-input type="text" placeholder="Invoice Number" v-mask="spark.taxPayerConfig.document_mask" v-model="data.number"/>
-                                </b-form-group>
+                        <b-alert show variant="info">
+                            <h5 class="alert-heading">
+                                <i class="material-icons md-18">school</i>
+                                Chart Configuration
+                            </h5>
+                            <p>
+                                Charts are the life blood of any accounting system. All journal entries have multiple charts, and configuring them correctly can speed up the accounting process.
+                                The first step is to
+                            </p>
+                            <p>
+                                <small>
+                                    <b>Is Accountable: </b>
+                                </small>
+                            </p>
+                            <small>
+                                <a href="#">More Info</a>
+                            </small>
+                        </b-alert>
 
-                            </b-col>
-                        </b-row>
+                        <b-form-group label="Chart Type">
+                            <b-form-radio-group buttons v-model.number="data.type" :options="spark.enumChartType" name="enumChartType"/>
+                        </b-form-group>
+
+                        <b-form-group label="Is Accountable">
+                            <b-form-checkbox switch v-model="data.is_accountable" size="lg" name="check-button">
+                                {{ $t('accounting.isAccountable') }}
+                            </b-form-checkbox>
+                        </b-form-group>
+
+                        <b-form-group label="Asset Types" v-if="data.type == 1" description="Only accountable charts can be used in journals or transactions. If marked as false, it can only be used to summarise child accounts.">
+                            <b-form-radio-group v-model.number="data.sub_type" :options="spark.enumAsset"/>
+                        </b-form-group>
+                        <b-form-group label="Liability Types" v-if="data.type == 2" description="Only accountable charts can be used in journals or transactions. If marked as false, it can only be used to summarise child accounts.">
+                            <b-form-radio-group v-model.number="data.sub_type" :options="spark.enumLiability"/>
+                        </b-form-group>
+                        <b-form-group label="Equity Types" v-if="data.type == 3" description="Only accountable charts can be used in journals or transactions. If marked as false, it can only be used to summarise child accounts.">
+                            <b-form-radio-group v-model.number="data.sub_type" :options="spark.enumEquity"/>
+                        </b-form-group>
+                        <b-form-group label="Revenue Types" v-if="data.type == 4" description="Only accountable charts can be used in journals or transactions. If marked as false, it can only be used to summarise child accounts.">
+                            <b-form-radio-group v-model.number="data.sub_type" :options="spark.enumRevenue"/>
+                        </b-form-group>
+                        <b-form-group label="Expense Types" v-if="data.type == 5" description="Only accountable charts can be used in journals or transactions. If marked as false, it can only be used to summarise child accounts.">
+                            <b-form-radio-group v-model.number="data.sub_type" :options="spark.enumExpense"/>
+                        </b-form-group>
                     </b-container>
                 </b-card>
             </b-col>
@@ -62,45 +99,16 @@
 
         <b-row>
             <b-col>
-                <b-card>
-                    <b-container>
-                        <b-row>
-                            <b-col>
-                                <b-form-group :label="$t('commercial.comment')">
-                                    <b-input type="text" placeholder="Comment" v-model="data.comment"/>
-                                </b-form-group>
-                            </b-col>
-                        </b-row>
-                    </b-container>
+                <b-card title="Partner" sub-title="Sync with Customer or Supplier">
+
                 </b-card>
             </b-col>
         </b-row>
 
         <b-row>
             <b-col>
-                <b-card no-body>
-                    <b-table hover :items="data.details" :fields="columns">
-                        <template slot="chart_id" slot-scope="data">
-                            <b-form-select v-model="data.item.chart_id">
-                                <option v-for="item in accountCharts" :key="item.key" :value="item.id">{{ item.name }}</option>
-                            </b-form-select>
-                        </template>
-                        <template slot="debit" slot-scope="data">
-                            <!-- mask?? -->
-                            <b-input type="text" v-model="data.item.debit"  placeholder="Debit"/>
+                <b-card title="Fixed Asset Group" sub-title="State the life cycle the fixed assets related to this chart will have">
 
-                        </template>
-                        <template slot="credit" slot-scope="data">
-                            <!-- mask?? -->
-                            <b-input type="text" v-model="data.item.credit"  placeholder="credit"/>
-
-                        </template>
-                        <template slot="actions" slot-scope="data">
-                            <b-button variant="link" @click="deleteRow(data.item)">
-                                <i class="material-icons text-danger">delete_outline</i>
-                            </b-button>
-                        </template>
-                    </b-table>
                 </b-card>
             </b-col>
         </b-row>
@@ -123,7 +131,7 @@ export default {
                 name: '',
                 level: 1,
                 type: 1,
-                sub_type: null,
+                sub_type: 1,
 
                 partner_taxid: null,
                 partner_name: null,
@@ -231,7 +239,9 @@ export default {
                 app.data = response.data.data;
             });
         } else {
-
+            app.data.code = '',
+            app.data.type = 1,
+            app.data.is_accountable = false
         }
     }
 }

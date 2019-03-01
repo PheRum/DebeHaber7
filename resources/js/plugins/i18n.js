@@ -10,9 +10,6 @@ import esAccounting from './es/accounting.json';
 import enGeneral from './en/general.json';
 import esGeneral from './es/general.json';
 
-import enEnum from './en/enum.json';
-import esEnum from './es/enum.json';
-
 Vue.use(VueI18n);
 
 const messages = {
@@ -20,13 +17,11 @@ const messages = {
         'general': enGeneral,
         'commercial': enCommercial,
         'accounting': enAccounting,
-        'enum' : enEnum
     },
     'es': {
         'general': esGeneral,
         'commercial': esCommercial,
         'accounting': esAccounting,
-        'enum' : esEnum
     }
 };
 

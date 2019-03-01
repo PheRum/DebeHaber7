@@ -73,64 +73,44 @@ class PaymentController extends Controller
 
         if ($data['Type'] == 1) //Payment Made (Account Payable)
         {
-
-            $customer = $taxPayer;
-
-            $supplier = $this->checkTaxPayer($data['SupplierTaxID'], $data['SupplierName']);
-
-
-            $transaction = Transaction::where('partner_taxid', $supplier->taxid)
-            ->where('taxpayer_id', $customer->id)
+            $transaction = Transaction::where('partner_taxid', $data['SupplierTaxID'])
+            ->where('taxpayer_id', $taxPayer->id)
             ->whereDate('date', $this->convert_date($data['InvoiceDate']))
             ->where('number', $data['InvoiceNumber'])
-            ->whereIn('type', [1, 2])
+            ->where('type', 1)
             ->first();
 
-            if ($transaction != null)
-            {
-                if ($transaction->payment_condition>0)
-                {
+            if ($transaction != null) {
+                if ($transaction->payment_condition > 0) {
                     $accMovement = $this->processPayments($data, $taxPayer, $transaction, $cycle,$supplier);
-                }
-                else
-                {
+                } else {
                     return $data;
                 }
-
-            }
-            else
-            {
-
-                $accMovement = $this->processPaymentsWithoutTransaction($data, $taxPayer, $supplier, $cycle);
+            } else {
+                //TODO: I don't like the idea of processing without transaction? Is this really worth it? Maybe we can process but later allow to link to an invoice.
+                $accMovement = $this->processPaymentsWithoutTransaction($data, $taxPayer, $cycle);
             }
         }
         else if ($data['Type'] == 2) //Payment Received (Account Receivables)
         {
-            $customer = $this->checkTaxPayer($data['CustomerTaxID'], $data['CustomerName']);
-            $supplier = $taxPayer;
-
-            $transaction = Transaction::where('taxpayer_id', $supplier->id)
-            ->where('partner_taxid', $customer->taxid)
+            $transaction = Transaction::where('partner_taxid', $data['CustomerTaxID'])
+            ->where('taxpayer_id', $taxPayer->id)
             ->whereDate('date', $this->convert_date($data['InvoiceDate']))
             ->where('number', $data['InvoiceNumber'])
-            ->where('type', 4)
+            ->where('type', 3)
             ->first();
 
-            if ($transaction != null)
-            {
-                if ($transaction->payment_condition > 0)
-                {
-                    $accMovement = $this->processPayments($data, $taxPayer, $transaction, $cycle,$customer);
-                }
-                else
-                {
+            //TODO, we should only process payments of invoices that are on credit. All invoices that are on cash, should be generalized and summed by their account.
+
+            if ($transaction != null) {
+                if ($transaction->payment_condition > 0) {
+                    $accMovement = $this->processPayments($data, $taxPayer, $transaction, $cycle);
+                } else {
                     return $data;
                 }
-            }
-            else
-            {
-
-                $accMovement = $this->processPaymentsWithoutTransaction($data, $taxPayer, $customer, $cycle);
+            } else {
+                //TODO: I don't like the idea of processing without transaction? Is this really worth it? Maybe we can process but later allow to link to an invoice.
+                $accMovement = $this->processPaymentsWithoutTransaction($data, $taxPayer, $cycle);
             }
         }
 
@@ -139,7 +119,7 @@ class PaymentController extends Controller
         return $data;
     }
 
-    public function processPayments($data, $taxPayer, $invoice, $cycle,$partner)
+    public function processPayments($data, $taxPayer, $invoice, $cycle)
     {
         $accMovement = AccountMovement::where('taxpaer_id', $taxPayer->id)
         ->where('transaction_id', $invoice->id)
@@ -202,6 +182,9 @@ class PaymentController extends Controller
 
     public function processPaymentsWithoutTransaction($data, $taxPayer, $cycle)
     {
+        //TODO: get PartnerData from $data.
+        $partnerTaxID = $data['PartnerTaxId'];
+
 
         $accMovement = new AccountMovement();
 

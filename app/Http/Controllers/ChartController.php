@@ -87,7 +87,7 @@ class ChartController extends Controller
     * @param  \App\Chart  $chart
     * @return \Illuminate\Http\Response
     */
-    public function show(Chart $chart)
+    public function show(Taxpayer $taxPayer, Cycle $cycle, Chart $chart)
     {
         return new GeneralResource(
             Chart::where('id', $chart->id)

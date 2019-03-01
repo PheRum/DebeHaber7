@@ -50,7 +50,7 @@ class SalesController extends Controller
     */
     public function store(Request $request, Taxpayer $taxPayer, Cycle $cycle)
     {
-      return  response()->json( (new TransactionController())->store($request, $taxPayer),500);
+        (new TransactionController())->store($request, $taxPayer);
         return response()->json('Ok', 200);
     }
 
