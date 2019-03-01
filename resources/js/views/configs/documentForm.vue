@@ -90,9 +90,9 @@
 
                                 <b-form-group :label="spark.taxPayerConfig.document_code" v-if="spark.taxPayerConfig.document_code != ''">
                                     <b-input-group>
-                                        <b-input type="text" placeholder="$t('commercial.code')" v-model="data.code"/>
+                                        <b-input type="text" :placeholder="$t('commercial.code')" v-model="data.code"/>
                                         <b-input-group-append>
-                                            <b-input type="date" placeholder="$t('commercial.expiryDate')" v-model="data.code_expiry"/>
+                                            <b-input type="date" :placeholder="$t('commercial.expiryDate')" v-model="data.code_expiry"/>
                                         </b-input-group-append>
                                     </b-input-group>
                                 </b-form-group>

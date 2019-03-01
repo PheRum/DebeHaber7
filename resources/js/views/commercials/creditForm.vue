@@ -87,9 +87,9 @@
 
                                 <b-form-group :label="spark.taxPayerConfig.document_code" v-if="spark.taxPayerConfig.document_code != ''">
                                     <b-input-group>
-                                        <b-input type="text" placeholder="$t('commercial.code')" v-model="data.code"/>
+                                        <b-input type="text" :placeholder="$t('commercial.code')" v-model="data.code"/>
                                         <b-input-group-append>
-                                            <b-input type="date" placeholder="$t('commercial.expiryDate')" v-model="data.code_expiry"/>
+                                            <b-input type="date" :placeholder="$t('commercial.expiryDate')" v-model="data.code_expiry"/>
                                         </b-input-group-append>
                                     </b-input-group>
                                 </b-form-group>
@@ -100,7 +100,7 @@
 
                                 <b-form-group :label="$t('commercial.paymentCondition')">
                                     <b-input-group>
-                                        <b-input type="number" placeholder="$t('commercial.paymentCondition')" :value="data.payment_condition.toString()"/>
+                                        <b-input type="number" :placeholder="$t('commercial.paymentCondition')" :value="data.payment_condition.toString()"/>
                                         <b-input-group-append v-if="data.payment_condition == 0">
                                             <b-form-select v-model="data.chart_account_id">
                                                 <option v-for="account in accountCharts" :key="account.key" :value="account.id">{{ account.name }}</option>
@@ -116,7 +116,7 @@
                                                 <option v-for="currency in currencies" :key="currency.key" :value="currency.code">{{ currency.name }}</option>
                                             </b-form-select>
                                         </b-input-group-prepend>
-                                        <b-input type="number" placeholder="$t('commercial.payment')" :value="data.rate.toString()"/>
+                                        <b-input type="number" :placeholder="$t('commercial.payment')" :value="data.rate.toString()"/>
                                     </b-input-group>
                                 </b-form-group>
                             </b-col>
@@ -166,11 +166,12 @@ export default {
                 code: '',
                 code_expiry: '',
                 comment: '',
-                currency_id: 0,
-                customer_id: 0,
+                currency: '',
+                partner_name: '',
+                partner_taxid: '',
                 customer: [],
                 date: '',
-                details: [],
+                details: [{ id: 0 }],
                 document_id: '',
                 document_type: 1,
                 id: 0,
@@ -331,7 +332,7 @@ export default {
             app.data.date = new Date(Date.now()).toISOString().split("T")[0];
             app.data.chart_account_id = app.accountCharts[0] != null ? app.accountCharts[0].id : null;
             app.data.payment_condition = 0;
-            app.data.currency_id = 1;
+            app.data.currency = spark.taxPayerData.currency;
             app.data.rate = 1;
         }
 

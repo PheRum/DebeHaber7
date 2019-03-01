@@ -27,7 +27,7 @@
         if (isset($currentTeam) && request()->route('taxPayer') != null) {
 
             $taxPayerData = App\Taxpayer::where('id', request()->route('taxPayer'))
-            ->select('id', 'name', 'alias', 'taxid', 'country')
+            ->select('id', 'name', 'alias', 'taxid', 'country', 'currency')
             ->first();
 
             $taxPayerConfig = Config::get('countries.' . $taxPayerData->country);
