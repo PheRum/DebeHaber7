@@ -19,12 +19,12 @@
                     <b-card no-body>
                         <b-list-group flush>
                             <b-list-group-item href="#">
-                                <i class="material-icons">insert_chart</i>
-                                {{ $t('general.report', 2) }} {{ $route.meta.title }}
+                                <i class="material-icons">help</i>
+                                {{ $t('general.manual') }}
                             </b-list-group-item>
-                            <b-list-group-item href="#" disabled>
+                            <b-list-group-item :to="{ name: uploadURL }">
                                 <i class="material-icons">cloud_upload</i>
-                                {{ $t('general.upload') }} {{ $route.meta.title }}
+                                {{ $t('general.uploadFromExcel') }}
                             </b-list-group-item>
                         </b-list-group>
                     </b-card>
