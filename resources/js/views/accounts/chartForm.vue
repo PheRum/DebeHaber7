@@ -5,7 +5,6 @@
                 <b-btn class="d-none d-md-block float-left" v-shortkey="['esc']" @shortkey="onCancel()" @click="onCancel()">
                     <i class="material-icons">keyboard_backspace</i>
                     {{ $t('general.return') }}
-                    <!-- {{ $t('welcomeMsg') }} -->
                 </b-btn>
                 <h3 class="upper-case">
                     <img :src="$route.meta.img" alt="" class="mr-10" width="32">
@@ -14,10 +13,6 @@
             </b-col>
             <b-col>
                 <b-button-toolbar class="float-right d-none d-md-block">
-                    <b-btn class="ml-15" v-shortkey="['ctrl', 'd']" @shortkey="addDetailRow()" @click="addDetailRow()">
-                        <i class="material-icons">playlist_add</i>
-                        {{ $t('general.addRowDetail') }}
-                    </b-btn>
                     <b-button-group class="ml-15">
                         <b-btn variant="primary" v-shortkey="['ctrl', 'n']" @shortkey="onSaveNew()" @click="onSaveNew()">
                             <i class="material-icons">save</i>
@@ -30,9 +25,6 @@
                     </b-button-group>
                 </b-button-toolbar>
                 <b-button-toolbar class="float-right d-md-none">
-                    <b-btn class="ml-15" v-shortkey="['ctrl', 'd']" @shortkey="addDetailRow()" @click="addDetailRow()">
-                        <i class="material-icons">playlist_add</i>
-                    </b-btn>
                     <b-button-group class="ml-15">
                         <b-btn variant="primary" v-shortkey="['ctrl', 'n']" @shortkey="onSaveNew()" @click="onSaveNew()">
                             <i class="material-icons">save</i>
@@ -122,11 +114,24 @@ export default {
     data() {
         return {
             data: {
-                date: '',
-                details: [{id:0}],
-                id: 0,
-                number: '',
-                comment: ''
+                parent_id: [],
+                chart_version_id: 0,
+                taxpayer_id: null,
+                country: null,
+                is_accountable: false,
+                code: '',
+                name: '',
+                level: 1,
+                type: 1,
+                sub_type: null,
+
+                partner_taxid: null,
+                partner_name: null,
+
+                coefficient: null,
+                asset_years: null,
+                created_at: '',
+                updated_at: ''
             },
             pageUrl: '/accounting/charts',
             parentCharts: [],
@@ -145,7 +150,7 @@ export default {
             crud.methods
             .onUpdate(app.baseUrl + app.pageUrl, app.data)
             .then(function (response) {
-                app.$snack.success({ text: this.$i18n.t('commercial.invoiceSaved', app.data.number) });
+                app.$snack.success({ text: this.$i18n.t('general.saved', app.data.number) });
                 app.$router.go(-1);
             }).catch(function (error) {
                 app.$snack.danger({ text: 'Error OMG!' });
@@ -158,7 +163,7 @@ export default {
             crud.methods
             .onUpdate(app.baseUrl + app.pageUrl, app.data)
             .then(function (response) {
-                app.$snack.success({ text: this.$i18n.t('commercial.JournalSaved', app.data.number) });
+                app.$snack.success({ text: this.$i18n.t('general.saved', app.data.number) });
                 app.$router.push({ name: app.$route.name, params: { id: '0' }})
 
             }).catch(function (error) {
@@ -180,16 +185,6 @@ export default {
                 if (result.value) {
                     this.$router.go(-1);
                 }
-            })
-        },
-
-        addDetailRow() {
-            this.data.details.push({
-                // index: this.data.details.length + 1,
-                id:0,
-                chart_id: this.accountCharts[0].id,
-                debit: '0',
-                credit: '0',
             })
         },
 

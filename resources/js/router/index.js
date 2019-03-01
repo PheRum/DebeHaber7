@@ -61,7 +61,7 @@ export default
             url: 'index',
             title: 'Dashboard',
             description: 'Some description',
-            img: '/img/apps/sales.svg',
+            img: '/img/apps/dashboard.svg',
         }
     },
     {
@@ -136,6 +136,7 @@ export default
                         name: 'creditForm',
                         meta: {
                             title: 'commercial.creditNote',
+                            img: '/img/apps/credit-note.svg',
                         },
 
                     }
@@ -158,7 +159,6 @@ export default
                         name: 'purchaseForm',
                         meta: {
                             title: 'commercial.purchaseInvoice',
-                            description: 'Some description',
                             img: '/img/apps/purchase-v1.svg',
                         },
 
@@ -172,7 +172,7 @@ export default
                 meta: {
                     title: 'commercial.debitBook',
                     description: 'Some description',
-                    img: '/img/apps/sales.svg',
+                    img: '/img/apps/credit-note.svg',
                 },
                 children:
                 [
@@ -183,7 +183,7 @@ export default
                         meta: {
                             title: 'commercial.debitNote',
                             description: 'Some description',
-                            img: '/img/apps/sales.svg',
+                            img: '/img/apps/credit-note.svg',
                         },
 
                     }
@@ -196,7 +196,7 @@ export default
                 meta: {
                     title: 'commercial.fixedAssets',
                     description: 'Some description',
-                    img: '/img/apps/sales.svg',
+                    img: '/img/apps/fixed-asset.svg',
                 },
                 children:
                 [
@@ -207,7 +207,7 @@ export default
                         meta: {
                             title: 'commercial.fixedAsset',
                             description: 'Some description',
-                            img: '/img/apps/sales.svg',
+                            img: '/img/apps/fixed-asset.svg',
                         },
 
                     }
@@ -220,7 +220,7 @@ export default
                 meta: {
                     title: 'commercial.moneyMovements',
                     description: 'Some description',
-                    img: '/img/apps/sales.svg',
+                    img: '/img/apps/account-payable.svg',
                 },
                 children:
                 [
@@ -231,7 +231,7 @@ export default
                         meta: {
                             title: 'commercial.moneyMovement',
                             description: 'Some description',
-                            img: '/img/apps/sales.svg',
+                            img: '/img/apps/account-payable.svg',
                         },
 
                     }
@@ -244,7 +244,7 @@ export default
                 meta: {
                     title: 'commercial.inventories',
                     description: 'Some description',
-                    img: '/img/apps/sales.svg',
+                    img: '/img/apps/inventory.svg',
                 },
                 children:
                 [
@@ -254,8 +254,7 @@ export default
                         name: 'inventoryForm',
                         meta: {
                             title: 'commercial.inventory',
-                            description: 'Some description',
-                            img: '/img/apps/sales.svg',
+                            img: '/img/apps/inventory.svg',
                         },
 
                     }
@@ -268,7 +267,7 @@ export default
                 meta: {
                     title: 'commercial.accountsReceivable',
                     description: 'Some description',
-                    img: '/img/apps/sales.svg',
+                    img: '/img/apps/account-receivable.svg',
                 },
                 children:
                 [
@@ -278,8 +277,7 @@ export default
                         name: 'receivableForm',
                         meta: {
                             title: 'commercial.payment',
-                            description: 'Some description',
-                            img: '/img/apps/sales.svg',
+                            img: '/img/apps/account-receivable.svg',
                         },
 
                     }
@@ -292,7 +290,7 @@ export default
                 meta: {
                     title: 'commercial.accountsPayable',
                     description: 'Some description',
-                    img: '/img/apps/sales.svg',
+                    img: '/img/apps/account-payable.svg',
                 },
                 children:
                 [
@@ -302,8 +300,7 @@ export default
                         name: 'paymentForm',
                         meta: {
                             title: 'commercial.payment',
-                            description: 'Some description',
-                            img: '/img/apps/sales.svg',
+                            img: '/img/apps/account-payable.svg',
                         },
 
                     }
@@ -318,7 +315,6 @@ export default
         meta: {
             title: 'Accounting',
             description: 'All your accounting data is here',
-            img: '/img/apps/sales.svg',
         },
         children:
         [
@@ -339,6 +335,7 @@ export default
                         name: 'journalForm',
                         meta: {
                             title: 'accounting.journal',
+                            img: '/img/apps/journals.svg',
                         },
                     }
                 ]
@@ -350,7 +347,7 @@ export default
                 meta: {
                     title: 'Opening Balance',
                     description: 'Some description',
-                    img: '/img/apps/sales.svg',
+                    img: '/img/apps/opening.svg',
                 },
             },
             {
@@ -360,7 +357,7 @@ export default
                 meta: {
                     title: 'Closing Balance',
                     description: 'Some description',
-                    img: '/img/apps/sales.svg',
+                    img: '/img/apps/closing.svg',
                 },
             },
             {
@@ -370,7 +367,7 @@ export default
                 meta: {
                     title: 'Anual Budget',
                     description: 'Some description',
-                    img: '/img/apps/sales.svg',
+                    img: '/img/apps/budget.svg',
                 },
             },
             {
@@ -380,7 +377,7 @@ export default
                 meta: {
                     title: 'accounting.chartOfAccounts',
                     description: 'Some description',
-                    img: '/img/apps/chart.svg',
+                    img: '/img/apps/chart-of-accounts.svg',
                 },
                 children:
                 [
@@ -390,6 +387,7 @@ export default
                         name: 'chartForm',
                         meta: {
                             title: 'Chart Form',
+                            img: '/img/apps/chart-of-accounts.svg',
                         },
 
                     }

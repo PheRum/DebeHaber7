@@ -9,7 +9,7 @@
                             {{ $t($route.meta.title) }}
                         </h4>
                         <p class="lead" v-if="$route.name.includes('List')">
-                            {{ $t($route.meta.description) }},<router-link :to="{ name: formURL, params: { id: 0}}">Create</router-link>
+                            {{ $t($route.meta.description) }}
                         </p>
                     </b-card>
 
@@ -26,7 +26,7 @@
                                 <i class="material-icons">cloud_upload</i>
                                 {{ $t('general.upload') }} {{ $route.meta.title }}
                             </b-list-group-item>
-                            <b-list-group-item href="0">
+                            <b-list-group-item :to="{ name: formURL, params: { id: 0}}">
                                 <i class="material-icons md-light">add_box</i>
                                 {{ $t('general.create') }} {{ $route.meta.title }}
                             </b-list-group-item>

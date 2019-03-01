@@ -26,7 +26,7 @@
                                 <i class="material-icons">cloud_upload</i>
                                 {{ $t('general.upload') }} {{ $route.meta.title }}
                             </b-list-group-item>
-                            <b-list-group-item href="0">
+                            <b-list-group-item :to="{ name: formURL, params: { id: 0}}">
                                 <i class="material-icons md-light">add_box</i>
                                 {{ $t('general.create') }} {{ $route.meta.title }}
                             </b-list-group-item>
@@ -67,7 +67,7 @@
                                 </template>
 
                                 <template slot="actions" slot-scope="data">
-                                    <table-actions :row="data.item" v-if="data.item.is_accountable && data.item.taxpayer_id != null"></table-actions>
+                                    <table-actions :row="data.item" v-if="data.item.taxpayer_id != null"></table-actions>
                                 </template>
 
                                 <div slot="table-busy">
