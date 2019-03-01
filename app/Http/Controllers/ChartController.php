@@ -28,7 +28,7 @@ class ChartController extends Controller
     public function index(Taxpayer $taxPayer, Cycle $cycle)
     {
         return GeneralResource::collection(
-            Chart::orderBy('code')
+            Chart::orderBy('code')->get()
         );
     }
 

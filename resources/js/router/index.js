@@ -376,7 +376,7 @@ export default
                 component: ChartList,
                 name: 'chartList',
                 meta: {
-                    title: 'accounting.chart',
+                    title: 'accounting.chartOfAccounts',
                     description: 'Some description',
                     img: '/img/apps/chart.svg',
                 },
