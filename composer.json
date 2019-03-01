@@ -25,6 +25,7 @@
         "nasyrov/laravel-enums": "^1.1",
         "netojose/laravel-api-explorer": "^1.0",
         "php-junior/nova-logs": "^1.0",
+        "qcod/laravel-app-settings": "^1.0",
         "rweber7912/timezoned": "dev-master",
         "spatie/laravel-activitylog": "^3.2",
         "spatie/laravel-cookie-consent": "^2.6",

@@ -42,6 +42,20 @@
                         <b-card no-body>
                             <b-table hover responsive :items="items" :fields="columns" :current-page="current_page">
 
+                                <template slot="type" slot-scope="data">
+                                    <b-badge v-if="data.item.type == 1" variant="primary"> {{ $t(spark.enumChartType[data.item.type]) }} </b-badge>
+                                    <b-badge v-else-if="data.item.type == 2" variant="info"> {{ $t(spark.enumChartType[data.item.type]) }} </b-badge>
+                                    <b-badge v-else-if="data.item.type == 3" variant="warning"> {{ $t(spark.enumChartType[data.item.type]) }} </b-badge>
+                                    <b-badge v-else-if="data.item.type == 4" variant="success"> {{ $t(spark.enumChartType[data.item.type]) }} </b-badge>
+                                    <b-badge v-else-if="data.item.type == 5" variant="danger"> {{ $t(spark.enumChartType[data.item.type]) }} </b-badge>
+
+                                    <b-badge v-if="data.item.type == 1 && data.item.sub_type != null" pill> {{ $t(spark.enumAsset[data.item.sub_type]) }} </b-badge>
+                                    <b-badge v-else-if="data.item.type == 2 && data.item.sub_type != null" pill> {{ $t(spark.enumLiability[data.item.sub_type]) }} </b-badge>
+                                    <b-badge v-else-if="data.item.type == 3 && data.item.sub_type != null" pill> {{ $t(spark.enumEquity[data.item.sub_type]) }} </b-badge>
+                                    <b-badge v-else-if="data.item.type == 4 && data.item.sub_type != null" pill> {{ $t(spark.enumRevenue[data.item.sub_type]) }} </b-badge>
+                                    <b-badge v-else-if="data.item.type == 5 && data.item.sub_type != null" pill> {{ $t(spark.enumExpense[data.item.sub_type]) }} </b-badge>
+                                </template>
+
                                 <template slot="code" slot-scope="data">
                                     <span v-if="data.item.is_accountable">{{ data.item.code }}</span>
                                     <b v-else>{{ data.item.code }}</b>
@@ -82,9 +96,12 @@ export default {
 
     }),
     computed: {
-        columns()
-        {
+        columns() {
             return  [ {
+                key: 'type',
+                label: '',
+            },
+            {
                 key: 'code',
                 label: this.$i18n.t('commercial.code'),
                 sortable: true
@@ -97,8 +114,22 @@ export default {
             {
                 key: 'actions',
                 label: '',
-                sortable: false
             }];
+        }
+    },
+    methods: {
+        typeVariant(chartType) {
+            if (chartType == 1) {
+                return 'light'
+            } else if (chartType == 2) {
+                return 'dark'
+            } else if (chartType == 3) {
+                return 'warning'
+            } else if (chartType == 4) {
+                return 'success'
+            } else if (chartType == 5) {
+                return 'danger'
+            }
         }
     }
 }
