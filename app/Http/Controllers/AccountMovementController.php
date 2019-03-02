@@ -25,33 +25,33 @@ class AccountMovementController extends Controller
     public function store(Request $request, Taxpayer $taxPayer, Cycle $cycle)
     {
         if ($request->type != 2) {
-            $accountMovement = AccountMovement::firstOrNew('id', $request->id);
-            $accountMovement->taxpayer_id = $request->taxpayer_id;
+            $accountMovement = AccountMovement::firstOrNew(['id' => $request->id]);
+            $accountMovement->taxpayer_id = $taxPayer->id;
             $accountMovement->chart_id = $request->from_chart_id;
             $accountMovement->date =  Carbon::now();
             $accountMovement->debit = $request->debit ?? 0;
             $accountMovement->credit = $request->credit ?? 0;
-            $accountMovement->currency_id = $request->currency_id;
+            $accountMovement->currency = $request->currency;
             $accountMovement->rate = $request->rate ?? 1;
             $accountMovement->comment = $request->comment;
             $accountMovement->save();
         } else {
             $fromAccountMovement = AccountMovement::firstOrNew('id', $request->fromId);
-            $fromAccountMovement->taxpayer_id = $request->taxpayer_id;
+            $fromAccountMovement->taxpayer_id = $taxPayer->id;
             $fromAccountMovement->chart_id = $request->from_chart_id;
             $fromAccountMovement->date =  Carbon::now();
             $fromAccountMovement->debit = $request->debit ?? 0;
-            $fromAccountMovement->currency_id = $request->currency_id;
+            $fromAccountMovement->currency = $request->currency;
             $fromAccountMovement->rate = $request->rate ?? 1;
             $fromAccountMovement->comment = $request->comment;
             $fromAccountMovement->save();
 
             $toAccountMovement = AccountMovement::firstOrNew('id', $request->toId);
-            $toAccountMovement->taxpayer_id = $request->taxpayer_id;
+            $toAccountMovement->taxpayer_id = $taxPayer->id;
             $toAccountMovement->chart_id = $request->to_chart_id;
             $toAccountMovement->date =  Carbon::now();
             $toAccountMovement->credit = $request->credit ?? 0;
-            $toAccountMovement->currency_id = $request->currency_id;
+            $toAccountMovement->currency = $request->currency;
             $toAccountMovement->rate = $request->rate ?? 1;
             $toAccountMovement->comment = $request->comment;
             $toAccountMovement->save();

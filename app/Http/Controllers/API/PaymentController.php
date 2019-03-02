@@ -75,8 +75,8 @@ class PaymentController extends Controller
 
         if ($data['Type'] == 1) //Payment Made (Account Payable)
         {
-            $transaction = Transaction::where('partner_taxid', $data['SupplierTaxID'])
-            ->where('payment_condition','>', 0)
+            $transaction = Transaction:://where('partner_taxid', $data['SupplierTaxID'])
+            where('payment_condition','>', 0)
             ->where('taxpayer_id', $taxPayer->id)
             ->whereDate('date', $this->convert_date($data['InvoiceDate']))
             ->where('number', $data['InvoiceNumber'])
@@ -85,7 +85,7 @@ class PaymentController extends Controller
 
             if ($transaction != null)
             {
-                $accMovement = $this->processPayments($data, $taxPayer, $transaction, $cycle,$data['SupplierTaxID'],$data['SupplierName']);
+                $accMovement = $this->processPayments($data, $taxPayer, $transaction, $cycle);
                 $data['cloud_id'] = $accMovement->id;
             }
             else
@@ -96,8 +96,8 @@ class PaymentController extends Controller
         }
         else if ($data['Type'] == 2) //Payment Received (Account Receivables)
         {
-            $transaction = Transaction::where('partner_taxid', $data['CustomerTaxID'])
-            ->where('payment_condition','>', 0)
+            $transaction = Transaction:://where('partner_taxid', $data['CustomerTaxID'])
+            where('payment_condition','>', 0)
             ->where('taxpayer_id', $taxPayer->id)
             ->whereDate('date', $this->convert_date($data['InvoiceDate']))
             ->where('number', $data['InvoiceNumber'])
@@ -107,7 +107,7 @@ class PaymentController extends Controller
             //TODO, we should only process payments of invoices that are on credit. All invoices that are on cash, should be generalized and summed by their account.
 
             if ($transaction != null) {
-                $accMovement = $this->processPayments($data, $taxPayer, $transaction, $cycle, $data['CustomerTaxID'], $data['CustomerName']);
+                $accMovement = $this->processPayments($data, $taxPayer, $transaction, $cycle);
                 $data['cloud_id'] = $accMovement->id;
             } else {
                 //TODO: I don't like the idea of processing without transaction? Is this really worth it? Maybe we can process but later allow to link to an invoice.
@@ -120,7 +120,7 @@ class PaymentController extends Controller
         return $data;
     }
 
-    public function processPayments($data, $taxPayer, $invoice, $cycle,$partnerTaxID,$partnerName)
+    public function processPayments($data, $taxPayer, $invoice, $cycle)
     {
         $accMovement = AccountMovement::where('taxpayer_id', $taxPayer->id)
         ->where('transaction_id', $invoice->id)
@@ -140,9 +140,9 @@ class PaymentController extends Controller
             $chartController = new ChartController();
             //get accounts pending for customers and suppliers
             if ($data['Type'] == 1) {
-                $chartID = $chartController->createIfNotExists_AccountsReceivables($taxPayer, $cycle, $invoice->partner_taxid);
+                $chartID = $chartController->createIfNotExists_AccountsReceivables($taxPayer, $cycle, $invoice->partner_taxid)->id;
             } else {
-                $chartID = $chartController->createIfNotExists_AccountsPayable($taxPayer, $cycle, $invoice->partner_taxid);
+                $chartID = $chartController->createIfNotExists_AccountsPayable($taxPayer, $cycle, $invoice->partner_taxid)->id;
             }
         }
         else if ($payentType == 2)
@@ -150,18 +150,16 @@ class PaymentController extends Controller
             $chartController = new ChartController();
             //get accounts pending for customers and suppliers
             if ($data['Type'] == 1) {
-                $chartID = $chartController->createIfNotExists_VATWithholdingReceivables($taxPayer, $cycle);
+                $chartID = $chartController->createIfNotExists_VATWithholdingReceivables($taxPayer, $cycle)->id;
             } else {
-                $chartID = $chartController->createIfNotExists_VATWithholdingPayables($taxPayer, $cycle);
+                $chartID = $chartController->createIfNotExists_VATWithholdingPayables($taxPayer, $cycle)->id;
             }
         }
 
         $accMovement->chart_id = $chartID;
-        $accMovement->partner_name = $partnerTaxID;
-        $accMovement->partner_taxid = $partnerName;
         $accMovement->taxpayer_id = $taxPayer->id;
         $accMovement->transaction_id = $invoice->id;
-        $accMovement->currency_id = $this->checkCurrency($data['CurrencyCode'], $taxPayer);
+        $accMovement->currency = $this->checkCurrency($data['CurrencyCode'], $taxPayer);
 
         //Check currency rate based on date. if nothing found use default from api. TODO this should be updated to buy and sell rates.
         if ($data['CurrencyRate'] ==  '' ) {

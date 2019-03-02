@@ -9,6 +9,9 @@ use App\Scopes\TaxpayerScope;
 class AccountMovement extends Model
 {
     use SoftDeletes;
+    protected $fillable = [
+        'id'
+    ];
     protected static function boot()
     {
         parent::boot();

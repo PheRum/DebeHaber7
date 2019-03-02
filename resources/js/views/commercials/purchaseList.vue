@@ -72,6 +72,7 @@
                                     <table-empty></table-empty>
                                 </template>
                             </b-table>
+                              <b-pagination align="center" :total-rows="meta.total" :per-page="meta.per_page"  @change="onList()"></b-pagination>
                         </b-card>
                     </crud>
                 </div>
