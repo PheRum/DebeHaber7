@@ -14,10 +14,6 @@
             </b-col>
             <b-col>
                 <b-button-toolbar class="float-right d-none d-md-block">
-                    <b-btn class="ml-15" v-shortkey="['ctrl', 'd']" @shortkey="addDetailRow()" @click="addDetailRow()">
-                        <i class="material-icons">playlist_add</i>
-                        {{ $t('general.addRowDetail') }}
-                    </b-btn>
                     <b-button-group class="ml-15">
                         <b-btn variant="primary" v-shortkey="['ctrl', 'n']" @shortkey="onSaveNew()" @click="onSaveNew()">
                             <i class="material-icons">save</i>
@@ -30,9 +26,6 @@
                     </b-button-group>
                 </b-button-toolbar>
                 <b-button-toolbar class="float-right d-md-none">
-                    <b-btn class="ml-15" v-shortkey="['ctrl', 'd']" @shortkey="addDetailRow()" @click="addDetailRow()">
-                        <i class="material-icons">playlist_add</i>
-                    </b-btn>
                     <b-button-group class="ml-15">
                         <b-btn variant="primary" v-shortkey="['ctrl', 'n']" @shortkey="onSaveNew()" @click="onSaveNew()">
                             <i class="material-icons">save</i>

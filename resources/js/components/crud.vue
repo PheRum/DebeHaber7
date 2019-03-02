@@ -71,6 +71,7 @@ export default {
                 return response
             })
             .catch(function (error) {
+              console.log(error.response);
                 return error.response
             });
         },

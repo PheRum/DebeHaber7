@@ -14,10 +14,6 @@
             </b-col>
             <b-col>
                 <b-button-toolbar class="float-right d-none d-md-block">
-                    <b-btn class="ml-15" v-shortkey="['ctrl', 'd']" @shortkey="addDetailRow()" @click="addDetailRow()">
-                        <i class="material-icons">playlist_add</i>
-                        {{ $t('general.addRowDetail') }}
-                    </b-btn>
                     <b-button-group class="ml-15">
                         <b-btn variant="primary" v-shortkey="['ctrl', 'n']" @shortkey="onSaveNew()" @click="onSaveNew()">
                             <i class="material-icons">save</i>
@@ -30,9 +26,6 @@
                     </b-button-group>
                 </b-button-toolbar>
                 <b-button-toolbar class="float-right d-md-none">
-                    <b-btn class="ml-15" v-shortkey="['ctrl', 'd']" @shortkey="addDetailRow()" @click="addDetailRow()">
-                        <i class="material-icons">playlist_add</i>
-                    </b-btn>
                     <b-button-group class="ml-15">
                         <b-btn variant="primary" v-shortkey="['ctrl', 'n']" @shortkey="onSaveNew()" @click="onSaveNew()">
                             <i class="material-icons">save</i>
@@ -120,9 +113,9 @@ export default {
             crud.methods
             .onUpdate(app.baseUrl + app.pageUrl + "/store", app.data)
             .then(function (response) {
-              app.$snack.success({
-                          text: app.$i18n.t('accounting.CycleSaved'),
-                      });
+                app.$snack.success({
+                    text: app.$i18n.t('accounting.CycleSaved'),
+                });
                 app.$router.go(-1);
             }).catch(function (error) {
                 app.$snack.danger({ text: 'Error OMG!' });
@@ -135,11 +128,14 @@ export default {
             crud.methods
             .onUpdate(app.baseUrl + app.pageUrl + "/store", app.data)
             .then(function (response) {
-              app.$snack.success({
-                          text: app.$i18n.t('accounting.CycleSaved'),
-                      });
+                app.$snack.success({
+                    text: app.$i18n.t('accounting.CycleSaved'),
+                });
                 app.$router.push({ name: app.$route.name, params: { id: '0' }})
-
+                app.data.id=0;
+                app.data.start_date='';
+                app.data.end_date='';
+                app.data.year='';
 
             }).catch(function (error) {
                 app.$snack.danger({

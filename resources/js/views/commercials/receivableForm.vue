@@ -48,7 +48,7 @@
                                     <b-input type="date" required placeholder="Missing Information" v-model="data.date"/>
                                 </b-form-group>
                                 <b-form-group :label="$t('commercial.value')">
-                                    <b-input type="number" placeholder="Value"  v-model="data.number"/>
+                                    <b-input type="number" placeholder="Value"  v-model.number="data.payment_value"/>
                                 </b-form-group>
 
 
@@ -134,7 +134,9 @@ export default {
             crud.methods
             .onUpdate(app.baseUrl + app.pageUrl, app.data)
             .then(function (response) {
-                app.$snack.success({ text: this.$i18n.t('commercial.invoiceSaved', app.data.number) });
+                app.$snack.success({
+                    text: app.$i18n.t('commercial.accountReceivableSaved'),
+                });
                 app.$router.go(-1);
             }).catch(function (error) {
                 app.$snack.danger({ text: 'Error OMG!' });
@@ -147,7 +149,9 @@ export default {
             crud.methods
             .onUpdate(app.baseUrl + app.pageUrl, app.data)
             .then(function (response) {
-                app.$snack.success({ text: this.$i18n.t('commercial.invoiceSaved', app.data.number) });
+                app.$snack.success({
+                    text: app.$i18n.t('commercial.accountReceivableSaved'),
+                });
                 app.$router.push({ name: app.$route.name, params: { id: '0' }})
                 // app.data.customer_id = 0;
                 // app.data.customer = [];
