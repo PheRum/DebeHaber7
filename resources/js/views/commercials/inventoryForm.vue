@@ -44,17 +44,20 @@
                     <b-container>
                         <b-row>
                             <b-col>
-                                <b-form-group :label="$t('commercial.date')">
-                                    <b-input type="date" required placeholder="Missing Information" v-model="data.purcahse_date"/>
+                                <b-form-group :label="$t('commercial.startDate')">
+                                    <b-input type="date" required placeholder="Missing Information" v-model="data.start_date"/>
                                 </b-form-group>
-                                <b-form-group :label="$t('commercial.purchaseValue')">
-                                    <b-input type="number" placeholder="Value"  v-model.number="data.purchase_value"/>
+                                <b-form-group :label="$t('commercial.endDate')">
+                                    <b-input type="date" required placeholder="Missing Information" v-model="data.end_date"/>
                                 </b-form-group>
-                                <b-form-group :label="$t('commercial.currentValue')">
-                                    <b-input type="number" placeholder="Value"  v-model.number="data.current_value"/>
+                                <b-form-group :label="$t('commercial.salesValue')">
+                                    <b-input type="number" placeholder="Value"  v-model.number="data.sales_value"/>
                                 </b-form-group>
-                                <b-form-group :label="$t('commercial.quantity')">
-                                    <b-input type="number" placeholder="Value"  v-model.number="data.quantity"/>
+                                <b-form-group :label="$t('commercial.costValue')">
+                                    <b-input type="number" placeholder="Value"  v-model.number="data.cost_value"/>
+                                </b-form-group>
+                                <b-form-group :label="$t('commercial.inventoryValue')">
+                                    <b-input type="number" placeholder="Value"  v-model.number="data.inventory_value"/>
                                 </b-form-group>
 
                             </b-col>
@@ -64,22 +67,8 @@
                                         <option v-for="item in charts" :key="item.key" :value="item.id">{{ item.name }}</option>
                                     </b-form-select>
                                 </b-form-group>
-
-                                <b-form-group :label="$t('commercial.exchangeRate')">
-                                    <b-input-group>
-                                        <b-input-group-prepend>
-                                            <b-form-select v-model="data.currency">
-                                                <option v-for="currency in currencies" :key="currency.key" :value="currency.code">{{ currency.name }}</option>
-                                            </b-form-select>
-                                        </b-input-group-prepend>
-                                        <b-input type="number" :placeholder="$t('commercial.rate')" :value="data.rate"/>
-                                    </b-input-group>
-                                </b-form-group>
-                                <b-form-group :label="$t('commercial.name')">
-                                    <b-input type="text" required placeholder="Missing Information" v-model="data.name"/>
-                                </b-form-group>
-                                <b-form-group :label="$t('commercial.serial')">
-                                    <b-input type="text" required placeholder="Missing Information" v-model="data.serial"/>
+                                <b-form-group :label="$t('commercial.currentValue')">
+                                    <b-input type="number" placeholder="Value"  v-model.number="data.current_value"/>
                                 </b-form-group>
                                 <b-form-group :label="$t('commercial.comment')">
                                     <b-input type="text" required placeholder="Missing Information" v-model="data.comment"/>
@@ -204,7 +193,7 @@ export default {
         }
 
         crud.methods
-        .onRead(app.baseUrl + "/accounting/charts/for/fixed-assets/")
+        .onRead(app.baseUrl + "/commercial/inventories/get_InventoryChartType/")
         .then(function (response) {
             app.accountCharts = response.data.data;
         });

@@ -9,7 +9,7 @@
                             {{ $t($route.meta.title) }}
                         </h4>
                         <p class="lead" v-if="$route.name.includes('List')">
-                            {{ $t($route.meta.description) }}
+                            {{ $t($route.meta.description) }} , <router-link :to="{ name: formURL, params: { id: 0}}">Create</router-link>
                         </p>
                     </b-card>
 
@@ -47,12 +47,6 @@
                                           {{ new Date(data.item.date).toLocaleDateString() }}
                                       </template>
 
-                                      <template slot="total" slot-scope="data">
-                                          <span class="float-right">
-                                              {{ new Number(sum(data.item.details, 'debit')).toLocaleString() }}
-                                              <small class="text-success text-uppercase" v-if="data.item.currency != null">{{ data.item.currency.code }}</small>
-                                          </span>
-                                      </template>
 
                                       <template slot="actions" slot-scope="data">
                                           <table-actions :row="data.item"></table-actions>
