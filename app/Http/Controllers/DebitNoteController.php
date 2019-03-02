@@ -64,10 +64,21 @@ class DebitNoteController extends Controller
     * @param  \App\Transaction  $transaction
     * @return \Illuminate\Http\Response
     */
-    public function destroy(Transaction $transaction)
+    public function destroy(Taxpayer $taxPayer, Cycle $cycle, $transactionId)
     {
-        $transaction->delete();
-        return response()->json('ok', 200);
+        try
+        {
+            //TODO: Run Tests to make sure it deletes all journals related to transaction
+            AccountMovement::where('transaction_id', $transactionId)->delete();
+            //JournalTransaction::where('transaction_id',$transactionId)->delete();
+            Transaction::where('id', $transactionId)->delete();
+
+            return response()->json('Ok', 200);
+        }
+        catch (\Exception $e)
+        {
+            return response()->json($e, 500);
+        }
     }
 
     public function generate_Journals($startDate, $endDate, $taxPayer, $cycle)

@@ -100,7 +100,7 @@
 
                                 <b-form-group :label="$t('commercial.paymentCondition')">
                                     <b-input-group>
-                                        <b-input type="number" :placeholder="$t('commercial.paymentCondition')" :value="data.payment_condition.toString()"/>
+                                        <b-input type="text" :placeholder="$t('commercial.paymentCondition')" v-model.number="data.payment_condition.toString()"/>
                                         <b-input-group-append v-if="data.payment_condition == 0">
                                             <b-form-select v-model="data.chart_account_id">
                                                 <option v-for="account in accountCharts" :key="account.key" :value="account.id">{{ account.name }}</option>
@@ -116,7 +116,7 @@
                                                 <option v-for="currency in currencies" :key="currency.key" :value="currency.code">{{ currency.name }}</option>
                                             </b-form-select>
                                         </b-input-group-prepend>
-                                        <b-input type="number" :placeholder="$t('commercial.payment')" :value="data.rate.toString()"/>
+                                        <b-input type="text" :placeholder="$t('commercial.payment')" v-model.number="data.rate.toString()"/>
                                     </b-input-group>
                                 </b-form-group>
                             </b-col>
@@ -142,7 +142,7 @@
                         </template>
                         <template slot="value" slot-scope="data">
                             <!-- mask?? -->
-                            <b-input type="number" v-model="data.item.value"  placeholder="Value"/>
+                            <b-input type="text" v-model.number="data.item.value"  placeholder="Value"/>
 
                             <!-- <vue-numeric separator="," :value="data.item.value"></vue-numeric> -->
                         </template>
@@ -235,7 +235,9 @@ export default {
             crud.methods
             .onUpdate(app.baseUrl + app.pageUrl, app.data)
             .then(function (response) {
-                app.$snack.success({ text: this.$i18n.t('commercial.invoiceSaved', app.data.number) });
+              app.$snack.success({
+                  text: app.$i18n.t('commercial.invoiceSaved'),
+                  });
                 app.$router.go(-1);
             }).catch(function (error) {
                 app.$snack.danger({ text: this.$i18n.t('general.errorMessage') });
@@ -247,8 +249,10 @@ export default {
             crud.methods
             .onUpdate(app.baseUrl + app.pageUrl, app.data)
             .then(function (response) {
-                app.$snack.success({ text: this.$i18n.t('commercial.invoiceSaved', app.data.number) });
-                app.$router.push({ name: app.$route.name, params: { id: '0' }})
+                app.$snack.success({
+                    text: app.$i18n.t('commercial.invoiceSaved'),
+                    });
+                app.$router.push({ name: app.$route.name, params: { id: 0 }})
             }).catch(function (error) {
                 app.$snack.danger({ text: this.$i18n.t('general.errorMessage') });
             });

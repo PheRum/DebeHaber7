@@ -68,11 +68,9 @@ export default {
                 data: $data
             })
             .then(function (response) {
-
                 return response
             })
             .catch(function (error) {
-                console.log(error.response);
                 return error.response
             });
         },
@@ -87,7 +85,6 @@ export default {
                 return response;
             })
             .catch(function (error) {
-                console.log(error.response);
                 return error.response
             });
         },

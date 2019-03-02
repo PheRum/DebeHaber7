@@ -56,9 +56,9 @@
                                 </b-form-group>
                                 <b-form-group :label="$t('commercial.customer')">
                                     <b-input-group>
-                                        <b-input type="number" :placeholder="$t('general.name')" :value="data.partner_name"/>
+                                        <b-input type="text" :placeholder="$t('general.name')" v-model="data.partner_name"/>
                                         <b-input-group-append>
-                                            <b-input type="number" :placeholder="spark.taxPayerConfig.taxid_name" :value="data.partner_taxid"/>
+                                            <b-input type="text" :placeholder="spark.taxPayerConfig.taxid_name" v-model="data.partner_taxid"/>
                                         </b-input-group-append>
                                     </b-input-group>
                                     <!-- <search-taxpayer v-model="data.customer"></search-taxpayer> -->
@@ -100,7 +100,7 @@
 
                                 <b-form-group :label="$t('commercial.paymentCondition')">
                                     <b-input-group>
-                                        <b-input type="number" :placeholder="$t('commercial.paymentCondition')" :value="data.payment_condition.toString()"/>
+                                        <b-input type="text" :placeholder="$t('commercial.paymentCondition')" v-model.number="data.payment_condition"/>
                                         <b-input-group-append v-if="data.payment_condition == 0">
                                             <b-form-select v-model="data.chart_account_id">
                                                 <option v-for="account in accountCharts" :key="account.key" :value="account.id">{{ account.name }}</option>
@@ -116,7 +116,7 @@
                                                 <option v-for="currency in currencies" :key="currency.key" :value="currency.code">{{ currency.name }}</option>
                                             </b-form-select>
                                         </b-input-group-prepend>
-                                        <b-input type="number" :placeholder="$t('commercial.payment')" :value="data.rate.toString()"/>
+                                        <b-input type="text" :placeholder="$t('commercial.payment')" v-model.number="data.rate"/>
                                     </b-input-group>
                                 </b-form-group>
                             </b-col>
@@ -141,7 +141,7 @@
                             </b-form-select>
                         </template>
                         <template slot="value" slot-scope="data">
-                              <b-input type="number" v-model="data.item.value"  placeholder="Value"/>
+                            <b-form-input v-model.number="data.item.value"  placeholder="Value"/>
                         </template>
                         <template slot="actions" slot-scope="data">
                             <b-button variant="link" @click="deleteRow(data.item)">
@@ -231,7 +231,9 @@ export default {
             crud.methods
             .onUpdate(app.baseUrl + app.pageUrl, app.data)
             .then(function (response) {
-                app.$snack.success({ text: this.$i18n.t('commercial.invoiceSaved', app.data.number) });
+                app.$snack.success({
+                    text: app.$i18n.t('commercial.CreditNoteSaved'),
+                });
                 app.$router.go(-1);
             }).catch(function (error) {
                 app.$snack.danger({ text: 'Error OMG!' });
@@ -244,7 +246,9 @@ export default {
             crud.methods
             .onUpdate(app.baseUrl + app.pageUrl, app.data)
             .then(function (response) {
-                app.$snack.success({ text: this.$i18n.t('commercial.invoiceSaved', app.data.number) });
+                app.$snack.success({
+                    text: app.$i18n.t('commercial.CreditNoteSaved'),
+                });
                 app.$router.push({ name: app.$route.name, params: { id: '0' }})
                 app.data.customer_id = 0;
                 app.data.customer = [];
@@ -276,7 +280,7 @@ export default {
                 // index: this.data.details.length + 1,
                 chart_id: this.itemCharts[0].id,
                 chart_vat_id: this.vatCharts[0].id,
-                value: '0',
+                value: 0,
             })
         },
 
@@ -332,7 +336,7 @@ export default {
             app.data.date = new Date(Date.now()).toISOString().split("T")[0];
             app.data.chart_account_id = app.accountCharts[0] != null ? app.accountCharts[0].id : null;
             app.data.payment_condition = 0;
-            app.data.currency = spark.taxPayerData.currency;
+            app.data.currency = app.spark.taxPayerData.currency;
             app.data.rate = 1;
         }
 

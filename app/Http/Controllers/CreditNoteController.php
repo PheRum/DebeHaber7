@@ -65,15 +65,16 @@ class CreditNoteController extends Controller
     * @param  \App\Transaction  $transaction
     * @return \Illuminate\Http\Response
     */
-    public function destroy(Transaction $transaction)
+    public function destroy(Taxpayer $taxPayer, Cycle $cycle, $transactionId)
     {
         try
         {
-            AccountMovement::where('transaction_id', $transaction->id)->delete();
-            //  JournalTransaction::where('transaction_id', $transaction->id)->delete();
-            $transaction->delete();
+            //TODO: Run Tests to make sure it deletes all journals related to transaction
+            AccountMovement::where('transaction_id', $transactionId)->delete();
+            //JournalTransaction::where('transaction_id',$transactionId)->delete();
+            Transaction::where('id', $transactionId)->delete();
 
-            return response()->json('ok', 200);
+            return response()->json('Ok', 200);
         }
         catch (\Exception $e)
         {

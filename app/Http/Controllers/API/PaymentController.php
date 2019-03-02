@@ -74,26 +74,28 @@ class PaymentController extends Controller
         if ($data['Type'] == 1) //Payment Made (Account Payable)
         {
             $transaction = Transaction::where('partner_taxid', $data['SupplierTaxID'])
+            ->where('payment_condition','>', 0)
             ->where('taxpayer_id', $taxPayer->id)
             ->whereDate('date', $this->convert_date($data['InvoiceDate']))
             ->where('number', $data['InvoiceNumber'])
             ->where('type', 1)
             ->first();
 
-            if ($transaction != null) {
-                if ($transaction->payment_condition > 0) {
-                    $accMovement = $this->processPayments($data, $taxPayer, $transaction, $cycle,$supplier);
-                } else {
-                    return $data;
-                }
-            } else {
+            if ($transaction != null)
+            {
+                $accMovement = $this->processPayments($data, $taxPayer, $transaction, $cycle,$data['SupplierTaxID'],$data['SupplierName']);
+                $data['cloud_id'] = $accMovement->id;
+            }
+            else
+            {
                 //TODO: I don't like the idea of processing without transaction? Is this really worth it? Maybe we can process but later allow to link to an invoice.
-                $accMovement = $this->processPaymentsWithoutTransaction($data, $taxPayer, $cycle);
+                //$accMovement = $this->processPaymentsWithoutTransaction($data, $taxPayer, $cycle);
             }
         }
         else if ($data['Type'] == 2) //Payment Received (Account Receivables)
         {
             $transaction = Transaction::where('partner_taxid', $data['CustomerTaxID'])
+            ->where('payment_condition','>', 0)
             ->where('taxpayer_id', $taxPayer->id)
             ->whereDate('date', $this->convert_date($data['InvoiceDate']))
             ->where('number', $data['InvoiceNumber'])
@@ -103,25 +105,22 @@ class PaymentController extends Controller
             //TODO, we should only process payments of invoices that are on credit. All invoices that are on cash, should be generalized and summed by their account.
 
             if ($transaction != null) {
-                if ($transaction->payment_condition > 0) {
-                    $accMovement = $this->processPayments($data, $taxPayer, $transaction, $cycle);
-                } else {
-                    return $data;
-                }
+                $accMovement = $this->processPayments($data, $taxPayer, $transaction, $cycle, $data['CustomerTaxID'], $data['CustomerName']);
+                $data['cloud_id'] = $accMovement->id;
             } else {
                 //TODO: I don't like the idea of processing without transaction? Is this really worth it? Maybe we can process but later allow to link to an invoice.
-                $accMovement = $this->processPaymentsWithoutTransaction($data, $taxPayer, $cycle);
+                //$accMovement = $this->processPaymentsWithoutTransaction($data, $taxPayer, $cycle);
             }
         }
 
-        $data['cloud_id'] = $accMovement->id;
+
         //Return account movement if not null.
         return $data;
     }
 
-    public function processPayments($data, $taxPayer, $invoice, $cycle)
+    public function processPayments($data, $taxPayer, $invoice, $cycle,$partnerTaxID,$partnerName)
     {
-        $accMovement = AccountMovement::where('taxpaer_id', $taxPayer->id)
+        $accMovement = AccountMovement::where('taxpayer_id', $taxPayer->id)
         ->where('transaction_id', $invoice->id)
         ->where('date', $this->convert_date($data['Date']))
         ->where('comment', $data['Comment'])
@@ -156,8 +155,8 @@ class PaymentController extends Controller
         }
 
         $accMovement->chart_id = $chartID;
-        $accMovement->partner_name = $data['PartnerName'];
-        $accMovement->partner_taxid = $data['PartnerTaxId'];
+        $accMovement->partner_name = $partnerTaxID;
+        $accMovement->partner_taxid = $partnerName;
         $accMovement->taxpayer_id = $taxPayer->id;
         $accMovement->transaction_id = $invoice->id;
         $accMovement->currency_id = $this->checkCurrency($data['CurrencyCode'], $taxPayer);

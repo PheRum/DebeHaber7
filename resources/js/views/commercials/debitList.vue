@@ -109,7 +109,7 @@ export default {
                 sortable: true
             },
             {
-                key: 'action',
+                key: 'actions',
                 label: '',
                 sortable: false
             }];

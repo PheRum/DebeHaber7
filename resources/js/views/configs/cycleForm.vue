@@ -120,7 +120,9 @@ export default {
             crud.methods
             .onUpdate(app.baseUrl + app.pageUrl + "/store", app.data)
             .then(function (response) {
-                app.$snack.success({ text: this.$i18n.t('commercial.invoiceSaved', app.data.number) });
+              app.$snack.success({
+                          text: app.$i18n.t('accounting.CycleSaved'),
+                      });
                 app.$router.go(-1);
             }).catch(function (error) {
                 app.$snack.danger({ text: 'Error OMG!' });
@@ -133,7 +135,9 @@ export default {
             crud.methods
             .onUpdate(app.baseUrl + app.pageUrl + "/store", app.data)
             .then(function (response) {
-                app.$snack.success({ text: this.$i18n.t('commercial.invoiceSaved', app.data.number) });
+              app.$snack.success({
+                          text: app.$i18n.t('accounting.CycleSaved'),
+                      });
                 app.$router.push({ name: app.$route.name, params: { id: '0' }})
 
 
@@ -167,7 +171,7 @@ export default {
         .then(function (response) {
             app.versions = response.data;
         });
-        
+
         if (app.$route.params.id > 0) {
             crud.methods
             .onRead(app.baseUrl + app.pageUrl + '/' + app.$route.params.id)
