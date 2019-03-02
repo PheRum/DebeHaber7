@@ -21,38 +21,24 @@ class InventoryController extends Controller
     */
     public function index(Taxpayer $taxPayer, Cycle $cycle)
     {
-        // $inventory = Inventory::skip($skip)
-        // ->take(100)
-        // ->get();
-        // return response()->json($inventory);
-
         return GeneralResource::collection(
-            Transaction::whereBetween('date', [$cycle->start_date, $cycle->end_date])
+            Inventory::whereDate('start_date', $cycle->start_date)
+            ->whereDate('end_date', $cycle->end_date)
             ->orderBy('date', 'desc')
             ->paginate(50)
         );
     }
-
-    // public function get_inventoryChartType(Taxpayer $taxPayer, Cycle $cycle)
-    // {
-    //     $transaction = Chart::where('chart_version_id', $cycle->chart_version_id)
-    //     ->where('type', 4)
-    //     ->where('sub_type', 4)
-    //     ->get();
-    //
-    //     return response()->json($transaction);
-    // }
 
     //TODO pass start and end date to calculate sales.
     public function calc_sales(Request $request, Taxpayer $taxPayer, Cycle $cycle)
     {
         $transaction = Transaction::MySales()
         ->leftJoin('transaction_details as td', 'td.transaction_id', 'transactions.id')
-        ->whereIn('td.chart_id', $request->selectcharttype)
+        ->whereIn('td.chart_id', $request->chartType)
         ->whereBetween('date', [$request->start_date, $request->end_date])
         ->groupBy('td.chart_id')
-        ->select(DB::raw('sum(td.value) as sales'),
-        DB::raw('sum(td.cost) as cost_value'))
+        ->select(DB::raw('sum(td.value * transactions.rate) as sales'),
+        DB::raw('sum(td.cost * transactions.rate) as cost_value'))
         ->get();
 
         return response()->json($transaction);
@@ -95,7 +81,7 @@ class InventoryController extends Controller
         $inventory->sales_value = $request->sales_value;
         $inventory->cost_value = $request->cost_value;
         $inventory->inventory_value = $request->inventory_value;
-        $inventory->chart_of_incomes =implode(' ', $request->selectcharttype) ;
+        $inventory->chart_of_incomes =implode('', $request->selectcharttype) ;
         $inventory->comments = $request->comment;
 
         $inventory->save();

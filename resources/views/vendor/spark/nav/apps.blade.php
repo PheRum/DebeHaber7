@@ -1,7 +1,7 @@
 <b-nav vertical class="mb-25">
     <h3 class="nav-heading sub">
         @{{ $t('general.taxPayer') }}
-        <b-link href="/home" v-b-tooltip.hover title="Change Taxpayer" class="float-right">
+        <b-link href="/home" v-b-tooltip.hover :title="$t('general.changeTaxPayer')" class="float-right">
             <i class="material-icons md-14 float-right"> sync </i>
             <small>@{{ $t('general.change') }}</small>
         </b-link>
@@ -40,7 +40,7 @@
             {{-- :href="/taxpayer/' + spark.taxPayerData.id" --}}
             <b-nav-item class="sub-menu" href="/taxpayer/{{ $taxPayerData->id }}">
                 <i class="material-icons md-18 ml-10 mr-10">settings</i>
-                @{{ $t('general.settingsTaxPayer') }}
+                @{{ $t('general.taxPayer') }}
             </b-nav-item>
             <b-nav-item class="sub-menu" :to="{ name: 'documentList'}">
                 <i class="material-icons md-18 ml-10 mr-10">file_copy</i>

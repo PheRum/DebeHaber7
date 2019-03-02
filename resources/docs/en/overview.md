@@ -11,6 +11,7 @@
 DebeHaber is an accounting platform aimed at integrating and sharing data within your teams. You can share your transactional data with your accountant, auditor, or even the CFO. If you are already using an ERP or PointOfSales software in your company, DebeHaber comes with integration codes (API's) that allows you to easily share data to and from the site.
 
 
+DebeHaber is a team oriented software, meaning that your'e required to either create a team or be invited into one to be able to access any data. Do not register an account if you intend to be invited into a team.
 
 <a name="registration"></a>
 ## Registration
