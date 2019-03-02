@@ -45,23 +45,18 @@
                         <b-row>
                             <b-col>
                                 <b-form-group :label="$t('commercial.date')">
-                                    <b-input type="date" required placeholder="Missing Information" v-model="data.purcahse_date"/>
+                                    <b-input type="date" required placeholder="Missing Information" v-model="data.date"/>
                                 </b-form-group>
-                                <b-form-group :label="$t('commercial.purchaseValue')">
-                                    <b-input type="number" placeholder="Value"  v-model.number="data.purchase_value"/>
+                                <b-form-group :label="$t('commercial.value')">
+                                    <b-input type="number" placeholder="Value"  v-model.number="data.payment_value"/>
                                 </b-form-group>
-                                <b-form-group :label="$t('commercial.currentValue')">
-                                    <b-input type="number" placeholder="Value"  v-model.number="data.current_value"/>
-                                </b-form-group>
-                                <b-form-group :label="$t('commercial.quantity')">
-                                    <b-input type="number" placeholder="Value"  v-model.number="data.quantity"/>
-                                </b-form-group>
+
 
                             </b-col>
                             <b-col>
                                 <b-form-group :label="$t('commercial.chart')">
-                                    <b-form-select v-model="data.chart_id">
-                                        <option v-for="item in charts" :key="item.key" :value="item.id">{{ item.name }}</option>
+                                    <b-form-select v-model="data.chart_account_id">
+                                        <option v-for="item in accountCharts" :key="item.key" :value="item.id">{{ item.name }}</option>
                                     </b-form-select>
                                 </b-form-group>
 
@@ -74,12 +69,6 @@
                                         </b-input-group-prepend>
                                         <b-input type="number" :placeholder="$t('commercial.rate')" :value="data.rate"/>
                                     </b-input-group>
-                                </b-form-group>
-                                <b-form-group :label="$t('commercial.name')">
-                                    <b-input type="text" required placeholder="Missing Information" v-model="data.name"/>
-                                </b-form-group>
-                                <b-form-group :label="$t('commercial.serial')">
-                                    <b-input type="text" required placeholder="Missing Information" v-model="data.serial"/>
                                 </b-form-group>
                                 <b-form-group :label="$t('commercial.comment')">
                                     <b-input type="text" required placeholder="Missing Information" v-model="data.comment"/>
@@ -103,21 +92,30 @@ export default {
     data() {
         return {
             data: {
-                chart_id: 0,
+                chart_account_id: 0,
+                code: '',
+                code_expiry: '',
+                comment: '',
                 currency: '',
-                rate: 1,
-                serial:'',
-                name:'',
-                purchase_date:'',
-                purchase_value:'',
-                current_value:0,
-                quantity:0,
+                partner_name: '',
+                partner_taxid: '',
+                customer: [],
+                date: '',
+                details: [{ id: 0 }],
+                document_id: '',
+                document_type: 1,
                 id: 0,
+                is_deductible: 0,
+                journal_id: null,
+                number: '',
+                payment_condition: 0,
+                rate: 1,
                 type: 3
             },
-            pageUrl: '/commercial/fixed-assets',
+            pageUrl: '/commercial/accounts-payable',
 
-            charts: [],
+            currencies: [],
+            accountCharts: [],
 
             lastDeletedRow: [],
         };
@@ -198,13 +196,13 @@ export default {
             });
         } else {
             app.data.date = new Date(Date.now()).toISOString().split("T")[0];
-            app.data.chart_id = app.charts[0] != null ? app.charts[0].id : null;
+            app.data.chart_account_id = app.accountCharts[0] != null ? app.accountCharts[0].id : null;
             app.data.currency = app.spark.taxPayerData.currency;
             app.data.rate = 1;
         }
 
         crud.methods
-        .onRead(app.baseUrl + "/accounting/charts/for/fixed-assets/")
+        .onRead(app.baseUrl + "/accounting/charts/for/money/")
         .then(function (response) {
             app.accountCharts = response.data.data;
         });

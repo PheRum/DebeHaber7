@@ -36,6 +36,7 @@ class PaymentController extends Controller
             //groupby function group by year.
             foreach ($groupData as $groupedRow)
             {
+
                 if ($groupedRow->first()['Type'] == 2)
                 { $taxPayer = $this->checkTaxPayer($groupedRow->first()['SupplierTaxID'], $groupedRow->first()['SupplierName']); }
                 else if($groupedRow->first()['Type'] == 1)
@@ -55,6 +56,7 @@ class PaymentController extends Controller
 
                 foreach ($groupedRow as $data)
                 {
+
                     $accMovement = $this->processTransaction($data, $taxPayer, $cycle);
                     $accMovement["Message"] = "Success";
                     $request[$i] = $accMovement;

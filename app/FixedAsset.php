@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class FixedAsset extends Model
 {
-    //
+  protected $fillable = [
+      'id'
+  ];
 
     /**
      * Get the taxPayer that owns the model.

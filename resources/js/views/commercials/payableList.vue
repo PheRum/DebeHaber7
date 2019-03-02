@@ -58,7 +58,7 @@
                                 </div>
 
                                 <template slot="empty" slot-scope="scope">
-                                    <table-empty></table-empty>
+                                    <table-empty :isCreated="true"></table-empty>
                                 </template>
                             </b-table>
 

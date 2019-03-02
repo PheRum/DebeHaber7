@@ -22,6 +22,8 @@ import ReceivableList from '../views/commercials/receivableList';
 import ReceivableForm from '../views/commercials/receivableForm';
 
 import PayableList from '../views/commercials/payableList';
+import PayableForm from '../views/commercials/payableForm';
+
 import PaymentForm from '../views/commercials/paymentForm';
 import MoneyMovementList from '../views/commercials/moneyMovementList';
 import MoneyMovementForm from '../views/commercials/moneyMovementForm';
@@ -296,8 +298,8 @@ export default
                 [
                     {
                         path: ':id',
-                        component: PaymentForm,
-                        name: 'paymentForm',
+                        component:PayableForm,
+                        name: 'payableForm',
                         meta: {
                             title: 'commercial.payment',
                             img: '/img/apps/account-payable.svg',

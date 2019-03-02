@@ -33,10 +33,10 @@ class FixedAssetController extends Controller
     */
     public function store(Request $request, Taxpayer $taxPayer, Cycle $cycle)
     {
-        $fixedAsset = FixedAsset::firstOrNew('id', $request->id);
+        $fixedAsset = FixedAsset::firstOrNew(['id' => $request->id]);
         $fixedAsset->chart_id = $request->chart_id;
         $fixedAsset->taxpayer_id = $taxPayer->id;
-        $fixedAsset->currency_id = $request->currency_id;
+        $fixedAsset->currency = $request->currency_id;
         $fixedAsset->rate = $request->rate;
         $fixedAsset->serial = $request->serial;
         $fixedAsset->name = $request->name;
