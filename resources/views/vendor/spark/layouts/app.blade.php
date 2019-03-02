@@ -1,3 +1,43 @@
+@auth
+    @php
+    $currentTeam = Auth::user()->currentTeam;
+
+    if (isset($currentTeam) && request()->route('taxPayer') != null) {
+
+        $taxPayerData = App\Taxpayer::where('id', request()->route('taxPayer'))
+        ->select('id', 'name', 'alias', 'taxid', 'country', 'currency')
+        ->first();
+
+        $taxPayerConfig = Config::get('countries.' . $taxPayerData->country);
+
+        $cycleData = App\Cycle::where('taxpayer_id', request()->route('taxPayer'))
+        ->select('id', 'year')
+        ->orderBy('year', 'desc')
+        ->take(3)
+        ->get();
+
+        $currentCycle = App\Cycle::where('id', request()->route('cycle'))->first();
+
+        $integrationType = App\TaxpayerIntegration::where('team_id', $currentTeam->id)
+        ->where('taxpayer_id', request()->route('taxPayer'))
+        ->whereIn('status', [1, 2])
+        ->select('type')
+        ->first();
+
+        if (isset($integrationType))
+        {
+            if ($integrationType->type == 2) {
+                $teamRole = 'Individual';
+            } else if ($integrationType->type == 3) {
+                $teamRole = 'Audit';
+            } else {
+                $teamRole = 'Accounting';
+            }
+        }
+    }
+    @endphp
+@endauth
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +46,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>@yield('title', config('app.name'))</title>
+    <title>
+        @if (isset($taxPayerData) && isset($currentCycle))
+            DH | {{ $taxPayerData->alias }} @ {{ $currentCycle->year }}
+        @else
+            @yield('title', config('app.name'))
+        @endif
+    </title>
 
     <!-- Fonts -->
     <link href='https://fonts.googleapis.com/css?family=Raleway:300,400,600' rel='stylesheet' type='text/css'>
@@ -19,46 +65,6 @@
 
     <!-- Scripts -->
     @stack('scripts')
-
-    @auth
-        @php
-        $currentTeam = Auth::user()->currentTeam;
-
-        if (isset($currentTeam) && request()->route('taxPayer') != null) {
-
-            $taxPayerData = App\Taxpayer::where('id', request()->route('taxPayer'))
-            ->select('id', 'name', 'alias', 'taxid', 'country', 'currency')
-            ->first();
-
-            $taxPayerConfig = Config::get('countries.' . $taxPayerData->country);
-
-            $cycleData = App\Cycle::where('taxpayer_id', request()->route('taxPayer'))
-            ->select('id', 'year')
-            ->orderBy('year', 'desc')
-            ->take(3)
-            ->get();
-
-            $currentCycle = App\Cycle::where('id', request()->route('cycle'))->first();
-
-            $integrationType = App\TaxpayerIntegration::where('team_id', $currentTeam->id)
-            ->where('taxpayer_id', request()->route('taxPayer'))
-            ->whereIn('status', [1, 2])
-            ->select('type')
-            ->first();
-
-            if (isset($integrationType))
-            {
-                if ($integrationType->type == 2) {
-                    $teamRole = 'Individual';
-                } else if ($integrationType->type == 3) {
-                    $teamRole = 'Audit';
-                } else {
-                    $teamRole = 'Accounting';
-                }
-            }
-        }
-        @endphp
-    @endauth
 
     <!-- Global Spark Object -->
     <script>
