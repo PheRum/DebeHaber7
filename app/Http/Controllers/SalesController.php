@@ -5,12 +5,9 @@ namespace App\Http\Controllers;
 use App\AccountMovement;
 use App\Taxpayer;
 use App\Cycle;
-use App\Chart;
 use App\Transaction;
-use App\TransactionDetail;
 use App\Http\Resources\GeneralResource;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
 use DB;
 
 class SalesController extends Controller
@@ -24,20 +21,20 @@ class SalesController extends Controller
     {
         return GeneralResource::collection(
             Transaction::MySales()
-            ->with('details')
-            ->whereBetween('date', [$cycle->start_date, $cycle->end_date])
-            ->orderBy('date', 'desc')
-            ->paginate(50)
+                ->with('details')
+                ->whereBetween('date', [$cycle->start_date, $cycle->end_date])
+                ->orderBy('date', 'desc')
+                ->paginate(50)
         );
     }
 
     public function getLastSale($partnerId)
     {
         $transaction = Transaction::MySales()
-        ->where('partner_taxid', $partnerId)
-        ->with('customer:name,id')
-        ->with('details')
-        ->last();
+            ->where('partner_taxid', $partnerId)
+            ->with('customer:name,id')
+            ->with('details')
+            ->last();
 
         return response()->json($transaction, 200);
     }
@@ -64,9 +61,9 @@ class SalesController extends Controller
     {
         return new GeneralResource(
             Transaction::MySales()
-            ->where('id', $transactionId)
-            ->with('details')
-            ->first()
+                ->where('id', $transactionId)
+                ->with('details')
+                ->first()
         );
     }
 
@@ -78,17 +75,14 @@ class SalesController extends Controller
     */
     public function destroy(Taxpayer $taxPayer, Cycle $cycle, $transactionId)
     {
-        try
-        {
+        try {
             //TODO: Run Tests to make sure it deletes all journals related to transaction
             AccountMovement::where('transaction_id', $transactionId)->delete();
             //JournalTransaction::where('transaction_id',$transactionId)->delete();
             Transaction::where('id', $transactionId)->delete();
 
             return response()->json('Ok', 200);
-        }
-        catch (\Exception $e)
-        {
+        } catch (\Exception $e) {
             return response()->json($e, 500);
         }
     }
@@ -100,17 +94,14 @@ class SalesController extends Controller
     */
     public function destroyForce(Taxpayer $taxPayer, Cycle $cycle, $transactionId)
     {
-        try
-        {
+        try {
             //TODO: Run Tests to make sure it deletes all journals related to transaction
             AccountMovement::where('transaction_id', $transactionId)->forceDelete();
             //JournalTransaction::where('transaction_id',$transactionId)->delete();
             Transaction::where('id', $transactionId)->forceDelete();
 
             return response()->json('Ok', 200);
-        }
-        catch (\Exception $e)
-        {
+        } catch (\Exception $e) {
             return response()->json($e, 500);
         }
     }
@@ -123,20 +114,19 @@ class SalesController extends Controller
         \DB::connection()->disableQueryLog();
 
         $querySales = Transaction::MySalesForJournals($startDate, $endDate, $taxPayer->id)
-        ->get();
+            ->get();
 
-        if ($querySales->where('journal_id', '!=', null)->count() > 0)
-        {
+        if ($querySales->where('journal_id', '!=', null)->count() > 0) {
             $arrJournalIDs = $querySales->where('journal_id', '!=', null)->pluck('journal_id');
             //## Important! Null all references of Journal in Transactions.
             Transaction::whereIn('journal_id', [$arrJournalIDs])
-            ->update(['journal_id' => null]);
+                ->update(['journal_id' => null]);
 
             //Delete the journals & details with id
             \App\JournalDetail::whereIn('journal_id', [$arrJournalIDs])
-            ->forceDelete();
+                ->forceDelete();
             \App\Journal::whereIn('id', [$arrJournalIDs])
-            ->forceDelete();
+                ->forceDelete();
         }
 
         $journal = new \App\Journal();
@@ -151,21 +141,22 @@ class SalesController extends Controller
         //Assign all transactions the new journal_id.
         //No need for If Count > 0, because if it was 0, it would not have gone in this function.
         Transaction::whereIn('id', $querySales->pluck('id'))
-        ->update(['journal_id' => $journal->id]);
+            ->update(['journal_id' => $journal->id]);
 
         //Sales Transactionsd done in cash. Must affect direct cash account.
         $salesInCash = Transaction::MySalesForJournals($startDate, $endDate, $taxPayer->id)
-        ->join('transaction_details', 'transactions.id', '=', 'transaction_details.transaction_id')
-        ->groupBy('rate', 'chart_account_id')
-        ->where('payment_condition', '=', 0)
-        ->select(DB::raw('max(rate) as rate'),
-        DB::raw('max(chart_account_id) as chart_account_id'),
-        DB::raw('sum(transaction_details.value) as total'))
-        ->get();
+            ->join('transaction_details', 'transactions.id', '=', 'transaction_details.transaction_id')
+            ->groupBy('rate', 'chart_account_id')
+            ->where('payment_condition', '=', 0)
+            ->select(
+                DB::raw('max(rate) as rate'),
+                DB::raw('max(chart_account_id) as chart_account_id'),
+                DB::raw('sum(transaction_details.value) as total')
+            )
+            ->get();
 
         //run code for cash sales (insert detail into journal)
-        foreach($salesInCash as $row)
-        {
+        foreach ($salesInCash as $row) {
             $ChartController = new ChartController();
             // search if chart exists, or else create it. we don't want an error causing all transactions not to be accounted.
             $accountChartID = $row->chart_account_id ?? $ChartController->createIfNotExists_CashAccounts($taxPayer, $cycle, $row->chart_account_id)->id;
@@ -173,25 +164,25 @@ class SalesController extends Controller
             $detail = $journal->details()->firstOrNew(['chart_id' => $accountChartID]);
             $detail->credit += $row->total * $row->rate;
             $journal->details()->save($detail);
-
         }
 
         //2nd Query: Sales Transactions done in Credit. Must affect customer credit account.
         $creditSales = Transaction::MySalesForJournals($startDate, $endDate, $taxPayer->id)
-        ->join('transaction_details', 'transactions.id', '=', 'transaction_details.transaction_id')
-        ->groupBy('rate')
-        ->groupBy('partner_taxid')
-        ->where('payment_condition', '>', 0)
-        ->select(DB::raw('max(rate) as rate'),
-        DB::raw('max(partner_taxid) as partner_taxid'),
-        DB::raw('sum(transaction_details.value) as total'))
-        ->get();
+            ->join('transaction_details', 'transactions.id', '=', 'transaction_details.transaction_id')
+            ->groupBy('rate')
+            ->groupBy('partner_taxid')
+            ->where('payment_condition', '>', 0)
+            ->select(
+                DB::raw('max(rate) as rate'),
+                DB::raw('max(partner_taxid) as partner_taxid'),
+                DB::raw('sum(transaction_details.value) as total')
+            )
+            ->get();
 
         //run code for credit sales (insert detail into journal)
-        foreach($creditSales as $row)
-        {
+        foreach ($creditSales as $row) {
             $ChartController = new ChartController();
-            $customerChartID = $ChartController->createIfNotExists_AccountsReceivables($taxPayer, $cycle, $row->partner_taxid)->id;
+            $customerChartID = $ChartController->createIfNotExists_AccountsReceivables($taxPayer, $cycle, $row->partner_taxid, $row->partner_name)->id;
 
             $detail = $journal->details()->firstOrNew(['chart_id' => $customerChartID]);
             $detail->credit += $row->total * $row->rate;
@@ -200,27 +191,27 @@ class SalesController extends Controller
 
         //one detail query, to avoid being heavy for db. Group by fx rate, vat, and item type.
         $detailAccounts = Transaction::MySalesForJournals($startDate, $endDate, $taxPayer->id)
-        ->join('transaction_details', 'transactions.id', '=', 'transaction_details.transaction_id')
-        ->join('charts', 'charts.id', '=', 'transaction_details.chart_vat_id')
-        ->groupBy('rate', 'transaction_details.chart_id', 'transaction_details.chart_vat_id')
-        ->select(DB::raw('max(rate) as rate'),
-        DB::raw('max(charts.coefficient) as coefficient'),
-        DB::raw('max(transaction_details.chart_vat_id) as chart_vat_id'),
-        DB::raw('max(transaction_details.chart_id) as chart_id'),
-        DB::raw('sum(transaction_details.value) as total'))
-        ->get();
+            ->join('transaction_details', 'transactions.id', '=', 'transaction_details.transaction_id')
+            ->leftJoin('charts', 'charts.id', '=', 'transaction_details.chart_vat_id')
+            ->groupBy('rate', 'transaction_details.chart_id', 'transaction_details.chart_vat_id')
+            ->select(
+                DB::raw('max(rate) as rate'),
+                DB::raw('max(charts.coefficient) as coefficient'),
+                DB::raw('max(transaction_details.chart_vat_id) as chart_vat_id'),
+                DB::raw('max(transaction_details.chart_id) as chart_id'),
+                DB::raw('sum(transaction_details.value) as total')
+            )
+            ->get();
 
         //run code for credit sales (insert detail into journal)
-        foreach($detailAccounts->where('coefficient', '>', 0) as $row)
-        {
+        foreach ($detailAccounts->where('coefficient', '>', 0) as $row) {
             $detail = $journal->details()->firstOrNew(['chart_id' =>  $row->chart_vat_id]);
             $detail->debit += ($row->total - ($row->total / (1 + $row->coefficient))) * $row->rate;
             $journal->details()->save($detail);
         }
 
         //run code for credit sales (insert detail into journal)
-        foreach($detailAccounts as $row)
-        {
+        foreach ($detailAccounts as $row) {
             $detail = $journal->details()->firstOrNew(['chart_id' =>  $row->chart_id]);
             $detail->debit += ($row->total / (1 + $row->coefficient)) * $row->rate;
             $journal->details()->save($detail);

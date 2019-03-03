@@ -21,9 +21,35 @@ class AccountMovement extends Model
     public function scopeMy($query, $startDate, $endDate, $taxPayerID)
     {
         return $query->where('taxpayer_id', $taxPayerID)
-        ->whereBetween('date', [$startDate, $endDate])
-        ->withoutGlobalScopes()
-        ->with('transaction');
+            ->whereBetween('date', [$startDate, $endDate])
+            ->withoutGlobalScopes()
+            ->with('transaction');
+    }
+
+    public function scopePaymentsMade($query, $startDate, $endDate, $taxPayerID)
+    {
+        return $query->where('taxpayer_id', $taxPayerID)
+            ->whereBetween('date', [$startDate, $endDate])
+            ->withoutGlobalScopes()
+            ->with('transaction')
+            ->whereHas('transaction', function ($q) use ($taxPayerID) {
+                $q->where('taxpayer_id', '=', $taxPayerID)
+                    ->where('payment_condition', '>', 0)
+                    ->where('type', 1);
+            })->get();;
+    }
+
+    public function scopePaymentsRecieved($query, $startDate, $endDate, $taxPayerID)
+    {
+        return $query->where('taxpayer_id', $taxPayerID)
+            ->whereBetween('date', [$startDate, $endDate])
+            ->withoutGlobalScopes()
+            ->with('transaction')
+            ->whereHas('transaction', function ($q) use ($taxPayerID) {
+                $q->where('taxpayer_id', '=', $taxPayerID)
+                    ->where('payment_condition', '>', 0)
+                    ->where('type', 3);
+            })->get();;
     }
 
     /**

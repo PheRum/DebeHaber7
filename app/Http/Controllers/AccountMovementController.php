@@ -157,7 +157,7 @@ class AccountMovementController extends Controller
         //2nd Query: Movements related to Credit Purchases. Cash Purchases are ignored.
         $listOfPayables = AccountMovement::My($startDate, $endDate, $taxPayer->id)
             ->whereHas('transaction', function ($q) use ($taxPayer) {
-                $q->where('customer_id', '=', $taxPayer->id)
+                $q->where('taxpayer_id', '=', $taxPayer->id)
                     ->where('payment_condition', '>', 0);
             })->get();
 

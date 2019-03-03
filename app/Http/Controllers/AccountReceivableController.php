@@ -13,168 +13,191 @@ use DB;
 
 class AccountReceivableController extends Controller
 {
-  /**
+    /**
   * Display a listing of the resource.
   *
   * @return \Illuminate\Http\Response
   */
-  public function index(Taxpayer $taxPayer, Cycle $cycle)
-  {
-    return GeneralResource::collection(
-      //model balance column calculated
-      //whereHas(function sum of accMove < totalDetail)
-      Transaction::MySales()
-    //  ->joins()
-    //  ->select('*')
-    //  ->where('')
-      ->where('payment_condition', '>', 0)
-      ->with('currency:code')
-      ->with('details:value')
-      ->with('customer:name,taxid,id')
-      ->with('accountMovements:credit,debit,rate')
-      ->paginate(50)
-    );
-  }
+    public function index(Taxpayer $taxPayer, Cycle $cycle)
+    {
+        return GeneralResource::collection(
+            //model balance column calculated
+            //whereHas(function sum of accMove < totalDetail)
+            Transaction::MySales()
+                //  ->joins()
+                //  ->select('*')
+                //  ->where('')
+                ->where('payment_condition', '>', 0)
+                ->with('currency:code')
+                ->with('details:value')
+                ->with('customer:name,taxid,id')
+                ->with('accountMovements:credit,debit,rate')
+                ->paginate(50)
+        );
+    }
 
-  /**
+    /**
   * Store a newly created resource in storage.
   *
   * @param  \Illuminate\Http\Request  $request
   * @return \Illuminate\Http\Response
   */
-  public function store(Request $request, Taxpayer $taxPayer, Cycle $cycle)
-  {
-    if ($request->payment_value > 0 &&  $request->id != '') {
-      $accountMovement = AccountMovement::where('transaction_id',$request->id)->first();
-      $accountMovement->taxpayer_id = $request->taxpayer_id;
-      $accountMovement->chart_id = $request->chart_account_id;
-      $accountMovement->date = $request->date;
+    public function store(Request $request, Taxpayer $taxPayer, Cycle $cycle)
+    {
+        if ($request->payment_value > 0 &&  $request->id != '') {
+            $accountMovement = AccountMovement::where('transaction_id', $request->id)->first();
+            $accountMovement->taxpayer_id = $request->taxpayer_id;
+            $accountMovement->chart_id = $request->chart_account_id;
+            $accountMovement->date = $request->date;
 
-      $accountMovement->transaction_id = $request->id;
-      $accountMovement->currency_id = $request->currency_id;
-      $accountMovement->rate = $request->rate ?? 1;
-      $accountMovement->credit = $request->payment_value != '' ? $request->payment_value : 0;
-      $accountMovement->comment = $request->comment;
+            $accountMovement->transaction_id = $request->id;
+            $accountMovement->currency_id = $request->currency_id;
+            $accountMovement->rate = $request->rate ?? 1;
+            $accountMovement->credit = $request->payment_value != '' ? $request->payment_value : 0;
+            $accountMovement->comment = $request->comment;
 
-      $accountMovement->save();
+            $accountMovement->save();
 
-      return response()->json('ok', 200);
+            return response()->json('ok', 200);
+        }
+
+        return response()->json('no value', 403);
     }
 
-    return response()->json('no value', 403);
-  }
-
-  /**
+    /**
   * Display the specified resource.
   *
   * @param  \App\AccountMovement  $accountMovement
   * @return \Illuminate\Http\Response
   */
-  public function show(Taxpayer $taxPayer, Cycle $cycle,$transactionId)
-  {
+    public function show(Taxpayer $taxPayer, Cycle $cycle, $transactionId)
+    {
 
-    return new GeneralResource(
-      Transaction::MySales()
-      // ->where('payment_condition', '>', 0)
-      ->with('currency:code')
-      ->with('details:value')
-      ->with('customer:name,taxid,id')
-      ->with('accountMovements:credit,debit,rate')
-      ->where('id', $transactionId)
-      ->first()
-    );
-  }
+        return new GeneralResource(
+            Transaction::MySales()
+                // ->where('payment_condition', '>', 0)
+                ->with('currency:code')
+                ->with('details:value')
+                ->with('customer:name,taxid,id')
+                ->with('accountMovements:credit,debit,rate')
+                ->where('id', $transactionId)
+                ->first()
+        );
+    }
 
-  /**
+    /**
   * Remove the specified resource from storage.
   *
   * @param  \App\AccountMovement  $accountMovement
   * @return \Illuminate\Http\Response
   */
-  public function destroy(Taxpayer $taxPayer, Cycle $cycle, $transactionID)
-  {
-    // try
-    // {
-    //     //TODO: Run Tests to make sure it deletes all journals related to transaction
-    //     AccountMovement::where('transaction_id', $transactionID)->delete();
-    //     JournalTransaction::where('transaction_id',$transactionID)->delete();
-    //     Transaction::where('id',$transactionID)->delete();
-    //
-    //     return response()->json('ok', 200);
-    // }
-    // catch (\Exception $e)
-    // {
-    //     return response()->json($e, 500);
-    // }
-  }
-
-  public function generate_Journals($startDate, $endDate)
-  {
-    //Create chart controller we might need it further in the code to lookup charts.
-    $ChartController = new ChartController();
-
-    //get sum of all transactions divided by exchange rate.
-    $journal = new Journal();
-    $journal->cycle_id = $this->cycle->id; //TODO: Change this for specific cycle that is in range with transactions
-    $journal->date = $endDate; //
-    $journal->comment = __('accounting.AccountReceivableComment');
-    $journal->save();
-
-    $accMovements = AccountMovement::whereBetween('date', [$startDate, $endDate])
-    ->with('transaction')
-    ->get();
-
-    //Affect all Cash Sales and uses Cash Accounts
-    foreach ($accMovements->groupBy('chart_id') as $groupedByAccount) {
-      $value = 0;
-
-      //calculate value by currency. fx. TODO, Include Rounding depending on Main Curreny from Taxpayer Country.
-      foreach ($groupedByAccount->groupBy('rate') as $groupedByRate) {
-        $value += $groupedByRate->sum('credit') * $groupedByRate->first()->rate;
-      }
-
-      if ($value > 0) {
-        //Check for Cash Account used.
-        $chart = $ChartController->createIfNotExists_CashAccounts($this->taxPayer, $this->cycle, $groupedByAccount->first()->chart_id);
-
-        $detail = new JournalDetail();
-        $detail->debit = 0;
-        $detail->credit = $value;
-        $detail->chart_id = $chart->id;
-        $detail->journal_id = $journal->id;
-        $detail->save();
-      }
+    public function destroy(Taxpayer $taxPayer, Cycle $cycle, $transactionID)
+    {
+        // try
+        // {
+        //     //TODO: Run Tests to make sure it deletes all journals related to transaction
+        //     AccountMovement::where('transaction_id', $transactionID)->delete();
+        //     JournalTransaction::where('transaction_id',$transactionID)->delete();
+        //     Transaction::where('id',$transactionID)->delete();
+        //
+        //     return response()->json('ok', 200);
+        // }
+        // catch (\Exception $e)
+        // {
+        //     return response()->json($e, 500);
+        // }
     }
 
-    //Affect all Credit Sales and uses Credit Accounts
-    foreach ($accMovements->transaction->groupBy('customer_id') as $groupedByInvoice) {
-      $value = 0;
+    public function generate_Journals($startDate, $endDate, $taxPayer, $cycle)
+    {
+        \DB::connection()->disableQueryLog();
 
-      //calculate value by currency. fx. TODO, Include Rounding depending on Main Curreny from Taxpayer Country.
-      foreach ($groupedByInvoice->groupBy('rate') as $groupedByRate) {
-        $value += $groupedByRate->sum('credit') * $groupedByRate->first()->rate;
-      }
+        $queryAccountMovements = AccountMovement::PaymentsRecieved($startDate, $endDate, $taxPayer->id);
 
-      if ($value > 0) {
-        //Check for Account Receivables used.
-        $chart = $ChartController->createIfNotExists_AccountsReceivables($this->taxPayer, $this->cycle, $groupedByInvoice->first()->partner_taxid);
+        if ($queryAccountMovements->where('journal_id', '!=', null)->count() > 0) {
 
-        $detail = new JournalDetail();
-        $detail->debit = $value;
-        $detail->credit = 0;
-        $detail->chart_id = $chart->id;
-        $detail->journal_id = $journal->id;
-        $detail->save();
-      }
+            $arrJournalIDs = $queryAccountMovements
+                ->where('journal_id', '!=', null)
+                ->pluck('journal_id')
+                ->get();
+
+            //## Important! Null all references of Journal in Transactions.
+            AccountMovement::whereIn('journal_id', [$arrJournalIDs])
+                ->update(['journal_id' => null]);
+
+            //Delete the journals & details with id
+            \App\JournalDetail::whereIn('journal_id', [$arrJournalIDs])
+                ->forceDelete();
+
+            \App\Journal::whereIn('id', [$arrJournalIDs])
+                ->forceDelete();
+        }
+
+        $journal = new \App\Journal();
+
+        $comment = __('Payments Received', ['startDate' => $startDate->toDateString(), 'endDate' => $endDate->toDateString()]);
+
+        $journal->cycle_id = $cycle->id;
+        $journal->date = $endDate;
+        $journal->comment = $comment;
+        $journal->is_automatic = 1;
+        $journal->save();
+
+        $chartController = new ChartController();
+
+        //2nd Query: Movements related to Credit Purchases. Cash Purchases are ignored.
+        $listOfPayables = $queryAccountMovements->get();
+
+        //run code for credit purchase (insert detail into journal)
+        foreach ($listOfPayables as $row) {
+
+            $localValue = $row->credit * $row->rate;
+
+            if ($localValue == 0) {
+                continue;
+            }
+
+            //First Accounts Receivables with localized currency localValue.
+            $partnerChartID = $chartController->createIfNotExists_AccountsPayable($taxPayer, $cycle, $row->transaction->partner_taxid, $row->transaction->partner_name)->id;
+            $detail = $journal->details()->firstOrNew(['chart_id' => $partnerChartID]);
+            $detail->debit += $localValue;
+            $detail->chart_id = $partnerChartID;
+            $journal->details()->save($detail);
+
+            //Second Accounts with same localized currency localValue.
+            $detail = $journal->details()->firstOrNew(['chart_id' => $row->chart_id]);
+            $detail->credit += $localValue;
+            $detail->chart_id = $row->chart_id;
+            $journal->details()->save($detail);
+
+            //Third, Verify Transaction Currency Rate vs Payment Currency Rate to calculate profit or loss by exchange rate differences
+            $invoiceRate = $row->transaction->rate;
+            $paymentRate = $row->rate;
+            $rateDifference = abs($invoiceRate - $paymentRate);
+
+            if ($paymentRate < $invoiceRate) {
+                //Gain by Exchange Rante Difference
+                $detail = new \App\JournalDetail();
+                $detail->debit = $row->debit * $rateDifference;
+                $detail->credit = 0;
+                $detail->chart_id = $chartController->createIfNotExists_IncomeFromFX($taxPayer, $cycle)->id;
+                $journal->details()->save($detail);
+            } else if ($paymentRate > $invoiceRate) {
+                //Loss by Exchange Rante Difference
+                $detail = new \App\JournalDetail();
+                $detail->debit = 0;
+                $detail->credit = $row->debit * $rateDifference;
+                $detail->chart_id = $chartController->createIfNotExists_ExpenseFromFX($taxPayer, $cycle)->id;
+                $journal->details()->save($detail);
+            }
+        }
+
+        if ($journal->details()->count() == 0) {
+            $journal->details()->delete();
+            $journal->delete();
+        }
+
+        AccountMovement::whereIn('id', $queryAccountMovements->pluck('id'))
+            ->update(['journal_id' => $journal->id]);
     }
-
-    foreach ($accMovements as $mov) {
-      $mov->setStatus('Accounted');
-
-      $journalAccountMovement = new JournalAccountMovement();
-      $journalAccountMovement->journal_id = $journal->id;
-      $journalAccountMovement->account_movement_id = $mov->id;
-      $journalAccountMovement->save();
-    }
-  }
 }
