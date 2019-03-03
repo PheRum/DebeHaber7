@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\API\PRY;
+
 use App\TaxpayerIntegration;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
@@ -20,10 +21,8 @@ class Controller extends BaseController
         $suma = 0;
         $k = 2;
 
-        for ($i = $n - 1; $i >= 0; $i--)
-        {
-            if (is_numeric($arrayTaxID[$i]))
-            {
+        for ($i = $n - 1; $i >= 0; $i--) {
+            if (is_numeric($arrayTaxID[$i])) {
                 $k = $k > $base_max ? 2 : $k;
                 $suma += ($arrayTaxID[$i] * $k++);
             }

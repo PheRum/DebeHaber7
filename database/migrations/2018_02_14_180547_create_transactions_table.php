@@ -13,12 +13,11 @@ class CreateTransactionsTable extends Migration
     */
     public function up()
     {
-        Schema::create('transactions', function (Blueprint $table)
-        {
+        Schema::create('transactions', function (Blueprint $table) {
             $table->increments('id');
 
             $table->unsignedTinyInteger('type')->default(1)
-            ->comment('1  = Purchases, 2 = Self-Invoice (Purchases), 3 = Debit Note (Purchase), 4 = Sales Invoice, 5 = Credit Note (Sales)');
+                ->comment('1  = Purchases, 2 = Self-Invoice (Purchases), 3 = Debit Note (Purchase), 4 = Sales Invoice, 5 = Credit Note (Sales)');
 
             $table->unsignedInteger('taxpayer_id');
             $table->foreign('taxpayer_id')->references('id')->on('taxpayers')->onDelete('cascade');

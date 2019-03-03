@@ -20,7 +20,7 @@ class CreateTaxpayersTable extends Migration
             $table->string('country', 3)->default('PRY');
             $table->string('currency', 3)->default('PYG')->nullable();
 
-            $table->string('taxid');
+            $table->string('taxid', 32);
             $table->unsignedTinyInteger('code')->nullable();
 
             $table->string('name', 255);
@@ -35,6 +35,8 @@ class CreateTaxpayersTable extends Migration
 
             $table->string('agent_name', 64)->nullable();
             $table->string('agent_taxid', 32)->nullable();
+
+            $table->unsignedTinyInteger('monthly_deadline')->default(7);
 
             $table->boolean('is_company')->default(false);
             $table->boolean('show_inventory')->default(false);

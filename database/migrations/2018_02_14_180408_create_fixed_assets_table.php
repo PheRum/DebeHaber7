@@ -21,7 +21,7 @@ class CreateFixedAssetsTable extends Migration
 
             $table->unsignedInteger('taxpayer_id');
             $table->foreign('taxpayer_id')->references('id')->on('taxpayers')->onDelete('cascade');
-            
+
             $table->string('currency', 3)->default('USD');
             $table->unsignedDecimal('rate', 10, 4)->default(1);
 
@@ -31,11 +31,11 @@ class CreateFixedAssetsTable extends Migration
 
             $table->date('purchase_date');
 
-            $table->unsignedDecimal('purchase_value', 18, 2);
+            $table->unsignedDecimal('purchase_value', 18, 2)->default(0);
 
-            $table->unsignedDecimal('current_value', 18, 2);
+            $table->unsignedDecimal('current_value', 18, 2)->default(0);
 
-            $table->unsignedDecimal('quantity', 10, 2);
+            $table->unsignedDecimal('quantity', 10, 2)->default(1);
 
             $table->date('sales_date')->nullable();
 

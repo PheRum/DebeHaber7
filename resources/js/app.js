@@ -1,4 +1,3 @@
-
 /*
 |--------------------------------------------------------------------------
 | Laravel Spark Bootstrap
@@ -32,12 +31,10 @@ import 'vue-snack/dist/vue-snack.min.css';
 import vueTopProgress from 'vue-top-progress';
 // import XlsCsvParser from 'vue-xls-csv-parser';
 import VueCsvImport from 'vue-csv-import';
-import VueTour from 'vue-tour';
-// import Buefy from 'buefy'
+// import VueTour from 'vue-tour';
 
-Vue.use(VueTour);
+// Vue.use(VueTour);
 Vue.use(VueCsvImport);
-// Vue.use(XlsCsvParser);
 Vue.use(vueTopProgress);
 Vue.use(VueSnackbar);
 Vue.use(VueMask);
@@ -46,47 +43,6 @@ Vue.use(VueGoogleCharts);
 Vue.use(BootstrapVue);
 Vue.use(VueRouter);
 Vue.use(require('vue-shortkey'));
-// Vue.use(Buefy)
-
-// Vue.component(Buefy.Table, Buefy.Table);
-
-//Passport Components for API
-Vue.component(
-    'passport-clients',
-    require('./components/passport/Clients.vue').default
-);
-Vue.component(
-    'passport-authorized-clients',
-    require('./components/passport/AuthorizedClients.vue').default
-);
-Vue.component(
-    'passport-personal-access-tokens',
-    require('./components/passport/PersonalAccessTokens.vue').default
-);
-Vue.component(
-    'search-site',
-    require('./components/search-site.vue').default
-);
-Vue.component(
-    'search-taxpayer',
-    require('./components/search-taxpayer.vue').default
-);
-Vue.component(
-    'table-actions',
-    require('./components/table/actions.vue').default
-);
-Vue.component(
-    'table-loading',
-    require('./components/table/loading.vue').default
-);
-Vue.component(
-    'table-empty',
-    require('./components/table/empty.vue').default
-);
-Vue.component(
-    'invoices-this-month-kpi',
-    require('./components/dashboard/InvoicesThisMonthKPI.vue').default
-);
 
 Vue.config.productionTip = false;
 

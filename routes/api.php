@@ -81,8 +81,7 @@ Route::prefix('{taxPayer}')->group(function () {
             Route::post('inventories/calc-inventory', 'InventoryController@Calulate_InvenotryValue');
         });
 
-        Route::prefix('accounting')->group(function ()
-        {
+        Route::prefix('accounting')->group(function () {
             //maybe add global scope.
             Route::get('journal/ByCycleID/{id}', 'JournalController@getJournalsByCycleID');
             Route::get('journals/balance-sheet', 'AccountingController@getBalanceSheet');
@@ -95,10 +94,8 @@ Route::prefix('{taxPayer}')->group(function () {
                 'charts' => 'ChartController',
             ]);
 
-            Route::prefix('charts')->group(function ()
-            {
-                Route::prefix('for')->group(function ()
-                {
+            Route::prefix('charts')->group(function () {
+                Route::prefix('for')->group(function () {
                     Route::get('fixed-assets', 'ChartController@getFixedAssets');
                     Route::get('money', 'ChartController@getMoneyAccounts');
 
@@ -121,8 +118,11 @@ Route::prefix('{taxPayer}')->group(function () {
         });
     });
 
-    Route::prefix('PRY')->group(function()
-    {
+    Route::prefix('PRY')->group(function () {
         Route::get('/hechauka/{startDate}/{endDate}', 'API\PRY\HechukaController@getHechauka');
+    });
+
+    Route::prefix('kpi')->group(function () {
+        Route::get('/transactions/{type}/{startDate}/{endDate}', 'KPIController@transactionByItems');
     });
 });

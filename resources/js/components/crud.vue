@@ -21,16 +21,14 @@ export default {
         onList() {
             var app = this;
 
-
             //Loading indicators
             // this.$refs.topProgress.start();
             app.loading = true;
 
-            var page=app.$children[1]!=null?app.$children[1].currentPage :1
+            var page = app.$children[1] != null ? app.$children[1].currentPage : 1
 
             axios.get('/api' + this.$route.path + '?page=' + page )
             .then(({ data }) => {
-
                 app.items = data.data;
                 app.meta = data.meta;
                 app.skip += app.pageSize;

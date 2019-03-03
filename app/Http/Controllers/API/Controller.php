@@ -9,7 +9,6 @@ use App\Chart;
 use App\Cycle;
 use App\ChartVersion;
 use App\Http\Controllers\ChartController;
-use DateTime;
 use Auth;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
@@ -22,15 +21,14 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function checkCycle(Taxpayer $taxPayer, $firstDate) {
-
+    public function checkCycle(Taxpayer $taxPayer, $firstDate)
+    {
 
         $version = ChartVersion::where('country', $taxPayer->country)
-        ->orWhere('taxpayer_id', $taxPayer->id)
-        ->first();
+            ->orWhere('taxpayer_id', $taxPayer->id)
+            ->first();
 
-        if (!isset($version))
-        {
+        if (!isset($version)) {
             $version = new ChartVersion();
             $version->taxpayer_id = $taxPayer->id;
             $version->name = 'Version Automatica';
@@ -45,42 +43,42 @@ class Controller extends BaseController
         $cycle->taxpayer_id = $taxPayer->id;
         $cycle->save();
 
-
         return $cycle;
     }
 
-    public function checkServer(Request $request) {
+    public function checkServer(Request $request)
+    {
         return response()->json('Ready to rock ... your accounting data', 200);
     }
 
-    public function checkAPI(Request $request) {
-        if (Auth::user() != null)
-        { return response()->json(Auth::user()->name, 200); }
-        else
-        { return response()->json('Forbidden Access', 403); }
+    public function checkAPI(Request $request)
+    {
+        if (Auth::user() != null) {
+            return response()->json(Auth::user()->name, 200);
+        } else {
+            return response()->json('Forbidden Access', 403);
+        }
     }
 
-    public function checkTaxPayer($taxID, $name) {
-        $cleanTaxID = strtok($taxID , '-');
-        $cleanDV = substr($taxID , -1);
+    public function checkTaxPayer($taxID, $name)
+    {
+        $cleanTaxID = strtok($taxID, '-');
+        $cleanDV = substr($taxID, -1);
 
-        if (is_numeric($cleanTaxID))
-        { $taxPayer = Taxpayer::where('taxid', $cleanTaxID)->first(); }
-        else
-        { $taxPayer = Taxpayer::where('taxid', '88888801')->first(); }
+        if (is_numeric($cleanTaxID)) {
+            $taxPayer = Taxpayer::where('taxid', $cleanTaxID)->first();
+        } else {
+            $taxPayer = Taxpayer::where('taxid', '88888801')->first();
+        }
 
-        if (!isset($taxPayer))
-        {
+        if (!isset($taxPayer)) {
             $taxPayer = new taxpayer();
             $taxPayer->name = $name ?? 'No Name';
 
-            if ($cleanTaxID == false)
-            {
+            if ($cleanTaxID == false) {
                 $taxPayer->taxid = 88888801;
                 $taxPayer->code = null;
-            }
-            else
-            {
+            } else {
                 $taxPayer->taxid = $cleanTaxID ?? 88888801;
                 $taxPayer->code = is_numeric($cleanDV) ? $cleanDV : null;
             }
@@ -92,16 +90,15 @@ class Controller extends BaseController
         return $taxPayer;
     }
 
-    public function checkCurrency($currencyCode, Taxpayer $taxPayer) {
+    public function checkCurrency($currencyCode, Taxpayer $taxPayer)
+    {
         //Check if Chart Exists
-        if ($currencyCode != '')
-        {
+        if ($currencyCode != '') {
             $currency = Currency::where('code', $currencyCode)
-            ->where('country', $taxPayer->country)
-            ->first();
+                ->where('country', $taxPayer->country)
+                ->first();
 
-            if ($currency == null)
-            {
+            if ($currency == null) {
                 $currency = new Currency();
                 $currency->country = $taxPayer->country;
                 $currency->code = $currencyCode;
@@ -115,55 +112,54 @@ class Controller extends BaseController
         return null;
     }
 
-    public function checkCurrencyRate($id, Taxpayer $taxPayer, $date) {
-        $currencyRate = CurrencyRate::where('currency_id',$id)
-        ->where('created_at', $this->convert_date($date))
-        ->first();
+    public function checkCurrencyRate($id, Taxpayer $taxPayer, $date)
+    {
 
-        if (isset($currencyRate))
-        { return $currencyRate->rate; }
+        $currencyRate = CurrencyRate::where('currency_id', $id)
+            ->where('created_at', $this->convert_date($date))
+            ->first();
+
+        if (isset($currencyRate)) {
+            return $currencyRate->rate;
+        }
 
         return null;
     }
 
-    public function checkChart($costcenter, $name, Taxpayer $taxPayer, Cycle $cycle, $type) {
-        $chartController= new ChartController();
+    public function checkChart($costcenter, $name, Taxpayer $taxPayer, Cycle $cycle, $type)
+    {
+        $chartController = new ChartController();
         //Check if Chart Exists
-        if (isset($costcenter))
-        {
+        if (isset($costcenter)) {
             $chart = null;
             //Type 1 = Service
             if ($costcenter == 1) {
                 //Sales
-                if ($type == 4 || $type == 5)
-                {
-                    $chart=$chartController->createIfNotExists_Incomes($taxPayer,$cycle,$costcenter->Name);
-                }
-                else //Purchase
-                {
-                    $chart=$chartController->createIfNotExists_Expenses($taxPayer,$cycle,$costcenter->Name??'');
+                if ($type == 4 || $type == 5) {
+                    $chart = $chartController->createIfNotExists_Incomes($taxPayer, $cycle, $costcenter->Name);
+                } else {
+                    //Purchase
+                    $chart = $chartController->createIfNotExists_Expenses($taxPayer, $cycle, $costcenter->Name ?? '');
                 }
             }
             //Type 2 = Products
             elseif ($costcenter == 2) {
                 //Sales
-                if ($type == 4 || $type == 5)
-                {
-                    $chart = $chartController->createIfNotExists_IncomeFromInventory($taxPayer,$cycle,$costcenter->Name??'');
-                }
-                else //Purchase
-                {
-                    $chart = $chartController->createIfNotExists_Inventory($taxPayer,$cycle,$costcenter->Name??'');
+                if ($type == 4 || $type == 5) {
+                    $chart = $chartController->createIfNotExists_IncomeFromInventory($taxPayer, $cycle, $costcenter->Name ?? '');
+                } else {
+                    //Purchase
+                    $chart = $chartController->createIfNotExists_Inventory($taxPayer, $cycle, $costcenter->Name ?? '');
                 }
             }
             //Type 3 = FixedAsset
             elseif ($costcenter == 3) {
                 $chart = Chart::My($taxPayer, $cycle)
-                ->where('type', 1)
-                ->where('sub_type', 9)
-                ->where('is_accountable', true)
-                ->where('name', $costcenter->Name)
-                ->first();
+                    ->where('type', 1)
+                    ->where('sub_type', 9)
+                    ->where('is_accountable', true)
+                    ->where('name', $costcenter->Name)
+                    ->first();
 
                 if (!isset($chart)) {
                     //if not, create specific.
@@ -190,101 +186,87 @@ class Controller extends BaseController
     public function checkChartOld($costcenter, $name, Taxpayer $taxPayer, Cycle $cycle, $type)
     {
         //Check if Chart Exists
-        if (isset($costcenter))
-        {
+        if (isset($costcenter)) {
             $chart = null;
             //Type 1 = Service
-            if ($costcenter == 1)
-            {
+            if ($costcenter == 1) {
                 //Sales
-                if ($type == 4 || $type == 5)
-                {
+                if ($type == 4 || $type == 5) {
                     $chart = Chart::My($taxPayer, $cycle)
-                    ->Incomes()
-                    ->where('name', $name)
-                    ->orWhereHas('aliases', function($subQ) use($name) {
-                        $subQ->where('name', 'like', '%' . $name . '%');
-                    })
-                    ->first();
+                        ->Incomes()
+                        ->where('name', $name)
+                        ->orWhereHas('aliases', function ($subQ) use ($name) {
+                            $subQ->where('name', 'like', '%' . $name . '%');
+                        })
+                        ->first();
 
-                    if ($chart == null)
-                    {
+                    if ($chart == null) {
                         $chart = new Chart();
                         $chart->type = 4;
                         $chart->sub_type = 1;
                     }
-                }
-                else //Purchase
-                {
-                    $chart = Chart::My($taxPayer, $cycle)
-                    ->Expenses()
-                    ->where('name', $name)
-                    ->orWhereHas('aliases', function($subQ) use($name) {
-                        $subQ->where('name', 'like', '%' . $name . '%');
-                    })
-                    ->first();
-
-                    if ($chart == null)
+                } else //Purchase
                     {
-                        $chart = new Chart();
-                        $chart->type = 5;
-                        $chart->sub_type = 10;
+                        $chart = Chart::My($taxPayer, $cycle)
+                            ->Expenses()
+                            ->where('name', $name)
+                            ->orWhereHas('aliases', function ($subQ) use ($name) {
+                                $subQ->where('name', 'like', '%' . $name . '%');
+                            })
+                            ->first();
+
+                        if ($chart == null) {
+                            $chart = new Chart();
+                            $chart->type = 5;
+                            $chart->sub_type = 10;
+                        }
                     }
-                }
             }
             //Type 2 = Products
-            elseif ($costcenter == 2)
-            {
+            elseif ($costcenter == 2) {
                 //Sales
-                if ($type == 4 || $type == 5)
-                {
+                if ($type == 4 || $type == 5) {
                     $chart = Chart::My($taxPayer, $cycle)
-                    ->RevenuFromInventory()
-                    ->where('name', $name)
-                    ->orWhereHas('aliases', function($subQ) use($name) {
-                        $subQ->where('name', 'like', '%' . $name . '%');
-                    })
-                    ->first();
+                        ->RevenuFromInventory()
+                        ->where('name', $name)
+                        ->orWhereHas('aliases', function ($subQ) use ($name) {
+                            $subQ->where('name', 'like', '%' . $name . '%');
+                        })
+                        ->first();
 
-                    if ($chart == null)
-                    {
+                    if ($chart == null) {
                         $chart = new Chart();
                         $chart->type = 4;
                         $chart->sub_type = 4;
                     }
+                } else //Purchase
+                    {
+                        $chart = Chart::My($taxPayer, $cycle)
+                            ->Inventories()
+                            ->where('name', $name)
+                            ->orWhereHas('aliases', function ($subQ) use ($name) {
+                                $subQ->where('name', 'like', '%' . $name . '%');
+                            })
+                            ->first();
 
-                }
-                else //Purchase
-                {
-                    $chart = Chart::My($taxPayer, $cycle)
-                    ->Inventories()
+                        if ($chart == null) {
+                            $chart = new Chart();
+                            $chart->type = 1;
+                            $chart->sub_type = 8;
+                        }
+                    }
+            }
+            //Type 3 = FixedAsset
+            elseif ($costcenter == 3) {
+                $chart = Chart::My($taxPayer, $cycle)
+                    ->fixedAssets()
                     ->where('name', $name)
-                    ->orWhereHas('aliases', function($subQ) use($name) {
+                    ->orWhereHas('aliases', function ($subQ) use ($name) {
                         $subQ->where('name', 'like', '%' . $name . '%');
                     })
                     ->first();
 
-                    if ($chart == null)
-                    {
-                        $chart = new Chart();
-                        $chart->type = 1;
-                        $chart->sub_type = 8;
-                    }
-                }
-            }
-            //Type 3 = FixedAsset
-            elseif ($costcenter == 3)
-            {
-                $chart = Chart::My($taxPayer, $cycle)
-                ->fixedAssets()
-                ->where('name', $name)
-                ->orWhereHas('aliases', function($subQ) use($name) {
-                    $subQ->where('name', 'like', '%' . $name . '%');
-                })
-                ->first();
-
-                if ($chart == null)
-                {
+                if ($chart == null) {
                     $chart = new Chart();
                     $chart->type = 1;
                     $chart->sub_type = 9;
@@ -292,8 +274,7 @@ class Controller extends BaseController
             }
 
             //If chart is saved, then ignore this code.
-            if ($chart->id == 0)
-            {
+            if ($chart->id == 0) {
                 $chart->chart_version_id = $cycle->chart_version_id;
                 $chart->country = $taxPayer->country;
                 $chart->taxpayer_id = $taxPayer->id;
@@ -313,16 +294,14 @@ class Controller extends BaseController
     {
 
         //Check if Chart Exists
-        if ($coefficient != '' || $coefficient == 0)
-        {
+        if ($coefficient != '' || $coefficient == 0) {
 
             $chart = Chart::My($taxPayer, $cycle)
-            ->VATDebitAccounts()
-            ->where('coefficient', $coefficient/100)
-            ->first();
+                ->VATDebitAccounts()
+                ->where('coefficient', $coefficient / 100)
+                ->first();
 
-            if ($chart == null)
-            {
+            if ($chart == null) {
                 $chart = new Chart();
                 $chart->chart_version_id = $cycle->chart_version_id;
                 $chart->country = $taxPayer->country;
@@ -349,15 +328,13 @@ class Controller extends BaseController
     public function checkCreditVAT($coefficient, Taxpayer $taxPayer, Cycle $cycle)
     {
         //Check if Chart Exists
-        if ($coefficient != '' || $coefficient == 0)
-        {
+        if ($coefficient != '' || $coefficient == 0) {
             $chart = Chart::My($taxPayer, $cycle)
-            ->VATCreditAccounts()
-            ->where('coefficient', $coefficient/100)
-            ->first();
+                ->VATCreditAccounts()
+                ->where('coefficient', $coefficient / 100)
+                ->first();
 
-            if ($chart == null)
-            {
+            if ($chart == null) {
                 $chart = new Chart();
                 $chart->chart_version_id = $cycle->chart_version_id;
                 $chart->country = $taxPayer->country;
@@ -384,20 +361,18 @@ class Controller extends BaseController
     public function checkChartAccount($name, Taxpayer $taxPayer, Cycle $cycle)
     {
         //Check if Chart Exists
-        if ($name != '')
-        {
+        if ($name != '') {
             //TODO Wrong, you need to specify taxpayerID or else you risk bringing other accounts not belonging to taxpayer.
             //I have done this already.
             $chart = Chart::My($taxPayer, $cycle)
-            ->MoneyAccounts()
-            ->where('name', $name)
-            ->orWhereHas('aliases', function($subQ) use($name) {
-                $subQ->where('name', 'like', '%' . $name . '%');
-            })
-            ->first();
+                ->MoneyAccounts()
+                ->where('name', $name)
+                ->orWhereHas('aliases', function ($subQ) use ($name) {
+                    $subQ->where('name', 'like', '%' . $name . '%');
+                })
+                ->first();
 
-            if ($chart == null)
-            {
+            if ($chart == null) {
                 $chart = new Chart();
                 $chart->chart_version_id = $cycle->chart_version_id;
                 $chart->country = $taxPayer->country;

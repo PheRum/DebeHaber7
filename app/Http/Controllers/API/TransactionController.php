@@ -3,20 +3,11 @@
 namespace App\Http\Controllers\API;
 
 use App\Taxpayer;
-use App\Chart;
-use App\ChartVersion;
-use App\Currency;
-use App\CurrencyRate;
 use App\Cycle;
-use App\ChartAlias;
 use App\Transaction;
 use App\TransactionDetail;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use Illuminate\Support\Collection;
 use Carbon\Carbon;
-use DB;
-use Auth;
 
 class TransactionController extends Controller
 {
@@ -36,7 +27,6 @@ class TransactionController extends Controller
             //groupby function group by year.
             foreach ($groupData as $groupedRow) {
 
-
                 if ($groupedRow->first()['Type'] == 4 || $groupedRow->first()['Type'] == 5) {
                     $taxPayer = $this->checkTaxPayer($groupedRow->first()['SupplierTaxID'], $groupedRow->first()['SupplierName']);
                 } else if ($groupedRow->first()['Type'] == 1 || $groupedRow->first()['Type'] == 3) {
@@ -45,14 +35,10 @@ class TransactionController extends Controller
 
                 //check and create cycle
                 $firstDate = Carbon::parse($groupedRow->first()["Date"]);
-                //No need to run this query for each invoice, just check if the date is in between.
-
                 $cycle = Cycle::My($taxPayer, $firstDate)->first();
-
                 if (!isset($cycle)) {
                     $cycle = $this->checkCycle($taxPayer, $firstDate);
                 }
-
 
                 $i = 0;
                 foreach ($groupedRow as $data) {
@@ -74,47 +60,28 @@ class TransactionController extends Controller
 
     public function processTransaction($data, Taxpayer $taxPayer, Cycle $cycle)
     {
-
-        // 4 & 5, then is Sales or Credit Note. So Customer is our client, and current Taxpayer is Supplier
-        if ($data['Type'] == 4 || $data['Type'] == 5) {
-            $partner_name = $data['CustomerName'];
-            $partner_taxid = $data['CustomerTaxID'];
-            // $this->checkTaxPayer($data['CustomerTaxID'], $data['CustomerName']);
-        }
-        //If type 1 & 3, then it is Purchase or Debit Note. So we should bring our supplier and current Taxpayer is Customer
-        else if ($data['Type'] == 1 || $data['Type'] == 3) {
-            $partner_name = $data['SupplierName'];
-            $partner_taxid = $data['SupplierTaxID'];
-            // $this->checkTaxPayer($data['SupplierTaxID'], $data['SupplierName']);
-        }
-        //TODO. There should be logic that checks if RefID for this Taxpayer is already int the system. If so, then only update, or else create.
-        //Im not too happy with this code since it will call db every time there is a new invoice. Maybe there is a better way, or simply remove this part and insert it again.
-
         $transactionType = 1;
         if ($data['Type'] == 1 || $data['Type'] == 2) {
             $transactionType = 1;
-        }
-        else if ($data['Type'] == 3) {
+        } else if ($data['Type'] == 3) {
             $transactionType = 2;
-        }
-        else if ($data['Type'] == 4 ) {
+        } else if ($data['Type'] == 4) {
             $transactionType = 3;
-        }
-        else if ($data['Type'] == 5) {
+        } else if ($data['Type'] == 5) {
             $transactionType = 4;
         }
 
         $transaction = Transaction::where('number', $data['Number'])
-        ->where('type', $transactionType)
-        ->where('taxpayer_id', $taxPayer->id)
-        ->where('partner_taxid', $partner_taxid)
-        ->first() ?? new Transaction();
+            ->where('type', $transactionType)
+            ->where('taxpayer_id', $taxPayer->id)
+            ->whereDate('date', $this->convert_date($data['Date']))
+            ->first() ?? new Transaction();
 
         $transaction->type = $transactionType;
         $transaction->taxpayer_id = $taxPayer->id;
 
-        $transaction->partner_name = $partner_name;
-        $transaction->partner_taxid = $partner_taxid;
+        $transaction->partner_name = ($transactionType == 2 || $transactionType == 1) ? $$data['SupplierName'] : $data['CustomerName'];
+        $transaction->partner_taxid = ($transactionType == 3 || $transactionType == 4) ? $$data['SupplierTaxID'] : $data['CustomerTaxID'];
 
         //TODO, this is not enough. Remove Cycle, and exchange that for Invoice Date. Since this will tell you better the exchange rate for that day.
         $transaction->currency = $data['CurrencyCode'] ?? $taxPayer->currency;
@@ -127,15 +94,6 @@ class TransactionController extends Controller
         }
 
         $transaction->payment_condition = $data['PaymentCondition'];
-
-        // //TODO, do not ask if chart account id is null.
-        // if ($data['AccountName'] != null && $transaction->payment_condition == 0)
-        // {
-        //     $transaction->chart_account_id = $this->checkChartAccount($data['AccountName'], $taxPayer, $cycle);
-        // }
-
-        //You may need to update the code to a Carbon nuetral. Check this, I may be wrong.
-
         $transaction->date = $this->convert_date($data['Date']);
         $transaction->number = $data['Number'];
         $transaction->code = $data['Code'] != '' ? $data['Code'] : null;
@@ -153,7 +111,6 @@ class TransactionController extends Controller
         );
 
         $data['cloud_id'] = $transaction->id;
-
         return $data;
     }
 
@@ -162,12 +119,11 @@ class TransactionController extends Controller
         //???
         $totalDiscount = $details->where('Value', '<', 0)->sum('Value');
         $totalValue = $details->where('Value', '>', 0)->sum('Value') != 0 ?
-        $details->where('Value', '>', 0)->sum('Value') : 1;
+            $details->where('Value', '>', 0)->sum('Value') : 1;
 
         //TODO to reduce data stored, group by VAT and Chart Type.
         //If 5 rows can be converted into 1 row it is better for our system's health and reduce server load.
         foreach ($details->groupBy('VATPercentage') as $groupedRowsByVat) {
-
             foreach ($groupedRowsByVat->groupBy('Type') as $groupedRowsByType) {
 
                 if ($groupedRowsByType[0]['Value'] > 0) {

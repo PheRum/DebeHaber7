@@ -28,47 +28,42 @@ class AccountMovementController extends Controller
 
         $chunkedData = $request;
 
-        if (isset($chunkedData))
-        {
+        if (isset($chunkedData)) {
             $data = collect($chunkedData);
-            $groupData = $data->groupBy(function($q) { return Carbon::parse($q["Date"])->format('Y'); });
+            $groupData = $data->groupBy(function ($q) {
+                return Carbon::parse($q["Date"])->format('Y');
+            });
             $i = 0;
 
             //groupby function group by year.
-            foreach ($groupData as $groupedRow)
-            {
-                if ($groupedRow->first()['Type'] == 2)
-                { $taxPayer = $this->checkTaxPayer($groupedRow->first()['SupplierTaxID'], $groupedRow->first()['SupplierName']); }
-                else if($groupedRow->first()['Type'] == 1)
-                { $taxPayer = $this->checkTaxPayer($groupedRow->first()['CustomerTaxID'], $groupedRow->first()['CustomerName']); }
+            foreach ($groupData as $groupedRow) {
+                if ($groupedRow->first()['Type'] == 2) {
+                    $taxPayer = $this->checkTaxPayer($groupedRow->first()['SupplierTaxID'], $groupedRow->first()['SupplierName']);
+                } else if ($groupedRow->first()['Type'] == 1) {
+                    $taxPayer = $this->checkTaxPayer($groupedRow->first()['CustomerTaxID'], $groupedRow->first()['CustomerName']);
+                }
 
+                //check and create cycle
                 $firstDate = Carbon::parse($groupedRow->first()["Date"]);
-
-                //No need to run this query for each invoice, just check if the date is in between.
                 $cycle = Cycle::My($taxPayer, $firstDate)->first();
 
                 if (!isset($cycle)) {
-                    $cycle = $this->checkCycle($taxPayer,$firstDate);
+                    $cycle = $this->checkCycle($taxPayer, $firstDate);
                 }
 
-                foreach ($groupedRow as $data)
-                {
-                    try
-                    {
+                foreach ($groupedRow as $data) {
+                    try {
                         $data = $this->processTransaction($data, $taxPayer, $cycle);
                         $data["Message"] = "Success";
                         $transactionData[$i] = $data;
                         $i = $i + 1;
-                    }
-                    catch (\Exception $e)
-                    {
+                    } catch (\Exception $e) {
                         $data["Message"] = "Error loading transaction: " . $e;
                         $transactionData[$i] = $data;
                     }
                 }
             }
         }
-
 
         return response()->json(collect($transactionData));
     }
@@ -91,16 +86,15 @@ class AccountMovementController extends Controller
         $accMovement->currency_id = $this->checkCurrency($data['CurrencyCode'], $taxPayer);
 
         //Check currency rate based on date. if nothing found use default from api. TODO this should be updated to buy and sell rates.
-        if ($data['CurrencyRate'] ==  '')
-        { $accMovement->rate = $this->checkCurrencyRate($accMovement->currency_id, $taxPayer, $data['Date']) ?? 1; }
-        else
-        { $accMovement->rate = $data['CurrencyRate'] ?? 1; }
-
+        if ($data['CurrencyRate'] ==  '') {
+            $accMovement->rate = $this->checkCurrencyRate($accMovement->currency_id, $taxPayer, $data['Date']) ?? 1;
+        } else {
+            $accMovement->rate = $data['CurrencyRate'] ?? 1;
+        }
 
         $accMovement->date = $this->convert_date($data['Date']);
         $accMovement->credit = $data['Credit'] ?? 0;
         $accMovement->debit = $data['Debit'] ?? 0;
-
         $accMovement->comment = $data['Comment'];
         $accMovement->save();
 

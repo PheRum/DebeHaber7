@@ -79,7 +79,7 @@
 import crud from '../../components/crud.vue';
 import VueNumeric from 'vue-numeric'
 export default {
-    components: { 'crud': crud,VueNumeric },
+    components: { 'crud': crud, VueNumeric },
     data() {
         return {
             data: {
@@ -97,8 +97,6 @@ export default {
         };
     },
     computed: {
-
-
         baseUrl() {
             return '/api/' + this.$route.params.taxPayer + '/' + this.$route.params.cycle;
         },
@@ -107,8 +105,6 @@ export default {
 
         onSave() {
             var app = this;
-
-
 
             crud.methods
             .onUpdate(app.baseUrl + app.pageUrl + "/store", app.data)
@@ -162,6 +158,7 @@ export default {
 
     mounted() {
         var app = this;
+
         crud.methods
         .onRead(app.baseUrl + '/config/chart-versions')
         .then(function (response) {
