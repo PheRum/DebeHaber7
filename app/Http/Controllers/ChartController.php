@@ -337,7 +337,7 @@ class ChartController extends Controller
         return $chart;
     }
 
-    public function createIfNotExists_AccountsReceivables(Taxpayer $taxPayer, Cycle $cycle, $partnerTaxID)
+    public function createIfNotExists_AccountsReceivables(Taxpayer $taxPayer, Cycle $cycle, $partnerTaxID, $partnerName)
     {
         //Check if CustomerID exists in Chart.
         $chart = Chart::My($taxPayer, $cycle)
@@ -366,7 +366,7 @@ class ChartController extends Controller
                 $chart->sub_type = 5;
                 $chart->is_accountable = true;
                 $chart->code = 'N/A';
-                $chart->name = __('commercial.AccountsReceivable') . ' ' . Taxpayer::find($partnerTaxID)->name;
+                $chart->name = __('commercial.AccountsReceivable') . ' ' . $partnerName;
                 $chart->save();
             }
         }
@@ -374,7 +374,7 @@ class ChartController extends Controller
         return $chart;
     }
 
-    public function createIfNotExists_AccountsPayable(Taxpayer $taxPayer, Cycle $cycle, $partnerTaxID)
+    public function createIfNotExists_AccountsPayable(Taxpayer $taxPayer, Cycle $cycle, $partnerTaxID, $partnerName)
     {
         //Check if CustomerID exists in Chart.
         $chart = Chart::My($taxPayer, $cycle)
@@ -401,7 +401,7 @@ class ChartController extends Controller
                 $chart->sub_type = 1;
                 $chart->is_accountable = true;
                 $chart->code = 'N/A';
-                $chart->name = __('commercial.AccountsPayable') . ' ' . Taxpayer::find($partnerID)->name;
+                $chart->name = __('commercial.AccountsPayable') . ' ' . $partnerName;
                 $chart->save();
             }
         }

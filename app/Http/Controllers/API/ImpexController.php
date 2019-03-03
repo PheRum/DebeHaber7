@@ -83,7 +83,7 @@ class ImpexController extends Controller
         //Assign invoices . . .
         $invoices = collect($data['Invoices']);
 
-        foreach ($invoice as $invoices) {
+        foreach ($invoices as $invoice) {
             $transaction = $this->processInvoice($invoice, $impex, $taxPayer, $cycle);
             $invoice['cloud_id'] = $transaction->id;
         }
@@ -91,7 +91,7 @@ class ImpexController extends Controller
         //Assign expenses . . .
         $expenses = collect($data['Expenses']);
 
-        foreach ($expense as $expenses) {
+        foreach ($expenses as $expense) {
             $impexExpense = ImpexExpense::where('id', $invoice)->first() ?? new ImpexExpense();
 
             if ($expense[0]['Value'] > 0) {

@@ -120,7 +120,7 @@ class AccountMovementController extends Controller
             }
 
             //First clean Accounts Receivables with localized currency value.
-            $partnerChartID = $chartController->createIfNotExists_AccountsReceivables($taxPayer, $cycle, $row->transaction->partner_taxid)->id;
+            $partnerChartID = $chartController->createIfNotExists_AccountsReceivables($taxPayer, $cycle, $row->transaction->partner_taxid, $row->transaction->partner_name)->id;
             $detail = $journal->details()->firstOrNew(['chart_id' => $partnerChartID]);
             $detail->debit += $value;
             $detail->chart_id = $partnerChartID;
@@ -138,20 +138,20 @@ class AccountMovementController extends Controller
             $rateDifference = abs($invoiceRate - $paymentRate);
 
             if ($paymentRate > $invoiceRate) //Gain by Exchange Rante Difference
-            {
-                $detail = new \App\JournalDetail();
-                $detail->credit = $row->credit * $rateDifference;
-                $detail->debit = 0;
-                $detail->chart_id = $chartController->createIfNotExists_IncomeFromFX($taxPayer, $cycle)->id;
-                $journal->details()->save($detail);
-            } else if ($paymentRate < $invoiceRate) //Loss by Exchange Rante Difference
-            {
-                $detail = new \App\JournalDetail();
-                $detail->credit = 0;
-                $detail->debit = $row->credit * $rateDifference;
-                $detail->chart_id = $chartController->createIfNotExists_ExpenseFromFX($taxPayer, $cycle)->id;
-                $journal->details()->save($detail);
-            }
+                {
+                    $detail = new \App\JournalDetail();
+                    $detail->credit = $row->credit * $rateDifference;
+                    $detail->debit = 0;
+                    $detail->chart_id = $chartController->createIfNotExists_IncomeFromFX($taxPayer, $cycle)->id;
+                    $journal->details()->save($detail);
+                } else if ($paymentRate < $invoiceRate) //Loss by Exchange Rante Difference
+                {
+                    $detail = new \App\JournalDetail();
+                    $detail->credit = 0;
+                    $detail->debit = $row->credit * $rateDifference;
+                    $detail->chart_id = $chartController->createIfNotExists_ExpenseFromFX($taxPayer, $cycle)->id;
+                    $journal->details()->save($detail);
+                }
         }
 
         //2nd Query: Movements related to Credit Purchases. Cash Purchases are ignored.
@@ -170,7 +170,7 @@ class AccountMovementController extends Controller
             }
 
             //First clean Accounts Receivables with localized currency value.
-            $partnerChartID = $chartController->createIfNotExists_AccountsPayable($taxPayer, $cycle, $row->transaction->supplier_id)->id;
+            $partnerChartID = $chartController->createIfNotExists_AccountsPayable($taxPayer, $cycle, $row->transaction->supplier_id, $row->transaction->partner_name)->id;
             $detail = $journal->details()->firstOrNew(['chart_id' => $partnerChartID]);
             $detail->credit += $value;
             $detail->chart_id = $partnerChartID;
@@ -188,20 +188,20 @@ class AccountMovementController extends Controller
             $rateDifference = abs($invoiceRate - $paymentRate);
 
             if ($paymentRate < $invoiceRate) //Gain by Exchange Rante Difference
-            {
-                $detail = new \App\JournalDetail();
-                $detail->credit = $row->credit * $rateDifference;
-                $detail->debit = 0;
-                $detail->chart_id = $chartController->createIfNotExists_IncomeFromFX($taxPayer, $cycle)->id;
-                $journal->details()->save($detail);
-            } else if ($paymentRate > $invoiceRate) //Loss by Exchange Rante Difference
-            {
-                $detail = new \App\JournalDetail();
-                $detail->credit = 0;
-                $detail->debit = $row->credit * $rateDifference;
-                $detail->chart_id = $chartController->createIfNotExists_ExpenseFromFX($taxPayer, $cycle)->id;
-                $journal->details()->save($detail);
-            }
+                {
+                    $detail = new \App\JournalDetail();
+                    $detail->credit = $row->credit * $rateDifference;
+                    $detail->debit = 0;
+                    $detail->chart_id = $chartController->createIfNotExists_IncomeFromFX($taxPayer, $cycle)->id;
+                    $journal->details()->save($detail);
+                } else if ($paymentRate > $invoiceRate) //Loss by Exchange Rante Difference
+                {
+                    $detail = new \App\JournalDetail();
+                    $detail->credit = 0;
+                    $detail->debit = $row->credit * $rateDifference;
+                    $detail->chart_id = $chartController->createIfNotExists_ExpenseFromFX($taxPayer, $cycle)->id;
+                    $journal->details()->save($detail);
+                }
         }
 
         //3rd Query: Movements that have no transactions. Example bank transfers and deposits
